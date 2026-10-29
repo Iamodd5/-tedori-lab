@@ -1,0 +1,12 @@
+# Open questions
+
+| ID | Question | Why it matters | Source checked | Status |
+|----|----------|----------------|----------------|--------|
+| Q1 | Which document is the "government final" design? The spec says the July 13, 2026 "final draft", but July 13 was the *draft* interim summary (中間とりまとめ（案）). Later documents: adopted interim summary (Jul 29) and Cabinet decision on the basic policy (Aug 5). | Decides which numbers go into `government_final.yaml`. Choosing between sources is a human decision (spec 13). | sources/gov/20260713_02_siryou2.pdf p.1; gov/kokuminkaigi_index.html; gov/20260805_01_siryou1.pdf | open (HUMAN_TODO H-3) |
+| Q2 | The Sep 15 Cabinet outline and Oct 9 bill pair the food tax cut (food rate 8% → 1%, i.e. national 0.78% + local, from 2027-04-01 to 2029-03-31) with a new **就業者負担軽減支援金** (worker burden-relief payment, funded "within the range of 1% of food consumption tax"). Is that payment part of `food_tax_cut`, or a fifth design? Which party proposals, if any, should also be modelled? | Changes the design list in spec Section 8; party documents touch political wording. | sources/gov/20260915_01_siryou1.pdf p.1–2 (lines 11–51 of text copy); gov/20261009_siryou1.pdf | open (HUMAN_TODO H-3) |
+| Q3 | Rengo proposal page is under maintenance. | No Rengo parameters can be extracted until we have the documents. | https://www.jtuc-rengo.or.jp/activity/seisaku_jitsugen/teigen/?p=5465 (2026-10-29: "メンテナンス中") | open (HUMAN_TODO H-4) |
+| Q4 | Reference municipality for National Health Insurance. | H7 (freelancer) premiums depend on it. | – | open (HUMAN_TODO H-5) |
+| Q5 | Reference incomes for H1–H8 and the income grid. | Spec 13 requires a human decision. Needed by Milestone 2. | – | open (to be asked at Milestone 2) |
+| Q6 | OpenFisca-Japan has stale or placeholder values (health insurance rate 10% since 2000; national pension 17,510 yen dated 2015) and no NHI. | Baseline would be wrong if used as-is. Plan: override in our own parameters and offer upstream fixes. | docs/COVERAGE.md | open (Milestone 2–3) |
+| Q7 | Daiwa report is dated 2025-10-10, before the council's work. Has Daiwa published an updated design in 2026? | We may be modelling an outdated version. | https://www.dir.co.jp/report/research/law-research/tax/20251010_025349.pdf | open (check in Milestone 1) |
+| Q8 | Specific e-Stat tables for spending by income decile and household counts not chosen yet. | Needed for consumption-tax incidence (M2) and weighting (M7). | sources/stats/*.html (landing pages only) | open (Milestone 2/7) |
