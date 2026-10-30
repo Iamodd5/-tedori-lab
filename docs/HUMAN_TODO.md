@@ -8,4 +8,5 @@
 | H-4 | 0→1 | ACTION | Rengo site is under maintenance: retry later, or download the proposal PDF by hand into `sources/rengo/` (Q3) | open | |
 | H-5 | 2 | DECISION | Reference municipality for National Health Insurance (Q4) | open | Not urgent until Milestone 2. |
 | H-6 | 0 | ACTION | Start a new Claude Code session in this project folder so the notification hooks load | open | Hooks in `.claude/settings.json` are read when a session starts. |
-| H-7 | 1 | REVIEW + DECISION | Milestone 1 CHECKPOINT: review the five design files; choose Daiwa variant(s) (Q10) | open | |
+| H-7 | 1 | REVIEW + DECISION | Milestone 1 CHECKPOINT: review the five design files; choose Daiwa variant(s) (Q10) | done | 2026-10-30: "H-7 ok, A". Milestone 1 checkpoint passed; Daiwa = headline variant only. |
+| H-8 | 2 | DECISION | Reference incomes for H1–H8 (Q5) together with the NHI reference municipality (H-5) | open | |
