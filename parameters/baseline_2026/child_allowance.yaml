@@ -1,0 +1,13 @@
+source:
+  cfa:
+    title: こども家庭庁 児童手当制度のご案内
+    url: https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai
+    file: sources/child/cfa_jidoteate.html
+    published: 2026 (page as downloaded 2026-10-29)
+eligible_until: {value: "March 31 after 18th birthday (high-school age)", cite: {source: cfa, page: 1}}
+monthly:
+  under_3: {value: 15000, cite: {source: cfa, page: 1}}
+  age_3_to_high_school: {value: 10000, cite: {source: cfa, page: 1}}
+  third_child_and_later: {value: 30000, cite: {source: cfa, page: 1}}
+income_limit: {value: none, cite: {source: cfa, page: 1}, note: "no income test since Oct 2024"}
+notes: "approximation: true — a child's age is held fixed for the whole year."

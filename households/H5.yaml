@@ -1,0 +1,21 @@
+id: H5
+name_ja: ひとり親・子1人（10歳）
+name_en: Single parent employee, one child (10)
+municipality: 新宿区 (Shinjuku, Tokyo)
+reference_income_source: docs/HUMAN_TODO.md H-8 (chosen 2026-10-30)
+members:
+  - id: a
+    role: head
+    age: 38
+    salary: 2500000
+    single_parent: true
+    work: {full_time: true}
+  - {id: c1, role: child, age: 10}
+spending:  # food and other taxable consumption, from the Family Income and Expenditure Survey
+  status: unresolved
+  question: Q8
+assumptions:
+  - The parent is a mother (matters only for a 40,000-yen difference in the resident-tax 調整控除 base).
+  - 児童扶養手当 (child-rearing allowance for single parents) is outside the v1 baseline (spec Section 3); OPEN_QUESTIONS Q17.
+  - Salary is paid in 12 equal months with no bonus (approximation: true).
+  - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).

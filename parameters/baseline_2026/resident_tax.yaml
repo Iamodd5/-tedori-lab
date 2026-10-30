@@ -1,0 +1,71 @@
+# Individual resident tax (特別区民税・都民税) charged on 2026 income (令和9年度分), Shinjuku ward.
+# Employment income and the income definitions follow income tax (MIC note p.20: 給与所得控除 "所得税と同様の対応").
+# Personal deduction amounts for 令和9年度 have not been published as a ward table yet; the 令和7年度 Shinjuku table
+# is used and labelled approximation (OPEN_QUESTIONS Q13).
+source:
+  mic:
+    title: 個人住民税の基礎控除等について（総務省 自治税務局 市町村税課 資料３）
+    url: https://www.soumu.go.jp/main_content/001075462.pdf
+    file: sources/tax/soumu_kojin_juminzei_kiso_kojo_r8.pdf
+    published: 2026-05-29
+  shinjuku_tax:
+    title: 新宿区 住民税について（住民税が課税されない方）
+    url: https://www.city.shinjuku.lg.jp/hoken/file04_03_00001.html
+    file: sources/shinjuku/file04_03_00001.html
+    published: 2025-02-17
+  shinjuku_r7:
+    title: 新宿区 令和7年度住民税 税額の算出方法等（所得控除一覧表）
+    url: https://www.city.shinjuku.lg.jp/content/000434385.pdf
+    file: sources/shinjuku/000434385.pdf
+    published: 2025
+  mic_general:
+    title: 総務省 個人住民税
+    url: https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/150790_06.html
+    file: sources/tax/soumu_kojin_juminzei.html
+    published: 2026 (page as downloaded 2026-10-29)
+
+employment_income_same_as_income_tax: {value: true, cite: {source: mic, page: 20}}
+basic_deduction:
+  amount: {value: 430000, cite: {source: mic, page: 6}, note: "最高43万円, unchanged"}
+  taper: {bands: [[24000000, 430000], [24500000, 290000], [25000000, 150000]], above: 0, cite: {source: shinjuku_r7, page: 2}, approximation: true, explanation: "令和7年度 table; Q13"}
+personal_deductions:
+  approximation: true
+  explanation: "令和7年度 Shinjuku amounts; 令和9年度 ward table not yet published (Q13)"
+  spouse: {value: 330000, cite: {source: shinjuku_r7, page: 2}}
+  dependent_general_16_plus: {value: 330000, cite: {source: shinjuku_r7, page: 2}}
+  dependent_specific_19_to_22: {value: 450000, cite: {source: shinjuku_r7, page: 2}}
+  single_parent: {value: 300000, cite: {source: shinjuku_r7, page: 2}}
+  working_student: {value: 260000, cite: {source: shinjuku_r7, page: 2}}
+  working_student_income_limit: {value: 750000, cite: {source: shinjuku_r7, page: 2}}
+  dependant_income_limit: {value: 480000, cite: {source: shinjuku_r7, page: 2}}
+  spouse_special:  # spouse income bands (upper inclusive) -> amount, earner total income ≤ 9m column
+    bands: [[1000000, 330000], [1050000, 310000], [1100000, 260000], [1150000, 210000], [1200000, 160000], [1250000, 110000], [1300000, 60000], [1330000, 30000]]
+    cite: {source: shinjuku_r7, page: 2, section: "早見表②"}
+personal_deduction_difference:  # 人的控除額の差 used for the 調整控除 tax credit
+  approximation: true
+  explanation: "令和7年度 Shinjuku table; Q13"
+  basic: {value: 50000, cite: {source: shinjuku_r7, page: 3}}
+  spouse: {value: 50000, cite: {source: shinjuku_r7, page: 3}}
+  dependent_general: {value: 50000, cite: {source: shinjuku_r7, page: 3}}
+  dependent_specific: {value: 180000, cite: {source: shinjuku_r7, page: 3}}
+  single_parent_mother: {value: 50000, cite: {source: shinjuku_r7, page: 3}}
+  working_student: {value: 10000, cite: {source: shinjuku_r7, page: 3}}
+adjustment_credit:  # 調整控除: 5% of min(差, taxable) if taxable ≤ 2m; else 5% of max(差 - (taxable - 2m), 50,000)
+  rate: {value: 0.05, cite: {source: shinjuku_r7, page: 3}}
+  threshold: {value: 2000000, cite: {source: shinjuku_r7, page: 3}}
+  minimum_base: {value: 50000, cite: {source: shinjuku_r7, page: 3}}
+  income_limit: {value: 25000000, cite: {source: shinjuku_r7, page: 3}}
+income_levy_rate: {value: 0.10, cite: {source: mic_general, page: 1}, note: "ward 6% + Tokyo 4%"}
+per_capita_levy:  # 均等割: ward 3,000 + Tokyo 1,000, plus national forest environment tax 1,000
+  ward: {value: 3000, cite: {source: shinjuku_r7, page: 1}}
+  tokyo: {value: 1000, cite: {source: shinjuku_r7, page: 1}}
+  forest_environment_tax: {value: 1000, cite: {source: shinjuku_r7, page: 1}}
+non_taxable:  # Shinjuku, from 令和3年度. N = number of same-household spouse and dependants (incl. under 16)
+  per_capita_none_if_total_income_le: {value: "350000 * (N + 1) + 310000; single person 450000", cite: {source: shinjuku_tax, page: 1}}
+  income_levy_none_if_income_le: {value: "350000 * (N + 1) + 420000; single person 450000", cite: {source: shinjuku_tax, page: 1}}
+  single_parent_none_if_total_income_le: {value: 1350000, cite: {source: shinjuku_tax, page: 1}}
+rounding:  # 地方税法 20条の4の2; the text of the law is not yet in sources/ (OPEN_QUESTIONS Q14). Effect < 1,100 yen.
+  approximation: true
+  explanation: "Rounding as commonly applied (taxable income to 1,000 yen, tax to 100 yen, both down); source to be added"
+  taxable_income: {value: 1000, note: "round down"}
+  income_levy: {value: 100, note: "round down"}

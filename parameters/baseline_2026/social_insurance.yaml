@@ -1,0 +1,80 @@
+# Social insurance contributions paid by the person in 2026.
+# Rates in force from April/March 2026 are applied to the whole calendar year (approximation: true, see notes).
+source:
+  kyoukai:
+    title: 令和8年3月分（4月納付分）からの健康保険・厚生年金保険の保険料額表（東京支部）
+    url: https://www.kyoukaikenpo.or.jp/assets/R8_13tokyo.pdf
+    file: sources/social/kyoukaikenpo_R8_13tokyo.pdf
+    published: 2026-03
+  koyo:
+    title: 令和8（2026）年度 雇用保険料率のご案内（厚生労働省）
+    url: https://www.mhlw.go.jp/content/001692566.pdf
+    file: sources/social/mhlw_koyohoken_ritsu_r8.pdf
+    published: 2026
+  kokumin:
+    title: 日本年金機構 国民年金保険料
+    url: https://www.nenkin.go.jp/service/kokunen/hokenryo/hokenryo.html
+    file: sources/social/nenkin_kokumin_hokenryo.html
+    published: 2026 (page as downloaded 2026-10-29)
+  coverage:
+    title: 社会保険加入の要件（厚生労働省 社会保険適用拡大特設サイト）
+    url: https://www.mhlw.go.jp/tekiyoukakudai/jugyouin/taisho/
+    file: sources/social/mhlw_tekiyoukakudai_taisho.html
+    published: 2026 (page as downloaded 2026-10-30)
+  dependant:
+    title: 協会けんぽ 令和8年度被扶養者資格の再確認について
+    url: https://www.kyoukaikenpo.or.jp/about/business/dependent_status/001/index.html
+    file: sources/social/kyoukaikenpo_hifuyosha_r8.html
+    published: 2026
+  nhi:
+    title: 新宿区 保険料の計算方法について（令和8年度の保険料率等）
+    url: https://www.city.shinjuku.lg.jp/hoken/hoken01_001028.html
+    file: sources/shinjuku/hoken01_001028.html
+    published: 2026
+  nhi_reduction:
+    title: 新宿区 保険料の減免について（均等割額の軽減）
+    url: https://www.city.shinjuku.lg.jp/hoken/hoken01_002030.html
+    file: sources/shinjuku/hoken01_002030.html
+    published: 2026
+
+employee:
+  premium_table: {value: kyoukaikenpo_tokyo_r8.csv, cite: {source: kyoukai, page: 1}, note: "employee half; health_ltc_half for ages 40-64; pension grades 4-35 only (below grade 4 uses grade 4, above 35 uses 35)"}
+  rounding: {value: "employee half: 0.50 yen or less rounds down, over 0.50 rounds up", cite: {source: kyoukai, page: 1, section: "注①"}}
+  employment_insurance_worker_rate: {value: 0.005, cite: {source: koyo, page: 1, section: "一般の事業"}}
+  ltc_age_from: {value: 40, cite: {source: kyoukai, page: 1}}
+  ltc_age_to_exclusive: {value: 65, cite: {source: kyoukai, page: 1}}
+  pension_age_to_exclusive: {value: 70, cite: {source: kyoukai, page: 1}, note: "厚生年金 to age 70"}
+
+part_time_coverage:  # 短時間労働者: employer 51+ staff (until Sep 2027), ≥20 h/week, monthly wage ≥ 88,000, not a student
+  employer_size_min: {value: 51, cite: {source: coverage, page: 1}}
+  hours_min: {value: 20, cite: {source: coverage, page: 1}}
+  monthly_wage_min: {value: 88000, cite: {source: coverage, page: 1}}
+  students_excluded: {value: true, cite: {source: coverage, page: 1}}
+
+health_dependant_income_limit:  # annual income below this
+  general: {value: 1300000, cite: {source: dependant, page: 1}}
+  age_19_to_22_not_spouse: {value: 1500000, cite: {source: dependant, page: 1}}
+  age_60_plus: {value: 1800000, cite: {source: dependant, page: 1}}
+
+national_pension_monthly: {value: 17920, cite: {source: kokumin, page: 1}, note: "FY2026"}
+
+nhi_shinjuku_fy2026:
+  base_deduction: {value: 430000, cite: {source: nhi, page: 1}}
+  medical: {per_member: 47600, rate: 0.0751, cap: 670000, cite: {source: nhi, page: 1}}
+  support: {per_member: 17600, rate: 0.0280, cap: 260000, cite: {source: nhi, page: 1}}
+  ltc_40_64: {per_member: 17800, rate: 0.0243, cap: 170000, cite: {source: nhi, page: 1}}
+  child_levy: {per_member_18_plus: 1873, rate: 0.0027, cap: 30000, cite: {source: nhi, page: 1}}
+  preschool_flat_reduction: {value: 0.5, cite: {source: nhi, page: 1}}
+  flat_reduction:  # household 総所得金額等 ≤ limit -> reduce per-member amounts
+    base: {value: 430000, cite: {source: nhi_reduction, page: 1}}
+    per_extra_earner: {value: 100000, cite: {source: nhi_reduction, page: 1}}
+    seventy_percent: {per_member_add: 0, cite: {source: nhi_reduction, page: 1}}
+    fifty_percent: {per_member_add: 310000, cite: {source: nhi_reduction, page: 1}}
+    twenty_percent: {per_member_add: 570000, cite: {source: nhi_reduction, page: 1}}
+    pensioner_65_extra_deduction: {value: 150000, cite: {source: nhi_reduction, page: 1}}
+
+notes: >
+  approximation: true. Health, child-support levy and pension rates start March/April 2026 and employment
+  insurance April 2026; we apply them to all 12 months of 2026. National pension uses the FY2026 amount for all
+  months. NHI uses FY2026 Shinjuku rates applied to 2026 income (FY2027 rates are not published). Salary is
+  treated as 12 equal monthly payments with no bonus.

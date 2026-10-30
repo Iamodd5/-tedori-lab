@@ -1,0 +1,18 @@
+id: H1
+name_ja: 単身・パート（130万円の壁付近）
+name_en: Single part-time employee near the 1.3m wall
+municipality: 新宿区 (Shinjuku, Tokyo)
+reference_income_source: docs/HUMAN_TODO.md H-8 (chosen 2026-10-30)
+members:
+  - id: a
+    role: head
+    age: 30
+    salary: 1250000
+    work: {full_time: false, hours_20_plus: true, employer_51_plus: true}
+spending:  # food and other taxable consumption, from the Family Income and Expenditure Survey
+  status: unresolved
+  question: Q8
+assumptions:
+  - Works 20+ hours a week for an employer with 51+ staff, so employee insurance applies once monthly pay reaches 88,000 yen.
+  - Salary is paid in 12 equal months with no bonus (approximation: true).
+  - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).

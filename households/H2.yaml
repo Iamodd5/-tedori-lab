@@ -1,0 +1,23 @@
+id: H2
+name_ja: 大学生（親の扶養）
+name_en: University student with a part-time job, parents' dependant
+municipality: 新宿区 (Shinjuku, Tokyo)
+reference_income_source: docs/HUMAN_TODO.md H-8 (chosen 2026-10-30)
+members:
+  - id: a
+    role: head
+    age: 20
+    salary: 1000000
+    student: true
+    outside_health_dependant: true
+    student_pension_deferral: true
+    work: {full_time: false, hours_20_plus: false, employer_51_plus: false}
+spending:  # food and other taxable consumption, from the Family Income and Expenditure Survey
+  status: unresolved
+  question: Q8
+assumptions:
+  - Modelled as the student alone; the parents are outside the household, so their dependant deductions are not counted (OPEN_QUESTIONS Q16).
+  - Covered by a parent's employee health insurance as a dependant while income stays under the limit.
+  - Uses the national-pension student payment deferral (学生納付特例), so pays no contribution in 2026.
+  - Salary is paid in 12 equal months with no bonus (approximation: true).
+  - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).

@@ -1,0 +1,23 @@
+id: H4
+name_ja: 片働き＋配偶者パート
+name_en: Single-earner employee, spouse working part-time
+municipality: 新宿区 (Shinjuku, Tokyo)
+reference_income_source: docs/HUMAN_TODO.md H-8 (chosen 2026-10-30)
+members:
+  - id: a
+    role: head
+    age: 45
+    salary: 5000000
+    work: {full_time: true}
+  - id: b
+    role: spouse
+    age: 43
+    salary: 1000000
+    work: {full_time: false, hours_20_plus: false, employer_51_plus: false}
+spending:  # food and other taxable consumption, from the Family Income and Expenditure Survey
+  status: unresolved
+  question: Q8
+assumptions:
+  - Spouse works under 20 hours a week, so is not in employee insurance and is a health-insurance dependant and category-3 pension member while income stays under 1.3m.
+  - Salary is paid in 12 equal months with no bonus (approximation: true).
+  - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).

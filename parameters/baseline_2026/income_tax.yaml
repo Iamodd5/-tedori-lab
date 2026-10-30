@@ -1,0 +1,97 @@
+# Income tax on 2026 (令和8年分) income, as applied at the December 2026 year-end adjustment.
+source:
+  nencho:
+    title: 令和8年分 年末調整のしかた
+    url: https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/nencho_all.pdf
+    file: sources/tax/nta_nencho2026_all.pdf
+    published: 2026-10
+  ta1410:
+    title: タックスアンサー No.1410 給与所得控除 [令和8年4月1日現在法令等]
+    url: https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm
+    file: sources/tax/nta_1410_kyuyo_shotoku_kojo.html
+    published: 2026-04-01
+  ta1600:
+    title: タックスアンサー No.1600 公的年金等の課税関係
+    url: https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1600.htm
+    file: sources/tax/nta_1600_koteki_nenkin.html (table image sources/tax/nta_1600_fig01.png)
+    published: 2026 (page as downloaded 2026-10-30)
+  ta1171:
+    title: タックスアンサー No.1171 ひとり親控除
+    url: https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171.htm
+    file: sources/tax/nta_1171_hitorioya.html
+    published: 2026 (page as downloaded 2026-10-30)
+  ta1411:
+    title: タックスアンサー No.1411 所得金額調整控除
+    url: https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1411.htm
+    file: sources/tax/nta_1411_shotoku_kingaku_chosei.html
+    published: 2026 (page as downloaded 2026-10-30)
+
+employment_income:
+  table: {value: kyuyo_shotoku_table_r8.csv, cite: {source: nencho, page: "47-54"}, note: "used for salary 2,191,000 to 6,599,999"}
+  below_741000: {value: 0, cite: {source: nencho, page: 3}}
+  formula_741000_to_2191000: {value: "salary - 740,000", cite: {source: nencho, page: 3}}
+  deduction_from_6_6m:  # salary x rate + add, applied from 6,600,000 (fractions below 1 yen dropped)
+    - {from: 6600000, rate: 0.10, add: 1100000, cite: {source: ta1410, page: 1}}
+    - {from: 8500001, fixed: 1950000, cite: {source: ta1410, page: 1}}
+
+adjustment_deduction:  # 所得金額調整控除 for salary > 8.5m with a dependant under 23
+  salary_floor: {value: 8500000, cite: {source: ta1411, page: 1}}
+  salary_cap: {value: 10000000, cite: {source: ta1411, page: 1}}
+  rate: {value: 0.10, cite: {source: ta1411, page: 1}}
+
+public_pension_income:  # 65 or older, other income ≤ 10m (fig. 1 lower half); [収入 from, rate, minus]
+  age65_plus:
+    - {from: 0, rate: 0, minus: 0, floor_zero_until: 1100000}
+    - {from: 1100001, rate: 1.0, minus: 1100000}
+    - {from: 3300000, rate: 0.75, minus: 275000}
+    - {from: 4100000, rate: 0.85, minus: 685000}
+    - {from: 7700000, rate: 0.95, minus: 1455000}
+    - {from: 10000000, rate: 1.0, minus: 1955000}
+  cite: {source: ta1600, page: 1, section: "図1 (公的年金等に係る雑所得以外の合計所得金額が1,000万円以下)"}
+
+basic_deduction:  # by 合計所得金額 (upper bound inclusive)
+  bands: [[4890000, 1040000], [6550000, 670000], [23500000, 620000], [24000000, 480000], [24500000, 320000], [25000000, 160000]]
+  above: 0
+  cite: {source: nencho, page: 56, section: "令和8年分の基礎控除額の表"}
+
+spouse_deduction:  # earner total income ≤ 9m column; spouse income bands (upper inclusive) -> amount
+  earner_bands: [[9000000, 0], [9500000, 1], [10000000, 2]]   # column index
+  spouse_ordinary: {bands: [[620000, [380000, 260000, 130000]]], cite: {source: nencho, page: 55}}
+  spouse_special:
+    bands:
+      - [950000, [380000, 260000, 130000]]
+      - [1000000, [360000, 240000, 120000]]
+      - [1050000, [310000, 210000, 110000]]
+      - [1100000, [260000, 180000, 90000]]
+      - [1150000, [210000, 140000, 70000]]
+      - [1200000, [160000, 110000, 60000]]
+      - [1250000, [110000, 80000, 40000]]
+      - [1300000, [60000, 40000, 20000]]
+      - [1330000, [30000, 20000, 10000]]
+    cite: {source: nencho, page: 55}
+  elderly_spouse_ordinary: {value: [480000, 320000, 160000], cite: {source: nencho, page: 55}}
+
+dependent_deduction:
+  income_limit: {value: 620000, cite: {source: nencho, page: 4, section: "扶養親族等の所得要件"}}
+  general_16_plus: {value: 380000, cite: {source: nencho, page: 56}}
+  specific_19_to_22: {value: 630000, cite: {source: nencho, page: 56}}
+  elderly_70_plus_not_living_together: {value: 480000, cite: {source: nencho, page: 56}}
+
+specific_relative_special_deduction:  # 特定親族特別控除, relative aged 19-22 with income 620,001-1,230,000
+  bands: [[850000, 630000], [900000, 610000], [950000, 510000], [1000000, 410000], [1050000, 310000], [1100000, 210000], [1150000, 110000], [1200000, 60000], [1230000, 30000]]
+  cite: {source: nencho, page: 56}
+
+single_parent_deduction:
+  amount: {value: 350000, cite: {source: nencho, page: 56}}
+  income_limit: {value: 5000000, cite: {source: ta1171, page: 1}}
+
+working_student_deduction:
+  amount: {value: 270000, cite: {source: nencho, page: 56}}
+  income_limit: {value: 890000, cite: {source: nencho, page: 4}}
+
+rate_schedule:  # taxable income rounded down to 1,000 yen; [upper inclusive, rate, minus]
+  bands: [[1950000, 0.05, 0], [3300000, 0.10, 97500], [6950000, 0.20, 427500], [9000000, 0.23, 636000], [18000000, 0.33, 1536000], [40000000, 0.40, 2796000]]
+  top: [0.45, 4796000]  # above 40m: タックスアンサー No.2260 (sources/tax/nta_2260_shotokuzei_ritsu.html)
+  cite: {source: nencho, page: 55}
+reconstruction_surtax_factor: {value: 1.021, cite: {source: nencho, page: 37}}
+final_rounding: {value: 100, cite: {source: nencho, page: 39}, note: "年調年税額 rounded down to 100 yen"}

@@ -122,3 +122,28 @@ The specific e-Stat tables (spending by income decile; household counts by type 
 |---|---|---|
 | OpenFisca-Japan repository | https://github.com/project-inclusive/OpenFisca-Japan | Inspected at commit `1f8d13dbe735b064373fe67377859454dd750b9c` (2026-08-26). Not vendored into this repo; see `docs/COVERAGE.md`. |
 | scrapbox_openfisca_mcp.json | https://scrapbox.io/api/pages/c4j/OpenFisca-Japan_MCP/text | Code for Japan design note on the OpenFisca-Japan MCP server. downloaded |
+
+## 11. Added in Milestone 2 (2026-10-30)
+
+| File | Title | Published | URL | Used for |
+|---|---|---|---|---|
+| tax/nta_nencho2026_all.pdf | 令和8年分 年末調整のしかた (full) | 2026-10 | https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/nencho_all.pdf | employment-income table (pp.47–54), deduction tables (pp.55–56), worked example (pp.57–59) |
+| tax/nta_nencho2026_102.pdf | 同 「昨年と比べて変わった点」 | 2026-10 | https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/102.pdf | 2026 changes |
+| tax/nta_nencho2026_index.html | 同 index page | 2026-10 | https://www.nta.go.jp/publication/pamph/gensen/nencho2026/01.htm | – |
+| tax/nta_r8_kiso_qa.pdf | 令和8年度税制改正（所得税の基礎控除の引上げ等関係）Ｑ＆Ａ | 2026-05 | https://www.nta.go.jp/users/gensen/2026kiso/pdf/0026005-024.pdf | timing of 2026 changes |
+| tax/nta_1600_fig01.png, fig02.png | No.1600 pension-income tables (images) | 2026 | https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/img/1600_01.png | public pension deduction |
+| tax/nta_1171_hitorioya.html | No.1171 ひとり親控除 | 2026 | https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171.htm | single-parent deduction |
+| tax/nta_1175_kinro_gakusei.html | No.1175 勤労学生控除 | 2026 | https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1175.htm | working-student deduction |
+| tax/nta_1411_shotoku_kingaku_chosei.html | No.1411 所得金額調整控除 | 2026 | https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1411.htm | income-adjustment deduction |
+| tax/soumu_kojin_juminzei_kiso_kojo_r8.pdf | 個人住民税の基礎控除等について（総務省 資料３） | 2026-05-29 | https://www.soumu.go.jp/main_content/001075462.pdf | resident tax follows the new employment deduction; basic deduction stays 430,000 |
+| shinjuku/hoken01_001028.html | 新宿区 国民健康保険料の計算方法（令和8年度） | 2026 | https://www.city.shinjuku.lg.jp/hoken/hoken01_001028.html | NHI rates |
+| shinjuku/hoken01_002030.html | 新宿区 保険料の減免について | 2026 | https://www.city.shinjuku.lg.jp/hoken/hoken01_002030.html | NHI reductions |
+| shinjuku/000452428.pdf | 新宿区 令和8年度 国民健康保険料 概算早見表 | 2026 | https://www.city.shinjuku.lg.jp/content/000452428.pdf | NHI test oracle |
+| shinjuku/file04_03_00001.html | 新宿区 住民税について | 2025-02-17 | https://www.city.shinjuku.lg.jp/hoken/file04_03_00001.html | resident-tax exemption limits |
+| shinjuku/000434385.pdf | 新宿区 令和7年度住民税 税額の算出方法等 | 2025 | https://www.city.shinjuku.lg.jp/content/000434385.pdf | resident deductions, 調整控除, per-capita levy |
+| social/mhlw_koyohoken_ritsu_r8.pdf | 令和8年度 雇用保険料率のご案内 | 2026 | https://www.mhlw.go.jp/content/001692566.pdf | employment insurance 0.5% |
+| social/mhlw_tekiyoukakudai_taisho.html | 社会保険加入の要件（適用拡大特設サイト） | 2026 | https://www.mhlw.go.jp/tekiyoukakudai/jugyouin/taisho/ | part-time coverage rules |
+| social/nenkin_tanjikan.html | 日本年金機構 短時間労働者の適用拡大 | 2026-10-01 | https://www.nenkin.go.jp/service/kounen/tekiyo/jigyosho/tanjikan.html | part-time coverage rules |
+| social/kyoukaikenpo_hifuyosha_r8.html | 協会けんぽ 令和8年度被扶養者資格の再確認 | 2026 | https://www.kyoukaikenpo.or.jp/about/business/dependent_status/001/index.html | dependant income limits |
+
+Fingerprints for every file are in `sources/SHA256SUMS` (69 files).

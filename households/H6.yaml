@@ -1,0 +1,22 @@
+id: H6
+name_ja: 年金生活の夫婦（72歳）
+name_en: Pensioner couple, both 72
+municipality: 新宿区 (Shinjuku, Tokyo)
+reference_income_source: docs/HUMAN_TODO.md H-8 (chosen 2026-10-30)
+members:
+  - id: a
+    role: head
+    age: 72
+    public_pension: 2000000
+  - id: b
+    role: spouse
+    age: 72
+    public_pension: 800000
+spending:  # food and other taxable consumption, from the Family Income and Expenditure Survey
+  status: unresolved
+  question: Q8
+assumptions:
+  - Both in Shinjuku National Health Insurance.
+  - Long-term-care premiums for people 65+ (介護保険 第1号) are not yet modelled (OPEN_QUESTIONS Q15).
+  - Salary is paid in 12 equal months with no bonus (approximation: true).
+  - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).

@@ -59,3 +59,48 @@ Decision used (H-3): the "government design" is the August 5 Cabinet decision, w
 **How we check it**
 
 `tests/test_design_citations.py` opens every design file. Each parameter must either have a value plus a source and page number, or be marked "unresolved" with a question ID. Run it with `.venv/bin/python -m pytest -q tests`. Today: 6 passed.
+
+## Milestone 2 — 2026-10-30: the 2026 baseline for H1–H8
+
+Decision used (H-8): National Health Insurance follows Shinjuku ward's rules. Reference incomes as proposed: H1 1.25m; H2 1.0m; H3 4.5m + 3.0m; H4 5.0m + 1.0m; H5 2.5m; H6 pensions 2.0m + 0.8m; H7 business income 3.0m; H8 9.0m + 7.0m.
+
+**How take-home pay is worked out** (`engine/baseline.py`, numbers in `parameters/baseline_2026/`)
+
+1. **Employment income.** From your salary, the law first subtracts a fixed "employment income deduction" (an allowance for work costs). The result is your employment income. For 2026 the minimum deduction rose to 740,000 yen. So:
+   - Salary below 741,000 counts as zero income.
+   - Up to 2.19 million, income is salary minus 740,000.
+   - From there up to 6.6 million, the tax office's official table gives the amount in 4,000-yen steps.
+   - Above 6.6 million, a formula is used.
+
+   Earners above 8.5 million with a child under 23 get a further cut of 10% of the salary above 8.5 million (capped at 10 million).
+2. **Pension income.** People 65 or older subtract up to 1.1 million from their public pension, and more on a sliding scale at higher pensions.
+3. **Social insurance.**
+   - **Employees** pay half of each premium, read from Tokyo's 2026 table using "standard monthly pay" bands:
+     - health insurance: 9.85%, or 11.47% at ages 40–64, because long-term care is added
+     - the new child and childcare support levy: 0.23%
+     - pension: 18.3%, with pay counted between 88,000 and 650,000 a month
+     - employment insurance: 0.5% for the worker
+
+     A part-timer joins only if all of these hold: they work 20+ hours a week, at a firm with 51+ staff, earn at least 88,000 a month, and are not a student.
+   - **A spouse or child who doesn't join** can be a "dependant" with no premiums while their income stays under 1.3 million (1.5 million at ages 19–22). A dependant spouse also pays no pension contribution.
+   - **Everyone else** pays National Health Insurance to Shinjuku. For each member there is a flat amount plus a percentage of income above 430,000. Low-income households get the flat amounts cut by 70%, 50% or 20%. People aged 20–59 in this group also pay the national pension, 17,920 yen a month.
+4. **Income tax.**
+   - From total income, take away the basic deduction (1.04 million for incomes up to 4.89 million, less above that), all social insurance paid, and any personal deductions: spouse, dependants aged 16+, single parent (350,000), working student (270,000).
+   - Round the remainder down to 1,000 yen and apply the rate table (5% to 45%).
+   - Add 2.1% reconstruction tax, then round down to 100 yen.
+5. **Resident tax** (Shinjuku plus Tokyo).
+   - Very low incomes pay nothing. For a single person, that means total income of 450,000 or less.
+   - Everyone else pays a flat 5,000 yen (ward 3,000, Tokyo 1,000, forest tax 1,000).
+   - On top of that, 10% of income after a smaller basic deduction (430,000) and smaller personal deductions, minus a small "adjustment credit" (調整控除) of at least 2,500 yen.
+6. **Child allowance.** 15,000 yen a month for each child under 3, and 10,000 for each child from age 3 through high school. The third and later children get 30,000. There is no income limit.
+7. **Disposable income** = pay + pensions + child allowance − income tax − resident tax − social insurance.
+
+**Checks.** 28 tests pass (`make all`). They cover:
+- the tax office's own worked example
+- Shinjuku's health-insurance quick table
+- Tokyo's premium table
+- all 8 households against step-by-step hand calculations (`tests/hand_calcs/`), which agree to the yen
+
+The table in `docs/VALIDATION.md` also compares our results with OpenFisca-Japan.
+
+**Tools.** The project now runs on Python 3.11, because OpenFisca-Japan needs it. Set up with `uv venv --python 3.11 .venv && VIRTUAL_ENV=.venv uv pip install -r requirements.txt`.

@@ -1,4 +1,7 @@
+# Python 3.11 (OpenFisca-Core 41 needs numpy 1.24, which has no wheels for newer Python).
+# Set up: uv venv --python 3.11 .venv && VIRTUAL_ENV=.venv uv pip install -r requirements.txt
+openfisca-japan @ git+https://github.com/project-inclusive/OpenFisca-Japan.git@1f8d13dbe735b064373fe67377859454dd750b9c
 cryptography==50.0.2
 pypdf==6.21.4
 PyYAML==6.0.3
-pytest==9.2.0
+pytest==8.4.2

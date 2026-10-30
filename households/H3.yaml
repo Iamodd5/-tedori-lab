@@ -1,0 +1,25 @@
+id: H3
+name_ja: 共働き・子2人（2歳・8歳）
+name_en: Dual-income employee couple, two children (2 and 8)
+municipality: 新宿区 (Shinjuku, Tokyo)
+reference_income_source: docs/HUMAN_TODO.md H-8 (chosen 2026-10-30)
+members:
+  - id: a
+    role: head
+    age: 35
+    salary: 4500000
+    work: {full_time: true}
+  - id: b
+    role: spouse
+    age: 33
+    salary: 3000000
+    work: {full_time: true}
+  - {id: c1, role: child, age: 8}
+  - {id: c2, role: child, age: 2}
+spending:  # food and other taxable consumption, from the Family Income and Expenditure Survey
+  status: unresolved
+  question: Q8
+assumptions:
+  - Both are full-time employees in 協会けんぽ (Tokyo).
+  - Salary is paid in 12 equal months with no bonus (approximation: true).
+  - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).
