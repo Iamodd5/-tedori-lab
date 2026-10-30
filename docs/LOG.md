@@ -28,3 +28,7 @@
 - The Daiwa report now has its full title in `SOURCES.md` (rule 1).
 - `scripts/pdf_to_text.py` names each text file by folder + file name (e.g. `gov_20260713_02_siryou2.txt`), so two PDFs with the same name can't overwrite each other.
 - Empty placeholder folders were removed; each folder from SPEC Section 4 is created when its first file is saved.
+
+### Notification fix — 2026-10-30
+
+The first test pop-up did not appear, and "Script Editor" was missing from System Settings → Notifications. macOS only lists an app there after it has asked for permission once. Fix: open Script Editor, run `display notification "Tedori Lab test" with title "Tedori Lab"` there, click **Allow**, and check that Notifications → Script Editor is on. After that, notifications sent from Terminal worked (confirmed by the human, H-1).
