@@ -8,5 +8,6 @@ out.mkdir(exist_ok=True)
 for pdf in sorted(root.rglob("*.pdf")):
     r = PdfReader(pdf)
     pages = [f"=== page {i} ===\n{p.extract_text() or ''}" for i, p in enumerate(r.pages, 1)]
-    (out / (pdf.stem + ".txt")).write_text("\n".join(pages), encoding="utf-8")
+    # folder + name, so files with the same name in different folders do not overwrite each other
+    (out / ("_".join(pdf.relative_to(root).with_suffix("").parts) + ".txt")).write_text("\n".join(pages), encoding="utf-8")
     print(f"{pdf.relative_to(root)}\t{len(r.pages)} pages")
