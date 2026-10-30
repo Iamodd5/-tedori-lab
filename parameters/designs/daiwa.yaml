@@ -1,0 +1,79 @@
+# Daiwa Institute of Research proposal: 社会保険料還付付き税額控除 (social-insurance-refundable tax credit).
+# The report tests 8 variants (Figure 4, p.5). The parameters below are the variant the report's summary
+# highlights (p.1, p.7): income-tax basic deduction abolished and replaced by a 56,500-yen credit.
+# Which variant(s) to show is a human decision (OPEN_QUESTIONS Q10); the others are listed under `variants`.
+name_ja: 社会保険料還付付き税額控除（大和総研案）
+name_en: Social-insurance-refundable tax credit (Daiwa Institute of Research proposal)
+start_year: null  # the report gives no start date; modelled on the 2026 baseline
+status: unresolved
+
+source:
+  daiwa:
+    title: 働く低所得者の負担を軽減する「社会保険料還付付き税額控除」の提案 ― 追加財政負担なしで課税最低限（年収の壁）178万円達成も可能
+    url: https://www.dir.co.jp/report/research/law-research/tax/20251010_025349.pdf
+    file: sources/daiwa/daiwa_20251010.pdf
+    published: 2025-10-10
+
+parameters:
+  unit:
+    value: taxpayer  # every income-tax payer (納税者本人分のみ; dependants not counted, p.5 note 10)
+    status: resolved
+    cite: {source: daiwa, page: 4, section: "図表3"}
+  income_tax_basic_deduction:
+    value: 0  # basic deduction abolished for income tax (基礎控除全額を税額控除化)
+    status: resolved
+    cite: {source: daiwa, page: 5, section: "図表4"}
+  tax_credit_amount:
+    value: 56500
+    status: resolved
+    cite: {source: daiwa, page: 1, section: "要約"}
+  credit_phase_out:
+    value: none  # uniform credit; the report notes a phase-out could be added (p.6 note 13) but does not model one
+    status: resolved
+    cite: {source: daiwa, page: 6, section: "脚注13"}
+  refund_limit:
+    value: "credit minus income tax, paid only up to the person's social insurance contributions on labour income"
+    status: resolved
+    cite: {source: daiwa, page: 4, section: "図表3"}
+  contributions_counted:
+    value: "employee health insurance and pension; NHI, national pension, long-term-care (category 1) and late-elderly premiums only for people with business or employment income"
+    status: resolved
+    cite: {source: daiwa, page: 4, section: "図表3 (注1)"}
+  resident_tax_changed:
+    value: false  # 住民税については特に制度変更を行わない
+    status: resolved
+    cite: {source: daiwa, page: 5, section: "図表4 (注2)"}
+  paid_via:
+    value: "year-end adjustment (through the employer) or tax return"
+    status: resolved
+    cite: {source: daiwa, page: 4, section: "図表3 (注2)"}
+  affects_pension_records:
+    value: false
+    status: resolved
+    cite: {source: daiwa, page: 4, section: "図表3"}
+  reconstruction_surtax_interaction:
+    value: null  # report ignores the 2.1% surtax "for simplicity" (p.6 note 11); order of credit vs surtax not stated
+    status: unresolved
+    question: Q11
+
+variants:  # from Figure 4 (p.5); not modelled unless the human chooses them (Q10)
+  - {threshold: 1780000, basic_deduction: 580000, tax_credit: 27500}
+  - {threshold: 1780000, basic_deduction: 0, tax_credit: 56500}   # headline, used above
+  - {threshold: 2030000, basic_deduction: 580000, tax_credit: 40000}
+  - {threshold: 2030000, basic_deduction: 0, tax_credit: 69000}
+  # each with and without the social-insurance refund (8 cases)
+
+published_estimates:  # for cross-checking only (spec Section 6), never used as inputs
+  headline_variant_with_refund:
+    income_tax_increase_trillion_yen: 0.7
+    refund_payments_trillion_yen: 0.7
+    net_fiscal_cost: "about zero (財政中立)"
+    cite: {source: daiwa, page: 7}
+  household_change_at_5m_salary_yen: -13000  # 年収500万円の者に年1.3万円の増税
+  take_home_recovery_salary_yen: 1200000     # vs 1.24m today, for a worker joining social insurance at 1.06m
+  cite: {source: daiwa, page: 7}
+
+notes: >
+  The report was written against 2025 tax rules (threshold 1.6m in 2025). Applying it to the 2026 baseline
+  means our numbers will differ from the published estimates; differences go in docs/VALIDATION.md.
+  The report models employees in 協会けんぽ + 厚生年金 with only basic and social-insurance deductions.

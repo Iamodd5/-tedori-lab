@@ -1,0 +1,37 @@
+# Rengo (連合) proposal. The source page was under maintenance on 2026-10-29 (OPEN_QUESTIONS Q3, HUMAN_TODO H-4),
+# so nothing has been read from Rengo's own documents yet. The two components below come from the project
+# spec's summary only and must be confirmed against Rengo's documents before any value is filled in.
+name_ja: 連合案
+name_en: Rengo (Japanese Trade Union Confederation) proposal
+start_year: null
+status: unresolved
+
+source:
+  rengo_page:
+    title: 連合 政策提言ページ（p=5465）— not yet readable
+    url: https://www.jtuc-rengo.or.jp/activity/seisaku_jitsugen/teigen/?p=5465
+    file: sources/rengo/rengo_p5465.html  # maintenance page only
+    published: unknown (page unavailable 2026-10-29)
+
+parameters:
+  consumption_tax_refund:
+    amount:
+      value: null
+      status: unresolved
+      question: Q3
+    eligibility:
+      value: null
+      status: unresolved
+      question: Q3
+  work_support_benefit:  # spec summary: refund of half of low-income workers' social insurance contributions
+    refund_share:
+      value: null
+      status: unresolved
+      question: Q3
+    income_limit:
+      value: null
+      status: unresolved
+      question: Q3
+
+notes: >
+  Placeholder until Rengo's documents can be downloaded. Shown on the site as "incomplete parameters".

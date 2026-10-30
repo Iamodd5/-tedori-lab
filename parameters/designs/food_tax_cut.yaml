@@ -1,0 +1,133 @@
+# Two-year bridge package (つなぎ), FY2027–FY2028.
+# Chosen by the human on 2026-10-30 (HUMAN_TODO H-3, option C): the food consumption tax cut and the
+# bridge-period 就業者負担軽減支援金 are one package; results show them as separate components.
+name_ja: 飲食料品消費税率の臨時的な引下げ＋就業者負担軽減支援金（つなぎ、令和9・10年度）
+name_en: Temporary food consumption tax cut + bridge worker burden-relief payment (FY2027–FY2028)
+start_year: 2027
+status: unresolved
+
+source:
+  outline:
+    title: 飲食料品消費税率の臨時的な引下げ及び就業者負担軽減支援金の導入に関する大綱（令和8年9月15日閣議決定）
+    url: https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20260915/01_siryou1.pdf
+    file: sources/gov/20260915_01_siryou1.pdf
+    published: 2026-09-15
+  bill_summary:
+    title: 「租税及び社会保険料による負担の軽減のための飲食料品に係る消費税率の臨時的な引下げ及び就業者負担軽減支援金の支給に関する法律案」について（概要）
+    url: https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou1.pdf
+    file: sources/gov/20261009_siryou1.pdf
+    published: 2026-10-09
+  basic_policy:
+    title: 「給付付き税額控除」の制度導入の基本方針（令和8年8月5日閣議決定）
+    url: https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20260805/01_siryou1.pdf
+    file: sources/gov/20260805_01_siryou1.pdf
+    published: 2026-08-05
+
+parameters:
+  consumption_tax_cut:
+    start_date:
+      value: 2027-04-01
+      status: resolved
+      cite: {source: outline, page: 2, section: "第二 一 1"}
+    end_date:
+      value: 2029-03-31
+      status: resolved
+      cite: {source: outline, page: 2, section: "第二 一 1"}
+    national_rate_on_food:
+      value: 0.0078
+      status: resolved
+      cite: {source: outline, page: 2, section: "第二 一 1"}
+    combined_rate_on_food:     # national + local consumption tax
+      value: 0.01
+      status: resolved
+      cite: {source: outline, page: 2, section: "第二 一 1"}
+    goods_covered:
+      value: "food and drink currently under the 8% reduced rate (軽減税率の適用対象となっている飲食料品); newspapers keep the current rate"
+      status: resolved
+      cite: {source: outline, page: 2, section: "第二 一 1 (注1)"}
+
+  bridge_payment:
+    eligibility_tests:
+      value: "earned income above floor; total income at or below ceiling; net burden above threshold (using social-insurance deduction amount). No spouse-income test in FY2027–28."
+      status: resolved
+      cite: {source: outline, page: 8, section: "第三 一 1(1)(注)"}
+    child_age_limit:
+      value: 15  # FY2027–28: dependants under 16
+      status: resolved
+      cite: {source: outline, page: 8, section: "第三 一 1(1)(注)"}
+    total_cost_rule:
+      value: "total cost of the payment within the equivalent of 1% of consumption tax on food (飲食料品に係る消費税１％相当分の範囲)"
+      status: resolved
+      cite: {source: outline, page: 10, section: "第三 一 2(1)(注)"}
+    rounding:
+      value: 1000  # 1,000-yen units, rounded up
+      status: resolved
+      cite: {source: outline, page: 10, section: "第三 一 2(1)⑥"}
+    first_year:
+      value: 2027  # 令和9年度; system starts April 2027
+      status: resolved
+      cite: {source: outline, page: 13, section: "第三 三 2"}
+    earned_income_floor:
+      value: null
+      status: unresolved
+      question: Q9
+    income_ceiling:
+      value: null
+      status: unresolved
+      question: Q9
+    net_burden_threshold:
+      value: null
+      status: unresolved
+      question: Q9
+    flat_amount_low_income:
+      value: null
+      status: unresolved
+      question: Q9
+    phase_in_start:
+      value: null
+      status: unresolved
+      question: Q9
+    phase_in_rate:
+      value: null
+      status: unresolved
+      question: Q9
+    phase_in_end:
+      value: null
+      status: unresolved
+      question: Q9
+    basic_amount:
+      value: null
+      status: unresolved
+      question: Q9
+    child_addition_per_child:
+      value: null
+      status: unresolved
+      question: Q9
+    income_wall_addition:
+      value: null
+      status: unresolved
+      question: Q9
+    phase_out_start:
+      value: null
+      status: unresolved
+      question: Q9
+    phase_out_rate:
+      value: null
+      status: unresolved
+      question: Q9
+
+# Modelling assumptions (not policy numbers). Shown on the site with the "approximation" label.
+assumptions:
+  price_pass_through:
+    value: 1.0
+    approximation: true
+    explanation: "Assume the whole tax cut reaches shelf prices (spec Section 8). A 50% pass-through sensitivity is also shown."
+    sensitivity: [0.5]
+
+notes: >
+  The tax-rate side is fully specified. The payment side has the same structure as government_final but
+  with FY2027–28 differences (children under 16, no spouse test, social-insurance deduction used for the
+  net-burden test) and a total budget equal to about 1% of food consumption tax; individual amounts are
+  left to Cabinet order (bill summary p.1). FY2029 (令和11年度) transition payments (two half-year payments)
+  are not modelled. The basic policy calls the combined effect a "real zero" consumption tax on food
+  (basic policy p.3, 4.(3)); this tool reports each component separately and does not adopt that label.

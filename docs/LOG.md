@@ -32,3 +32,30 @@
 ### Notification fix — 2026-10-30
 
 The first test pop-up did not appear, and "Script Editor" was missing from System Settings → Notifications. macOS only lists an app there after it has asked for permission once. Fix: open Script Editor, run `display notification "Tedori Lab test" with title "Tedori Lab"` there, click **Allow**, and check that Notifications → Script Editor is on. After that, notifications sent from Terminal worked (confirmed by the human, H-1).
+
+## Milestone 1 — 2026-10-30: design parameters
+
+Decision used (H-3): the "government design" is the August 5 Cabinet decision, with details from the July 29 interim summary, the September 15 outline and the October 9 bill. The new worker payment that comes with the food tax cut is part of the food tax cut design.
+
+**What each design file says** (all in `parameters/designs/`)
+
+- **government_final.yaml.** From FY2029 the government will pay each working person (not each household) a yearly cash amount called 就業者負担軽減支援金. The rules so far:
+  - You must earn at least a minimum amount from work, and have total income below a maximum.
+  - What you pay in tax and social insurance, minus any public pension you receive, must be above a set level. This is how working older people can qualify.
+  - If your spouse has a high income, you are excluded.
+  - How much you get: a fixed amount at very low earnings. Above that, it rises with each extra yen earned, then stays flat. People earning just past the "income wall", where social insurance starts, get a temporary extra amount. Each child aged 18 or under adds a fixed amount. Above a higher income, the payment shrinks and then disappears.
+  - Amounts are rounded up to the next 1,000 yen. It is paid once a year and is not taxed.
+  - **None of the yen amounts or rates have been published yet.** The law leaves them to a later Cabinet order, so every number is marked "unresolved" (Q9).
+- **food_tax_cut.yaml.** From 1 April 2027 to 31 March 2029, consumption tax on food goes from 8% to 1% (0.78% national plus local tax). "Food" means the same items that get the 8% reduced rate today; newspapers stay at 8%. The same worker payment also starts in FY2027, with three differences: children count only up to age 15, there is no spouse test, and the total cost is capped at roughly what 1% of consumption tax on food raises. Its amounts are also unpublished. Our baseline modelling assumption is that shops pass the whole tax cut on to prices. This is an approximation, and we also show a case where only half reaches shoppers.
+- **daiwa.yaml.** Daiwa's idea:
+  - Remove the basic deduction from income tax, and give every taxpayer a 56,500-yen tax credit instead. A tax credit is subtracted from the tax bill itself, not from income.
+  - If your income tax is smaller than the credit, you get the difference back as cash, but never more than the social insurance you paid on your work income. So people living only on pensions or savings get no cash.
+  - Resident tax does not change.
+
+  The report also lists seven other versions. Which to use is your decision (Q10).
+- **rengo.yaml.** Empty for now, because Rengo's website was down (Q3).
+- **custom_template.yaml.** The five slider settings for the design builder. These have no official values.
+
+**How we check it**
+
+`tests/test_design_citations.py` opens every design file. Each parameter must either have a value plus a source and page number, or be marked "unresolved" with a question ID. Run it with `.venv/bin/python -m pytest -q tests`. Today: 6 passed.

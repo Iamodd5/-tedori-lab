@@ -1,0 +1,128 @@
+# Government design for the full system from FY2029 (令和11年度).
+# Chosen by the human on 2026-10-30 (HUMAN_TODO H-3, option A): the Aug 5, 2026 Cabinet decision,
+# detailed where needed by the Jul 29 interim summary, the Sep 15 Cabinet outline and the Oct 9 bill summary.
+# The vehicle is the 就業者負担軽減支援金 (worker burden-relief payment). Its full-system form starts FY2029.
+# Every yen amount and rate is left by the bill to a Cabinet order (政令), so none are published yet.
+name_ja: 就業者負担軽減支援金（給付付き税額控除の本格導入、令和11年度〜）
+name_en: Worker burden-relief payment (full refundable-credit system, FY2029 onward)
+start_year: 2029  # 令和11年度 (fiscal year from April 2029); payment is based on the previous year's income
+status: unresolved
+
+source:
+  basic_policy:
+    title: 「給付付き税額控除」の制度導入の基本方針（令和8年8月5日閣議決定）
+    url: https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20260805/01_siryou1.pdf
+    file: sources/gov/20260805_01_siryou1.pdf
+    published: 2026-08-05
+  interim_image:
+    title: 「給付付き税額控除」のイメージ（中間とりまとめ）（社会保障国民会議 令和8年7月29日）
+    url: https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20260729-4/02_siryou2.pdf
+    file: sources/gov/20260729-4_02_siryou2.pdf
+    published: 2026-07-29
+  outline:
+    title: 飲食料品消費税率の臨時的な引下げ及び就業者負担軽減支援金の導入に関する大綱（令和8年9月15日閣議決定）
+    url: https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20260915/01_siryou1.pdf
+    file: sources/gov/20260915_01_siryou1.pdf
+    published: 2026-09-15
+  bill_summary:
+    title: 「租税及び社会保険料による負担の軽減のための飲食料品に係る消費税率の臨時的な引下げ及び就業者負担軽減支援金の支給に関する法律案」について（概要）
+    url: https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou1.pdf
+    file: sources/gov/20261009_siryou1.pdf
+    published: 2026-10-09
+
+parameters:
+  # --- Structure (what the documents do fix) ---
+  unit:
+    value: individual  # 個人単位; single people included
+    status: resolved
+    cite: {source: outline, page: 7, section: "第三 一 1(1)"}
+  earned_income_definition:
+    value: "Earned income (勤労所得) = amount computed from previous-year salary income + business and work-related miscellaneous income above a set amount"
+    status: resolved
+    cite: {source: outline, page: 7, section: "第三 一 1(1)①"}
+  income_test_definition:
+    value: "Upper eligibility limit and phase-out use previous-year 合計所得金額 (total income)"
+    status: resolved
+    cite: {source: outline, page: 7, section: "第三 一 1(1)②, 2(1)⑤"}
+  child_age_limit:
+    value: 18  # 扶養児童 = dependants who are residents and under 19 (i.e. 18 or younger)
+    status: resolved
+    cite: {source: outline, page: 7, section: "第三 一 1(1)②"}
+  shape:
+    value: "flat below phase-in start → rises at a fixed rate → flat basic amount → (plus child add-on per child, plus temporary 'income wall' add-on) → falls at a fixed rate above phase-out start"
+    status: resolved
+    cite: {source: outline, page: 8, section: "第三 一 2(1)①-⑤"}
+  rounding:
+    value: 1000  # 1,000-yen units, rounded up (端数切上げ)
+    status: resolved
+    cite: {source: outline, page: 10, section: "第三 一 2(1)⑥"}
+  payments_per_year:
+    value: 1
+    status: resolved
+    cite: {source: outline, page: 11, section: "第三 一 3(7)"}
+  taxable:
+    value: false  # 租税その他の公課は課することができない
+    status: resolved
+    cite: {source: outline, page: 12, section: "第三 一 3(9)"}
+
+  # --- Amounts and thresholds (all left to a Cabinet order; none published) ---
+  earned_income_floor:          # 所得下限額
+    value: null
+    status: unresolved
+    question: Q9
+  income_ceiling:               # 所得上限額 (varies with number of children)
+    value: null
+    status: unresolved
+    question: Q9
+  net_burden_threshold:         # 純負担基準額 (tax + social insurance − public pension income must exceed this)
+    value: null
+    status: unresolved
+    question: Q9
+  spouse_income_ceiling:        # 配偶者所得上限額
+    value: null
+    status: unresolved
+    question: Q9
+  flat_amount_low_income:       # 定額支援額 (earned income ≤ phase-in start)
+    value: null
+    status: unresolved
+    question: Q9
+  phase_in_start:               # 逓増開始額 (based on resident-tax income-levy exemption line; single person: income 450,000 / salary 1.19m — reference only)
+    value: null
+    status: unresolved
+    question: Q9
+  phase_in_rate:
+    value: null
+    status: unresolved
+    question: Q9
+  phase_in_end:                 # 逓増終了額
+    value: null
+    status: unresolved
+    question: Q9
+  basic_amount:                 # 支援基本額
+    value: null
+    status: unresolved
+    question: Q9
+  child_addition_per_child:     # こども加算
+    value: null
+    status: unresolved
+    question: Q9
+  income_wall_addition:         # 就業促進特例加算 (temporary; earned income from ~1.06m salary line up to where take-home recovers)
+    value: null
+    status: unresolved
+    question: Q9
+  phase_out_start:              # 逓減開始額
+    value: null
+    status: unresolved
+    question: Q9
+  phase_out_rate:               # 逓減率
+    value: null
+    status: unresolved
+    question: Q9
+
+notes: >
+  The Cabinet decision and the bill fix who is eligible and the shape of the payment, but every amount,
+  threshold and rate is to be set later by Cabinet order (政令で定める額; bill summary p.1). The documents give
+  reference points only, which are NOT used as parameters: candidate earned-income floors discussed by the
+  council (salary ~1.06m / 0.74m / ~0.53m; interim image p.2), the single-person resident-tax exemption line
+  (salary 1.19m; outline p.9), and that phase-out ends at around 50% of average pay in other countries
+  (interim image p.2). Until the order is published, this design is shown as "incomplete parameters".

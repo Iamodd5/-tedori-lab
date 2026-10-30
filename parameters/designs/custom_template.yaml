@@ -1,0 +1,20 @@
+# Generic refundable credit for the design builder (spec Section 8.5). Values come from the site's sliders,
+# not from any policy document, so every parameter is `user_input`. Slider ranges and defaults are chosen in
+# Milestone 8.
+name_ja: カスタム設計（自分で作る給付付き税額控除）
+name_en: Custom refundable credit (design builder)
+start_year: null
+status: resolved
+
+source: {}
+
+parameters:
+  phase_in_rate:       {value: null, status: user_input}   # credit gained per yen of earned income
+  maximum:             {value: null, status: user_input}   # yen per person
+  plateau_end:         {value: null, status: user_input}   # income where phase-out starts
+  phase_out_rate:      {value: null, status: user_input}   # credit lost per yen above plateau_end
+  child_addition:      {value: null, status: user_input}   # yen per child
+
+notes: >
+  Same household data and method as every other design (CLAUDE.md rule 8). Only the credit formula is ported
+  to JavaScript for the site; the rest of the tax system uses precomputed grids.
