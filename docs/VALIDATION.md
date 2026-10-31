@@ -48,3 +48,10 @@ Likely causes, not yet traced line by line:
 ## 4. Outside calculator (spec 12.2)
 
 Not done yet. Planned for Milestone 4: take-home pay for H1, H3 and H8 at three incomes compared with a reputable public calculator.
+
+## 5. Designs (Milestone 3)
+
+| Check | Ours | Published | Why they differ |
+|---|---|---|---|
+| Daiwa: single employee, salary 5,000,000 (age 30) | −40,700 yen/year | −13,000 (Daiwa p.7) | Daiwa used 2025 rules (basic deduction 580,000). Under 2026 rules the deduction is 1,040,000, so losing it costs more. Open as Q19. |
+| Daiwa: H1, H3, H7 | +40,200 / −18,300 / −20,700 | hand calculations, `tests/hand_calcs/daiwa.md` | match to the yen |

@@ -140,7 +140,7 @@ def nhi_household(members):
 
 # ---------- income tax ----------
 
-def income_tax(total_income, deductions):
+def income_tax_before_surtax(total_income, deductions):
     it = params("income_tax")
     taxable = floor_to(max(0, total_income - deductions), 1000)
     for upper, rate, minus in it["rate_schedule"]["bands"]:
@@ -148,7 +148,13 @@ def income_tax(total_income, deductions):
             break
     else:
         rate, minus = it["rate_schedule"]["top"]
-    tax = max(0, math.floor(taxable * rate - minus))
+    return max(0, math.floor(taxable * rate - minus))
+
+
+def income_tax(total_income, deductions, credit=0):
+    """Tax credits come off before the 2.1% surtax, as with the NTA example's housing credit (年末調整のしかた p.59)."""
+    it = params("income_tax")
+    tax = max(0, income_tax_before_surtax(total_income, deductions) - credit)
     return floor_to(tax * it["reconstruction_surtax_factor"]["value"], it["final_rounding"]["value"])
 
 

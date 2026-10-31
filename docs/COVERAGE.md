@@ -45,6 +45,20 @@ The Code for Japan note (`sources/scrapbox_openfisca_mcp.json`) describes an MCP
 
 Opening any issue or PR upstream is a human action (spec Section 13).
 
-## Decision taken in Milestone 2 (2026-10-30) — needs the human's OK (HUMAN_TODO H-9)
+## Decision taken in Milestone 2 (2026-10-30) — confirmed by the human 2026-10-31 (HUMAN_TODO H-9: A)
 
 OpenFisca-Japan installs only on Python 3.11 (its numpy pin), and does so now (`requirements.txt`). But for the 2026 baseline nearly every rule we need had to change: employment-income deduction (2025 and 2026 reforms), basic deduction amounts, the Tokyo health rate and band table, the new 子ども・子育て支援金, the national pension amount, NHI (missing), public-pension income (missing), resident-tax exemption limits and 調整控除. So the baseline is written as a small standalone engine (`engine/baseline.py`, one function per rule, every number read from `parameters/baseline_2026/`). OpenFisca-Japan is used as a cross-check (docs/VALIDATION.md §3). Each corrected rule is a candidate upstream fix.
+
+## First upstream-ready contribution (identified in Milestone 3, 2026-10-31)
+
+**Update `国民年金保険料` to FY2026.** Upstream file `openfisca_japan/parameters/社会保険料/国民年金保険料.yaml` has one value, 17,510 yen from 2015-01-01. The FY2026 amount is 17,920 yen a month (Japan Pension Service, `sources/social/nenkin_kokumin_hokenryo.html`; our `parameters/baseline_2026/social_insurance.yaml` line 59). Proposed change, adding one dated value and keeping the old one:
+
+```yaml
+values:
+  2015-01-01:
+    value: 17510
+  2026-04-01:          # 令和8年度 (April 2026 – March 2027)
+    value: 17920
+```
+
+Small, self-contained, and backed by a national primary source, so it is a good first pull request. Opening it is the human's action (spec Section 13); it is not urgent and is not yet in HUMAN_TODO.

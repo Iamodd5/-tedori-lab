@@ -11,3 +11,12 @@
   - Salary is paid in 12 equal months with no bonus.
   - A child's age is held fixed for the whole year.
 - **Not included in v1:** behaviour changes (static), long-term-care premiums for 65+ (Q15), 児童扶養手当 (Q17), the parents of the student household (Q16), consumption tax (added with household spending in Milestone 3).
+
+## Policy designs (Milestone 3)
+
+Each design is a reform in `engine/reforms.py` that reads only its own file in `parameters/designs/`. It runs the same household through the baseline twice, once unchanged and once with the reform, and reports the difference in five parts: income tax, resident tax, social insurance, credit or payment received, and consumption tax.
+
+- **Daiwa (headline variant).** Income-tax basic deduction set to 0; each person gets a 56,500-yen tax credit. Credit left after income tax is paid in cash up to the person's labour social insurance (employee health + pension; NHI + national pension for the self-employed). *Approximation:* the credit comes off before the 2.1% reconstruction surtax, as existing tax credits do (Q11). See also Q18, Q19.
+- **Government final** and the **payment part of the food tax cut.** The shape (flat, rising, flat, child add-on, phase-out, rounded up to 1,000 yen) is coded and tested with made-up numbers (`tests/hand_calcs/credit_shape.md`). Every real amount awaits a Cabinet order (Q9), so these show "incomplete parameters" and no number.
+- **Food tax cut, tax side.** Saving = food spending × (8% − 1%) ÷ 1.08 × pass-through (100%, with a 50% sensitivity). *Approximation:* full pass-through to prices. Household food spending is not yet loaded (Q8), so no number yet.
+- **Rengo.** No documents yet (Q3); shown as "incomplete parameters".

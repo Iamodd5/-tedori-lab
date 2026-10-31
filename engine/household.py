@@ -36,7 +36,8 @@ def _dependant_limit(m):
     return d["general"]["value"]
 
 
-def compute(hh):
+def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
+    """basic_deduction_it and it_credit (income-tax credit per person) let a reform change those two rules."""
     members = hh["members"]
     it, rt = b.params("income_tax"), b.params("resident_tax")
     out = {m["id"]: {"age": m["age"], "role": m["role"], "gross": _gross(m)} for m in members}
@@ -93,7 +94,7 @@ def compute(hh):
         ti = o["total_income"]
         is_head = m is head
         # income tax
-        ded = b.basic_deduction_it(ti) + o["social_insurance"]
+        ded = basic_deduction_it(ti) + o["social_insurance"]
         r_ded = b.basic_deduction_rt(ti) + o["social_insurance"]
         diff = diff_p["basic"]["value"]
         n_family = 0
@@ -135,7 +136,9 @@ def compute(hh):
             if ti <= rp["working_student_income_limit"]["value"]:
                 r_ded += rp["working_student"]["value"]
                 diff += diff_p["working_student"]["value"]
-        o["income_tax"] = b.income_tax(ti, ded) if m["role"] != "child" or ti > 0 else 0
+        files = m["role"] != "child" or ti > 0
+        o["income_tax"] = b.income_tax(ti, ded, it_credit) if files else 0
+        o["unused_credit"] = max(0, it_credit - b.income_tax_before_surtax(ti, ded)) if files else 0
         o["resident_tax"] = b.resident_tax(ti, r_ded, diff, n_family, single_parent and is_head) if _gross(m) > 0 else 0
 
     child_ages = [m["age"] for m in members if m["role"] == "child" and m["age"] <= 18]

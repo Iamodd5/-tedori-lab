@@ -104,3 +104,26 @@ Decision used (H-8): National Health Insurance follows Shinjuku ward's rules. Re
 The table in `docs/VALIDATION.md` also compares our results with OpenFisca-Japan.
 
 **Tools.** The project now runs on Python 3.11, because OpenFisca-Japan needs it. Set up with `uv venv --python 3.11 .venv && VIRTUAL_ENV=.venv uv pip install -r requirements.txt`.
+
+## Milestone 3 — 2026-10-31: the designs as reforms
+
+**Decision recorded.** H-9: A. We keep our own small baseline engine. OpenFisca-Japan stays as a cross-check, and fixes we find are offered back to it.
+
+**How a design is tested against the baseline** (`engine/reforms.py`). We work out a household's take-home pay twice: once under 2026 law, once with the design switched on. The difference is the design's effect. We split it into five parts: income tax, resident tax, social insurance, money paid out by the design, and consumption tax.
+
+**Daiwa's plan.** Today everyone subtracts a "basic deduction" from income before income tax. Daiwa removes it and gives everyone a fixed 56,500 yen off their income tax instead.
+- If your tax is smaller than 56,500, the rest is paid to you in cash, but only if you work, and never more than you paid into health insurance and pension.
+- Example: H1 (part-timer, 1.25 million) would owe 16,300 yen without the deduction, so 40,200 yen is left over and paid out. H1 gains 40,200 a year.
+- Higher earners lose the deduction, which was worth more to them than 56,500 yen, so they pay more. H3's couple pays 18,300 more, H8's couple 148,100 more.
+- Problem found: Daiwa sized the 56,500 for 2025 law. In 2026 the basic deduction almost doubled at most incomes, so the same swap costs far more. A single worker on 5 million pays 40,700 more with us, against 13,000 in Daiwa's report. How to handle this is a human decision (H-10).
+
+**The government's payment and the food tax cut.** The law fixes the *shape* of the payment:
+- a small flat amount for very low earners,
+- then more as you earn more,
+- then a flat "basic amount", plus an extra amount per child,
+- then it shrinks once total income passes a set level.
+That shape is now coded and tested with made-up practice numbers. But every real amount will be set later by a Cabinet order that is not out yet. So the site will show these designs as "incomplete" with no number, instead of a guess. The same goes for the food tax saving until we load food spending by income group (Q8), and for Rengo, whose documents we still cannot download (H-4).
+
+**First contribution for OpenFisca-Japan.** Their national pension amount is 17,510 yen a month, from 2015. For 2026 it is 17,920. The exact change is written in `docs/COVERAGE.md`, ready for the human to submit.
+
+**Checks.** 75 tests pass, including hand calculations for Daiwa (H1, H3, H7), eight practice cases for the payment shape, and a test that every design runs on every household without inventing a number.
