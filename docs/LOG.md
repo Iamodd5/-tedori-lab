@@ -352,3 +352,5 @@ The human said the text still had ambiguous references and vague abstractions. C
 - Cost rows say exactly what they count (income tax after any credit; cash paid out).
 
 No number changed; 96 tests pass. H1 is still named "near the 1.3m wall" although that wall does not apply to it (Q21, a human decision).
+
+Published on 2026-11-01 (H-18). A final pass that rewrites all site text and improves the UI is planned once every other milestone is done (H-19).
