@@ -83,11 +83,12 @@ def run(name, hh):
         c = _daiwa(hh)
         change = c["credit"] - c["income_tax"] - c["resident_tax"] - c["social_insurance"] - c["consumption_tax"]
         return {"design": name, "status": "complete", "missing": [], "components": c, "disposable_change": change,
-                "approximations": ["Q11: credit taken off before the 2.1% reconstruction surtax, as for existing tax credits"]}
+                "approximations": ["Q11: credit taken off before the 2.1% reconstruction surtax, as for existing tax credits"],
+                "site_note": d["site_note"]}
     missing = unresolved(d["parameters"])
     if name == "food_tax_cut" and hh["spending"].get("status") == "unresolved":
         missing.append(f"household food spending ({hh['spending']['question']})")
     if not missing:
         raise NotImplementedError(f"{name}: all parameters now published; wire payment() into run()")
     return {"design": name, "status": "incomplete", "missing": missing, "components": dict.fromkeys(COMPONENTS),
-            "disposable_change": None, "approximations": []}
+            "disposable_change": None, "approximations": [], "site_note": d.get("site_note")}

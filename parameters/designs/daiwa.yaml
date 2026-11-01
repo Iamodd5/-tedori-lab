@@ -73,6 +73,11 @@ published_estimates:  # for cross-checking only (spec Section 6), never used as 
   take_home_recovery_salary_yen: 1200000     # vs 1.24m today, for a worker joining social insurance at 1.06m
   cite: {source: daiwa, page: 7}
 
+# Shown wherever a Daiwa number appears (HUMAN_TODO H-10: A, OPEN_QUESTIONS Q19).
+site_note:
+  ja: 大和総研案は2025年の税制（基礎控除58万円）を前提に設計されています。本ツールは同案の数値をそのまま2026年の税制（基礎控除は所得489万円以下で104万円）に適用しているため、大和総研の公表試算と異なります。
+  en: Daiwa designed this for 2025 tax rules (basic deduction 580,000 yen). This tool applies Daiwa's numbers unchanged to 2026 rules (basic deduction 1,040,000 yen up to income 4.89m), so results differ from Daiwa's published estimates.
+
 notes: >
   The report was written against 2025 tax rules (threshold 1.6m in 2025). Applying it to the 2026 baseline
   means our numbers will differ from the published estimates; differences go in docs/VALIDATION.md.

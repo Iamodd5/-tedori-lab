@@ -20,3 +20,9 @@ Each design is a reform in `engine/reforms.py` that reads only its own file in `
 - **Government final** and the **payment part of the food tax cut.** The shape (flat, rising, flat, child add-on, phase-out, rounded up to 1,000 yen) is coded and tested with made-up numbers (`tests/hand_calcs/credit_shape.md`). Every real amount awaits a Cabinet order (Q9), so these show "incomplete parameters" and no number.
 - **Food tax cut, tax side.** Saving = food spending × (8% − 1%) ÷ 1.08 × pass-through (100%, with a 50% sensitivity). *Approximation:* full pass-through to prices. Household food spending is not yet loaded (Q8), so no number yet.
 - **Rengo.** No documents yet (Q3); shown as "incomplete parameters".
+
+## Wall map and household comparison (Milestone 4)
+
+- **Household comparison** (`outputs/household_comparison.csv`, `.json`): for every household and design, the change in take-home pay at the reference income, split into income tax, resident tax, social insurance, money received, and consumption tax. Designs with unpublished numbers show `incomplete` and list what is missing.
+- **Wall map** (`outputs/wall_map.json`): one member's income moves from 0 to 10,000,000 yen in 10,000-yen steps; everything else about the household stays fixed (including "works 20+ hours at a 51+ firm"). At each step we record take-home pay and the **effective marginal rate**: 1 − (take-home at the next step − take-home here) ÷ 10,000. Above 100% means earning 10,000 more leaves you with less. Households with two incomes wait for HUMAN_TODO H-11.
+- Built by `make outputs` (part of `make all`). Preview page: `site/wallmap.html` (serve the repository root, e.g. `python3 -m http.server`).

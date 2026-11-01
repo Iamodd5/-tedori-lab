@@ -127,3 +127,26 @@ That shape is now coded and tested with made-up practice numbers. But every real
 **First contribution for OpenFisca-Japan.** Their national pension amount is 17,510 yen a month, from 2015. For 2026 it is 17,920. The exact change is written in `docs/COVERAGE.md`, ready for the human to submit.
 
 **Checks.** 75 tests pass, including hand calculations for Daiwa (H1, H3, H7), eight practice cases for the payment shape, and a test that every design runs on every household without inventing a number.
+
+## Milestone 4 — 2026-11-01: wall map and comparison table
+
+**Decision recorded.** H-10: A. Daiwa's plan is applied exactly as published, on 2026 rules. Every Daiwa number on the site carries a note (in Japanese and English) saying Daiwa designed it for 2025 rules, so our results differ from theirs.
+
+**The comparison table** (`outputs/household_comparison.csv`). For each household and each design, how much take-home pay changes in a year, and why: income tax, resident tax, social insurance, money paid out, consumption tax. Designs whose numbers are not published yet say "incomplete" instead of showing a number.
+
+**The wall map** (`outputs/wall_map.json`).
+- We raise one person's income in 10,000-yen steps from 0 to 10 million.
+- At each step we ask: of the next 10,000 yen earned, how much is lost to tax, insurance and lost benefits? That share is the "effective marginal rate".
+- If it is more than 100%, earning more leaves you with less money. That is a "wall".
+
+Walls the map shows for 2026 rules:
+- **H2 (student), at 1.5 million.** Above it the student can no longer be on the parents' health insurance.
+- **H2 and H7, at total income 4.89 million.** The basic deduction drops from 1.04 million to 670,000 here. Daiwa's plan removes this cliff because it removes the basic deduction.
+- **H5 (single parent), at salary 2.09 million.** The single-parent exemption from resident tax ends.
+- **Every employee, small steps.** Insurance premiums are charged on "bands" of monthly pay, so moving up a band costs more than the raise.
+
+**A surprise worth knowing.** H1 is called "near the 1.3 million wall", but as we modelled H1 (living alone), that wall does not hit them. The 1.06m and 1.3m walls only apply to someone who could otherwise be covered as a dependant on a parent's or spouse's insurance for free. A single person already pays the expensive self-employed insurance (about 235,000 yen a year). So joining employee insurance actually *raises* H1's take-home pay by about 90,000 yen. Whether to redefine H1 is an open question (Q21).
+
+**What is not done yet.**
+- Wall maps for the four households with two incomes (H3, H4, H6, H8) need a decision on whose income moves (H-11).
+- A preview page, `site/wallmap.html`, draws both charts and the table straight from `outputs/`.

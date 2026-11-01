@@ -55,3 +55,13 @@ Not done yet. Planned for Milestone 4: take-home pay for H1, H3 and H8 at three 
 |---|---|---|---|
 | Daiwa: single employee, salary 5,000,000 (age 30) | −40,700 yen/year | −13,000 (Daiwa p.7) | Daiwa used 2025 rules (basic deduction 580,000). Under 2026 rules the deduction is 1,040,000, so losing it costs more. Open as Q19. |
 | Daiwa: H1, H3, H7 | +40,200 / −18,300 / −20,700 | hand calculations, `tests/hand_calcs/daiwa.md` | match to the yen |
+
+## 6. Wall map (Milestone 4)
+
+| Check | Engine | Hand calculation |
+|---|---|---|
+| H1, salary 1,110,000 → 1,120,000 (premium band 88,000 → 98,000) | marginal rate 170.88% | 170.88% (`tests/hand_calcs/wall_H1.md`) |
+| H1, salary 1,050,000 → 1,060,000 (joins employee insurance) | take-home +90,013 | +90,013 |
+| H5, salary 2,090,000 → 2,100,000 | resident tax 0 → 31,200 | Shinjuku single-parent exemption ends at total income 1,350,000 (`resident_tax.yaml` non_taxable) |
+
+A test written first expected a wall at 1,056,000 for H1. It was wrong: H1 is single, so joining employee insurance replaces the more expensive NHI + national pension (see Q21). The test was replaced, before any commit, by the documented hand calculation above.

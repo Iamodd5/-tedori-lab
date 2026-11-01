@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>年収の壁マップ / Wall map — Tedori Lab</title>
+<!-- Milestone 4 preview. Every number is read from outputs/ (built by `make outputs`). -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0 auto; max-width: 900px; padding: 16px; color: #1a1a1a; background: #fff; }
+  h1 { font-size: 1.3rem; } h2 { font-size: 1.05rem; margin-top: 1.5rem; }
+  .note { font-size: .85rem; color: #555; }
+  .warn { font-size: .85rem; background: #fff6dd; border-left: 4px solid #d9a400; padding: 6px 10px; }
+  table { border-collapse: collapse; width: 100%; font-size: .85rem; }
+  th, td { border-bottom: 1px solid #ddd; padding: 4px 6px; text-align: right; }
+  th:first-child, td:first-child { text-align: left; }
+  .chart { position: relative; height: 320px; }
+</style>
+</head>
+<body>
+<h1>年収の壁マップ / Wall map (preview)</h1>
+<label>世帯 / Household: <select id="hh"></select></label>
+<p class="note" id="skipped"></p>
+
+<h2>手取り / Disposable income (円/yen per year)</h2>
+<div class="chart"><canvas id="disp" role="img" aria-label="Disposable income by gross income, baseline and each design"></canvas></div>
+
+<h2>実効限界負担率 / Effective marginal rate</h2>
+<p class="note">次の1万円のうち税・社会保険料・給付減で失う割合。100%超は「壁」。表示は−50%〜300%で切り詰め。 /
+Share of the next 10,000 yen lost to tax, social insurance and benefit withdrawal. Above 100% is a wall. Axis cut at −50% to 300%.</p>
+<div class="chart"><canvas id="emr" role="img" aria-label="Effective marginal rate by gross income, baseline and each design"></canvas></div>
+
+<h2>基準所得での比較 / Change at the reference income</h2>
+<div style="overflow-x:auto"><table id="cmp"><thead><tr><th>案 / Design</th><th>手取りの変化 / Change</th><th>所得税</th><th>住民税</th><th>社会保険料</th><th>給付・還付</th><th>消費税</th></tr></thead><tbody></tbody></table></div>
+<div id="notes"></div>
+
+<script>
+const COLORS = { baseline: "#444", daiwa: "#1f77b4", government_final: "#d62728", food_tax_cut: "#2ca02c", rengo: "#9467bd" };
+const NAMES = { baseline: "2026年制度 / 2026 baseline", daiwa: "大和総研案 / Daiwa", government_final: "政府案 / Government",
+                food_tax_cut: "食料品減税 / Food tax cut", rengo: "連合案 / Rengo" };
+const yen = n => n == null ? "—" : n.toLocaleString("ja-JP");
+let charts = [];
+
+Promise.all(["../outputs/wall_map.json", "../outputs/household_comparison.json"].map(u => fetch(u).then(r => r.json())))
+.then(([walls, cmp]) => {
+  const sel = document.getElementById("hh");
+  for (const [id, h] of Object.entries(walls.households)) sel.add(new Option(`${id} ${h.name_ja} / ${h.name_en}`, id));
+  document.getElementById("skipped").textContent = "未表示 / Not shown yet: " +
+    Object.entries(walls.skipped).map(([k, v]) => `${k} (${v})`).join("; ");
+  const draw = () => {
+    const h = walls.households[sel.value];
+    charts.forEach(c => c.destroy());
+    const ds = (col, clamp) => Object.entries(h.designs).map(([d, pts]) => ({
+      label: NAMES[d], borderColor: COLORS[d], borderWidth: d === "baseline" ? 2 : 1.5, pointRadius: 0,
+      data: pts.filter(p => p[col] != null).map(p => ({ x: p[0], y: clamp ? Math.max(-50, Math.min(300, p[col] * 100)) : p[col] }))
+    }));
+    const opts = (yTitle) => ({ animation: false, maintainAspectRatio: false, parsing: false,
+      interaction: { mode: "nearest", axis: "x", intersect: false },
+      scales: { x: { type: "linear", title: { display: true, text: "額面の収入 / Gross income (円)" } },
+                y: { title: { display: true, text: yTitle } } } });
+    charts = [new Chart(disp, { type: "line", data: { datasets: ds(1, false) }, options: opts("円 / yen") }),
+              new Chart(emr, { type: "line", data: { datasets: ds(2, true) }, options: opts("%") })];
+    const tb = document.querySelector("#cmp tbody"); tb.innerHTML = "";
+    const notes = new Set();
+    for (const r of cmp.filter(r => r.household === sel.value)) {
+      const c = r.components, tr = tb.insertRow();
+      const cells = r.status === "complete"
+        ? [r.disposable_change, c.income_tax, c.resident_tax, c.social_insurance, c.credit, c.consumption_tax].map(yen)
+        : ["パラメータ未確定 / incomplete parameters", "", "", "", "", ""];
+      [NAMES[r.design], ...cells].forEach(t => tr.insertCell().textContent = t);
+      if (r.status === "complete" && r.site_note) notes.add(`${NAMES[r.design]}: ${r.site_note.ja} / ${r.site_note.en}`);
+      r.approximations.forEach(a => notes.add(`近似 / approximation — ${NAMES[r.design]}: ${a}`));
+    }
+    document.getElementById("notes").innerHTML = "";
+    notes.forEach(n => { const p = document.createElement("p"); p.className = "warn"; p.textContent = n; document.getElementById("notes").append(p); });
+  };
+  sel.onchange = draw; draw();
+});
+</script>
+</body>
+</html>
