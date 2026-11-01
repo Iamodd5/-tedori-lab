@@ -1,0 +1,98 @@
+# Population view (SPEC 9.3, 9.4). Data chosen by the human: HUMAN_TODO H-17 (option A, docs/M7_DATA_OPTIONS.md).
+# scripts/extract_population.py turns the sources below into cells.csv, food.csv and checks.csv;
+# engine/population.py builds one model household per group and income band from them.
+# Everything in `assumptions` is a modelling choice, not a policy number: each is approximation: true and is
+# shown wherever population numbers appear (CLAUDE.md rule 3).
+
+sources:
+  zkk_income:
+    file: stats/zkk2024_shotoku_3-32-1.xlsx
+    title: 令和6年全国家計構造調査 所得に関する結果 第3-32-1表 年間収入階級，世帯類型，所得構成別1世帯当たり年間収入額－全国
+    url: https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040482919&fileKind=0
+    publisher: 総務省統計局
+    published: 2026-08-28
+  zkk_spending:
+    file: stats/zkk2024_kakei_1-21.xlsx
+    title: 令和6年全国家計構造調査 家計収支に関する結果 第1-21表 世帯の種類，世帯区分，世帯主の性別，年間収入階級・十分位階級・五分位階級，収支項目分類別1世帯当たり1か月間の収入と支出－全国
+    url: https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040379252&fileKind=0
+    publisher: 総務省統計局
+    published: 2025-12-19
+  kakei_2025:
+    file: stats/kakei2025_sosetai_3.xlsx
+    title: 家計調査（家計収支編）2025年 総世帯 第3表 年間収入五分位・十分位階級別1世帯当たり1か月間の収入と支出
+    url: https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040409804&fileKind=0
+    publisher: 総務省統計局
+    published: 2026-02-06
+  kiso_2025:
+    file: stats/kiso2025_setai_2.csv
+    title: 2025年国民生活基礎調査 世帯票 第2表 世帯数－構成割合，世帯構造・年次別
+    url: https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040472271&fileKind=1
+    publisher: 厚生労働省
+    published: 2026-07-15
+  minkan_r7:
+    file: stats/minkan_r7_3.xlsx
+    title: 令和7年分民間給与実態統計調査 第3表 給与階級別の総括表 その1（1年を通じて勤務した給与所得者）
+    url: https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040505068&fileKind=0
+    publisher: 国税庁
+    published: 2026-09-29
+
+# The groups split 総世帯 into parts that do not overlap. `columns` are the table's 世帯類型 codes;
+# a leading "-" subtracts a column (the "other" group is what is left of 二人以上の世帯).
+groups:
+  single:          {ja: 単身世帯, en: Single person, columns: ["2"], spouse: false, children: 0}
+  couple:          {ja: 夫婦のみ, en: Couple only, columns: ["111"], spouse: true, children: 0}
+  couple_1child:   {ja: 夫婦と子1人, en: Couple and one child, columns: ["112"], spouse: true, children: 1}
+  couple_2children: {ja: 夫婦と子2人, en: Couple and two children, columns: ["113"], spouse: true, children: 2}
+  couple_3children: {ja: 夫婦と子3人以上, en: Couple and three or more children, columns: ["115"], spouse: true, children: 3}
+  lone_parent:     {ja: ひとり親と子, en: Lone parent and children, columns: ["117"], spouse: false, children: from_size}
+  with_parents:    {ja: 夫婦と親（子のいる世帯を含む）, en: Couple living with parents (with or without children), columns: ["12", "13"], spouse: true, children: under18_only, relatives: true}
+  other:           {ja: その他の二人以上の世帯, en: Other households of two or more, columns: ["1", "-11", "-12", "-13"], spouse: false, children: under18_only, relatives: true}
+
+assumptions:
+  one_household_per_cell:
+    approximation: true
+    ja: 世帯の種類と年間収入階級（50万円刻み）の組み合わせごとに、平均的な世帯を1つ（年金で暮らす世帯と働いて暮らす世帯に分ける場合は2つ）だけ作って計算しています。同じ組み合わせの中の世帯の違いは表れません。
+    en: Each combination of household type and 500,000-yen income band is represented by one average household (two when it is split into a pension household and a work household). Differences between households in the same cell are not captured.
+  income_split:
+    approximation: true
+    ja: 各組み合わせを「年金で暮らす世帯」と「働いて暮らす世帯」に分けます。分け方は収入に占める年金の割合で決め、どちらの世帯も元の組み合わせと同じ年収にします。年金と給与の両方がある世帯（働く高齢者など）は表れません。
+    en: Each cell is split into a household living on pensions and a household living on work, in proportion to the pension share of its income; both keep the cell's total income. Households with both pensions and earnings (such as older people who work) are not represented.
+  spouse_earnings:
+    approximation: true
+    ja: 夫婦の「働いて暮らす世帯」は、調査の有業人員から配偶者も働く世帯の割合を決め、「共働き」と「片働き」に分けます。配偶者の収入は共働き世帯の配偶者だけに割り当てます。
+    en: Couples' work households are split into two-earner and one-earner households, using the survey's number of earners per household; spouse earnings go only to the spouses in two-earner households.
+  older_age:
+    value: 70
+    approximation: true
+    ja: 年金で暮らす世帯の大人と、年金のある親などは70歳として計算します（75歳以上の後期高齢者医療制度は扱っていません）。
+    en: Adults in pension households, and relatives living on pensions, are modelled at age 70 (the separate medical system for people aged 75 and over is not modelled).
+  child_age:
+    value: 10
+    approximation: true
+    ja: 18歳未満の子どもは全員10歳として計算します。働いて暮らす世帯の大人の年齢は、世帯主の平均年齢から決めます（20～64歳の範囲）。
+    en: Every child under 18 is modelled at age 10. Adults in work households get an age derived from the cell's average head age (kept between 20 and 64).
+  adult_child_age:
+    value: 22
+    approximation: true
+    ja: 18歳以上の子どもは22歳とし、「他の世帯員収入」を等分します。
+    en: Children aged 18 and over are modelled at age 22 and share the survey's "other members' earnings" equally.
+  work:
+    approximation: true
+    ja: 給与のある人は全員、週20時間以上・従業員51人以上の職場で働いているとみなし、月8.8万円以上なら会社の健康保険・厚生年金に入るものとします。
+    en: Everyone with a salary is assumed to work 20+ hours a week at an employer with 51+ staff, so they join employee insurance when they earn 88,000 yen a month or more.
+  income_sources:
+    approximation: true
+    ja: 勤め先収入・事業収入（家賃・地代を除く）・公的年金・企業年金だけを計算に入れます。家賃・地代、利子・配当、仕送りなどは入っていません。事業収入は経費を引いた後の所得として扱います。
+    en: Only earnings, business income (excluding rent), public pensions and company pensions are modelled. Rent, interest, dividends and transfers between households are left out. Business income is treated as income after expenses.
+  food_spending:
+    approximation: true
+    ja: 食料品の支出は、同じ種類（単身／二人以上）・同じ年間収入階級の世帯の平均です（2024年10～11月の調査で、季節による違いは除いていません）。
+    en: Food spending is the average for households of the same kind (single / two or more) and income band, from a survey taken in October–November 2024 (not adjusted for season).
+  elderly_dependants:
+    approximation: true
+    ja: 同居する70歳以上の親などを扶養しても、老人扶養親族の控除（通常より大きい額）は計算に入れず、一般の扶養控除として計算しています（OPEN_QUESTIONS Q32）。
+    en: A cohabiting parent or relative aged 70+ claimed as a dependant gets the ordinary dependant deduction, not the larger elderly-dependant amount (OPEN_QUESTIONS Q32).
+  survey_year:
+    approximation: true
+    ja: 世帯の数と収入は2024年の調査の値をそのまま使い、2026年に合わせた調整はしていません。
+    en: Household counts and incomes are the 2024 survey's, not adjusted to 2026.

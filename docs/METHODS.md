@@ -29,6 +29,19 @@ Each design is a reform in `engine/reforms.py` that reads only its own file in `
 - **Wall map** (`outputs/wall_map.json`): one member's income moves from 0 to 10,000,000 yen in 10,000-yen steps; everything else about the household stays fixed (including "works 20+ hours at a 51+ firm"). At each step we record take-home pay and the **effective marginal rate**: 1 − (take-home at the next step − take-home here) ÷ 10,000. Above 100% means earning 10,000 more leaves you with less. In two-income households the moving income is set in the household file (`wall_map`, HUMAN_TODO H-11: D): H4 the spouse's salary; H3 and H8 the head's salary; H6 the head's pension.
 - Built by `make outputs` (part of `make all`). The website (`site/`) reads these files directly; serve the repository root (e.g. `python3 -m http.server`) and open `site/index.html`.
 
+## Population view and cost (Milestone 7) — every number is an approximation
+
+- **Data** (HUMAN_TODO H-17: A): households by type and 500,000-yen income band, with each band's average earnings, business income, pensions, ages and number of earners, from 令和6年全国家計構造調査 所得 第3-32-1表. Food spending from the same survey's 家計収支 第1-21表. Other official tables are used only as checks (§10 of `VALIDATION.md`). Extracted by `scripts/extract_population.py` into `population/*.csv`.
+- **Groups.** All households split into eight groups that do not overlap: single; couple only; couple with one, two, or three or more children; lone parent; couple living with parents; other households of two or more.
+- **Model households** (`engine/population.py`; hand calculation `tests/hand_calcs/population.md`). For each group and income band:
+  - the cell is split into a household living on pensions and one living on work, in proportion to the pension share of its income; both keep the cell's total income;
+  - couples' work households are split again into two-earner and one-earner households, using the survey's earners per household;
+  - children under 18 are aged 10, adult children 22, pension households 70.
+  Every choice is listed in `population/population.yaml` with `approximation: true` and shown on the Population page.
+- **Results.** Every model household runs through the same engine and designs as H1–H8. Households are sorted by the survey's annual income (年間収入) and cut into ten equal groups (deciles); a model household that straddles a cut is split in proportion. For each decile: the average change in take-home pay, and the shares of households that gain, lose or see no change.
+- **Cost.** National total of the change in take-home pay = net cost to the government before any financing, in a static estimate (no change in how people work). Shown next to the proposer's own estimate where one is published (Daiwa p.7).
+- **Not included:** the year gap (2024 survey, 2026 rules), income from rent, interest and dividends, households that both earn and draw pensions, differences between households in the same cell, and the larger deduction for elderly dependants (Q32).
+
 ## Website (Milestone 6)
 
 - Static pages in `site/`; every number is read at page load from `outputs/` (no number is typed into a page).

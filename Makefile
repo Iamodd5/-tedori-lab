@@ -18,6 +18,7 @@ text:
 
 tables:
 	$(PY) -I scripts/extract_tables.py
+	$(PY) -I scripts/extract_population.py
 
 test:
 	$(PY) -m pytest -q tests

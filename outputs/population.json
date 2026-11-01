@@ -1,0 +1,538 @@
+{
+ "deciles": [
+  {
+   "decile": 1,
+   "households": 5353665,
+   "annual_income_mean": 1203241,
+   "annual_income_max": 1744000.0,
+   "baseline_disposable_mean": 940819
+  },
+  {
+   "decile": 2,
+   "households": 5353665,
+   "annual_income_mean": 2128425,
+   "annual_income_max": 2691000.0,
+   "baseline_disposable_mean": 1773952
+  },
+  {
+   "decile": 3,
+   "households": 5353665,
+   "annual_income_mean": 2920521,
+   "annual_income_max": 3215804.0,
+   "baseline_disposable_mean": 2311164
+  },
+  {
+   "decile": 4,
+   "households": 5353665,
+   "annual_income_mean": 3561668,
+   "annual_income_max": 4144000.0,
+   "baseline_disposable_mean": 2942415
+  },
+  {
+   "decile": 5,
+   "households": 5353665,
+   "annual_income_mean": 4391339,
+   "annual_income_max": 4731000.0,
+   "baseline_disposable_mean": 3491426
+  },
+  {
+   "decile": 6,
+   "households": 5353665,
+   "annual_income_mean": 5303915,
+   "annual_income_max": 5737000.0,
+   "baseline_disposable_mean": 4136672
+  },
+  {
+   "decile": 7,
+   "households": 5353665,
+   "annual_income_mean": 6408935,
+   "annual_income_max": 7174000.0,
+   "baseline_disposable_mean": 4899035
+  },
+  {
+   "decile": 8,
+   "households": 5353665,
+   "annual_income_mean": 7757482,
+   "annual_income_max": 8691000.0,
+   "baseline_disposable_mean": 5851324
+  },
+  {
+   "decile": 9,
+   "households": 5353665,
+   "annual_income_mean": 9678195,
+   "annual_income_max": 11153000.0,
+   "baseline_disposable_mean": 7130863
+  },
+  {
+   "decile": 10,
+   "households": 5353665,
+   "annual_income_mean": 15840102,
+   "annual_income_max": 40746000.0,
+   "baseline_disposable_mean": 10653137
+  }
+ ],
+ "designs": {
+  "government_final": {
+   "label": {
+    "ja": "政府：支援金・本格導入（R11〜）",
+    "en": "Government: payment, full system (FY2029–)"
+   },
+   "status": "incomplete",
+   "blocked_by": [
+    {
+     "ja": "金額・率は政令で定める（未公表）",
+     "en": "amounts and rates left to a Cabinet order (not yet published)"
+    }
+   ],
+   "approximations": [],
+   "published_estimates": {
+    "take_home_recovery_after_13m_wall_yen": 1600000,
+    "cite_recovery": {
+     "source": "outline",
+     "page": 10,
+     "section": "第三 一 2(1)③"
+    },
+    "claim_most_beneficiaries_gain_more_than_food_cut": "給付の対象となる中所得・低所得の現役勤労者の大宗については…飲食料品の消費税率引下げの効果を上回る支援を受けられる",
+    "cite_claim": {
+     "title": "令和8年8月5日 資料3",
+     "file": "sources/gov/20260805_03_siryou3.pdf",
+     "page": 2
+    }
+   },
+   "site_note": null
+  },
+  "rengo": {
+   "label": {
+    "ja": "連合案",
+    "en": "Rengo"
+   },
+   "status": "incomplete",
+   "blocked_by": [
+    {
+     "ja": "連合の資料を入手できていない",
+     "en": "Rengo's documents not yet obtained"
+    }
+   ],
+   "approximations": [],
+   "published_estimates": null,
+   "site_note": null
+  },
+  "daiwa": {
+   "label": {
+    "ja": "大和総研案（2026年制度で再計算）",
+    "en": "Daiwa (recomputed on 2026 rules)"
+   },
+   "status": "complete",
+   "blocked_by": [],
+   "approximations": [
+    {
+     "question": "Q11",
+     "ja": "税額控除は復興特別所得税（2.1%）の前に差し引く（既存の税額控除と同じ扱い）。大和総研は順序を示していない。",
+     "en": "The credit is taken off before the 2.1% reconstruction surtax, as existing tax credits are. Daiwa does not say."
+    },
+    {
+     "question": "Q18",
+     "ja": "還付の上限に数える保険料は健康保険（介護分を含む）と厚生年金のみ。子ども・子育て支援金と雇用保険は含めない。",
+     "en": "The refund cap counts health insurance (incl. long-term care) and pension only, not the child-support levy or employment insurance."
+    }
+   ],
+   "published_estimates": {
+    "tax_credit_under_2025_rules": 56500,
+    "cite_credit": {
+     "source": "daiwa",
+     "page": 1
+    },
+    "headline_variant_with_refund": {
+     "income_tax_increase_trillion_yen": 0.7,
+     "refund_payments_trillion_yen": 0.7,
+     "net_fiscal_cost": "about zero (財政中立)",
+     "cite": {
+      "source": "daiwa",
+      "page": 7
+     }
+    },
+    "household_change_at_5m_salary_yen": -13000,
+    "take_home_recovery_salary_yen": 1200000,
+    "cite": {
+     "source": "daiwa",
+     "page": 7
+    }
+   },
+   "site_note": {
+    "ja": "大和総研案は2025年の税制を前提に、課税最低限178万円となる税額控除額（5.65万円）を示しています。本ツールは同じ算式を2026年の税制（給与所得控除の最低保障額74万円）に当てはめ、税額控除を5.2万円として計算しています。2026年の税制では基礎控除が所得489万円以下で104万円に引き上げられており、課税最低限はすでに178万円です。このため結果は大和総研の公表試算と異なります。",
+    "en": "Daiwa sized its credit (56,500 yen) to give a tax-free threshold of 1.78m under 2025 rules. This tool applies the same formula to 2026 rules (employment-income minimum 740,000), giving a 52,000-yen credit. Under 2026 rules the basic deduction is already 1,040,000 up to income 4.89m and the threshold is already 1.78m, so results differ from Daiwa's published estimates."
+   },
+   "by_decile": [
+    {
+     "decile": 1,
+     "mean_change": 9209,
+     "winners_share": 0.2055,
+     "losers_share": 0.0,
+     "unchanged_share": 0.7945
+    },
+    {
+     "decile": 2,
+     "mean_change": 6490,
+     "winners_share": 0.2123,
+     "losers_share": 0.0,
+     "unchanged_share": 0.7877
+    },
+    {
+     "decile": 3,
+     "mean_change": 4727,
+     "winners_share": 0.131,
+     "losers_share": 0.0,
+     "unchanged_share": 0.869
+    },
+    {
+     "decile": 4,
+     "mean_change": 4142,
+     "winners_share": 0.1054,
+     "losers_share": 0.0681,
+     "unchanged_share": 0.8265
+    },
+    {
+     "decile": 5,
+     "mean_change": -963,
+     "winners_share": 0.129,
+     "losers_share": 0.4642,
+     "unchanged_share": 0.4069
+    },
+    {
+     "decile": 6,
+     "mean_change": -11256,
+     "winners_share": 0.1778,
+     "losers_share": 0.475,
+     "unchanged_share": 0.3472
+    },
+    {
+     "decile": 7,
+     "mean_change": -27546,
+     "winners_share": 0.2306,
+     "losers_share": 0.6761,
+     "unchanged_share": 0.0933
+    },
+    {
+     "decile": 8,
+     "mean_change": -24085,
+     "winners_share": 0.2983,
+     "losers_share": 0.6943,
+     "unchanged_share": 0.0074
+    },
+    {
+     "decile": 9,
+     "mean_change": -52392,
+     "winners_share": 0.1435,
+     "losers_share": 0.8565,
+     "unchanged_share": 0.0
+    },
+    {
+     "decile": 10,
+     "mean_change": -85759,
+     "winners_share": 0.055,
+     "losers_share": 0.945,
+     "unchanged_share": 0.0
+    }
+   ],
+   "cost_yen": -949915454245,
+   "cost_components_yen": {
+    "income_tax": 1531233888720,
+    "resident_tax": 0,
+    "social_insurance": 0,
+    "credit": 581318434474,
+    "consumption_tax": 0
+   }
+  },
+  "food_tax_cut": {
+   "label": {
+    "ja": "政府：つなぎ（食料品1%＋支援金、R9–10）",
+    "en": "Government: bridge (food 1% + payment, FY2027–28)"
+   },
+   "status": "incomplete",
+   "blocked_by": [
+    {
+     "ja": "金額・率は政令で定める（未公表）",
+     "en": "amounts and rates left to a Cabinet order (not yet published)"
+    }
+   ],
+   "approximations": [],
+   "published_estimates": null,
+   "site_note": null
+  }
+ },
+ "calibration": {
+  "households": {
+   "model": 53536652,
+   "suppressed_cells": 254087,
+   "official_kiso_2025": 55058000
+  },
+  "wage_earners": [
+   {
+    "band": "100万円以下",
+    "model": 15284541,
+    "official": 3703056
+   },
+   {
+    "band": "200万円以下",
+    "model": 14622271,
+    "official": 5824930
+   },
+   {
+    "band": "300万円以下",
+    "model": 7578733,
+    "official": 6745640
+   },
+   {
+    "band": "400万円以下",
+    "model": 7617433,
+    "official": 7986672
+   },
+   {
+    "band": "500万円以下",
+    "model": 5659320,
+    "official": 7917758
+   },
+   {
+    "band": "600万円以下",
+    "model": 4955611,
+    "official": 6144924
+   },
+   {
+    "band": "700万円以下",
+    "model": 3782120,
+    "official": 4035253
+   },
+   {
+    "band": "800万円以下",
+    "model": 2360337,
+    "official": 2776867
+   },
+   {
+    "band": "900万円以下",
+    "model": 1547603,
+    "official": 1833950
+   },
+   {
+    "band": "1,000万円以下",
+    "model": 1007523,
+    "official": 1266070
+   },
+   {
+    "band": "1,500万円以下",
+    "model": 1187905,
+    "official": 2422427
+   },
+   {
+    "band": "2,000万円以下",
+    "model": 492655,
+    "official": 609530
+   },
+   {
+    "band": "2,500万円以下",
+    "model": 52372,
+    "official": 167273
+   },
+   {
+    "band": "2,500万円超",
+    "model": 0,
+    "official": 196244
+   }
+  ],
+  "people_65_plus": {
+   "model": 26897965,
+   "survey": 33376907
+  },
+  "income_tax": {
+   "model_baseline_2026": 10173502491124,
+   "survey_estimate_2024": 11636229406234
+  },
+  "resident_tax": {
+   "model_baseline_2026": 12348195108512,
+   "survey_estimate_2024": 12812796487612
+  },
+  "income_covered": {
+   "modelled": 297544259966937,
+   "survey_annual_income": 316903912927581,
+   "dropped_other_members": 4303690317828
+  },
+  "decile_upper_bounds": [
+   {
+    "decile": 1,
+    "model": 1744000.0,
+    "official": 1860000
+   },
+   {
+    "decile": 2,
+    "model": 2691000.0,
+    "official": 2590000
+   },
+   {
+    "decile": 3,
+    "model": 3215804.0,
+    "official": 3280000
+   },
+   {
+    "decile": 4,
+    "model": 4144000.0,
+    "official": 4000000
+   },
+   {
+    "decile": 5,
+    "model": 4731000.0,
+    "official": 4830000
+   },
+   {
+    "decile": 6,
+    "model": 5737000.0,
+    "official": 5770000
+   },
+   {
+    "decile": 7,
+    "model": 7174000.0,
+    "official": 6990000
+   },
+   {
+    "decile": 8,
+    "model": 8691000.0,
+    "official": 8500000
+   },
+   {
+    "decile": 9,
+    "model": 11153000.0,
+    "official": 11000000
+   }
+  ],
+  "food8_monthly": {
+   "survey_2024_oct_nov": 54832,
+   "kakei_2025_full_year": 57177
+  }
+ },
+ "approximations": [
+  {
+   "key": "one_household_per_cell",
+   "ja": "世帯の種類と年間収入階級（50万円刻み）の組み合わせごとに、平均的な世帯を1つ（年金で暮らす世帯と働いて暮らす世帯に分ける場合は2つ）だけ作って計算しています。同じ組み合わせの中の世帯の違いは表れません。",
+   "en": "Each combination of household type and 500,000-yen income band is represented by one average household (two when it is split into a pension household and a work household). Differences between households in the same cell are not captured."
+  },
+  {
+   "key": "income_split",
+   "ja": "各組み合わせを「年金で暮らす世帯」と「働いて暮らす世帯」に分けます。分け方は収入に占める年金の割合で決め、どちらの世帯も元の組み合わせと同じ年収にします。年金と給与の両方がある世帯（働く高齢者など）は表れません。",
+   "en": "Each cell is split into a household living on pensions and a household living on work, in proportion to the pension share of its income; both keep the cell's total income. Households with both pensions and earnings (such as older people who work) are not represented."
+  },
+  {
+   "key": "spouse_earnings",
+   "ja": "夫婦の「働いて暮らす世帯」は、調査の有業人員から配偶者も働く世帯の割合を決め、「共働き」と「片働き」に分けます。配偶者の収入は共働き世帯の配偶者だけに割り当てます。",
+   "en": "Couples' work households are split into two-earner and one-earner households, using the survey's number of earners per household; spouse earnings go only to the spouses in two-earner households."
+  },
+  {
+   "key": "older_age",
+   "ja": "年金で暮らす世帯の大人と、年金のある親などは70歳として計算します（75歳以上の後期高齢者医療制度は扱っていません）。",
+   "en": "Adults in pension households, and relatives living on pensions, are modelled at age 70 (the separate medical system for people aged 75 and over is not modelled)."
+  },
+  {
+   "key": "child_age",
+   "ja": "18歳未満の子どもは全員10歳として計算します。働いて暮らす世帯の大人の年齢は、世帯主の平均年齢から決めます（20～64歳の範囲）。",
+   "en": "Every child under 18 is modelled at age 10. Adults in work households get an age derived from the cell's average head age (kept between 20 and 64)."
+  },
+  {
+   "key": "adult_child_age",
+   "ja": "18歳以上の子どもは22歳とし、「他の世帯員収入」を等分します。",
+   "en": "Children aged 18 and over are modelled at age 22 and share the survey's \"other members' earnings\" equally."
+  },
+  {
+   "key": "work",
+   "ja": "給与のある人は全員、週20時間以上・従業員51人以上の職場で働いているとみなし、月8.8万円以上なら会社の健康保険・厚生年金に入るものとします。",
+   "en": "Everyone with a salary is assumed to work 20+ hours a week at an employer with 51+ staff, so they join employee insurance when they earn 88,000 yen a month or more."
+  },
+  {
+   "key": "income_sources",
+   "ja": "勤め先収入・事業収入（家賃・地代を除く）・公的年金・企業年金だけを計算に入れます。家賃・地代、利子・配当、仕送りなどは入っていません。事業収入は経費を引いた後の所得として扱います。",
+   "en": "Only earnings, business income (excluding rent), public pensions and company pensions are modelled. Rent, interest, dividends and transfers between households are left out. Business income is treated as income after expenses."
+  },
+  {
+   "key": "food_spending",
+   "ja": "食料品の支出は、同じ種類（単身／二人以上）・同じ年間収入階級の世帯の平均です（2024年10～11月の調査で、季節による違いは除いていません）。",
+   "en": "Food spending is the average for households of the same kind (single / two or more) and income band, from a survey taken in October–November 2024 (not adjusted for season)."
+  },
+  {
+   "key": "elderly_dependants",
+   "ja": "同居する70歳以上の親などを扶養しても、老人扶養親族の控除（通常より大きい額）は計算に入れず、一般の扶養控除として計算しています（OPEN_QUESTIONS Q32）。",
+   "en": "A cohabiting parent or relative aged 70+ claimed as a dependant gets the ordinary dependant deduction, not the larger elderly-dependant amount (OPEN_QUESTIONS Q32)."
+  },
+  {
+   "key": "survey_year",
+   "ja": "世帯の数と収入は2024年の調査の値をそのまま使い、2026年に合わせた調整はしていません。",
+   "en": "Household counts and incomes are the 2024 survey's, not adjusted to 2026."
+  }
+ ],
+ "groups": {
+  "single": {
+   "ja": "単身世帯",
+   "en": "Single person"
+  },
+  "couple": {
+   "ja": "夫婦のみ",
+   "en": "Couple only"
+  },
+  "couple_1child": {
+   "ja": "夫婦と子1人",
+   "en": "Couple and one child"
+  },
+  "couple_2children": {
+   "ja": "夫婦と子2人",
+   "en": "Couple and two children"
+  },
+  "couple_3children": {
+   "ja": "夫婦と子3人以上",
+   "en": "Couple and three or more children"
+  },
+  "lone_parent": {
+   "ja": "ひとり親と子",
+   "en": "Lone parent and children"
+  },
+  "with_parents": {
+   "ja": "夫婦と親（子のいる世帯を含む）",
+   "en": "Couple living with parents (with or without children)"
+  },
+  "other": {
+   "ja": "その他の二人以上の世帯",
+   "en": "Other households of two or more"
+  }
+ },
+ "sources": {
+  "zkk_income": {
+   "file": "stats/zkk2024_shotoku_3-32-1.xlsx",
+   "title": "令和6年全国家計構造調査 所得に関する結果 第3-32-1表 年間収入階級，世帯類型，所得構成別1世帯当たり年間収入額－全国",
+   "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040482919&fileKind=0",
+   "publisher": "総務省統計局",
+   "published": "2026-08-28"
+  },
+  "zkk_spending": {
+   "file": "stats/zkk2024_kakei_1-21.xlsx",
+   "title": "令和6年全国家計構造調査 家計収支に関する結果 第1-21表 世帯の種類，世帯区分，世帯主の性別，年間収入階級・十分位階級・五分位階級，収支項目分類別1世帯当たり1か月間の収入と支出－全国",
+   "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040379252&fileKind=0",
+   "publisher": "総務省統計局",
+   "published": "2025-12-19"
+  },
+  "kakei_2025": {
+   "file": "stats/kakei2025_sosetai_3.xlsx",
+   "title": "家計調査（家計収支編）2025年 総世帯 第3表 年間収入五分位・十分位階級別1世帯当たり1か月間の収入と支出",
+   "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040409804&fileKind=0",
+   "publisher": "総務省統計局",
+   "published": "2026-02-06"
+  },
+  "kiso_2025": {
+   "file": "stats/kiso2025_setai_2.csv",
+   "title": "2025年国民生活基礎調査 世帯票 第2表 世帯数－構成割合，世帯構造・年次別",
+   "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040472271&fileKind=1",
+   "publisher": "厚生労働省",
+   "published": "2026-07-15"
+  },
+  "minkan_r7": {
+   "file": "stats/minkan_r7_3.xlsx",
+   "title": "令和7年分民間給与実態統計調査 第3表 給与階級別の総括表 その1（1年を通じて勤務した給与所得者）",
+   "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040505068&fileKind=0",
+   "publisher": "国税庁",
+   "published": "2026-09-29"
+  }
+ }
+}

@@ -284,3 +284,48 @@ Seven numbers are kept in the YAML for the record but are not used, and the test
 **One number still in the code.** National pension covers ages 20 to 59, but no document in `sources/` says so. Following rule 2, the YAML marks it `status: unresolved` and OPEN_QUESTIONS Q30 asks for a source.
 
 **Results.** No result changed: all tests pass, and `make all` rebuilds `outputs/` byte for byte the same.
+
+## Milestone 7: the population view and cost — 2026-11-01
+
+**Decision recorded.** H-17: A. Food spending and household counts both come from the 2024 全国家計構造調査 (National Survey of Family Income, Consumption and Wealth). Three other official tables are used only to check the result.
+
+**What it does, in plain words.** Households H1–H8 are eight examples. To say something about the whole country, we need all 53.8 million households. We don't have data on each one, but the survey publishes a big table, one row per combination: kind of household (single, couple, couple with children, and so on) × income band (0–1 million, 1–1.5 million, …).
+
+For each row the survey gives:
+- how many households there are;
+- their average earnings, business income and pensions;
+- their average age;
+- how many people in them work.
+
+From each row we build one or a few "model households":
+1. **Pension or work.** If 57% of a row's income comes from pensions, we say 57% of those households live on a pension (age 70) and 43% live on work. Both kinds get the row's full income, so they stay in the right band.
+2. **One or two earners.** For couples who live on work, the survey's "number of earners" tells us what share of spouses also work. Only those spouses get the spouse earnings.
+3. **Children.** Children under 18 are 10 years old. Older children are 22 and share the "other members' earnings".
+
+Every model household then goes through exactly the same tax and insurance rules as H1–H8, under every design. Each one counts as many real households as its row stands for.
+
+**Deciles.** We sort all households from lowest to highest annual income and cut them into ten groups of the same size. For each group we report:
+- the average change in take-home pay;
+- the share of households that gain, lose, or see no change.
+
+**Cost.** We add up everyone's change in take-home pay. If households keep more, the government pays that much more. This is a "static" estimate: it assumes nobody changes how much they work.
+
+**Checks against official numbers** (`docs/VALIDATION.md` §10):
+- The household count is 2.8% below the other big survey's.
+- The model's income tax total is 13% below the survey's own estimate, and resident tax 4% below.
+- The decile boundaries are within 7% of the survey's own.
+- The weak spot is people who earn very little: the model has far too many earners under 1 million yen, because averages spread small salaries around (Q33).
+
+**What we changed along the way.** The first version split each row by the share of people aged 65+. That gave almost every pensioner a small salary: 35.8 million "earners" under 1 million yen, against 3.7 million in the tax agency's count. So the split now follows the income itself (pension or work). The test and the hand calculation were rewritten with it, and the change is noted in both. An arithmetic slip in the first hand calculation was also caught by its test and is noted.
+
+**Daiwa result (approximate).**
+- On average, the lowest four deciles gain a little (about +4,000 to +9,000 yen a year), and the top deciles lose (−52,000 and −86,000 in the top two).
+- In total, income tax rises by 1.53 trillion yen and 0.58 trillion is paid back as refunds, so the government collects about 0.95 trillion more.
+- Daiwa's own estimate on 2025 rules was +0.7 trillion tax and 0.7 trillion refunds. The difference comes mainly from the larger 2026 basic deduction that the design removes.
+- The other designs still cannot be calculated (their amounts are unpublished or their documents are missing). The page says why.
+
+**New open questions.**
+- Q32: a larger deduction for elderly dependants is not in the engine yet.
+- Q33: earnings of other household members are spread too thin.
+
+**Results.** 96 tests pass. The earlier outputs (H1–H8, wall maps) did not change. New files: `outputs/population.json`, `outputs/population_households.csv`, and the page `site/population.html`.

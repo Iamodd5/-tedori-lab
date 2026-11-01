@@ -100,3 +100,44 @@ A snapshot test (spec 12.1) now fails if any household × design result changes 
 | Single employee, salary 5,000,000 | −45,300 | −13,000 (Daiwa p.7) | most of the gap: under 2026 rules this worker loses a 1,040,000 basic deduction, against 680,000 under the 2025 rules Daiwa used |
 
 The §5 rows above (56,500 credit) are kept as history; they are superseded by this section.
+
+## 10. Population view (Milestone 7) — calibration against official statistics
+
+Numbers from `outputs/population.json` → `calibration` (rebuilt by `make all`). The model is a 2024 survey run under 2026 rules, so a perfect match is not expected; the gaps are listed so readers can judge them.
+
+| Check | Model | Official | Gap | Why |
+|---|---|---|---|---|
+| Households | 53,536,652 (+254,087 in cells the survey hides) | 55,058,000 (国民生活基礎調査 2025) | −2.8% | different survey and year; the hidden cells are too small to model |
+| People aged 65+ | 26,897,965 | 33,376,907 (same survey, Σ 65歳以上人員) | −19% | older people who work are modelled in work households at age 64 or under |
+| Income tax | 10.17 trillion (2026 rules) | 11.64 trillion (survey's own estimate, 2024) | −13% | 2025–26 tax cuts (larger basic deduction), averages taxed instead of individuals, rent and interest not modelled |
+| Resident tax | 12.35 trillion | 12.81 trillion (survey's own estimate) | −4% | as above, smaller because resident tax changed less |
+| Income modelled | 297.5 trillion | 316.9 trillion (survey 年間収入) | −6% | rent, interest, transfers left out; 4.3 trillion of other members' earnings had nobody to go to |
+| Food at 8%, per household per month | 54,832 (Oct–Nov 2024) | 57,177 (家計調査 2025 full year) | −4% | season; not used by any number yet (food tax cut blocked by Q9) |
+
+**Wage earners by pay band** (people with any salary, model vs 民間給与実態統計調査 令和7年分, full-year private-sector earners):
+
+| Pay | Model | Official | Gap |
+|---|---|---|---|
+| ≤1m | 15,284,541 | 3,703,056 | +313% |
+| ≤2m | 14,622,271 | 5,824,930 | +151% |
+| ≤3m | 7,578,733 | 6,745,640 | +12% |
+| ≤4m | 7,617,433 | 7,986,672 | −5% |
+| ≤5m | 5,659,320 | 7,917,758 | −29% |
+| ≤6m | 4,955,611 | 6,144,924 | −19% |
+| ≤7m | 3,782,120 | 4,035,253 | −6% |
+| ≤8m | 2,360,337 | 2,776,867 | −15% |
+| ≤9m | 1,547,603 | 1,833,950 | −16% |
+| ≤10m | 1,007,523 | 1,266,070 | −20% |
+| ≤15m | 1,187,905 | 2,422,427 | −51% |
+| ≤20m | 492,655 | 609,530 | −19% |
+| ≤25m | 52,372 | 167,273 | −69% |
+| >25m | 0 | 196,244 | −100% |
+| Total | 66,148,424 | 51,630,594 | +28% |
+
+The official count leaves out part-year workers and public servants, so the model should be higher in total. But the low bands are far too full and the top bands too empty: averaging within a cell squeezes pay towards the middle, and adult children and relatives share an average salary (Q33).
+
+**Decile boundaries** (highest cell average in each model decile vs the survey's own decile upper limits, 第1-21表): 1.74m / 1.86m, 2.69m / 2.59m, 3.22m / 3.28m, 4.14m / 4.00m, 4.73m / 4.83m, 5.74m / 5.77m, 7.17m / 6.99m, 8.69m / 8.50m, 11.15m / 11.00m. All within 7%.
+
+**Daiwa cost** (2026 rules): income tax +1.53 trillion, refunds 0.58 trillion, net: the government collects 0.95 trillion more. Daiwa's own estimate (2025 rules, credit 56,500; p.7): income tax +0.7 trillion, refunds 0.7 trillion, net about zero. Most of the gap has the same cause as in §9: under 2026 rules the basic deduction that the design removes is larger (1,040,000 at incomes up to 4.89 million), so removing it raises more tax.
+
+**Method changed during the milestone.** The first version split each cell by the share of people aged 65+. Its first run counted 35.8 million earners at 1 million yen or less, because it gave pensioners small salaries. It was replaced by the pension/work split before anything was published. The test and hand calculation were rewritten with it (`tests/hand_calcs/population.md`, revision note), and an arithmetic slip in the first hand calculation is recorded there too.

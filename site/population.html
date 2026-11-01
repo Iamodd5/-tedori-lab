@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>人口全体（概算） / Population view — Tedori Lab</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="common.js"></script>
+</head>
+<body>
+<h1><span lang="ja">人口全体で見ると（概算）</span><span lang="en">Across all households (approximate)</span></h1>
+<p class="warn"><strong><span lang="ja">このページの数値はすべて概算です。</span><span lang="en">Every number on this page is an approximation.</span></strong>
+<span lang="ja">2024年の全国家計構造調査の世帯を、種類と年収の組み合わせごとに平均的な世帯で代表させ、2026年の制度で計算しています。近似の一覧はページの下にあります。</span>
+<span lang="en">Households from the 2024 National Survey of Family Income, Consumption and Wealth are represented by one average household for each combination of type and income, and calculated under 2026 rules. The list of approximations is at the bottom of the page.</span></p>
+
+<label><span lang="ja">案を選ぶ：</span><span lang="en">Pick a design: </span><select id="design"></select></label>
+<div id="status"></div>
+
+<div id="results">
+<h2><span lang="ja">年収十分位ごとの手取りの平均変化（円／年、概算）</span><span lang="en">Average change in take-home pay by income decile (yen per year, approximate)</span></h2>
+<p class="note"><span lang="ja">世帯を年間収入の低い順に並べ、同じ数ずつ10のグループ（十分位）に分けています。2026年の制度と比べた変化です。</span>
+<span lang="en">Households are sorted by annual income and split into ten groups of equal size (deciles). Changes are against 2026 rules.</span></p>
+<div class="chart"><canvas id="mean" role="img" aria-label="Average change in take-home pay by income decile; the same numbers are in the table below"></canvas></div>
+
+<h2><span lang="ja">手取りが増える世帯・減る世帯の割合（概算）</span><span lang="en">Share of households with more or less take-home pay (approximate)</span></h2>
+<div class="chart"><canvas id="share" role="img" aria-label="Share of households gaining, losing or unchanged by income decile; the same numbers are in the table below"></canvas></div>
+
+<div class="scroll"><table id="tbl"><thead><tr>
+  <th><span lang="ja">十分位</span><span lang="en">Decile</span></th>
+  <th><span lang="ja">世帯数</span><span lang="en">Households</span></th>
+  <th><span lang="ja">平均年間収入</span><span lang="en">Average annual income</span></th>
+  <th><span lang="ja">手取りの平均変化</span><span lang="en">Average change</span></th>
+  <th><span lang="ja">増える</span><span lang="en">Gain</span></th>
+  <th><span lang="ja">減る</span><span lang="en">Lose</span></th>
+  <th><span lang="ja">変わらない</span><span lang="en">No change</span></th>
+</tr></thead><tbody></tbody></table></div>
+
+<h2><span lang="ja">国全体の金額（概算、兆円／年）</span><span lang="en">National totals (approximate, trillion yen per year)</span></h2>
+<div class="scroll"><table id="cost"><thead><tr>
+  <th></th>
+  <th><span lang="ja">このサイトの試算</span><span lang="en">This site's estimate</span></th>
+  <th><span lang="ja">提案者自身の試算</span><span lang="en">The proposer's own estimate</span></th>
+</tr></thead><tbody></tbody></table></div>
+<p class="note" id="costnote"></p>
+<div id="notes"></div>
+</div>
+
+<h2><span lang="ja">このページの近似</span><span lang="en">Approximations on this page</span></h2>
+<ul class="small" id="approx"></ul>
+<p class="note"><span lang="ja">公式統計との突き合わせ（世帯数、給与所得者数、税収など）は「検証」ページにあります。</span>
+<span lang="en">Checks against official statistics (household count, wage earners, tax totals and others) are on the Validation page.</span></p>
+
+<script>
+const C = { gain: "#009E73", lose: "#D55E00", same: "#BBBBBB", mean: "#0072B2" };
+let pop, charts = [];
+const pct = x => (x * 100).toFixed(1) + "%";
+const tn = x => x == null ? "—" : (x / 1e12).toFixed(2);
+
+function draw() {
+  const sel = document.getElementById("design"), d = pop.designs[sel.value];
+  [...sel.options].forEach(o => o.textContent = t(pop.designs[o.value].label));
+  const st = document.getElementById("status"), res = document.getElementById("results");
+  charts.forEach(c => c.destroy()); charts = [];
+  if (d.status !== "complete") {
+    st.className = "info";
+    st.textContent = (lang === "ja" ? "未計算：" : "Not calculated: ") + d.blocked_by.map(t).join("; ");
+    res.hidden = true;
+    return;
+  }
+  st.className = ""; st.textContent = ""; res.hidden = false;
+  const labels = d.by_decile.map(x => (lang === "ja" ? "第" : "D") + x.decile);
+  charts.push(new Chart(document.getElementById("mean"), { type: "bar",
+    data: { labels, datasets: [{ label: lang === "ja" ? "手取りの平均変化（円／年、概算）" : "Average change (yen per year, approximate)",
+      backgroundColor: C.mean, data: d.by_decile.map(x => x.mean_change) }] },
+    options: { animation: false, maintainAspectRatio: false,
+      plugins: { tooltip: { callbacks: { label: c => yen(c.raw) } } },
+      scales: { y: { title: { display: true, text: lang === "ja" ? "円／年" : "yen per year" } } } } }));
+  const part = (k, name, col) => ({ label: t(name), backgroundColor: col, data: d.by_decile.map(x => x[k] * 100) });
+  charts.push(new Chart(document.getElementById("share"), { type: "bar",
+    data: { labels, datasets: [part("winners_share", { ja: "増える", en: "Gain" }, C.gain),
+                               part("unchanged_share", { ja: "変わらない", en: "No change" }, C.same),
+                               part("losers_share", { ja: "減る", en: "Lose" }, C.lose)] },
+    options: { animation: false, maintainAspectRatio: false,
+      plugins: { tooltip: { callbacks: { label: c => `${c.dataset.label}: ${c.raw.toFixed(1)}%` } } },
+      scales: { x: { stacked: true }, y: { stacked: true, max: 100, title: { display: true, text: "%" } } } } }));
+
+  const tb = document.querySelector("#tbl tbody"); tb.innerHTML = "";
+  d.by_decile.forEach((x, i) => {
+    const tr = tb.insertRow(), dec = pop.deciles[i];
+    [labels[i], yen(dec.households), yen(dec.annual_income_mean), yen(x.mean_change), pct(x.winners_share), pct(x.losers_share), pct(x.unchanged_share)]
+      .forEach(v => tr.insertCell().textContent = v);
+  });
+
+  const cb = document.querySelector("#cost tbody"); cb.innerHTML = "";
+  const pub = sel.value === "daiwa" ? d.published_estimates.headline_variant_with_refund : null;
+  const row = (name, ours, theirs) => { const tr = cb.insertRow(); [t(name), ours, theirs].forEach(v => tr.insertCell().textContent = v); };
+  row({ ja: "所得税の増加", en: "Increase in income tax" }, tn(d.cost_components_yen.income_tax), pub ? pub.income_tax_increase_trillion_yen.toFixed(1) : "—");
+  row({ ja: "還付（給付）の支払い", en: "Refunds paid out" }, tn(d.cost_components_yen.credit), pub ? pub.refund_payments_trillion_yen.toFixed(1) : "—");
+  row({ ja: "政府の正味の負担（−は収入増）", en: "Net cost to the government (− means it collects more)" }, tn(d.cost_yen),
+      pub ? (lang === "ja" ? "ほぼゼロ（財政中立）" : "about zero (fiscally neutral)") : "—");
+  document.getElementById("costnote").textContent = sel.value === "daiwa"
+    ? (lang === "ja" ? "大和総研の試算は2025年の制度と税額控除56,500円を前提としたもの（資料1・7ページ）。このサイトは2026年の制度と52,000円で計算しているため、前提が異なります。"
+                     : "Daiwa's estimate rests on 2025 rules and a 56,500-yen credit (report pp.1, 7). This site uses 2026 rules and 52,000 yen, so the two rest on different assumptions.")
+    : "";
+  const nd = document.getElementById("notes"); nd.innerHTML = "";
+  const note = text => { const p = document.createElement("p"); p.className = "warn"; p.textContent = text; nd.append(p); };
+  if (d.site_note) note(`${t(d.label)}: ${t(d.site_note)}`);
+  d.approximations.forEach(a => note(`${lang === "ja" ? "近似" : "Approximation"} (${a.question}) — ${t(d.label)}: ${t(a)}`));
+}
+
+function drawApprox() {
+  const ul = document.getElementById("approx"); ul.innerHTML = "";
+  pop.approximations.forEach(a => li(ul, t(a)));
+}
+
+setupPage(() => { if (pop) { draw(); drawApprox(); } });
+loadJSON("../outputs/population.json").then(p => {
+  pop = p;
+  const sel = document.getElementById("design");
+  Object.keys(pop.designs).forEach(k => sel.add(new Option(k, k)));
+  sel.value = Object.keys(pop.designs).find(k => pop.designs[k].status === "complete") || sel.options[0].value;
+  sel.onchange = draw; draw(); drawApprox();
+});
+</script>
+</body>
+</html>

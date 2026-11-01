@@ -116,7 +116,13 @@ Still needed: the 2026 coverage-threshold rules for part-time workers (the "1.06
 | stats/mhlw_kokumin_seikatsu_kiso.html | 厚労省 国民生活基礎調査 | https://www.mhlw.go.jp/toukei/list/20-21.html | landing page only |
 | stats/nta_minkan_kyuyo.html | 国税庁 民間給与実態統計調査 | https://www.nta.go.jp/publication/statistics/kokuzeicho/minkan/toukei.htm | landing page only |
 
-The specific e-Stat tables (spending by income decile; household counts by type and income band; wage earners by income band) will be picked and downloaded in Milestones 2 and 7. They are not needed for Milestones 0–1.
+| stats/zkk2024_shotoku_3-32-1.xlsx | 令和6年全国家計構造調査 所得 第3-32-1表 年間収入階級，世帯類型，所得構成別1世帯当たり年間収入額（総務省統計局, 2026-08-28） | https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040482919&fileKind=0 | downloaded 2026-11-01; population view households (H-17: A) |
+| stats/zkk2024_kakei_1-21.xlsx | 令和6年全国家計構造調査 家計収支 第1-21表 年間収入階級・十分位階級別1世帯当たり1か月間の収入と支出（総務省統計局, 2025-12-19） | https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040379252&fileKind=0 | downloaded 2026-11-01; food spending (H-17: A) |
+| stats/kakei2025_sosetai_3.xlsx | 家計調査 2025年 総世帯 第3表 年間収入五分位・十分位階級別（総務省統計局, 2026-02-06） | https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040409804&fileKind=0 | downloaded 2026-11-01; check only |
+| stats/kiso2025_setai_2.csv | 2025年国民生活基礎調査 世帯票 第2表 世帯数－構成割合，世帯構造・年次別（厚生労働省, 2026-07-15） | https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040472271&fileKind=1 | downloaded 2026-11-01; check only |
+| stats/minkan_r7_3.xlsx | 令和7年分民間給与実態統計調査 第3表 給与階級別の総括表（国税庁, e-Stat copy, 2026-09-29） | https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040505068&fileKind=0 | downloaded 2026-11-01; check only |
+
+The tables were chosen by the human on 2026-11-01 (HUMAN_TODO H-17: A; options in `docs/M7_DATA_OPTIONS.md`). All five are national statistics published under the 公共データ利用規約 1.0 and are stored in this repository.
 
 ## 10. Existing tool
 
