@@ -2,3 +2,17 @@
 sources/text/
 __pycache__/
 .DS_Store
+# Not redistributable: downloaded by `make fetch-sources` (sources/EXTERNAL.tsv)
+sources/daiwa/daiwa_20251010.pdf
+sources/shinjuku/000434385.pdf
+sources/shinjuku/000452428.pdf
+sources/shinjuku/file04_03_00001.html
+sources/shinjuku/hoken01_001028.html
+sources/shinjuku/hoken01_002030.html
+sources/social/kyoukaikenpo_R8_13tokyo.pdf
+sources/social/kyoukaikenpo_13tokyo2_r8.pdf
+sources/social/kyoukaikenpo_13tokyo3_r8.pdf
+sources/social/kyoukaikenpo_rates.html
+sources/social/kyoukaikenpo_r08.html
+sources/social/kyoukaikenpo_hifuyosha_r8.html
+sources/rengo/
