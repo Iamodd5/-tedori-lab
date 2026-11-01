@@ -77,8 +77,8 @@ nhi_shinjuku_fy2026:
 notes:
   approximation: true
   site:
-    ja: （近似）2026年の3月・4月に変わる保険料率を、1年分すべてに当てはめています。国民年金は2026年度の額、国民健康保険は2026年度の新宿区の料率（2027年度分は未公表）を使っています。給与は毎月同じ額で、ボーナスはないものとしています。
-    en: (Approximation) Insurance rates that change in March or April 2026 are applied to the whole year. National Pension uses the 2026 amount, and National Health Insurance uses Shinjuku's 2026 rates (the 2027 rates aren't published yet). Pay is the same every month, with no bonus.
+    ja: （近似）健康保険・子ども・子育て支援金・厚生年金の保険料率は2026年3月か4月から、雇用保険料率は4月から変わりますが、2026年の12か月すべてに新しい率を使っています。国民年金は2026年度の月額を全月に使っています。国民健康保険は2026年度の新宿区の料率を使っています（2026年の収入に本来かかる2027年度の料率はまだ公表されていません）。給与は毎月同じ額で、ボーナスはないものとしています。
+    en: (Approximation) Rates for health insurance, the child and childcare support levy and employee pension change in March or April 2026, and employment insurance in April. We use the new rates for all 12 months of 2026. National Pension uses the fiscal 2026 monthly amount for every month. National Health Insurance uses Shinjuku's fiscal 2026 rates, because the fiscal 2027 rates (which would apply to 2026 income) aren't published yet. Pay is the same every month, with no bonus.
   explanation: >
     Health, child-support levy and pension rates start March/April 2026 and employment
     insurance April 2026; we apply them to all 12 months of 2026. National pension uses the FY2026 amount for all

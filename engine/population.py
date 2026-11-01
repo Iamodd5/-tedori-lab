@@ -151,7 +151,8 @@ def results(designs):
         status = rows[0]["runs"][d]["status"]
         entry = {"label": r.design(d)["label"], "status": status,
                  "blocked_by": rows[0]["runs"][d]["blocked_by"], "approximations": rows[0]["runs"][d]["approximations"],
-                 "published_estimates": r.design(d).get("published_estimates"), "site_note": r.design(d).get("site_note")}
+                 "published_estimates": r.design(d).get("published_estimates"), "site_note": r.design(d).get("site_note"),
+                 "summary": r.design(d)["summary"]}
         if status == "complete":
             assert all(x["runs"][d]["status"] == "complete" for x in rows)
             by = []

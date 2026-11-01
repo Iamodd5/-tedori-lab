@@ -341,3 +341,14 @@ The human reviewed the site and said the text was too hard to read. Every senten
 - Not yet rewritten: the How it works, Checks and Sources pages, which show `docs/METHODS*.md`, `docs/VALIDATION.md` and `sources/SOURCES.md` as written.
 
 96 tests pass.
+
+### Follow-up: vague words made specific (2026-11-01)
+
+The human said the text still had ambiguous references and vague abstractions. Changes:
+- The Home page now says what is being compared (plans to lower the tax and insurance working people pay) and describes each of the four plans in one paragraph. The descriptions are in each plan's file (`summary` in `parameters/designs/*.yaml`), so the All households page shows the same text for the chosen plan.
+- "2026 rules" is defined on each page: the rules actually in force in 2026, before any plan.
+- Unnamed limits and tables now have numbers or names: the student's ¥1.5m dependant limit (ages 19–22), Shinjuku's fiscal 2025 guide, the rounding rule and its maximum effect, and which insurance rates change in March or April.
+- "Not calculated" reasons say what is missing (payment amounts and income limits; food spending for H1–H8; Rengo's documents).
+- Cost rows say exactly what they count (income tax after any credit; cash paid out).
+
+No number changed; 96 tests pass. H1 is still named "near the 1.3m wall" although that wall does not apply to it (Q21, a human decision).

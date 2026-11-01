@@ -17,7 +17,7 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
   question: Q8
 assumptions:
   - {ja: "学生本人だけを計算しています。親は別の世帯として扱うため、学生を養うことで親の税金が安くなる分（扶養控除）は含まれません。", en: "Only the student is counted. The parents are treated as a separate household, so the tax break they get for supporting the student is not included."}  # OPEN_QUESTIONS Q16
-  - {ja: "収入が上限を超えないあいだは、親の会社の健康保険に扶養家族として入っています。", en: "Is covered by a parent's company health insurance as a dependant while income stays under the limit."}
+  - {ja: "年収が150万円（19〜22歳の扶養家族の上限）未満のあいだは、親の会社の健康保険に扶養家族として入っています。", en: "Is covered by a parent's company health insurance as a dependant while yearly income stays under ¥1.5m (the limit for dependants aged 19 to 22)."}
   - {ja: "国民年金の学生納付特例を使い、2026年は保険料を払いません。", en: "Uses the student deferral for National Pension, so pays no pension contributions in 2026."}
   - {ja: "（近似）給与は毎月同じ額で、ボーナスはないものとしています。", en: "(Approximation) Pay is the same every month, with no bonus."}
   - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # chosen in HUMAN_TODO H-8

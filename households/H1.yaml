@@ -13,7 +13,7 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
   status: unresolved
   question: Q8
 assumptions:
-  - {ja: "一人暮らしのため、家族の健康保険の扶養には入れません。そのため、扶養から外れる「106万円・130万円の壁」はこの計算では当てはまりません。", en: "Lives alone, so can't be covered as a dependant on a family member's health insurance. The ¥1.06m and ¥1.3m \"walls\" for dependants don't apply in this calculation."}  # OPEN_QUESTIONS Q21
+  - {ja: "一人暮らしで、扶養に入れてくれる家族がいません。そのため、扶養から外れて自分で保険料を払い始める「130万円の壁」は当てはまりません。月給8.8万円未満でも、すでに自分で国民健康保険と国民年金の保険料を払っています。", en: "Lives alone, so there is no family member whose health insurance they could be covered by. That means the ¥1.3m \"wall\" (where a dependant has to start paying their own insurance) doesn't apply: even below ¥88,000 a month, they already pay National Health Insurance and National Pension themselves."}  # OPEN_QUESTIONS Q21
   - {ja: "収入が少ない人の国民年金保険料の免除は入れていないため、収入がとても少ないときの手取りは実際より少なく出ます。", en: "Reduced National Pension payments for people on low income are not included, so take-home pay at very low incomes comes out lower than it really would be."}  # OPEN_QUESTIONS Q20
   - {ja: "週20時間以上、従業員51人以上の会社で働いているため、月給が8.8万円以上になると会社の健康保険と厚生年金に入ります。", en: "Works 20+ hours a week at a company with more than 50 employees, so joins the company's health insurance and pension once monthly pay reaches ¥88,000."}
   - {ja: "（近似）給与は毎月同じ額で、ボーナスはないものとしています。", en: "(Approximation) Pay is the same every month, with no bonus."}

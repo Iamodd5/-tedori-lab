@@ -11,10 +11,11 @@
 <body>
 <h1><span lang="ja">日本の全世帯で見ると、どう変わる？（概算）</span><span lang="en">What would each plan mean for every household in Japan? (estimate)</span></h1>
 <p class="warn"><strong><span lang="ja">このページの数字はすべて大まかな試算です。</span><span lang="en">Every number on this page is a rough estimate.</span></strong>
-<span lang="ja">世帯一つひとつのデータはないため、2024年の国の調査（全国家計構造調査）をもとに典型的な世帯を作り、2026年の制度で税金や保険料を計算しています。置いた仮定はページの下にまとめています。</span>
-<span lang="en">We don't have data on each household, so we build typical households from a 2024 government survey (the National Survey of Family Income, Consumption and Wealth) and work out their taxes and insurance under 2026 rules. The assumptions we had to make are listed at the bottom of the page.</span></p>
+<span lang="ja">世帯一つひとつのデータはないため、2024年の国の調査（全国家計構造調査）の平均に合わせた架空の世帯を作り、2026年の制度で税金や保険料を計算しています。「2026年の制度」とは、2026年に実際に適用されている税金・社会保険の仕組みのことで、どの案もまだ入っていない状態です。置いた仮定はページの下にまとめています。</span>
+<span lang="en">We don't have data on each household, so we make up households that match the averages in a 2024 government survey (the National Survey of Family Income, Consumption and Wealth) and work out their taxes and insurance under 2026 rules. "2026 rules" means the tax and social insurance rules actually in force in 2026, before any of these plans. The assumptions we had to make are listed at the bottom of the page.</span></p>
 
 <label><span lang="ja">案を選ぶ：</span><span lang="en">Choose a plan: </span><select id="design"></select></label>
+<p id="summary"></p>
 <div id="status"></div>
 
 <div id="results">
@@ -61,6 +62,7 @@ function draw() {
   const sel = document.getElementById("design"), d = pop.designs[sel.value];
   [...sel.options].forEach(o => o.textContent = t(pop.designs[o.value].label));
   const st = document.getElementById("status"), res = document.getElementById("results");
+  document.getElementById("summary").textContent = t(d.summary);
   charts.forEach(c => c.destroy()); charts = [];
   if (d.status !== "complete") {
     st.className = "info";
@@ -95,8 +97,8 @@ function draw() {
   const cb = document.querySelector("#cost tbody"); cb.innerHTML = "";
   const pub = sel.value === "daiwa" ? d.published_estimates.headline_variant_with_refund : null;
   const row = (name, ours, theirs) => { const tr = cb.insertRow(); [t(name), ours, theirs].forEach(v => tr.insertCell().textContent = v); };
-  row({ ja: "増える所得税", en: "Extra income tax collected" }, tn(d.cost_components_yen.income_tax), pub ? pub.income_tax_increase_trillion_yen.toFixed(1) : "—");
-  row({ ja: "世帯に払い戻すお金（還付）", en: "Money paid back to households (refunds)" }, tn(d.cost_components_yen.credit), pub ? pub.refund_payments_trillion_yen.toFixed(1) : "—");
+  row({ ja: "所得税の増加（税額控除を差し引いた後）", en: "Extra income tax collected (after any tax credit)" }, tn(d.cost_components_yen.income_tax), pub ? pub.income_tax_increase_trillion_yen.toFixed(1) : "—");
+  row({ ja: "世帯に現金で払う額（給付、または税額控除のうち所得税を超える分）", en: "Cash paid to households (a payment, or the part of a tax credit bigger than the income tax owed)" }, tn(d.cost_components_yen.credit), pub ? pub.refund_payments_trillion_yen.toFixed(1) : "—");
   row({ ja: "差し引きで国が負担する額（−は国の収入が増える）", en: "Net cost to the government (minus means it takes in more)" }, tn(d.cost_yen),
       pub ? (lang === "ja" ? "ほぼゼロ（財政中立）" : "about zero (fiscally neutral)") : "—");
   document.getElementById("costnote").textContent = sel.value === "daiwa"

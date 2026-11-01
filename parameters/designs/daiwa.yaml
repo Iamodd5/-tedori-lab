@@ -5,6 +5,10 @@
 name_ja: 社会保険料還付付き税額控除（大和総研案）
 name_en: Social-insurance-refundable tax credit (Daiwa Institute of Research proposal)
 label: {ja: 大和総研案（2026年の税制に合わせて計算）, en: "Daiwa Institute plan (adjusted to 2026 tax rules)"}
+# What the plan does, in one paragraph for the website (from the sources above)
+summary:
+  ja: "民間の研究所である大和総研が2025年10月に出した案です。所得税を払うすべての人について、所得税の基礎控除をなくし、代わりに一定額の税額控除（所得税から直接差し引く額）を設けます。控除が所得税より大きい人には、残りを現金で払いますが、給与や事業の収入にかかる社会保険料として払った額までです。住民税は変えません。"
+  en: "A proposal published in October 2025 by the Daiwa Institute of Research, a private research institute. For everyone who pays income tax, it removes the income tax basic deduction and gives a fixed tax credit instead (an amount subtracted straight from income tax). If the credit is bigger than your income tax, the rest is paid to you in cash, but only up to what you paid in social insurance on your wages or business income. Resident tax doesn't change."
 start_year: null  # the report gives no start date; modelled on the 2026 baseline
 status: resolved
 
@@ -85,16 +89,16 @@ published_estimates:  # for cross-checking only (spec Section 6), never used as 
 # How unresolved items are bridged in the calculation; shown with every Daiwa number (CLAUDE.md rule 3).
 approximations:
   - question: Q11
-    ja: 大和総研は、税額控除を復興特別所得税（2.1%）を足す前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく「前」としています。
-    en: Daiwa doesn't say whether the credit comes off before or after the 2.1% reconstruction tax is added. We take it off before, the way other tax credits work today.
+    ja: 所得税には2.1%の復興特別所得税が上乗せされます。大和総研は、税額控除をこの上乗せの前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく、先に税額控除を差し引いてから2.1%を上乗せしています。
+    en: Income tax has a 2.1% reconstruction surtax added on top. Daiwa doesn't say whether the credit is subtracted before or after that surtax. We subtract the credit first and then add the 2.1%, which is how existing tax credits work.
   - question: Q18
-    ja: 還付は、健康保険（介護保険を含む）と厚生年金の保険料の額までとしています。子ども・子育て支援金と雇用保険料はこの上限に数えていません。
-    en: The refund is capped at what you pay for health insurance (including long-term care) and pension. Child-support and employment insurance payments don't count toward that cap.
+    ja: 税額控除が所得税より大きいときに現金で払う額は、健康保険（介護保険を含む）と年金の保険料の額までとしています。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。
+    en: When the credit is bigger than your income tax, the cash paid out is capped at what you paid for health insurance (including long-term care insurance) and pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out.
 
 # Shown wherever a Daiwa number appears (HUMAN_TODO H-10: A, OPEN_QUESTIONS Q19).
 site_note:
-  ja: 大和総研の案は2025年の税制をもとに作られています。このサイトでは同じ考え方を2026年の税制に当てはめて計算し直したため、税額控除は5.65万円ではなく5.2万円になります。また2026年の税制では、所得税がかからない年収の上限がすでに178万円（大和総研案が目指した水準）に上がっています。このため、ここでの結果は大和総研が公表した数字とは異なります。
-  en: Daiwa's plan was written for 2025 tax rules. This site applies the same idea to 2026 tax rules, which makes the tax credit ¥52,000 instead of ¥56,500. Also, under 2026 rules you can already earn up to ¥1.78m before paying income tax, the level Daiwa's plan aimed for. So the results here differ from the numbers Daiwa published.
+  ja: 大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。
+  en: Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published.
 
 notes: >
   The report was written against 2025 tax rules (threshold 1.6m in 2025). Applying it to the 2026 baseline

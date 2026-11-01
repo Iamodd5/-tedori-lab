@@ -51,12 +51,12 @@ groups:
 assumptions:
   one_household_per_cell:
     approximation: true
-    ja: 調査は世帯一つひとつのデータではなく、「世帯の種類 × 年収50万円刻み」ごとの平均だけを公表しています。そこで、それぞれの組み合わせを2〜3通りの典型的な世帯で代表させています。同じ組み合わせの中での世帯ごとの違いは反映されません。
-    en: The survey doesn't publish data on individual households, only averages for each type of household in each ¥500,000 income range. So each of these groups is represented by two or three typical households. Differences between households in the same group are lost.
+    ja: 調査は世帯一つひとつのデータではなく、「世帯の種類 × 年収50万円刻み」ごとの平均だけを公表しています。そこで、それぞれの組み合わせについて、その平均に合わせた架空の世帯を2〜3通り作っています。同じ組み合わせの中での世帯ごとの違いは反映されません。
+    en: The survey doesn't publish data on individual households, only averages for each type of household in each ¥500,000 income range. So for each type-and-income group we make up two or three households that match the group's averages. Differences between households in the same group are lost.
   income_split:
     approximation: true
-    ja: それぞれの組み合わせを「年金で暮らす世帯」と「働いて暮らす世帯」に分けています。分ける割合は、その組み合わせの収入のうち年金が占める割合です。年金をもらいながら働く世帯（働く高齢者など）は表れません。
-    en: Each group is split into households living on pensions and households living on work, in the same ratio as pensions to total income in that group. Households with both a pension and a wage, such as older people who still work, don't appear.
+    ja: それぞれの組み合わせを「年金で暮らす世帯」と「働いて暮らす世帯」に分けています。たとえば、その組み合わせの収入の6割が年金なら、6割の世帯を「年金で暮らす世帯」とします。年金をもらいながら働く世帯（働く高齢者など）は表れません。
+    en: Each group is split into households living on pensions and households living on work, in the same ratio as pensions to total income in that group. For example, if 60% of the group's income is pensions, 60% of its households are treated as living on pensions. Households with both a pension and a wage, such as older people who still work, don't appear.
   spouse_earnings:
     approximation: true
     ja: 働いて暮らす夫婦は、調査の「働いている人の数」をもとに、共働きと片働きに分けています。
@@ -64,8 +64,8 @@ assumptions:
   older_age:
     value: 70
     approximation: true
-    ja: 年金で暮らす人は全員70歳として計算しています（75歳以上の人の医療保険の仕組みは入っていません）。
-    en: Everyone living on a pension is treated as age 70. The separate health insurance for people 75 and over is not included.
+    ja: 年金で暮らす人は全員70歳として計算しています（75歳以上の人が入る後期高齢者医療制度は入っていません）。
+    en: Everyone living on a pension is treated as age 70. The separate health insurance system that people aged 75 and over join (後期高齢者医療制度) is not included.
   child_age:
     value: 10
     approximation: true
@@ -86,8 +86,8 @@ assumptions:
     en: Only wages, business income and pensions are counted. Rent, interest, dividends and money from family are left out. Business income is treated as profit after costs.
   food_spending:
     approximation: true
-    ja: 食料品の支出は、似た種類・同じ年収の世帯の平均（2024年10〜11月の調査）を使っています。季節による違いは調整していません。
-    en: Food spending is the average for similar households with the same income, from a survey taken in October–November 2024. It isn't adjusted for the time of year.
+    ja: 食料品の支出は、同じ種類（一人暮らし／二人以上）で同じ年収の世帯の平均（2024年10〜11月の調査）を使っています。季節による違いは調整していません。
+    en: Food spending is the average for households of the same kind (one person, or two or more people) with the same income, from a survey taken in October–November 2024. It isn't adjusted for the time of year.
   elderly_dependants:  # OPEN_QUESTIONS Q32
     approximation: true
     ja: 70歳以上の親などを養っていても、税金が通常より安くなる特別な控除（老人扶養親族）は入れず、通常の扶養の控除で計算しています。

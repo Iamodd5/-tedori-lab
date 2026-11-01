@@ -8,6 +8,10 @@ name_en: Worker burden-relief payment (full system, FY2029 onward)
 # The outline calls the payment "本格的な「給付付き税額控除」を導入する第一歩" (outline p.1); the name follows the documents' own
 # term for FY2029, "支援金制度の本格導入", and does not call it the full refundable credit.
 label: {ja: 政府案（2029年度からの本格版）, en: "Government plan (full version, from FY2029)"}
+# What the plan does, in one paragraph for the website (from the sources above)
+summary:
+  ja: "2029年度から、働いている人に年1回お金を支給する制度です（就業者負担軽減支援金）。前の年の収入をもとに、稼ぎが一定額を超えると支給が始まり、稼ぎが増えるにつれて支給額も増え、上限に達したあとは収入が一定額を超えると減っていきます。子ども1人ごとに上乗せがあります。対象になるのは、払っている税金と社会保険料（受け取る公的年金を差し引いた額）が一定額を超える人です。金額や収入の線引きは、政府がこれから政令で決めます。"
+  en: "From fiscal 2029, a yearly cash payment to people who work (the \"worker burden-relief payment\"). It is based on the previous year's income: it starts once earnings pass a minimum, grows as earnings grow, levels off, and then shrinks once total income passes a set level. There is extra for each child. To qualify, the tax and social insurance you pay, minus any public pension you receive, must be above a set level. The government will set the amounts and income limits later by Cabinet order."
 start_year: 2029  # 令和11年度 (fiscal year from April 2029); payment is based on the previous year's income
 status: unresolved
 

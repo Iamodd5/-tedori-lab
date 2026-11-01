@@ -80,8 +80,8 @@
    "status": "incomplete",
    "blocked_by": [
     {
-     "ja": "政府がまだ金額や率を公表していません",
-     "en": "the government hasn't published the amounts yet"
+     "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+     "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
     }
    ],
    "approximations": [],
@@ -99,7 +99,11 @@
      "page": 2
     }
    },
-   "site_note": null
+   "site_note": null,
+   "summary": {
+    "ja": "2029年度から、働いている人に年1回お金を支給する制度です（就業者負担軽減支援金）。前の年の収入をもとに、稼ぎが一定額を超えると支給が始まり、稼ぎが増えるにつれて支給額も増え、上限に達したあとは収入が一定額を超えると減っていきます。子ども1人ごとに上乗せがあります。対象になるのは、払っている税金と社会保険料（受け取る公的年金を差し引いた額）が一定額を超える人です。金額や収入の線引きは、政府がこれから政令で決めます。",
+    "en": "From fiscal 2029, a yearly cash payment to people who work (the \"worker burden-relief payment\"). It is based on the previous year's income: it starts once earnings pass a minimum, grows as earnings grow, levels off, and then shrinks once total income passes a set level. There is extra for each child. To qualify, the tax and social insurance you pay, minus any public pension you receive, must be above a set level. The government will set the amounts and income limits later by Cabinet order."
+   }
   },
   "rengo": {
    "label": {
@@ -109,13 +113,17 @@
    "status": "incomplete",
    "blocked_by": [
     {
-     "ja": "連合の詳しい資料がまだ手に入っていません",
-     "en": "we haven't got Rengo's detailed documents yet"
+     "ja": "連合の案の資料をまだ入手できていません",
+     "en": "we haven't been able to get Rengo's proposal documents"
     }
    ],
    "approximations": [],
    "published_estimates": null,
-   "site_note": null
+   "site_note": null,
+   "summary": {
+    "ja": "労働組合の全国組織である連合の案です。案の資料を入手できていない（ウェブページがメンテナンス表示だった）ため、ここでは内容を説明も計算もしていません。",
+    "en": "A proposal from Rengo, Japan's national federation of trade unions. We haven't been able to get the proposal documents (the web page showed only a maintenance notice), so we can't describe or calculate it here."
+   }
   },
   "daiwa": {
    "label": {
@@ -127,13 +135,13 @@
    "approximations": [
     {
      "question": "Q11",
-     "ja": "大和総研は、税額控除を復興特別所得税（2.1%）を足す前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく「前」としています。",
-     "en": "Daiwa doesn't say whether the credit comes off before or after the 2.1% reconstruction tax is added. We take it off before, the way other tax credits work today."
+     "ja": "所得税には2.1%の復興特別所得税が上乗せされます。大和総研は、税額控除をこの上乗せの前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく、先に税額控除を差し引いてから2.1%を上乗せしています。",
+     "en": "Income tax has a 2.1% reconstruction surtax added on top. Daiwa doesn't say whether the credit is subtracted before or after that surtax. We subtract the credit first and then add the 2.1%, which is how existing tax credits work."
     },
     {
      "question": "Q18",
-     "ja": "還付は、健康保険（介護保険を含む）と厚生年金の保険料の額までとしています。子ども・子育て支援金と雇用保険料はこの上限に数えていません。",
-     "en": "The refund is capped at what you pay for health insurance (including long-term care) and pension. Child-support and employment insurance payments don't count toward that cap."
+     "ja": "税額控除が所得税より大きいときに現金で払う額は、健康保険（介護保険を含む）と年金の保険料の額までとしています。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。",
+     "en": "When the credit is bigger than your income tax, the cash paid out is capped at what you paid for health insurance (including long-term care insurance) and pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out."
     }
    ],
    "published_estimates": {
@@ -159,8 +167,12 @@
     }
    },
    "site_note": {
-    "ja": "大和総研の案は2025年の税制をもとに作られています。このサイトでは同じ考え方を2026年の税制に当てはめて計算し直したため、税額控除は5.65万円ではなく5.2万円になります。また2026年の税制では、所得税がかからない年収の上限がすでに178万円（大和総研案が目指した水準）に上がっています。このため、ここでの結果は大和総研が公表した数字とは異なります。",
-    "en": "Daiwa's plan was written for 2025 tax rules. This site applies the same idea to 2026 tax rules, which makes the tax credit ¥52,000 instead of ¥56,500. Also, under 2026 rules you can already earn up to ¥1.78m before paying income tax, the level Daiwa's plan aimed for. So the results here differ from the numbers Daiwa published."
+    "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。",
+    "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published."
+   },
+   "summary": {
+    "ja": "民間の研究所である大和総研が2025年10月に出した案です。所得税を払うすべての人について、所得税の基礎控除をなくし、代わりに一定額の税額控除（所得税から直接差し引く額）を設けます。控除が所得税より大きい人には、残りを現金で払いますが、給与や事業の収入にかかる社会保険料として払った額までです。住民税は変えません。",
+    "en": "A proposal published in October 2025 by the Daiwa Institute of Research, a private research institute. For everyone who pays income tax, it removes the income tax basic deduction and gives a fixed tax credit instead (an amount subtracted straight from income tax). If the credit is bigger than your income tax, the rest is paid to you in cash, but only up to what you paid in social insurance on your wages or business income. Resident tax doesn't change."
    },
    "by_decile": [
     {
@@ -251,13 +263,17 @@
    "status": "incomplete",
    "blocked_by": [
     {
-     "ja": "政府がまだ金額や率を公表していません",
-     "en": "the government hasn't published the amounts yet"
+     "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+     "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
     }
    ],
    "approximations": [],
    "published_estimates": null,
-   "site_note": null
+   "site_note": null,
+   "summary": {
+    "ja": "2027年4月から2029年3月まで、いま8%の軽減税率がかかっている飲食料品の消費税を1%に下げます。同じ期間、働いている人への支給（2029年度から始まる政府案の支給を簡単にしたもの）も行い、その総額は飲食料品の消費税1%分以内とします。支給額はまだ公表されていません。",
+    "en": "From April 2027 to March 2029, consumption tax on food and drink that is now taxed at the reduced 8% rate falls to 1%. Over the same period there is also a simpler version of the government's worker payment (the one planned from fiscal 2029), with a total cost no larger than 1% of the consumption tax on food. The payment amounts haven't been published yet."
+   }
   }
  },
  "calibration": {
@@ -410,13 +426,13 @@
  "approximations": [
   {
    "key": "one_household_per_cell",
-   "ja": "調査は世帯一つひとつのデータではなく、「世帯の種類 × 年収50万円刻み」ごとの平均だけを公表しています。そこで、それぞれの組み合わせを2〜3通りの典型的な世帯で代表させています。同じ組み合わせの中での世帯ごとの違いは反映されません。",
-   "en": "The survey doesn't publish data on individual households, only averages for each type of household in each ¥500,000 income range. So each of these groups is represented by two or three typical households. Differences between households in the same group are lost."
+   "ja": "調査は世帯一つひとつのデータではなく、「世帯の種類 × 年収50万円刻み」ごとの平均だけを公表しています。そこで、それぞれの組み合わせについて、その平均に合わせた架空の世帯を2〜3通り作っています。同じ組み合わせの中での世帯ごとの違いは反映されません。",
+   "en": "The survey doesn't publish data on individual households, only averages for each type of household in each ¥500,000 income range. So for each type-and-income group we make up two or three households that match the group's averages. Differences between households in the same group are lost."
   },
   {
    "key": "income_split",
-   "ja": "それぞれの組み合わせを「年金で暮らす世帯」と「働いて暮らす世帯」に分けています。分ける割合は、その組み合わせの収入のうち年金が占める割合です。年金をもらいながら働く世帯（働く高齢者など）は表れません。",
-   "en": "Each group is split into households living on pensions and households living on work, in the same ratio as pensions to total income in that group. Households with both a pension and a wage, such as older people who still work, don't appear."
+   "ja": "それぞれの組み合わせを「年金で暮らす世帯」と「働いて暮らす世帯」に分けています。たとえば、その組み合わせの収入の6割が年金なら、6割の世帯を「年金で暮らす世帯」とします。年金をもらいながら働く世帯（働く高齢者など）は表れません。",
+   "en": "Each group is split into households living on pensions and households living on work, in the same ratio as pensions to total income in that group. For example, if 60% of the group's income is pensions, 60% of its households are treated as living on pensions. Households with both a pension and a wage, such as older people who still work, don't appear."
   },
   {
    "key": "spouse_earnings",
@@ -425,8 +441,8 @@
   },
   {
    "key": "older_age",
-   "ja": "年金で暮らす人は全員70歳として計算しています（75歳以上の人の医療保険の仕組みは入っていません）。",
-   "en": "Everyone living on a pension is treated as age 70. The separate health insurance for people 75 and over is not included."
+   "ja": "年金で暮らす人は全員70歳として計算しています（75歳以上の人が入る後期高齢者医療制度は入っていません）。",
+   "en": "Everyone living on a pension is treated as age 70. The separate health insurance system that people aged 75 and over join (後期高齢者医療制度) is not included."
   },
   {
    "key": "child_age",
@@ -450,8 +466,8 @@
   },
   {
    "key": "food_spending",
-   "ja": "食料品の支出は、似た種類・同じ年収の世帯の平均（2024年10〜11月の調査）を使っています。季節による違いは調整していません。",
-   "en": "Food spending is the average for similar households with the same income, from a survey taken in October–November 2024. It isn't adjusted for the time of year."
+   "ja": "食料品の支出は、同じ種類（一人暮らし／二人以上）で同じ年収の世帯の平均（2024年10〜11月の調査）を使っています。季節による違いは調整していません。",
+   "en": "Food spending is the average for households of the same kind (one person, or two or more people) with the same income, from a survey taken in October–November 2024. It isn't adjusted for the time of year."
   },
   {
    "key": "elderly_dependants",

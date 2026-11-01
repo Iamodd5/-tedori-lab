@@ -25,8 +25,8 @@
   ],
   "blocked_by": [
    {
-    "ja": "政府がまだ金額や率を公表していません",
-    "en": "the government hasn't published the amounts yet"
+    "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+    "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
    }
   ],
   "components": {
@@ -57,8 +57,8 @@
   ],
   "blocked_by": [
    {
-    "ja": "連合の詳しい資料がまだ手に入っていません",
-    "en": "we haven't got Rengo's detailed documents yet"
+    "ja": "連合の案の資料をまだ入手できていません",
+    "en": "we haven't been able to get Rengo's proposal documents"
    }
   ],
   "components": {
@@ -94,18 +94,18 @@
   "approximations": [
    {
     "question": "Q11",
-    "ja": "大和総研は、税額控除を復興特別所得税（2.1%）を足す前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく「前」としています。",
-    "en": "Daiwa doesn't say whether the credit comes off before or after the 2.1% reconstruction tax is added. We take it off before, the way other tax credits work today."
+    "ja": "所得税には2.1%の復興特別所得税が上乗せされます。大和総研は、税額控除をこの上乗せの前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく、先に税額控除を差し引いてから2.1%を上乗せしています。",
+    "en": "Income tax has a 2.1% reconstruction surtax added on top. Daiwa doesn't say whether the credit is subtracted before or after that surtax. We subtract the credit first and then add the 2.1%, which is how existing tax credits work."
    },
    {
     "question": "Q18",
-    "ja": "還付は、健康保険（介護保険を含む）と厚生年金の保険料の額までとしています。子ども・子育て支援金と雇用保険料はこの上限に数えていません。",
-    "en": "The refund is capped at what you pay for health insurance (including long-term care) and pension. Child-support and employment insurance payments don't count toward that cap."
+    "ja": "税額控除が所得税より大きいときに現金で払う額は、健康保険（介護保険を含む）と年金の保険料の額までとしています。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at what you paid for health insurance (including long-term care insurance) and pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out."
    }
   ],
   "site_note": {
-   "ja": "大和総研の案は2025年の税制をもとに作られています。このサイトでは同じ考え方を2026年の税制に当てはめて計算し直したため、税額控除は5.65万円ではなく5.2万円になります。また2026年の税制では、所得税がかからない年収の上限がすでに178万円（大和総研案が目指した水準）に上がっています。このため、ここでの結果は大和総研が公表した数字とは異なります。",
-   "en": "Daiwa's plan was written for 2025 tax rules. This site applies the same idea to 2026 tax rules, which makes the tax credit ¥52,000 instead of ¥56,500. Also, under 2026 rules you can already earn up to ¥1.78m before paying income tax, the level Daiwa's plan aimed for. So the results here differ from the numbers Daiwa published."
+   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。",
+   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published."
   }
  },
  {
@@ -134,12 +134,12 @@
   ],
   "blocked_by": [
    {
-    "ja": "政府がまだ金額や率を公表していません",
-    "en": "the government hasn't published the amounts yet"
+    "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+    "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
    },
    {
-    "ja": "この世帯の食料品の支出をまだ用意できていません",
-    "en": "we don't have food spending figures for these households yet"
+    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
   "components": {
@@ -179,8 +179,8 @@
   ],
   "blocked_by": [
    {
-    "ja": "政府がまだ金額や率を公表していません",
-    "en": "the government hasn't published the amounts yet"
+    "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+    "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
    }
   ],
   "components": {
@@ -211,8 +211,8 @@
   ],
   "blocked_by": [
    {
-    "ja": "連合の詳しい資料がまだ手に入っていません",
-    "en": "we haven't got Rengo's detailed documents yet"
+    "ja": "連合の案の資料をまだ入手できていません",
+    "en": "we haven't been able to get Rengo's proposal documents"
    }
   ],
   "components": {
@@ -248,18 +248,18 @@
   "approximations": [
    {
     "question": "Q11",
-    "ja": "大和総研は、税額控除を復興特別所得税（2.1%）を足す前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく「前」としています。",
-    "en": "Daiwa doesn't say whether the credit comes off before or after the 2.1% reconstruction tax is added. We take it off before, the way other tax credits work today."
+    "ja": "所得税には2.1%の復興特別所得税が上乗せされます。大和総研は、税額控除をこの上乗せの前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく、先に税額控除を差し引いてから2.1%を上乗せしています。",
+    "en": "Income tax has a 2.1% reconstruction surtax added on top. Daiwa doesn't say whether the credit is subtracted before or after that surtax. We subtract the credit first and then add the 2.1%, which is how existing tax credits work."
    },
    {
     "question": "Q18",
-    "ja": "還付は、健康保険（介護保険を含む）と厚生年金の保険料の額までとしています。子ども・子育て支援金と雇用保険料はこの上限に数えていません。",
-    "en": "The refund is capped at what you pay for health insurance (including long-term care) and pension. Child-support and employment insurance payments don't count toward that cap."
+    "ja": "税額控除が所得税より大きいときに現金で払う額は、健康保険（介護保険を含む）と年金の保険料の額までとしています。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at what you paid for health insurance (including long-term care insurance) and pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out."
    }
   ],
   "site_note": {
-   "ja": "大和総研の案は2025年の税制をもとに作られています。このサイトでは同じ考え方を2026年の税制に当てはめて計算し直したため、税額控除は5.65万円ではなく5.2万円になります。また2026年の税制では、所得税がかからない年収の上限がすでに178万円（大和総研案が目指した水準）に上がっています。このため、ここでの結果は大和総研が公表した数字とは異なります。",
-   "en": "Daiwa's plan was written for 2025 tax rules. This site applies the same idea to 2026 tax rules, which makes the tax credit ¥52,000 instead of ¥56,500. Also, under 2026 rules you can already earn up to ¥1.78m before paying income tax, the level Daiwa's plan aimed for. So the results here differ from the numbers Daiwa published."
+   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。",
+   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published."
   }
  },
  {
@@ -288,12 +288,12 @@
   ],
   "blocked_by": [
    {
-    "ja": "政府がまだ金額や率を公表していません",
-    "en": "the government hasn't published the amounts yet"
+    "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+    "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
    },
    {
-    "ja": "この世帯の食料品の支出をまだ用意できていません",
-    "en": "we don't have food spending figures for these households yet"
+    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
   "components": {
@@ -333,8 +333,8 @@
   ],
   "blocked_by": [
    {
-    "ja": "政府がまだ金額や率を公表していません",
-    "en": "the government hasn't published the amounts yet"
+    "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+    "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
    }
   ],
   "components": {
@@ -365,8 +365,8 @@
   ],
   "blocked_by": [
    {
-    "ja": "連合の詳しい資料がまだ手に入っていません",
-    "en": "we haven't got Rengo's detailed documents yet"
+    "ja": "連合の案の資料をまだ入手できていません",
+    "en": "we haven't been able to get Rengo's proposal documents"
    }
   ],
   "components": {
@@ -402,18 +402,18 @@
   "approximations": [
    {
     "question": "Q11",
-    "ja": "大和総研は、税額控除を復興特別所得税（2.1%）を足す前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく「前」としています。",
-    "en": "Daiwa doesn't say whether the credit comes off before or after the 2.1% reconstruction tax is added. We take it off before, the way other tax credits work today."
+    "ja": "所得税には2.1%の復興特別所得税が上乗せされます。大和総研は、税額控除をこの上乗せの前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく、先に税額控除を差し引いてから2.1%を上乗せしています。",
+    "en": "Income tax has a 2.1% reconstruction surtax added on top. Daiwa doesn't say whether the credit is subtracted before or after that surtax. We subtract the credit first and then add the 2.1%, which is how existing tax credits work."
    },
    {
     "question": "Q18",
-    "ja": "還付は、健康保険（介護保険を含む）と厚生年金の保険料の額までとしています。子ども・子育て支援金と雇用保険料はこの上限に数えていません。",
-    "en": "The refund is capped at what you pay for health insurance (including long-term care) and pension. Child-support and employment insurance payments don't count toward that cap."
+    "ja": "税額控除が所得税より大きいときに現金で払う額は、健康保険（介護保険を含む）と年金の保険料の額までとしています。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at what you paid for health insurance (including long-term care insurance) and pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out."
    }
   ],
   "site_note": {
-   "ja": "大和総研の案は2025年の税制をもとに作られています。このサイトでは同じ考え方を2026年の税制に当てはめて計算し直したため、税額控除は5.65万円ではなく5.2万円になります。また2026年の税制では、所得税がかからない年収の上限がすでに178万円（大和総研案が目指した水準）に上がっています。このため、ここでの結果は大和総研が公表した数字とは異なります。",
-   "en": "Daiwa's plan was written for 2025 tax rules. This site applies the same idea to 2026 tax rules, which makes the tax credit ¥52,000 instead of ¥56,500. Also, under 2026 rules you can already earn up to ¥1.78m before paying income tax, the level Daiwa's plan aimed for. So the results here differ from the numbers Daiwa published."
+   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。",
+   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published."
   }
  },
  {
@@ -442,12 +442,12 @@
   ],
   "blocked_by": [
    {
-    "ja": "政府がまだ金額や率を公表していません",
-    "en": "the government hasn't published the amounts yet"
+    "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+    "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
    },
    {
-    "ja": "この世帯の食料品の支出をまだ用意できていません",
-    "en": "we don't have food spending figures for these households yet"
+    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
   "components": {
@@ -487,8 +487,8 @@
   ],
   "blocked_by": [
    {
-    "ja": "政府がまだ金額や率を公表していません",
-    "en": "the government hasn't published the amounts yet"
+    "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+    "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
    }
   ],
   "components": {
@@ -519,8 +519,8 @@
   ],
   "blocked_by": [
    {
-    "ja": "連合の詳しい資料がまだ手に入っていません",
-    "en": "we haven't got Rengo's detailed documents yet"
+    "ja": "連合の案の資料をまだ入手できていません",
+    "en": "we haven't been able to get Rengo's proposal documents"
    }
   ],
   "components": {
@@ -556,18 +556,18 @@
   "approximations": [
    {
     "question": "Q11",
-    "ja": "大和総研は、税額控除を復興特別所得税（2.1%）を足す前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく「前」としています。",
-    "en": "Daiwa doesn't say whether the credit comes off before or after the 2.1% reconstruction tax is added. We take it off before, the way other tax credits work today."
+    "ja": "所得税には2.1%の復興特別所得税が上乗せされます。大和総研は、税額控除をこの上乗せの前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく、先に税額控除を差し引いてから2.1%を上乗せしています。",
+    "en": "Income tax has a 2.1% reconstruction surtax added on top. Daiwa doesn't say whether the credit is subtracted before or after that surtax. We subtract the credit first and then add the 2.1%, which is how existing tax credits work."
    },
    {
     "question": "Q18",
-    "ja": "還付は、健康保険（介護保険を含む）と厚生年金の保険料の額までとしています。子ども・子育て支援金と雇用保険料はこの上限に数えていません。",
-    "en": "The refund is capped at what you pay for health insurance (including long-term care) and pension. Child-support and employment insurance payments don't count toward that cap."
+    "ja": "税額控除が所得税より大きいときに現金で払う額は、健康保険（介護保険を含む）と年金の保険料の額までとしています。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at what you paid for health insurance (including long-term care insurance) and pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out."
    }
   ],
   "site_note": {
-   "ja": "大和総研の案は2025年の税制をもとに作られています。このサイトでは同じ考え方を2026年の税制に当てはめて計算し直したため、税額控除は5.65万円ではなく5.2万円になります。また2026年の税制では、所得税がかからない年収の上限がすでに178万円（大和総研案が目指した水準）に上がっています。このため、ここでの結果は大和総研が公表した数字とは異なります。",
-   "en": "Daiwa's plan was written for 2025 tax rules. This site applies the same idea to 2026 tax rules, which makes the tax credit ¥52,000 instead of ¥56,500. Also, under 2026 rules you can already earn up to ¥1.78m before paying income tax, the level Daiwa's plan aimed for. So the results here differ from the numbers Daiwa published."
+   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。",
+   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published."
   }
  },
  {
@@ -596,12 +596,12 @@
   ],
   "blocked_by": [
    {
-    "ja": "政府がまだ金額や率を公表していません",
-    "en": "the government hasn't published the amounts yet"
+    "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+    "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
    },
    {
-    "ja": "この世帯の食料品の支出をまだ用意できていません",
-    "en": "we don't have food spending figures for these households yet"
+    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
   "components": {
@@ -641,8 +641,8 @@
   ],
   "blocked_by": [
    {
-    "ja": "政府がまだ金額や率を公表していません",
-    "en": "the government hasn't published the amounts yet"
+    "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+    "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
    }
   ],
   "components": {
@@ -673,8 +673,8 @@
   ],
   "blocked_by": [
    {
-    "ja": "連合の詳しい資料がまだ手に入っていません",
-    "en": "we haven't got Rengo's detailed documents yet"
+    "ja": "連合の案の資料をまだ入手できていません",
+    "en": "we haven't been able to get Rengo's proposal documents"
    }
   ],
   "components": {
@@ -710,18 +710,18 @@
   "approximations": [
    {
     "question": "Q11",
-    "ja": "大和総研は、税額控除を復興特別所得税（2.1%）を足す前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく「前」としています。",
-    "en": "Daiwa doesn't say whether the credit comes off before or after the 2.1% reconstruction tax is added. We take it off before, the way other tax credits work today."
+    "ja": "所得税には2.1%の復興特別所得税が上乗せされます。大和総研は、税額控除をこの上乗せの前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく、先に税額控除を差し引いてから2.1%を上乗せしています。",
+    "en": "Income tax has a 2.1% reconstruction surtax added on top. Daiwa doesn't say whether the credit is subtracted before or after that surtax. We subtract the credit first and then add the 2.1%, which is how existing tax credits work."
    },
    {
     "question": "Q18",
-    "ja": "還付は、健康保険（介護保険を含む）と厚生年金の保険料の額までとしています。子ども・子育て支援金と雇用保険料はこの上限に数えていません。",
-    "en": "The refund is capped at what you pay for health insurance (including long-term care) and pension. Child-support and employment insurance payments don't count toward that cap."
+    "ja": "税額控除が所得税より大きいときに現金で払う額は、健康保険（介護保険を含む）と年金の保険料の額までとしています。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at what you paid for health insurance (including long-term care insurance) and pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out."
    }
   ],
   "site_note": {
-   "ja": "大和総研の案は2025年の税制をもとに作られています。このサイトでは同じ考え方を2026年の税制に当てはめて計算し直したため、税額控除は5.65万円ではなく5.2万円になります。また2026年の税制では、所得税がかからない年収の上限がすでに178万円（大和総研案が目指した水準）に上がっています。このため、ここでの結果は大和総研が公表した数字とは異なります。",
-   "en": "Daiwa's plan was written for 2025 tax rules. This site applies the same idea to 2026 tax rules, which makes the tax credit ¥52,000 instead of ¥56,500. Also, under 2026 rules you can already earn up to ¥1.78m before paying income tax, the level Daiwa's plan aimed for. So the results here differ from the numbers Daiwa published."
+   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。",
+   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published."
   }
  },
  {
@@ -750,12 +750,12 @@
   ],
   "blocked_by": [
    {
-    "ja": "政府がまだ金額や率を公表していません",
-    "en": "the government hasn't published the amounts yet"
+    "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+    "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
    },
    {
-    "ja": "この世帯の食料品の支出をまだ用意できていません",
-    "en": "we don't have food spending figures for these households yet"
+    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
   "components": {
@@ -795,8 +795,8 @@
   ],
   "blocked_by": [
    {
-    "ja": "政府がまだ金額や率を公表していません",
-    "en": "the government hasn't published the amounts yet"
+    "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+    "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
    }
   ],
   "components": {
@@ -827,8 +827,8 @@
   ],
   "blocked_by": [
    {
-    "ja": "連合の詳しい資料がまだ手に入っていません",
-    "en": "we haven't got Rengo's detailed documents yet"
+    "ja": "連合の案の資料をまだ入手できていません",
+    "en": "we haven't been able to get Rengo's proposal documents"
    }
   ],
   "components": {
@@ -864,18 +864,18 @@
   "approximations": [
    {
     "question": "Q11",
-    "ja": "大和総研は、税額控除を復興特別所得税（2.1%）を足す前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく「前」としています。",
-    "en": "Daiwa doesn't say whether the credit comes off before or after the 2.1% reconstruction tax is added. We take it off before, the way other tax credits work today."
+    "ja": "所得税には2.1%の復興特別所得税が上乗せされます。大和総研は、税額控除をこの上乗せの前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく、先に税額控除を差し引いてから2.1%を上乗せしています。",
+    "en": "Income tax has a 2.1% reconstruction surtax added on top. Daiwa doesn't say whether the credit is subtracted before or after that surtax. We subtract the credit first and then add the 2.1%, which is how existing tax credits work."
    },
    {
     "question": "Q18",
-    "ja": "還付は、健康保険（介護保険を含む）と厚生年金の保険料の額までとしています。子ども・子育て支援金と雇用保険料はこの上限に数えていません。",
-    "en": "The refund is capped at what you pay for health insurance (including long-term care) and pension. Child-support and employment insurance payments don't count toward that cap."
+    "ja": "税額控除が所得税より大きいときに現金で払う額は、健康保険（介護保険を含む）と年金の保険料の額までとしています。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at what you paid for health insurance (including long-term care insurance) and pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out."
    }
   ],
   "site_note": {
-   "ja": "大和総研の案は2025年の税制をもとに作られています。このサイトでは同じ考え方を2026年の税制に当てはめて計算し直したため、税額控除は5.65万円ではなく5.2万円になります。また2026年の税制では、所得税がかからない年収の上限がすでに178万円（大和総研案が目指した水準）に上がっています。このため、ここでの結果は大和総研が公表した数字とは異なります。",
-   "en": "Daiwa's plan was written for 2025 tax rules. This site applies the same idea to 2026 tax rules, which makes the tax credit ¥52,000 instead of ¥56,500. Also, under 2026 rules you can already earn up to ¥1.78m before paying income tax, the level Daiwa's plan aimed for. So the results here differ from the numbers Daiwa published."
+   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。",
+   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published."
   }
  },
  {
@@ -904,12 +904,12 @@
   ],
   "blocked_by": [
    {
-    "ja": "政府がまだ金額や率を公表していません",
-    "en": "the government hasn't published the amounts yet"
+    "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+    "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
    },
    {
-    "ja": "この世帯の食料品の支出をまだ用意できていません",
-    "en": "we don't have food spending figures for these households yet"
+    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
   "components": {
@@ -949,8 +949,8 @@
   ],
   "blocked_by": [
    {
-    "ja": "政府がまだ金額や率を公表していません",
-    "en": "the government hasn't published the amounts yet"
+    "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+    "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
    }
   ],
   "components": {
@@ -981,8 +981,8 @@
   ],
   "blocked_by": [
    {
-    "ja": "連合の詳しい資料がまだ手に入っていません",
-    "en": "we haven't got Rengo's detailed documents yet"
+    "ja": "連合の案の資料をまだ入手できていません",
+    "en": "we haven't been able to get Rengo's proposal documents"
    }
   ],
   "components": {
@@ -1018,18 +1018,18 @@
   "approximations": [
    {
     "question": "Q11",
-    "ja": "大和総研は、税額控除を復興特別所得税（2.1%）を足す前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく「前」としています。",
-    "en": "Daiwa doesn't say whether the credit comes off before or after the 2.1% reconstruction tax is added. We take it off before, the way other tax credits work today."
+    "ja": "所得税には2.1%の復興特別所得税が上乗せされます。大和総研は、税額控除をこの上乗せの前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく、先に税額控除を差し引いてから2.1%を上乗せしています。",
+    "en": "Income tax has a 2.1% reconstruction surtax added on top. Daiwa doesn't say whether the credit is subtracted before or after that surtax. We subtract the credit first and then add the 2.1%, which is how existing tax credits work."
    },
    {
     "question": "Q18",
-    "ja": "還付は、健康保険（介護保険を含む）と厚生年金の保険料の額までとしています。子ども・子育て支援金と雇用保険料はこの上限に数えていません。",
-    "en": "The refund is capped at what you pay for health insurance (including long-term care) and pension. Child-support and employment insurance payments don't count toward that cap."
+    "ja": "税額控除が所得税より大きいときに現金で払う額は、健康保険（介護保険を含む）と年金の保険料の額までとしています。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at what you paid for health insurance (including long-term care insurance) and pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out."
    }
   ],
   "site_note": {
-   "ja": "大和総研の案は2025年の税制をもとに作られています。このサイトでは同じ考え方を2026年の税制に当てはめて計算し直したため、税額控除は5.65万円ではなく5.2万円になります。また2026年の税制では、所得税がかからない年収の上限がすでに178万円（大和総研案が目指した水準）に上がっています。このため、ここでの結果は大和総研が公表した数字とは異なります。",
-   "en": "Daiwa's plan was written for 2025 tax rules. This site applies the same idea to 2026 tax rules, which makes the tax credit ¥52,000 instead of ¥56,500. Also, under 2026 rules you can already earn up to ¥1.78m before paying income tax, the level Daiwa's plan aimed for. So the results here differ from the numbers Daiwa published."
+   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。",
+   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published."
   }
  },
  {
@@ -1058,12 +1058,12 @@
   ],
   "blocked_by": [
    {
-    "ja": "政府がまだ金額や率を公表していません",
-    "en": "the government hasn't published the amounts yet"
+    "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+    "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
    },
    {
-    "ja": "この世帯の食料品の支出をまだ用意できていません",
-    "en": "we don't have food spending figures for these households yet"
+    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
   "components": {
@@ -1103,8 +1103,8 @@
   ],
   "blocked_by": [
    {
-    "ja": "政府がまだ金額や率を公表していません",
-    "en": "the government hasn't published the amounts yet"
+    "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+    "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
    }
   ],
   "components": {
@@ -1135,8 +1135,8 @@
   ],
   "blocked_by": [
    {
-    "ja": "連合の詳しい資料がまだ手に入っていません",
-    "en": "we haven't got Rengo's detailed documents yet"
+    "ja": "連合の案の資料をまだ入手できていません",
+    "en": "we haven't been able to get Rengo's proposal documents"
    }
   ],
   "components": {
@@ -1172,18 +1172,18 @@
   "approximations": [
    {
     "question": "Q11",
-    "ja": "大和総研は、税額控除を復興特別所得税（2.1%）を足す前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく「前」としています。",
-    "en": "Daiwa doesn't say whether the credit comes off before or after the 2.1% reconstruction tax is added. We take it off before, the way other tax credits work today."
+    "ja": "所得税には2.1%の復興特別所得税が上乗せされます。大和総研は、税額控除をこの上乗せの前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく、先に税額控除を差し引いてから2.1%を上乗せしています。",
+    "en": "Income tax has a 2.1% reconstruction surtax added on top. Daiwa doesn't say whether the credit is subtracted before or after that surtax. We subtract the credit first and then add the 2.1%, which is how existing tax credits work."
    },
    {
     "question": "Q18",
-    "ja": "還付は、健康保険（介護保険を含む）と厚生年金の保険料の額までとしています。子ども・子育て支援金と雇用保険料はこの上限に数えていません。",
-    "en": "The refund is capped at what you pay for health insurance (including long-term care) and pension. Child-support and employment insurance payments don't count toward that cap."
+    "ja": "税額控除が所得税より大きいときに現金で払う額は、健康保険（介護保険を含む）と年金の保険料の額までとしています。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at what you paid for health insurance (including long-term care insurance) and pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out."
    }
   ],
   "site_note": {
-   "ja": "大和総研の案は2025年の税制をもとに作られています。このサイトでは同じ考え方を2026年の税制に当てはめて計算し直したため、税額控除は5.65万円ではなく5.2万円になります。また2026年の税制では、所得税がかからない年収の上限がすでに178万円（大和総研案が目指した水準）に上がっています。このため、ここでの結果は大和総研が公表した数字とは異なります。",
-   "en": "Daiwa's plan was written for 2025 tax rules. This site applies the same idea to 2026 tax rules, which makes the tax credit ¥52,000 instead of ¥56,500. Also, under 2026 rules you can already earn up to ¥1.78m before paying income tax, the level Daiwa's plan aimed for. So the results here differ from the numbers Daiwa published."
+   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。",
+   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published."
   }
  },
  {
@@ -1212,12 +1212,12 @@
   ],
   "blocked_by": [
    {
-    "ja": "政府がまだ金額や率を公表していません",
-    "en": "the government hasn't published the amounts yet"
+    "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
+    "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
    },
    {
-    "ja": "この世帯の食料品の支出をまだ用意できていません",
-    "en": "we don't have food spending figures for these households yet"
+    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
   "components": {

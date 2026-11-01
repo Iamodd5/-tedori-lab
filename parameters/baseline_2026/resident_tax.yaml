@@ -34,8 +34,8 @@ basic_deduction:
     approximation: true
     explanation: "令和7年度 table; Q13"
     site: &r7_table
-      ja: （近似）住民税の控除額は、2027年度分の新宿区の表がまだ公表されていないため、2025年度分の表を使っています。
-      en: (Approximation) Resident tax deductions use Shinjuku's 2025 table, because the table for 2027 hasn't been published yet.
+      ja: （近似）住民税の控除額（配偶者控除・扶養控除など）は、新宿区の2025年度分の案内から取っています。2026年の収入にかかる2027年度分の案内がまだ公表されていないためです。
+      en: (Approximation) Resident tax deduction amounts (for a spouse, dependants and so on) are taken from Shinjuku's guide for fiscal 2025, because the guide for fiscal 2027, which covers 2026 income, hasn't been published yet.
 personal_deductions:
   approximation: true
   explanation: "令和7年度 Shinjuku amounts; 令和9年度 ward table not yet published (Q13)"
@@ -93,7 +93,7 @@ rounding:  # 地方税法 20条の4の2; the text of the law is not yet in sourc
   approximation: true
   explanation: "Rounding as commonly applied (taxable income to 1,000 yen, tax to 100 yen, both down); source to be added"
   site:
-    ja: （近似）住民税の端数は、一般的な方法（所得は1,000円未満、税額は100円未満を切り捨て）で処理しています。法律の条文はまだ確認していません。
-    en: (Approximation) Resident tax is rounded down the usual way (income to the nearest ¥1,000, tax to the nearest ¥100). We haven't checked the legal text yet.
+    ja: （近似）住民税では、課税される所得の1,000円未満と、税額の100円未満を切り捨てています。一般的に使われている方法ですが、法律の条文ではまだ確認していません（差は最大でも1,100円未満です）。
+    en: (Approximation) For resident tax, we round taxable income down to the nearest ¥1,000 and the tax down to the nearest ¥100. This is the common practice, but we haven't yet checked it against the text of the law (the difference is under ¥1,100 at most).
   taxable_income: {value: 1000, note: "round down"}
   income_levy: {value: 100, note: "round down"}

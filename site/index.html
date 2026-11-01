@@ -10,8 +10,13 @@
 </head>
 <body>
 <h1><span lang="ja">税の案ごとに、手取りはどう変わる？</span><span lang="en">How would each tax plan change your take-home pay?</span></h1>
+<p><span lang="ja">政府などが、働く人の税金や社会保険料の負担を軽くする案（「給付付き税額控除」など）を出しています。このサイトでは、そのうち4つの案が、例として作った8つの世帯の手取りをどう変えるかを、同じ方法で計算しています。</span>
+<span lang="en">The government and others have put forward plans to lower the tax and social insurance that working people pay, such as a "refundable tax credit" (給付付き税額控除). This site works out, with one method, how four of these plans would change the take-home pay of eight example households.</span></p>
 <p class="lead" id="lead"></p>
-<p class="note"><span lang="ja">東京都新宿区に住む例の世帯で、2026年の制度をもとに計算しています。働き方は変わらないものとしています。</span><span lang="en">Worked out for example households living in Shinjuku, Tokyo, under 2026 rules. We assume nobody changes how much they work.</span></p>
+<p class="note"><span lang="ja">例の世帯はすべて東京都新宿区に住んでいるものとし、働き方は変わらないものとして計算しています。「2026年の制度」とは、2026年に実際に適用されている税金・社会保険の仕組みのことで、どの案もまだ入っていない状態です。</span><span lang="en">All example households live in Shinjuku, Tokyo, and we assume nobody changes how much they work. "2026 rules" means the tax and social insurance rules actually in force in 2026, before any of these plans.</span></p>
+
+<h2><span lang="ja">比べている4つの案</span><span lang="en">The four plans compared</span></h2>
+<ul id="plans"></ul>
 
 <h2><span lang="ja">年収の壁：稼ぐと手取りが減るところ</span><span lang="en">Income walls: where earning more leaves you with less</span></h2>
 <label><span lang="ja">世帯を選ぶ：</span><span lang="en">Choose a household: </span><select id="hh"></select></label>
@@ -74,6 +79,11 @@ function draw() {
 function drawApprox() {
   const ul = document.getElementById("approx"); ul.innerHTML = "";
   walls.baseline_approximations.forEach(a => li(ul, t(a)));
+  const pl = document.getElementById("plans"); pl.innerHTML = "";
+  Object.entries(walls.summaries).forEach(([d, s]) => {
+    const x = document.createElement("li"), b = document.createElement("strong");
+    b.textContent = t(walls.labels[d]); x.append(b, document.createElement("br"), t(s)); pl.append(x);
+  });
 }
 
 setupPage(() => { if (walls) { draw(); drawApprox(); } });

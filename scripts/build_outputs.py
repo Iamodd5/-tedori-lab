@@ -46,7 +46,8 @@ with open(OUT / "household_comparison.csv", "w", newline="") as f:
         wr.writerow({**{k: x.get(k) for k in cols}, **x["components"], "missing": "; ".join(x["missing"])})
 
 walls = {"step": w.STEP, "columns": ["income", "disposable", "emr"], "households": {}, "skipped": {},
-         "labels": {"baseline": {"ja": "2026年制度", "en": "2026 baseline"}, **{d: r.design(d)["label"] for d in DESIGNS}},
+         "labels": {"baseline": {"ja": "2026年の制度", "en": "2026 rules"}, **{d: r.design(d)["label"] for d in DESIGNS}},
+         "summaries": {d: r.design(d)["summary"] for d in DESIGNS},
          # the same text shared by several parameters (a YAML alias) is listed once
          "baseline_approximations": list({json.dumps(a, ensure_ascii=False): a for f in sorted(BASELINE.glob("*.yaml"))
                                           for a in approximations(yaml.safe_load(f.read_text(encoding="utf-8")), f.stem)}.values())}

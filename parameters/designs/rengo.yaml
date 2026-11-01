@@ -4,6 +4,10 @@
 name_ja: 連合案
 name_en: Rengo (Japanese Trade Union Confederation) proposal
 label: {ja: 連合案, en: "Rengo (trade union confederation) plan"}
+# What the plan does, in one paragraph for the website (from the sources above)
+summary:
+  ja: "労働組合の全国組織である連合の案です。案の資料を入手できていない（ウェブページがメンテナンス表示だった）ため、ここでは内容を説明も計算もしていません。"
+  en: "A proposal from Rengo, Japan's national federation of trade unions. We haven't been able to get the proposal documents (the web page showed only a maintenance notice), so we can't describe or calculate it here."
 start_year: null
 status: unresolved
 
