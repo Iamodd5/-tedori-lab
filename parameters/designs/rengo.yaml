@@ -1,42 +1,78 @@
-# Rengo (連合) proposal. The source page was under maintenance on 2026-10-29 (OPEN_QUESTIONS Q3, HUMAN_TODO H-4),
-# so nothing has been read from Rengo's own documents yet. The two components below come from the project
-# spec's summary only and must be confirmed against Rengo's documents before any value is filled in.
+# Rengo (連合) proposal: two parts, a work-support credit (就労支援給付制度) and a consumption-tax refund
+# (消費税還付制度（税バック制度）). Documents obtained 2026-11-01 (HUMAN_TODO H-4). The consumption-tax refund has
+# no published amounts, so the design cannot be calculated yet (OPEN_QUESTIONS Q3).
 name_ja: 連合案
 name_en: Rengo (Japanese Trade Union Confederation) proposal
 label: {ja: 連合案, en: "Rengo (trade union confederation) plan"}
 # What the plan does, in one paragraph for the website (from the sources above)
 summary:
-  ja: "労働組合の全国組織である連合の案です。案の資料を入手できていない（ウェブページがメンテナンス表示だった）ため、ここでは内容を説明も計算もしていません。"
-  en: "A proposal from Rengo, Japan's national federation of trade unions. We haven't been able to get the proposal documents (the web page showed only a maintenance notice), so we can't describe or calculate it here."
-start_year: null
+  ja: "労働組合の全国組織である連合の案で、二つの部分からなります。一つ目は、給与収入74万〜250万円の会社員などについて、本人が払う社会保険料・雇用保険料の半額を所得税から差し引き、所得税より大きい分は現金で払う制度です（給与収入200万円を超えると減っていき、250万円でなくなります）。二つ目は、所得税がかからない程度の収入の人に、食料品や光熱費など最低限の買い物にかかる消費税の分を、扶養している人数に応じた定額で払う制度です。二つ目の金額はまだ公表されていません。"
+  en: "A proposal from Rengo, Japan's national federation of trade unions, in two parts. First, employees earning ¥740,000 to ¥2.5m in salary get half of the social and employment insurance they pay taken off their income tax, and any part bigger than their income tax is paid in cash (it shrinks above ¥2m and is gone at ¥2.5m). Second, people with incomes too low to pay income tax get a fixed cash amount, depending on how many people they support, to cover the consumption tax on basic spending such as food and utilities. The amounts for the second part haven't been published."
+start_year: null  # neither document gives a start date
 status: unresolved
 
 source:
-  rengo_page:
-    title: 連合 政策提言ページ（p=5465）— not yet readable
-    url: https://www.jtuc-rengo.or.jp/activity/seisaku_jitsugen/teigen/?p=5465
-    file: sources/rengo/rengo_p5465.html  # maintenance page only
-    published: unknown (page unavailable 2026-10-29)
+  kousou:
+    title: 連合「税制改革構想（第4次）」（改訂版）（第95回中央委員会確認 2025.5.28）
+    url: https://www.jtuc-rengo.or.jp/activity/kurashi/zei/data/zeiseikaikakukoso20250528.pdf
+    file: sources/rengo/zeiseikaikakukoso20250528.pdf  # not in git (sources/EXTERNAL.tsv)
+    published: 2025-05-28
+  juten_2026:
+    title: 2026年度 連合の重点政策（社会保障国民会議 令和8年5月19日 資料3）
+    url: https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20260519/03_siryou3.pdf
+    file: sources/rengo/kokuminkaigi_20260519_siryou3.pdf  # not in git (sources/EXTERNAL.tsv)
+    published: 2026-05  # brochure dated 2026年5月; council meeting 2026-05-19
 
 parameters:
-  consumption_tax_refund:
+  work_support_benefit:  # 就労支援給付制度
+    unit:
+      value: individual employee  # 雇用労働者
+      cite: {source: juten_2026, page: 2, section: "図2"}
+      status: resolved
+    credit_share_of_contributions:  # half of the worker's own social + employment insurance contributions
+      value: 0.5
+      cite: {source: juten_2026, page: 2, section: "図2"}
+      status: resolved
+    refundable:  # 控除額が所得税額を上回る場合は、差額を還付
+      value: true
+      cite: {source: juten_2026, page: 2, section: "図2"}
+      status: resolved
+    salary_lower_bound:  # 給与収入74万円; the 2025 plan says 65万円 (kousou p.27), i.e. each year's employment-income minimum
+      value: 740000
+      cite: {source: juten_2026, page: 2, section: "図2"}
+      status: resolved
+    phase_out_start_salary:  # 給与収入200万円を超えると段階的に低減
+      value: 2000000
+      cite: {source: juten_2026, page: 2, section: "図2"}
+      status: resolved
+    phase_out_end_salary:  # 250万円で消失
+      value: 2500000
+      cite: {source: kousou, page: 27, section: "５．（１）制度のイメージ (printed p.25)"}
+      status: resolved
+    phase_out_shape:  # "段階的に低減" / "徐々に低減": straight line or steps not stated
+      value: null
+      status: unresolved
+      question: Q34
+    contributions_counted:  # 社会保険料・雇用保険料（労働者負担分）: whether long-term care and the child-support levy count is not stated
+      value: null
+      status: unresolved
+      question: Q35
+  consumption_tax_refund:  # 消費税還付制度（税バック制度）
+    eligibility:
+      value: "people whose total income (合計所得) is at or below the income-tax threshold (課税最低限); flat amount by number of dependants; tapers above the threshold"
+      cite: {source: kousou, page: 28, section: "５．（２）制度のイメージ (printed p.26)"}
+      status: resolved
     amount:
       value: null
       status: unresolved
       question: Q3
-    eligibility:
-      value: null
-      status: unresolved
-      question: Q3
-  work_support_benefit:  # spec summary: refund of half of low-income workers' social insurance contributions
-    refund_share:
-      value: null
-      status: unresolved
-      question: Q3
-    income_limit:
+    phase_out:
       value: null
       status: unresolved
       question: Q3
 
 notes: >
-  Placeholder until Rengo's documents can be downloaded. Shown on the site as "incomplete parameters".
+  The work-support credit is fully described apart from Q34 and Q35. Rengo's own worked example (juten_2026 p.2,
+  single employee on 2.0m salary) shows a refund of 152,000, but its stated rule gives 152,000 − 3,300 income tax
+  = 148,700 (OPEN_QUESTIONS Q36), so it is not used as a test. The consumption-tax refund gives only its shape and
+  a total cost "under about 10% of consumption tax revenue" (kousou p.28); no amounts.

@@ -354,3 +354,19 @@ The human said the text still had ambiguous references and vague abstractions. C
 No number changed; 96 tests pass. H1 is still named "near the 1.3m wall" although that wall does not apply to it (Q21, a human decision).
 
 Published on 2026-11-01 (H-18). A final pass that rewrites all site text and improves the UI is planned once every other milestone is done (H-19).
+
+## H-4, H-13, H-14 (2026-11-01)
+
+**H-4: Rengo's documents found.** Rengo's proposal page was still "under maintenance", but two Rengo documents were available at other addresses: its Tax Reform Plan (税制改革構想, May 2025) and its 2026 key policies (重点政策), which Rengo gave to the government's National Council on Social Security on 2026-05-19. Rengo's plan has two parts:
+- **Work-support credit (就労支援給付制度).** Employees earning ¥740,000–¥2.5m in salary have half of the social and employment insurance they pay taken off their income tax. If that amount is bigger than their income tax, the rest is paid in cash. It shrinks above ¥2m and is gone at ¥2.5m. Two details are not stated: whether it shrinks in a straight line (Q34), and whether long-term care and the child-support levy count (Q35). Rengo's own example also does not match its rule: it shows ¥152,000 where the rule gives ¥148,700 (Q36), so it is not used as a test.
+- **Consumption-tax refund (消費税還付制度).** People too poor to pay income tax get a fixed amount, depending on how many people they support. No amounts are published (Q3), so Rengo still cannot be calculated. The site now gives that reason.
+- Rengo states no terms that allow copying its files, so they are not in git. `make` downloads them. The download now sends a browser user agent, because the government site refuses curl's default one.
+
+**H-13: who deducts a spouse's national pension.** The human chose the main earner. In a couple, the partner with the higher income now deducts the other partner's National Pension, as 所得税法74条 allows when you pay it for them. It is labelled as an approximation on every page, together with the existing rule that the same partner claims the spouse and children (Q23).
+- H4's drop at ¥1.3m is now ¥258,226 a year (was ¥280,126), so the rate there is 26.8226 (2,682%). The hand calculation was added first, with a corrected slip in the final division, then the test, then the code.
+- H1–H8 at their usual incomes did not change.
+- In the population model, about 31,000 households changed: couples where the main earner is not in company insurance and the spouse has no income. Their 2026 numbers are unchanged, because the main earner pays no income tax anyway. Under Daiwa's plan they get a slightly larger refund. Daiwa's net result moves by less than ¥0.001 trillion; decile 2 rises by ¥8 and decile 3 by ¥38.
+
+**H-14: H1 renamed.** H1 is now "Single part-time employee (¥1.25m a year)" (was "near the 1.3m wall", which does not apply to someone who lives alone). The numbers did not change.
+
+96 tests pass.

@@ -17,7 +17,7 @@ COMPONENTS = ("income_tax", "resident_tax", "social_insurance", "credit", "consu
 # Why a design cannot be calculated yet, by open question, so different reasons are never shown as one
 BLOCKERS = {"Q9": {"ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）", "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"},
             "Q8": {"ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません", "en": "we don't yet have food spending figures for the example households H1–H8"},
-            "Q3": {"ja": "連合の案の資料をまだ入手できていません", "en": "we haven't been able to get Rengo's proposal documents"}}
+            "Q3": {"ja": "連合が消費税還付制度の金額をまだ公表していません", "en": "Rengo hasn't published the amounts for its consumption tax refund"}}
 
 
 @functools.cache

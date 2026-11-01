@@ -31,7 +31,7 @@ def test_two_income_households_use_the_chosen_member():
 def test_h4_spouse_hits_the_13m_wall():
     # tests/hand_calcs/wall_H4.md
     emr = {r["income"]: r["emr"] for r in w.grid(h.load("H4"), "baseline", top=1_300_000)}
-    assert emr[1_290_000] == 29.0126  # corrected 2026-11-01, see hand calc
+    assert emr[1_290_000] == 26.8226  # main earner deducts the spouse's national pension (H-13); see hand calc revision
 
 
 def test_outputs_snapshot_is_current():

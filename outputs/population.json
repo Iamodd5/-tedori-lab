@@ -113,16 +113,16 @@
    "status": "incomplete",
    "blocked_by": [
     {
-     "ja": "連合の案の資料をまだ入手できていません",
-     "en": "we haven't been able to get Rengo's proposal documents"
+     "ja": "連合が消費税還付制度の金額をまだ公表していません",
+     "en": "Rengo hasn't published the amounts for its consumption tax refund"
     }
    ],
    "approximations": [],
    "published_estimates": null,
    "site_note": null,
    "summary": {
-    "ja": "労働組合の全国組織である連合の案です。案の資料を入手できていない（ウェブページがメンテナンス表示だった）ため、ここでは内容を説明も計算もしていません。",
-    "en": "A proposal from Rengo, Japan's national federation of trade unions. We haven't been able to get the proposal documents (the web page showed only a maintenance notice), so we can't describe or calculate it here."
+    "ja": "労働組合の全国組織である連合の案で、二つの部分からなります。一つ目は、給与収入74万〜250万円の会社員などについて、本人が払う社会保険料・雇用保険料の半額を所得税から差し引き、所得税より大きい分は現金で払う制度です（給与収入200万円を超えると減っていき、250万円でなくなります）。二つ目は、所得税がかからない程度の収入の人に、食料品や光熱費など最低限の買い物にかかる消費税の分を、扶養している人数に応じた定額で払う制度です。二つ目の金額はまだ公表されていません。",
+    "en": "A proposal from Rengo, Japan's national federation of trade unions, in two parts. First, employees earning ¥740,000 to ¥2.5m in salary get half of the social and employment insurance they pay taken off their income tax, and any part bigger than their income tax is paid in cash (it shrinks above ¥2m and is gone at ¥2.5m). Second, people with incomes too low to pay income tax get a fixed cash amount, depending on how many people they support, to cover the consumption tax on basic spending such as food and utilities. The amounts for the second part haven't been published."
    }
   },
   "daiwa": {
@@ -184,14 +184,14 @@
     },
     {
      "decile": 2,
-     "mean_change": 6490,
+     "mean_change": 6498,
      "winners_share": 0.2123,
      "losers_share": 0.0,
      "unchanged_share": 0.7877
     },
     {
      "decile": 3,
-     "mean_change": 4727,
+     "mean_change": 4765,
      "winners_share": 0.131,
      "losers_share": 0.0,
      "unchanged_share": 0.869
@@ -246,12 +246,12 @@
      "unchanged_share": 0.0
     }
    ],
-   "cost_yen": -949915454245,
+   "cost_yen": -949669288812,
    "cost_components_yen": {
     "income_tax": 1531233888720,
     "resident_tax": 0,
     "social_insurance": 0,
-    "credit": 581318434474,
+    "credit": 581564599907,
     "consumption_tax": 0
    }
   },

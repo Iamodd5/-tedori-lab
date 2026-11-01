@@ -7,7 +7,7 @@ all: fetch-sources check-sources text tables test outputs
 # sources/EXTERNAL.tsv: path under sources/ <TAB> URL. check-sources then verifies their fingerprints.
 fetch-sources:
 	@grep -v '^#' sources/EXTERNAL.tsv | while IFS="$$(printf '\t')" read -r path url; do \
-	  [ -f "sources/$$path" ] || { mkdir -p "$$(dirname "sources/$$path")" && curl -sfL "$$url" -o "sources/$$path" && echo "downloaded $$path"; }; \
+	  [ -f "sources/$$path" ] || { mkdir -p "$$(dirname "sources/$$path")" && curl -sfL -A "Mozilla/5.0" "$$url" -o "sources/$$path" && echo "downloaded $$path"; }; \
 	done
 
 check-sources:

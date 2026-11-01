@@ -50,15 +50,15 @@
   "design": "rengo",
   "status": "incomplete",
   "missing": [
+   "work_support_benefit.phase_out_shape (Q34)",
+   "work_support_benefit.contributions_counted (Q35)",
    "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.eligibility (Q3)",
-   "work_support_benefit.refund_share (Q3)",
-   "work_support_benefit.income_limit (Q3)"
+   "consumption_tax_refund.phase_out (Q3)"
   ],
   "blocked_by": [
    {
-    "ja": "連合の案の資料をまだ入手できていません",
-    "en": "we haven't been able to get Rengo's proposal documents"
+    "ja": "連合が消費税還付制度の金額をまだ公表していません",
+    "en": "Rengo hasn't published the amounts for its consumption tax refund"
    }
   ],
   "components": {
@@ -204,15 +204,15 @@
   "design": "rengo",
   "status": "incomplete",
   "missing": [
+   "work_support_benefit.phase_out_shape (Q34)",
+   "work_support_benefit.contributions_counted (Q35)",
    "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.eligibility (Q3)",
-   "work_support_benefit.refund_share (Q3)",
-   "work_support_benefit.income_limit (Q3)"
+   "consumption_tax_refund.phase_out (Q3)"
   ],
   "blocked_by": [
    {
-    "ja": "連合の案の資料をまだ入手できていません",
-    "en": "we haven't been able to get Rengo's proposal documents"
+    "ja": "連合が消費税還付制度の金額をまだ公表していません",
+    "en": "Rengo hasn't published the amounts for its consumption tax refund"
    }
   ],
   "components": {
@@ -358,15 +358,15 @@
   "design": "rengo",
   "status": "incomplete",
   "missing": [
+   "work_support_benefit.phase_out_shape (Q34)",
+   "work_support_benefit.contributions_counted (Q35)",
    "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.eligibility (Q3)",
-   "work_support_benefit.refund_share (Q3)",
-   "work_support_benefit.income_limit (Q3)"
+   "consumption_tax_refund.phase_out (Q3)"
   ],
   "blocked_by": [
    {
-    "ja": "連合の案の資料をまだ入手できていません",
-    "en": "we haven't been able to get Rengo's proposal documents"
+    "ja": "連合が消費税還付制度の金額をまだ公表していません",
+    "en": "Rengo hasn't published the amounts for its consumption tax refund"
    }
   ],
   "components": {
@@ -512,15 +512,15 @@
   "design": "rengo",
   "status": "incomplete",
   "missing": [
+   "work_support_benefit.phase_out_shape (Q34)",
+   "work_support_benefit.contributions_counted (Q35)",
    "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.eligibility (Q3)",
-   "work_support_benefit.refund_share (Q3)",
-   "work_support_benefit.income_limit (Q3)"
+   "consumption_tax_refund.phase_out (Q3)"
   ],
   "blocked_by": [
    {
-    "ja": "連合の案の資料をまだ入手できていません",
-    "en": "we haven't been able to get Rengo's proposal documents"
+    "ja": "連合が消費税還付制度の金額をまだ公表していません",
+    "en": "Rengo hasn't published the amounts for its consumption tax refund"
    }
   ],
   "components": {
@@ -666,15 +666,15 @@
   "design": "rengo",
   "status": "incomplete",
   "missing": [
+   "work_support_benefit.phase_out_shape (Q34)",
+   "work_support_benefit.contributions_counted (Q35)",
    "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.eligibility (Q3)",
-   "work_support_benefit.refund_share (Q3)",
-   "work_support_benefit.income_limit (Q3)"
+   "consumption_tax_refund.phase_out (Q3)"
   ],
   "blocked_by": [
    {
-    "ja": "連合の案の資料をまだ入手できていません",
-    "en": "we haven't been able to get Rengo's proposal documents"
+    "ja": "連合が消費税還付制度の金額をまだ公表していません",
+    "en": "Rengo hasn't published the amounts for its consumption tax refund"
    }
   ],
   "components": {
@@ -820,15 +820,15 @@
   "design": "rengo",
   "status": "incomplete",
   "missing": [
+   "work_support_benefit.phase_out_shape (Q34)",
+   "work_support_benefit.contributions_counted (Q35)",
    "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.eligibility (Q3)",
-   "work_support_benefit.refund_share (Q3)",
-   "work_support_benefit.income_limit (Q3)"
+   "consumption_tax_refund.phase_out (Q3)"
   ],
   "blocked_by": [
    {
-    "ja": "連合の案の資料をまだ入手できていません",
-    "en": "we haven't been able to get Rengo's proposal documents"
+    "ja": "連合が消費税還付制度の金額をまだ公表していません",
+    "en": "Rengo hasn't published the amounts for its consumption tax refund"
    }
   ],
   "components": {
@@ -974,15 +974,15 @@
   "design": "rengo",
   "status": "incomplete",
   "missing": [
+   "work_support_benefit.phase_out_shape (Q34)",
+   "work_support_benefit.contributions_counted (Q35)",
    "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.eligibility (Q3)",
-   "work_support_benefit.refund_share (Q3)",
-   "work_support_benefit.income_limit (Q3)"
+   "consumption_tax_refund.phase_out (Q3)"
   ],
   "blocked_by": [
    {
-    "ja": "連合の案の資料をまだ入手できていません",
-    "en": "we haven't been able to get Rengo's proposal documents"
+    "ja": "連合が消費税還付制度の金額をまだ公表していません",
+    "en": "Rengo hasn't published the amounts for its consumption tax refund"
    }
   ],
   "components": {
@@ -1128,15 +1128,15 @@
   "design": "rengo",
   "status": "incomplete",
   "missing": [
+   "work_support_benefit.phase_out_shape (Q34)",
+   "work_support_benefit.contributions_counted (Q35)",
    "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.eligibility (Q3)",
-   "work_support_benefit.refund_share (Q3)",
-   "work_support_benefit.income_limit (Q3)"
+   "consumption_tax_refund.phase_out (Q3)"
   ],
   "blocked_by": [
    {
-    "ja": "連合の案の資料をまだ入手できていません",
-    "en": "we haven't been able to get Rengo's proposal documents"
+    "ja": "連合が消費税還付制度の金額をまだ公表していません",
+    "en": "Rengo hasn't published the amounts for its consumption tax refund"
    }
   ],
   "components": {

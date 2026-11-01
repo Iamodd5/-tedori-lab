@@ -40,3 +40,26 @@ for a spouse (50,000) is added:
 
 Corrected change in take-home pay = +10,000 − 215,040 − 101,786 + 9,500 + 5,200 + 12,000 = **−280,126**.
 Effective marginal rate = 1 + 290,126 / 10,000 = **29.0126**.
+
+## Revision 2026-11-01: the main earner deducts the spouse's national pension (HUMAN_TODO H-13, OPEN_QUESTIONS Q26)
+
+The human decided that a partner's national pension is deducted by the higher-earning partner (the same partner who
+claims the spouse deduction, Q23). 所得税法74条 lets a taxpayer deduct social insurance they pay for a spouse in
+the same household. Only the 1,300,000 point changes; 1,290,000 is as above.
+
+**At 1,300,000**, national pension 215,040 and NHI 101,786 are both deducted by the head.
+- Head income tax: 3,560,000 − 762,984 − 101,786 − 215,040 − 1,040,000 − 380,000 = 1,060,190 → 1,060,000 × 5%
+  = 53,000 × 1.021 = 54,113 → **54,100** (was 65,000; change from 1,290,000: −16,100).
+- Head resident tax: 3,560,000 − 762,984 − 101,786 − 215,040 − 430,000 − 330,000 = 1,720,190 → 1,720,000 × 10%
+  = 172,000; taxable income under 2,000,000, so 調整控除 = 5% × min(100,000, 1,720,000) = 5,000 → 167,000
+  + per-capita 5,000 = **172,000** (change from 1,290,000: −33,500).
+- Spouse resident tax: 560,000 − 430,000 = 130,000 → 13,000 − 5% × min(50,000, 130,000) = 2,500 → 10,500
+  + 5,000 = **15,500** (change from 1,290,000: +1,000). Spouse income tax stays 0.
+
+**Change in take-home pay** = +10,000 − 215,040 − 101,786 − 1,000 + 16,100 + 33,500 = **−258,226**.
+Effective marginal rate = 1 + 258,226 / 10,000 = **26.8226**.
+
+Correction (same day): this section first said 1 + 268,226 / 10,000 = 27.8226. The slip copied a typo in the
+section above, where "1 + 290,126 / 10,000" should read 1 + 280,126 / 10,000 (its result, 29.0126, was right).
+The engine's line items matched this hand calculation exactly (54,100; 172,000; 15,500; −258,226); only the final
+division was wrong.

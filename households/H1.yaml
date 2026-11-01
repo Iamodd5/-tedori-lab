@@ -1,6 +1,6 @@
 id: H1
-name_ja: 単身・パート（130万円の壁付近）
-name_en: Single part-time employee near the 1.3m wall
+name_ja: 単身・パート（年収125万円）  # renamed 2026-11-01 (HUMAN_TODO H-14): the 1.3m wall does not apply to H1 (Q21)
+name_en: Single part-time employee (¥1.25m a year)
 municipality: 新宿区 (Shinjuku, Tokyo)
 reference_income_source: docs/HUMAN_TODO.md H-8 (chosen 2026-10-30)
 members:

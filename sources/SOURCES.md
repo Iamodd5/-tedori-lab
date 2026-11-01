@@ -54,7 +54,10 @@ Party proposals (spec Section 6 "party proposals as published"): **not collected
 
 | File | URL | Status |
 |---|---|---|
-| rengo/rengo_p5465.html | https://www.jtuc-rengo.or.jp/activity/seisaku_jitsugen/teigen/?p=5465 | **MISSING** – the site returned a "メンテナンス中" (under maintenance) page on 2026-10-29. Kept only as evidence. OPEN_QUESTIONS Q3. |
+| rengo/zeiseikaikakukoso20250528.pdf | 連合「税制改革構想（第4次）」（改訂版）, 2025-05-28, 58 pages — https://www.jtuc-rengo.or.jp/activity/kurashi/zei/data/zeiseikaikakukoso20250528.pdf | Downloaded 2026-11-01. **Not in git** (no redistribution terms found; fetched by `make`). |
+| rengo/kokuminkaigi_20260519_siryou3.pdf | 2026年度 連合の重点政策 (社会保障国民会議 2026-05-19 資料3), 5 pages — https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20260519/03_siryou3.pdf | Downloaded 2026-11-01. Written by Rengo, so treated like Rengo's own files: **not in git**, fetched by `make`. |
+
+The original page (…/teigen/?p=5465) and the whole 政策提言 section still showed "メンテナンス中" on 2026-11-01.
 
 ## 4. Daiwa design
 
