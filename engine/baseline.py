@@ -104,10 +104,11 @@ def employee_premiums(salary, age):
     }
 
 
-def nhi_household(members):
+def nhi_household(members, householder=None):
     """Shinjuku FY2026 NHI for the NHI-insured members of one household.
 
     members: list of dicts with age, total_income (総所得金額等), pension_income, has_earnings.
+    householder: same shape, when the householder is not in NHI; their income still counts in the reduction test.
     """
     if not members:
         return 0
@@ -118,8 +119,9 @@ def nhi_household(members):
     ltc = [b for m, b in zip(members, base) if 40 <= m["age"] < 65]
     # flat-amount reduction by household income (65+ pension income gets an extra 150,000 off for this test)
     r = p["flat_reduction"]
-    test_income = sum(max(0, m["total_income"] - (r["pensioner_65_extra_deduction"]["value"] if m["age"] >= 65 and m["pension_income"] > 0 else 0)) for m in members)
-    earners = max(1, sum(m["has_earnings"] for m in members))
+    tested = members + ([householder] if householder else [])
+    test_income = sum(max(0, m["total_income"] - (r["pensioner_65_extra_deduction"]["value"] if m["age"] >= 65 and m["pension_income"] > 0 else 0)) for m in tested)
+    earners = max(1, sum(m["has_earnings"] for m in tested))
     limit0 = r["base"]["value"] + (earners - 1) * r["per_extra_earner"]["value"]
     if test_income <= limit0:
         cut = 0.7
@@ -189,7 +191,8 @@ def resident_tax(total_income, deductions, diff, n_family, single_parent):
         return 0
     pcl = rt["per_capita_levy"]
     per_capita = pcl["ward"]["value"] + pcl["tokyo"]["value"] + pcl["forest_environment_tax"]["value"]
-    if total_income <= (450_000 if single else 350_000 * (n_family + 1) + 420_000):
+    levy_line = 450_000 if single else 350_000 * (n_family + 1) + 420_000
+    if total_income <= levy_line:
         return per_capita
     taxable = floor_to(max(0, total_income - deductions), 1000)
     a = rt["adjustment_credit"]
@@ -198,6 +201,7 @@ def resident_tax(total_income, deductions, diff, n_family, single_parent):
     else:
         credit = a["rate"]["value"] * max(diff - (taxable - a["threshold"]["value"]), a["minimum_base"]["value"])
     levy = max(0, taxable * rt["income_levy_rate"]["value"] - credit)
+    levy = min(levy, total_income - levy_line)  # burden-relief band (resident_tax.yaml relief_band)
     return floor_to(levy, 100) + per_capita
 
 

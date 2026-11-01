@@ -65,3 +65,9 @@ Not done yet. Planned for Milestone 4: take-home pay for H1, H3 and H8 at three 
 | H5, salary 2,090,000 → 2,100,000 | resident tax 0 → 31,200 | Shinjuku single-parent exemption ends at total income 1,350,000 (`resident_tax.yaml` non_taxable) |
 
 A test written first expected a wall at 1,056,000 for H1. It was wrong: H1 is single, so joining employee insurance replaces the more expensive NHI + national pension (see Q21). The test was replaced, before any commit, by the documented hand calculation above.
+| H4, spouse salary 1,290,000 → 1,300,000 (the 1.3m wall) | take-home −281,926; marginal rate 2,919% | −281,926 (`tests/hand_calcs/wall_H4.md`) |
+
+### Two baseline rules corrected after the wall map exposed them (Milestone 4)
+
+1. **NHI low-income reduction test.** It must count the householder's income even when the householder is on employee insurance ("世帯主と被保険者全員の前年中の総所得金額等", Shinjuku reduction page). Before the fix, H4's spouse at 1.3m was wrongly given a 50% cut (59,349 instead of 101,786). No reference household was affected.
+2. **Resident-tax burden-relief band.** Just above the income-levy exemption line, the income levy is capped at the excess over the line (MIC p.18 figure: line 1,120,000, income 1,124,200, levy 4,200). Before the fix, H3's head at salary 2.21m → 2.22m lost 85,000 on a 10,000 raise. No reference household was affected. Law text still to add (Q22).

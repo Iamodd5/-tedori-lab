@@ -150,3 +150,23 @@ Walls the map shows for 2026 rules:
 **What is not done yet.**
 - Wall maps for the four households with two incomes (H3, H4, H6, H8) need a decision on whose income moves (H-11).
 - A preview page, `site/wallmap.html`, draws both charts and the table straight from `outputs/`.
+
+### Milestone 4 completed — 2026-11-01
+
+**Decision recorded.** H-11: D. In households with two incomes, the wall map moves:
+- H4: the part-time spouse's pay (to show the spouse walls);
+- H3 and H8: the main earner's pay;
+- H6: the main pensioner's pension.
+
+**H4 shows the famous 1.3 million wall.** When the spouse's pay goes from 1,290,000 to 1,300,000, the spouse can no longer be covered for free on the main earner's insurance. The household must now pay:
+- national pension, 215,040 a year;
+- National Health Insurance, 101,786 a year.
+Taxes fall a little, but take-home pay still drops by 281,926 yen for earning 10,000 more. Every step is in `tests/hand_calcs/wall_H4.md`.
+
+**Two rules fixed because the wall map exposed them.** Neither changes the eight reference households.
+1. *National Health Insurance discount for low-income homes.* Shinjuku decides who gets it by adding up the incomes of the insured people **and** the head of the household, even if the head has work insurance. We had left the head out.
+2. *Resident-tax "soft landing".* Just above the income level where resident tax starts, the law limits the tax to the amount by which your income is over that level. This stops a 10,000-yen raise from costing 85,000 yen in tax. The Ministry's own example: line 1,120,000, income 1,124,200, tax 4,200.
+
+**Why there are spikes every 240,000 yen.** Employee insurance is charged on "standard monthly pay" in steps of 20,000 a month at middle incomes. Crossing a step raises a whole year's premiums at once, so for that 10,000 yen the marginal rate is about 300%. These steps are real. They look sharp only because we use 10,000-yen steps.
+
+**Checks.** 83 tests pass. `make all` rebuilds the outputs, and the preview page draws all eight households.

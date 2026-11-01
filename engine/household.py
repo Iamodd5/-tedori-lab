@@ -65,7 +65,7 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
 
     # 3. contributions
     np_month = b.params("social_insurance")["national_pension_monthly"]["value"]
-    nhi_members = []
+    nhi_members, householder = [], None
     for m in members:
         o = out[m["id"]]
         prem = b.employee_premiums(m["salary"], m["age"]) if o["scheme"] == "employee" else {}
@@ -77,9 +77,12 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
         if o["scheme"] == "nhi":
             nhi_members.append({"age": m["age"], "total_income": o["total_income"], "pension_income": o["pension_income"],
                                 "has_earnings": _gross(m) > 0})
+        elif m["role"] == "head":
+            householder = {"age": m["age"], "total_income": o["total_income"], "pension_income": o["pension_income"],
+                           "has_earnings": _gross(m) > 0}
         o["nhi"] = 0
     head = next(m for m in members if m["role"] == "head")
-    out[head["id"]]["nhi"] = b.nhi_household(nhi_members)  # the householder pays the household's NHI
+    out[head["id"]]["nhi"] = b.nhi_household(nhi_members, householder)  # the householder pays the household's NHI
     for o in out.values():
         o["social_insurance"] = o["health"] + o["child_levy"] + o["pension"] + o["employment"] + o["national_pension"] + o["nhi"]
 

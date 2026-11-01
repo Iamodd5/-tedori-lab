@@ -14,6 +14,7 @@ members:
     age: 43
     salary: 1000000
     work: {full_time: false, hours_20_plus: false, employer_51_plus: false}
+wall_map: {member: b, income: salary}  # whose income moves on the wall map (HUMAN_TODO H-11: D)
 spending:  # food and other taxable consumption, from the Family Income and Expenditure Survey
   status: unresolved
   question: Q8

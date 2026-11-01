@@ -64,3 +64,25 @@ EXPECTED = yaml.safe_load((HAND / "expected.yaml").read_text())
 @pytest.mark.parametrize("hid", sorted(EXPECTED))
 def test_household_matches_hand_calculation(hid):
     assert abs(h.compute(h.load(hid))["disposable"] - EXPECTED[hid]) <= 1000
+
+
+# --- Shinjuku reduction test counts the householder even when not in NHI (sources/shinjuku/hoken01_002030.html:
+# "世帯主と被保険者全員の前年中の総所得金額等"). Hand calc: tests/hand_calcs/wall_H4.md
+def test_nhi_reduction_counts_householder_outside_nhi():
+    spouse = {"age": 43, "total_income": 560_000, "pension_income": 0, "has_earnings": True}
+    assert b.nhi_household([spouse]) < 101_786                       # alone, 560,000 qualifies for a cut
+    head = {"age": 45, "total_income": 3_560_000, "pension_income": 0, "has_earnings": True}
+    assert b.nhi_household([spouse], householder=head) == 101_786    # with the head's income: no cut
+
+
+# --- Burden-relief band above the income-levy exemption line: the levy is capped at the excess over the line.
+# MIC 個人住民税の基礎控除・非課税限度額等 (sources/tax/soumu_kojin_juminzei_kiso_kojo_r8.pdf) p.18: couple, line
+# 1,120,000, total income 1,124,200 -> income levy 4,200.
+def test_resident_tax_relief_band_matches_mic_figure():
+    # couple (N = 1): per-capita line 350,000 x 2 + 310,000 = 1,010,000 is passed, so the 5,000 per-capita levy applies
+    assert b.resident_tax(1_124_200, 430_000 + 330_000, 100_000, 1, False) == 4_200 + 5_000
+
+
+def test_resident_tax_relief_band_h3_head():
+    # H3 head with two children (N = 2): line 350,000 x 3 + 420,000 = 1,470,000; income 1,480,000 -> levy 10,000
+    assert b.resident_tax(1_480_000, 430_000 + 330_000, 50_000, 2, False) == 10_000 + 5_000

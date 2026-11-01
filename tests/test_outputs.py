@@ -22,5 +22,13 @@ def test_daiwa_grid_adds_change_to_baseline():
     assert w.grid(hh, "daiwa", top=1_250_000)[-1]["disposable"] == base + 40_200   # tests/hand_calcs/daiwa.md
 
 
-def test_multi_earner_households_wait_for_a_decision():
-    assert w.varying_member(h.load("H3")) is None   # HUMAN_TODO H-11
+def test_two_income_households_use_the_chosen_member():
+    # HUMAN_TODO H-11: D
+    assert [w.varying_member(h.load(x)) for x in ("H3", "H4", "H6", "H8")] == [
+        ("a", "salary"), ("b", "salary"), ("a", "public_pension"), ("a", "salary")]
+
+
+def test_h4_spouse_hits_the_13m_wall():
+    # tests/hand_calcs/wall_H4.md
+    emr = {r["income"]: r["emr"] for r in w.grid(h.load("H4"), "baseline", top=1_300_000)}
+    assert emr[1_290_000] == 29.1926

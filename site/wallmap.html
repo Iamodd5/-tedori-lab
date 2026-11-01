@@ -45,8 +45,9 @@ Promise.all(["../outputs/wall_map.json", "../outputs/household_comparison.json"]
 .then(([walls, cmp]) => {
   const sel = document.getElementById("hh");
   for (const [id, h] of Object.entries(walls.households)) sel.add(new Option(`${id} ${h.name_ja} / ${h.name_en}`, id));
-  document.getElementById("skipped").textContent = "未表示 / Not shown yet: " +
-    Object.entries(walls.skipped).map(([k, v]) => `${k} (${v})`).join("; ");
+  const skipped = Object.entries(walls.skipped);
+  if (skipped.length) document.getElementById("skipped").textContent = "未表示 / Not shown yet: " +
+    skipped.map(([k, v]) => `${k} (${v})`).join("; ");
   const draw = () => {
     const h = walls.households[sel.value];
     charts.forEach(c => c.destroy());

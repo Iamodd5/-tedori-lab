@@ -64,6 +64,10 @@ non_taxable:  # Shinjuku, from 令和3年度. N = number of same-household spous
   per_capita_none_if_total_income_le: {value: "350000 * (N + 1) + 310000; single person 450000", cite: {source: shinjuku_tax, page: 1}}
   income_levy_none_if_income_le: {value: "350000 * (N + 1) + 420000; single person 450000", cite: {source: shinjuku_tax, page: 1}}
   single_parent_none_if_total_income_le: {value: 1350000, cite: {source: shinjuku_tax, page: 1}}
+relief_band:  # just above the income-levy line, the income levy is at most the excess of total income over the line
+  value: "income levy <= total income - income_levy_none_if_income_le line"
+  cite: {source: mic, page: 18, section: "（参考）非課税限度額（所得割）のイメージ — 負担調整措置"}
+  note: "Read from MIC's worked figure (line 1,120,000; income 1,124,200; levy 4,200). Law text (地方税法附則3条の3) not yet in sources/ (OPEN_QUESTIONS Q22)."
 rounding:  # 地方税法 20条の4の2; the text of the law is not yet in sources/ (OPEN_QUESTIONS Q14). Effect < 1,100 yen.
   approximation: true
   explanation: "Rounding as commonly applied (taxable income to 1,000 yen, tax to 100 yen, both down); source to be added"

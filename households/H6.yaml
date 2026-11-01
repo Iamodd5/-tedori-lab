@@ -12,6 +12,7 @@ members:
     role: spouse
     age: 72
     public_pension: 800000
+wall_map: {member: a, income: public_pension}  # whose income moves on the wall map (HUMAN_TODO H-11: D)
 spending:  # food and other taxable consumption, from the Family Income and Expenditure Survey
   status: unresolved
   question: Q8

@@ -16,6 +16,7 @@ members:
     work: {full_time: true}
   - {id: c1, role: child, age: 8}
   - {id: c2, role: child, age: 2}
+wall_map: {member: a, income: salary}  # whose income moves on the wall map (HUMAN_TODO H-11: D)
 spending:  # food and other taxable consumption, from the Family Income and Expenditure Survey
   status: unresolved
   question: Q8
