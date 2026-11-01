@@ -4,6 +4,7 @@ const PAGES = [
   ["compare.html", { ja: "案の比較", en: "Compare plans" }],
   ["population.html", { ja: "全世帯で見ると", en: "All households" }],
   ["builder.html", { ja: "自分で案を作る", en: "Build your own" }],
+  ["report.html", { ja: "レポート", en: "Report" }],
   ["methods.html", { ja: "計算方法", en: "How it works" }],
   ["validation.html", { ja: "検証", en: "Checks" }],
   ["sources.html", { ja: "出典とコード", en: "Sources & code" }],

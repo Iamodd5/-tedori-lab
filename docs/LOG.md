@@ -415,3 +415,25 @@ The final full rewrite of all text and the UI (H-19) is still planned for after 
 ### Follow-up: the second wall chart in yen (2026-11-01)
 
 The human said the "How much of each extra ¥100,000 you lose" chart was still hard to understand, especially the tooltip ("Earning … instead of …"). It is now a question with an answer in yen: **"Earn ¥100,000 more: how much more do you take home?"** Normally the answer is a bit under ¥100,000. Where the line falls below the dotted ¥0 line, earning more leaves you with less: that is a wall. The tooltip now says, for example, "If the spouse's salary goes from ¥1,200,000 to ¥1,300,000 — 2026 rules: take-home pay goes down by ¥176,226 (a wall)". A crash when hovering near the dotted line was also fixed. 110 tests pass.
+
+## Milestone 9: the report (2026-11-01)
+
+**What it is.** A short report in Japanese and English, on the new Report page (レポート) and in `outputs/report.ja.md` / `outputs/report.en.md`. It has: the main finding, what the four plans are and which can be calculated, the eight example households under the one plan that can be calculated (Daiwa), the all-household estimate, the limits, and every approximation behind the numbers.
+
+**The main finding (one sentence with its number).** Under 2026 rules, if a part-time spouse's pay goes from ¥1,290,000 to ¥1,300,000 a year (household H4), the household takes home ¥258,226 less a year, and the spouse has to earn ¥1,640,000 to get back to the same take-home pay. It is the same finding as the Home page. It is about today's rules, not any one plan, and it comes from a hand calculation (`tests/hand_calcs/wall_H4.md`).
+
+**How the numbers get in.** The text is in two templates, `report/report.ja.md` and `report/report.en.md`, with named blanks such as `{lead_drop}`. `scripts/build_report.py` fills every blank from the files in `outputs/`, the same files the website reads. `make all` now builds the report too. Three tests (`tests/test_report.py`):
+- the main finding matches the hand calculation;
+- the templates contain no numbers of their own, only years, the edition month, household names (H1–H8) and the "10 groups";
+- the saved report is current.
+
+**Review before showing it (spec 12.3, report only).**
+1. *OpenFisca-Japan maintainer:* every number is generated and tested; nothing is typed by hand.
+2. *Tax accountant:* the main finding and the H1–H8 table are the same numbers as the hand-checked site. The H4 wall uses the H-13 decision (the main earner deducts the spouse's National Pension), which is listed among the approximations.
+3. *Ruling-party staffer:* the government plans are described in their own documents' terms, and the reason they can't be calculated is the government's own ("set later by Cabinet order"). The main finding is about today's rules, not a criticism of any plan.
+4. *Opposition staffer:* no wording favours the government plans; the report says they can't be calculated yet.
+5. *Economics journalist:* the main finding is one sentence with a concrete number and is true. It may not be new to readers who already know the "¥1.3m wall"; the exact cost (¥258,226, and ¥1,640,000 to recover) is the new part. Other possible leads are listed for the human (H-20).
+6. *Public-finance economist:* all-household numbers are marked "(Approximation)", the calibration gaps are stated (households 2.8% fewer, income tax 12.6% lower, resident tax 3.6% lower), and so are the static assumption and the one-municipality limit. Daiwa's own estimate is shown next to ours, with the reason the two differ.
+- One wording change from the review: "the wall remains even under Daiwa's plan" became a plain statement of the Daiwa numbers at the same point, so it doesn't read as a judgement.
+
+113 tests pass. The report is not published yet: it waits for the Milestone 9 checkpoint (H-20).

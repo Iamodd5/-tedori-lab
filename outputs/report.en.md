@@ -1,0 +1,92 @@
+# How would the tax plans change take-home pay? — Tedori Lab report (November 2026 edition)
+
+## The main finding
+
+**Under 2026 rules, if a part-time spouse's pay goes from ¥1,290,000 to ¥1,300,000 a year, the household takes home ¥258,226 less a year.** To get back to the same take-home pay, the spouse has to earn ¥1,640,000 (example household H4: one partner is an employee on a salary of ¥5,000,000 a year, the other works part-time).
+
+Calculated with the one plan that can be calculated now, the Daiwa Institute plan (adjusted to 2026 tax rules), take-home pay at the same point falls by ¥217,926 a year and gets back to the same level at ¥1,600,000.
+
+## About this report
+
+The government and others have put forward plans to lower the tax and social insurance that working people pay. One idea is a "refundable tax credit" (給付付き税額控除): it cuts your income tax, and if the cut is bigger than the tax you owe, you get the rest in cash. Tedori Lab works out, with the same households, data and method, how 4 of these plans would change take-home pay (what is left after tax and insurance) for example households and for every household in Japan. Each plan is compared with "2026 rules": the rules actually in force in 2026, before any of these plans. We assume nobody changes how much they work.
+
+Every number in this report is produced automatically from the same output files as the website. This report does not support any plan, party or politician.
+
+## The 4 plans compared
+
+- **Government plan (full version, from FY2029)**: From fiscal 2029, a yearly cash payment to people who work. The amounts haven't been published.
+- **Rengo (trade union confederation) plan**: Takes half of lower-paid employees' insurance payments off their income tax (any extra paid in cash), and gives people on low incomes cash for consumption tax. The amounts for the second part haven't been published.
+- **Daiwa Institute plan (adjusted to 2026 tax rules)**: Replaces the income tax basic deduction with a fixed tax credit. Any part of the credit bigger than your income tax is paid in cash.
+- **Government plan (FY2027–28 stopgap: 1% tax on food + payment)**: In fiscal 2027–28, consumption tax on food falls from 8% to 1%, plus a payment to people who work. The amounts haven't been published.
+
+**Right now only the Daiwa Institute plan (adjusted to 2026 tax rules) can be calculated.** The other 3 plans can't be calculated yet, for these reasons:
+
+- Government plan (full version, from FY2029): the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)
+- Rengo (trade union confederation) plan: Rengo hasn't published the amounts for its consumption tax refund
+- Government plan (FY2027–28 stopgap: 1% tax on food + payment): the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order); we don't yet have food spending figures for the example households H1–H8
+
+## Example households: Daiwa Institute plan (adjusted to 2026 tax rules)
+
+| Household | Who they are | Take-home pay under 2026 rules (yen a year) | Change under the plan (yen a year) |
+|---|---|---|---|
+| H1 | Single part-time employee (¥1.25m a year) | 1,061,652 | +35,700 |
+| H2 | University student with a part-time job, parents' dependant | 1,000,000 | ±0 |
+| H3 | Dual-income employee couple, two children (2 and 8) | 6,247,908 | −27,500 |
+| H4 | Single-earner employee, spouse working part-time | 4,961,316 | −23,900 |
+| H5 | Single parent employee, one child (10) | 2,208,336 | +3,700 |
+| H6 | Pensioner couple, both 72 | 2,683,201 | ±0 |
+| H7 | Self-employed (freelancer), single | 2,170,281 | −25,200 |
+| H8 | High-income dual-earner couple, one child (5) | 12,008,968 | −157,300 |
+
+Of the 8 example households, 2 take home more, 4 take home less and 2 see no change. The largest gain is for H1 (+35,700 yen a year) and the largest loss is for H8 (−157,300 yen a year).
+
+Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published.
+
+## Every household in Japan: Daiwa Institute plan (adjusted to 2026 tax rules) (estimate)
+
+We lined up every household from lowest to highest yearly income and cut the line into ten groups of the same size. (Approximation) All of the following are rough estimates.
+
+- (Approximation) In groups 1–4, take-home pay goes up on average (most in group 1: ¥9,209 a year).
+- (Approximation) In groups 5–10, take-home pay goes down on average (most in group 10: ¥85,759 a year).
+- (Approximation) Overall, income tax rises by ¥1.53 trillion a year and ¥0.58 trillion is paid out in cash (the part of the credit bigger than income tax), so the government takes in ¥0.95 trillion more a year.
+- Daiwa's own estimate is about ¥0.7 trillion more income tax and about ¥0.7 trillion paid in cash: about zero overall (fiscally neutral). Daiwa used 2025 tax rules and a ¥56,500 credit; this site uses 2026 rules and ¥52,000, so the two can't be compared directly.
+
+## Limits
+
+- We assume nobody changes how much they work. Some people would change their hours when the rules change; that is not included.
+- The example households live in Shinjuku, Tokyo. National Health Insurance and some other amounts differ between cities.
+- The all-household numbers are rough estimates from made-up households matched to the averages in a 2024 government survey. Compared with official figures, the household count is 2.8% lower, total income tax 12.6% lower and total resident tax 3.6% lower.
+- The plans that can't be calculated yet will be calculated once the amounts they need are published.
+
+## All approximations
+
+Behind every number:
+
+- (Approximation) Each child's age stays the same for the whole year.
+- (Approximation) In a couple, the partner with the higher income claims the deductions for the spouse and children, and pays and deducts the other partner's National Pension contributions. By law either partner may do this.
+- (Approximation) Resident tax deduction amounts (for a spouse, dependants and so on) are taken from Shinjuku's guide for fiscal 2025, because the guide for fiscal 2027, which covers 2026 income, hasn't been published yet.
+- (Approximation) For resident tax, we round taxable income down to the nearest ¥1,000 and the tax down to the nearest ¥100. This is the common practice, but we haven't yet checked it against the text of the law (the difference is under ¥1,100 at most).
+- (Approximation) Rates for health insurance, the child and childcare support levy and employee pension change in March or April 2026, and employment insurance in April. We use the new rates for all 12 months of 2026. National Pension uses the fiscal 2026 monthly amount for every month. National Health Insurance uses Shinjuku's fiscal 2026 rates, because the fiscal 2027 rates (which would apply to 2026 income) aren't published yet. Pay is the same every month, with no bonus.
+
+Daiwa Institute plan (adjusted to 2026 tax rules):
+
+- (Approximation) Income tax has a 2.1% reconstruction surtax added on top. Daiwa doesn't say whether the credit is subtracted before or after that surtax. We subtract the credit first and then add the 2.1%, which is how existing tax credits work.
+- (Approximation) When the credit is bigger than your income tax, the cash paid out is capped at what you paid for health insurance (including long-term care insurance) and pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out.
+
+All-household numbers:
+
+- (Approximation) The survey doesn't publish data on individual households, only averages for each type of household in each ¥500,000 income range. So for each type-and-income group we make up two or three households that match the group's averages. Differences between households in the same group are lost.
+- (Approximation) Each group is split into households living on pensions and households living on work, in the same ratio as pensions to total income in that group. For example, if 60% of the group's income is pensions, 60% of its households are treated as living on pensions. Households with both a pension and a wage, such as older people who still work, don't appear.
+- (Approximation) Working couples are split into two-earner and one-earner households, based on how many people work in each household according to the survey.
+- (Approximation) Everyone living on a pension is treated as age 70. The separate health insurance system that people aged 75 and over join (後期高齢者医療制度) is not included.
+- (Approximation) All children under 18 are treated as age 10. Working adults get an age based on the survey's average for their group (between 20 and 64).
+- (Approximation) Children aged 18 and over are treated as age 22 and share the survey's "other family members' earnings" equally.
+- (Approximation) Everyone with a wage is treated as working 20+ hours a week at a company with more than 50 employees, so they join the company's health insurance and pension once they earn ¥88,000 a month.
+- (Approximation) Only wages, business income and pensions are counted. Rent, interest, dividends and money from family are left out. Business income is treated as profit after costs.
+- (Approximation) Food spending is the average for households of the same kind (one person, or two or more people) with the same income, from a survey taken in October–November 2024. It isn't adjusted for the time of year.
+- (Approximation) If a household supports a parent or relative aged 70 or over, we use the normal tax break for dependants, not the larger one for older dependants.
+- (Approximation) Household numbers and incomes are from 2024 and haven't been updated to 2026.
+
+## Method and sources
+
+The method, the checks and every source are on the website's How it works, Checks and Sources & code pages. All the code is public, and anyone can rebuild every number, including this report, with `make all`.
