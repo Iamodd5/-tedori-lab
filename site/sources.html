@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>出典とコード / Sources and code — Tedori Lab</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="common.js"></script>
+</head>
+<body>
+<h1><span lang="ja">出典とコード</span><span lang="en">Sources and code</span></h1>
+<p><span lang="ja">コード：</span><span lang="en">Code: </span><a href="https://github.com/Iamodd5/-tedori-lab">github.com/Iamodd5/-tedori-lab</a></p>
+<p lang="ja">すべての数字は、リポジトリを取得して次のコマンドで作り直せます（Python 3.11 が必要）。</p>
+<p lang="en">Every number can be rebuilt from a fresh copy of the repository with these commands (needs Python 3.11):</p>
+<pre><code>uv venv --python 3.11 .venv && VIRTUAL_ENV=.venv uv pip install -r requirements.txt
+make all</code></pre>
+<p lang="ja">使った資料はすべて <code>sources/</code> に保存し、指紋（SHA-256）で改変がないことを確かめられます。以下の一覧は英語です。</p>
+<p lang="en">Every source document is saved in <code>sources/</code> with a SHA-256 fingerprint so anyone can check it has not changed.</p>
+<div class="md" id="doc"></div>
+<script>
+setupPage();
+renderDoc(document.getElementById("doc"), "../sources/SOURCES.md");
+</script>
+</body>
+</html>

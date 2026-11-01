@@ -223,3 +223,22 @@ The page note explains that 2026 law already reaches the 1.78m threshold through
 - the refund cap counts only health insurance and pension (Q18).
 
 Daiwa's file now has no unresolved items.
+
+## Milestone 6 — 2026-11-01: website v1 (built; not yet published)
+
+**What the site is.** Five pages in `site/`, Japanese by default with an English button. The choice is remembered on the device.
+1. **Home**: one finding with its number, the wall map, and a household picker. The finding: when H4's part-time spouse earns 1,300,000 instead of 1,290,000, the household loses 280,126 yen a year, and gets back to the earlier level only at 1,650,000. The page works these numbers out from `outputs/wall_map.json` each time it opens, so they can never disagree with the data.
+2. **Compare designs**: for the chosen household, a bar chart and a table with every design side by side. A design with no number yet says why.
+3. **Methods**: shows `docs/METHODS.ja.md` (Japanese, new) or `docs/METHODS.md` (English).
+4. **Validation**: shows `docs/VALIDATION.md`, with a short Japanese introduction.
+5. **Sources and code**: shows `sources/SOURCES.md`, the repository link, and the commands that rebuild every number.
+
+**How it is built.**
+- Plain HTML and JavaScript; no build step.
+- Charts use Chart.js. The documents are turned into web pages in the browser with `marked`. Both are loaded from public CDNs at exact versions.
+- No tracking.
+- Checked at phone width (375px), with no sideways scrolling, and in both languages with no errors.
+
+**Known gaps.**
+- The Validation and Sources tables are in English only.
+- Each household's notes and the list of approximations come from the data files, which are written in English.

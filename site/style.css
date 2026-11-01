@@ -1,0 +1,31 @@
+:root { --fg: #1a1a1a; --muted: #555; --bg: #fff; --line: #ddd; --accent: #0b5cad; }
+* { box-sizing: border-box; }
+body { font-family: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; margin: 0 auto; max-width: 920px;
+       padding: 0 16px 48px; color: var(--fg); background: var(--bg); line-height: 1.6; }
+html[data-lang="ja"] [lang="en"]:not(html), html[data-lang="en"] [lang="ja"]:not(html) { display: none; }
+header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+header .brand { font-weight: 700; color: var(--fg); text-decoration: none; }
+header nav { display: flex; flex-wrap: wrap; gap: 4px 14px; flex: 1; }
+header nav a { color: var(--accent); text-decoration: none; font-size: .95rem; }
+header nav a[aria-current="page"] { color: var(--fg); font-weight: 600; }
+header button { font: inherit; font-size: .85rem; padding: 4px 10px; border: 1px solid var(--line); background: #f6f6f6; border-radius: 4px; cursor: pointer; }
+h1 { font-size: 1.4rem; margin: 20px 0 8px; } h2 { font-size: 1.1rem; margin-top: 28px; }
+.lead { font-size: 1.1rem; background: #f3f6fa; border-left: 4px solid var(--accent); padding: 10px 14px; }
+.note { font-size: .85rem; color: var(--muted); }
+.warn { font-size: .85rem; background: #fff6dd; border-left: 4px solid #d9a400; padding: 6px 10px; margin: 6px 0; }
+.info { font-size: .85rem; background: #eef3f8; border-left: 4px solid #5b7a99; padding: 6px 10px; margin: 6px 0; }
+ul.small { font-size: .8rem; color: #444; padding-left: 1.2rem; }
+select { max-width: 100%; font: inherit; }
+table { border-collapse: collapse; width: 100%; font-size: .85rem; }
+th, td { border-bottom: 1px solid var(--line); padding: 4px 6px; text-align: right; vertical-align: top; }
+th:first-child, td:first-child { text-align: left; }
+td.reason { text-align: left; color: var(--muted); }
+.scroll { overflow-x: auto; }
+.chart { position: relative; height: 320px; }
+.md table { display: block; overflow-x: auto; }
+.md td, .md th { text-align: left; }
+.md code { font-size: .85em; background: #f3f3f3; padding: 0 3px; }
+footer { margin-top: 40px; font-size: .8rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; }
+pre { overflow-x: auto; background: #f6f6f6; padding: 8px; font-size: .8rem; }
+.md, .md code { overflow-wrap: anywhere; }
+@media (max-width: 600px) { header nav { order: 3; flex-basis: 100%; } }

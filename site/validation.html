@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>検証 / Validation — Tedori Lab</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="common.js"></script>
+</head>
+<body>
+<h1><span lang="ja">検証</span><span lang="en">Validation</span></h1>
+<p lang="ja">計算が正しいかどうかを、(1) 国税庁などの公式の計算例、(2) 手計算（<code>tests/hand_calcs/</code>）、(3) OpenFisca-Japan、(4) 政府・大和総研が公表した数字と比べて確かめています。合わない点や、レビューで見つかって直した誤りも、すべてここに残しています。以下の詳しい表は英語です。</p>
+<p lang="en">We check the calculations against (1) official worked examples such as the National Tax Agency's, (2) documented hand calculations (<code>tests/hand_calcs/</code>), (3) OpenFisca-Japan, and (4) figures published by the government and Daiwa. Mismatches, and errors found and fixed in review, are all kept here.</p>
+<div class="md" id="doc"></div>
+<script>
+setupPage();
+renderDoc(document.getElementById("doc"), "../docs/VALIDATION.md");
+</script>
+</body>
+</html>

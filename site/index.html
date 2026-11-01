@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>手取りラボ / Tedori Lab</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="common.js"></script>
+</head>
+<body>
+<h1><span lang="ja">どの案でも、あなたの世帯で、同じ方法で。</span><span lang="en">Every proposal, your household, one method.</span></h1>
+<p class="lead" id="lead"></p>
+<p class="note"><span lang="ja">新宿区の世帯、2026年の制度、行動の変化なし（静的試算）。</span><span lang="en">A Shinjuku household under 2026 rules; static estimate with no change in behaviour.</span></p>
+
+<h2><span lang="ja">年収の壁マップ</span><span lang="en">Wall map</span></h2>
+<label><span lang="ja">世帯を選ぶ：</span><span lang="en">Pick a household: </span><select id="hh"></select></label>
+<div id="notdrawn" class="info"></div>
+<ul class="small" id="hhnotes"></ul>
+
+<h3><span lang="ja">手取り（円／年）</span><span lang="en">Take-home pay (yen per year)</span></h3>
+<div class="chart"><canvas id="disp" role="img" aria-label="Take-home pay by gross income: 2026 baseline and each calculated design"></canvas></div>
+
+<h3><span lang="ja">実効限界負担率</span><span lang="en">Effective marginal rate</span></h3>
+<p class="note"><span lang="ja">次の1万円のうち、税・社会保険料・給付の減少で失う割合。100%を超えると、多く稼いでも手取りが減る「壁」です。縦軸は−50%〜300%で切り詰め、300%を超える点は▲で示し、実際の値は点に触れると表示します。</span>
+<span lang="en">Share of the next 10,000 yen lost to tax, social insurance and benefit withdrawal. Above 100% is a "wall": earning more leaves less. The axis is cut at −50% and 300%; points beyond 300% are marked ▲ and show their true value on hover or tap.</span></p>
+<div class="chart"><canvas id="emr" role="img" aria-label="Effective marginal rate by gross income: 2026 baseline and each calculated design"></canvas></div>
+
+<h2><span lang="ja">すべての数値に含まれる近似（2026年制度）</span><span lang="en">Approximations in every number (2026 baseline)</span></h2>
+<ul class="small" id="approx"></ul>
+
+<script>
+// Okabe-Ito palette: colour-blind safe, assigned in file order, carries no meaning
+const COLORS = { baseline: "#000000", government_final: "#0072B2", rengo: "#CC79A7", daiwa: "#E69F00", food_tax_cut: "#009E73" };
+let walls, charts = [];
+
+function lead() {
+  // H4: the part-time spouse's 1.3m wall (tests/hand_calcs/wall_H4.md), read from outputs/wall_map.json
+  const pts = walls.households.H4.designs.baseline, at = x => pts.find(p => p[0] === x)[1];
+  const before = at(1290000), drop = before - at(1300000);
+  const back = pts.find(p => p[0] > 1300000 && p[1] >= before)[0];
+  const man = x => (x / 10000).toLocaleString("ja-JP");
+  document.getElementById("lead").textContent = lang === "ja"
+    ? `2026年の制度では、パートで働く配偶者（世帯H4）の年収が129万円から130万円に増えると、世帯の手取りは年${yen(drop)}円減ります。手取りが元の水準に戻るのは年収${man(back)}万円のときです。`
+    : `Under 2026 rules, when a part-time spouse (household H4) earns 1,300,000 yen instead of 1,290,000, the household's take-home pay falls by ${yen(drop)} yen a year. It gets back to the earlier level only at ${yen(back)} yen.`;
+}
+
+function draw() {
+  const L = walls.labels, sel = document.getElementById("hh"), h = walls.households[sel.value];
+  [...sel.options].forEach(o => { const x = walls.households[o.value]; o.textContent = `${o.value} ${lang === "ja" ? x.name_ja : x.name_en}`; });
+  document.getElementById("notdrawn").textContent = (lang === "ja" ? "グラフに描いていない案：" : "Designs not drawn: ") +
+    Object.entries(walls.not_drawn || {}).map(([d, why]) => `${t(L[d])} — ${why.map(t).join("; ")}`).join(" ｜ ");
+  const ul = document.getElementById("hhnotes"); ul.innerHTML = ""; h.assumptions.forEach(a => li(ul, a));
+  charts.forEach(c => c.destroy());
+  const ds = (col, clamp) => Object.entries(h.designs).map(([d, pts]) => {
+    const data = pts.filter(p => p[col] != null).map(p => {
+      const v = clamp ? p[col] * 100 : p[col];
+      return { x: p[0], y: clamp ? Math.max(-50, Math.min(300, v)) : v, raw: v };
+    });
+    return { label: t(L[d]), borderColor: COLORS[d], backgroundColor: COLORS[d], borderWidth: d === "baseline" ? 2 : 1.5, data,
+      pointStyle: "triangle", pointRadius: data.map(p => p.raw !== p.y ? 4 : 0) };
+  });
+  const opts = (yTitle, unit) => ({ animation: false, maintainAspectRatio: false, parsing: false,
+    interaction: { mode: "nearest", axis: "x", intersect: false },
+    plugins: { tooltip: { callbacks: { title: c => `${yen(c[0].raw.x)}${lang === "ja" ? "円" : " yen"}`,
+                                       label: c => `${c.dataset.label}: ${yen(c.raw.raw)}${unit}` } } },
+    scales: { x: { type: "linear", title: { display: true, text: lang === "ja" ? "額面の収入（円）" : "Gross income (yen)" } },
+              y: { title: { display: true, text: yTitle } } } });
+  charts = [new Chart(disp, { type: "line", data: { datasets: ds(1, false) }, options: opts(lang === "ja" ? "円" : "yen", "") }),
+            new Chart(emr, { type: "line", data: { datasets: ds(2, true) }, options: opts("%", "%") })];
+  lead();
+}
+
+setupPage(() => walls && draw());
+loadJSON("../outputs/wall_map.json").then(w => {
+  walls = w;
+  const sel = document.getElementById("hh");
+  for (const id of Object.keys(w.households)) sel.add(new Option(id, id));
+  sel.value = "H4";
+  w.baseline_approximations.forEach(a => li(document.getElementById("approx"), a));
+  sel.onchange = draw; draw();
+});
+</script>
+</body>
+</html>
