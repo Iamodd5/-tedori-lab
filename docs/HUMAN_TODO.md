@@ -17,3 +17,4 @@
 | H-13 | 5 | DECISION | Who deducts a spouse's national pension when they lose dependant status (Q26) | open | not urgent |
 | H-14 | 5 | DECISION | Keep or redefine H1 "near the 1.3m wall" (Q21) | open | not urgent |
 | H-15 | 6 | ACTION | Create an empty GitHub repository for the site (nothing is pushed until the human approves publishing) | done | 2026-11-01: "H-15 done", https://github.com/Iamodd5/-tedori-lab (nothing pushed yet) |
+| H-16 | 6 | DECISION | Before publishing: (1) name shown on commits, (2) whether third-party documents (Daiwa PDF) go into the public repository, (3) approve adding the AGPL-3.0 license text from gnu.org, (4) approve the push and GitHub Pages | open | |
