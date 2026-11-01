@@ -19,7 +19,7 @@ def test_grid_point_at_reference_income_matches_household():
 def test_daiwa_grid_adds_change_to_baseline():
     hh = h.load("H1")
     base = w.grid(hh, "baseline", top=1_250_000)[-1]["disposable"]
-    assert w.grid(hh, "daiwa", top=1_250_000)[-1]["disposable"] == base + 40_200   # tests/hand_calcs/daiwa.md
+    assert w.grid(hh, "daiwa", top=1_250_000)[-1]["disposable"] == base + 35_700   # tests/hand_calcs/daiwa.md (revision H-12: B)
 
 
 def test_two_income_households_use_the_chosen_member():

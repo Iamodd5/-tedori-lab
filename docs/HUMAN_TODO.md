@@ -13,6 +13,6 @@
 | H-9 | 2→3 | DECISION | Keep the standalone baseline engine (OpenFisca-Japan as cross-check), or rebuild it as an OpenFisca-Japan extension? (docs/COVERAGE.md) | done | 2026-10-31: "H-9: A". Keep the standalone engine; OpenFisca-Japan stays a cross-check and each corrected rule is a candidate upstream fix. |
 | H-10 | 3 | DECISION | Daiwa on 2026 rules: model literally, or hold back (OPEN_QUESTIONS Q19) | done | 2026-11-01: "H-10: A". Model literally on 2026 rules; show a visible note wherever Daiwa numbers appear. |
 | H-11 | 4 | DECISION | Wall map for two-income households (H3, H4, H6, H8): whose income moves along the grid? | done | 2026-11-01: "H-11: D". H4 spouse's salary; H3 and H8 head's salary; H6 head's pension (`wall_map` in each household file). |
-| H-12 | 5 | REVIEW + DECISION | Milestone 5 CHECKPOINT: read the review table in docs/LOG.md; decide how to read Daiwa's credit (Q29); approve or reject the Daiwa approximations Q11 and Q18 | open | |
+| H-12 | 5 | REVIEW + DECISION | Milestone 5 CHECKPOINT: read the review table in docs/LOG.md; decide how to read Daiwa's credit (Q29); approve or reject the Daiwa approximations Q11 and Q18 | done | 2026-11-01: "H-12 ok, B". Milestone 5 checkpoint passed. Daiwa credit from Daiwa's formula on 2026 rules (52,000); Q11 and Q18 approximations approved (no objection given). |
 | H-13 | 5 | DECISION | Who deducts a spouse's national pension when they lose dependant status (Q26) | open | not urgent |
 | H-14 | 5 | DECISION | Keep or redefine H1 "near the 1.3m wall" (Q21) | open | not urgent |

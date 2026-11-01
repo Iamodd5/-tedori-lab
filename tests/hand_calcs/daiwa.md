@@ -28,3 +28,19 @@ Social insurance and incomes below are the baseline figures from H1.md, H3.md, H
 - 3,000,000 − 0 − 554,019 = 2,445,981 → 2,445,000 × 10% − 97,500 = 147,000. 147,000 − 56,500 = 90,500
   × 1.021 = 92,400.5 → **92,400** (baseline 71,700, change +20,700).
 - Disposable income change **−20,700**.
+
+## Revision 2026-11-01: credit from Daiwa's formula on 2026 rules (HUMAN_TODO H-12: B)
+
+Daiwa defines the credit as what lifts the tax-free threshold (課税最低限) to the target (p.5 図表4 注1;
+p.6 "課税最低限まで不足する分を税額控除とする"): credit = (target − employment-income minimum − basic deduction) × 5%.
+That equals the employment income at the target salary × the lowest rate.
+- 2025 rules (minimum 650,000): (1,780,000 − 650,000) × 5% = **56,500** = Daiwa's published figure (p.1). ✔
+- 2026 rules (minimum 740,000): (1,780,000 − 740,000) × 5% = **52,000** ← used from now on.
+
+Recalculated with 52,000 (everything else as above; Q11 and Q18 approximations approved in H-12):
+
+- **H1:** 16,300 − 52,000 < 0 → tax 0; unused 35,700 ≤ cap 175,656 → refund **35,700**. Change **+35,700**.
+- **H3 head:** 151,500 − 52,000 = 99,500 × 1.021 = 101,589.5 → **101,500** (baseline 74,000, +27,500).
+  **Spouse:** 78,100 − 52,000 = 26,100 × 1.021 = 26,648.1 → **26,600** (baseline 26,600, 0).
+  Change **−27,500**.
+- **H7:** 147,000 − 52,000 = 95,000 × 1.021 = 96,995 → **96,900** (baseline 71,700). Change **−25,200**.

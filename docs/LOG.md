@@ -206,3 +206,20 @@ Two independent reviewers read the whole project. Each took three of the six rol
 **A lead that is true and checked (for later, not yet published).** Under 2026 rules, a part-time spouse in Shinjuku (H4) keeps about 280,000 yen less by earning 1,300,000 instead of 1,290,000. Their take-home pay does not get back to the 1,290,000 level until they earn 1,650,000. The government's own outline puts that recovery point at about 1.6 million. No design can be compared on this yet, because the government's amounts are not published.
 
 **Results.** 88 tests pass. None of the eight households changed at their reference incomes; the fixes change only the wall maps.
+
+### Milestone 5 checkpoint passed — 2026-11-01
+
+**Decision recorded.** H-12: B.
+
+**How Daiwa's credit is worked out now.** Daiwa did not pick 56,500 yen out of the air. It chose the credit so that nobody earning up to 1.78 million pays income tax. Without a basic deduction, a 1.78m salary leaves 1.78m minus the employment-income minimum as taxable income, and 5% of that is the credit.
+- 2025 rules: (1,780,000 − 650,000) × 5% = 56,500. That is Daiwa's own number, and our formula reproduces it exactly.
+- 2026 rules: the minimum rose to 740,000, so the same formula gives (1,780,000 − 740,000) × 5% = **52,000**.
+- New Daiwa results: H1 +35,700; H3 −27,500; H7 −25,200; H8 −157,300 a year.
+
+The page note explains that 2026 law already reaches the 1.78m threshold through a bigger basic deduction. So on 2026 rules, Daiwa's plan mainly swaps that deduction for a 52,000-yen credit plus a refund linked to social insurance.
+
+**Approximations approved.** The human also approved two choices Daiwa leaves open, and both stay labelled wherever Daiwa numbers appear:
+- the credit is taken off before the 2.1% reconstruction surtax (Q11);
+- the refund cap counts only health insurance and pension (Q18).
+
+Daiwa's file now has no unresolved items.

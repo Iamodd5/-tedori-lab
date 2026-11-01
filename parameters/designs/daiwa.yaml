@@ -4,9 +4,9 @@
 # Which variant(s) to show is a human decision (OPEN_QUESTIONS Q10); the others are listed under `variants`.
 name_ja: 社会保険料還付付き税額控除（大和総研案）
 name_en: Social-insurance-refundable tax credit (Daiwa Institute of Research proposal)
-label: {ja: 大和総研案（2025年版を2026年制度に適用）, en: "Daiwa (2025 design on 2026 rules)"}
+label: {ja: 大和総研案（2026年制度で再計算）, en: "Daiwa (recomputed on 2026 rules)"}
 start_year: null  # the report gives no start date; modelled on the 2026 baseline
-status: unresolved
+status: resolved
 
 source:
   daiwa:
@@ -24,10 +24,14 @@ parameters:
     value: 0  # basic deduction abolished for income tax (基礎控除全額を税額控除化)
     status: resolved
     cite: {source: daiwa, page: 5, section: "図表4"}
-  tax_credit_amount:
-    value: 56500
+  target_threshold:  # 課税最低限 (年収の壁) the credit is sized to reach
+    value: 1780000
     status: resolved
     cite: {source: daiwa, page: 1, section: "要約"}
+  tax_credit_rule:  # recomputed on 2026 rules (HUMAN_TODO H-12: B): (1,780,000 − 740,000) × 5% = 52,000
+    value: "credit = (target threshold − employment-income minimum − basic deduction) × lowest income-tax rate"
+    status: resolved
+    cite: {source: daiwa, page: 5, section: "図表4 注1; p.6 課税最低限まで不足する分を税額控除とする"}
   credit_phase_out:
     value: none  # uniform credit; the report notes a phase-out could be added (p.6 note 13) but does not model one
     status: resolved
@@ -52,10 +56,12 @@ parameters:
     value: false
     status: resolved
     cite: {source: daiwa, page: 4, section: "図表3"}
-  reconstruction_surtax_interaction:
-    value: null  # report ignores the 2.1% surtax "for simplicity" (p.6 note 11); order of credit vs surtax not stated
-    status: unresolved
-    question: Q11
+  reconstruction_surtax_interaction:  # report ignores the surtax "for simplicity" (p.6 note 11); order not stated
+    value: "credit taken off before the 2.1% surtax, as existing tax credits are"
+    status: resolved
+    approximation: true
+    explanation: "Daiwa does not state the order; approved by the human 2026-11-01 (HUMAN_TODO H-12)"
+    cite: {source: daiwa, page: 6, section: "脚注11"}
 
 variants:  # from Figure 4 (p.5); not modelled unless the human chooses them (Q10)
   - {threshold: 1780000, basic_deduction: 580000, tax_credit: 27500}
@@ -65,6 +71,8 @@ variants:  # from Figure 4 (p.5); not modelled unless the human chooses them (Q1
   # each with and without the social-insurance refund (8 cases)
 
 published_estimates:  # for cross-checking only (spec Section 6), never used as inputs
+  tax_credit_under_2025_rules: 56500   # = (1,780,000 − 650,000) × 5%; tests check our formula reproduces it
+  cite_credit: {source: daiwa, page: 1}
   headline_variant_with_refund:
     income_tax_increase_trillion_yen: 0.7
     refund_payments_trillion_yen: 0.7
@@ -85,8 +93,8 @@ approximations:
 
 # Shown wherever a Daiwa number appears (HUMAN_TODO H-10: A, OPEN_QUESTIONS Q19).
 site_note:
-  ja: 大和総研案は2025年の税制（基礎控除58万円）を前提に設計されています。本ツールは同案の数値をそのまま2026年の税制（基礎控除は所得489万円以下で104万円）に適用しているため、大和総研の公表試算と異なります。
-  en: Daiwa designed this for 2025 tax rules (basic deduction 580,000 yen). This tool applies Daiwa's numbers unchanged to 2026 rules (basic deduction 1,040,000 yen up to income 4.89m), so results differ from Daiwa's published estimates.
+  ja: 大和総研案は2025年の税制を前提に、課税最低限178万円となる税額控除額（5.65万円）を示しています。本ツールは同じ算式を2026年の税制（給与所得控除の最低保障額74万円）に当てはめ、税額控除を5.2万円として計算しています。2026年の税制では基礎控除が所得489万円以下で104万円に引き上げられており、課税最低限はすでに178万円です。このため結果は大和総研の公表試算と異なります。
+  en: Daiwa sized its credit (56,500 yen) to give a tax-free threshold of 1.78m under 2025 rules. This tool applies the same formula to 2026 rules (employment-income minimum 740,000), giving a 52,000-yen credit. Under 2026 rules the basic deduction is already 1,040,000 up to income 4.89m and the threshold is already 1.78m, so results differ from Daiwa's published estimates.
 
 notes: >
   The report was written against 2025 tax rules (threshold 1.6m in 2025). Applying it to the 2026 baseline

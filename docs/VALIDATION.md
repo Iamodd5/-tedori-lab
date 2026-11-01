@@ -89,3 +89,14 @@ A test written first expected a wall at 1,056,000 for H1. It was wrong: H1 is si
 The H4 wall test's expected value was changed from 29.1926 to 29.0126. That was done by correcting the hand calculation first, with the source for the change, and watching the test fail before the parameter was fixed; it is listed here so the change is visible (CLAUDE.md rule 5).
 
 A snapshot test (spec 12.1) now fails if any household × design result changes without `make outputs` being rerun.
+
+## 9. Daiwa after H-12: B (credit from Daiwa's formula, 52,000)
+
+| Check | Ours | Published / hand calc | Note |
+|---|---|---|---|
+| Formula on 2025 rules (minimum 650,000) | 56,500 | 56,500 (Daiwa p.1) | our formula reproduces Daiwa's number exactly |
+| Formula on 2026 rules | 52,000 | (1,780,000 − 740,000) × 5% | used for all results |
+| H1, H3, H7 | +35,700 / −27,500 / −25,200 | `tests/hand_calcs/daiwa.md` (revision) | match to the yen |
+| Single employee, salary 5,000,000 | −45,300 | −13,000 (Daiwa p.7) | most of the gap: under 2026 rules this worker loses a 1,040,000 basic deduction, against 680,000 under the 2025 rules Daiwa used |
+
+The §5 rows above (56,500 credit) are kept as history; they are superseded by this section.

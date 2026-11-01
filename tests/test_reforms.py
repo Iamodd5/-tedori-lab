@@ -8,8 +8,13 @@ HOUSEHOLDS = [f"H{i}" for i in range(1, 9)]
 DESIGNS = ["government_final", "rengo", "daiwa", "food_tax_cut"]
 
 
-# --- Daiwa headline variant (tests/hand_calcs/daiwa.md)
-@pytest.mark.parametrize("hid, change", [("H1", 40_200), ("H3", -18_300), ("H7", -20_700)])
+# --- Daiwa headline variant, credit from Daiwa's formula on 2026 rules (tests/hand_calcs/daiwa.md, revision H-12: B)
+def test_daiwa_credit_formula():
+    assert r.daiwa_credit() == 52_000
+    assert r.daiwa_credit(employment_income_minimum=650_000) == 56_500   # 2025 rules: Daiwa's published credit (p.1)
+
+
+@pytest.mark.parametrize("hid, change", [("H1", 35_700), ("H3", -27_500), ("H7", -25_200)])
 def test_daiwa_matches_hand_calculation(hid, change):
     res = r.run("daiwa", h.load(hid))
     assert res["disposable_change"] == change
@@ -17,7 +22,7 @@ def test_daiwa_matches_hand_calculation(hid, change):
 
 def test_daiwa_h1_components():
     c = r.run("daiwa", h.load("H1"))["components"]
-    assert c == {"income_tax": 0, "resident_tax": 0, "social_insurance": 0, "credit": 40_200, "consumption_tax": 0}
+    assert c == {"income_tax": 0, "resident_tax": 0, "social_insurance": 0, "credit": 35_700, "consumption_tax": 0}
 
 
 # --- Government payment shape with made-up test values (tests/hand_calcs/credit_shape.md)

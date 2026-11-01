@@ -9,6 +9,7 @@ import pathlib
 
 import yaml
 
+from engine import baseline as b
 from engine import household as h
 
 D = pathlib.Path(__file__).resolve().parents[1] / "parameters" / "designs"
@@ -59,11 +60,21 @@ def food_tax_saving(food_spending, pass_through):
     return round(food_spending * (0.08 - 0.01) / 1.08 * pass_through)
 
 
+def daiwa_credit(employment_income_minimum=None):
+    """(target − employment-income minimum − basic deduction) × lowest rate (Daiwa p.5 図表4 注1), on 2026 rules."""
+    p = design("daiwa")["parameters"]
+    target = p["target_threshold"]["value"]
+    if employment_income_minimum is None:
+        employment_income_minimum = target - b.employment_income(target)  # the target salary is in the minimum band
+    lowest_rate = b.params("income_tax")["rate_schedule"]["bands"][0][1]
+    return round((target - employment_income_minimum - p["income_tax_basic_deduction"]["value"]) * lowest_rate)
+
+
 def _daiwa(hh):
     p = design("daiwa")["parameters"]
     base = h.compute(hh)
     ref = h.compute(hh, basic_deduction_it=lambda ti: p["income_tax_basic_deduction"]["value"],
-                    it_credit=p["tax_credit_amount"]["value"])
+                    it_credit=daiwa_credit())
     refund = 0
     for mid, o in ref["members"].items():
         m = next(x for x in hh["members"] if x["id"] == mid)
