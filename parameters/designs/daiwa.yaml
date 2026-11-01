@@ -4,6 +4,7 @@
 # Which variant(s) to show is a human decision (OPEN_QUESTIONS Q10); the others are listed under `variants`.
 name_ja: 社会保険料還付付き税額控除（大和総研案）
 name_en: Social-insurance-refundable tax credit (Daiwa Institute of Research proposal)
+label: {ja: 大和総研案（2025年版を2026年制度に適用）, en: "Daiwa (2025 design on 2026 rules)"}
 start_year: null  # the report gives no start date; modelled on the 2026 baseline
 status: unresolved
 
@@ -72,6 +73,15 @@ published_estimates:  # for cross-checking only (spec Section 6), never used as 
   household_change_at_5m_salary_yen: -13000  # 年収500万円の者に年1.3万円の増税
   take_home_recovery_salary_yen: 1200000     # vs 1.24m today, for a worker joining social insurance at 1.06m
   cite: {source: daiwa, page: 7}
+
+# How unresolved items are bridged in the calculation; shown with every Daiwa number (CLAUDE.md rule 3).
+approximations:
+  - question: Q11
+    ja: 税額控除は復興特別所得税（2.1%）の前に差し引く（既存の税額控除と同じ扱い）。大和総研は順序を示していない。
+    en: The credit is taken off before the 2.1% reconstruction surtax, as existing tax credits are. Daiwa does not say.
+  - question: Q18
+    ja: 還付の上限に数える保険料は健康保険（介護分を含む）と厚生年金のみ。子ども・子育て支援金と雇用保険は含めない。
+    en: The refund cap counts health insurance (incl. long-term care) and pension only, not the child-support levy or employment insurance.
 
 # Shown wherever a Daiwa number appears (HUMAN_TODO H-10: A, OPEN_QUESTIONS Q19).
 site_note:

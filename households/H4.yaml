@@ -20,5 +20,5 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
   question: Q8
 assumptions:
   - Spouse works under 20 hours a week, so is not in employee insurance and is a health-insurance dependant and category-3 pension member while income stays under 1.3m.
-  - Salary is paid in 12 equal months with no bonus (approximation: true).
+  - "Salary is paid in 12 equal months with no bonus (approximation: true)."
   - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).

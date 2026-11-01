@@ -165,13 +165,13 @@ def basic_deduction_it(total_income):
     return band(b["bands"], total_income, b["above"])
 
 
-def spouse_deduction_it(earner_income, spouse_income):
+def spouse_deduction_it(earner_income, spouse_income, spouse_age=0):
     s = params("income_tax")["spouse_deduction"]
     if earner_income > 10_000_000:
         return 0
     col = band(s["earner_bands"], earner_income)
     if spouse_income <= 620_000:
-        return s["spouse_ordinary"]["bands"][0][1][col]
+        return s["elderly_spouse_ordinary"]["value"][col] if spouse_age >= 70 else s["spouse_ordinary"]["bands"][0][1][col]
     return band(s["spouse_special"]["bands"], spouse_income, [0, 0, 0])[col] if spouse_income <= 1_330_000 else 0
 
 

@@ -21,5 +21,5 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
   question: Q8
 assumptions:
   - Both are full-time employees in 協会けんぽ (Tokyo).
-  - Salary is paid in 12 equal months with no bonus (approximation: true).
+  - "Salary is paid in 12 equal months with no bonus (approximation: true)."
   - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).

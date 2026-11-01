@@ -54,3 +54,9 @@ def test_every_design_runs(design, hid):
 def test_unpublished_designs_are_incomplete():
     for design in ("government_final", "rengo", "food_tax_cut"):
         assert r.run(design, h.load("H1"))["status"] == "incomplete"
+
+
+def test_incomplete_designs_say_why():
+    reasons = {d: [b["en"] for b in r.run(d, h.load("H1"))["blocked_by"]] for d in ("government_final", "rengo", "food_tax_cut")}
+    assert reasons == {"government_final": [r.BLOCKERS["Q9"]["en"]], "rengo": [r.BLOCKERS["Q3"]["en"]],
+                       "food_tax_cut": [r.BLOCKERS["Q9"]["en"], r.BLOCKERS["Q8"]["en"]]}

@@ -86,3 +86,23 @@ def test_resident_tax_relief_band_matches_mic_figure():
 def test_resident_tax_relief_band_h3_head():
     # H3 head with two children (N = 2): line 350,000 x 3 + 420,000 = 1,470,000; income 1,480,000 -> levy 10,000
     assert b.resident_tax(1_480_000, 430_000 + 330_000, 50_000, 2, False) == 10_000 + 5_000
+
+
+# --- Elderly spouse: NTA 年末調整のしかた p.55 (老人控除対象配偶者, earner ≤ 9m) -- tests/hand_calcs/claimant.md
+def test_elderly_spouse_deduction():
+    assert b.spouse_deduction_it(3_000_000, 500_000, spouse_age=72) == 480_000
+    assert b.spouse_deduction_it(3_000_000, 500_000, spouse_age=69) == 380_000
+
+
+# --- The higher-earning partner claims the other (tests/hand_calcs/claimant.md)
+def test_higher_earner_claims_spouse():
+    hh = h.load("H3")
+    hh["members"][0]["salary"] = 1_000_000
+    assert h.compute(hh)["members"]["b"]["income_tax"] == 7_200
+
+
+def test_partner_can_be_dependant_of_employee_spouse():
+    hh = h.load("H3")
+    hh["members"][0]["salary"] = 0
+    a = h.compute(hh)["members"]["a"]
+    assert a["scheme"] == "dependant" and a["national_pension"] == 0 and a["nhi"] == 0

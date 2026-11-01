@@ -10,70 +10,90 @@
   body { font-family: system-ui, sans-serif; margin: 0 auto; max-width: 900px; padding: 16px; color: #1a1a1a; background: #fff; }
   h1 { font-size: 1.3rem; } h2 { font-size: 1.05rem; margin-top: 1.5rem; }
   .note { font-size: .85rem; color: #555; }
-  .warn { font-size: .85rem; background: #fff6dd; border-left: 4px solid #d9a400; padding: 6px 10px; }
+  .warn { font-size: .85rem; background: #fff6dd; border-left: 4px solid #d9a400; padding: 6px 10px; margin: 6px 0; }
+  .info { font-size: .85rem; background: #eef3f8; border-left: 4px solid #5b7a99; padding: 6px 10px; margin: 6px 0; }
+  ul.small { font-size: .8rem; color: #444; padding-left: 1.2rem; }
   table { border-collapse: collapse; width: 100%; font-size: .85rem; }
   th, td { border-bottom: 1px solid #ddd; padding: 4px 6px; text-align: right; }
   th:first-child, td:first-child { text-align: left; }
+  td.reason { text-align: left; color: #555; }
   .chart { position: relative; height: 320px; }
 </style>
 </head>
 <body>
 <h1>年収の壁マップ / Wall map (preview)</h1>
 <label>世帯 / Household: <select id="hh"></select></label>
-<p class="note" id="skipped"></p>
+<div id="notdrawn" class="info"></div>
+<ul class="small" id="hhnotes"></ul>
 
 <h2>手取り / Disposable income (円/yen per year)</h2>
-<div class="chart"><canvas id="disp" role="img" aria-label="Disposable income by gross income, baseline and each design"></canvas></div>
+<div class="chart"><canvas id="disp" role="img" aria-label="Disposable income by gross income, baseline and each calculated design"></canvas></div>
 
 <h2>実効限界負担率 / Effective marginal rate</h2>
-<p class="note">次の1万円のうち税・社会保険料・給付減で失う割合。100%超は「壁」。表示は−50%〜300%で切り詰め。 /
-Share of the next 10,000 yen lost to tax, social insurance and benefit withdrawal. Above 100% is a wall. Axis cut at −50% to 300%.</p>
-<div class="chart"><canvas id="emr" role="img" aria-label="Effective marginal rate by gross income, baseline and each design"></canvas></div>
+<p class="note">次の1万円のうち税・社会保険料・給付減で失う割合。100%超は「壁」。縦軸は−50%〜300%で切り詰め、300%を超える点は▲で示し、実際の値は点に触れると表示。 /
+Share of the next 10,000 yen lost to tax, social insurance and benefit withdrawal. Above 100% is a wall. The axis is cut at −50% and 300%; points beyond 300% are marked ▲ and show their true value on hover or tap.</p>
+<div class="chart"><canvas id="emr" role="img" aria-label="Effective marginal rate by gross income, baseline and each calculated design"></canvas></div>
 
 <h2>基準所得での比較 / Change at the reference income</h2>
 <div style="overflow-x:auto"><table id="cmp"><thead><tr><th>案 / Design</th><th>手取りの変化 / Change</th><th>所得税</th><th>住民税</th><th>社会保険料</th><th>給付・還付</th><th>消費税</th></tr></thead><tbody></tbody></table></div>
 <div id="notes"></div>
 
+<h2>近似 / Approximations in every number (2026 baseline)</h2>
+<ul class="small" id="approx"></ul>
+
 <script>
-const COLORS = { baseline: "#444", daiwa: "#1f77b4", government_final: "#d62728", food_tax_cut: "#2ca02c", rengo: "#9467bd" };
-const NAMES = { baseline: "2026年制度 / 2026 baseline", daiwa: "大和総研案 / Daiwa", government_final: "政府案 / Government",
-                food_tax_cut: "食料品減税 / Food tax cut", rengo: "連合案 / Rengo" };
+// Okabe-Ito palette: colour-blind safe, assigned in file order, carries no meaning
+const COLORS = { baseline: "#000000", government_final: "#0072B2", rengo: "#CC79A7", daiwa: "#E69F00", food_tax_cut: "#009E73" };
 const yen = n => n == null ? "—" : n.toLocaleString("ja-JP");
+const both = o => `${o.ja} / ${o.en}`;
+const li = (ul, t) => { const x = document.createElement("li"); x.textContent = t; ul.append(x); };
 let charts = [];
 
 Promise.all(["../outputs/wall_map.json", "../outputs/household_comparison.json"].map(u => fetch(u).then(r => r.json())))
 .then(([walls, cmp]) => {
-  const sel = document.getElementById("hh");
+  const L = walls.labels, sel = document.getElementById("hh");
   for (const [id, h] of Object.entries(walls.households)) sel.add(new Option(`${id} ${h.name_ja} / ${h.name_en}`, id));
-  const skipped = Object.entries(walls.skipped);
-  if (skipped.length) document.getElementById("skipped").textContent = "未表示 / Not shown yet: " +
-    skipped.map(([k, v]) => `${k} (${v})`).join("; ");
+  document.getElementById("notdrawn").textContent = "グラフに描いていない案 / Designs not drawn: " +
+    Object.entries(walls.not_drawn || {}).map(([d, why]) => `${both(L[d])} — ${why.map(both).join("; ")}`).join(" ｜ ");
+  walls.baseline_approximations.forEach(a => li(document.getElementById("approx"), a));
+
   const draw = () => {
     const h = walls.households[sel.value];
+    const ul = document.getElementById("hhnotes"); ul.innerHTML = "";
+    h.assumptions.forEach(a => li(ul, a));
     charts.forEach(c => c.destroy());
-    const ds = (col, clamp) => Object.entries(h.designs).map(([d, pts]) => ({
-      label: NAMES[d], borderColor: COLORS[d], borderWidth: d === "baseline" ? 2 : 1.5, pointRadius: 0,
-      data: pts.filter(p => p[col] != null).map(p => ({ x: p[0], y: clamp ? Math.max(-50, Math.min(300, p[col] * 100)) : p[col] }))
-    }));
-    const opts = (yTitle) => ({ animation: false, maintainAspectRatio: false, parsing: false,
+    const ds = (col, clamp) => Object.entries(h.designs).map(([d, pts]) => {
+      const data = pts.filter(p => p[col] != null).map(p => {
+        const v = clamp ? p[col] * 100 : p[col];
+        return { x: p[0], y: clamp ? Math.max(-50, Math.min(300, v)) : v, raw: v };
+      });
+      return { label: both(L[d]), borderColor: COLORS[d], backgroundColor: COLORS[d], borderWidth: d === "baseline" ? 2 : 1.5, data,
+        pointStyle: "triangle", pointRadius: data.map(p => p.raw !== p.y ? 4 : 0) };
+    });
+    const opts = (yTitle, unit) => ({ animation: false, maintainAspectRatio: false, parsing: false,
       interaction: { mode: "nearest", axis: "x", intersect: false },
+      plugins: { tooltip: { callbacks: { label: c => `${c.dataset.label}: ${yen(Math.round(c.raw.raw))}${unit}` } } },
       scales: { x: { type: "linear", title: { display: true, text: "額面の収入 / Gross income (円)" } },
                 y: { title: { display: true, text: yTitle } } } });
-    charts = [new Chart(disp, { type: "line", data: { datasets: ds(1, false) }, options: opts("円 / yen") }),
-              new Chart(emr, { type: "line", data: { datasets: ds(2, true) }, options: opts("%") })];
+    charts = [new Chart(disp, { type: "line", data: { datasets: ds(1, false) }, options: opts("円 / yen", "円") }),
+              new Chart(emr, { type: "line", data: { datasets: ds(2, true) }, options: opts("%", "%") })];
+
     const tb = document.querySelector("#cmp tbody"); tb.innerHTML = "";
     const notes = new Set();
     for (const r of cmp.filter(r => r.household === sel.value)) {
       const c = r.components, tr = tb.insertRow();
-      const cells = r.status === "complete"
-        ? [r.disposable_change, c.income_tax, c.resident_tax, c.social_insurance, c.credit, c.consumption_tax].map(yen)
-        : ["パラメータ未確定 / incomplete parameters", "", "", "", "", ""];
-      [NAMES[r.design], ...cells].forEach(t => tr.insertCell().textContent = t);
-      if (r.status === "complete" && r.site_note) notes.add(`${NAMES[r.design]}: ${r.site_note.ja} / ${r.site_note.en}`);
-      r.approximations.forEach(a => notes.add(`近似 / approximation — ${NAMES[r.design]}: ${a}`));
+      tr.insertCell().textContent = both(r.label);
+      if (r.status === "complete") {
+        [r.disposable_change, c.income_tax, c.resident_tax, c.social_insurance, c.credit, c.consumption_tax].forEach(v => tr.insertCell().textContent = yen(v));
+        if (r.site_note) notes.add(`${both(r.label)}: ${r.site_note.ja} / ${r.site_note.en}`);
+        r.approximations.forEach(a => notes.add(`近似 / approximation (${a.question}) — ${both(r.label)}: ${a.ja} / ${a.en}`));
+      } else {
+        const td = tr.insertCell(); td.colSpan = 6; td.className = "reason";
+        td.textContent = "未計算 / not calculated: " + r.blocked_by.map(both).join("; ");
+      }
     }
-    document.getElementById("notes").innerHTML = "";
-    notes.forEach(n => { const p = document.createElement("p"); p.className = "warn"; p.textContent = n; document.getElementById("notes").append(p); });
+    const nd = document.getElementById("notes"); nd.innerHTML = "";
+    notes.forEach(n => { const p = document.createElement("p"); p.className = "warn"; p.textContent = n; nd.append(p); });
   };
   sel.onchange = draw; draw();
 });

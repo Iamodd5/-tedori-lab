@@ -17,5 +17,5 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
 assumptions:
   - The parent is a mother (matters only for a 40,000-yen difference in the resident-tax 調整控除 base).
   - 児童扶養手当 (child-rearing allowance for single parents) is outside the v1 baseline (spec Section 3); OPEN_QUESTIONS Q17.
-  - Salary is paid in 12 equal months with no bonus (approximation: true).
+  - "Salary is paid in 12 equal months with no bonus (approximation: true)."
   - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).

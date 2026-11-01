@@ -19,5 +19,4 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
 assumptions:
   - Both in Shinjuku National Health Insurance.
   - Long-term-care premiums for people 65+ (介護保険 第1号) are not yet modelled (OPEN_QUESTIONS Q15).
-  - Salary is paid in 12 equal months with no bonus (approximation: true).
   - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).

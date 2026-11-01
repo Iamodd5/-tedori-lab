@@ -3,6 +3,8 @@ import csv
 import json
 import pathlib
 
+import yaml
+
 from engine import household as h
 from engine import reforms as r
 from engine import wall_map as w
@@ -11,13 +13,28 @@ OUT = pathlib.Path(__file__).resolve().parents[1] / "outputs"
 HOUSEHOLDS = [f"H{i}" for i in range(1, 9)]
 DESIGNS = ["government_final", "rengo", "daiwa", "food_tax_cut"]
 
+BASELINE = OUT.parent / "parameters" / "baseline_2026"
+
+
+def approximations(node, where):
+    """Every baseline approximation (CLAUDE.md rule 3), so the site can show them next to the numbers."""
+    if isinstance(node, dict):
+        if node.get("approximation") is True:
+            yield f"{where}: {node.get('explanation', '')}"
+        for k, v in node.items():
+            yield from approximations(v, f"{where}.{k}")
+    elif isinstance(node, str) and node.startswith("approximation: true"):
+        yield f"{where}: {node}"
+
+
 OUT.mkdir(exist_ok=True)
 rows = []
 for hid in HOUSEHOLDS:
     hh = h.load(hid)
     for d in DESIGNS:
         res = r.run(d, hh)
-        rows.append({"household": hid, "baseline_disposable": h.compute(hh)["disposable"], **res})
+        rows.append({"household": hid, "baseline_disposable": h.compute(hh)["disposable"],
+                     "label": r.design(d)["label"], **res})
 (OUT / "household_comparison.json").write_text(json.dumps(rows, ensure_ascii=False, indent=1))
 with open(OUT / "household_comparison.csv", "w", newline="") as f:
     cols = ["household", "design", "status", "baseline_disposable", "disposable_change", *r.COMPONENTS, "missing"]
@@ -26,7 +43,10 @@ with open(OUT / "household_comparison.csv", "w", newline="") as f:
     for x in rows:
         wr.writerow({**{k: x.get(k) for k in cols}, **x["components"], "missing": "; ".join(x["missing"])})
 
-walls = {"step": w.STEP, "columns": ["income", "disposable", "emr"], "households": {}, "skipped": {}}
+walls = {"step": w.STEP, "columns": ["income", "disposable", "emr"], "households": {}, "skipped": {},
+         "labels": {"baseline": {"ja": "2026年制度", "en": "2026 baseline"}, **{d: r.design(d)["label"] for d in DESIGNS}},
+         "baseline_approximations": [a for f in sorted(BASELINE.glob("*.yaml"))
+                                     for a in approximations(yaml.safe_load(f.read_text(encoding="utf-8")), f.stem)]}
 for hid in HOUSEHOLDS:
     hh = h.load(hid)
     who = w.varying_member(hh)
@@ -36,9 +56,10 @@ for hid in HOUSEHOLDS:
     designs = {}
     for d in ["baseline"] + DESIGNS:
         if d != "baseline" and r.run(d, hh)["status"] == "incomplete":
+            walls["not_drawn"] = {**walls.get("not_drawn", {}), d: r.run(d, hh)["blocked_by"]}
             continue
         designs[d] = [[p["income"], p["disposable"], p["emr"]] for p in w.grid(hh, d)]
     walls["households"][hid] = {"member": who[0], "income_field": who[1], "name_ja": hh["name_ja"],
-                                "name_en": hh["name_en"], "designs": designs}
+                                "name_en": hh["name_en"], "assumptions": hh.get("assumptions", []), "designs": designs}
 (OUT / "wall_map.json").write_text(json.dumps(walls, ensure_ascii=False, separators=(",", ":")))
 print(f"wrote {len(rows)} comparison rows, wall maps for {list(walls['households'])}, skipped {list(walls['skipped'])}")

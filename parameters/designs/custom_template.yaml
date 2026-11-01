@@ -3,6 +3,7 @@
 # Milestone 8.
 name_ja: カスタム設計（自分で作る給付付き税額控除）
 name_en: Custom refundable credit (design builder)
+label: {ja: カスタム, en: Custom}
 start_year: null
 status: resolved
 

@@ -32,12 +32,13 @@ personal_deductions:
   approximation: true
   explanation: "令和7年度 Shinjuku amounts; 令和9年度 ward table not yet published (Q13)"
   spouse: {value: 330000, cite: {source: shinjuku_r7, page: 2}}
+  elderly_spouse: {value: 380000, cite: {source: shinjuku_r7, page: 2, section: "早見表① 老人控配 (earner ≤ 9m)"}}
   dependent_general_16_plus: {value: 330000, cite: {source: shinjuku_r7, page: 2}}
   dependent_specific_19_to_22: {value: 450000, cite: {source: shinjuku_r7, page: 2}}
   single_parent: {value: 300000, cite: {source: shinjuku_r7, page: 2}}
   working_student: {value: 260000, cite: {source: shinjuku_r7, page: 2}}
   working_student_income_limit: {value: 750000, cite: {source: shinjuku_r7, page: 2}}
-  dependant_income_limit: {value: 480000, cite: {source: shinjuku_r7, page: 2}}
+  dependant_income_limit: {value: 580000, cite: {source: mic, page: 28, section: "④扶養親族等に係る所得要件の引上げ 改正後：58万円 (令和8年度分から)"}}  # 令和9年度 may follow income tax to 620,000 (Q13)
   spouse_special:  # spouse income bands (upper inclusive) -> amount, earner total income ≤ 9m column
     bands: [[1000000, 330000], [1050000, 310000], [1100000, 260000], [1150000, 210000], [1200000, 160000], [1250000, 110000], [1300000, 60000], [1330000, 30000]]
     cite: {source: shinjuku_r7, page: 2, section: "早見表②"}
@@ -46,6 +47,7 @@ personal_deduction_difference:  # 人的控除額の差 used for the 調整控�
   explanation: "令和7年度 Shinjuku table; Q13"
   basic: {value: 50000, cite: {source: shinjuku_r7, page: 3}}
   spouse: {value: 50000, cite: {source: shinjuku_r7, page: 3}}
+  elderly_spouse: {value: 100000, cite: {source: shinjuku_r7, page: 3, section: "人的控除額の差 老人配偶者 (earner ≤ 9m)"}}
   dependent_general: {value: 50000, cite: {source: shinjuku_r7, page: 3}}
   dependent_specific: {value: 180000, cite: {source: shinjuku_r7, page: 3}}
   single_parent_mother: {value: 50000, cite: {source: shinjuku_r7, page: 3}}

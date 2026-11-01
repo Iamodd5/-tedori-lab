@@ -13,6 +13,10 @@ from engine import household as h
 
 D = pathlib.Path(__file__).resolve().parents[1] / "parameters" / "designs"
 COMPONENTS = ("income_tax", "resident_tax", "social_insurance", "credit", "consumption_tax")
+# Why a design cannot be calculated yet, by open question, so different reasons are never shown as one
+BLOCKERS = {"Q9": {"ja": "金額・率は政令で定める（未公表）", "en": "amounts and rates left to a Cabinet order (not yet published)"},
+            "Q8": {"ja": "本ツールのデータ未整備（世帯の食料支出）", "en": "this tool's data not ready yet (household food spending)"},
+            "Q3": {"ja": "連合の資料を入手できていない", "en": "Rengo's documents not yet obtained"}}
 
 
 @functools.cache
@@ -82,13 +86,14 @@ def run(name, hh):
     if name == "daiwa":
         c = _daiwa(hh)
         change = c["credit"] - c["income_tax"] - c["resident_tax"] - c["social_insurance"] - c["consumption_tax"]
-        return {"design": name, "status": "complete", "missing": [], "components": c, "disposable_change": change,
-                "approximations": ["Q11: credit taken off before the 2.1% reconstruction surtax, as for existing tax credits"],
-                "site_note": d["site_note"]}
+        return {"design": name, "status": "complete", "missing": [], "blocked_by": [], "components": c,
+                "disposable_change": change, "approximations": d["approximations"], "site_note": d["site_note"]}
     missing = unresolved(d["parameters"])
     if name == "food_tax_cut" and hh["spending"].get("status") == "unresolved":
         missing.append(f"household food spending ({hh['spending']['question']})")
     if not missing:
         raise NotImplementedError(f"{name}: all parameters now published; wire payment() into run()")
-    return {"design": name, "status": "incomplete", "missing": missing, "components": dict.fromkeys(COMPONENTS),
-            "disposable_change": None, "approximations": [], "site_note": d.get("site_note")}
+    blocked_by = [BLOCKERS[q] for q in BLOCKERS if any(f"({q})" in m for m in missing)]
+    return {"design": name, "status": "incomplete", "missing": missing, "blocked_by": blocked_by,
+            "components": dict.fromkeys(COMPONENTS), "disposable_change": None, "approximations": [],
+            "site_note": d.get("site_note")}

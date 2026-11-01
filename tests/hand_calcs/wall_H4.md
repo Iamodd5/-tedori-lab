@@ -26,3 +26,17 @@ spouse special deduction 330,000 both times (spouse income above 480,000).
 
 **Change in take-home pay** = +10,000 − 215,040 − 101,786 + 9,500 + 5,200 + 10,200 = **−281,926**.
 Effective marginal rate = 1 + 291,926 / 10,000 = **29.1926** (2,919%).
+
+## Correction 2026-11-01 (Milestone 5 review)
+
+The resident-tax income limit for a spouse or dependant is **580,000** from 令和8年度, not 480,000
+(MIC 個人住民税の基礎控除等について p.28, ④「改正前：48万円 → 改正後：58万円」). So at spouse income 550,000 and
+560,000 the head takes the resident-tax **spouse deduction** (330,000, same amount) and the 調整控除 difference
+for a spouse (50,000) is added:
+- At 1,290,000: 2,037,000 × 10% = 203,700 − 5% × max(100,000 − 37,000, 50,000) = 3,150 → 200,550 → 200,500
+  + 5,000 = **205,500** (was 206,200).
+- At 1,300,000: 1,935,000 × 10% = 193,500 − 5% × min(100,000, 1,935,000) = 5,000 → 188,500 + 5,000 = **193,500**
+  (was 196,000). Change −12,000 (was −10,200).
+
+Corrected change in take-home pay = +10,000 − 215,040 − 101,786 + 9,500 + 5,200 + 12,000 = **−280,126**.
+Effective marginal rate = 1 + 290,126 / 10,000 = **29.0126**.

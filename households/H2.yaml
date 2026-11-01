@@ -19,5 +19,5 @@ assumptions:
   - Modelled as the student alone; the parents are outside the household, so their dependant deductions are not counted (OPEN_QUESTIONS Q16).
   - Covered by a parent's employee health insurance as a dependant while income stays under the limit.
   - Uses the national-pension student payment deferral (学生納付特例), so pays no contribution in 2026.
-  - Salary is paid in 12 equal months with no bonus (approximation: true).
+  - "Salary is paid in 12 equal months with no bonus (approximation: true)."
   - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).

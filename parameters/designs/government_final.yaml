@@ -3,8 +3,11 @@
 # detailed where needed by the Jul 29 interim summary, the Sep 15 Cabinet outline and the Oct 9 bill summary.
 # The vehicle is the 就業者負担軽減支援金 (worker burden-relief payment). Its full-system form starts FY2029.
 # Every yen amount and rate is left by the bill to a Cabinet order (政令), so none are published yet.
-name_ja: 就業者負担軽減支援金（給付付き税額控除の本格導入、令和11年度〜）
-name_en: Worker burden-relief payment (full refundable-credit system, FY2029 onward)
+name_ja: 就業者負担軽減支援金（支援金制度の本格導入、令和11年度〜）
+name_en: Worker burden-relief payment (full system, FY2029 onward)
+# The outline calls the payment "本格的な「給付付き税額控除」を導入する第一歩" (outline p.1); the name follows the documents' own
+# term for FY2029, "支援金制度の本格導入", and does not call it the full refundable credit.
+label: {ja: 政府：支援金・本格導入（R11〜）, en: "Government: payment, full system (FY2029–)"}
 start_year: 2029  # 令和11年度 (fiscal year from April 2029); payment is based on the previous year's income
 status: unresolved
 
@@ -118,6 +121,15 @@ parameters:
     value: null
     status: unresolved
     question: Q9
+
+published_estimates:  # for cross-checking only, never used as inputs
+  take_home_recovery_after_13m_wall_yen: 1600000   # 年収約160万円程度 (category-3 → category-1 pension member)
+  cite_recovery: {source: outline, page: 10, section: "第三 一 2(1)③"}
+  claim_most_beneficiaries_gain_more_than_food_cut: "給付の対象となる中所得・低所得の現役勤労者の大宗については…飲食料品の消費税率引下げの効果を上回る支援を受けられる"
+  cite_claim: {title: 令和8年8月5日 資料3, file: sources/gov/20260805_03_siryou3.pdf, page: 2}
+not_eligible_named_by_government:  # basic policy explanation slide, 20260805 資料3 p.3 (対象外となる方)
+  - "勤労意欲のある低所得の方 (low-income people willing to work but below the earnings floor) — response to be decided before FY2029"
+  - "就労しておられない高齢者の方 (older people not in work) — to be decided by 2030 alongside the pension reform"
 
 notes: >
   The Cabinet decision and the bill fix who is eligible and the shape of the payment, but every amount,

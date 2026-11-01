@@ -31,4 +31,16 @@ def test_two_income_households_use_the_chosen_member():
 def test_h4_spouse_hits_the_13m_wall():
     # tests/hand_calcs/wall_H4.md
     emr = {r["income"]: r["emr"] for r in w.grid(h.load("H4"), "baseline", top=1_300_000)}
-    assert emr[1_290_000] == 29.1926
+    assert emr[1_290_000] == 29.0126  # corrected 2026-11-01, see hand calc
+
+
+def test_outputs_snapshot_is_current():
+    # Spec 12.1: fails on any unexplained change. After an intended change, run `make outputs` and explain it in docs/LOG.md.
+    import json, pathlib
+    from engine import reforms as r
+    saved = json.loads((pathlib.Path(__file__).parents[1] / "outputs" / "household_comparison.json").read_text())
+    for row in saved:
+        hh = h.load(row["household"])
+        now = r.run(row["design"], hh)
+        assert (h.compute(hh)["disposable"], now["disposable_change"], now["components"]) == \
+               (row["baseline_disposable"], row["disposable_change"], row["components"]), (row["household"], row["design"])

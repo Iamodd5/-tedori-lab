@@ -71,3 +71,21 @@ A test written first expected a wall at 1,056,000 for H1. It was wrong: H1 is si
 
 1. **NHI low-income reduction test.** It must count the householder's income even when the householder is on employee insurance ("世帯主と被保険者全員の前年中の総所得金額等", Shinjuku reduction page). Before the fix, H4's spouse at 1.3m was wrongly given a 50% cut (59,349 instead of 101,786). No reference household was affected.
 2. **Resident-tax burden-relief band.** Just above the income-levy exemption line, the income levy is capped at the excess over the line (MIC p.18 figure: line 1,120,000, income 1,124,200, levy 4,200). Before the fix, H3's head at salary 2.21m → 2.22m lost 85,000 on a 10,000 raise. No reference household was affected. Law text still to add (Q22).
+
+## 7. Government's own figures (cross-check only)
+
+| Check | Ours | Government | Note |
+|---|---|---|---|
+| Pay at which take-home recovers after the 1.3m wall (spouse becomes a category-1 pension member) | 1,650,000 (H4, first salary on the 10,000 grid where take-home ≥ the 1,290,000 level) | about 1,600,000 (outline p.10, 第三 一 2(1)③) | The government's figure is rounded and its household is not stated; ours is a Shinjuku household with the head on 5.0m. Same order of size. |
+
+## 8. Corrections from the Milestone 5 review (2026-11-01)
+
+| Fix | Effect at reference incomes | Effect on wall maps |
+|---|---|---|
+| Elderly spouse (70+) deduction now used: income tax 480,000 (NTA p.55), resident tax 380,000, 調整控除 difference 100,000 | none (H6 head is below the resident-tax line) | H6 at higher head pensions pays less tax |
+| Higher-earning partner claims the spouse and children; a partner can be the dependant of an employee-insured spouse (Q23) | none | H3/H8 at low head pay: no NHI or national pension when the spouse is an employee; spouse deduction claimed by the earner (hand calc `claimant.md`: 26,600 → 7,200) |
+| Resident-tax spouse/dependant income limit 480,000 → 580,000 (MIC p.28) | none | H4's 1.3m wall: −281,926 → **−280,126** (`wall_H4.md`, correction note) |
+
+The H4 wall test's expected value was changed from 29.1926 to 29.0126. That was done by correcting the hand calculation first, with the source for the change, and watching the test fail before the parameter was fixed; it is listed here so the change is visible (CLAUDE.md rule 5).
+
+A snapshot test (spec 12.1) now fails if any household × design result changes without `make outputs` being rerun.

@@ -2,6 +2,10 @@
  {
   "household": "H1",
   "baseline_disposable": 1061652,
+  "label": {
+   "ja": "政府：支援金・本格導入（R11〜）",
+   "en": "Government: payment, full system (FY2029–)"
+  },
   "design": "government_final",
   "status": "incomplete",
   "missing": [
@@ -19,27 +23,11 @@
    "phase_out_start (Q9)",
    "phase_out_rate (Q9)"
   ],
-  "components": {
-   "income_tax": null,
-   "resident_tax": null,
-   "social_insurance": null,
-   "credit": null,
-   "consumption_tax": null
-  },
-  "disposable_change": null,
-  "approximations": [],
-  "site_note": null
- },
- {
-  "household": "H1",
-  "baseline_disposable": 1061652,
-  "design": "rengo",
-  "status": "incomplete",
-  "missing": [
-   "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.eligibility (Q3)",
-   "work_support_benefit.refund_share (Q3)",
-   "work_support_benefit.income_limit (Q3)"
+  "blocked_by": [
+   {
+    "ja": "金額・率は政令で定める（未公表）",
+    "en": "amounts and rates left to a Cabinet order (not yet published)"
+   }
   ],
   "components": {
    "income_tax": null,
@@ -55,9 +43,46 @@
  {
   "household": "H1",
   "baseline_disposable": 1061652,
+  "label": {
+   "ja": "連合案",
+   "en": "Rengo"
+  },
+  "design": "rengo",
+  "status": "incomplete",
+  "missing": [
+   "consumption_tax_refund.amount (Q3)",
+   "consumption_tax_refund.eligibility (Q3)",
+   "work_support_benefit.refund_share (Q3)",
+   "work_support_benefit.income_limit (Q3)"
+  ],
+  "blocked_by": [
+   {
+    "ja": "連合の資料を入手できていない",
+    "en": "Rengo's documents not yet obtained"
+   }
+  ],
+  "components": {
+   "income_tax": null,
+   "resident_tax": null,
+   "social_insurance": null,
+   "credit": null,
+   "consumption_tax": null
+  },
+  "disposable_change": null,
+  "approximations": [],
+  "site_note": null
+ },
+ {
+  "household": "H1",
+  "baseline_disposable": 1061652,
+  "label": {
+   "ja": "大和総研案（2025年版を2026年制度に適用）",
+   "en": "Daiwa (2025 design on 2026 rules)"
+  },
   "design": "daiwa",
   "status": "complete",
   "missing": [],
+  "blocked_by": [],
   "components": {
    "income_tax": 0,
    "resident_tax": 0,
@@ -67,7 +92,16 @@
   },
   "disposable_change": 40200,
   "approximations": [
-   "Q11: credit taken off before the 2.1% reconstruction surtax, as for existing tax credits"
+   {
+    "question": "Q11",
+    "ja": "税額控除は復興特別所得税（2.1%）の前に差し引く（既存の税額控除と同じ扱い）。大和総研は順序を示していない。",
+    "en": "The credit is taken off before the 2.1% reconstruction surtax, as existing tax credits are. Daiwa does not say."
+   },
+   {
+    "question": "Q18",
+    "ja": "還付の上限に数える保険料は健康保険（介護分を含む）と厚生年金のみ。子ども・子育て支援金と雇用保険は含めない。",
+    "en": "The refund cap counts health insurance (incl. long-term care) and pension only, not the child-support levy or employment insurance."
+   }
   ],
   "site_note": {
    "ja": "大和総研案は2025年の税制（基礎控除58万円）を前提に設計されています。本ツールは同案の数値をそのまま2026年の税制（基礎控除は所得489万円以下で104万円）に適用しているため、大和総研の公表試算と異なります。",
@@ -77,6 +111,10 @@
  {
   "household": "H1",
   "baseline_disposable": 1061652,
+  "label": {
+   "ja": "政府：つなぎ（食料品1%＋支援金、R9–10）",
+   "en": "Government: bridge (food 1% + payment, FY2027–28)"
+  },
   "design": "food_tax_cut",
   "status": "incomplete",
   "missing": [
@@ -94,6 +132,16 @@
    "bridge_payment.phase_out_rate (Q9)",
    "household food spending (Q8)"
   ],
+  "blocked_by": [
+   {
+    "ja": "金額・率は政令で定める（未公表）",
+    "en": "amounts and rates left to a Cabinet order (not yet published)"
+   },
+   {
+    "ja": "本ツールのデータ未整備（世帯の食料支出）",
+    "en": "this tool's data not ready yet (household food spending)"
+   }
+  ],
   "components": {
    "income_tax": null,
    "resident_tax": null,
@@ -108,6 +156,10 @@
  {
   "household": "H2",
   "baseline_disposable": 1000000,
+  "label": {
+   "ja": "政府：支援金・本格導入（R11〜）",
+   "en": "Government: payment, full system (FY2029–)"
+  },
   "design": "government_final",
   "status": "incomplete",
   "missing": [
@@ -125,27 +177,11 @@
    "phase_out_start (Q9)",
    "phase_out_rate (Q9)"
   ],
-  "components": {
-   "income_tax": null,
-   "resident_tax": null,
-   "social_insurance": null,
-   "credit": null,
-   "consumption_tax": null
-  },
-  "disposable_change": null,
-  "approximations": [],
-  "site_note": null
- },
- {
-  "household": "H2",
-  "baseline_disposable": 1000000,
-  "design": "rengo",
-  "status": "incomplete",
-  "missing": [
-   "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.eligibility (Q3)",
-   "work_support_benefit.refund_share (Q3)",
-   "work_support_benefit.income_limit (Q3)"
+  "blocked_by": [
+   {
+    "ja": "金額・率は政令で定める（未公表）",
+    "en": "amounts and rates left to a Cabinet order (not yet published)"
+   }
   ],
   "components": {
    "income_tax": null,
@@ -161,9 +197,46 @@
  {
   "household": "H2",
   "baseline_disposable": 1000000,
+  "label": {
+   "ja": "連合案",
+   "en": "Rengo"
+  },
+  "design": "rengo",
+  "status": "incomplete",
+  "missing": [
+   "consumption_tax_refund.amount (Q3)",
+   "consumption_tax_refund.eligibility (Q3)",
+   "work_support_benefit.refund_share (Q3)",
+   "work_support_benefit.income_limit (Q3)"
+  ],
+  "blocked_by": [
+   {
+    "ja": "連合の資料を入手できていない",
+    "en": "Rengo's documents not yet obtained"
+   }
+  ],
+  "components": {
+   "income_tax": null,
+   "resident_tax": null,
+   "social_insurance": null,
+   "credit": null,
+   "consumption_tax": null
+  },
+  "disposable_change": null,
+  "approximations": [],
+  "site_note": null
+ },
+ {
+  "household": "H2",
+  "baseline_disposable": 1000000,
+  "label": {
+   "ja": "大和総研案（2025年版を2026年制度に適用）",
+   "en": "Daiwa (2025 design on 2026 rules)"
+  },
   "design": "daiwa",
   "status": "complete",
   "missing": [],
+  "blocked_by": [],
   "components": {
    "income_tax": 0,
    "resident_tax": 0,
@@ -173,7 +246,16 @@
   },
   "disposable_change": 0,
   "approximations": [
-   "Q11: credit taken off before the 2.1% reconstruction surtax, as for existing tax credits"
+   {
+    "question": "Q11",
+    "ja": "税額控除は復興特別所得税（2.1%）の前に差し引く（既存の税額控除と同じ扱い）。大和総研は順序を示していない。",
+    "en": "The credit is taken off before the 2.1% reconstruction surtax, as existing tax credits are. Daiwa does not say."
+   },
+   {
+    "question": "Q18",
+    "ja": "還付の上限に数える保険料は健康保険（介護分を含む）と厚生年金のみ。子ども・子育て支援金と雇用保険は含めない。",
+    "en": "The refund cap counts health insurance (incl. long-term care) and pension only, not the child-support levy or employment insurance."
+   }
   ],
   "site_note": {
    "ja": "大和総研案は2025年の税制（基礎控除58万円）を前提に設計されています。本ツールは同案の数値をそのまま2026年の税制（基礎控除は所得489万円以下で104万円）に適用しているため、大和総研の公表試算と異なります。",
@@ -183,6 +265,10 @@
  {
   "household": "H2",
   "baseline_disposable": 1000000,
+  "label": {
+   "ja": "政府：つなぎ（食料品1%＋支援金、R9–10）",
+   "en": "Government: bridge (food 1% + payment, FY2027–28)"
+  },
   "design": "food_tax_cut",
   "status": "incomplete",
   "missing": [
@@ -200,6 +286,16 @@
    "bridge_payment.phase_out_rate (Q9)",
    "household food spending (Q8)"
   ],
+  "blocked_by": [
+   {
+    "ja": "金額・率は政令で定める（未公表）",
+    "en": "amounts and rates left to a Cabinet order (not yet published)"
+   },
+   {
+    "ja": "本ツールのデータ未整備（世帯の食料支出）",
+    "en": "this tool's data not ready yet (household food spending)"
+   }
+  ],
   "components": {
    "income_tax": null,
    "resident_tax": null,
@@ -214,6 +310,10 @@
  {
   "household": "H3",
   "baseline_disposable": 6247908,
+  "label": {
+   "ja": "政府：支援金・本格導入（R11〜）",
+   "en": "Government: payment, full system (FY2029–)"
+  },
   "design": "government_final",
   "status": "incomplete",
   "missing": [
@@ -231,27 +331,11 @@
    "phase_out_start (Q9)",
    "phase_out_rate (Q9)"
   ],
-  "components": {
-   "income_tax": null,
-   "resident_tax": null,
-   "social_insurance": null,
-   "credit": null,
-   "consumption_tax": null
-  },
-  "disposable_change": null,
-  "approximations": [],
-  "site_note": null
- },
- {
-  "household": "H3",
-  "baseline_disposable": 6247908,
-  "design": "rengo",
-  "status": "incomplete",
-  "missing": [
-   "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.eligibility (Q3)",
-   "work_support_benefit.refund_share (Q3)",
-   "work_support_benefit.income_limit (Q3)"
+  "blocked_by": [
+   {
+    "ja": "金額・率は政令で定める（未公表）",
+    "en": "amounts and rates left to a Cabinet order (not yet published)"
+   }
   ],
   "components": {
    "income_tax": null,
@@ -267,9 +351,46 @@
  {
   "household": "H3",
   "baseline_disposable": 6247908,
+  "label": {
+   "ja": "連合案",
+   "en": "Rengo"
+  },
+  "design": "rengo",
+  "status": "incomplete",
+  "missing": [
+   "consumption_tax_refund.amount (Q3)",
+   "consumption_tax_refund.eligibility (Q3)",
+   "work_support_benefit.refund_share (Q3)",
+   "work_support_benefit.income_limit (Q3)"
+  ],
+  "blocked_by": [
+   {
+    "ja": "連合の資料を入手できていない",
+    "en": "Rengo's documents not yet obtained"
+   }
+  ],
+  "components": {
+   "income_tax": null,
+   "resident_tax": null,
+   "social_insurance": null,
+   "credit": null,
+   "consumption_tax": null
+  },
+  "disposable_change": null,
+  "approximations": [],
+  "site_note": null
+ },
+ {
+  "household": "H3",
+  "baseline_disposable": 6247908,
+  "label": {
+   "ja": "大和総研案（2025年版を2026年制度に適用）",
+   "en": "Daiwa (2025 design on 2026 rules)"
+  },
   "design": "daiwa",
   "status": "complete",
   "missing": [],
+  "blocked_by": [],
   "components": {
    "income_tax": 18300,
    "resident_tax": 0,
@@ -279,7 +400,16 @@
   },
   "disposable_change": -18300,
   "approximations": [
-   "Q11: credit taken off before the 2.1% reconstruction surtax, as for existing tax credits"
+   {
+    "question": "Q11",
+    "ja": "税額控除は復興特別所得税（2.1%）の前に差し引く（既存の税額控除と同じ扱い）。大和総研は順序を示していない。",
+    "en": "The credit is taken off before the 2.1% reconstruction surtax, as existing tax credits are. Daiwa does not say."
+   },
+   {
+    "question": "Q18",
+    "ja": "還付の上限に数える保険料は健康保険（介護分を含む）と厚生年金のみ。子ども・子育て支援金と雇用保険は含めない。",
+    "en": "The refund cap counts health insurance (incl. long-term care) and pension only, not the child-support levy or employment insurance."
+   }
   ],
   "site_note": {
    "ja": "大和総研案は2025年の税制（基礎控除58万円）を前提に設計されています。本ツールは同案の数値をそのまま2026年の税制（基礎控除は所得489万円以下で104万円）に適用しているため、大和総研の公表試算と異なります。",
@@ -289,6 +419,10 @@
  {
   "household": "H3",
   "baseline_disposable": 6247908,
+  "label": {
+   "ja": "政府：つなぎ（食料品1%＋支援金、R9–10）",
+   "en": "Government: bridge (food 1% + payment, FY2027–28)"
+  },
   "design": "food_tax_cut",
   "status": "incomplete",
   "missing": [
@@ -306,6 +440,16 @@
    "bridge_payment.phase_out_rate (Q9)",
    "household food spending (Q8)"
   ],
+  "blocked_by": [
+   {
+    "ja": "金額・率は政令で定める（未公表）",
+    "en": "amounts and rates left to a Cabinet order (not yet published)"
+   },
+   {
+    "ja": "本ツールのデータ未整備（世帯の食料支出）",
+    "en": "this tool's data not ready yet (household food spending)"
+   }
+  ],
   "components": {
    "income_tax": null,
    "resident_tax": null,
@@ -320,6 +464,10 @@
  {
   "household": "H4",
   "baseline_disposable": 4961316,
+  "label": {
+   "ja": "政府：支援金・本格導入（R11〜）",
+   "en": "Government: payment, full system (FY2029–)"
+  },
   "design": "government_final",
   "status": "incomplete",
   "missing": [
@@ -337,27 +485,11 @@
    "phase_out_start (Q9)",
    "phase_out_rate (Q9)"
   ],
-  "components": {
-   "income_tax": null,
-   "resident_tax": null,
-   "social_insurance": null,
-   "credit": null,
-   "consumption_tax": null
-  },
-  "disposable_change": null,
-  "approximations": [],
-  "site_note": null
- },
- {
-  "household": "H4",
-  "baseline_disposable": 4961316,
-  "design": "rengo",
-  "status": "incomplete",
-  "missing": [
-   "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.eligibility (Q3)",
-   "work_support_benefit.refund_share (Q3)",
-   "work_support_benefit.income_limit (Q3)"
+  "blocked_by": [
+   {
+    "ja": "金額・率は政令で定める（未公表）",
+    "en": "amounts and rates left to a Cabinet order (not yet published)"
+   }
   ],
   "components": {
    "income_tax": null,
@@ -373,9 +505,46 @@
  {
   "household": "H4",
   "baseline_disposable": 4961316,
+  "label": {
+   "ja": "連合案",
+   "en": "Rengo"
+  },
+  "design": "rengo",
+  "status": "incomplete",
+  "missing": [
+   "consumption_tax_refund.amount (Q3)",
+   "consumption_tax_refund.eligibility (Q3)",
+   "work_support_benefit.refund_share (Q3)",
+   "work_support_benefit.income_limit (Q3)"
+  ],
+  "blocked_by": [
+   {
+    "ja": "連合の資料を入手できていない",
+    "en": "Rengo's documents not yet obtained"
+   }
+  ],
+  "components": {
+   "income_tax": null,
+   "resident_tax": null,
+   "social_insurance": null,
+   "credit": null,
+   "consumption_tax": null
+  },
+  "disposable_change": null,
+  "approximations": [],
+  "site_note": null
+ },
+ {
+  "household": "H4",
+  "baseline_disposable": 4961316,
+  "label": {
+   "ja": "大和総研案（2025年版を2026年制度に適用）",
+   "en": "Daiwa (2025 design on 2026 rules)"
+  },
   "design": "daiwa",
   "status": "complete",
   "missing": [],
+  "blocked_by": [],
   "components": {
    "income_tax": 19300,
    "resident_tax": 0,
@@ -385,7 +554,16 @@
   },
   "disposable_change": -19300,
   "approximations": [
-   "Q11: credit taken off before the 2.1% reconstruction surtax, as for existing tax credits"
+   {
+    "question": "Q11",
+    "ja": "税額控除は復興特別所得税（2.1%）の前に差し引く（既存の税額控除と同じ扱い）。大和総研は順序を示していない。",
+    "en": "The credit is taken off before the 2.1% reconstruction surtax, as existing tax credits are. Daiwa does not say."
+   },
+   {
+    "question": "Q18",
+    "ja": "還付の上限に数える保険料は健康保険（介護分を含む）と厚生年金のみ。子ども・子育て支援金と雇用保険は含めない。",
+    "en": "The refund cap counts health insurance (incl. long-term care) and pension only, not the child-support levy or employment insurance."
+   }
   ],
   "site_note": {
    "ja": "大和総研案は2025年の税制（基礎控除58万円）を前提に設計されています。本ツールは同案の数値をそのまま2026年の税制（基礎控除は所得489万円以下で104万円）に適用しているため、大和総研の公表試算と異なります。",
@@ -395,6 +573,10 @@
  {
   "household": "H4",
   "baseline_disposable": 4961316,
+  "label": {
+   "ja": "政府：つなぎ（食料品1%＋支援金、R9–10）",
+   "en": "Government: bridge (food 1% + payment, FY2027–28)"
+  },
   "design": "food_tax_cut",
   "status": "incomplete",
   "missing": [
@@ -412,6 +594,16 @@
    "bridge_payment.phase_out_rate (Q9)",
    "household food spending (Q8)"
   ],
+  "blocked_by": [
+   {
+    "ja": "金額・率は政令で定める（未公表）",
+    "en": "amounts and rates left to a Cabinet order (not yet published)"
+   },
+   {
+    "ja": "本ツールのデータ未整備（世帯の食料支出）",
+    "en": "this tool's data not ready yet (household food spending)"
+   }
+  ],
   "components": {
    "income_tax": null,
    "resident_tax": null,
@@ -426,6 +618,10 @@
  {
   "household": "H5",
   "baseline_disposable": 2208336,
+  "label": {
+   "ja": "政府：支援金・本格導入（R11〜）",
+   "en": "Government: payment, full system (FY2029–)"
+  },
   "design": "government_final",
   "status": "incomplete",
   "missing": [
@@ -443,27 +639,11 @@
    "phase_out_start (Q9)",
    "phase_out_rate (Q9)"
   ],
-  "components": {
-   "income_tax": null,
-   "resident_tax": null,
-   "social_insurance": null,
-   "credit": null,
-   "consumption_tax": null
-  },
-  "disposable_change": null,
-  "approximations": [],
-  "site_note": null
- },
- {
-  "household": "H5",
-  "baseline_disposable": 2208336,
-  "design": "rengo",
-  "status": "incomplete",
-  "missing": [
-   "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.eligibility (Q3)",
-   "work_support_benefit.refund_share (Q3)",
-   "work_support_benefit.income_limit (Q3)"
+  "blocked_by": [
+   {
+    "ja": "金額・率は政令で定める（未公表）",
+    "en": "amounts and rates left to a Cabinet order (not yet published)"
+   }
   ],
   "components": {
    "income_tax": null,
@@ -479,9 +659,46 @@
  {
   "household": "H5",
   "baseline_disposable": 2208336,
+  "label": {
+   "ja": "連合案",
+   "en": "Rengo"
+  },
+  "design": "rengo",
+  "status": "incomplete",
+  "missing": [
+   "consumption_tax_refund.amount (Q3)",
+   "consumption_tax_refund.eligibility (Q3)",
+   "work_support_benefit.refund_share (Q3)",
+   "work_support_benefit.income_limit (Q3)"
+  ],
+  "blocked_by": [
+   {
+    "ja": "連合の資料を入手できていない",
+    "en": "Rengo's documents not yet obtained"
+   }
+  ],
+  "components": {
+   "income_tax": null,
+   "resident_tax": null,
+   "social_insurance": null,
+   "credit": null,
+   "consumption_tax": null
+  },
+  "disposable_change": null,
+  "approximations": [],
+  "site_note": null
+ },
+ {
+  "household": "H5",
+  "baseline_disposable": 2208336,
+  "label": {
+   "ja": "大和総研案（2025年版を2026年制度に適用）",
+   "en": "Daiwa (2025 design on 2026 rules)"
+  },
   "design": "daiwa",
   "status": "complete",
   "missing": [],
+  "blocked_by": [],
   "components": {
    "income_tax": 0,
    "resident_tax": 0,
@@ -491,7 +708,16 @@
   },
   "disposable_change": 8200,
   "approximations": [
-   "Q11: credit taken off before the 2.1% reconstruction surtax, as for existing tax credits"
+   {
+    "question": "Q11",
+    "ja": "税額控除は復興特別所得税（2.1%）の前に差し引く（既存の税額控除と同じ扱い）。大和総研は順序を示していない。",
+    "en": "The credit is taken off before the 2.1% reconstruction surtax, as existing tax credits are. Daiwa does not say."
+   },
+   {
+    "question": "Q18",
+    "ja": "還付の上限に数える保険料は健康保険（介護分を含む）と厚生年金のみ。子ども・子育て支援金と雇用保険は含めない。",
+    "en": "The refund cap counts health insurance (incl. long-term care) and pension only, not the child-support levy or employment insurance."
+   }
   ],
   "site_note": {
    "ja": "大和総研案は2025年の税制（基礎控除58万円）を前提に設計されています。本ツールは同案の数値をそのまま2026年の税制（基礎控除は所得489万円以下で104万円）に適用しているため、大和総研の公表試算と異なります。",
@@ -501,6 +727,10 @@
  {
   "household": "H5",
   "baseline_disposable": 2208336,
+  "label": {
+   "ja": "政府：つなぎ（食料品1%＋支援金、R9–10）",
+   "en": "Government: bridge (food 1% + payment, FY2027–28)"
+  },
   "design": "food_tax_cut",
   "status": "incomplete",
   "missing": [
@@ -518,6 +748,16 @@
    "bridge_payment.phase_out_rate (Q9)",
    "household food spending (Q8)"
   ],
+  "blocked_by": [
+   {
+    "ja": "金額・率は政令で定める（未公表）",
+    "en": "amounts and rates left to a Cabinet order (not yet published)"
+   },
+   {
+    "ja": "本ツールのデータ未整備（世帯の食料支出）",
+    "en": "this tool's data not ready yet (household food spending)"
+   }
+  ],
   "components": {
    "income_tax": null,
    "resident_tax": null,
@@ -532,6 +772,10 @@
  {
   "household": "H6",
   "baseline_disposable": 2683201,
+  "label": {
+   "ja": "政府：支援金・本格導入（R11〜）",
+   "en": "Government: payment, full system (FY2029–)"
+  },
   "design": "government_final",
   "status": "incomplete",
   "missing": [
@@ -549,27 +793,11 @@
    "phase_out_start (Q9)",
    "phase_out_rate (Q9)"
   ],
-  "components": {
-   "income_tax": null,
-   "resident_tax": null,
-   "social_insurance": null,
-   "credit": null,
-   "consumption_tax": null
-  },
-  "disposable_change": null,
-  "approximations": [],
-  "site_note": null
- },
- {
-  "household": "H6",
-  "baseline_disposable": 2683201,
-  "design": "rengo",
-  "status": "incomplete",
-  "missing": [
-   "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.eligibility (Q3)",
-   "work_support_benefit.refund_share (Q3)",
-   "work_support_benefit.income_limit (Q3)"
+  "blocked_by": [
+   {
+    "ja": "金額・率は政令で定める（未公表）",
+    "en": "amounts and rates left to a Cabinet order (not yet published)"
+   }
   ],
   "components": {
    "income_tax": null,
@@ -585,9 +813,46 @@
  {
   "household": "H6",
   "baseline_disposable": 2683201,
+  "label": {
+   "ja": "連合案",
+   "en": "Rengo"
+  },
+  "design": "rengo",
+  "status": "incomplete",
+  "missing": [
+   "consumption_tax_refund.amount (Q3)",
+   "consumption_tax_refund.eligibility (Q3)",
+   "work_support_benefit.refund_share (Q3)",
+   "work_support_benefit.income_limit (Q3)"
+  ],
+  "blocked_by": [
+   {
+    "ja": "連合の資料を入手できていない",
+    "en": "Rengo's documents not yet obtained"
+   }
+  ],
+  "components": {
+   "income_tax": null,
+   "resident_tax": null,
+   "social_insurance": null,
+   "credit": null,
+   "consumption_tax": null
+  },
+  "disposable_change": null,
+  "approximations": [],
+  "site_note": null
+ },
+ {
+  "household": "H6",
+  "baseline_disposable": 2683201,
+  "label": {
+   "ja": "大和総研案（2025年版を2026年制度に適用）",
+   "en": "Daiwa (2025 design on 2026 rules)"
+  },
   "design": "daiwa",
   "status": "complete",
   "missing": [],
+  "blocked_by": [],
   "components": {
    "income_tax": 0,
    "resident_tax": 0,
@@ -597,7 +862,16 @@
   },
   "disposable_change": 0,
   "approximations": [
-   "Q11: credit taken off before the 2.1% reconstruction surtax, as for existing tax credits"
+   {
+    "question": "Q11",
+    "ja": "税額控除は復興特別所得税（2.1%）の前に差し引く（既存の税額控除と同じ扱い）。大和総研は順序を示していない。",
+    "en": "The credit is taken off before the 2.1% reconstruction surtax, as existing tax credits are. Daiwa does not say."
+   },
+   {
+    "question": "Q18",
+    "ja": "還付の上限に数える保険料は健康保険（介護分を含む）と厚生年金のみ。子ども・子育て支援金と雇用保険は含めない。",
+    "en": "The refund cap counts health insurance (incl. long-term care) and pension only, not the child-support levy or employment insurance."
+   }
   ],
   "site_note": {
    "ja": "大和総研案は2025年の税制（基礎控除58万円）を前提に設計されています。本ツールは同案の数値をそのまま2026年の税制（基礎控除は所得489万円以下で104万円）に適用しているため、大和総研の公表試算と異なります。",
@@ -607,6 +881,10 @@
  {
   "household": "H6",
   "baseline_disposable": 2683201,
+  "label": {
+   "ja": "政府：つなぎ（食料品1%＋支援金、R9–10）",
+   "en": "Government: bridge (food 1% + payment, FY2027–28)"
+  },
   "design": "food_tax_cut",
   "status": "incomplete",
   "missing": [
@@ -624,6 +902,16 @@
    "bridge_payment.phase_out_rate (Q9)",
    "household food spending (Q8)"
   ],
+  "blocked_by": [
+   {
+    "ja": "金額・率は政令で定める（未公表）",
+    "en": "amounts and rates left to a Cabinet order (not yet published)"
+   },
+   {
+    "ja": "本ツールのデータ未整備（世帯の食料支出）",
+    "en": "this tool's data not ready yet (household food spending)"
+   }
+  ],
   "components": {
    "income_tax": null,
    "resident_tax": null,
@@ -638,6 +926,10 @@
  {
   "household": "H7",
   "baseline_disposable": 2170281,
+  "label": {
+   "ja": "政府：支援金・本格導入（R11〜）",
+   "en": "Government: payment, full system (FY2029–)"
+  },
   "design": "government_final",
   "status": "incomplete",
   "missing": [
@@ -655,27 +947,11 @@
    "phase_out_start (Q9)",
    "phase_out_rate (Q9)"
   ],
-  "components": {
-   "income_tax": null,
-   "resident_tax": null,
-   "social_insurance": null,
-   "credit": null,
-   "consumption_tax": null
-  },
-  "disposable_change": null,
-  "approximations": [],
-  "site_note": null
- },
- {
-  "household": "H7",
-  "baseline_disposable": 2170281,
-  "design": "rengo",
-  "status": "incomplete",
-  "missing": [
-   "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.eligibility (Q3)",
-   "work_support_benefit.refund_share (Q3)",
-   "work_support_benefit.income_limit (Q3)"
+  "blocked_by": [
+   {
+    "ja": "金額・率は政令で定める（未公表）",
+    "en": "amounts and rates left to a Cabinet order (not yet published)"
+   }
   ],
   "components": {
    "income_tax": null,
@@ -691,9 +967,46 @@
  {
   "household": "H7",
   "baseline_disposable": 2170281,
+  "label": {
+   "ja": "連合案",
+   "en": "Rengo"
+  },
+  "design": "rengo",
+  "status": "incomplete",
+  "missing": [
+   "consumption_tax_refund.amount (Q3)",
+   "consumption_tax_refund.eligibility (Q3)",
+   "work_support_benefit.refund_share (Q3)",
+   "work_support_benefit.income_limit (Q3)"
+  ],
+  "blocked_by": [
+   {
+    "ja": "連合の資料を入手できていない",
+    "en": "Rengo's documents not yet obtained"
+   }
+  ],
+  "components": {
+   "income_tax": null,
+   "resident_tax": null,
+   "social_insurance": null,
+   "credit": null,
+   "consumption_tax": null
+  },
+  "disposable_change": null,
+  "approximations": [],
+  "site_note": null
+ },
+ {
+  "household": "H7",
+  "baseline_disposable": 2170281,
+  "label": {
+   "ja": "大和総研案（2025年版を2026年制度に適用）",
+   "en": "Daiwa (2025 design on 2026 rules)"
+  },
   "design": "daiwa",
   "status": "complete",
   "missing": [],
+  "blocked_by": [],
   "components": {
    "income_tax": 20700,
    "resident_tax": 0,
@@ -703,7 +1016,16 @@
   },
   "disposable_change": -20700,
   "approximations": [
-   "Q11: credit taken off before the 2.1% reconstruction surtax, as for existing tax credits"
+   {
+    "question": "Q11",
+    "ja": "税額控除は復興特別所得税（2.1%）の前に差し引く（既存の税額控除と同じ扱い）。大和総研は順序を示していない。",
+    "en": "The credit is taken off before the 2.1% reconstruction surtax, as existing tax credits are. Daiwa does not say."
+   },
+   {
+    "question": "Q18",
+    "ja": "還付の上限に数える保険料は健康保険（介護分を含む）と厚生年金のみ。子ども・子育て支援金と雇用保険は含めない。",
+    "en": "The refund cap counts health insurance (incl. long-term care) and pension only, not the child-support levy or employment insurance."
+   }
   ],
   "site_note": {
    "ja": "大和総研案は2025年の税制（基礎控除58万円）を前提に設計されています。本ツールは同案の数値をそのまま2026年の税制（基礎控除は所得489万円以下で104万円）に適用しているため、大和総研の公表試算と異なります。",
@@ -713,6 +1035,10 @@
  {
   "household": "H7",
   "baseline_disposable": 2170281,
+  "label": {
+   "ja": "政府：つなぎ（食料品1%＋支援金、R9–10）",
+   "en": "Government: bridge (food 1% + payment, FY2027–28)"
+  },
   "design": "food_tax_cut",
   "status": "incomplete",
   "missing": [
@@ -730,6 +1056,16 @@
    "bridge_payment.phase_out_rate (Q9)",
    "household food spending (Q8)"
   ],
+  "blocked_by": [
+   {
+    "ja": "金額・率は政令で定める（未公表）",
+    "en": "amounts and rates left to a Cabinet order (not yet published)"
+   },
+   {
+    "ja": "本ツールのデータ未整備（世帯の食料支出）",
+    "en": "this tool's data not ready yet (household food spending)"
+   }
+  ],
   "components": {
    "income_tax": null,
    "resident_tax": null,
@@ -744,6 +1080,10 @@
  {
   "household": "H8",
   "baseline_disposable": 12008968,
+  "label": {
+   "ja": "政府：支援金・本格導入（R11〜）",
+   "en": "Government: payment, full system (FY2029–)"
+  },
   "design": "government_final",
   "status": "incomplete",
   "missing": [
@@ -761,27 +1101,11 @@
    "phase_out_start (Q9)",
    "phase_out_rate (Q9)"
   ],
-  "components": {
-   "income_tax": null,
-   "resident_tax": null,
-   "social_insurance": null,
-   "credit": null,
-   "consumption_tax": null
-  },
-  "disposable_change": null,
-  "approximations": [],
-  "site_note": null
- },
- {
-  "household": "H8",
-  "baseline_disposable": 12008968,
-  "design": "rengo",
-  "status": "incomplete",
-  "missing": [
-   "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.eligibility (Q3)",
-   "work_support_benefit.refund_share (Q3)",
-   "work_support_benefit.income_limit (Q3)"
+  "blocked_by": [
+   {
+    "ja": "金額・率は政令で定める（未公表）",
+    "en": "amounts and rates left to a Cabinet order (not yet published)"
+   }
   ],
   "components": {
    "income_tax": null,
@@ -797,9 +1121,46 @@
  {
   "household": "H8",
   "baseline_disposable": 12008968,
+  "label": {
+   "ja": "連合案",
+   "en": "Rengo"
+  },
+  "design": "rengo",
+  "status": "incomplete",
+  "missing": [
+   "consumption_tax_refund.amount (Q3)",
+   "consumption_tax_refund.eligibility (Q3)",
+   "work_support_benefit.refund_share (Q3)",
+   "work_support_benefit.income_limit (Q3)"
+  ],
+  "blocked_by": [
+   {
+    "ja": "連合の資料を入手できていない",
+    "en": "Rengo's documents not yet obtained"
+   }
+  ],
+  "components": {
+   "income_tax": null,
+   "resident_tax": null,
+   "social_insurance": null,
+   "credit": null,
+   "consumption_tax": null
+  },
+  "disposable_change": null,
+  "approximations": [],
+  "site_note": null
+ },
+ {
+  "household": "H8",
+  "baseline_disposable": 12008968,
+  "label": {
+   "ja": "大和総研案（2025年版を2026年制度に適用）",
+   "en": "Daiwa (2025 design on 2026 rules)"
+  },
   "design": "daiwa",
   "status": "complete",
   "missing": [],
+  "blocked_by": [],
   "components": {
    "income_tax": 148100,
    "resident_tax": 0,
@@ -809,7 +1170,16 @@
   },
   "disposable_change": -148100,
   "approximations": [
-   "Q11: credit taken off before the 2.1% reconstruction surtax, as for existing tax credits"
+   {
+    "question": "Q11",
+    "ja": "税額控除は復興特別所得税（2.1%）の前に差し引く（既存の税額控除と同じ扱い）。大和総研は順序を示していない。",
+    "en": "The credit is taken off before the 2.1% reconstruction surtax, as existing tax credits are. Daiwa does not say."
+   },
+   {
+    "question": "Q18",
+    "ja": "還付の上限に数える保険料は健康保険（介護分を含む）と厚生年金のみ。子ども・子育て支援金と雇用保険は含めない。",
+    "en": "The refund cap counts health insurance (incl. long-term care) and pension only, not the child-support levy or employment insurance."
+   }
   ],
   "site_note": {
    "ja": "大和総研案は2025年の税制（基礎控除58万円）を前提に設計されています。本ツールは同案の数値をそのまま2026年の税制（基礎控除は所得489万円以下で104万円）に適用しているため、大和総研の公表試算と異なります。",
@@ -819,6 +1189,10 @@
  {
   "household": "H8",
   "baseline_disposable": 12008968,
+  "label": {
+   "ja": "政府：つなぎ（食料品1%＋支援金、R9–10）",
+   "en": "Government: bridge (food 1% + payment, FY2027–28)"
+  },
   "design": "food_tax_cut",
   "status": "incomplete",
   "missing": [
@@ -835,6 +1209,16 @@
    "bridge_payment.phase_out_start (Q9)",
    "bridge_payment.phase_out_rate (Q9)",
    "household food spending (Q8)"
+  ],
+  "blocked_by": [
+   {
+    "ja": "金額・率は政令で定める（未公表）",
+    "en": "amounts and rates left to a Cabinet order (not yet published)"
+   },
+   {
+    "ja": "本ツールのデータ未整備（世帯の食料支出）",
+    "en": "this tool's data not ready yet (household food spending)"
+   }
   ],
   "components": {
    "income_tax": null,
