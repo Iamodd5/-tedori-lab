@@ -411,3 +411,7 @@ The human said both Home charts were unreadable, and asked us to go through the 
 - Rebuilding the site now needs Node.js as well as Python (the tests run the site's JavaScript); README and the Sources page say so.
 
 The final full rewrite of all text and the UI (H-19) is still planned for after the other milestones.
+
+### Follow-up: the second wall chart in yen (2026-11-01)
+
+The human said the "How much of each extra ¥100,000 you lose" chart was still hard to understand, especially the tooltip ("Earning … instead of …"). It is now a question with an answer in yen: **"Earn ¥100,000 more: how much more do you take home?"** Normally the answer is a bit under ¥100,000. Where the line falls below the dotted ¥0 line, earning more leaves you with less: that is a wall. The tooltip now says, for example, "If the spouse's salary goes from ¥1,200,000 to ¥1,300,000 — 2026 rules: take-home pay goes down by ¥176,226 (a wall)". A crash when hovering near the dotted line was also fixed. 110 tests pass.

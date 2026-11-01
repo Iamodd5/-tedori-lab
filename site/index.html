@@ -38,10 +38,10 @@
 <h3><span lang="ja">収入ごとの手取り（円／年）</span><span lang="en">Take-home pay at each income (yen per year)</span></h3>
 <p class="note"><span lang="ja">線に触れると、その収入での手取りと、2026年の制度との差が出ます。〇はこの世帯の今の収入です。</span><span lang="en">Hover over or tap a line to see the take-home pay at that income and the difference from 2026 rules. The circle marks this household's income now.</span></p>
 <div class="chart"><canvas id="disp" role="img" aria-label="Take-home pay at each income: 2026 rules and each plan that can be calculated"></canvas></div>
-<h3><span lang="ja">収入が10万円増えたとき、手元に残らない割合</span><span lang="en">How much of each extra ¥100,000 you lose</span></h3>
-<p class="note"><span lang="ja">収入が10万円増えたとき、そのうち税金・保険料に取られたり、給付が減ったりして手元に残らない割合です。点線の100%より上が「壁」で、多く稼ぐとかえって手取りが減ります。300%より上は▲で示しています。</span>
-<span lang="en">When income goes up by ¥100,000, the share of it that goes to tax and insurance or is lost because benefits shrink. Above the dotted 100% line is a "wall": earning more leaves you with less. Values above 300% are marked ▲.</span></p>
-<div class="chart"><canvas id="emr" role="img" aria-label="Share of each extra 100,000 yen lost, at each income: 2026 rules and each plan that can be calculated"></canvas></div>
+<h3><span lang="ja">収入が10万円増えたら、手取りはいくら増える？</span><span lang="en">Earn ¥100,000 more: how much more do you take home?</span></h3>
+<p class="note"><span lang="ja">ふつうは、税金や保険料が増える分、10万円より少しだけ増えます。線が点線の0円より下に出るところが「壁」で、多く稼いだのに手取りが減ってしまいます。−20万円より下は▼で示しています。線に触れると金額が出ます。</span>
+<span lang="en">Usually a bit less than ¥100,000, because some goes to tax and insurance. Where the line drops below the dotted ¥0 line is a "wall": you earn more but end up with less. Values below −¥200,000 are marked ▼. Hover over or tap the line to see the amounts.</span></p>
+<div class="chart"><canvas id="emr" role="img" aria-label="How much more take-home pay an extra 100,000 yen of income brings, at each income: 2026 rules and each plan that can be calculated"></canvas></div>
 <p class="note" id="notdrawn"></p>
 
 <details><summary><span lang="ja">この世帯について（計算の前提）</span><span lang="en">About this household (what we assumed)</span></summary><ul class="small" id="hhnotes"></ul></details>
@@ -90,7 +90,7 @@ function draw(newHousehold) {
   const nd = Object.keys(walls.not_drawn || {}).map(d => t(walls.labels[d]));
   document.getElementById("notdrawn").textContent = nd.length
     ? (lang === "ja" ? `グラフにない案（まだ計算できないため）：${nd.join("、")}` : `Not in the charts (can't be calculated yet): ${nd.join("; ")}`) : "";
-  wc.draw({ axis: incomeAxis(h), ref: h.reference_income,
+  wc.draw({ axis: incomeAxis(h), who: whoMoves(h), ref: h.reference_income,
     series: Object.entries(h.designs).map(([d, pts]) => ({ label: t(walls.labels[d]), color: COLORS[d], points: pts })) }, newHousehold);
   lead();
 }

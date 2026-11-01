@@ -1,4 +1,4 @@
-"""Chart helpers in site/walls.js (wall list and the share of the next ¥100,000 lost), run in Node.
+"""Chart helpers in site/walls.js (wall list, and how much of an extra ¥100,000 you keep), run in Node.
 Expected values: tests/hand_calcs/wall_H4.md (the 1.3m wall) and the arithmetic in the comments."""
 import json
 import pathlib
@@ -20,7 +20,7 @@ def test_h4_wall_is_listed_with_its_drop_and_recovery():
     assert walls[0] == {"from": 1_290_000, "at": 1_300_000, "drop": 258_226, "back": 1_640_000}
 
 
-def test_rate_over_100000():
-    # take-home 0 → 90,000 → 50,000 at 0 / 100,000 / 200,000: lose 10% of the first ¥100,000, then 140%
+def test_keep_per_100000():
+    # take-home 0 → 90,000 → 50,000 at income 0 / 100,000 / 200,000: keep 90,000 of the first ¥100,000, then −40,000 (a wall)
     pts = [[x * 10_000, round(x * 9_000) if x <= 10 else 90_000 - (x - 10) * 4_000] for x in range(21)]
-    assert js("w.rateSeries(d)", pts) == [[0, 10], [100_000, 140]]
+    assert js("w.keepSeries(d)", pts) == [[0, 90_000], [100_000, -40_000]]

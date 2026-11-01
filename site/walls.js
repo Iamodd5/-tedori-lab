@@ -1,13 +1,16 @@
-// Wall charts shared by Home and Build your own: take-home pay, and the share of the next ¥100,000 that is lost.
+// Wall charts shared by Home and Build your own: take-home pay, and how much of an extra ¥100,000 you keep.
 // Data: points [[income, take-home, ...], ...] at 10,000-yen steps from outputs/wall_map.json.
 const WALL = { step: 100000, ranges: [3e6, 6e6, 1e7], minDrop: 10000 };
 
-// Share (%) of the next ¥100,000 lost. 100,000 rather than 10,000 so rounding of tax to 100 yen does not show as noise.
-function rateSeries(pts) {
+// How much more take-home pay (yen) an extra ¥100,000 of income brings; below 0 is a wall.
+// 100,000 rather than 10,000 so rounding of tax to 100 yen does not show as noise.
+function keepSeries(pts) {
   const at = new Map(pts.map(p => [p[0], p[1]]));
-  return pts.filter(p => p[0] % WALL.step === 0 && at.has(p[0] + WALL.step))
-    .map(p => [p[0], Math.round((1 - (at.get(p[0] + WALL.step) - p[1]) / WALL.step) * 1000) / 10]);
+  return pts.filter(p => p[0] % WALL.step === 0 && at.has(p[0] + WALL.step)).map(p => [p[0], at.get(p[0] + WALL.step) - p[1]]);
 }
+const KEEP_FLOOR = -200000;  // lower values are drawn at the floor and marked ▼; the tooltip gives the real amount
+// signed short yen for the keep axis: 5万 / −20万, ¥50k / −¥200k
+const keepTick = v => v === 0 ? "0" : lang === "ja" ? `${v < 0 ? "−" : ""}${Math.abs(v) / 1e4}万` : `${v < 0 ? "−" : ""}¥${Math.abs(v) / 1e3}k`;
 
 // Places where earning ¥10,000 more lowers take-home pay by WALL.minDrop or more, and where it gets back.
 // Income 0 is skipped: a full-time employee with almost no pay still owes the minimum premiums, which is not a real case.
@@ -37,7 +40,7 @@ function wallCharts(ids) {
       plugins: { legend: { labels: { boxWidth: 14 } } },
       scales: { x: { type: "linear", ticks: { callback: axisMoney, maxTicksLimit: 8 }, title: { display: true } },
                 y: { ticks: { callback: yTicks }, title: { display: true } } } } });
-  const disp = make(ids.disp, axisMoney), rate = make(ids.rate, v => v + "%");
+  const disp = make(ids.disp, axisMoney), rate = make(ids.rate, keepTick);
 
   // range buttons and enlarge buttons
   const box = document.getElementById(ids.ranges);
@@ -65,7 +68,7 @@ function wallCharts(ids) {
     });
   }
 
-  // series: [{label, color, points}], the first is 2026 rules; ref: the moving member's current income
+  // series: [{label, color, points}], the first is 2026 rules; ref: the moving member's current income; who: whose income moves
   function draw(o, newHousehold) {
     last = o;
     if (newHousehold || range === null) range = WALL.ranges.find(r => r >= 2 * o.ref) || WALL.ranges.at(-1);
@@ -83,16 +86,21 @@ function wallCharts(ids) {
       afterLabel: c => c.datasetIndex > 0 && c.datasetIndex < o.series.length
         ? (lang === "ja" ? "  2026年の制度との差：" : "  Difference from 2026 rules: ") + (c.raw.y >= base.get(c.raw.x) ? "+" : "") + yen(c.raw.y - base.get(c.raw.x)) : "" } };
     rate.data.datasets = o.series.map(s => {
-      const data = rateSeries(inRange(s.points)).map(([x, v]) => ({ x, y: Math.max(-50, Math.min(300, v)), raw: v }));
+      const data = keepSeries(inRange(s.points)).map(([x, v]) => ({ x, y: Math.max(KEEP_FLOOR, v), raw: v }));
       return { label: s.label, borderColor: s.color, backgroundColor: s.color, borderWidth: 2, stepped: "before", data,
-        pointStyle: "triangle", pointRadius: data.map(q => q.raw !== q.y ? 5 : 0) };
+        pointStyle: "triangle", rotation: 180, pointRadius: data.map(q => q.raw !== q.y ? 5 : 0) };
     });
-    rate.data.datasets.push({ label: lang === "ja" ? "100%（ここより上が壁）" : "100% (above this is a wall)", borderColor: "#888",
-      borderDash: [6, 4], borderWidth: 1, pointRadius: 0, data: [{ x: 0, y: 100 }, { x: range, y: 100 }] });
+    rate.data.datasets.push({ label: lang === "ja" ? "0円（ここより下が壁）" : "¥0 (below this is a wall)", borderColor: "#888",
+      borderDash: [6, 4], borderWidth: 1, pointRadius: 0, data: [{ x: 0, y: 0 }, { x: range, y: 0 }] });
+    // the dotted ¥0 line is filtered out, so the tooltip can have no items
     rate.options.plugins.tooltip = { filter: c => c.datasetIndex < o.series.length, callbacks: {
-      title: c => lang === "ja" ? `${yen(c[0].raw.x)}円から${yen(c[0].raw.x + WALL.step)}円に増えると` : `Earning ${yen(c[0].raw.x + WALL.step)} instead of ${yen(c[0].raw.x)} yen`,
-      label: c => lang === "ja" ? `${c.dataset.label}：増えた10万円のうち${c.raw.raw}%を失う` : `${c.dataset.label}: lose ${c.raw.raw}% of the extra ¥100,000` } };
-    for (const [ch, y] of [[disp, lang === "ja" ? "手取り（円／年）" : "Take-home pay (yen per year)"], [rate, lang === "ja" ? "失う割合" : "Share lost"]]) {
+      title: c => !c.length ? "" : lang === "ja" ? `${o.who}が${yen(c[0].raw.x)}円から${yen(c[0].raw.x + WALL.step)}円に増えると`
+                                : `If ${o.who} goes from ¥${yen(c[0].raw.x)} to ¥${yen(c[0].raw.x + WALL.step)}`,
+      label: c => { const v = c.raw.raw;
+        return lang === "ja" ? `${c.dataset.label}：手取りは${yen(Math.abs(v))}円${v < 0 ? "減る（壁）" : "増える"}`
+                             : `${c.dataset.label}: take-home pay goes ${v < 0 ? "down" : "up"} by ¥${yen(Math.abs(v))}${v < 0 ? " (a wall)" : ""}`; } } };
+    rate.options.scales.y.suggestedMax = WALL.step;
+    for (const [ch, y] of [[disp, lang === "ja" ? "手取り（円／年）" : "Take-home pay (yen per year)"], [rate, lang === "ja" ? "手取りが増える額" : "Extra take-home pay"]]) {
       ch.options.scales.x.title.text = o.axis;
       ch.options.scales.x.max = range;
       ch.options.scales.y.title.text = y;
@@ -115,4 +123,4 @@ function listWalls(ul, pts, who, top = 3) {
                                  : `There are also ${rest} smaller dips, mostly because company insurance premiums go up in steps as pay rises. You can see them in the charts.`);
 }
 
-if (typeof module !== "undefined") module.exports = { rateSeries, bigWalls };
+if (typeof module !== "undefined") module.exports = { keepSeries, bigWalls };

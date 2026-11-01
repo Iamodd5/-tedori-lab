@@ -29,6 +29,8 @@ Each design is a reform in `engine/reforms.py` that reads only its own file in `
 - **Wall map** (`outputs/wall_map.json`): one member's income moves from 0 to 10,000,000 yen in 10,000-yen steps; everything else about the household stays fixed (including "works 20+ hours at a 51+ firm"). At each step we record take-home pay and the **effective marginal rate**: 1 − (take-home at the next step − take-home here) ÷ 10,000. Above 100% means earning 10,000 more leaves you with less. In two-income households the moving income is set in the household file (`wall_map`, HUMAN_TODO H-11: D): H4 the spouse's salary; H3 and H8 the head's salary; H6 the head's pension.
 - Built by `make outputs` (part of `make all`). The website (`site/`) reads these files directly; serve the repository root (e.g. `python3 -m http.server`) and open `site/index.html`.
 
+On the site, the second wall chart shows the same information in yen rather than as a rate: how much more take-home pay an extra ¥100,000 of income brings (below ¥0 is a wall), worked out in the browser from the take-home numbers in `outputs/wall_map.json` (`site/walls.js`). The effective marginal rate stays in the output file.
+
 ## Population view and cost (Milestone 7) — every number is an approximation
 
 - **Data** (HUMAN_TODO H-17: A): households by type and 500,000-yen income band, with each band's average earnings, business income, pensions, ages and number of earners, from 令和6年全国家計構造調査 所得 第3-32-1表. Food spending from the same survey's 家計収支 第1-21表. Other official tables are used only as checks (§10 of `VALIDATION.md`). Extracted by `scripts/extract_population.py` into `population/*.csv`.
