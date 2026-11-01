@@ -8,160 +8,161 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="common.js"></script>
 <script src="custom.js"></script>
+<script src="walls.js"></script>
 <style>
-  .sliders { display: grid; gap: 10px; margin: 12px 0; }
-  .sliders label { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; font-size: .9rem; }
+  .sliders { display: grid; gap: 12px; margin: 12px 0; }
+  .sliders label { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; font-size: .95rem; }
   .sliders input { grid-column: 1 / -1; width: 100%; }
-  .sliders output { font-weight: 600; }
+  .sliders output { font-weight: 700; }
   .sliders small { grid-column: 1 / -1; color: var(--muted); }
+  .shape { height: 260px; }
+  @media (min-width: 760px) { .builder-top { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; } }
 </style>
 </head>
 <body>
 <h1><span lang="ja">自分で案を作る</span><span lang="en">Build your own plan</span></h1>
-<p><span lang="ja">働く人に現金で払う、シンプルな税額控除（給付付き税額控除）のルールを自分で決めて、例の世帯の手取りと、日本の全世帯への影響を確かめられます。下のつまみを動かすと、グラフと表がすぐに変わります。</span>
-<span lang="en">Set the rules for a simple tax credit paid in cash to working people (a "refundable tax credit"), and see what it does to the example households' take-home pay and to every household in Japan. Move the sliders and the charts and tables update straight away.</span></p>
+<p><span lang="ja">働く人に現金で払う「給付付き税額控除」を、自分で設計してみるページです。つまみを動かすと、右（スマートフォンでは下）の図と、ページの下の結果がすぐに変わります。</span>
+<span lang="en">Design your own "refundable tax credit": money paid to working people. Move the sliders and the picture beside them (below them on a phone) and the results further down update straight away.</span></p>
 
-<div class="info"><span lang="ja">このしくみ：控除は一人ずつ計算します。稼ぎ（給与と事業の収入）がある人は、稼ぎに「増える率」を掛けた額を、上限まで受け取ります。夫婦のうち稼ぎの多い方は、18歳以下の子ども1人ごとの上乗せも受け取ります。年収（稼ぎと年金の合計、税引き前）が「減り始める年収」を超えると、超えた分に「減る率」を掛けた額だけ減り、0より下にはなりません。受け取った額は、2026年の制度での手取りにそのまま上乗せします（税金はかからず、ほかの税や保険料、給付は変わらないものとします）。</span>
-<span lang="en">How it works: the credit is worked out for each person. Anyone with earnings (wages or business income) gets their earnings times the "phase-in rate", up to the maximum. In a couple, the partner who earns more also gets the amount per child aged 18 or under. Once a person's yearly income (earnings plus pensions, before tax) passes the "phase-out starts at" level, the credit falls by the "phase-out rate" times the amount above it, but not below zero. The credit is added straight onto take-home pay under 2026 rules: it isn't taxed, and no other tax, insurance or benefit changes.</span></div>
+<div class="builder-top">
+  <div>
+    <div class="sliders" id="sliders"></div>
+    <p class="note"><span lang="ja">最初の値は、動かし始めるための仮の値です。どの案からも取っていません。</span><span lang="en">The starting values are only a place to start. They don't come from any plan.</span></p>
+  </div>
+  <div>
+    <h3><span lang="ja">あなたの案で、一人がもらえる額</span><span lang="en">What one person gets under your plan</span></h3>
+    <p class="note"><span lang="ja">給与だけで暮らす人の場合。オレンジの線は子ども2人を育てている場合です。</span><span lang="en">For someone living on wages only. The orange line is for someone raising two children.</span></p>
+    <div class="chart shape"><canvas id="shape" role="img" aria-label="Credit for one person at each salary, with no children and with two children"></canvas></div>
+  </div>
+</div>
 
-<div class="sliders" id="sliders"></div>
-<p class="note"><span lang="ja">最初の値は、動かし始めるための仮の値です。どの案からも取っていません。</span><span lang="en">The starting values are only a place to start. They don't come from any plan.</span></p>
-
-<h2><span lang="ja">例の世帯で見ると</span><span lang="en">For an example household</span></h2>
-<label><span lang="ja">世帯を選ぶ：</span><span lang="en">Choose a household: </span><select id="hh"></select></label>
-<p class="lead" id="here"></p>
-<h3><span lang="ja">収入ごとの手取り（円／年）</span><span lang="en">Take-home pay at each income (yen per year)</span></h3>
-<div class="chart"><canvas id="disp" role="img" aria-label="Take-home pay by income before tax: 2026 rules and your plan"></canvas></div>
-<h3><span lang="ja">収入が1万円増えたとき、手元に残らない割合</span><span lang="en">How much of each extra ¥10,000 you lose</span></h3>
-<p class="note"><span lang="ja">100%を超えるところが「壁」で、多く稼ぐとかえって手取りが減ります。グラフは−50%〜300%の範囲で表示し、300%を超える点は▲で示しています。</span><span lang="en">Above 100% is a "wall": earning more leaves you with less. The chart shows −50% to 300%; points above 300% are marked ▲.</span></p>
-<div class="chart"><canvas id="emr" role="img" aria-label="Share of each extra 10,000 yen lost, by income before tax: 2026 rules and your plan"></canvas></div>
+<details><summary><span lang="ja">くわしいしくみ</span><span lang="en">Exactly how it works</span></summary>
+<p class="small"><span lang="ja">控除は一人ずつ計算します。稼ぎ（給与と事業の収入）がある人は、稼ぎに「増え方」の割合を掛けた額を、「1人あたりの最大額」まで受け取ります。夫婦のうち稼ぎの多い方は、18歳以下の子ども1人ごとの上乗せも受け取ります。年収（稼ぎと年金の合計、税引き前）が「減り始める年収」を超えると、超えた分に「減り方」の割合を掛けた額だけ減り、0より下にはなりません。受け取った額は、2026年の制度での手取りにそのまま上乗せします。税金はかからず、ほかの税や保険料、給付は変わらないものとします。</span>
+<span lang="en">The credit is worked out for each person. Anyone with earnings (wages or business income) gets their earnings times the "how fast it grows" percentage, up to "most one person can get". In a couple, the partner who earns more also gets the extra per child aged 18 or under. Once a person's yearly income (earnings plus pensions, before tax) passes "starts shrinking above", the credit falls by the "how fast it shrinks" percentage of the amount above it, but not below zero. The credit is added straight onto take-home pay under 2026 rules: it isn't taxed, and no other tax, insurance or benefit changes.</span></p></details>
 
 <h2><span lang="ja">日本の全世帯で見ると（概算）</span><span lang="en">For every household in Japan (estimate)</span></h2>
-<p class="warn"><span lang="ja">（近似）この部分の数字は、「全世帯で見ると」のページと同じ架空の世帯（2024年の国の調査の平均に合わせたもの）で計算した大まかな試算です。置いた仮定はページの下にあります。</span><span lang="en">(Approximation) These numbers are rough estimates, worked out with the same made-up households as the All households page (matched to the averages in a 2024 government survey). The assumptions are listed at the bottom of the page.</span></p>
 <p class="lead" id="cost"></p>
-<div class="chart"><canvas id="dec" role="img" aria-label="Average credit per household by income group; the same numbers are in the table below"></canvas></div>
+<p class="note"><span lang="ja">（近似）この部分は、「全世帯で見ると」のページと同じ架空の世帯（2024年の国の調査の平均に合わせたもの）で計算した大まかな試算です。すべての世帯を年収の低い順に並べ、同じ数ずつ10のグループに分けています。</span><span lang="en">(Approximation) Rough estimates, worked out with the same made-up households as the All households page (matched to the averages in a 2024 government survey). Every household is lined up from lowest to highest yearly income and cut into ten equal groups.</span></p>
+<div class="chart"><canvas id="dec" role="img" aria-label="Average amount received per household by income group; the same numbers are in the table below"></canvas></div>
+<details><summary><span lang="ja">数字の表を見る</span><span lang="en">See the numbers as a table</span></summary>
 <div class="scroll"><table id="tbl"><thead><tr>
   <th><span lang="ja">収入グループ</span><span lang="en">Income group</span></th>
   <th><span lang="ja">平均年収（円）</span><span lang="en">Average yearly income (yen)</span></th>
   <th><span lang="ja">1世帯あたりの平均の受取額（円／年）</span><span lang="en">Average received per household (yen per year)</span></th>
   <th><span lang="ja">受け取る世帯の割合</span><span lang="en">Share of households receiving it</span></th>
-</tr></thead><tbody></tbody></table></div>
-<p class="note"><span lang="ja">グループは、すべての世帯を年収の低い順に並べて同じ数ずつ10に分けたものです（グループ1が最も低い）。この控除は手取りを減らすことはないため、手取りが減る世帯はありません。</span><span lang="en">The groups come from lining up every household from lowest to highest yearly income and cutting the line into ten equal groups (group 1 is the lowest). This credit never lowers take-home pay, so no household is worse off.</span></p>
+</tr></thead><tbody></tbody></table></div></details>
 
-<h2><span lang="ja">このページの近似</span><span lang="en">Approximations on this page</span></h2>
-<ul class="small" id="approx"></ul>
+<h2><span lang="ja">例の世帯で見ると</span><span lang="en">For an example household</span></h2>
+<label><span lang="ja">世帯を選ぶ：</span><span lang="en">Choose a household: </span><select id="hh"></select></label>
+<p class="info" id="incomes"></p>
+<p class="lead" id="here"></p>
+<h3 id="wallshead"></h3>
+<ul id="walls"></ul>
+<div class="ranges" id="ranges"><span lang="ja">表示する収入の範囲：</span><span lang="en">Income range shown:</span></div>
+<h3><span lang="ja">収入ごとの手取り（円／年）</span><span lang="en">Take-home pay at each income (yen per year)</span></h3>
+<p class="note"><span lang="ja">線に触れると、その収入での手取りと、2026年の制度との差が出ます。〇はこの世帯の今の収入です。</span><span lang="en">Hover over or tap a line to see the take-home pay at that income and the difference from 2026 rules. The circle marks this household's income now.</span></p>
+<div class="chart"><canvas id="disp" role="img" aria-label="Take-home pay at each income: 2026 rules and your plan"></canvas></div>
+<h3><span lang="ja">収入が10万円増えたとき、手元に残らない割合</span><span lang="en">How much of each extra ¥100,000 you lose</span></h3>
+<p class="note"><span lang="ja">点線の100%より上が「壁」で、多く稼ぐとかえって手取りが減ります。300%より上は▲で示しています。</span><span lang="en">Above the dotted 100% line is a "wall": earning more leaves you with less. Values above 300% are marked ▲.</span></p>
+<div class="chart"><canvas id="emr" role="img" aria-label="Share of each extra 100,000 yen lost, at each income: 2026 rules and your plan"></canvas></div>
+
+<details><summary><span lang="ja">（近似）このページの数字に含まれる近似</span><span lang="en">(Approximation) Simplifications behind the numbers on this page</span></summary><ul class="small" id="approx"></ul></details>
 
 <script>
 // value: the slider's starting value (a placeholder, not from any plan); x: slider unit → formula unit
 const SLIDERS = [
-  { key: "phase_in_rate", ja: "増える率", en: "Phase-in rate", min: 0, max: 50, step: 1, value: 10, x: 0.01, fmt: v => v + "%",
-    help: { ja: "稼ぎ1円あたり、控除がいくら増えるか", en: "How much the credit grows for each yen earned" } },
-  { key: "maximum", ja: "上限（1人あたり）", en: "Maximum (per person)", min: 0, max: 500000, step: 10000, value: 100000, x: 1, fmt: v => "¥" + yen(v),
-    help: { ja: "子どもの上乗せを除いた、1人が受け取れる最大の額", en: "The most one person can get, not counting the amount for children" } },
-  { key: "child_addition", ja: "子ども1人あたりの上乗せ", en: "Amount per child", min: 0, max: 300000, step: 10000, value: 50000, x: 1, fmt: v => "¥" + yen(v),
-    help: { ja: "18歳以下の子ども1人ごとに、稼ぎの多い親に上乗せ", en: "Added for each child aged 18 or under, to the parent who earns more" } },
-  { key: "plateau_end", ja: "減り始める年収", en: "Phase-out starts at", min: 0, max: 10000000, step: 100000, value: 3000000, x: 1, fmt: v => "¥" + yen(v),
-    help: { ja: "年収（稼ぎ＋年金、税引き前）がこれを超えると減り始める", en: "The credit starts to fall once yearly income (earnings plus pensions, before tax) passes this" } },
-  { key: "phase_out_rate", ja: "減る率", en: "Phase-out rate", min: 0, max: 50, step: 1, value: 5, x: 0.01, fmt: v => v + "%",
-    help: { ja: "その年収を超えた1円あたり、控除がいくら減るか", en: "How much the credit falls for each yen above that income" } },
+  { key: "phase_in_rate", ja: "増え方（稼ぎの何％）", en: "How fast it grows (% of earnings)", min: 0, max: 50, step: 1, value: 10, x: 0.01, fmt: v => v + "%",
+    help: { ja: "稼ぎ100万円ごとに、この割合だけ増える（10%なら10万円）", en: "For every ¥1m earned, the credit grows by this share (10% = ¥100,000)" } },
+  { key: "maximum", ja: "1人あたりの最大額", en: "Most one person can get", min: 0, max: 500000, step: 10000, value: 100000, x: 1, fmt: v => "¥" + yen(v),
+    help: { ja: "子どもの上乗せを除く", en: "Not counting the extra for children" } },
+  { key: "child_addition", ja: "子ども1人あたりの上乗せ", en: "Extra per child", min: 0, max: 300000, step: 10000, value: 50000, x: 1, fmt: v => "¥" + yen(v),
+    help: { ja: "18歳以下の子ども1人ごとに、稼ぎの多い親に上乗せ", en: "For each child aged 18 or under, added for the parent who earns more" } },
+  { key: "plateau_end", ja: "減り始める年収", en: "Starts shrinking above", min: 0, max: 10000000, step: 100000, value: 3000000, x: 1, fmt: v => "¥" + yen(v),
+    help: { ja: "年収（稼ぎ＋年金、税引き前）がこれを超えると減り始める", en: "Once yearly income (earnings plus pensions, before tax) passes this" } },
+  { key: "phase_out_rate", ja: "減り方（超えた分の何％）", en: "How fast it shrinks (% of income above that)", min: 0, max: 50, step: 1, value: 5, x: 0.01, fmt: v => v + "%",
+    help: { ja: "超えた100万円ごとに、この割合だけ減る（5%なら5万円）", en: "For every ¥1m above, the credit shrinks by this share (5% = ¥50,000)" } },
 ];
-const C = { base: "#000000", mine: "#D55E00" };
-let walls, pop, builder, charts = {};
+const C = { base: "#000000", mine: "#D55E00", kids: "#E69F00" };
+let walls, pop, builder, wc, shape, dec;
 
-function params() {
-  return Object.fromEntries(SLIDERS.map(s => [s.key, +document.getElementById(s.key).value * s.x]));
-}
+const params = () => Object.fromEntries(SLIDERS.map(s => [s.key, +document.getElementById(s.key).value * s.x]));
 
 function makeSliders() {
   const box = document.getElementById("sliders");
   for (const s of SLIDERS) {
     const l = document.createElement("label");
     l.innerHTML = `<span class="name"></span><output></output><input type="range" id="${s.key}" min="${s.min}" max="${s.max}" step="${s.step}" value="${s.value}"><small></small>`;
-    l.querySelector("input").oninput = update;
+    l.querySelector("input").oninput = () => update(false);
     box.append(l);
   }
 }
 
-function labelSliders() {
+function update(newHousehold) {
+  const p = params(), hid = document.getElementById("hh").value, h = walls.households[hid];
   for (const s of SLIDERS) {
     const input = document.getElementById(s.key), l = input.parentElement;
     l.querySelector(".name").textContent = s[lang];
     l.querySelector("small").textContent = t(s.help);
     l.querySelector("output").textContent = s.fmt(+input.value);
   }
-}
+  [...document.getElementById("hh").options].forEach(o => { const x = walls.households[o.value]; o.textContent = `${o.value} ${lang === "ja" ? x.name_ja : x.name_en}`; });
 
-function lineData(points, col, clamp) {
-  return points.filter(p => p[col] != null).map(p => {
-    const v = clamp ? p[col] * 100 : p[col];
-    return { x: p[0], y: clamp ? Math.max(-50, Math.min(300, v)) : v, raw: v };
-  });
-}
+  // the credit's shape for one person on wages only
+  const xs = Array.from({ length: 101 }, (_, i) => i * 100000);
+  shape.data.datasets = [[0, lang === "ja" ? "子どもなし" : "No children", C.mine], [2, lang === "ja" ? "子ども2人" : "Two children", C.kids]].map(([k, label, color]) => ({
+    label, borderColor: color, backgroundColor: color, pointRadius: 0, borderWidth: 2,
+    data: xs.map(x => ({ x, y: customCredit([["p", x, 0], ...Array(k).fill(["k", 0, 0])], p) })) }));
+  shape.options.scales.x.title.text = lang === "ja" ? "給与（税引き前、年）" : "Salary before tax (per year)";
+  shape.options.scales.y.title.text = lang === "ja" ? "もらえる額（年）" : "Amount received (per year)";
+  shape.update();
 
-function lineChart(id, yTitle, unit) {
-  return new Chart(document.getElementById(id), { type: "line",
-    data: { datasets: [0, 1].map(() => ({ data: [], borderWidth: 1.5, pointStyle: "triangle", pointRadius: 0 })) },
-    options: { animation: false, maintainAspectRatio: false, parsing: false,
-      interaction: { mode: "nearest", axis: "x", intersect: false },
-      plugins: { tooltip: { callbacks: { title: c => `¥${yen(c[0].raw.x)}`, label: c => `${c.dataset.label}: ${yen(c.raw.raw)}${unit}` } } },
-      scales: { x: { type: "linear", title: { display: true } }, y: { title: { display: true, text: yTitle } } } } });
-}
-
-function update() {
-  const p = params(), hid = document.getElementById("hh").value;
-  labelSliders();
-  const base = walls.households[hid].designs.baseline, mine = customWall(builder.households[hid], base, p);
-  const names = [lang === "ja" ? "2026年の制度" : "2026 rules", lang === "ja" ? "あなたの案" : "Your plan"];
-  for (const [id, col, clamp] of [["disp", 1, false], ["emr", 2, true]]) {
-    const ch = charts[id];
-    [base, mine].forEach((pts, k) => {
-      const ds = ch.data.datasets[k], data = lineData(pts, col, clamp);
-      Object.assign(ds, { label: names[k], data, borderColor: [C.base, C.mine][k], backgroundColor: [C.base, C.mine][k],
-                          pointRadius: data.map(q => q.raw !== q.y ? 4 : 0) });
-    });
-    ch.options.scales.x.title.text = incomeAxis(walls.households[hid]);
-    ch.update();
-  }
-  // the household at its own income
-  const gain = customCredit(builder.households[hid].people, p);
-  document.getElementById("here").textContent = lang === "ja"
-    ? `この世帯（${t(walls.labelsHH[hid])}）は、いまの収入のままなら、あなたの案で年${yen(gain)}円を受け取ります。グラフは、${incomeAxis(walls.households[hid]).replace(/（.*$/, "")}だけを0円から1,000万円まで動かしたときの変化です。`
-    : `With the incomes it has now, this household (${t(walls.labelsHH[hid])}) would get ¥${yen(gain)} a year under your plan. The charts show what happens as only the ${incomeAxis(walls.households[hid]).replace(/ before tax.*$/, "").toLowerCase()} moves from ¥0 to ¥10 million.`;
-
+  // all households
   const r = populationResults(builder, p);
   document.getElementById("cost").textContent = lang === "ja"
-    ? `（近似）国の負担：年${(r.cost / 1e12).toFixed(2)}兆円（すべての世帯への支払いの合計）`
-    : `(Approximation) Cost to the government: ¥${(r.cost / 1e12).toFixed(2)} trillion a year (the total paid to all households)`;
-  const labels = r.mean.map((_, k) => (lang === "ja" ? "グループ" : "Group ") + (k + 1));
-  Object.assign(charts.dec.data, { labels, datasets: [{ label: lang === "ja" ? "平均の受取額（円／年）" : "Average received (yen per year)",
-    backgroundColor: C.mine, data: r.mean.map(Math.round) }] });
-  charts.dec.update();
+    ? `（近似）国が払う額の合計：年${(r.cost / 1e12).toFixed(2)}兆円。もらえる世帯は、収入の低いグループ1で${(r.share[0] * 100).toFixed(0)}%、高いグループ10で${(r.share[9] * 100).toFixed(0)}%です。`
+    : `(Approximation) Total paid by the government: ¥${(r.cost / 1e12).toFixed(2)} trillion a year. ${(r.share[0] * 100).toFixed(0)}% of households in the lowest income group (group 1) get something, and ${(r.share[9] * 100).toFixed(0)}% in the highest (group 10).`;
+  const labels = r.mean.map((_, k) => [(lang === "ja" ? "グループ" : "Group ") + (k + 1), (lang === "ja" ? "平均" : "avg ") + roundMoney(pop.deciles[k].annual_income_mean)]);
+  dec.data = { labels, datasets: [{ label: lang === "ja" ? "1世帯あたりの平均の受取額（円／年）" : "Average received per household (yen per year)", backgroundColor: C.mine, data: r.mean.map(Math.round) }] };
+  dec.options.scales.x.title.text = lang === "ja" ? "収入グループ（年収の低い順、グループごとの平均年収）" : "Income group (lowest to highest, with average yearly income)";
+  dec.update();
   const tb = document.querySelector("#tbl tbody"); tb.innerHTML = "";
   r.mean.forEach((m, k) => {
     const tr = tb.insertRow();
-    [labels[k], yen(pop.deciles[k].annual_income_mean), yen(m), (r.share[k] * 100).toFixed(1) + "%"].forEach(v => tr.insertCell().textContent = v);
+    [labels[k][0], yen(pop.deciles[k].annual_income_mean), yen(m), (r.share[k] * 100).toFixed(1) + "%"].forEach(v => tr.insertCell().textContent = v);
   });
+
+  // the example household
+  const mine = customWall(builder.households[hid], h.designs.baseline, p);
+  document.getElementById("incomes").textContent = (lang === "ja" ? "この世帯の今の収入（税引き前、年）：" : "This household's income now (before tax, per year): ") + describeIncomes(h.incomes);
+  document.getElementById("here").textContent = lang === "ja"
+    ? `この世帯は、今の収入のままなら、あなたの案で年${yen(customCredit(builder.households[hid].people, p))}円を受け取ります。`
+    : `With the incomes it has now, this household would get ¥${yen(customCredit(builder.households[hid].people, p))} a year under your plan.`;
+  document.getElementById("wallshead").textContent = lang === "ja" ? `あなたの案での壁（${whoMoves(h)}が増えるとき）` : `Walls under your plan (as ${whoMoves(h)} goes up)`;
+  listWalls(document.getElementById("walls"), mine, whoMoves(h));
+  wc.draw({ axis: incomeAxis(h), ref: h.reference_income, series: [
+    { label: lang === "ja" ? "2026年の制度" : "2026 rules", color: C.base, points: h.designs.baseline },
+    { label: lang === "ja" ? "あなたの案" : "Your plan", color: C.mine, points: mine }] }, newHousehold);
   const ul = document.getElementById("approx"); ul.innerHTML = "";
   [...walls.baseline_approximations, ...pop.approximations].forEach(a => li(ul, t(a)));
 }
 
-setupPage(() => { if (builder) { fillSelect(); update(); } });
-function fillSelect() {
-  const sel = document.getElementById("hh");
-  [...sel.options].forEach(o => o.textContent = `${o.value} ${t(walls.labelsHH[o.value])}`);
-}
+setupPage(() => { if (builder) update(false); });
 Promise.all(["wall_map", "population", "builder"].map(f => loadJSON(`../outputs/${f}.json`))).then(([w, p, b]) => {
   walls = w; pop = p; builder = b;
-  walls.labelsHH = Object.fromEntries(Object.entries(w.households).map(([k, x]) => [k, { ja: x.name_ja, en: x.name_en }]));
   const sel = document.getElementById("hh");
   Object.keys(b.households).forEach(id => sel.add(new Option(id, id)));
-  sel.value = "H5"; sel.onchange = update;
-  makeSliders(); fillSelect();
-  charts.disp = lineChart("disp", "", "");
-  charts.emr = lineChart("emr", "%", "%");
-  charts.dec = new Chart(document.getElementById("dec"), { type: "bar", data: { labels: [], datasets: [] },
-    options: { animation: false, maintainAspectRatio: false, plugins: { tooltip: { callbacks: { label: c => yen(c.raw) } } } } });
-  update();
+  sel.value = "H5"; sel.onchange = () => update(true);
+  makeSliders();
+  shape = new Chart(document.getElementById("shape"), { type: "line", data: { datasets: [] },
+    options: { animation: false, maintainAspectRatio: false, parsing: false, interaction: { mode: "nearest", axis: "x", intersect: false },
+      plugins: { tooltip: { callbacks: { title: c => `${yen(c[0].raw.x)}${lang === "ja" ? "円" : " yen"}`, label: c => `${c.dataset.label}: ${yen(c.raw.y)}${lang === "ja" ? "円" : " yen"}` } } },
+      scales: { x: { type: "linear", max: 1e7, ticks: { callback: axisMoney, maxTicksLimit: 6 }, title: { display: true } },
+                y: { min: 0, ticks: { callback: axisMoney }, title: { display: true } } } } });
+  dec = new Chart(document.getElementById("dec"), { type: "bar", data: { labels: [], datasets: [] },
+    options: { animation: false, maintainAspectRatio: false, plugins: { tooltip: { callbacks: { label: c => `${yen(c.raw)}${lang === "ja" ? "円" : " yen"}` } } },
+      scales: { x: { title: { display: true } }, y: { ticks: { callback: axisMoney } } } } });
+  wc = wallCharts({ disp: "disp", rate: "emr", ranges: "ranges" });
+  update(true);
 });
 </script>
 </body>

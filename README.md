@@ -13,7 +13,7 @@ The site states findings only. It does not recommend any design, party or politi
 
 ## Rebuild every number
 
-Needs Python 3.11 and [uv](https://docs.astral.sh/uv/).
+Needs Python 3.11, [uv](https://docs.astral.sh/uv/) and Node.js (the tests run the site's JavaScript).
 
 ```bash
 uv venv --python 3.11 .venv && VIRTUAL_ENV=.venv uv pip install -r requirements.txt

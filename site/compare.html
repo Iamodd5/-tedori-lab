@@ -10,71 +10,90 @@
 </head>
 <body>
 <h1><span lang="ja">案の比較</span><span lang="en">Compare the plans</span></h1>
-<p class="note"><span lang="ja">選んだ世帯の1年間の手取りが、2026年の制度と比べてそれぞれの案でいくら変わるか（円）。どの案も同じ世帯・同じデータ・同じ方法で計算しています。「2026年の制度」とは、2026年に実際に適用されている税金・社会保険の仕組みのことで、どの案もまだ入っていない状態です。それぞれの案の中身はホームで説明しています。</span>
-<span lang="en">How much each plan would change the chosen household's take-home pay for the year, compared with 2026 rules (yen). Every plan is worked out with the same households, data and method. "2026 rules" means the tax and social insurance rules actually in force in 2026, before any of these plans. What each plan does is explained on the Home page.</span></p>
+<p><span lang="ja">例の世帯を選ぶと、それぞれの案で、その世帯の1年間の手取り（税金と保険料を引いた後に残るお金）がいくら変わるかが分かります。比べる相手は「2026年の制度」、つまり2026年に実際に使われている、どの案もまだ入っていない制度です。</span>
+<span lang="en">Choose an example household to see how much each plan would change its take-home pay for a year (what is left after tax and insurance). Each plan is compared with "2026 rules": the rules actually in force in 2026, before any of these plans.</span></p>
 <label><span lang="ja">世帯を選ぶ：</span><span lang="en">Choose a household: </span><select id="hh"></select></label>
-<p id="base" class="note"></p>
+<p class="info" id="incomes"></p>
 
-<div class="chart"><canvas id="bar" role="img" aria-label="Change in take-home pay by plan, split into parts; the same numbers are in the table below"></canvas></div>
+<div class="summary"><ul id="result"></ul></div>
+<div id="sitenotes"></div>
 
+<h2><span lang="ja">手取りの変化の内訳</span><span lang="en">Where the change comes from</span></h2>
+<p class="note"><span lang="ja">右向きの棒は手取りを増やす分（受け取るお金や、減る税金）、左向きは手取りを減らす分（増える税金や保険料）です。</span><span lang="en">Bars to the right add to take-home pay (cash received, or less tax); bars to the left take away from it (more tax or insurance).</span></p>
+<div class="chart" style="height:220px"><canvas id="bar" role="img" aria-label="Change in take-home pay by plan, split into parts; the same numbers are in the table below"></canvas></div>
 <div class="scroll"><table id="cmp"><thead><tr>
   <th><span lang="ja">案</span><span lang="en">Plan</span></th>
   <th><span lang="ja">手取りの変化</span><span lang="en">Change in take-home</span></th>
+  <th><span lang="ja">受け取るお金</span><span lang="en">Cash received</span></th>
   <th><span lang="ja">所得税</span><span lang="en">Income tax</span></th>
   <th><span lang="ja">住民税</span><span lang="en">Resident tax</span></th>
   <th><span lang="ja">社会保険料</span><span lang="en">Social insurance</span></th>
-  <th><span lang="ja">受け取るお金（給付・還付）</span><span lang="en">Cash received (payment or refund)</span></th>
   <th><span lang="ja">消費税</span><span lang="en">Consumption tax</span></th>
 </tr></thead><tbody></tbody></table></div>
-<p class="note"><span lang="ja">税金・保険料の列は、払う額の増減です（＋は多く払う）。手取りの変化 ＝ 受け取るお金（給付・還付） − 税金・保険料の増えた分。</span>
-<span lang="en">The tax and insurance columns show how much more or less you pay (+ means you pay more). Change in take-home = cash received − extra tax and insurance.</span></p>
-<div id="notes"></div>
+<p class="note"><span lang="ja">表の税金・保険料の列は、払う額の増減です（＋は多く払う）。手取りの変化 ＝ 受け取るお金 − 税金・保険料の増えた分。金額はすべて円／年。</span>
+<span lang="en">The tax and insurance columns show how much more or less is paid (+ means paying more). Change in take-home = cash received − extra tax and insurance. All amounts are yen per year.</span></p>
+
+<h2><span lang="ja">まだ計算できない案</span><span lang="en">Plans that can't be calculated yet</span></h2>
+<ul id="blocked"></ul>
+
+<details><summary><span lang="ja">（近似）計算の前提と近似</span><span lang="en">(Approximation) What we assumed</span></summary><div id="notes"></div></details>
 
 <script>
 const COLORS = { income_tax: "#0072B2", resident_tax: "#56B4E9", social_insurance: "#CC79A7", credit: "#E69F00", consumption_tax: "#009E73" };
-const PARTS = { income_tax: { ja: "所得税", en: "Income tax" }, resident_tax: { ja: "住民税", en: "Resident tax" },
-  social_insurance: { ja: "社会保険料", en: "Social insurance" }, credit: { ja: "給付・還付", en: "Payment received" },
-  consumption_tax: { ja: "消費税", en: "Consumption tax" } };
-let rows, chart;
+const PARTS = { credit: { ja: "受け取るお金", en: "Cash received" }, income_tax: { ja: "所得税", en: "Income tax" }, resident_tax: { ja: "住民税", en: "Resident tax" },
+  social_insurance: { ja: "社会保険料", en: "Social insurance" }, consumption_tax: { ja: "消費税", en: "Consumption tax" } };
+let rows, walls, chart;
+const signed = v => (v > 0 ? "+" : v < 0 ? "−" : "±") + yen(Math.abs(v));
+const pctSigned = x => (x > 0 ? "+" : x < 0 ? "−" : "±") + Math.abs(x * 100).toFixed(1) + "%";
 
 function draw() {
-  const sel = document.getElementById("hh"), mine = rows.filter(r => r.household === sel.value);
-  [...sel.options].forEach(o => { const r = rows.find(x => x.household === o.value); o.textContent = `${o.value} ${lang === "ja" ? r.name_ja : r.name_en}`; });
-  document.getElementById("base").textContent = (lang === "ja" ? "2026年の制度での手取り：" : "Take-home pay under 2026 rules: ") +
-    yen(mine[0].baseline_disposable) + (lang === "ja" ? "円" : " yen");
+  const sel = document.getElementById("hh"), mine = rows.filter(r => r.household === sel.value), h = walls.households[sel.value];
+  [...sel.options].forEach(o => { const x = walls.households[o.value]; o.textContent = `${o.value} ${lang === "ja" ? x.name_ja : x.name_en}`; });
+  document.getElementById("incomes").textContent = (lang === "ja" ? "この世帯の収入（税引き前、年）：" : "This household's income (before tax, per year): ") + describeIncomes(h.incomes);
+  const done = mine.filter(r => r.status === "complete"), base = mine[0].baseline_disposable;
+
+  const res = document.getElementById("result"); res.innerHTML = "";
+  li(res, lang === "ja" ? `2026年の制度での手取り：年${yen(base)}円` : `Take-home pay under 2026 rules: ¥${yen(base)} a year`);
+  for (const r of done) li(res, lang === "ja"
+    ? `${t(r.label)}：年${signed(r.disposable_change)}円（${pctSigned(r.disposable_change / base)}）`
+    : `${t(r.label)}: ${signed(r.disposable_change)} yen a year (${pctSigned(r.disposable_change / base)})`);
+  li(res, lang === "ja" ? `ほかの${mine.length - done.length}つの案は、まだ計算できません（下を参照）。` : `The other ${mine.length - done.length} plans can't be calculated yet (see below).`);
+
   if (chart) chart.destroy();
   // each part's effect on take-home: payments add, extra tax or insurance subtracts
   const sign = k => k === "credit" ? 1 : -1;
   chart = new Chart(bar, { type: "bar",
-    data: { labels: mine.map(r => t(r.label)),
-            datasets: Object.keys(PARTS).map(k => ({ label: t(PARTS[k]), backgroundColor: COLORS[k],
-              data: mine.map(r => r.status === "complete" ? sign(k) * r.components[k] : null) })) },
+    data: { labels: done.map(r => t(r.label)),
+            datasets: Object.keys(PARTS).filter(k => done.some(r => r.components[k])).map(k => ({ label: t(PARTS[k]), backgroundColor: COLORS[k],
+              data: done.map(r => sign(k) * r.components[k]) })) },
     options: { animation: false, maintainAspectRatio: false, indexAxis: "y",
-      plugins: { tooltip: { callbacks: { label: c => `${c.dataset.label}: ${yen(c.raw)}` } } },
-      scales: { x: { stacked: true, title: { display: true, text: lang === "ja" ? "手取りへの影響（円／年）" : "Effect on take-home (yen per year)" } },
-                y: { stacked: true, ticks: { callback: (v, i) => { const s = t(mine[i].label); const n = innerWidth < 600 ? 11 : 22; return s.length > n ? s.slice(0, n - 1) + "…" : s; } } } } } });
+      plugins: { tooltip: { callbacks: { label: c => `${c.dataset.label}: ${signed(c.raw)}` } } },
+      scales: { x: { stacked: true, title: { display: true, text: lang === "ja" ? "手取りへの影響（円／年）" : "Effect on take-home pay (yen per year)" } },
+                y: { stacked: true, ticks: { callback: (v, i) => { const s = t(done[i].label); const n = innerWidth < 600 ? 14 : 30; return s.length > n ? s.slice(0, n - 1) + "…" : s; } } } } } });
 
   const tb = document.querySelector("#cmp tbody"); tb.innerHTML = "";
-  const notes = new Set();
-  for (const r of mine) {
+  for (const r of done) {
     const c = r.components, tr = tb.insertRow();
     tr.insertCell().textContent = t(r.label);
-    if (r.status === "complete") {
-      [r.disposable_change, c.income_tax, c.resident_tax, c.social_insurance, c.credit, c.consumption_tax].forEach(v => tr.insertCell().textContent = yen(v));
-      if (r.site_note) notes.add(`${t(r.label)}: ${t(r.site_note)}`);
-      r.approximations.forEach(a => notes.add(`${t(r.label)}: ${lang === "ja" ? "（近似）" : "(Approximation) "}${t(a)}`));
-    } else {
-      const td = tr.insertCell(); td.colSpan = 6; td.className = "reason";
-      td.textContent = (lang === "ja" ? "まだ計算できません：" : "Can't calculate yet: ") + joinT(r.blocked_by);
-    }
+    [r.disposable_change, c.credit, c.income_tax, c.resident_tax, c.social_insurance, c.consumption_tax].forEach(v => tr.insertCell().textContent = yen(v));
   }
+  const bl = document.getElementById("blocked"); bl.innerHTML = "";
+  for (const r of mine.filter(r => r.status !== "complete")) li(bl, `${t(r.label)}${lang === "ja" ? "：" : ": "}${joinT(r.blocked_by)}`);
+
+  const sn = document.getElementById("sitenotes"); sn.innerHTML = "";
+  for (const r of done.filter(r => r.site_note)) { const p = document.createElement("p"); p.className = "note"; p.textContent = `${t(r.label)}: ${t(r.site_note)}`; sn.append(p); }
   const nd = document.getElementById("notes"); nd.innerHTML = "";
-  notes.forEach(n => { const p = document.createElement("p"); p.className = "warn"; p.textContent = n; nd.append(p); });
+  const note = text => { const p = document.createElement("p"); p.className = "small"; p.textContent = text; nd.append(p); };
+  for (const r of done) {
+    r.approximations.forEach(a => note(`${t(r.label)}: ${lang === "ja" ? "（近似）" : "(Approximation) "}${t(a)}`));
+  }
+  h.assumptions.forEach(a => note(t(a)));
+  walls.baseline_approximations.forEach(a => note(t(a)));
 }
 
 setupPage(() => rows && draw());
-Promise.all([loadJSON("../outputs/household_comparison.json"), loadJSON("../outputs/wall_map.json")]).then(([cmp, walls]) => {
-  rows = cmp.map(r => ({ ...r, name_ja: walls.households[r.household].name_ja, name_en: walls.households[r.household].name_en }));
+Promise.all([loadJSON("../outputs/household_comparison.json"), loadJSON("../outputs/wall_map.json")]).then(([cmp, w]) => {
+  rows = cmp; walls = w;
   const sel = document.getElementById("hh");
   [...new Set(rows.map(r => r.household))].forEach(id => sel.add(new Option(id, id)));
   sel.onchange = draw; draw();

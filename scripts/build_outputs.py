@@ -47,7 +47,7 @@ with open(OUT / "household_comparison.csv", "w", newline="") as f:
 
 walls = {"step": w.STEP, "columns": ["income", "disposable", "emr"], "households": {}, "skipped": {},
          "labels": {"baseline": {"ja": "2026年の制度", "en": "2026 rules"}, **{d: r.design(d)["label"] for d in DESIGNS}},
-         "summaries": {d: r.design(d)["summary"] for d in DESIGNS},
+         "summaries": {d: r.design(d)["summary"] for d in DESIGNS}, "shorts": {d: r.design(d)["short"] for d in DESIGNS},
          # the same text shared by several parameters (a YAML alias) is listed once
          "baseline_approximations": list({json.dumps(a, ensure_ascii=False): a for f in sorted(BASELINE.glob("*.yaml"))
                                           for a in approximations(yaml.safe_load(f.read_text(encoding="utf-8")), f.stem)}.values())}
@@ -66,6 +66,9 @@ for hid in HOUSEHOLDS:
     walls["households"][hid] = {"member": who[0], "income_field": who[1], "name_ja": hh["name_ja"],
                                 "member_role": next(m["role"] for m in hh["members"] if m["id"] == who[0]),
                                 "couple": any(m["role"] == "spouse" for m in hh["members"]),
+                                "reference_income": next(m for m in hh["members"] if m["id"] == who[0])[who[1]],
+                                "incomes": [{k: m[k] for k in ("role", "age", "salary", "business_income", "public_pension") if m.get(k)}
+                                            for m in hh["members"]],
                                 "name_en": hh["name_en"], "assumptions": hh.get("assumptions", []), "designs": designs}
 (OUT / "wall_map.json").write_text(json.dumps(walls, ensure_ascii=False, separators=(",", ":")))
 # population view and cost (spec 9.3, 9.4): every number here is an approximation and is labelled so on the site

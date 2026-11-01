@@ -389,3 +389,25 @@ Example with the starting values (10%, ¥100,000 maximum, ¥50,000 per child, ph
 **Also fixed.** The charts now say whose income moves (for example "Spouse's salary before tax" for H4). Before, the axis said only "income", which was unclear for couples. The same fix applies on Home.
 
 **Neutrality.** The starting values are placeholders, the same as the test values. They come from no plan, and the page says so.
+
+## Readability pass: charts and first-time visitors (2026-11-01)
+
+The human said both Home charts were unreadable, and asked us to go through the site as an average person in Japan who has just heard about it, and fix every place they would get lost. No number in `outputs/` changed except new fields used for display; 110 tests pass.
+
+**The two charts (Home and Build your own).**
+- The take-home chart squeezed ¥0–¥10 million into one small box, so the walls were tiny notches. Now buttons choose the income range (0–¥3m, 0–¥6m, 0–¥10m), starting near the household's own income, and the vertical axis fits what is shown. A circle marks the household's income now. Touching a line shows the take-home pay and the difference from 2026 rules.
+- The second chart showed the share of each extra ¥10,000 lost. Tax is rounded to ¥100 and insurance rises in steps, so the line was a band of black noise. It now shows the share of each extra **¥100,000** lost, as steps, with a dotted 100% line: above it is a wall. It is worked out in the browser from the same take-home numbers (`site/walls.js`, tested in `tests/test_site.py`).
+- Each chart has an "Enlarge" button that fills the screen, on phones too. The axes use short labels (300万 / ¥3m). The charts are taller.
+- Above the charts, the biggest walls are listed in words, for example: "If the spouse's salary goes from ¥1,290,000 to ¥1,300,000, the household takes home ¥258,226 less a year. Take-home gets back to where it was at ¥1,640,000." Only the three biggest are listed; the many small dips from insurance steps are counted in one line.
+
+**Where a first-time visitor got lost, and what changed.**
+- *"What is this site? What is a refundable tax credit?"* Home now explains both in two sentences and has three buttons: compare plans, see all households, build your own.
+- *Four long paragraphs about the plans.* Each plan is now one line with a "calculated" or "can't calculate yet" tag; click it for the full description.
+- *"What does this household earn?"* Every page with an example household now shows each person's income (for example "Head (45): salary ¥5,000,000 / Spouse (43): salary ¥1,000,000").
+- *Compare page: three of four rows said "can't calculate", and the chart had empty rows.* The result now comes first in plain words (for example "Daiwa: +¥35,700 a year, +3.4%"). The chart and table show only plans that can be calculated, and the others are listed with their reasons.
+- *All households page: ten bars with no meaning attached.* A short list of findings now comes first, worked out from the numbers (which groups gain or lose on average, the most in each direction, the total for the government). Each group's label shows its average income. Units are on every number. The table, the plan's assumptions and the list of approximations are folded away under clear headings; the "(Approximation)" label stays visible on each.
+- *Build your own: slider names like "phase-in rate".* They now say "how fast it grows (% of earnings)", "most one person can get" and so on, with an example under each. A small chart next to the sliders shows what one person gets at each salary under your settings.
+- *How it works, Checks, Sources: long technical documents.* Each page now starts with a few plain bullet points. The full document is still there, folded under "for specialists".
+- Rebuilding the site now needs Node.js as well as Python (the tests run the site's JavaScript); README and the Sources page say so.
+
+The final full rewrite of all text and the UI (H-19) is still planned for after the other milestones.

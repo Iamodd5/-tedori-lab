@@ -3,16 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>検証 / Validation — Tedori Lab</title>
+<title>検証 / Checks — Tedori Lab</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
 <script src="common.js"></script>
 </head>
 <body>
-<h1><span lang="ja">検証</span><span lang="en">Validation</span></h1>
-<p lang="ja">計算が正しいかどうかを、(1) 国税庁などの公式の計算例、(2) 手計算（<code>tests/hand_calcs/</code>）、(3) OpenFisca-Japan、(4) 政府・大和総研が公表した数字と比べて確かめています。合わない点や、レビューで見つかって直した誤りも、すべてここに残しています。以下の詳しい表は英語です。</p>
-<p lang="en">We check the calculations against (1) official worked examples such as the National Tax Agency's, (2) documented hand calculations (<code>tests/hand_calcs/</code>), (3) OpenFisca-Japan, and (4) figures published by the government and Daiwa. Mismatches, and errors found and fixed in review, are all kept here.</p>
-<div class="md" id="doc"></div>
+<h1><span lang="ja">検証：計算は正しいか</span><span lang="en">Checks: are the numbers right?</span></h1>
+<p><span lang="ja">計算が正しいかを、いくつかの方法で確かめています。合わなかった点や、見つけて直した誤りも隠さずに残しています。</span><span lang="en">We check the calculations in several ways. Where things don't match, and mistakes we found and fixed, are all kept, not hidden.</span></p>
+<div class="summary"><ul>
+  <li><span lang="ja"><strong>手計算：</strong>8つの例の世帯すべてについて、手で一歩ずつ計算した手取りと、プログラムの結果が一致しています。</span><span lang="en"><strong>By hand:</strong> for all eight example households, the take-home pay worked out by hand, step by step, matches the program exactly.</span></li>
+  <li><span lang="ja"><strong>公式の計算例：</strong>国税庁の年末調整の計算例、新宿区の国民健康保険料の早見表、協会けんぽの保険料額表と、すべて一致しています。</span><span lang="en"><strong>Official examples:</strong> the National Tax Agency's worked examples, Shinjuku's National Health Insurance quick-reference table and the Japan Health Insurance Association's premium table all match.</span></li>
+  <li><span lang="ja"><strong>ほかの計算ツール：</strong>公開されている計算ツール（OpenFisca-Japan）とは結果が少しずつ違います。そちらは2025〜26年の税制改正にまだ対応していないためと考えられますが、住民税がそちらの方で1.7万〜2万円低い理由は、まだ分かっていません。</span><span lang="en"><strong>Another calculator:</strong> an open calculator (OpenFisca-Japan) gives somewhat different results, most likely because it hasn't been updated for the 2025–26 tax changes. Its resident tax is ¥17,000–20,000 lower, and we haven't found why yet.</span></li>
+  <li><span lang="ja"><strong>全世帯の試算と公式の数字：</strong>（近似）世帯数は公式より2.8%少なく、所得税の合計は約13%、住民税は約4%低めです。年収100万円以下で働く人の数は、公式の約370万人に対して1,530万人と多すぎます。</span><span lang="en"><strong>All-household estimate vs official figures:</strong> (Approximation) the household count is 2.8% below the official one; total income tax is about 13% lower and resident tax about 4% lower. The number of people earning ¥1m or less is far too high: 15.3 million against about 3.7 million officially.</span></li>
+  <li><span lang="ja"><strong>まだやっていないこと：</strong>民間の手取り計算サイトとの比べ合わせ。</span><span lang="en"><strong>Not done yet:</strong> a comparison with a public take-home pay calculator.</span></li>
+</ul></div>
+<details><summary><span lang="ja">くわしい比較表（英語・専門的な内容）</span><span lang="en">Full comparison tables (for specialists)</span></summary>
+<div class="md" id="doc"></div></details>
 <script>
 setupPage();
 renderDoc(document.getElementById("doc"), "../docs/VALIDATION.md");

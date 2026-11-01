@@ -5,7 +5,10 @@
 name_ja: 社会保険料還付付き税額控除（大和総研案）
 name_en: Social-insurance-refundable tax credit (Daiwa Institute of Research proposal)
 label: {ja: 大和総研案（2026年の税制に合わせて計算）, en: "Daiwa Institute plan (adjusted to 2026 tax rules)"}
-# What the plan does, in one paragraph for the website (from the sources above)
+# What the plan does, in one line and in one paragraph, for the website (from the sources above)
+short:
+  ja: "所得税の基礎控除をなくし、代わりに定額の税額控除を設ける。控除が所得税より大きい分は現金で支給する。"
+  en: "Replaces the income tax basic deduction with a fixed tax credit. Any part of the credit bigger than your income tax is paid in cash."
 summary:
   ja: "民間の研究所である大和総研が2025年10月に出した案です。所得税を払うすべての人について、所得税の基礎控除をなくし、代わりに一定額の税額控除（所得税から直接差し引く額）を設けます。控除が所得税より大きい人には、残りを現金で払いますが、給与や事業の収入にかかる社会保険料として払った額までです。住民税は変えません。"
   en: "A proposal published in October 2025 by the Daiwa Institute of Research, a private research institute. For everyone who pays income tax, it removes the income tax basic deduction and gives a fixed tax credit instead (an amount subtracted straight from income tax). If the credit is bigger than your income tax, the rest is paid to you in cash, but only up to what you paid in social insurance on your wages or business income. Resident tax doesn't change."

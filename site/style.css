@@ -21,11 +21,29 @@ th, td { border-bottom: 1px solid var(--line); padding: 4px 6px; text-align: rig
 th:first-child, td:first-child { text-align: left; }
 td.reason { text-align: left; color: var(--muted); }
 .scroll { overflow-x: auto; }
-.chart { position: relative; height: 320px; }
+.chart { position: relative; height: 400px; margin-top: 4px; }
+.chart .enlarge { position: absolute; top: 0; right: 0; z-index: 2; font-size: .8rem; padding: 3px 10px; border: 1px solid var(--line); background: #fff; border-radius: 4px; cursor: pointer; }
+.chart.big { position: fixed; inset: 0; z-index: 100; height: auto; margin: 0; background: var(--bg); padding: 40px 12px 12px; }
+.ranges { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 10px 0; font-size: .9rem; }
+.ranges button { font: inherit; font-size: .85rem; padding: 4px 12px; border: 1px solid var(--accent); color: var(--accent); background: #fff; border-radius: 16px; cursor: pointer; }
+.ranges button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+details { margin: 10px 0; }
+details > summary { cursor: pointer; font-weight: 600; font-size: .95rem; }
+.plan { border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; margin: 8px 0; }
+.plan > summary { font-weight: 400; }
+.plan p { font-size: .9rem; margin: 8px 0 0; }
+.tag { display: inline-block; font-size: .75rem; padding: 0 8px; border-radius: 10px; margin-left: 6px; background: #e3f1e8; color: #1d5e36; font-weight: 600; }
+.tag.no { background: #f0f0f0; color: #555; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 16px 0; }
+.cards a { display: block; border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; color: var(--fg); text-decoration: none; }
+.cards a strong { color: var(--accent); display: block; }
+.cards a span { font-size: .85rem; color: var(--muted); }
+.summary { background: #f3f6fa; border-left: 4px solid var(--accent); padding: 10px 14px; }
+.summary li { margin: 4px 0; }
 .md table { display: block; overflow-x: auto; }
 .md td, .md th { text-align: left; }
 .md code { font-size: .85em; background: #f3f3f3; padding: 0 3px; }
 footer { margin-top: 40px; font-size: .8rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; }
 pre { overflow-x: auto; background: #f6f6f6; padding: 8px; font-size: .8rem; }
 .md, .md code { overflow-wrap: anywhere; }
-@media (max-width: 600px) { header nav { order: 3; flex-basis: 100%; } }
+@media (max-width: 600px) { header nav { order: 3; flex-basis: 100%; } .chart { height: 320px; } .chart.big { height: auto; } }

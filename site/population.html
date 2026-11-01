@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="common.js"></script>
+<script src="walls.js"></script>
 </head>
 <body>
 <h1><span lang="ja">日本の全世帯で見ると、どう変わる？（概算）</span><span lang="en">What would each plan mean for every household in Japan? (estimate)</span></h1>
@@ -19,36 +20,37 @@
 <div id="status"></div>
 
 <div id="results">
+<div class="summary"><ul id="findings"></ul></div>
 <h2><span lang="ja">収入グループごとの手取りの変化（1世帯あたり平均、円／年）</span><span lang="en">How take-home pay changes for each income group (average per household, yen per year)</span></h2>
-<p class="note"><span lang="ja">すべての世帯を年収の低い順に並べ、同じ数ずつ10のグループに分けています。グループ1が最も年収が低く、グループ10が最も高い世帯です。2026年の制度と比べた変化です。</span>
-<span lang="en">We line up every household from lowest to highest yearly income and cut the line into ten groups of the same size. Group 1 has the lowest incomes and group 10 the highest. Changes are compared with 2026 rules.</span></p>
+<p class="note"><span lang="ja">すべての世帯を年収の低い順に並べ、同じ数ずつ10のグループに分けています。グループ1が最も年収が低く、グループ10が最も高い世帯で、どのグループにも約535万世帯が入ります。2026年の制度と比べた変化です。グループ名の下は、そのグループの平均年収です。</span>
+<span lang="en">We line up every household from lowest to highest yearly income and cut the line into ten groups of the same size. Group 1 has the lowest incomes and group 10 the highest; each group has about 5.35 million households. Changes are compared with 2026 rules. Under each group is its average yearly income.</span></p>
 <div class="chart"><canvas id="mean" role="img" aria-label="Average change in take-home pay by income group; the same numbers are in the table below"></canvas></div>
 
 <h2><span lang="ja">手取りが増える世帯・減る世帯の割合</span><span lang="en">How many households are better or worse off</span></h2>
 <div class="chart"><canvas id="share" role="img" aria-label="Share of households better off, worse off or unchanged by income group; the same numbers are in the table below"></canvas></div>
 
+<details><summary><span lang="ja">数字の表を見る</span><span lang="en">See the numbers as a table</span></summary>
 <div class="scroll"><table id="tbl"><thead><tr>
   <th><span lang="ja">収入グループ</span><span lang="en">Income group</span></th>
-  <th><span lang="ja">世帯数</span><span lang="en">Households</span></th>
   <th><span lang="ja">平均年収（円）</span><span lang="en">Average yearly income (yen)</span></th>
   <th><span lang="ja">手取りの変化（平均、円）</span><span lang="en">Average change in take-home (yen)</span></th>
   <th><span lang="ja">増える</span><span lang="en">Better off</span></th>
   <th><span lang="ja">減る</span><span lang="en">Worse off</span></th>
   <th><span lang="ja">変わらない</span><span lang="en">No change</span></th>
-</tr></thead><tbody></tbody></table></div>
+</tr></thead><tbody></tbody></table></div></details>
 
-<h2><span lang="ja">国のお金への影響（兆円／年）</span><span lang="en">What it means for government finances (trillion yen per year)</span></h2>
+<h2><span lang="ja">国のお金への影響（1年あたり）</span><span lang="en">What it means for government finances (per year)</span></h2>
 <div class="scroll"><table id="cost"><thead><tr>
   <th></th>
   <th><span lang="ja">このサイトの試算</span><span lang="en">This site's estimate</span></th>
   <th><span lang="ja">案を出した側の試算</span><span lang="en">The plan authors' own estimate</span></th>
 </tr></thead><tbody></tbody></table></div>
 <p class="note" id="costnote"></p>
-<div id="notes"></div>
+<details><summary><span lang="ja">（近似）この案の計算の前提</span><span lang="en">(Approximation) What we assumed for this plan</span></summary><div id="notes"></div></details>
 </div>
 
-<h2><span lang="ja">このページで置いた仮定（近似）</span><span lang="en">What we assumed on this page (approximations)</span></h2>
-<ul class="small" id="approx"></ul>
+<details><summary><span lang="ja">（近似）このページで置いた仮定</span><span lang="en">(Approximation) What we assumed on this page</span></summary>
+<ul class="small" id="approx"></ul></details>
 <p class="note"><span lang="ja">この試算が公式の数字（世帯数、働く人の数、税収など）とどのくらい合っているかは、「検証」ページで確かめられます。</span>
 <span lang="en">To see how close these estimates come to official figures (number of households, number of workers, tax collected and more), see the Checks page.</span></p>
 
@@ -56,7 +58,27 @@
 const C = { gain: "#009E73", lose: "#D55E00", same: "#BBBBBB", mean: "#0072B2" };
 let pop, charts = [];
 const pct = x => (x * 100).toFixed(1) + "%";
-const tn = x => x == null ? "—" : (x / 1e12).toFixed(2);
+const tp = v => lang === "ja" ? `約${v}兆円` : `about ¥${v} trillion`;  // the authors' own rounded figure
+const tn = x => x == null ? "—" : (lang === "ja" ? `${(x / 1e12).toFixed(2)}兆円` : `¥${(x / 1e12).toFixed(2)} trillion`);
+
+// Plain-words findings from the numbers on the page (no judgement, CLAUDE.md rule 8)
+function findings(d, labels) {
+  const ul = document.getElementById("findings"); ul.innerHTML = "";
+  const by = d.by_decile, up = by.filter(x => x.mean_change > 0), down = by.filter(x => x.mean_change < 0);
+  const range = xs => xs.length ? `${xs[0].decile}${xs.length > 1 ? (lang === "ja" ? "〜" : "–") + xs.at(-1).decile : ""}` : "";
+  const most = xs => xs.reduce((a, b) => Math.abs(b.mean_change) > Math.abs(a.mean_change) ? b : a);
+  if (up.length) li(ul, lang === "ja"
+    ? `グループ${range(up)}では、手取りが平均で増えます（最も多いグループ${most(up).decile}で年${yen(most(up).mean_change)}円）。`
+    : `In group${up.length > 1 ? "s" : ""} ${range(up)}, take-home pay goes up on average (most in group ${most(up).decile}: ¥${yen(most(up).mean_change)} a year).`);
+  if (down.length) li(ul, lang === "ja"
+    ? `グループ${range(down)}では、手取りが平均で減ります（最も多いグループ${most(down).decile}で年${yen(-most(down).mean_change)}円）。`
+    : `In group${down.length > 1 ? "s" : ""} ${range(down)}, take-home pay goes down on average (most in group ${most(down).decile}: ¥${yen(-most(down).mean_change)} a year).`);
+  const net = d.cost_yen;
+  li(ul, lang === "ja"
+    ? (net < 0 ? `国全体では、国の収入が年${(-net / 1e12).toFixed(2)}兆円増えます。` : `国全体では、国の負担が年${(net / 1e12).toFixed(2)}兆円増えます。`)
+    : (net < 0 ? `Overall, the government takes in ¥${(-net / 1e12).toFixed(2)} trillion more a year.` : `Overall, it costs the government ¥${(net / 1e12).toFixed(2)} trillion a year.`));
+  li(ul, lang === "ja" ? "（近似）どれも大まかな試算です。" : "(Approximation) All of these are rough estimates.");
+}
 
 function draw() {
   const sel = document.getElementById("design"), d = pop.designs[sel.value];
@@ -71,7 +93,8 @@ function draw() {
     return;
   }
   st.className = ""; st.textContent = ""; res.hidden = false;
-  const labels = d.by_decile.map(x => (lang === "ja" ? "グループ" : "Group ") + x.decile);
+  const labels = d.by_decile.map((x, i) => [(lang === "ja" ? "グループ" : "Group ") + x.decile, (lang === "ja" ? "平均" : "avg ") + roundMoney(pop.deciles[i].annual_income_mean)]);
+  findings(d, labels);
   charts.push(new Chart(document.getElementById("mean"), { type: "bar",
     data: { labels, datasets: [{ label: lang === "ja" ? "手取りの変化（平均、円／年）" : "Average change (yen per year)",
       backgroundColor: C.mean, data: d.by_decile.map(x => x.mean_change) }] },
@@ -90,15 +113,15 @@ function draw() {
   const tb = document.querySelector("#tbl tbody"); tb.innerHTML = "";
   d.by_decile.forEach((x, i) => {
     const tr = tb.insertRow(), dec = pop.deciles[i];
-    [labels[i], yen(dec.households), yen(dec.annual_income_mean), yen(x.mean_change), pct(x.winners_share), pct(x.losers_share), pct(x.unchanged_share)]
+    [labels[i][0], yen(dec.annual_income_mean), yen(x.mean_change), pct(x.winners_share), pct(x.losers_share), pct(x.unchanged_share)]
       .forEach(v => tr.insertCell().textContent = v);
   });
 
   const cb = document.querySelector("#cost tbody"); cb.innerHTML = "";
   const pub = sel.value === "daiwa" ? d.published_estimates.headline_variant_with_refund : null;
   const row = (name, ours, theirs) => { const tr = cb.insertRow(); [t(name), ours, theirs].forEach(v => tr.insertCell().textContent = v); };
-  row({ ja: "所得税の増加（税額控除を差し引いた後）", en: "Extra income tax collected (after any tax credit)" }, tn(d.cost_components_yen.income_tax), pub ? pub.income_tax_increase_trillion_yen.toFixed(1) : "—");
-  row({ ja: "世帯に現金で払う額（給付、または税額控除のうち所得税を超える分）", en: "Cash paid to households (a payment, or the part of a tax credit bigger than the income tax owed)" }, tn(d.cost_components_yen.credit), pub ? pub.refund_payments_trillion_yen.toFixed(1) : "—");
+  row({ ja: "所得税の増加（税額控除を差し引いた後）", en: "Extra income tax collected (after any tax credit)" }, tn(d.cost_components_yen.income_tax), pub ? tp(pub.income_tax_increase_trillion_yen) : "—");
+  row({ ja: "世帯に現金で払う額（給付、または税額控除のうち所得税を超える分）", en: "Cash paid to households (a payment, or the part of a tax credit bigger than the income tax owed)" }, tn(d.cost_components_yen.credit), pub ? tp(pub.refund_payments_trillion_yen) : "—");
   row({ ja: "差し引きで国が負担する額（−は国の収入が増える）", en: "Net cost to the government (minus means it takes in more)" }, tn(d.cost_yen),
       pub ? (lang === "ja" ? "ほぼゼロ（財政中立）" : "about zero (fiscally neutral)") : "—");
   document.getElementById("costnote").textContent = sel.value === "daiwa"

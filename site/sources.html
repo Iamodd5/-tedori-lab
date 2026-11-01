@@ -10,14 +10,22 @@
 </head>
 <body>
 <h1><span lang="ja">出典とコード</span><span lang="en">Sources and code</span></h1>
+<div class="summary"><ul>
+  <li><span lang="ja"><strong>案の資料：</strong>政府の案は、内閣官房「社会保障国民会議」の資料、2026年8月5日の閣議決定（基本方針）、9月15日の大綱、10月9日の法律案の概要。大和総研の案は2025年10月のレポート。連合の案は「税制改革構想（第4次）」（2025年5月）と「2026年度 連合の重点政策」。</span><span lang="en"><strong>The plans:</strong> the government's plans come from the Cabinet Secretariat's National Council on Social Security papers, the Cabinet's basic policy of 5 August 2026, the outline of 15 September and the bill summary of 9 October. Daiwa's plan is its October 2025 report. Rengo's plan is its Tax Reform Plan (4th edition, May 2025) and its 2026 key policies.</span></li>
+  <li><span lang="ja"><strong>税と保険のルール：</strong>国税庁、総務省、厚生労働省、日本年金機構、協会けんぽ、こども家庭庁、新宿区の公表資料。</span><span lang="en"><strong>Tax and insurance rules:</strong> documents published by the National Tax Agency, the Ministry of Internal Affairs, the Ministry of Health, the Japan Pension Service, the Japan Health Insurance Association, the Children and Families Agency and Shinjuku City.</span></li>
+  <li><span lang="ja"><strong>統計：</strong>総務省統計局の全国家計構造調査（2024年）と家計調査、厚生労働省の国民生活基礎調査、国税庁の民間給与実態統計調査。</span><span lang="en"><strong>Statistics:</strong> the Statistics Bureau's 2024 National Survey of Family Income, Consumption and Wealth and Family Income and Expenditure Survey, the Ministry of Health's Comprehensive Survey of Living Conditions, and the National Tax Agency's survey of private-sector wages.</span></li>
+  <li><span lang="ja"><strong>だれでも確かめられます：</strong>プログラムはすべて公開しています。下の手順で、このサイトのすべての数字を作り直せます。</span><span lang="en"><strong>Anyone can check:</strong> all the code is public, and the steps below rebuild every number on this site.</span></li>
+</ul></div>
 <p><span lang="ja">コード：</span><span lang="en">Code: </span><a href="https://github.com/Iamodd5/-tedori-lab">github.com/Iamodd5/-tedori-lab</a></p>
-<p lang="ja">すべての数字は、リポジトリを取得して次のコマンドで作り直せます（Python 3.11 が必要）。</p>
-<p lang="en">Every number can be rebuilt from a fresh copy of the repository with these commands (needs Python 3.11):</p>
+<details><summary><span lang="ja">数字を作り直す手順（専門的な内容）</span><span lang="en">How to rebuild every number (for specialists)</span></summary>
+<p lang="ja">Python 3.11 と Node.js が必要です。</p>
+<p lang="en">Needs Python 3.11 and Node.js.</p>
 <pre><code>uv venv --python 3.11 .venv && VIRTUAL_ENV=.venv uv pip install -r requirements.txt
 make all</code></pre>
-<p lang="ja">使った資料はすべて <code>sources/</code> に保存し、指紋（SHA-256）で改変がないことを確かめられます。以下の一覧は英語です。</p>
-<p lang="en">Every source document is saved in <code>sources/</code> with a SHA-256 fingerprint so anyone can check it has not changed.</p>
-<div class="md" id="doc"></div>
+<p lang="ja">使った資料はすべて <code>sources/</code> に保存し、指紋（SHA-256）で改変がないことを確かめられます。</p>
+<p lang="en">Every source document is saved in <code>sources/</code> with a SHA-256 fingerprint so anyone can check it has not changed.</p></details>
+<details><summary><span lang="ja">すべての資料の一覧（英語・専門的な内容）</span><span lang="en">Full list of every source (for specialists)</span></summary>
+<div class="md" id="doc"></div></details>
 <script>
 setupPage();
 renderDoc(document.getElementById("doc"), "../sources/SOURCES.md");

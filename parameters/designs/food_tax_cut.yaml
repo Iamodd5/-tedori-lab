@@ -4,7 +4,10 @@
 name_ja: 飲食料品消費税率の臨時的な引下げ＋就業者負担軽減支援金（つなぎ、令和9・10年度）
 name_en: Temporary food consumption tax cut + bridge worker burden-relief payment (FY2027–FY2028)
 label: {ja: 政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）, en: "Government plan (FY2027–28 stopgap: 1% tax on food + payment)"}
-# What the plan does, in one paragraph for the website (from the sources above)
+# What the plan does, in one line and in one paragraph, for the website (from the sources above)
+short:
+  ja: "2027〜28年度、食料品の消費税を8%から1%に下げ、働く人への支給も行う。金額はまだ公表されていない。"
+  en: "In fiscal 2027–28, consumption tax on food falls from 8% to 1%, plus a payment to people who work. The amounts haven't been published."
 summary:
   ja: "2027年4月から2029年3月まで、いま8%の軽減税率がかかっている飲食料品の消費税を1%に下げます。同じ期間、働いている人への支給（2029年度から始まる政府案の支給を簡単にしたもの）も行い、その総額は飲食料品の消費税1%分以内とします。支給額はまだ公表されていません。"
   en: "From April 2027 to March 2029, consumption tax on food and drink that is now taxed at the reduced 8% rate falls to 1%. Over the same period there is also a simpler version of the government's worker payment (the one planned from fiscal 2029), with a total cost no larger than 1% of the consumption tax on food. The payment amounts haven't been published yet."

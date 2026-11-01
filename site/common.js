@@ -16,12 +16,25 @@ const yen = n => n == null ? "—" : Math.round(n).toLocaleString("ja-JP");
 const loadJSON = u => fetch(u, { cache: "no-cache" }).then(r => r.json());
 // joins several reasons in the page language
 const joinT = list => list.map(t).join(lang === "ja" ? "。" : "; ");
-// x-axis title for a wall map: whose income moves (wall_map.json households entry)
+const FIELDS = { salary: { ja: "給与", en: "salary" }, business_income: { ja: "事業の収入", en: "business income" }, public_pension: { ja: "年金", en: "pension" } };
+// whose income moves on a wall map (wall_map.json households entry): "配偶者の給与" / "the spouse's salary"
+function whoMoves(h) {
+  const who = !h.couple ? null : h.member_role === "spouse" ? { ja: "配偶者の", en: "the spouse's " } : { ja: "世帯主の", en: "the household head's " };
+  return lang === "ja" ? (who ? who.ja : "") + FIELDS[h.income_field].ja : (who ? who.en : "the ") + FIELDS[h.income_field].en;
+}
 function incomeAxis(h) {
-  const field = { salary: { ja: "給与", en: "salary" }, business_income: { ja: "事業の収入", en: "business income" }, public_pension: { ja: "年金", en: "pension" } }[h.income_field];
-  const who = !h.couple ? null : h.member_role === "spouse" ? { ja: "配偶者の", en: "Spouse's " } : { ja: "世帯主の", en: "Household head's " };
-  const f = t(field);
-  return lang === "ja" ? `${who ? t(who) : ""}${f}（税引き前、円）` : `${who ? t(who) + f : f[0].toUpperCase() + f.slice(1)} before tax (yen)`;
+  const w = whoMoves(h).replace(/^the /, "");
+  return lang === "ja" ? `${w}（税引き前、円）` : `${w[0].toUpperCase() + w.slice(1)} before tax (yen)`;
+}
+// "世帯主（45歳）：給与5,000,000円 ／ 子ども（10歳）"
+function describeIncomes(incomes) {
+  const R = { head: { ja: incomes.length > 1 ? "世帯主" : "本人", en: incomes.length > 1 ? "Head" : "The person" }, spouse: { ja: "配偶者", en: "Spouse" },
+              child: { ja: "子ども", en: "Child" }, dependant: { ja: "親族", en: "Relative" } };
+  return incomes.map(m => {
+    const money = Object.keys(FIELDS).filter(k => m[k]).map(k => lang === "ja" ? `${FIELDS[k].ja}${yen(m[k])}円` : `${FIELDS[k].en} ¥${yen(m[k])}`);
+    const who = lang === "ja" ? `${t(R[m.role])}（${m.age}歳）` : `${t(R[m.role])} (${m.age})`;
+    return money.length ? `${who}${lang === "ja" ? "：" : ": "}${money.join(lang === "ja" ? "、" : ", ")}` : who;
+  }).join(lang === "ja" ? " ／ " : " / ");
 }
 const li = (ul, text) => { const x = document.createElement("li"); x.textContent = text; ul.append(x); };
 
