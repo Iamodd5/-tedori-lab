@@ -18,14 +18,15 @@ BASELINE = OUT.parent / "parameters" / "baseline_2026"
 
 
 def approximations(node, where):
-    """Every baseline approximation (CLAUDE.md rule 3), so the site can show them next to the numbers."""
+    """Every baseline approximation (CLAUDE.md rule 3), in the plain words the site shows next to the numbers."""
     if isinstance(node, dict):
         if node.get("approximation") is True:
-            yield f"{where}: {node.get('explanation', '')}"
+            assert "site" in node, f"{where}: an approximation needs `site: {{ja, en}}` text for the website"
+            yield node["site"]
         for k, v in node.items():
             yield from approximations(v, f"{where}.{k}")
-    elif isinstance(node, str) and node.startswith("approximation: true"):
-        yield f"{where}: {node}"
+    else:
+        assert not (isinstance(node, str) and node.startswith("approximation: true")), f"{where}: use approximation: true with site text"
 
 
 OUT.mkdir(exist_ok=True)
@@ -46,8 +47,9 @@ with open(OUT / "household_comparison.csv", "w", newline="") as f:
 
 walls = {"step": w.STEP, "columns": ["income", "disposable", "emr"], "households": {}, "skipped": {},
          "labels": {"baseline": {"ja": "2026年制度", "en": "2026 baseline"}, **{d: r.design(d)["label"] for d in DESIGNS}},
-         "baseline_approximations": [a for f in sorted(BASELINE.glob("*.yaml"))
-                                     for a in approximations(yaml.safe_load(f.read_text(encoding="utf-8")), f.stem)]}
+         # the same text shared by several parameters (a YAML alias) is listed once
+         "baseline_approximations": list({json.dumps(a, ensure_ascii=False): a for f in sorted(BASELINE.glob("*.yaml"))
+                                          for a in approximations(yaml.safe_load(f.read_text(encoding="utf-8")), f.stem)}.values())}
 for hid in HOUSEHOLDS:
     hh = h.load(hid)
     who = w.varying_member(hh)

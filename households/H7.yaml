@@ -12,5 +12,5 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
   status: unresolved
   question: Q8
 assumptions:
-  - In Shinjuku National Health Insurance and pays the national pension.
-  - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).
+  - {ja: "新宿区の国民健康保険と国民年金に入っています。", en: "Is in Shinjuku's National Health Insurance and pays into the National Pension."}
+  - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # chosen in HUMAN_TODO H-8

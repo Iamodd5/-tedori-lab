@@ -16,8 +16,8 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
   status: unresolved
   question: Q8
 assumptions:
-  - Modelled as the student alone; the parents are outside the household, so their dependant deductions are not counted (OPEN_QUESTIONS Q16).
-  - Covered by a parent's employee health insurance as a dependant while income stays under the limit.
-  - Uses the national-pension student payment deferral (学生納付特例), so pays no contribution in 2026.
-  - "Salary is paid in 12 equal months with no bonus (approximation: true)."
-  - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).
+  - {ja: "学生本人だけを計算しています。親は別の世帯として扱うため、学生を養うことで親の税金が安くなる分（扶養控除）は含まれません。", en: "Only the student is counted. The parents are treated as a separate household, so the tax break they get for supporting the student is not included."}  # OPEN_QUESTIONS Q16
+  - {ja: "収入が上限を超えないあいだは、親の会社の健康保険に扶養家族として入っています。", en: "Is covered by a parent's company health insurance as a dependant while income stays under the limit."}
+  - {ja: "国民年金の学生納付特例を使い、2026年は保険料を払いません。", en: "Uses the student deferral for National Pension, so pays no pension contributions in 2026."}
+  - {ja: "（近似）給与は毎月同じ額で、ボーナスはないものとしています。", en: "(Approximation) Pay is the same every month, with no bonus."}
+  - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # chosen in HUMAN_TODO H-8

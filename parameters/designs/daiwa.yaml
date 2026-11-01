@@ -4,7 +4,7 @@
 # Which variant(s) to show is a human decision (OPEN_QUESTIONS Q10); the others are listed under `variants`.
 name_ja: 社会保険料還付付き税額控除（大和総研案）
 name_en: Social-insurance-refundable tax credit (Daiwa Institute of Research proposal)
-label: {ja: 大和総研案（2026年制度で再計算）, en: "Daiwa (recomputed on 2026 rules)"}
+label: {ja: 大和総研案（2026年の税制に合わせて計算）, en: "Daiwa Institute plan (adjusted to 2026 tax rules)"}
 start_year: null  # the report gives no start date; modelled on the 2026 baseline
 status: resolved
 
@@ -85,16 +85,16 @@ published_estimates:  # for cross-checking only (spec Section 6), never used as 
 # How unresolved items are bridged in the calculation; shown with every Daiwa number (CLAUDE.md rule 3).
 approximations:
   - question: Q11
-    ja: 税額控除は復興特別所得税（2.1%）の前に差し引く（既存の税額控除と同じ扱い）。大和総研は順序を示していない。
-    en: The credit is taken off before the 2.1% reconstruction surtax, as existing tax credits are. Daiwa does not say.
+    ja: 大和総研は、税額控除を復興特別所得税（2.1%）を足す前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく「前」としています。
+    en: Daiwa doesn't say whether the credit comes off before or after the 2.1% reconstruction tax is added. We take it off before, the way other tax credits work today.
   - question: Q18
-    ja: 還付の上限に数える保険料は健康保険（介護分を含む）と厚生年金のみ。子ども・子育て支援金と雇用保険は含めない。
-    en: The refund cap counts health insurance (incl. long-term care) and pension only, not the child-support levy or employment insurance.
+    ja: 還付は、健康保険（介護保険を含む）と厚生年金の保険料の額までとしています。子ども・子育て支援金と雇用保険料はこの上限に数えていません。
+    en: The refund is capped at what you pay for health insurance (including long-term care) and pension. Child-support and employment insurance payments don't count toward that cap.
 
 # Shown wherever a Daiwa number appears (HUMAN_TODO H-10: A, OPEN_QUESTIONS Q19).
 site_note:
-  ja: 大和総研案は2025年の税制を前提に、課税最低限178万円となる税額控除額（5.65万円）を示しています。本ツールは同じ算式を2026年の税制（給与所得控除の最低保障額74万円）に当てはめ、税額控除を5.2万円として計算しています。2026年の税制では基礎控除が所得489万円以下で104万円に引き上げられており、課税最低限はすでに178万円です。このため結果は大和総研の公表試算と異なります。
-  en: Daiwa sized its credit (56,500 yen) to give a tax-free threshold of 1.78m under 2025 rules. This tool applies the same formula to 2026 rules (employment-income minimum 740,000), giving a 52,000-yen credit. Under 2026 rules the basic deduction is already 1,040,000 up to income 4.89m and the threshold is already 1.78m, so results differ from Daiwa's published estimates.
+  ja: 大和総研の案は2025年の税制をもとに作られています。このサイトでは同じ考え方を2026年の税制に当てはめて計算し直したため、税額控除は5.65万円ではなく5.2万円になります。また2026年の税制では、所得税がかからない年収の上限がすでに178万円（大和総研案が目指した水準）に上がっています。このため、ここでの結果は大和総研が公表した数字とは異なります。
+  en: Daiwa's plan was written for 2025 tax rules. This site applies the same idea to 2026 tax rules, which makes the tax credit ¥52,000 instead of ¥56,500. Also, under 2026 rules you can already earn up to ¥1.78m before paying income tax, the level Daiwa's plan aimed for. So the results here differ from the numbers Daiwa published.
 
 notes: >
   The report was written against 2025 tax rules (threshold 1.6m in 2025). Applying it to the 2026 baseline

@@ -27,10 +27,19 @@ source:
 employment_income_same_as_income_tax: {value: true, cite: {source: mic, page: 20}}
 basic_deduction:
   amount: {value: 430000, cite: {source: mic, page: 6}, note: "最高43万円, unchanged"}
-  taper: {bands: [[24000000, 430000], [24500000, 290000], [25000000, 150000]], above: 0, cite: {source: shinjuku_r7, page: 2}, approximation: true, explanation: "令和7年度 table; Q13"}
+  taper:
+    bands: [[24000000, 430000], [24500000, 290000], [25000000, 150000]]
+    above: 0
+    cite: {source: shinjuku_r7, page: 2}
+    approximation: true
+    explanation: "令和7年度 table; Q13"
+    site: &r7_table
+      ja: （近似）住民税の控除額は、2027年度分の新宿区の表がまだ公表されていないため、2025年度分の表を使っています。
+      en: (Approximation) Resident tax deductions use Shinjuku's 2025 table, because the table for 2027 hasn't been published yet.
 personal_deductions:
   approximation: true
   explanation: "令和7年度 Shinjuku amounts; 令和9年度 ward table not yet published (Q13)"
+  site: *r7_table
   spouse: {value: 330000, cite: {source: shinjuku_r7, page: 2}}
   elderly_spouse: {value: 380000, cite: {source: shinjuku_r7, page: 2, section: "早見表① 老人控配 (earner ≤ 9m)"}}
   dependent_general_16_plus: {value: 330000, cite: {source: shinjuku_r7, page: 2}}
@@ -51,6 +60,7 @@ personal_deductions:
 personal_deduction_difference:  # 人的控除額の差 used for the 調整控除 tax credit
   approximation: true
   explanation: "令和7年度 Shinjuku table; Q13"
+  site: *r7_table
   basic: {value: 50000, cite: {source: shinjuku_r7, page: 3}}
   spouse: {value: 50000, cite: {source: shinjuku_r7, page: 3}}
   elderly_spouse: {value: 100000, cite: {source: shinjuku_r7, page: 3, section: "人的控除額の差 老人配偶者 (earner ≤ 9m)"}}
@@ -82,5 +92,8 @@ relief_band:  # just above the income-levy line, the income levy is at most the 
 rounding:  # 地方税法 20条の4の2; the text of the law is not yet in sources/ (OPEN_QUESTIONS Q14). Effect < 1,100 yen.
   approximation: true
   explanation: "Rounding as commonly applied (taxable income to 1,000 yen, tax to 100 yen, both down); source to be added"
+  site:
+    ja: （近似）住民税の端数は、一般的な方法（所得は1,000円未満、税額は100円未満を切り捨て）で処理しています。法律の条文はまだ確認していません。
+    en: (Approximation) Resident tax is rounded down the usual way (income to the nearest ¥1,000, tax to the nearest ¥100). We haven't checked the legal text yet.
   taxable_income: {value: 1000, note: "round down"}
   income_levy: {value: 100, note: "round down"}

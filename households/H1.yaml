@@ -13,8 +13,8 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
   status: unresolved
   question: Q8
 assumptions:
-  - Lives alone, so cannot be a health-insurance dependant; the 1.06m/1.3m dependant walls do not apply as modelled (OPEN_QUESTIONS Q21).
-  - National-pension low-income exemptions are not modelled, so take-home at very low pay is understated (OPEN_QUESTIONS Q20).
-  - Works 20+ hours a week for an employer with 51+ staff, so employee insurance applies once monthly pay reaches 88,000 yen.
-  - "Salary is paid in 12 equal months with no bonus (approximation: true)."
-  - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).
+  - {ja: "一人暮らしのため、家族の健康保険の扶養には入れません。そのため、扶養から外れる「106万円・130万円の壁」はこの計算では当てはまりません。", en: "Lives alone, so can't be covered as a dependant on a family member's health insurance. The ¥1.06m and ¥1.3m \"walls\" for dependants don't apply in this calculation."}  # OPEN_QUESTIONS Q21
+  - {ja: "収入が少ない人の国民年金保険料の免除は入れていないため、収入がとても少ないときの手取りは実際より少なく出ます。", en: "Reduced National Pension payments for people on low income are not included, so take-home pay at very low incomes comes out lower than it really would be."}  # OPEN_QUESTIONS Q20
+  - {ja: "週20時間以上、従業員51人以上の会社で働いているため、月給が8.8万円以上になると会社の健康保険と厚生年金に入ります。", en: "Works 20+ hours a week at a company with more than 50 employees, so joins the company's health insurance and pension once monthly pay reaches ¥88,000."}
+  - {ja: "（近似）給与は毎月同じ額で、ボーナスはないものとしています。", en: "(Approximation) Pay is the same every month, with no bonus."}
+  - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # chosen in HUMAN_TODO H-8

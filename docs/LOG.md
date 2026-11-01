@@ -329,3 +329,15 @@ Every model household then goes through exactly the same tax and insurance rules
 - Q33: earnings of other household members are spread too thin.
 
 **Results.** 96 tests pass. The earlier outputs (H1–H8, wall maps) did not change. New files: `outputs/population.json`, `outputs/population_households.csv`, and the page `site/population.html`.
+
+## Plain-language rewrite of the website text (2026-11-01)
+
+The human reviewed the site and said the text was too hard to read. Every sentence a visitor sees on Home, Compare plans and All households was rewritten in everyday words, in both languages. No number changed.
+
+- Internal codes (Q13, HUMAN_TODO H-8, `outputs/`, "decile", "baseline") no longer appear on the site. The codes stay in the YAML files as comments, so each note can still be traced.
+- The notes about each example household and the approximations behind every number used to show in English only, even in Japanese mode. They are now in both languages (`{ja, en}` in `households/*.yaml`; a new `site: {ja, en}` text on each approximation in `parameters/baseline_2026/`).
+- `scripts/build_outputs.py` now stops with an error if a baseline approximation has no `site` text, so a new approximation cannot reach the site unlabelled (CLAUDE.md rule 3).
+- Plan names are now plain: for example "Daiwa Institute plan (adjusted to 2026 tax rules)" instead of "Daiwa (recomputed on 2026 rules)".
+- Not yet rewritten: the How it works, Checks and Sources pages, which show `docs/METHODS*.md`, `docs/VALIDATION.md` and `sources/SOURCES.md` as written.
+
+96 tests pass.

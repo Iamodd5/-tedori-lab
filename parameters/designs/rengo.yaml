@@ -3,7 +3,7 @@
 # spec's summary only and must be confirmed against Rengo's documents before any value is filled in.
 name_ja: 連合案
 name_en: Rengo (Japanese Trade Union Confederation) proposal
-label: {ja: 連合案, en: Rengo}
+label: {ja: 連合案, en: "Rengo (trade union confederation) plan"}
 start_year: null
 status: unresolved
 

@@ -3,7 +3,7 @@
 # bridge-period 就業者負担軽減支援金 are one package; results show them as separate components.
 name_ja: 飲食料品消費税率の臨時的な引下げ＋就業者負担軽減支援金（つなぎ、令和9・10年度）
 name_en: Temporary food consumption tax cut + bridge worker burden-relief payment (FY2027–FY2028)
-label: {ja: 政府：つなぎ（食料品1%＋支援金、R9–10）, en: "Government: bridge (food 1% + payment, FY2027–28)"}
+label: {ja: 政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）, en: "Government plan (FY2027–28 stopgap: 1% tax on food + payment)"}
 start_year: 2027
 status: unresolved
 

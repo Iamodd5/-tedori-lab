@@ -20,6 +20,6 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
   status: unresolved
   question: Q8
 assumptions:
-  - Both are full-time employees in 協会けんぽ (Tokyo).
-  - "Salary is paid in 12 equal months with no bonus (approximation: true)."
-  - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).
+  - {ja: "二人とも正社員で、協会けんぽ（東京）の健康保険に入っています。", en: "Both work full time and are in the Japan Health Insurance Association plan (Tokyo)."}
+  - {ja: "（近似）給与は毎月同じ額で、ボーナスはないものとしています。", en: "(Approximation) Pay is the same every month, with no bonus."}
+  - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # chosen in HUMAN_TODO H-8

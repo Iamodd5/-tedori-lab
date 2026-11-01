@@ -17,6 +17,6 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
   status: unresolved
   question: Q8
 assumptions:
-  - Both in Shinjuku National Health Insurance.
-  - Long-term-care premiums for people 65+ (介護保険 第1号) are not yet modelled (OPEN_QUESTIONS Q15).
-  - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).
+  - {ja: "二人とも新宿区の国民健康保険に入っています。", en: "Both are in Shinjuku's National Health Insurance."}
+  - {ja: "65歳以上が払う介護保険料は、まだ計算に入れていません。", en: "The long-term care insurance premium paid by people aged 65 and over is not included yet."}  # OPEN_QUESTIONS Q15
+  - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # chosen in HUMAN_TODO H-8

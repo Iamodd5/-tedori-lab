@@ -1,10 +1,10 @@
 // Shared by every page: language (Japanese default, English toggle), header, footer, helpers.
 const PAGES = [
   ["index.html", { ja: "ホーム", en: "Home" }],
-  ["compare.html", { ja: "案の比較", en: "Compare designs" }],
-  ["population.html", { ja: "人口全体（概算）", en: "Population (approx.)" }],
-  ["methods.html", { ja: "方法", en: "Methods" }],
-  ["validation.html", { ja: "検証", en: "Validation" }],
+  ["compare.html", { ja: "案の比較", en: "Compare plans" }],
+  ["population.html", { ja: "全世帯で見ると", en: "All households" }],
+  ["methods.html", { ja: "計算方法", en: "How it works" }],
+  ["validation.html", { ja: "検証", en: "Checks" }],
   ["sources.html", { ja: "出典とコード", en: "Sources & code" }],
 ];
 let lang = "ja";
@@ -13,6 +13,8 @@ try { lang = localStorage.getItem("tedori-lang") === "en" ? "en" : "ja"; } catch
 const t = o => (o && (o[lang] ?? o.ja)) ?? "";
 const yen = n => n == null ? "—" : Math.round(n).toLocaleString("ja-JP");
 const loadJSON = u => fetch(u, { cache: "no-cache" }).then(r => r.json());
+// joins several reasons in the page language
+const joinT = list => list.map(t).join(lang === "ja" ? "。" : "; ");
 const li = (ul, text) => { const x = document.createElement("li"); x.textContent = text; ul.append(x); };
 
 function applyLang() {
@@ -36,8 +38,8 @@ function setupPage(onLangChange = () => {}) {
   }
   document.body.prepend(header);
   const footer = document.createElement("footer");
-  footer.innerHTML = `<span lang="ja">数値はすべて <code>outputs/</code> のファイルから読み込んでいます。行動の変化（働き方の調整）は考慮していません。特定の案・政党・政治家を推奨するものではありません。</span>
-    <span lang="en">Every number is read from the files in <code>outputs/</code>. Static estimates: no change in how people work is assumed. This site does not recommend any design, party or politician.</span>`;
+  footer.innerHTML = `<span lang="ja">数字はすべて試算です。制度が変わっても、人々の働き方は変わらないものとして計算しています。このサイトは特定の案・政党・政治家を支持するものではありません。</span>
+    <span lang="en">All numbers are estimates. They assume people don't change how much they work when the rules change. This site doesn't support any plan, party or politician.</span>`;
   document.body.append(footer);
   header.querySelector("#lang-toggle").onclick = () => {
     lang = lang === "ja" ? "en" : "ja";

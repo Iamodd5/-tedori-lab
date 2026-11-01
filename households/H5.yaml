@@ -15,7 +15,7 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
   status: unresolved
   question: Q8
 assumptions:
-  - The parent is a mother (matters only for a 40,000-yen difference in the resident-tax 調整控除 base).
-  - 児童扶養手当 (child-rearing allowance for single parents) is outside the v1 baseline (spec Section 3); OPEN_QUESTIONS Q17.
-  - "Salary is paid in 12 equal months with no bonus (approximation: true)."
-  - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).
+  - {ja: "親は母親としています（父親の場合と違うのは、住民税の計算の一部で4万円分だけです）。", en: "The parent is a mother. (Compared with a father, this changes only one small step of the resident tax calculation, by ¥40,000.)"}
+  - {ja: "ひとり親向けの児童扶養手当は、まだ計算に入れていません。", en: "The child-rearing allowance for single parents is not included yet."}  # spec Section 3; OPEN_QUESTIONS Q17
+  - {ja: "（近似）給与は毎月同じ額で、ボーナスはないものとしています。", en: "(Approximation) Pay is the same every month, with no bonus."}
+  - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # chosen in HUMAN_TODO H-8

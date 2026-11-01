@@ -19,6 +19,6 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
   status: unresolved
   question: Q8
 assumptions:
-  - Spouse works under 20 hours a week, so is not in employee insurance and is a health-insurance dependant and category-3 pension member while income stays under 1.3m.
-  - "Salary is paid in 12 equal months with no bonus (approximation: true)."
-  - Lives in Shinjuku ward, Tokyo (HUMAN_TODO H-8).
+  - {ja: "配偶者は週20時間未満の勤務のため、会社の保険には入りません。年収130万円未満のあいだは、健康保険と年金に扶養として入り、保険料はかかりません。", en: "The spouse works under 20 hours a week, so isn't in the company's insurance. While earning under ¥1.3m, the spouse is covered as a dependant for health insurance and pension and pays no premiums."}
+  - {ja: "（近似）給与は毎月同じ額で、ボーナスはないものとしています。", en: "(Approximation) Pay is the same every month, with no bonus."}
+  - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # chosen in HUMAN_TODO H-8

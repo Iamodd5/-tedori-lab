@@ -11,4 +11,7 @@ monthly:
   age_3_to_high_school: {value: 10000, cite: {source: cfa, page: 1}}
   third_child_and_later: {value: 30000, rank_from: 3, cite: {source: cfa, page: 1}, note: "counted eldest first"}
 income_limit: {value: none, cite: {source: cfa, page: 1}, note: "no income test since Oct 2024"}
-notes: "approximation: true — a child's age is held fixed for the whole year."
+notes:
+  approximation: true
+  explanation: a child's age is held fixed for the whole year.
+  site: {ja: （近似）子どもの年齢は1年間変わらないものとしています。, en: "(Approximation) Each child's age stays the same for the whole year."}

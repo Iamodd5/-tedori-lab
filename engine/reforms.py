@@ -15,9 +15,9 @@ from engine import household as h
 D = pathlib.Path(__file__).resolve().parents[1] / "parameters" / "designs"
 COMPONENTS = ("income_tax", "resident_tax", "social_insurance", "credit", "consumption_tax")
 # Why a design cannot be calculated yet, by open question, so different reasons are never shown as one
-BLOCKERS = {"Q9": {"ja": "金額・率は政令で定める（未公表）", "en": "amounts and rates left to a Cabinet order (not yet published)"},
-            "Q8": {"ja": "本ツールのデータ未整備（世帯の食料支出）", "en": "this tool's data not ready yet (household food spending)"},
-            "Q3": {"ja": "連合の資料を入手できていない", "en": "Rengo's documents not yet obtained"}}
+BLOCKERS = {"Q9": {"ja": "政府がまだ金額や率を公表していません", "en": "the government hasn't published the amounts yet"},
+            "Q8": {"ja": "この世帯の食料品の支出をまだ用意できていません", "en": "we don't have food spending figures for these households yet"},
+            "Q3": {"ja": "連合の詳しい資料がまだ手に入っていません", "en": "we haven't got Rengo's detailed documents yet"}}
 
 
 @functools.cache

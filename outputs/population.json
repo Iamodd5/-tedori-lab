@@ -74,14 +74,14 @@
  "designs": {
   "government_final": {
    "label": {
-    "ja": "政府：支援金・本格導入（R11〜）",
-    "en": "Government: payment, full system (FY2029–)"
+    "ja": "政府案（2029年度からの本格版）",
+    "en": "Government plan (full version, from FY2029)"
    },
    "status": "incomplete",
    "blocked_by": [
     {
-     "ja": "金額・率は政令で定める（未公表）",
-     "en": "amounts and rates left to a Cabinet order (not yet published)"
+     "ja": "政府がまだ金額や率を公表していません",
+     "en": "the government hasn't published the amounts yet"
     }
    ],
    "approximations": [],
@@ -104,13 +104,13 @@
   "rengo": {
    "label": {
     "ja": "連合案",
-    "en": "Rengo"
+    "en": "Rengo (trade union confederation) plan"
    },
    "status": "incomplete",
    "blocked_by": [
     {
-     "ja": "連合の資料を入手できていない",
-     "en": "Rengo's documents not yet obtained"
+     "ja": "連合の詳しい資料がまだ手に入っていません",
+     "en": "we haven't got Rengo's detailed documents yet"
     }
    ],
    "approximations": [],
@@ -119,21 +119,21 @@
   },
   "daiwa": {
    "label": {
-    "ja": "大和総研案（2026年制度で再計算）",
-    "en": "Daiwa (recomputed on 2026 rules)"
+    "ja": "大和総研案（2026年の税制に合わせて計算）",
+    "en": "Daiwa Institute plan (adjusted to 2026 tax rules)"
    },
    "status": "complete",
    "blocked_by": [],
    "approximations": [
     {
      "question": "Q11",
-     "ja": "税額控除は復興特別所得税（2.1%）の前に差し引く（既存の税額控除と同じ扱い）。大和総研は順序を示していない。",
-     "en": "The credit is taken off before the 2.1% reconstruction surtax, as existing tax credits are. Daiwa does not say."
+     "ja": "大和総研は、税額控除を復興特別所得税（2.1%）を足す前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく「前」としています。",
+     "en": "Daiwa doesn't say whether the credit comes off before or after the 2.1% reconstruction tax is added. We take it off before, the way other tax credits work today."
     },
     {
      "question": "Q18",
-     "ja": "還付の上限に数える保険料は健康保険（介護分を含む）と厚生年金のみ。子ども・子育て支援金と雇用保険は含めない。",
-     "en": "The refund cap counts health insurance (incl. long-term care) and pension only, not the child-support levy or employment insurance."
+     "ja": "還付は、健康保険（介護保険を含む）と厚生年金の保険料の額までとしています。子ども・子育て支援金と雇用保険料はこの上限に数えていません。",
+     "en": "The refund is capped at what you pay for health insurance (including long-term care) and pension. Child-support and employment insurance payments don't count toward that cap."
     }
    ],
    "published_estimates": {
@@ -159,8 +159,8 @@
     }
    },
    "site_note": {
-    "ja": "大和総研案は2025年の税制を前提に、課税最低限178万円となる税額控除額（5.65万円）を示しています。本ツールは同じ算式を2026年の税制（給与所得控除の最低保障額74万円）に当てはめ、税額控除を5.2万円として計算しています。2026年の税制では基礎控除が所得489万円以下で104万円に引き上げられており、課税最低限はすでに178万円です。このため結果は大和総研の公表試算と異なります。",
-    "en": "Daiwa sized its credit (56,500 yen) to give a tax-free threshold of 1.78m under 2025 rules. This tool applies the same formula to 2026 rules (employment-income minimum 740,000), giving a 52,000-yen credit. Under 2026 rules the basic deduction is already 1,040,000 up to income 4.89m and the threshold is already 1.78m, so results differ from Daiwa's published estimates."
+    "ja": "大和総研の案は2025年の税制をもとに作られています。このサイトでは同じ考え方を2026年の税制に当てはめて計算し直したため、税額控除は5.65万円ではなく5.2万円になります。また2026年の税制では、所得税がかからない年収の上限がすでに178万円（大和総研案が目指した水準）に上がっています。このため、ここでの結果は大和総研が公表した数字とは異なります。",
+    "en": "Daiwa's plan was written for 2025 tax rules. This site applies the same idea to 2026 tax rules, which makes the tax credit ¥52,000 instead of ¥56,500. Also, under 2026 rules you can already earn up to ¥1.78m before paying income tax, the level Daiwa's plan aimed for. So the results here differ from the numbers Daiwa published."
    },
    "by_decile": [
     {
@@ -245,14 +245,14 @@
   },
   "food_tax_cut": {
    "label": {
-    "ja": "政府：つなぎ（食料品1%＋支援金、R9–10）",
-    "en": "Government: bridge (food 1% + payment, FY2027–28)"
+    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
+    "en": "Government plan (FY2027–28 stopgap: 1% tax on food + payment)"
    },
    "status": "incomplete",
    "blocked_by": [
     {
-     "ja": "金額・率は政令で定める（未公表）",
-     "en": "amounts and rates left to a Cabinet order (not yet published)"
+     "ja": "政府がまだ金額や率を公表していません",
+     "en": "the government hasn't published the amounts yet"
     }
    ],
    "approximations": [],
@@ -410,58 +410,58 @@
  "approximations": [
   {
    "key": "one_household_per_cell",
-   "ja": "世帯の種類と年間収入階級（50万円刻み）の組み合わせごとに、平均的な世帯を1つ（年金で暮らす世帯と働いて暮らす世帯に分ける場合は2つ）だけ作って計算しています。同じ組み合わせの中の世帯の違いは表れません。",
-   "en": "Each combination of household type and 500,000-yen income band is represented by one average household (two when it is split into a pension household and a work household). Differences between households in the same cell are not captured."
+   "ja": "調査は世帯一つひとつのデータではなく、「世帯の種類 × 年収50万円刻み」ごとの平均だけを公表しています。そこで、それぞれの組み合わせを2〜3通りの典型的な世帯で代表させています。同じ組み合わせの中での世帯ごとの違いは反映されません。",
+   "en": "The survey doesn't publish data on individual households, only averages for each type of household in each ¥500,000 income range. So each of these groups is represented by two or three typical households. Differences between households in the same group are lost."
   },
   {
    "key": "income_split",
-   "ja": "各組み合わせを「年金で暮らす世帯」と「働いて暮らす世帯」に分けます。分け方は収入に占める年金の割合で決め、どちらの世帯も元の組み合わせと同じ年収にします。年金と給与の両方がある世帯（働く高齢者など）は表れません。",
-   "en": "Each cell is split into a household living on pensions and a household living on work, in proportion to the pension share of its income; both keep the cell's total income. Households with both pensions and earnings (such as older people who work) are not represented."
+   "ja": "それぞれの組み合わせを「年金で暮らす世帯」と「働いて暮らす世帯」に分けています。分ける割合は、その組み合わせの収入のうち年金が占める割合です。年金をもらいながら働く世帯（働く高齢者など）は表れません。",
+   "en": "Each group is split into households living on pensions and households living on work, in the same ratio as pensions to total income in that group. Households with both a pension and a wage, such as older people who still work, don't appear."
   },
   {
    "key": "spouse_earnings",
-   "ja": "夫婦の「働いて暮らす世帯」は、調査の有業人員から配偶者も働く世帯の割合を決め、「共働き」と「片働き」に分けます。配偶者の収入は共働き世帯の配偶者だけに割り当てます。",
-   "en": "Couples' work households are split into two-earner and one-earner households, using the survey's number of earners per household; spouse earnings go only to the spouses in two-earner households."
+   "ja": "働いて暮らす夫婦は、調査の「働いている人の数」をもとに、共働きと片働きに分けています。",
+   "en": "Working couples are split into two-earner and one-earner households, based on how many people work in each household according to the survey."
   },
   {
    "key": "older_age",
-   "ja": "年金で暮らす世帯の大人と、年金のある親などは70歳として計算します（75歳以上の後期高齢者医療制度は扱っていません）。",
-   "en": "Adults in pension households, and relatives living on pensions, are modelled at age 70 (the separate medical system for people aged 75 and over is not modelled)."
+   "ja": "年金で暮らす人は全員70歳として計算しています（75歳以上の人の医療保険の仕組みは入っていません）。",
+   "en": "Everyone living on a pension is treated as age 70. The separate health insurance for people 75 and over is not included."
   },
   {
    "key": "child_age",
-   "ja": "18歳未満の子どもは全員10歳として計算します。働いて暮らす世帯の大人の年齢は、世帯主の平均年齢から決めます（20～64歳の範囲）。",
-   "en": "Every child under 18 is modelled at age 10. Adults in work households get an age derived from the cell's average head age (kept between 20 and 64)."
+   "ja": "18歳未満の子どもは全員10歳としています。働いている大人の年齢は、調査の平均年齢から決めています（20〜64歳）。",
+   "en": "All children under 18 are treated as age 10. Working adults get an age based on the survey's average for their group (between 20 and 64)."
   },
   {
    "key": "adult_child_age",
-   "ja": "18歳以上の子どもは22歳とし、「他の世帯員収入」を等分します。",
-   "en": "Children aged 18 and over are modelled at age 22 and share the survey's \"other members' earnings\" equally."
+   "ja": "18歳以上の子どもは22歳とし、調査の「その他の家族の収入」を均等に分けています。",
+   "en": "Children aged 18 and over are treated as age 22 and share the survey's \"other family members' earnings\" equally."
   },
   {
    "key": "work",
-   "ja": "給与のある人は全員、週20時間以上・従業員51人以上の職場で働いているとみなし、月8.8万円以上なら会社の健康保険・厚生年金に入るものとします。",
-   "en": "Everyone with a salary is assumed to work 20+ hours a week at an employer with 51+ staff, so they join employee insurance when they earn 88,000 yen a month or more."
+   "ja": "給料をもらう人は全員、週20時間以上・従業員51人以上の会社で働いているとしています。そのため月8.8万円以上稼ぐと、会社の健康保険と厚生年金に入ります。",
+   "en": "Everyone with a wage is treated as working 20+ hours a week at a company with more than 50 employees, so they join the company's health insurance and pension once they earn ¥88,000 a month."
   },
   {
    "key": "income_sources",
-   "ja": "勤め先収入・事業収入（家賃・地代を除く）・公的年金・企業年金だけを計算に入れます。家賃・地代、利子・配当、仕送りなどは入っていません。事業収入は経費を引いた後の所得として扱います。",
-   "en": "Only earnings, business income (excluding rent), public pensions and company pensions are modelled. Rent, interest, dividends and transfers between households are left out. Business income is treated as income after expenses."
+   "ja": "計算に入れている収入は、給料・事業の収入・年金だけです。家賃収入、利子・配当、仕送りなどは入っていません。事業の収入は経費を引いた後の額として扱っています。",
+   "en": "Only wages, business income and pensions are counted. Rent, interest, dividends and money from family are left out. Business income is treated as profit after costs."
   },
   {
    "key": "food_spending",
-   "ja": "食料品の支出は、同じ種類（単身／二人以上）・同じ年間収入階級の世帯の平均です（2024年10～11月の調査で、季節による違いは除いていません）。",
-   "en": "Food spending is the average for households of the same kind (single / two or more) and income band, from a survey taken in October–November 2024 (not adjusted for season)."
+   "ja": "食料品の支出は、似た種類・同じ年収の世帯の平均（2024年10〜11月の調査）を使っています。季節による違いは調整していません。",
+   "en": "Food spending is the average for similar households with the same income, from a survey taken in October–November 2024. It isn't adjusted for the time of year."
   },
   {
    "key": "elderly_dependants",
-   "ja": "同居する70歳以上の親などを扶養しても、老人扶養親族の控除（通常より大きい額）は計算に入れず、一般の扶養控除として計算しています（OPEN_QUESTIONS Q32）。",
-   "en": "A cohabiting parent or relative aged 70+ claimed as a dependant gets the ordinary dependant deduction, not the larger elderly-dependant amount (OPEN_QUESTIONS Q32)."
+   "ja": "70歳以上の親などを養っていても、税金が通常より安くなる特別な控除（老人扶養親族）は入れず、通常の扶養の控除で計算しています。",
+   "en": "If a household supports a parent or relative aged 70 or over, we use the normal tax break for dependants, not the larger one for older dependants."
   },
   {
    "key": "survey_year",
-   "ja": "世帯の数と収入は2024年の調査の値をそのまま使い、2026年に合わせた調整はしていません。",
-   "en": "Household counts and incomes are the 2024 survey's, not adjusted to 2026."
+   "ja": "世帯の数と収入は2024年の調査の数字のままで、2026年向けに調整していません。",
+   "en": "Household numbers and incomes are from 2024 and haven't been updated to 2026."
   }
  ],
  "groups": {
