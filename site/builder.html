@@ -10,13 +10,15 @@
 <script src="custom.js"></script>
 <script src="walls.js"></script>
 <style>
-  .sliders { display: grid; gap: 12px; margin: 12px 0; }
-  .sliders label { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; font-size: .95rem; }
-  .sliders input { grid-column: 1 / -1; width: 100%; }
-  .sliders output { font-weight: 700; }
-  .sliders small { grid-column: 1 / -1; color: var(--muted); }
+  /* sliders as payslip rows: what you set on the left, its value on the right */
+  .sliders { margin: 12px 0; border-bottom: 1px solid var(--rule); }
+  .sliders label { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; font-size: 15px; padding: 10px 0 8px; border-top: 1px solid var(--rule); }
+  .sliders input { grid-column: 1 / -1; width: 100%; margin: 6px 0 2px; }
+  .sliders output { font-weight: 700; font-size: 17px; color: var(--ai); }
+  .sliders small { grid-column: 1 / -1; color: var(--muted); font-size: 13px; }
   .shape { height: 260px; }
-  @media (min-width: 760px) { .builder-top { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; } }
+  .builder-top h3 { margin-top: 12px; }
+  @media (min-width: 760px) { .builder-top { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; } }
 </style>
 </head>
 <body>
@@ -58,7 +60,10 @@
 <p class="lead" id="here"></p>
 <h3 id="wallshead"></h3>
 <ul id="walls"></ul>
-<div class="ranges" id="ranges"><span lang="ja">表示する収入の範囲：</span><span lang="en">Income range shown:</span></div>
+<div class="chart-panel" id="wallpanel">
+<div class="panel-bar"><div class="ranges" id="ranges"><span lang="ja">表示する範囲：</span><span lang="en">Show:</span></div></div>
+<div class="navigator" id="nav"></div>
+<p class="note hint"><span lang="ja">グラフの上をドラッグ（スマートフォンでは2本の指で広げる）と拡大できます。上の帯の枠を動かすと、見る範囲を移動できます。上のボタンで元に戻せます。</span><span lang="en">Drag across a chart (on a phone, spread two fingers) to zoom in. Move the frame in the strip above to look at other incomes. The buttons above take you back.</span></p>
 <h3><span lang="ja">収入ごとの手取り（円／年）</span><span lang="en">Take-home pay at each income (yen per year)</span></h3>
 <p class="note"><span lang="ja">線に触れると、その収入での手取りと、2026年の制度との差が出ます。〇はこの世帯の今の収入です。</span><span lang="en">Hover over or tap a line to see the take-home pay at that income and the difference from 2026 rules. The circle marks this household's income now.</span></p>
 <div class="chart"><canvas id="disp" role="img" aria-label="Take-home pay at each income: 2026 rules and your plan"></canvas></div>
@@ -66,6 +71,7 @@
 <p class="note"><span lang="ja">ふつうは、税金や保険料が増える分、10万円より少しだけ増えます。線が点線の0円より下に出るところが「壁」で、多く稼いだのに手取りが減ってしまいます。−20万円より下は▼で示しています。線に触れると金額が出ます。</span>
 <span lang="en">Usually a bit less than ¥100,000, because some goes to tax and insurance. Where the line drops below the dotted ¥0 line is a "wall": you earn more but end up with less. Values below −¥200,000 are marked ▼. Hover over or tap the line to see the amounts.</span></p>
 <div class="chart"><canvas id="emr" role="img" aria-label="How much more take-home pay an extra 100,000 yen of income brings, at each income: 2026 rules and your plan"></canvas></div>
+</div>
 
 <details><summary><span lang="ja">（近似）このページの数字に含まれる近似</span><span lang="en">(Approximation) Simplifications behind the numbers on this page</span></summary><ul class="small" id="approx"></ul></details>
 
@@ -162,7 +168,7 @@ Promise.all(["wall_map", "population", "builder"].map(f => loadJSON(`../outputs/
   dec = new Chart(document.getElementById("dec"), { type: "bar", data: { labels: [], datasets: [] },
     options: { animation: false, maintainAspectRatio: false, plugins: { tooltip: { callbacks: { label: c => `${yen(c.raw)}${lang === "ja" ? "円" : " yen"}` } } },
       scales: { x: { title: { display: true } }, y: { ticks: { callback: axisMoney } } } } });
-  wc = wallCharts({ disp: "disp", rate: "emr", ranges: "ranges" });
+  wc = wallCharts({ panel: "wallpanel", disp: "disp", rate: "emr", ranges: "ranges", nav: "nav" });
   update(true);
 });
 </script>

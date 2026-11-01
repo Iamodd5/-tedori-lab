@@ -437,3 +437,19 @@ The human said the "How much of each extra ¥100,000 you lose" chart was still h
 - One wording change from the review: "the wall remains even under Daiwa's plan" became a plain statement of the Daiwa numbers at the same point, so it doesn't read as a judgement.
 
 113 tests pass. The report is not published yet: it waits for the Milestone 9 checkpoint (H-20).
+
+## Design pass: look, navigation and chart zoom (2026-11-02)
+
+The human asked for a simpler but better-looking site, easier navigation, and a better zoom on the charts. Nothing in `outputs/` changed.
+
+- **Look.** One idea runs through the site: a Japanese payslip (給与明細). Ruled rows, labels on the left, money on the right in evenly spaced digits. Colour means one thing each: indigo for anything you can click or have selected, red only for a wall or a loss, green for a gain. The font is BIZ UDPゴシック, the universal-design font used by many Japanese public bodies, where the device has it, otherwise Hiragino or Noto Sans JP (nothing is downloaded, so there is no tracking).
+- **Home.** The main finding is now shown as a payslip: "the part-time spouse earns more: +10,000円" over "the household's take-home pay: −258,226円" in red. The card grid became a ruled list of things to do.
+- **Navigation.** The header keeps only the five main pages (Home, Compare plans, All households, Build your own, Report). How it works, Checks and Sources & code moved to the footer on every page. On a phone the menu scrolls sideways, and a fade at the right edge shows there is more.
+- **Zoom on the wall charts** (`site/walls.js`, Home and Build your own):
+  - drag across a chart with a mouse, or spread two fingers on a phone, to zoom in;
+  - an overview strip shows the whole ¥0–10m line, with a frame you can drag to move or pull at its edges to resize (arrow keys and +/− also work);
+  - the range buttons and double-click take you back;
+  - both charts always show the same incomes, and the vertical axis fits what is shown, so a wall fills the chart when you zoom in on it;
+  - "Full screen" opens the whole chart area, controls included; Esc closes it.
+
+113 tests pass. Not published: waiting for the human's approval, along with the Milestone 9 report (H-20).

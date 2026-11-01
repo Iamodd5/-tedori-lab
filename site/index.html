@@ -13,20 +13,29 @@
 <h1><span lang="ja">税の案ごとに、手取りはどう変わる？</span><span lang="en">How would each tax plan change your take-home pay?</span></h1>
 <p><span lang="ja">政府などが、働く人の税金や社会保険料の負担を軽くする案を出しています。その一つが「給付付き税額控除」で、所得税を減らし、減らしきれない分は現金で払うしくみです。このサイトでは、4つの案が、例として作った8つの世帯の手取り（税金と保険料を引いた後に残るお金）をどう変えるかを、同じ方法で計算しています。</span>
 <span lang="en">The government and others have put forward plans to lower the tax and social insurance that working people pay. One idea is a "refundable tax credit" (給付付き税額控除): it cuts your income tax, and if the cut is bigger than the tax you owe, you get the rest in cash. This site works out, with one method, how four of these plans would change the take-home pay (what is left after tax and insurance) of eight example households.</span></p>
-<p class="lead" id="lead"></p>
+<section class="hero" aria-label="例 / Example">
+  <div class="slip-head" id="sliphead"></div>
+  <dl class="slip">
+    <div><dt id="slip1t"></dt><dd id="slip1"></dd></div>
+    <div class="loss"><dt id="slip2t"></dt><dd id="slip2"></dd></div>
+  </dl>
+  <div class="slip-foot"><p id="lead"></p></div>
+</section>
 
 <nav class="cards" aria-label="What you can do here">
   <a href="compare.html"><strong><span lang="ja">案を比べる</span><span lang="en">Compare the plans</span></strong><span lang="ja">例の世帯ごとに、どの案で手取りがいくら変わるか</span><span lang="en">How much each plan changes an example household's take-home pay</span></a>
   <a href="population.html"><strong><span lang="ja">全世帯で見る</span><span lang="en">See all households</span></strong><span lang="ja">収入の高い世帯・低い世帯で、得する人と損する人はどれくらいか</span><span lang="en">Who gains and who loses, from low to high incomes</span></a>
   <a href="builder.html"><strong><span lang="ja">自分で案を作る</span><span lang="en">Build your own plan</span></strong><span lang="ja">つまみを動かして、自分の案の効果を見る</span><span lang="en">Move sliders and see what your own plan would do</span></a>
   <a href="report.html"><strong><span lang="ja">レポートを読む</span><span lang="en">Read the report</span></strong><span lang="ja">分かったことを短くまとめた文章</span><span lang="en">A short write-up of what we found</span></a>
+  <a href="#walls-section"><strong><span lang="ja">年収の壁を見る</span><span lang="en">See the income walls</span></strong><span lang="ja">このページの下で、例の世帯の壁をグラフで</span><span lang="en">Further down this page: each example household's walls</span></a>
+  <a href="methods.html"><strong><span lang="ja">計算のしかたを知る</span><span lang="en">How the numbers are made</span></strong><span lang="ja">計算方法、検証、出典</span><span lang="en">The method, the checks and the sources</span></a>
 </nav>
 
 <h2><span lang="ja">比べている4つの案</span><span lang="en">The four plans compared</span></h2>
 <p class="note" id="plansnote"></p>
 <div id="plans"></div>
 
-<h2><span lang="ja">年収の壁：稼ぐと手取りが減るところ</span><span lang="en">Income walls: where earning more leaves you with less</span></h2>
+<h2 id="walls-section"><span lang="ja">年収の壁：稼ぐと手取りが減るところ</span><span lang="en">Income walls: where earning more leaves you with less</span></h2>
 <p><span lang="ja">例の世帯を選ぶと、一人の収入を0円から動かしたとき、世帯の手取りがどう変わるかが分かります。収入が増えたのに手取りが減るところが「壁」です。</span>
 <span lang="en">Choose an example household to see how its take-home pay changes as one person's income goes up from zero. A "wall" is where income goes up but take-home pay goes down.</span></p>
 <label><span lang="ja">世帯を選ぶ：</span><span lang="en">Choose a household: </span><select id="hh"></select></label>
@@ -35,7 +44,10 @@
 <h3 id="wallshead"></h3>
 <ul id="walls"></ul>
 
-<div class="ranges" id="ranges"><span lang="ja">表示する収入の範囲：</span><span lang="en">Income range shown:</span></div>
+<div class="chart-panel" id="wallpanel">
+<div class="panel-bar"><div class="ranges" id="ranges"><span lang="ja">表示する範囲：</span><span lang="en">Show:</span></div></div>
+<div class="navigator" id="nav"></div>
+<p class="note hint"><span lang="ja">グラフの上をドラッグ（スマートフォンでは2本の指で広げる）と拡大できます。上の帯の枠を動かすと、見る範囲を移動できます。上のボタンで元に戻せます。</span><span lang="en">Drag across a chart (on a phone, spread two fingers) to zoom in. Move the frame in the strip above to look at other incomes. The buttons above take you back.</span></p>
 <h3><span lang="ja">収入ごとの手取り（円／年）</span><span lang="en">Take-home pay at each income (yen per year)</span></h3>
 <p class="note"><span lang="ja">線に触れると、その収入での手取りと、2026年の制度との差が出ます。〇はこの世帯の今の収入です。</span><span lang="en">Hover over or tap a line to see the take-home pay at that income and the difference from 2026 rules. The circle marks this household's income now.</span></p>
 <div class="chart"><canvas id="disp" role="img" aria-label="Take-home pay at each income: 2026 rules and each plan that can be calculated"></canvas></div>
@@ -43,6 +55,7 @@
 <p class="note"><span lang="ja">ふつうは、税金や保険料が増える分、10万円より少しだけ増えます。線が点線の0円より下に出るところが「壁」で、多く稼いだのに手取りが減ってしまいます。−20万円より下は▼で示しています。線に触れると金額が出ます。</span>
 <span lang="en">Usually a bit less than ¥100,000, because some goes to tax and insurance. Where the line drops below the dotted ¥0 line is a "wall": you earn more but end up with less. Values below −¥200,000 are marked ▼. Hover over or tap the line to see the amounts.</span></p>
 <div class="chart"><canvas id="emr" role="img" aria-label="How much more take-home pay an extra 100,000 yen of income brings, at each income: 2026 rules and each plan that can be calculated"></canvas></div>
+</div>
 <p class="note" id="notdrawn"></p>
 
 <details><summary><span lang="ja">この世帯について（計算の前提）</span><span lang="en">About this household (what we assumed)</span></summary><ul class="small" id="hhnotes"></ul></details>
@@ -54,11 +67,18 @@ const COLORS = { baseline: "#000000", government_final: "#0072B2", rengo: "#CC79
 let walls, wc;
 
 function lead() {
-  // H4: the part-time spouse's 1.3m wall (tests/hand_calcs/wall_H4.md), read from outputs/wall_map.json
-  const { walls: [w] } = bigWalls(walls.households.H4.designs.baseline);
-  document.getElementById("lead").textContent = lang === "ja"
-    ? `例：2026年の制度では、パートで働く配偶者（世帯H4）の年収が${yen(w.from)}円から${yen(w.at)}円に増えると、世帯の手取りは年${yen(w.drop)}円減ります。元の手取りに戻るのは、年収${yen(w.back)}円のときです。`
-    : `Example: under 2026 rules, if a part-time spouse (household H4) earns ¥${yen(w.at)} instead of ¥${yen(w.from)}, the household takes home ¥${yen(w.drop)} less a year. Take-home pay only gets back to where it was once the spouse earns ¥${yen(w.back)}.`;
+  // H4: the part-time spouse's 1.3m wall (tests/hand_calcs/wall_H4.md), read from outputs/wall_map.json, shown as a payslip
+  const h = walls.households.H4, { walls: [w] } = bigWalls(h.designs.baseline), ja = lang === "ja";
+  const set = (id, text, sub) => { const el = document.getElementById(id); el.textContent = text;
+    if (sub) { const s = document.createElement("small"); s.textContent = sub; el.append(s); } };
+  set("sliphead", ja ? `例：世帯H4（${h.name_ja}）、2026年の制度` : `Example: household H4 (${h.name_en.toLowerCase()}), 2026 rules`);
+  set("slip1t", ja ? "パートの配偶者の年収が増える" : "The part-time spouse earns more", ja ? `${yen(w.from)}円 → ${yen(w.at)}円` : `¥${yen(w.from)} → ¥${yen(w.at)}`);
+  set("slip1", ja ? `＋${yen(w.at - w.from)}円` : `+¥${yen(w.at - w.from)}`);
+  set("slip2t", ja ? "世帯の手取り（1年間）" : "The household's take-home pay (a year)");
+  set("slip2", ja ? `−${yen(w.drop)}円` : `−¥${yen(w.drop)}`);
+  document.getElementById("lead").textContent = ja
+    ? `収入が${yen(w.at - w.from)}円増えたのに、手取りは${yen(w.drop)}円減ります。元の手取りに戻るには、年収${yen(w.back)}円まで働く必要があります。このような「壁」は、下のグラフで世帯ごとに見られます。`
+    : `Income goes up by ¥${yen(w.at - w.from)}, yet take-home pay falls by ¥${yen(w.drop)}. To get back to the same take-home pay, the spouse has to earn ¥${yen(w.back)}. You can see walls like this for every example household in the charts below.`;
 }
 
 function plans() {
@@ -109,7 +129,7 @@ loadJSON("../outputs/wall_map.json").then(w => {
   for (const id of Object.keys(w.households)) sel.add(new Option(id, id));
   sel.value = "H4";
   sel.onchange = () => draw(true);
-  wc = wallCharts({ disp: "disp", rate: "emr", ranges: "ranges" });
+  wc = wallCharts({ panel: "wallpanel", disp: "disp", rate: "emr", ranges: "ranges", nav: "nav" });
   draw(true); drawApprox();
 });
 </script>

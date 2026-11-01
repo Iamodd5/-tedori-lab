@@ -1,10 +1,13 @@
 // Shared by every page: language (Japanese default, English toggle), header, footer, helpers.
+// the five main pages go in the header; the pages about the site go in the footer
 const PAGES = [
   ["index.html", { ja: "ホーム", en: "Home" }],
   ["compare.html", { ja: "案の比較", en: "Compare plans" }],
   ["population.html", { ja: "全世帯で見ると", en: "All households" }],
   ["builder.html", { ja: "自分で案を作る", en: "Build your own" }],
   ["report.html", { ja: "レポート", en: "Report" }],
+];
+const ABOUT = [
   ["methods.html", { ja: "計算方法", en: "How it works" }],
   ["validation.html", { ja: "検証", en: "Checks" }],
   ["sources.html", { ja: "出典とコード", en: "Sources & code" }],
@@ -45,24 +48,33 @@ function applyLang() {
   const b = document.getElementById("lang-toggle");
   if (b) b.textContent = lang === "ja" ? "English" : "日本語";
   document.querySelectorAll("header nav a").forEach((a, i) => a.textContent = t(PAGES[i][1]));
+  document.querySelectorAll("footer nav a").forEach((a, i) => a.textContent = t(ABOUT[i][1]));
 }
 
 // onLangChange: pages with charts or generated text redraw themselves
 function setupPage(onLangChange = () => {}) {
   const here = location.pathname.split("/").pop() || "index.html";
   const header = document.createElement("header");
-  header.innerHTML = `<a class="brand" href="index.html">手取りラボ / Tedori Lab</a><nav aria-label="Pages"></nav>
+  header.innerHTML = `<a class="brand" href="index.html">手取りラボ<small>Tedori Lab</small></a><nav aria-label="Main pages"></nav>
     <button id="lang-toggle" type="button" aria-label="Switch language / 言語を切り替え"></button>`;
-  for (const [href] of PAGES) {
+  const links = (nav, pages) => pages.forEach(([href]) => {
     const a = document.createElement("a"); a.href = href;
     if (href === here) a.setAttribute("aria-current", "page");
-    header.querySelector("nav").append(a);
-  }
+    nav.append(a);
+  });
+  links(header.querySelector("nav"), PAGES);
   document.body.prepend(header);
   const footer = document.createElement("footer");
-  footer.innerHTML = `<span lang="ja">数字はすべて試算です。制度が変わっても、人々の働き方は変わらないものとして計算しています。このサイトは特定の案・政党・政治家を支持するものではありません。</span>
+  footer.innerHTML = `<nav aria-label="About this site"></nav><span lang="ja">数字はすべて試算です。制度が変わっても、人々の働き方は変わらないものとして計算しています。このサイトは特定の案・政党・政治家を支持するものではありません。</span>
     <span lang="en">All numbers are estimates. They assume people don't change how much they work when the rules change. This site doesn't support any plan, party or politician.</span>`;
+  links(footer.querySelector("nav"), ABOUT);
   document.body.append(footer);
+  if (window.Chart) {  // charts use the page's font and colours
+    Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
+    Chart.defaults.font.size = 13;
+    Chart.defaults.color = "#5A6676";
+    Chart.defaults.borderColor = "#E3E9EF";
+  }
   header.querySelector("#lang-toggle").onclick = () => {
     lang = lang === "ja" ? "en" : "ja";
     try { localStorage.setItem("tedori-lang", lang); } catch (e) { /* not saved; fine */ }

@@ -32,66 +32,167 @@ function bigWalls(pts) {
 const roundMoney = x => lang === "ja" ? `${Math.round(x / 1e4).toLocaleString("ja-JP")}万円` : `¥${(x / 1e6).toFixed(1)}m`;
 const axisMoney = x => lang === "ja" ? `${(x / 1e4).toLocaleString("ja-JP")}万` : `¥${+(x / 1e6).toFixed(2)}m`;
 
+// Two linked wall charts with zoom. ids: { panel, disp, rate, ranges, nav }.
+// Zoom: drag across a chart (mouse), pinch with two fingers (touch), drag or resize the frame in the overview strip,
+// arrow keys and +/− on the frame, or the range buttons. Double-click a chart to go back to the starting view.
+// Both charts always show the same incomes, and the vertical axis fits what is shown.
 function wallCharts(ids) {
-  let range = null, last = null;
-  const make = (id, yTicks) => new Chart(document.getElementById(id), { type: "line", data: { datasets: [] },
+  const MAX = 1e7, MIN_SPAN = 200000, SNAP = 10000;
+  let view = null, home = null, last = null, frame = 0;
+  const panel = document.getElementById(ids.panel);
+  const make = (id, yTicks, pointLegend) => new Chart(document.getElementById(id), { type: "line", data: { datasets: [] },
     options: { animation: false, maintainAspectRatio: false, parsing: false,
       interaction: { mode: "nearest", axis: "x", intersect: false },
-      plugins: { legend: { labels: { boxWidth: 14 } } },
-      scales: { x: { type: "linear", ticks: { callback: axisMoney, maxTicksLimit: 8 }, title: { display: true } },
+      plugins: { legend: { labels: { boxWidth: 14, usePointStyle: pointLegend } } },
+      scales: { x: { type: "linear", ticks: { callback: axisMoney, maxTicksLimit: 7 }, title: { display: true } },
                 y: { ticks: { callback: yTicks }, title: { display: true } } } } });
-  const disp = make(ids.disp, axisMoney), rate = make(ids.rate, keepTick);
+  const disp = make(ids.disp, axisMoney, true), rate = make(ids.rate, keepTick, false);  // rate's ▼ markers are not a legend symbol
 
-  // range buttons and enlarge buttons
-  const box = document.getElementById(ids.ranges);
-  for (const r of WALL.ranges) {
+  // toolbar: range buttons, what is shown, enlarge
+  const bar = document.getElementById(ids.ranges);
+  const chips = WALL.ranges.map(r => {
     const b = document.createElement("button"); b.type = "button"; b.dataset.r = r;
-    b.onclick = () => { range = r; draw(last); };
-    box.append(b);
-  }
-  for (const ch of [disp, rate]) {
-    const wrap = ch.canvas.parentElement, b = document.createElement("button");
-    b.type = "button"; b.className = "enlarge";
-    b.onclick = () => { wrap.classList.toggle("big"); label(); ch.resize(); };
-    wrap.prepend(b);
-  }
-  addEventListener("keydown", e => {
-    if (e.key === "Escape") document.querySelectorAll(".chart.big").forEach(w => { w.classList.remove("big"); label(); disp.resize(); rate.resize(); });
+    b.onclick = () => setView(0, r);
+    bar.append(b); return b;
   });
+  const viewing = document.createElement("span"); viewing.className = "viewing"; viewing.setAttribute("aria-live", "polite"); bar.append(viewing);
+  const big = document.createElement("button"); big.type = "button"; big.className = "btn enlarge";
+  big.onclick = () => toggleBig(); bar.parentElement.append(big);
+  function toggleBig(force) {
+    panel.classList.toggle("big", force);
+    document.body.style.overflow = panel.classList.contains("big") ? "hidden" : "";
+    label(); requestAnimationFrame(() => { disp.resize(); rate.resize(); nav.resize(); placeFrame(); });
+  }
+  addEventListener("keydown", e => { if (e.key === "Escape" && panel.classList.contains("big")) toggleBig(false); });
+
+  // overview strip: the whole 0–10m line with a frame for what is shown
+  const navBox = document.getElementById(ids.nav);
+  navBox.innerHTML = `<canvas></canvas><div class="nav-window" tabindex="0" role="group"><span class="grip l"></span><span class="grip r"></span></div>`;
+  const nav = new Chart(navBox.querySelector("canvas"), { type: "line", data: { datasets: [] },
+    options: { animation: false, maintainAspectRatio: false, parsing: false, events: [], onResize: () => requestAnimationFrame(placeFrame),
+      plugins: { legend: { display: false }, tooltip: { enabled: false } }, layout: { padding: { left: 8, right: 8 } },
+      scales: { x: { type: "linear", min: 0, max: MAX, ticks: { callback: axisMoney, maxTicksLimit: 6, font: { size: 11 } }, grid: { display: false } },
+                y: { display: false } } } });
+  const win = navBox.querySelector(".nav-window");
+  function placeFrame() {
+    if (!view || !nav.chartArea) return;
+    const s = nav.scales.x, a = s.getPixelForValue(view.min), b = s.getPixelForValue(view.max);
+    Object.assign(win.style, { left: a + "px", width: Math.max(8, b - a) + "px", top: nav.chartArea.top + "px", height: (nav.chartArea.bottom - nav.chartArea.top) + "px" });
+  }
+  const navValue = x => nav.scales.x.getValueForPixel(x - navBox.getBoundingClientRect().left);
+  navBox.addEventListener("pointerdown", e => {
+    const part = e.target.closest(".grip")?.classList.contains("l") ? "l" : e.target.closest(".grip") ? "r" : e.target.closest(".nav-window") ? "move" : "jump";
+    const v0 = navValue(e.clientX);
+    if (part === "jump") { const span = view.max - view.min; setView(v0 - span / 2, v0 + span / 2, true); }
+    const start = { v0, min: view.min, max: view.max };
+    navBox.setPointerCapture(e.pointerId);
+    const move = ev => {
+      const d = navValue(ev.clientX) - start.v0;
+      if (part === "l") setView(Math.min(start.min + d, start.max - MIN_SPAN), start.max);
+      else if (part === "r") setView(start.min, Math.max(start.max + d, start.min + MIN_SPAN));
+      else setView(start.min + d, start.max + d, true);
+    };
+    const up = () => { navBox.removeEventListener("pointermove", move); navBox.removeEventListener("pointerup", up); navBox.removeEventListener("pointercancel", up); };
+    navBox.addEventListener("pointermove", move); navBox.addEventListener("pointerup", up); navBox.addEventListener("pointercancel", up);
+    e.preventDefault();
+  });
+  win.addEventListener("keydown", e => {
+    const span = view.max - view.min, mid = (view.min + view.max) / 2;
+    const act = { ArrowLeft: () => setView(view.min - span / 10, view.max - span / 10, true), ArrowRight: () => setView(view.min + span / 10, view.max + span / 10, true),
+      "+": () => setView(mid - span * .4, mid + span * .4), "=": () => setView(mid - span * .4, mid + span * .4),
+      "-": () => setView(mid - span * .625, mid + span * .625), Home: () => setView(home.min, home.max) }[e.key];
+    if (act) { act(); e.preventDefault(); }
+  });
+
+  // zoom on the charts themselves: drag with a mouse, pinch with two fingers, double-click to go back
+  for (const ch of [disp, rate]) {
+    const c = ch.canvas, sel = document.createElement("div"); sel.className = "zoom-sel"; c.parentElement.append(sel);
+    const valueAt = x => ch.scales.x.getValueForPixel(x - c.getBoundingClientRect().left);
+    const touches = new Map(); let drag = null, pinch = null;
+    c.addEventListener("pointerdown", e => {
+      if (e.pointerType === "mouse") { if (e.button === 0) { drag = e.clientX; c.setPointerCapture(e.pointerId); } return; }
+      touches.set(e.pointerId, e.clientX);
+      if (touches.size === 2) { const [a, b] = touches.values(); pinch = { d0: Math.abs(a - b), at: valueAt((a + b) / 2), min: view.min, max: view.max }; }
+    });
+    c.addEventListener("pointermove", e => {
+      if (drag !== null) {
+        const r = c.getBoundingClientRect(), area = ch.chartArea, clamp = x => Math.max(area.left, Math.min(area.right, x - r.left));
+        const a = clamp(drag), b = clamp(e.clientX);
+        Object.assign(sel.style, { display: Math.abs(b - a) > 4 ? "block" : "none", left: Math.min(a, b) + "px", width: Math.abs(b - a) + "px", top: area.top + "px", height: (area.bottom - area.top) + "px" });
+      } else if (touches.has(e.pointerId)) {
+        touches.set(e.pointerId, e.clientX);
+        if (pinch && touches.size === 2) {
+          const [a, b] = touches.values(), span = (pinch.max - pinch.min) * pinch.d0 / Math.max(24, Math.abs(a - b));
+          const f = (pinch.at - pinch.min) / (pinch.max - pinch.min);
+          setView(pinch.at - f * span, pinch.at + (1 - f) * span);
+        }
+      }
+    });
+    const end = e => {
+      if (drag !== null && e.pointerType === "mouse") {
+        const a = valueAt(drag), b = valueAt(e.clientX);
+        sel.style.display = "none"; drag = null;
+        if (Math.abs(b - a) >= 3 * SNAP) setView(Math.min(a, b), Math.max(a, b));
+      }
+      touches.delete(e.pointerId); if (touches.size < 2) pinch = null;
+    };
+    c.addEventListener("pointerup", end); c.addEventListener("pointercancel", end);
+    c.addEventListener("dblclick", () => setView(home.min, home.max));
+  }
+
+  // keep the view inside 0–10m and at least MIN_SPAN wide; keepSpan: move without resizing
+  function setView(min, max, keepSpan) {
+    let span = Math.min(MAX, Math.max(MIN_SPAN, max - min));
+    if (keepSpan) span = view ? view.max - view.min : span;
+    min = Math.max(0, Math.min(MAX - span, min));
+    view = { min: Math.round(min / SNAP) * SNAP, max: Math.round((min + span) / SNAP) * SNAP };
+    if (!frame) frame = requestAnimationFrame(() => { frame = 0; render(); });
+  }
+
   function label() {
-    box.querySelectorAll("button").forEach(b => {
+    chips.forEach(b => {
       b.textContent = lang === "ja" ? `0〜${axisMoney(+b.dataset.r)}円` : `¥0–${axisMoney(+b.dataset.r).slice(1)}`;
-      b.setAttribute("aria-pressed", +b.dataset.r === range);
+      b.setAttribute("aria-pressed", !!view && view.min === 0 && view.max === +b.dataset.r);
     });
-    document.querySelectorAll(".chart .enlarge").forEach(b => {
-      b.textContent = b.parentElement.classList.contains("big") ? (lang === "ja" ? "閉じる" : "Close") : (lang === "ja" ? "拡大する" : "Enlarge");
-    });
+    if (view) viewing.textContent = lang === "ja" ? `表示中：${axisMoney(view.min)}〜${axisMoney(view.max)}円` : `Showing ${axisMoney(view.min)}–${axisMoney(view.max).slice(1)}`;
+    big.textContent = panel.classList.contains("big") ? (lang === "ja" ? "閉じる" : "Close") : (lang === "ja" ? "全画面で見る" : "Full screen");
+    win.setAttribute("aria-label", lang === "ja" ? "表示する範囲。左右の矢印で移動、＋と−で拡大・縮小" : "Range shown. Arrow keys move it, + and − zoom");
   }
 
   // series: [{label, color, points}], the first is 2026 rules; ref: the moving member's current income; who: whose income moves
   function draw(o, newHousehold) {
     last = o;
-    if (newHousehold || range === null) range = WALL.ranges.find(r => r >= 2 * o.ref) || WALL.ranges.at(-1);
-    label();
-    const inRange = pts => pts.filter(p => p[0] <= range);
+    if (newHousehold || !view) {
+      const r = WALL.ranges.find(r => r >= 2 * o.ref) || MAX;
+      home = { min: 0, max: r }; view = { ...home };
+    }
+    nav.data.datasets = [{ data: o.series[0].points.map(p => ({ x: p[0], y: p[1] })), borderColor: "#5A6676", borderWidth: 1.5, pointRadius: 0 }];
+    nav.update();
+    render();
+  }
+
+  function render() {
+    const o = last, { min, max } = view;
+    label(); placeFrame();
+    const shown = pts => pts.filter(p => p[0] >= min && p[0] <= max);
     const base = new Map(o.series[0].points.map(p => [p[0], p[1]]));
-    disp.data.datasets = o.series.map(s => ({ label: s.label, borderColor: s.color, backgroundColor: s.color, pointRadius: 0,
-      borderWidth: 2, data: inRange(s.points).map(p => ({ x: p[0], y: p[1] })) }));
+    disp.data.datasets = o.series.map(s => ({ label: s.label, borderColor: s.color, backgroundColor: s.color, pointRadius: 0, pointStyle: "line",
+      borderWidth: 2.5, data: shown(s.points).map(p => ({ x: p[0], y: p[1] })) }));
     const here = o.series[0].points.find(p => p[0] >= o.ref);
-    if (here && o.ref <= range) disp.data.datasets.push({ label: lang === "ja" ? "この世帯の今の収入" : "This household now", showLine: false,
-      pointRadius: 6, pointStyle: "circle", borderColor: "#000", backgroundColor: "#fff", borderWidth: 2, data: [{ x: o.ref, y: here[1] }] });
+    if (here && o.ref >= min && o.ref <= max) disp.data.datasets.push({ label: lang === "ja" ? "この世帯の今の収入" : "This household now", showLine: false,
+      pointRadius: 6, pointStyle: "circle", borderColor: "#1C2633", backgroundColor: "#fff", borderWidth: 2, data: [{ x: o.ref, y: here[1] }] });
     disp.options.plugins.tooltip = { callbacks: {
-      title: c => (lang === "ja" ? "収入 " : "Income ") + `${yen(c[0].raw.x)}${lang === "ja" ? "円" : " yen"}`,
+      title: c => !c.length ? "" : (lang === "ja" ? `${o.who} ` : `${o.who[0].toUpperCase() + o.who.slice(1)} `) + `${yen(c[0].raw.x)}${lang === "ja" ? "円" : " yen"}`,
       label: c => `${c.dataset.label}: ${yen(c.raw.y)}${lang === "ja" ? "円" : " yen"}`,
       afterLabel: c => c.datasetIndex > 0 && c.datasetIndex < o.series.length
         ? (lang === "ja" ? "  2026年の制度との差：" : "  Difference from 2026 rules: ") + (c.raw.y >= base.get(c.raw.x) ? "+" : "") + yen(c.raw.y - base.get(c.raw.x)) : "" } };
     rate.data.datasets = o.series.map(s => {
-      const data = keepSeries(inRange(s.points)).map(([x, v]) => ({ x, y: Math.max(KEEP_FLOOR, v), raw: v }));
-      return { label: s.label, borderColor: s.color, backgroundColor: s.color, borderWidth: 2, stepped: "before", data,
-        pointStyle: "triangle", rotation: 180, pointRadius: data.map(q => q.raw !== q.y ? 5 : 0) };
+      const data = keepSeries(s.points).filter(([x]) => x >= min - WALL.step && x <= max).map(([x, v]) => ({ x, y: Math.max(KEEP_FLOOR, v), raw: v }));
+      return { label: s.label, borderColor: s.color, backgroundColor: s.color, borderWidth: 2.5, stepped: "before", data, pointStyle: "triangle",
+        rotation: 180, pointRadius: data.map(q => q.raw !== q.y ? 5 : 0) };
     });
-    rate.data.datasets.push({ label: lang === "ja" ? "0円（ここより下が壁）" : "¥0 (below this is a wall)", borderColor: "#888",
-      borderDash: [6, 4], borderWidth: 1, pointRadius: 0, data: [{ x: 0, y: 0 }, { x: range, y: 0 }] });
+    rate.data.datasets.push({ label: lang === "ja" ? "0円（ここより下が壁）" : "¥0 (below this is a wall)", borderColor: "#C23B22",
+      borderDash: [6, 4], borderWidth: 1.5, pointRadius: 0, pointStyle: "line", data: [{ x: min, y: 0 }, { x: max, y: 0 }] });
     // the dotted ¥0 line is filtered out, so the tooltip can have no items
     rate.options.plugins.tooltip = { filter: c => c.datasetIndex < o.series.length, callbacks: {
       title: c => !c.length ? "" : lang === "ja" ? `${o.who}が${yen(c[0].raw.x)}円から${yen(c[0].raw.x + WALL.step)}円に増えると`
@@ -101,8 +202,8 @@ function wallCharts(ids) {
                              : `${c.dataset.label}: take-home pay goes ${v < 0 ? "down" : "up"} by ¥${yen(Math.abs(v))}${v < 0 ? " (a wall)" : ""}`; } } };
     rate.options.scales.y.suggestedMax = WALL.step;
     for (const [ch, y] of [[disp, lang === "ja" ? "手取り（円／年）" : "Take-home pay (yen per year)"], [rate, lang === "ja" ? "手取りが増える額" : "Extra take-home pay"]]) {
+      Object.assign(ch.options.scales.x, { min, max });
       ch.options.scales.x.title.text = o.axis;
-      ch.options.scales.x.max = range;
       ch.options.scales.y.title.text = y;
       ch.update();
     }
