@@ -242,3 +242,26 @@ Daiwa's file now has no unresolved items.
 **Known gaps.**
 - The Validation and Sources tables are in English only.
 - Each household's notes and the list of approximations come from the data files, which are written in English.
+
+### Published — 2026-11-01 (HUMAN_TODO H-16)
+
+**Who is named.** The commits are signed with the GitHub account name Iamodd5 and GitHub's private no-reply email. The earlier commits were rewritten before anything was pushed, so no real name appears anywhere in the public history.
+
+**Which documents are in the public repository.** We read each publisher's terms of use.
+- *Republishing allowed, with credit:* national ministries and agencies (Cabinet Secretariat, Children and Families Agency, MHLW, NTA, MIC, Statistics Bureau / e-Stat; they use the government's open-data licence), the Japan Pension Service ("free to reprint"), and Code for Japan's Scrapbox page (CC BY 4.0).
+- *Not allowed without permission:* Daiwa Institute of Research, Shinjuku City, and 協会けんぽ. Their files are not in the public repository, and were removed from every earlier commit as well. `make all` downloads them from the publisher and checks their fingerprints (`sources/EXTERNAL.tsv`).
+- *Pages that change on every download:* three 協会けんぽ web pages carry an anti-bot code that changes each time, so their original fingerprints are kept for the record but not checked.
+- *Rengo:* the file was only a "site under maintenance" page, so it was dropped.
+
+**Licence.** AGPL-3.0, as the spec says. We checked for side effects:
+- It works with every library we use (OpenFisca is AGPL too; the others are MIT, BSD or Apache).
+- It covers only our own code and documents, not the files in `sources/`.
+- Anyone may reuse the code, but if they share a changed version, or run one as a website, they must publish their source too.
+- It gives no warranty.
+
+**Clean-clone test.** A fresh copy of the repository, set up from scratch, ran `make all`:
+- it downloaded the 12 documents that are not stored in git, and their fingerprints passed;
+- all 89 tests passed;
+- `outputs/` came out byte-identical.
+
+**Live at** https://iamodd5.github.io/-tedori-lab/
