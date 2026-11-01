@@ -38,6 +38,12 @@ personal_deductions:
   single_parent: {value: 300000, cite: {source: shinjuku_r7, page: 2}}
   working_student: {value: 260000, cite: {source: shinjuku_r7, page: 2}}
   working_student_income_limit: {value: 750000, cite: {source: shinjuku_r7, page: 2}}
+  elderly_spouse_age_from: {value: 70, cite: {source: shinjuku_r7, page: 2}}
+  dependent_general_age_from: {value: 16, cite: {source: shinjuku_r7, page: 2}}
+  dependent_specific_age_from: {value: 19, cite: {source: shinjuku_r7, page: 2}}
+  dependent_specific_age_under: {value: 23, cite: {source: shinjuku_r7, page: 2}}
+  spouse_earner_income_limit: {value: 10000000, cite: {source: shinjuku_r7, page: 2}, note: "earner above this: no spouse deduction"}
+  spouse_earner_full_limit: {value: 9000000, cite: {source: shinjuku_r7, page: 2}, note: "earner ≤ 9m column; above it the spouse special deduction and spouse 差 are not counted here"}
   dependant_income_limit: {value: 580000, cite: {source: mic, page: 28, section: "④扶養親族等に係る所得要件の引上げ 改正後：58万円 (令和8年度分から)"}}  # 令和9年度 may follow income tax to 620,000 (Q13)
   spouse_special:  # spouse income bands (upper inclusive) -> amount, earner total income ≤ 9m column
     bands: [[1000000, 330000], [1050000, 310000], [1100000, 260000], [1150000, 210000], [1200000, 160000], [1250000, 110000], [1300000, 60000], [1330000, 30000]]
@@ -62,12 +68,15 @@ per_capita_levy:  # 均等割: ward 3,000 + Tokyo 1,000, plus national forest en
   ward: {value: 3000, cite: {source: shinjuku_r7, page: 1}}
   tokyo: {value: 1000, cite: {source: shinjuku_r7, page: 1}}
   forest_environment_tax: {value: 1000, cite: {source: shinjuku_r7, page: 1}}
-non_taxable:  # Shinjuku, from 令和3年度. N = number of same-household spouse and dependants (incl. under 16)
-  per_capita_none_if_total_income_le: {value: "350000 * (N + 1) + 310000; single person 450000", cite: {source: shinjuku_tax, page: 1}}
-  income_levy_none_if_income_le: {value: "350000 * (N + 1) + 420000; single person 450000", cite: {source: shinjuku_tax, page: 1}}
+non_taxable:  # Shinjuku, from 令和3年度. No levy if total income ≤ per_person × (N + 1) + add (single person: ≤ single)
+  # N = number of same-household spouse and dependants (incl. under 16)
+  per_person: {value: 350000, cite: {source: shinjuku_tax, page: 1}}
+  per_capita_add: {value: 310000, cite: {source: shinjuku_tax, page: 1}}
+  income_levy_add: {value: 420000, cite: {source: shinjuku_tax, page: 1}}
+  single: {value: 450000, cite: {source: shinjuku_tax, page: 1}}
   single_parent_none_if_total_income_le: {value: 1350000, cite: {source: shinjuku_tax, page: 1}}
 relief_band:  # just above the income-levy line, the income levy is at most the excess of total income over the line
-  value: "income levy <= total income - income_levy_none_if_income_le line"
+  value: "income levy <= total income - income-levy line (non_taxable, income_levy_add)"
   cite: {source: mic, page: 18, section: "（参考）非課税限度額（所得割）のイメージ — 負担調整措置"}
   note: "Read from MIC's worked figure (line 1,120,000; income 1,124,200; levy 4,200). Law text (地方税法附則3条の3) not yet in sources/ (OPEN_QUESTIONS Q22)."
 rounding:  # 地方税法 20条の4の2; the text of the law is not yet in sources/ (OPEN_QUESTIONS Q14). Effect < 1,100 yen.

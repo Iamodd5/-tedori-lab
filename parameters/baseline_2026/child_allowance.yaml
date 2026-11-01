@@ -5,9 +5,10 @@ source:
     file: sources/child/cfa_jidoteate.html
     published: 2026 (page as downloaded 2026-10-29)
 eligible_until: {value: "March 31 after 18th birthday (high-school age)", cite: {source: cfa, page: 1}}
+eligible_age_max: {value: 18, cite: {source: cfa, page: 1}, note: "with ages held fixed for the year (notes), a child counts while aged 18 or under"}
 monthly:
-  under_3: {value: 15000, cite: {source: cfa, page: 1}}
+  under_3: {value: 15000, age_under: 3, cite: {source: cfa, page: 1}}
   age_3_to_high_school: {value: 10000, cite: {source: cfa, page: 1}}
-  third_child_and_later: {value: 30000, cite: {source: cfa, page: 1}}
+  third_child_and_later: {value: 30000, rank_from: 3, cite: {source: cfa, page: 1}, note: "counted eldest first"}
 income_limit: {value: none, cite: {source: cfa, page: 1}, note: "no income test since Oct 2024"}
 notes: "approximation: true — a child's age is held fixed for the whole year."

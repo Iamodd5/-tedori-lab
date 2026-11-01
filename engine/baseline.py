@@ -47,15 +47,18 @@ def band(bands, x, above=0):
 
 def employment_income(salary):
     """給与所得控除後の給与等の金額 (令和8年分)."""
-    if salary < 741_000:
+    e = params("income_tax")["employment_income"]
+    if salary < e["zero_below"]["value"]:
         return 0
-    if salary < 2_191_000:
-        return salary - 740_000
-    if salary < 6_600_000:
-        rows = _csv("kyuyo_shotoku_table_r8.csv")
+    if salary < e["table_from"]["value"]:
+        return salary - e["minimum_deduction"]["value"]
+    formula = e["deduction_from_6_6m"]
+    if salary < formula[0]["from"]:
+        rows = _csv(e["table"]["value"])
         i = bisect.bisect_right([r["salary_from"] for r in rows], salary) - 1
         return int(rows[i]["employment_income"])
-    deduction = salary * 0.10 + 1_100_000 if salary <= 8_500_000 else 1_950_000
+    row = [r for r in formula if salary >= r["from"]][-1]
+    deduction = row["fixed"] if "fixed" in row else salary * row["rate"] + row["add"]
     return math.floor(salary - deduction)
 
 
@@ -71,8 +74,9 @@ def pension_income(pension, age):
     """公的年金等に係る雑所得, age 65+ with other income ≤ 10m (No.1600 図1)."""
     if pension <= 0:
         return 0
-    assert age >= 65, "only the 65+ table is in parameters (households H1-H8 need no other)"
-    rows = params("income_tax")["public_pension_income"]["age65_plus"]
+    p = params("income_tax")["public_pension_income"]
+    assert age >= p["age65_plus_age_from"]["value"], "only the 65+ table is in parameters (households H1-H8 need no other)"
+    rows = p["age65_plus"]
     row = [r for r in rows if pension >= r["from"]][-1]
     return max(0, math.floor(pension * row["rate"] - row["minus"]))
 
@@ -88,14 +92,15 @@ def _grade(table, monthly):
 
 def employee_premiums(salary, age):
     """Employee share of health (+LTC 40-64), child-support levy, pension (to 70), employment insurance."""
-    table = _csv("kyoukaikenpo_tokyo_r8.csv")
+    e = params("social_insurance")["employee"]
+    table = _csv(e["premium_table"]["value"])
     monthly = salary / 12
     g = _grade(table, monthly)
-    health = g["health_ltc_half"] if 40 <= age < 65 else g["health_half"]
+    health = g["health_ltc_half"] if e["ltc_age_from"]["value"] <= age < e["ltc_age_to_exclusive"]["value"] else g["health_half"]
     pension_rows = [r for r in table if r["pension_half"] is not None]
     pg = pension_rows[0] if monthly < pension_rows[0]["from"] else _grade(pension_rows, monthly)
-    pension = pg["pension_half"] if age < 70 else 0
-    rate = params("social_insurance")["employee"]["employment_insurance_worker_rate"]["value"]
+    pension = pg["pension_half"] if age < e["pension_age_to_exclusive"]["value"] else 0
+    rate = e["employment_insurance_worker_rate"]["value"]
     return {
         "health": 12 * half_round(health),
         "child_levy": 12 * half_round(g["child_levy_half"]),
@@ -115,22 +120,20 @@ def nhi_household(members, householder=None):
     p = params("social_insurance")["nhi_shinjuku_fy2026"]
     base = [max(0, m["total_income"] - p["base_deduction"]["value"]) for m in members]
     n = len(members)
-    n18 = sum(m["age"] >= 18 for m in members)
-    ltc = [b for m, b in zip(members, base) if 40 <= m["age"] < 65]
+    n18 = sum(m["age"] >= p["child_levy"]["age_from"] for m in members)
+    ltc = [b for m, b in zip(members, base) if p["ltc_40_64"]["age_from"] <= m["age"] < p["ltc_40_64"]["age_to_exclusive"]]
     # flat-amount reduction by household income (65+ pension income gets an extra 150,000 off for this test)
     r = p["flat_reduction"]
+    extra = r["pensioner_65_extra_deduction"]
     tested = members + ([householder] if householder else [])
-    test_income = sum(max(0, m["total_income"] - (r["pensioner_65_extra_deduction"]["value"] if m["age"] >= 65 and m["pension_income"] > 0 else 0)) for m in tested)
+    test_income = sum(max(0, m["total_income"] - (extra["value"] if m["age"] >= extra["age_from"] and m["pension_income"] > 0 else 0)) for m in tested)
     earners = max(1, sum(m["has_earnings"] for m in tested))
     limit0 = r["base"]["value"] + (earners - 1) * r["per_extra_earner"]["value"]
-    if test_income <= limit0:
-        cut = 0.7
-    elif test_income <= limit0 + r["fifty_percent"]["per_member_add"] * n:
-        cut = 0.5
-    elif test_income <= limit0 + r["twenty_percent"]["per_member_add"] * n:
-        cut = 0.2
-    else:
-        cut = 0.0
+    cut = 0.0
+    for tier in ("seventy_percent", "fifty_percent", "twenty_percent"):
+        if test_income <= limit0 + r[tier]["per_member_add"] * n:
+            cut = r[tier]["share"]
+            break
     keep = 1 - cut
     part = lambda flat, rate, bases, count, cap: min(cap, flat * count * keep + rate * sum(bases))
     total = (part(p["medical"]["per_member"], p["medical"]["rate"], base, n, p["medical"]["cap"])
@@ -144,7 +147,7 @@ def nhi_household(members, householder=None):
 
 def income_tax_before_surtax(total_income, deductions):
     it = params("income_tax")
-    taxable = floor_to(max(0, total_income - deductions), 1000)
+    taxable = floor_to(max(0, total_income - deductions), it["rate_schedule"]["taxable_income_rounding"]["value"])
     for upper, rate, minus in it["rate_schedule"]["bands"]:
         if taxable <= upper:
             break
@@ -167,16 +170,20 @@ def basic_deduction_it(total_income):
 
 def spouse_deduction_it(earner_income, spouse_income, spouse_age=0):
     s = params("income_tax")["spouse_deduction"]
-    if earner_income > 10_000_000:
+    if earner_income > s["earner_bands"][-1][0]:
         return 0
     col = band(s["earner_bands"], earner_income)
-    if spouse_income <= 620_000:
-        return s["elderly_spouse_ordinary"]["value"][col] if spouse_age >= 70 else s["spouse_ordinary"]["bands"][0][1][col]
-    return band(s["spouse_special"]["bands"], spouse_income, [0, 0, 0])[col] if spouse_income <= 1_330_000 else 0
+    ordinary = s["spouse_ordinary"]["bands"]
+    if spouse_age >= s["elderly_age_from"]["value"] and spouse_income <= ordinary[-1][0]:
+        return s["elderly_spouse_ordinary"]["value"][col]
+    return band(ordinary + s["spouse_special"]["bands"], spouse_income, [0, 0, 0])[col]
 
 
 def specific_relative_special_it(income):
-    return band(params("income_tax")["specific_relative_special_deduction"]["bands"], income) if 620_000 < income <= 1_230_000 else 0
+    it = params("income_tax")
+    if income <= it["dependent_deduction"]["income_limit"]["value"]:
+        return 0
+    return band(it["specific_relative_special_deduction"]["bands"], income)
 
 
 # ---------- resident tax ----------
@@ -184,17 +191,18 @@ def specific_relative_special_it(income):
 def resident_tax(total_income, deductions, diff, n_family, single_parent):
     """所得割 + 均等割 (incl. forest environment tax). n_family = 同一生計配偶者 + 扶養親族 (incl. under 16)."""
     rt = params("resident_tax")
-    single = n_family == 0
-    if single_parent and total_income <= 1_350_000:
+    nt = rt["non_taxable"]
+    line = lambda add: nt["single"]["value"] if n_family == 0 else nt["per_person"]["value"] * (n_family + 1) + nt[add]["value"]
+    if single_parent and total_income <= nt["single_parent_none_if_total_income_le"]["value"]:
         return 0
-    if total_income <= (450_000 if single else 350_000 * (n_family + 1) + 310_000):
+    if total_income <= line("per_capita_add"):
         return 0
     pcl = rt["per_capita_levy"]
     per_capita = pcl["ward"]["value"] + pcl["tokyo"]["value"] + pcl["forest_environment_tax"]["value"]
-    levy_line = 450_000 if single else 350_000 * (n_family + 1) + 420_000
+    levy_line = line("income_levy_add")
     if total_income <= levy_line:
         return per_capita
-    taxable = floor_to(max(0, total_income - deductions), 1000)
+    taxable = floor_to(max(0, total_income - deductions), rt["rounding"]["taxable_income"]["value"])
     a = rt["adjustment_credit"]
     if taxable <= a["threshold"]["value"]:
         credit = a["rate"]["value"] * min(diff, taxable)
@@ -202,7 +210,7 @@ def resident_tax(total_income, deductions, diff, n_family, single_parent):
         credit = a["rate"]["value"] * max(diff - (taxable - a["threshold"]["value"]), a["minimum_base"]["value"])
     levy = max(0, taxable * rt["income_levy_rate"]["value"] - credit)
     levy = min(levy, total_income - levy_line)  # burden-relief band (resident_tax.yaml relief_band)
-    return floor_to(levy, 100) + per_capita
+    return floor_to(levy, rt["rounding"]["income_levy"]["value"]) + per_capita
 
 
 def basic_deduction_rt(total_income):
@@ -217,9 +225,9 @@ def child_allowance(child_ages):
     m = params("child_allowance")["monthly"]
     total = 0
     for rank, age in enumerate(sorted(child_ages, reverse=True), 1):
-        if rank >= 3:
+        if rank >= m["third_child_and_later"]["rank_from"]:
             total += m["third_child_and_later"]["value"]
-        elif age < 3:
+        elif age < m["under_3"]["age_under"]:
             total += m["under_3"]["value"]
         else:
             total += m["age_3_to_high_school"]["value"]

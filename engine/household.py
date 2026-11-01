@@ -29,9 +29,10 @@ def _employee_covered(m):
 
 def _dependant_limit(m):
     d = b.params("social_insurance")["health_dependant_income_limit"]
-    if m["age"] >= 60:
+    if m["age"] >= d["age_60_plus"]["age_from"]:
         return d["age_60_plus"]["value"]
-    if 19 <= m["age"] <= 22 and m["role"] != "spouse":
+    s = d["age_19_to_22_not_spouse"]
+    if s["age_from"] <= m["age"] < s["age_under"] and m["role"] != "spouse":
         return d["age_19_to_22_not_spouse"]["value"]
     return d["general"]["value"]
 
@@ -56,7 +57,7 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
             o["scheme"] = "nhi"
 
     # 2. incomes
-    child_under_23 = any(m["role"] == "child" and m["age"] < 23 for m in members)
+    child_under_23 = any(m["role"] == "child" and m["age"] < it["adjustment_deduction"]["dependant_age_under"]["value"] for m in members)
     for m in members:
         o = out[m["id"]]
         emp = b.employment_income(m.get("salary", 0))
@@ -73,6 +74,7 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
         o.update({k: prem.get(k, 0) for k in ("health", "child_levy", "pension", "employment")})
         spouse_of_employee = m in partners and other_partner_covered(m)  # category-3 pension member if a dependant
         o["national_pension"] = 0
+        # ages 20-59: not yet in sources/, so not in parameters/ (OPEN_QUESTIONS Q30)
         if o["scheme"] != "employee" and 20 <= m["age"] < 60 and not (o["scheme"] == "dependant" and spouse_of_employee):
             o["national_pension"] = 0 if m.get("student_pension_deferral") else 12 * np_month
         if o["scheme"] == "nhi":
@@ -94,6 +96,10 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
     single_parent = spouse is None and any(out[d["id"]]["total_income"] <= it["dependent_deduction"]["income_limit"]["value"] for d in deps if d["role"] == "child") and head.get("single_parent", False)
     rp = rt["personal_deductions"]
     diff_p = rt["personal_deduction_difference"]
+    dd = it["dependent_deduction"]
+    specific_it = lambda age: dd["specific_age_from"]["value"] <= age < dd["specific_age_under"]["value"]
+    specific_rt = lambda age: rp["dependent_specific_age_from"]["value"] <= age < rp["dependent_specific_age_under"]["value"]
+    full_spouse_rt = rp["spouse_earner_full_limit"]["value"]
     for m in members:
         o = out[m["id"]]
         ti = o["total_income"]
@@ -105,31 +111,31 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
         n_family = 0
         if is_claimant and spouse is not None:
             si = out[spouse["id"]]["total_income"]
-            elderly = spouse["age"] >= 70
+            elderly = spouse["age"] >= rp["elderly_spouse_age_from"]["value"]
             ded += b.spouse_deduction_it(ti, si, spouse["age"])
-            if ti <= 10_000_000:
+            if ti <= rp["spouse_earner_income_limit"]["value"]:
                 if si <= rp["dependant_income_limit"]["value"]:
                     r_ded += rp["elderly_spouse" if elderly else "spouse"]["value"]
-                    diff += diff_p["elderly_spouse" if elderly else "spouse"]["value"] if ti <= 9_000_000 else 0
+                    diff += diff_p["elderly_spouse" if elderly else "spouse"]["value"] if ti <= full_spouse_rt else 0
                     n_family += 1
-                elif si <= 1_330_000:
-                    r_ded += b.band(rp["spouse_special"]["bands"], si) if ti <= 9_000_000 else 0
+                else:  # the band table gives 0 above its last row (1,330,000)
+                    r_ded += b.band(rp["spouse_special"]["bands"], si) if ti <= full_spouse_rt else 0
         if is_claimant:
             for d in deps:
                 di, age = out[d["id"]]["total_income"], d["age"]
-                if di <= it["dependent_deduction"]["income_limit"]["value"]:
-                    if 19 <= age <= 22:
-                        ded += it["dependent_deduction"]["specific_19_to_22"]["value"]
-                    elif age >= 16:
-                        ded += it["dependent_deduction"]["general_16_plus"]["value"]
-                elif 19 <= age <= 22:
+                if di <= dd["income_limit"]["value"]:
+                    if specific_it(age):
+                        ded += dd["specific_19_to_22"]["value"]
+                    elif age >= dd["general_age_from"]["value"]:
+                        ded += dd["general_16_plus"]["value"]
+                elif specific_it(age):
                     ded += b.specific_relative_special_it(di)
                 if di <= rp["dependant_income_limit"]["value"]:
                     n_family += 1
-                    if 19 <= age <= 22:
+                    if specific_rt(age):
                         r_ded += rp["dependent_specific_19_to_22"]["value"]
                         diff += diff_p["dependent_specific"]["value"]
-                    elif age >= 16:
+                    elif age >= rp["dependent_general_age_from"]["value"]:
                         r_ded += rp["dependent_general_16_plus"]["value"]
                         diff += diff_p["dependent_general"]["value"]
             if single_parent and ti <= it["single_parent_deduction"]["income_limit"]["value"]:
@@ -147,7 +153,7 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
         o["unused_credit"] = max(0, it_credit - b.income_tax_before_surtax(ti, ded)) if files else 0
         o["resident_tax"] = b.resident_tax(ti, r_ded, diff, n_family, single_parent and is_claimant) if _gross(m) > 0 else 0
 
-    child_ages = [m["age"] for m in members if m["role"] == "child" and m["age"] <= 18]
+    child_ages = [m["age"] for m in members if m["role"] == "child" and m["age"] <= b.params("child_allowance")["eligible_age_max"]["value"]]
     allowance = b.child_allowance(child_ages)
     gross = sum(o["gross"] for o in out.values())
     tax = sum(o["income_tax"] + o["resident_tax"] for o in out.values())

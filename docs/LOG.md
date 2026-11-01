@@ -265,3 +265,22 @@ Daiwa's file now has no unresolved items.
 - `outputs/` came out byte-identical.
 
 **Live at** https://iamodd5.github.io/-tedori-lab/
+
+## Policy numbers moved into the YAML files — 2026-11-01 (Q28)
+
+**What changed.** Before this, some policy numbers were typed straight into the Python code, and the YAML files only described them in words. Now the code reads every one of these numbers from `parameters/baseline_2026/`, and each number sits next to the page of the official document it comes from. Examples:
+
+- Employment income: below 741,000 yen of pay there is no taxable employment income; from 741,000 to 2,190,999 it is pay minus 740,000; from 2,191,000 the NTA table is used; from 6,600,000 a formula (年末調整のしかた p.3, No.1410).
+- The NHI discount for low-income households: 70%, 50% or 20% off the per-person part (Shinjuku reduction page).
+- The resident-tax "no tax" lines: 350,000 × (family members + 1) + 310,000 for the per-person levy, + 420,000 for the income levy, 450,000 for a single person, 1,350,000 for a single parent (Shinjuku page).
+- The age groups: spouse 70+, dependants 16+ and 19–22, health-insurance dependants 60+ and 19–22, long-term-care premiums at 40–64, NHI child levy from 18, the child allowance's under-3 rate and third-child rate.
+- The spouse-deduction limits: no deduction if the earner's income is over 10 million; for resident tax, the higher amounts only up to 9 million.
+- Rounding: taxable income down to 1,000 yen (both taxes), resident tax down to 100 yen.
+
+**A new check.** A new test (`tests/test_parameters_used.py`) runs every household, a coarse wall map for each, and three made-up households that reach the rarer rules (a family with five children aged 1 to 21, one of them earning; a dependant aged 60+; a 50-million earner). It records every number the code reads. If a number in the YAML is never read, the test fails. That is how the elderly-spouse amount went unnoticed until the Milestone 5 review; it cannot happen silently now.
+
+Seven numbers are kept in the YAML for the record but are not used, and the test lists each with its reason: a pension-table cell that repeats the next row, the elderly non-cohabiting dependant (no household has one), the resident-tax basic deduction headline (same as the first row of its table), the 25-million limit on the resident-tax adjustment credit (no household gets near it), the 51-employee and 20-hour tests (household files answer them yes/no), and the half-price NHI per-person amount for preschool children (no household has a preschool child in NHI).
+
+**One number still in the code.** National pension covers ages 20 to 59, but no document in `sources/` says so. Following rule 2, the YAML marks it `status: unresolved` and OPEN_QUESTIONS Q30 asks for a source.
+
+**Results.** No result changed: all tests pass, and `make all` rebuilds `outputs/` byte for byte the same.

@@ -28,14 +28,16 @@ source:
 
 employment_income:
   table: {value: kyuyo_shotoku_table_r8.csv, cite: {source: nencho, page: "47-54"}, note: "used for salary 2,191,000 to 6,599,999"}
-  below_741000: {value: 0, cite: {source: nencho, page: 3}}
-  formula_741000_to_2191000: {value: "salary - 740,000", cite: {source: nencho, page: 3}}
+  zero_below: {value: 741000, cite: {source: nencho, page: 3}, note: "salary under 741,000: no employment income"}
+  minimum_deduction: {value: 740000, cite: {source: nencho, page: 3}, note: "salary 741,000 to 2,190,999: salary - 740,000"}
+  table_from: {value: 2191000, cite: {source: nencho, page: 3}, note: "the table runs until the first deduction_from_6_6m row"}
   deduction_from_6_6m:  # salary x rate + add, applied from 6,600,000 (fractions below 1 yen dropped)
     - {from: 6600000, rate: 0.10, add: 1100000, cite: {source: ta1410, page: 1}}
     - {from: 8500001, fixed: 1950000, cite: {source: ta1410, page: 1}}
 
 adjustment_deduction:  # 所得金額調整控除 for salary > 8.5m with a dependant under 23
   salary_floor: {value: 8500000, cite: {source: ta1411, page: 1}}
+  dependant_age_under: {value: 23, cite: {source: ta1411, page: 1}, note: "has a dependant under 23"}
   salary_cap: {value: 10000000, cite: {source: ta1411, page: 1}}
   rate: {value: 0.10, cite: {source: ta1411, page: 1}}
 
@@ -48,6 +50,7 @@ public_pension_income:  # 65 or older, other income ≤ 10m (fig. 1 lower half);
     - {from: 7700000, rate: 0.95, minus: 1455000}
     - {from: 10000000, rate: 1.0, minus: 1955000}
   cite: {source: ta1600, page: 1, section: "図1 (公的年金等に係る雑所得以外の合計所得金額が1,000万円以下)"}
+  age65_plus_age_from: {value: 65, cite: {source: ta1600, page: 1}}
 
 basic_deduction:  # by 合計所得金額 (upper bound inclusive)
   bands: [[4890000, 1040000], [6550000, 670000], [23500000, 620000], [24000000, 480000], [24500000, 320000], [25000000, 160000]]
@@ -55,7 +58,8 @@ basic_deduction:  # by 合計所得金額 (upper bound inclusive)
   cite: {source: nencho, page: 56, section: "令和8年分の基礎控除額の表"}
 
 spouse_deduction:  # earner total income ≤ 9m column; spouse income bands (upper inclusive) -> amount
-  earner_bands: [[9000000, 0], [9500000, 1], [10000000, 2]]   # column index
+  earner_bands: [[9000000, 0], [9500000, 1], [10000000, 2]]   # column index; above the last (10m) no deduction (p.55 注1)
+  elderly_age_from: {value: 70, cite: {source: nencho, page: 17, section: "老人控除対象配偶者 注3"}}
   spouse_ordinary: {bands: [[620000, [380000, 260000, 130000]]], cite: {source: nencho, page: 55}}
   spouse_special:
     bands:
@@ -73,6 +77,9 @@ spouse_deduction:  # earner total income ≤ 9m column; spouse income bands (upp
 
 dependent_deduction:
   income_limit: {value: 620000, cite: {source: nencho, page: 4, section: "扶養親族等の所得要件"}}
+  general_age_from: {value: 16, cite: {source: nencho, page: 11}}
+  specific_age_from: {value: 19, cite: {source: nencho, page: 56}, note: "also the 特定親族 age range (p.19)"}
+  specific_age_under: {value: 23, cite: {source: nencho, page: 56}}
   general_16_plus: {value: 380000, cite: {source: nencho, page: 56}}
   specific_19_to_22: {value: 630000, cite: {source: nencho, page: 56}}
   elderly_70_plus_not_living_together: {value: 480000, cite: {source: nencho, page: 56}}
@@ -93,5 +100,6 @@ rate_schedule:  # taxable income rounded down to 1,000 yen; [upper inclusive, ra
   bands: [[1950000, 0.05, 0], [3300000, 0.10, 97500], [6950000, 0.20, 427500], [9000000, 0.23, 636000], [18000000, 0.33, 1536000], [40000000, 0.40, 2796000]]
   top: [0.45, 4796000]  # above 40m: タックスアンサー No.2260 (sources/tax/nta_2260_shotokuzei_ritsu.html)
   cite: {source: nencho, page: 55}
+  taxable_income_rounding: {value: 1000, cite: {source: nencho, page: 55, section: "注1"}, note: "round down"}
 reconstruction_surtax_factor: {value: 1.021, cite: {source: nencho, page: 37}}
 final_rounding: {value: 100, cite: {source: nencho, page: 39}, note: "年調年税額 rounded down to 100 yen"}

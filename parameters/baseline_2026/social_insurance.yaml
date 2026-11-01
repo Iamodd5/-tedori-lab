@@ -53,25 +53,26 @@ part_time_coverage:  # 短時間労働者: employer 51+ staff (until Sep 2027), 
 
 health_dependant_income_limit:  # annual income below this
   general: {value: 1300000, cite: {source: dependant, page: 1}}
-  age_19_to_22_not_spouse: {value: 1500000, cite: {source: dependant, page: 1}}
-  age_60_plus: {value: 1800000, cite: {source: dependant, page: 1}}
+  age_19_to_22_not_spouse: {value: 1500000, age_from: 19, age_under: 23, cite: {source: dependant, page: 1}}
+  age_60_plus: {value: 1800000, age_from: 60, cite: {source: dependant, page: 1}}
 
 national_pension_monthly: {value: 17920, cite: {source: kokumin, page: 1}, note: "FY2026"}
+national_pension_ages: {status: unresolved, question: Q30, note: "20 to under 60; not yet in sources/, so engine/household.py still holds these two numbers"}
 
 nhi_shinjuku_fy2026:
   base_deduction: {value: 430000, cite: {source: nhi, page: 1}}
   medical: {per_member: 47600, rate: 0.0751, cap: 670000, cite: {source: nhi, page: 1}}
   support: {per_member: 17600, rate: 0.0280, cap: 260000, cite: {source: nhi, page: 1}}
-  ltc_40_64: {per_member: 17800, rate: 0.0243, cap: 170000, cite: {source: nhi, page: 1}}
-  child_levy: {per_member_18_plus: 1873, rate: 0.0027, cap: 30000, cite: {source: nhi, page: 1}}
+  ltc_40_64: {per_member: 17800, rate: 0.0243, cap: 170000, age_from: 40, age_to_exclusive: 65, cite: {source: nhi, page: 1}}
+  child_levy: {per_member_18_plus: 1873, rate: 0.0027, cap: 30000, age_from: 18, cite: {source: nhi, page: 1}}
   preschool_flat_reduction: {value: 0.5, cite: {source: nhi, page: 1}}
   flat_reduction:  # household 総所得金額等 ≤ limit -> reduce per-member amounts
     base: {value: 430000, cite: {source: nhi_reduction, page: 1}}
     per_extra_earner: {value: 100000, cite: {source: nhi_reduction, page: 1}}
-    seventy_percent: {per_member_add: 0, cite: {source: nhi_reduction, page: 1}}
-    fifty_percent: {per_member_add: 310000, cite: {source: nhi_reduction, page: 1}}
-    twenty_percent: {per_member_add: 570000, cite: {source: nhi_reduction, page: 1}}
-    pensioner_65_extra_deduction: {value: 150000, cite: {source: nhi_reduction, page: 1}}
+    seventy_percent: {per_member_add: 0, share: 0.7, cite: {source: nhi_reduction, page: 1}}
+    fifty_percent: {per_member_add: 310000, share: 0.5, cite: {source: nhi_reduction, page: 1}}
+    twenty_percent: {per_member_add: 570000, share: 0.2, cite: {source: nhi_reduction, page: 1}}
+    pensioner_65_extra_deduction: {value: 150000, age_from: 65, cite: {source: nhi_reduction, page: 1}}
 
 notes: >
   approximation: true. Health, child-support levy and pension rates start March/April 2026 and employment
