@@ -42,6 +42,16 @@ Each design is a reform in `engine/reforms.py` that reads only its own file in `
 - **Cost.** National total of the change in take-home pay = net cost to the government before any financing, in a static estimate (no change in how people work). Shown next to the proposer's own estimate where one is published (Daiwa p.7).
 - **Not included:** the year gap (2024 survey, 2026 rules), income from rent, interest and dividends, households that both earn and draw pensions, differences between households in the same cell, and the larger deduction for elderly dependants (Q32).
 
+## Design builder (Milestone 8)
+
+The "Build your own" page lets a visitor set the rules of a generic refundable credit (spec 8.5) with five sliders: phase-in rate, maximum per person, amount per child, the income where the phase-out starts, and the phase-out rate.
+
+- **Rule.** Worked out per person. A person with earnings (salary + business income) gets min(phase-in rate × earnings, maximum). In a couple, the partner with the higher earnings (the head if equal) adds the amount per child for each child aged 18 or under (the child allowance's age limit). Above the phase-out income, where income = earnings + pensions, all before tax, the credit falls by the phase-out rate × the excess. It never goes below 0 and is rounded down to the yen. Hand calculation: `tests/hand_calcs/custom_credit.md`.
+- **No other effects.** The credit is paid in cash and added to take-home pay under 2026 rules. It is not taxed and changes no other tax, insurance or benefit. So the browser needs only the formula (`site/custom.js`) and precomputed 2026 numbers (`outputs/wall_map.json`, `outputs/builder.json`), as spec Section 5 requires.
+- **Same households.** The wall map uses H1–H8; the decile table and cost use the Milestone 7 model households and their decile split, so every population number on the page is an approximation.
+- **Checks.** The Python formula (`engine/reforms.py` `custom`) is tested against the hand calculation. `tests/test_custom.py` runs the JavaScript in Node on the same cases and on every model household, and compares.
+- **Starting values** (10%, ¥100,000, ¥50,000, ¥3,000,000, 5%) are placeholders for the sliders, the same as the hand calculation's test values. They come from no plan.
+
 ## Website (Milestone 6)
 
 - Static pages in `site/`; every number is read at page load from `outputs/` (no number is typed into a page).

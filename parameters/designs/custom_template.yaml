@@ -1,6 +1,6 @@
 # Generic refundable credit for the design builder (spec Section 8.5). Values come from the site's sliders,
-# not from any policy document, so every parameter is `user_input`. Slider ranges and defaults are chosen in
-# Milestone 8.
+# not from any policy document, so every parameter is `user_input`. The rule, slider ranges and starting values
+# are in site/builder.html and site/custom.js (Python twin: engine/reforms.py custom; docs/METHODS.md).
 name_ja: カスタム設計（自分で作る給付付き税額控除）
 name_en: Custom refundable credit (design builder)
 label: {ja: カスタム, en: Custom}

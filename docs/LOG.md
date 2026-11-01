@@ -370,3 +370,22 @@ Published on 2026-11-01 (H-18). A final pass that rewrites all site text and imp
 **H-14: H1 renamed.** H1 is now "Single part-time employee (¥1.25m a year)" (was "near the 1.3m wall", which does not apply to someone who lives alone). The numbers did not change.
 
 96 tests pass.
+
+## Milestone 8: Build your own plan (2026-11-01)
+
+**What it is.** A new page, "Build your own" (自分で案を作る). A visitor moves five sliders to set the rules of a simple tax credit paid in cash to working people. The page shows straight away:
+- what it does to an example household's take-home pay at every income (the same charts as Home, with "your plan" next to 2026 rules);
+- how much households in each income group get on average, and what share of them get anything;
+- what it costs the government in a year.
+
+**The rule, in plain words.** Everyone who earns money (wages or a business) gets a share of their earnings, the "phase-in rate", up to a maximum. In a couple, the one who earns more also gets an extra amount for each child aged 18 or under. Once a person's income before tax (earnings plus pensions) passes a level the visitor sets, the credit shrinks by the "phase-out rate" for every yen above that level, down to zero. The money is simply added to take-home pay: it isn't taxed and nothing else changes.
+
+Example with the starting values (10%, ¥100,000 maximum, ¥50,000 per child, phase-out from ¥3m at 5%): a single parent earning ¥2.5m with one child gets 10% × 2.5m = 250,000, capped at 100,000, plus 50,000 for the child = ¥150,000.
+
+**Why the browser can do it.** The spec says the site has no server. Because the credit doesn't change any tax, the browser only needs the credit formula (`site/custom.js`) and the 2026 numbers we already compute (`outputs/wall_map.json`, plus a new `outputs/builder.json` with each household's earnings and pensions).
+
+**How we know it's right.** A hand calculation (`tests/hand_calcs/custom_credit.md`) with 10 cases checks the Python version. Then the tests run the browser's JavaScript in Node on the same cases and on all 730 model households, and check that it gives the same answers as Python. 108 tests pass.
+
+**Also fixed.** The charts now say whose income moves (for example "Spouse's salary before tax" for H4). Before, the axis said only "income", which was unclear for couples. The same fix applies on Home.
+
+**Neutrality.** The starting values are placeholders, the same as the test values. They come from no plan, and the page says so.

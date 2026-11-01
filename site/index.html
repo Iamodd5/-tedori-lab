@@ -69,7 +69,7 @@ function draw() {
     interaction: { mode: "nearest", axis: "x", intersect: false },
     plugins: { tooltip: { callbacks: { title: c => `${yen(c[0].raw.x)}${lang === "ja" ? "円" : " yen"}`,
                                        label: c => `${c.dataset.label}: ${yen(c.raw.raw)}${unit}` } } },
-    scales: { x: { type: "linear", title: { display: true, text: lang === "ja" ? "税引き前の収入（円）" : "Income before tax (yen)" } },
+    scales: { x: { type: "linear", title: { display: true, text: incomeAxis(h) } },
               y: { title: { display: true, text: yTitle } } } });
   charts = [new Chart(disp, { type: "line", data: { datasets: ds(1, false) }, options: opts(lang === "ja" ? "円" : "yen", "") }),
             new Chart(emr, { type: "line", data: { datasets: ds(2, true) }, options: opts("%", "%") })];

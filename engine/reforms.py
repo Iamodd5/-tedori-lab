@@ -108,3 +108,43 @@ def run(name, hh):
     return {"design": name, "status": "incomplete", "missing": missing, "blocked_by": blocked_by,
             "components": dict.fromkeys(COMPONENTS), "disposable_change": None, "approximations": [],
             "site_note": d.get("site_note")}
+
+
+# Custom credit for the design builder (spec 8.5, Milestone 8). The site runs the same formula in site/custom.js;
+# tests/test_custom.py checks the two agree. Hand calculation: tests/hand_calcs/custom_credit.md.
+def people(hh):
+    """Each member as [kind, earnings, pensions], all before tax. kind: k = child the age limit of the child
+    allowance or under, p = head or spouse, o = anyone else (adult children, relatives)."""
+    kid_age = b.params("child_allowance")["eligible_age_max"]["value"]
+    kind = lambda m: "k" if m["role"] == "child" and m["age"] <= kid_age else "p" if m["role"] in ("head", "spouse") else "o"
+    return [[kind(m), m.get("salary", 0) + m.get("business_income", 0), m.get("public_pension", 0)] for m in hh["members"]]
+
+
+def custom_people(ppl, p):
+    kids = sum(k == "k" for k, _, _ in ppl)
+    claimant = None  # the partner with the higher earnings, the first listed (head) if equal
+    for i, (k, earn, _) in enumerate(ppl):
+        if k == "p" and (claimant is None or earn > ppl[claimant][1]):
+            claimant = i
+    total = 0
+    for i, (k, earn, pension) in enumerate(ppl):
+        if earn <= 0:
+            continue
+        c = min(p["phase_in_rate"] * earn, p["maximum"]) + (kids * p["child_addition"] if i == claimant else 0)
+        c -= p["phase_out_rate"] * max(0, earn + pension - p["plateau_end"])
+        total += max(0, math.floor(round(c, 6)))  # round(…, 6): 0.05 × 1,000,000 must not floor to 49,999
+    return total
+
+
+def custom(hh, p):
+    return custom_people(people(hh), p)
+
+
+def custom_population(builder, p):
+    """Average credit and share of households receiving one, by income decile, and the total cost (yen a year)."""
+    credit = [custom_people(x, p) for x in builder["population"]["rows"]]
+    pieces = builder["population"]["pieces"]
+    weight = [sum(w for i, d, w in pieces if d == k) for k in range(1, 11)]
+    return {"mean": [sum(credit[i] * w for i, d, w in pieces if d == k) / weight[k - 1] for k in range(1, 11)],
+            "share": [sum(w for i, d, w in pieces if d == k and credit[i] > 0) / weight[k - 1] for k in range(1, 11)],
+            "cost": sum(credit[i] * w for i, _, w in pieces)}

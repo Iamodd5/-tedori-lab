@@ -3,6 +3,7 @@ const PAGES = [
   ["index.html", { ja: "ホーム", en: "Home" }],
   ["compare.html", { ja: "案の比較", en: "Compare plans" }],
   ["population.html", { ja: "全世帯で見ると", en: "All households" }],
+  ["builder.html", { ja: "自分で案を作る", en: "Build your own" }],
   ["methods.html", { ja: "計算方法", en: "How it works" }],
   ["validation.html", { ja: "検証", en: "Checks" }],
   ["sources.html", { ja: "出典とコード", en: "Sources & code" }],
@@ -15,6 +16,13 @@ const yen = n => n == null ? "—" : Math.round(n).toLocaleString("ja-JP");
 const loadJSON = u => fetch(u, { cache: "no-cache" }).then(r => r.json());
 // joins several reasons in the page language
 const joinT = list => list.map(t).join(lang === "ja" ? "。" : "; ");
+// x-axis title for a wall map: whose income moves (wall_map.json households entry)
+function incomeAxis(h) {
+  const field = { salary: { ja: "給与", en: "salary" }, business_income: { ja: "事業の収入", en: "business income" }, public_pension: { ja: "年金", en: "pension" } }[h.income_field];
+  const who = !h.couple ? null : h.member_role === "spouse" ? { ja: "配偶者の", en: "Spouse's " } : { ja: "世帯主の", en: "Household head's " };
+  const f = t(field);
+  return lang === "ja" ? `${who ? t(who) : ""}${f}（税引き前、円）` : `${who ? t(who) + f : f[0].toUpperCase() + f.slice(1)} before tax (yen)`;
+}
 const li = (ul, text) => { const x = document.createElement("li"); x.textContent = text; ul.append(x); };
 
 function applyLang() {

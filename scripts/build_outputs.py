@@ -64,6 +64,8 @@ for hid in HOUSEHOLDS:
             continue
         designs[d] = [[p["income"], p["disposable"], p["emr"]] for p in w.grid(hh, d)]
     walls["households"][hid] = {"member": who[0], "income_field": who[1], "name_ja": hh["name_ja"],
+                                "member_role": next(m["role"] for m in hh["members"] if m["id"] == who[0]),
+                                "couple": any(m["role"] == "spouse" for m in hh["members"]),
                                 "name_en": hh["name_en"], "assumptions": hh.get("assumptions", []), "designs": designs}
 (OUT / "wall_map.json").write_text(json.dumps(walls, ensure_ascii=False, separators=(",", ":")))
 # population view and cost (spec 9.3, 9.4): every number here is an approximation and is labelled so on the site
@@ -77,4 +79,16 @@ with open(OUT / "population_households.csv", "w", newline="") as f:
     wr = csv.DictWriter(f, list(hh_rows[0]))
     wr.writeheader()
     wr.writerows(hh_rows)
+# design builder (Milestone 8): the browser adds the custom credit to these 2026 numbers (site/custom.js)
+built = pop.build()
+builder = {"households": {}, "population": {
+    "rows": [r.people(x["household"]) for x in built],
+    "pieces": [[i, d, round(wt, 2)] for i, d, wt in pop.decile_pieces([(i, x["cell"]["annual_income"], x["weight"]) for i, x in enumerate(built)])]}}
+for hid in walls["households"]:
+    hh = h.load(hid)
+    mid, field = w.varying_member(hh)
+    i = next(k for k, m in enumerate(hh["members"]) if m["id"] == mid)
+    ppl, slot = r.people(hh), 2 if field == "public_pension" else 1
+    builder["households"][hid] = {"people": ppl, "vary": [i, slot, ppl[i][slot] - hh["members"][i].get(field, 0)]}
+(OUT / "builder.json").write_text(json.dumps(builder, separators=(",", ":")))
 print(f"wrote {len(rows)} comparison rows, wall maps for {list(walls['households'])}, skipped {list(walls['skipped'])}, {len(hh_rows)} population households")
