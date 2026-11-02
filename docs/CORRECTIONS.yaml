@@ -1,0 +1,66 @@
+# Corrections log (spec section 10, page 8), shown on site/corrections.html. Newest first.
+# Every change to a published number or statement because it was wrong or misleading. Wording changes that keep
+# the same facts and numbers are not listed.
+# previous: the last published commit with the old version. published: the first published commit with the new
+# one (left out until it is pushed). Either version can be rebuilt with `git checkout <commit> && make all`.
+# A number with `check` is recomputed from those two commits by tests/test_corrections.py.
+- date: 2026-11-02
+  previous: 4e1c6be
+  what:
+    ja: 「検証」ページで、公開されている計算ツール（OpenFisca-Japan）の住民税は「1.7万〜2万円低い」と書いていました。正しくは、住民税を一人あたり定額の分（均等割）より多く払う4人について、12,982〜19,937円低い（およそ1.3万〜2万円）です。
+    en: The Checks page said that an open calculator (OpenFisca-Japan) gives resident tax "¥17,000–20,000 lower". For the four people who pay more than the flat per-person part of resident tax, it is ¥12,982–19,937 lower (about ¥13,000–20,000).
+  why:
+    ja: 書いていた範囲には、例の世帯H8の収入の多い方（12,982円低い）が入っていませんでした。いまはこの範囲を、比べた表と同じ出力ファイルから自動で表示しています。
+    en: The range left out the higher earner in example household H8, whose resident tax is ¥12,982 lower. The page now takes the range from the same output file as the comparison table.
+- date: 2026-11-01
+  previous: 89f1614
+  published: 306c688
+  what:
+    ja: 例の世帯H4（会社員とパートの夫婦）で、パートの配偶者の年収が129万円から130万円に増えたときの手取りの減り方を直しました。
+    en: Corrected how much take-home pay example household H4 (an employee and a part-time spouse) loses when the spouse's pay goes from ¥1.29m to ¥1.30m a year.
+  why:
+    ja: 扶養から外れた配偶者は国民年金保険料を払います。以前はこの保険料を配偶者本人の所得から差し引いていましたが、配偶者の所得は少ないため、税はほとんど減りませんでした。法律（所得税法74条）では、同じ世帯の夫または妻のために払った保険料を差し引けるので、収入の多い方が差し引くように直しました。これは近似です。
+    en: A spouse who stops being a dependant pays National Pension premiums. We used to deduct them from the spouse's own income, which is small, so they saved almost no tax. The law (Income Tax Act article 74) lets a person deduct premiums paid for a spouse in the same household, so the higher earner now deducts them. This is an approximation.
+  numbers:
+    - label: {ja: 2026年の制度：手取りの減少（円／年）, en: "2026 rules: drop in take-home pay (yen a year)"}
+      before: 280126
+      after: 258226
+      check: {household: H4, design: baseline, from: 1290000, field: drop}
+    - label: {ja: 2026年の制度：元の手取りに戻る配偶者の年収（円）, en: "2026 rules: spouse's pay needed to get back to the same take-home pay (yen)"}
+      before: 1650000
+      after: 1640000
+      check: {household: H4, design: baseline, from: 1290000, field: back}
+    - label: {ja: 大和総研案：手取りの減少（円／年）, en: "Daiwa Institute plan: drop in take-home pay (yen a year)"}
+      before: 240126
+      after: 217926
+      check: {household: H4, design: daiwa, from: 1290000, field: drop}
+    - label: {ja: 大和総研案：元の手取りに戻る配偶者の年収（円）, en: "Daiwa Institute plan: spouse's pay needed to get back to the same take-home pay (yen)"}
+      before: 1620000
+      after: 1600000
+      check: {household: H4, design: daiwa, from: 1290000, field: back}
+    - label: {ja: （近似）全世帯・大和総研案：年収の低い方から2番目のグループの手取りの平均の変化（円／年）, en: "(Approximation) All households, Daiwa Institute plan: average change in take-home pay, 2nd income group from the bottom (yen a year)"}
+      before: 6490
+      after: 6498
+      check: {population: daiwa, decile: 2}
+    - label: {ja: （近似）全世帯・大和総研案：年収の低い方から3番目のグループの手取りの平均の変化（円／年）, en: "(Approximation) All households, Daiwa Institute plan: average change in take-home pay, 3rd income group from the bottom (yen a year)"}
+      before: 4727
+      after: 4765
+      check: {population: daiwa, decile: 3}
+- date: 2026-11-01
+  previous: 89f1614
+  published: 306c688
+  what:
+    ja: 例の世帯H1の名前を「単身・パート（130万円の壁付近）」から「単身・パート（年収125万円）」に変えました。数字は変わりません。
+    en: Renamed example household H1 from "Single part-time employee near the 1.3m wall" to "Single part-time employee (¥1.25m a year)". No numbers changed.
+  why:
+    ja: H1は一人暮らしで、だれの扶養にも入っていないため、「130万円の壁」（扶養から外れて自分で保険料を払い始める境目）は当てはまりません。前の名前は誤解を招くものでした。
+    en: H1 lives alone and is nobody's dependant, so the "¥1.3m wall" (where a dependant starts paying their own insurance premiums) does not apply to H1. The old name was misleading.
+- date: 2026-11-01
+  previous: 89f1614
+  published: 306c688
+  what:
+    ja: 連合案をまだ計算できない理由を、「連合の案の資料をまだ入手できていません」から「連合が消費税還付制度の金額をまだ公表していません」に直しました。
+    en: Changed the reason the Rengo plan can't be calculated yet, from "we haven't been able to get Rengo's proposal documents" to "Rengo hasn't published the amounts for its consumption tax refund".
+  why:
+    ja: 連合のウェブサイトの別のページで資料が見つかりました。資料には、案の一部である消費税還付制度の金額が書かれていないため、案はまだ計算できません。
+    en: We found the documents on other pages of Rengo's website. They give no amounts for the consumption tax refund, which is part of the plan, so the plan still can't be calculated.

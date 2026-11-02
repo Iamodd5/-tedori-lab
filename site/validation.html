@@ -10,12 +10,12 @@
 </head>
 <body>
 <h1><span lang="ja">検証：計算は正しいか</span><span lang="en">Checks: are the numbers right?</span></h1>
-<p><span lang="ja">計算が正しいかを、いくつかの方法で確かめています。合わなかった点や、見つけて直した誤りも隠さずに残しています。</span><span lang="en">We check the calculations in several ways. Where things don't match, and mistakes we found and fixed, are all kept, not hidden.</span></p>
+<p><span lang="ja">計算が正しいかを、いくつかの方法で確かめています。合わなかった点も隠さずに残しています。公開後に直した誤りは<a href="corrections.html">訂正の記録</a>にあります。</span><span lang="en">We check the calculations in several ways. Where things don't match is kept, not hidden. Mistakes fixed after publishing are listed in the <a href="corrections.html">corrections log</a>.</span></p>
 <div class="summary"><ul>
   <li><span lang="ja"><strong>手計算：</strong>8つの例の世帯すべてについて、手で一歩ずつ計算した手取りと、プログラムの結果が一致しています。</span><span lang="en"><strong>By hand:</strong> for all eight example households, the take-home pay worked out by hand, step by step, matches the program exactly.</span></li>
   <li><span lang="ja"><strong>公式の計算例：</strong>国税庁の年末調整の計算例、新宿区の国民健康保険料の早見表、協会けんぽの保険料額表と、すべて一致しています。</span><span lang="en"><strong>Official examples:</strong> the National Tax Agency's worked examples, Shinjuku's National Health Insurance quick-reference table and the Japan Health Insurance Association's premium table all match.</span></li>
-  <li><span lang="ja"><strong>ほかの計算ツール：</strong>公開されている計算ツール（OpenFisca-Japan）とは結果が少しずつ違います。そちらは2025〜26年の税制改正にまだ対応していないためと考えられますが、住民税がそちらの方で1.7万〜2万円低い理由は、まだ分かっていません。</span><span lang="en"><strong>Another calculator:</strong> an open calculator (OpenFisca-Japan) gives somewhat different results, most likely because it hasn't been updated for the 2025–26 tax changes. Its resident tax is ¥17,000–20,000 lower, and we haven't found why yet.</span></li>
-  <li><span lang="ja"><strong>全世帯の試算と公式の数字：</strong>（近似）世帯数は公式より2.8%少なく、所得税の合計は約13%、住民税は約4%低めです。年収100万円以下で働く人の数は、公式の約370万人に対して1,530万人と多すぎます。</span><span lang="en"><strong>All-household estimate vs official figures:</strong> (Approximation) the household count is 2.8% below the official one; total income tax is about 13% lower and resident tax about 4% lower. The number of people earning ¥1m or less is far too high: 15.3 million against about 3.7 million officially.</span></li>
+  <li><span lang="ja"><strong>ほかの計算ツール：</strong>公開されている計算ツール（OpenFisca-Japan）とは結果が少しずつ違います。そちらは2025〜26年の税制改正にまだ対応していないためと考えられますが、住民税がそちらの方で<span data-n="ofgap"></span>低い理由は、まだ分かっていません。</span><span lang="en"><strong>Another calculator:</strong> an open calculator (OpenFisca-Japan) gives somewhat different results, most likely because it hasn't been updated for the 2025–26 tax changes. Its resident tax is <span data-n="ofgap"></span> lower, and we haven't found why yet.</span></li>
+  <li><span lang="ja"><strong>全世帯の試算と公式の数字：</strong>（近似）世帯数は公式より<span data-n="hh"></span>少なく、所得税の合計は<span data-n="it"></span>、住民税は<span data-n="rt"></span>低めです。年収100万円以下で働く人の数は、公式の<span data-n="lowoff"></span>に対して<span data-n="lowmodel"></span>と多すぎます。</span><span lang="en"><strong>All-household estimate vs official figures:</strong> (Approximation) the household count is <span data-n="hh"></span> below the official one; total income tax is <span data-n="it"></span> lower and resident tax <span data-n="rt"></span> lower. The number of people earning ¥1m or less is far too high: <span data-n="lowmodel"></span> against <span data-n="lowoff"></span> officially.</span></li>
   <li><span lang="ja"><strong>まだやっていないこと：</strong>民間の手取り計算サイトとの比べ合わせ。</span><span lang="en"><strong>Not done yet:</strong> a comparison with a public take-home pay calculator.</span></li>
 </ul></div>
 <details><summary><span lang="ja">くわしい比較表（英語・専門的な内容）</span><span lang="en">Full comparison tables (for specialists)</span></summary>
@@ -23,6 +23,25 @@
 <script>
 setupPage();
 renderDoc(document.getElementById("doc"), "../docs/VALIDATION.md");
+// the numbers in the summary come from outputs/ (CLAUDE.md rule 7)
+Promise.all([loadJSON("../outputs/population.json"), loadJSON("../outputs/openfisca_check.json")]).then(([pop, of]) => {
+  const c = pop.calibration, gap = (a, b) => (Math.abs(a - b) / b * 100).toFixed(1) + "%";
+  const k = n => yen(Math.round(n / 1000) * 1000);
+  const rt = of.rows.map(r => r.resident_tax.ours - r.resident_tax.openfisca).filter(g => g > 0);
+  const low = c.wage_earners.find(b => b.band === "100万円以下");
+  const people = n => ({ ja: yen(n / 1e4) + "万人", en: (n / 1e6).toFixed(1) + " million" });
+  const N = {
+    ofgap: { ja: `${k(Math.min(...rt))}〜${k(Math.max(...rt))}円`, en: `¥${k(Math.min(...rt))}–${k(Math.max(...rt))}` },
+    hh: gap(c.households.model, c.households.official_kiso_2025),
+    it: gap(c.income_tax.model_baseline_2026, c.income_tax.survey_estimate_2024),
+    rt: gap(c.resident_tax.model_baseline_2026, c.resident_tax.survey_estimate_2024),
+    lowmodel: people(low.model), lowoff: people(low.official),
+  };
+  document.querySelectorAll("[data-n]").forEach(el => {
+    const v = N[el.dataset.n];
+    el.textContent = typeof v === "string" ? v : v[el.closest("[lang]").lang];
+  });
+});
 </script>
 </body>
 </html>

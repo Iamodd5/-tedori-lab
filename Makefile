@@ -26,5 +26,6 @@ test:
 outputs:
 	PYTHONPATH=. $(PY) scripts/build_outputs.py
 	PYTHONPATH=. $(PY) scripts/build_report.py
+	PYTHONPATH=. $(PY) scripts/crosscheck_openfisca.py
 
 .PHONY: all fetch-sources check-sources text tables test outputs

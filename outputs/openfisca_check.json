@@ -1,0 +1,90 @@
+{
+ "date": "2026-12-01",
+ "rows": [
+  {
+   "household": "H1",
+   "person": "a",
+   "salary": 1250000,
+   "social_insurance": {
+    "ours": 183348,
+    "openfisca": 183125
+   },
+   "income_tax": {
+    "ours": 0,
+    "openfisca": 0
+   },
+   "resident_tax": {
+    "ours": 5000,
+    "openfisca": 5000
+   }
+  },
+  {
+   "household": "H3",
+   "person": "a",
+   "salary": 4500000,
+   "social_insurance": {
+    "ours": 669564,
+    "openfisca": 659250
+   },
+   "income_tax": {
+    "ours": 74000,
+    "openfisca": 72013
+   },
+   "resident_tax": {
+    "ours": 208500,
+    "openfisca": 188563
+   }
+  },
+  {
+   "household": "H3",
+   "person": "b",
+   "salary": 3000000,
+   "social_insurance": {
+    "ours": 457728,
+    "openfisca": 439500
+   },
+   "income_tax": {
+    "ours": 26600,
+    "openfisca": 25034
+   },
+   "resident_tax": {
+    "ours": 115700,
+    "openfisca": 96538
+   }
+  },
+  {
+   "household": "H8",
+   "person": "a",
+   "salary": 9000000,
+   "social_insurance": {
+    "ours": 1285188,
+    "openfisca": 1280700
+   },
+   "income_tax": {
+    "ours": 603700,
+    "openfisca": 580271
+   },
+   "resident_tax": {
+    "ours": 530900,
+    "openfisca": 517918
+   }
+  },
+  {
+   "household": "H8",
+   "person": "b",
+   "salary": 7000000,
+   "social_insurance": {
+    "ours": 1039644,
+    "openfisca": 1025500
+   },
+   "income_tax": {
+    "ours": 276100,
+    "openfisca": 244403
+   },
+   "resident_tax": {
+    "ours": 375500,
+    "openfisca": 358438
+   }
+  }
+ ]
+}

@@ -30,7 +30,7 @@ Caveat: the hand calculations and the engine were written by the same author (Cl
 
 ## 3. Comparison with OpenFisca-Japan (commit 1f8d13d)
 
-Same salaries, run as a single person in OpenFisca-Japan on 2026-12-01. Differences are expected because OpenFisca-Japan has not been updated for the 2025–2026 tax changes and uses a flat health-insurance rate (docs/COVERAGE.md).
+Same salaries, each run as a single person in OpenFisca-Japan with its date set to 2026-12-01 (`scripts/crosscheck_openfisca.py`; `make all` rebuilds the numbers into `outputs/openfisca_check.json`, and a test checks this table against it). Differences are expected because OpenFisca-Japan has not been updated for the 2025–2026 tax changes and uses a flat health-insurance rate (docs/COVERAGE.md).
 
 | Household | Person | Salary | Social ins. (ours) | (OF-J) | Income tax (ours) | (OF-J) | Resident tax (ours) | (OF-J) |
 |---|---|---|---|---|---|---|---|---|
@@ -43,7 +43,8 @@ Same salaries, run as a single person in OpenFisca-Japan on 2026-12-01. Differen
 Likely causes, not yet traced line by line:
 - Social insurance: OF-J uses a 10% health rate on actual pay instead of the Tokyo 9.85% rate on banded pay, and has no 子ども・子育て支援金.
 - Income tax: OF-J's results are not rounded to 100 yen, and it uses 2025 employment-income rules.
-- Resident tax: OF-J is about 17,000–20,000 yen lower. The cause is not yet found; to be checked in Milestone 3 when choosing the first upstream contribution.
+- Resident tax: for the four people above the flat per-person levy, OF-J is 12,982–19,937 yen lower (H1 is the same). The cause is not yet found (Q27).
+- Correction 2026-11-02: until this date the line above said "about 17,000–20,000 yen lower", and the website repeated it. H8 a is 12,982 lower, so the range was wrong (website corrections log).
 
 ## 4. Outside calculator (spec 12.2)
 

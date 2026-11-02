@@ -11,6 +11,7 @@ const ABOUT = [
   ["methods.html", { ja: "計算方法", en: "How it works" }],
   ["validation.html", { ja: "検証", en: "Checks" }],
   ["sources.html", { ja: "出典とコード", en: "Sources & code" }],
+  ["corrections.html", { ja: "訂正の記録", en: "Corrections" }],
 ];
 let lang = "ja";
 try { lang = localStorage.getItem("tedori-lang") === "en" ? "en" : "ja"; } catch (e) { /* storage blocked: stay Japanese */ }

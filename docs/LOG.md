@@ -457,3 +457,19 @@ The human asked for a simpler but better-looking site, easier navigation, and a 
 ## Milestone 9 checkpoint passed (2026-11-02)
 
 The human read the report and chose its main finding: option A, the ¥1.3m wall for example household H4 (the part-time spouse earns ¥10,000 more and the household takes home ¥258,226 less a year). The report already led with it, so nothing in it changed. The report and the design pass are now published together (H-20).
+
+## Milestone 10 (started 2026-11-02): corrections log and a self-check before outside review
+
+Milestone 10 is about fixing what outside reviewers find, and keeping a public list of every fix. The outside review needs people the human knows, so it starts with the request in `docs/REVIEW_REQUEST.md` (Japanese and English). Before sending it, we checked our own published numbers.
+
+- **Corrections log, live.** A new page, 訂正の記録 / Corrections, linked from the footer of every page. It lists every time we changed a published number or statement because it was wrong or misleading: the date, what changed, why, the numbers before and after, and links to the versions before and after. It is written in `docs/CORRECTIONS.yaml`; `make all` copies it to `outputs/corrections.json` for the page. To find what to list, we compared the output files of every version ever published. Four corrections so far:
+  1. The H4 ¥1.3m wall: who deducts the spouse's national pension (decided 2026-11-01). The drop went from ¥280,126 to ¥258,226.
+  2. H1's old name said "near the 1.3m wall", which does not apply to a single person.
+  3. The reason the Rengo plan can't be calculated (its documents were found; its refund amounts are missing).
+  4. A wrong range on the Checks page (below).
+  A test recomputes every "before" and "after" number from the published versions, so the log can't misquote them.
+- **A wrong number found and fixed.** The Checks page said OpenFisca-Japan's resident tax is "¥17,000–20,000 lower" than ours. The comparison table shows 12,982–19,937 for the four people who pay more than the flat per-person levy. The page now calculates the range from the output files.
+- **The OpenFisca-Japan comparison is now rebuilt by `make all`** (`scripts/crosscheck_openfisca.py` → `outputs/openfisca_check.json`). It reproduced the old table exactly. A test checks the table in `docs/VALIDATION.md` against it, and another checks the population calibration tables there against `outputs/population.json`, so the Checks page can't drift from the numbers.
+- **The Checks page summary has no numbers typed by hand any more**: the calibration gaps and the ¥1m-earner counts come from `outputs/population.json`.
+
+123 tests pass. Waiting for the outside review (H-22).
