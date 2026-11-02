@@ -452,4 +452,4 @@ The human asked for a simpler but better-looking site, easier navigation, and a 
   - both charts always show the same incomes, and the vertical axis fits what is shown, so a wall fills the chart when you zoom in on it;
   - "Full screen" opens the whole chart area, controls included; Esc closes it.
 
-113 tests pass. Not published: waiting for the human's approval, along with the Milestone 9 report (H-20).
+113 tests pass. The human approved the design on 2026-11-02 (H-21). Not published yet: it goes out together with the Milestone 9 report once H-20 is answered.
