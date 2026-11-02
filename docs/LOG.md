@@ -453,3 +453,7 @@ The human asked for a simpler but better-looking site, easier navigation, and a 
   - "Full screen" opens the whole chart area, controls included; Esc closes it.
 
 113 tests pass. The human approved the design on 2026-11-02 (H-21). Not published yet: it goes out together with the Milestone 9 report once H-20 is answered.
+
+## Milestone 9 checkpoint passed (2026-11-02)
+
+The human read the report and chose its main finding: option A, the ¥1.3m wall for example household H4 (the part-time spouse earns ¥10,000 more and the household takes home ¥258,226 less a year). The report already led with it, so nothing in it changed. The report and the design pass are now published together (H-20).
