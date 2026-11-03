@@ -2,6 +2,7 @@
  {
   "date": "2026-11-03",
   "previous": 1204115,
+  "published": "2f1f1c5",
   "what": {
    "ja": "パートの社会保険の計算を直しました。同じ日の修正で、2026年10月からは週20時間以上で働くパートは月給にかかわらず会社の保険に入るとしましたが、月給8.8万円未満の人は、1年を通して会社の保険に入らないものに戻しました。あわせて、雇用保険料を、会社の健康保険や厚生年金に入っていない人にもかけるようにしました（週20時間以上で働く学生でない人）。例の世帯H1の年収105万6,000円未満と、全世帯の試算が変わりました（グループ6〜9の平均の変化も、それぞれ年200円未満変わりました）。",
    "en": "Corrected how part-timers' social insurance is worked out. The fix earlier the same day put part-timers working 20+ hours a week into company insurance from October 2026 whatever their pay; people paid under ¥88,000 a month are now again outside company insurance all year. Employment insurance is now also charged to people outside company health insurance and pension (non-students working 20+ hours a week). Example household H1 below ¥1,056,000 a year and the all-household estimate change (the average changes for groups 6–9 each move by less than ¥200 a year)."
@@ -17,7 +18,12 @@
      "en": "H1: take-home pay at a salary of ¥1.05m (yen a year)"
     },
     "before": 834858,
-    "after": 809595
+    "after": 809595,
+    "check": {
+     "household": "H1",
+     "design": "baseline",
+     "income": 1050000
+    }
    },
    {
     "label": {
@@ -33,7 +39,11 @@
      "en": "(Approximation) All households, Daiwa Institute plan: average change in take-home pay, lowest income group (yen a year)"
     },
     "before": 8659,
-    "after": 9228
+    "after": 9228,
+    "check": {
+     "population": "daiwa",
+     "decile": 1
+    }
    },
    {
     "label": {
@@ -41,7 +51,11 @@
      "en": "(Approximation) All households, Daiwa Institute plan: 2nd income group from the bottom (yen a year)"
     },
     "before": 6405,
-    "after": 6503
+    "after": 6503,
+    "check": {
+     "population": "daiwa",
+     "decile": 2
+    }
    },
    {
     "label": {
@@ -49,7 +63,11 @@
      "en": "(Approximation) All households, Daiwa Institute plan: 3rd income group from the bottom (yen a year)"
     },
     "before": 4739,
-    "after": 4765
+    "after": 4765,
+    "check": {
+     "population": "daiwa",
+     "decile": 3
+    }
    },
    {
     "label": {
@@ -72,6 +90,7 @@
  {
   "date": "2026-11-03",
   "previous": 1204115,
+  "published": "2f1f1c5",
   "what": {
    "ja": "連合案の説明で、就労支援給付制度の財源1.5〜2兆円程度を「対象約600万人」としていました。連合の構想では、対象は給与収入65万〜250万円の雇われて働く人約2100万人で、約600万人は額が減っていく200万〜250万円の人の数です。",
    "en": "The Rengo plan's description paired the work-support credit's cost of about ¥1.5–2 trillion with \"about 6 million people\". In Rengo's plan it is for about 21 million employees earning ¥650,000 to ¥2.5m; about 6 million is the number in the ¥2m–¥2.5m band where it shrinks."
@@ -84,6 +103,7 @@
  {
   "date": "2026-11-03",
   "previous": 1204115,
+  "published": "2f1f1c5",
   "what": {
    "ja": "政府の2つの案の説明を直しました。2027〜28年度の支給の上限は「2年間の総額」ではなく、各年度の総額がその年度の1%分の飲食料品の消費税収（見込み）を超えないことを考慮して決めるものです。2029年4月の支給は、2028年度に支給を受けた人への先行分（法律案では2028年度分への上乗せ）で、2029年度分は本格版の半年分程度です。上乗せ（就業促進特例加算）の対象は、会社の保険に入って保険料を払うようになった人のうち、勤労所得が手取りの戻る水準までの人です。1月1日に日本に住所がない人は対象外であることと、短い説明に支給の条件があることも書き加えました。レポートの最初の段落でも、上乗せの対象と2029年度からの配偶者の所得の条件を書き加えました。",
    "en": "Corrected the descriptions of the two government plans. The 2027–28 payments are not capped as \"a two-year total\"; each year's amounts are to be set taking into account that the year's total should not exceed that year's expected revenue from the remaining 1% consumption tax on food. The April 2029 payment is an advance to people who received the fiscal 2028 payment (in the bill, an addition to the fiscal 2028 payment), and the fiscal 2029 payment is about half of the full amount. The top-up (就業促進特例加算) is for people who start paying company insurance premiums and whose earned income is below the level where take-home pay recovers. We also added that people with no address in Japan on 1 January are not paid, and put the payment conditions into the one-line descriptions. The report's first section now also gives who the top-up is for and the spouse-income test from fiscal 2029."
@@ -96,6 +116,7 @@
  {
   "date": "2026-11-03",
   "previous": 1204115,
+  "published": "2f1f1c5",
   "what": {
    "ja": "ホームとレポートの最初の段落を直しました。前の文は「どの案も、所得の低い（または中くらいの）働く人の負担を軽くすることを目的に掲げていますが、世帯によって手取りが増える場合も減る場合もあります」で、計算できない案についても手取りが減る場合があると読めました。いまは、各案が目的を掲げていることと、いま計算できる一つの案で手取りが増える世帯も減る世帯もあることを分けて書いています。レポートの「いちばん伝えたいこと」の、大和総研案で「でも…減り（壁は残ります）」という書き方は、2026年の制度での減り方と並べる書き方にしました。まだ計算できない案の理由も、どの案も「まだ示されていません」と同じ書き方にしました（連合案だけ「公表していません」としていました）。",
    "en": "Corrected the first paragraph on Home and in the report. It said \"Each plan says it aims to lighten the burden on people in work on low (or middle) incomes, but depending on the household, take-home pay can go up or down\", which read as if take-home pay could fall under the plans that can't be calculated. It now says separately that each plan states its own aims, and that under the one plan that can be calculated some households gain and some lose. In the report's main finding, the Daiwa plan sentence (\"still falls … (the wall remains)\") now sets the drop next to the drop under 2026 rules. The reasons why plans can't be calculated now use the same words for every plan (only Rengo's said \"hasn't published\")."
@@ -108,6 +129,7 @@
  {
   "date": "2026-11-03",
   "previous": 1204115,
+  "published": "2f1f1c5",
   "what": {
    "ja": "「全世帯で見ると」とレポートで、手取りが平均で増えるグループの説明に、グループ4では7%の世帯で手取りが減ることを書き加えました。「自分で案を作る」の国全体の金額も0.1兆円単位にしました。",
    "en": "On All households and in the report, the sentence on the groups whose take-home pay rises on average now adds that 7% of households in group 4 are worse off. The national total on Build your own is now shown to ¥0.1 trillion as well."
@@ -120,6 +142,7 @@
  {
   "date": "2026-11-03",
   "previous": 1204115,
+  "published": "2f1f1c5",
   "what": {
    "ja": "「検証」と「計算方法」のページの記述を直しました。総務省の資料３（18ページ）の図を「法律と食い違う」としていましたが、図は100円未満を切り捨てる前の額（4,200円）で、法律と合っています。住民税の令和9年度の条件の修正について、手計算を先に直しテストが失敗するのを確かめたと書いていましたが、そのときは確かめていませんでした（いまは勤労学生の89万円に手計算とテストがあります）。民間給与実態統計調査の人数9か所を、男女を足した数から表の「計」の数に直しました（それぞれ1人の差）。65歳以上の人数の出典名、勤労学生の89万円の根拠（所得税法）、大和総研案で国民健康保険料を数える条件、消費税が入る案（つなぎの案と連合案）、最初に表示する言語の説明、「東京以外では」を「新宿区以外では」とする場所の説明も直しました。",
    "en": "Corrected statements on the Checks and How it works pages. The Checks page called a figure in the Ministry of Internal Affairs' material 3 (page 18) a conflict with the law; the figure shows the amount before rounding to ¥100 (¥4,200) and agrees with the law. It said that for the fiscal 2027 resident-tax limits the hand calculation was corrected first and the test seen failing; that wasn't so at the time (the ¥890,000 working-student limit now has a hand calculation and a test). Nine counts from the National Tax Agency's wage survey were men plus women instead of the table's own totals (1 person off each). We also corrected the source named for people aged 65+, the basis of the ¥890,000 working-student limit (the Income Tax Act), when household NHI counts toward the Daiwa cash cap, which plans include consumption tax (the bridge plan and Rengo), how the first language is chosen, and the note on place (\"outside Shinjuku\", not \"outside Tokyo\")."

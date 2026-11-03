@@ -12,6 +12,7 @@ const ABOUT = [
   ["validation.html", { ja: "検証", en: "Checks" }],
   ["sources.html", { ja: "出典とコード", en: "Sources & code" }],
   ["corrections.html", { ja: "訂正の記録", en: "Corrections" }],
+  ["press.html", { ja: "報道関係の方へ", en: "For the press" }],
 ];
 // Japanese unless the visitor chose English, or (first visit) their browser isn't set to Japanese
 let lang = /^ja\b/i.test(navigator.language || "ja") ? "ja" : "en";

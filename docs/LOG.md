@@ -533,3 +533,14 @@ The owner found the site's look plain and "AI-generated". Nothing in the numbers
 - **Colours.** A deep indigo band runs across the top. The page is a soft grey-white, the text is indigo-black, and links are blue. The H4 example, dropdowns and buttons are white, so they stand out like sheets of paper. Red still means a loss and green a gain; the plan colours in the charts are unchanged because they are safe for colour-blind readers.
 - **Type.** Paragraphs are set in Mincho (明朝), justified, as in a Japanese government white paper; headings, numbers, tables, notes and buttons stay in Gothic. Only fonts already on the reader's device are used, so nothing is downloaded from another site.
 - **Shapes.** No tinted boxes or rounded "pill" labels. Each section starts with a dark rule, tables are ruled top and bottom, and the range buttons are one joined control. Charts have lighter gridlines, line legends and plain white tooltips.
+
+## Milestone 11: the press kit (2026-11-03)
+
+A new page, "For the press" (報道関係の方へ, in the footer), gives journalists a one-page Japanese summary and three charts. Nothing in it is typed in by hand: `make all` fills the summary from the same numbers as the report, and draws the charts from the same output files as the site. So if a number on the site changes, the press kit changes with it, and a test fails if the two ever differ.
+- **Figure 1** shows example household H4: as the part-time spouse earns more, take-home pay falls by ¥258,226 when the spouse's pay goes from ¥1.29m to ¥1.30m, under 2026 rules, with the Daiwa plan's line beside it.
+- **Figure 2** shows how much each of the eight example households gains or loses under the Daiwa plan (green for a gain, red for a loss).
+- **Figure 3** shows the same for all households, in ten income groups. It is labelled as a rough estimate.
+
+The summary repeats the main finding, lists the four plans and why three can't be calculated yet, and gives the limits (no change in how much people work; Shinjuku; model households). It says the site supports no plan, party or politician. The charts are plain SVG files that open in any browser and can be enlarged without blurring.
+
+The Corrections page entries from the recheck now link to the version where the fixes went live, and four of their numbers are checked automatically against it.

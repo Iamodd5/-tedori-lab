@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>報道関係の方へ / For the press — Tedori Lab</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="common.js"></script>
+<style>
+  figure { margin: 24px 0; max-width: 720px; }
+  figure img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); background: #fff; }
+  figcaption { font-size: 13.5px; color: var(--ink-2); margin-top: 6px; }
+</style>
+</head>
+<body>
+<h1><span lang="ja">報道関係の方へ</span><span lang="en">For the press</span></h1>
+<p><span lang="ja">1ページの概要と、3つの図です。どれもサイトと同じ出力ファイルから自動で作っているため、数字はサイトと一致します。出典を「手取りラボ」として、自由に使えます。</span><span lang="en">A one-page summary and three charts, in Japanese. They are generated from the same output files as the site, so every number matches it. Free to use, credited to Tedori Lab.</span></p>
+<p class="note"><a href="../outputs/press/summary.ja.md" download><span lang="ja">概要をダウンロード（Markdown）</span><span lang="en">Download the summary (Markdown)</span></a></p>
+<div class="md" id="doc"></div>
+<h2><span lang="ja">図</span><span lang="en">Charts</span></h2>
+<div id="figs"></div>
+<script>
+// the summary and charts are generated from outputs/ by scripts/build_press.py (Milestone 11)
+const url = "../outputs/press/summary.ja.md", el = document.getElementById("doc");
+const FIGS = [["fig1_wall_h4.svg", { ja: "図1　例の世帯H4：配偶者の給与と世帯の手取り", en: "Figure 1: household H4, the spouse's pay and take-home pay" }],
+              ["fig2_households.svg", { ja: "図2　大和総研案：例の世帯の手取りの変化", en: "Figure 2: Daiwa Institute plan, change for the example households" }],
+              ["fig3_groups.svg", { ja: "図3　（近似）大和総研案：全世帯の手取りの変化", en: "Figure 3: (Approximation) Daiwa Institute plan, change across all households" }]];
+function draw() {
+  renderDoc(el, { ja: url, en: url }); el.lang = "ja";  // the summary is in Japanese on both language versions
+  const box = document.getElementById("figs"); box.replaceChildren();
+  for (const [file, cap] of FIGS) {
+    const fig = document.createElement("figure"), img = document.createElement("img"), c = document.createElement("figcaption"), a = document.createElement("a");
+    img.src = `../outputs/press/${file}`; img.alt = t(cap); img.width = 720; img.height = 440;
+    a.href = img.src; a.download = file; a.textContent = lang === "ja" ? "SVGをダウンロード" : "Download SVG";
+    c.append(t(cap), "　", a); fig.append(img, c); box.append(fig);
+  }
+}
+setupPage(draw);
+draw();
+</script>
+</body>
+</html>
