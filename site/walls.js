@@ -4,10 +4,12 @@ const WALL = { step: 100000, ranges: [3e6, 6e6, 1e7], minDrop: 10000 };
 
 // How much more take-home pay (yen) an extra ¥100,000 of income brings; below 0 is a wall.
 // 100,000 rather than 10,000 so rounding of tax to 100 yen does not show as noise.
+// Starts at 100,000: income 0 is left out here and in the wall list (see bigWalls).
 function keepSeries(pts) {
   const at = new Map(pts.map(p => [p[0], p[1]]));
-  return pts.filter(p => p[0] % WALL.step === 0 && at.has(p[0] + WALL.step)).map(p => [p[0], at.get(p[0] + WALL.step) - p[1]]);
+  return pts.filter(p => p[0] > 0 && p[0] % WALL.step === 0 && at.has(p[0] + WALL.step)).map(p => [p[0], at.get(p[0] + WALL.step) - p[1]]);
 }
+
 const KEEP_FLOOR = -200000;  // lower values are drawn at the floor and marked ▼; the tooltip gives the real amount
 // signed short yen for the keep axis: 5万 / −20万, ¥50k / −¥200k
 const keepTick = v => v === 0 ? "0" : lang === "ja" ? `${v < 0 ? "−" : ""}${Math.abs(v) / 1e4}万` : `${v < 0 ? "−" : ""}¥${Math.abs(v) / 1e3}k`;
@@ -56,12 +58,24 @@ function wallCharts(ids) {
     bar.append(b); return b;
   });
   const viewing = document.createElement("span"); viewing.className = "viewing"; viewing.setAttribute("aria-live", "polite"); bar.append(viewing);
+  // zoom buttons for one-pointer and keyboard use (A17): − widens, ＋ narrows around the middle of the view
+  const zoom = f => { const span = view.max - view.min, mid = (view.min + view.max) / 2; setView(mid - span * f / 2, mid + span * f / 2); };
+  const zoomOut = document.createElement("button"), zoomIn = document.createElement("button");
+  zoomOut.type = zoomIn.type = "button"; zoomOut.textContent = "−"; zoomIn.textContent = "＋";
+  zoomOut.onclick = () => zoom(2); zoomIn.onclick = () => zoom(.5);
+  bar.append(zoomOut, zoomIn);
   const big = document.createElement("button"); big.type = "button"; big.className = "btn enlarge";
   big.onclick = () => toggleBig(); bar.parentElement.append(big);
   function toggleBig(force) {
     panel.classList.toggle("big", force);
-    document.body.style.overflow = panel.classList.contains("big") ? "hidden" : "";
+    const on = panel.classList.contains("big");
+    document.body.style.overflow = on ? "hidden" : "";
+    if (on) { panel.setAttribute("role", "dialog"); panel.setAttribute("aria-modal", "true"); } else { panel.removeAttribute("role"); panel.removeAttribute("aria-modal"); }
+    for (let n = panel; n !== document.body; n = n.parentElement)  // everything outside the panel is inert while it fills the screen
+      for (const sib of n.parentElement.children) if (sib !== n) sib.inert = on;
+    big.setAttribute("aria-expanded", on);
     label(); requestAnimationFrame(() => { disp.resize(); rate.resize(); nav.resize(); placeFrame(); });
+    big.focus();
   }
   addEventListener("keydown", e => { if (e.key === "Escape" && panel.classList.contains("big")) toggleBig(false); });
 
@@ -156,6 +170,9 @@ function wallCharts(ids) {
     });
     if (view) viewing.textContent = lang === "ja" ? `表示中：${axisMoney(view.min)}〜${axisMoney(view.max)}円` : `Showing ${axisMoney(view.min)}–${axisMoney(view.max).slice(1)}`;
     big.textContent = panel.classList.contains("big") ? (lang === "ja" ? "閉じる" : "Close") : (lang === "ja" ? "全画面で見る" : "Full screen");
+    panel.setAttribute("aria-label", lang === "ja" ? "年収の壁のグラフ" : "Income wall charts");
+    zoomOut.setAttribute("aria-label", lang === "ja" ? "縮小（広い範囲を見る）" : "Zoom out");
+    zoomIn.setAttribute("aria-label", lang === "ja" ? "拡大（狭い範囲を見る）" : "Zoom in");
     win.setAttribute("aria-label", lang === "ja" ? "表示する範囲。左右の矢印で移動、＋と−で拡大・縮小" : "Range shown. Arrow keys move it, + and − zoom");
   }
 
@@ -178,14 +195,18 @@ function wallCharts(ids) {
     const base = new Map(o.series[0].points.map(p => [p[0], p[1]]));
     disp.data.datasets = o.series.map(s => ({ label: s.label, borderColor: s.color, backgroundColor: s.color, pointRadius: 0, pointStyle: "line",
       borderWidth: 2.5, data: shown(s.points).map(p => ({ x: p[0], y: p[1] })) }));
+    const at = new Map(o.series[0].points.map(p => [p[0], p[1]]));
+    const marks = (o.marks || []).filter(w => w.from >= min && w.at <= max);
+    if (marks.length) disp.data.datasets.push({ label: lang === "ja" ? "壁（上の一覧）" : "Walls (listed above)", showLine: false, pointRadius: 6,
+      pointStyle: "triangle", rotation: 180, borderColor: "#C23B22", backgroundColor: "#C23B22", data: marks.map(w => ({ x: w.at, y: at.get(w.at) })) });
     const here = o.series[0].points.find(p => p[0] >= o.ref);
     if (here && o.ref >= min && o.ref <= max) disp.data.datasets.push({ label: lang === "ja" ? "この世帯の今の収入" : "This household now", showLine: false,
       pointRadius: 6, pointStyle: "circle", borderColor: "#1C2633", backgroundColor: "#fff", borderWidth: 2, data: [{ x: o.ref, y: here[1] }] });
     disp.options.plugins.tooltip = { callbacks: {
-      title: c => !c.length ? "" : (lang === "ja" ? `${o.who} ` : `${o.who[0].toUpperCase() + o.who.slice(1)} `) + `${yen(c[0].raw.x)}${lang === "ja" ? "円" : " yen"}`,
-      label: c => `${c.dataset.label}: ${yen(c.raw.y)}${lang === "ja" ? "円" : " yen"}`,
+      title: c => !c.length ? "" : (lang === "ja" ? `${o.who} ${yen(c[0].raw.x)}円` : `${o.who[0].toUpperCase() + o.who.slice(1)}: ¥${yen(c[0].raw.x)}`),
+      label: c => `${shortName(c.dataset.label)}: ${lang === "ja" ? yen(c.raw.y) + "円" : "¥" + yen(c.raw.y)}`,
       afterLabel: c => c.datasetIndex > 0 && c.datasetIndex < o.series.length
-        ? (lang === "ja" ? "  2026年の制度との差：" : "  Difference from 2026 rules: ") + (c.raw.y >= base.get(c.raw.x) ? "+" : "") + yen(c.raw.y - base.get(c.raw.x)) : "" } };
+        ? (lang === "ja" ? "  2026年の制度との差：" : "  vs 2026 rules: ") + (c.raw.y >= base.get(c.raw.x) ? "+" : "−") + yen(Math.abs(c.raw.y - base.get(c.raw.x))) : "" } };
     rate.data.datasets = o.series.map(s => {
       const data = keepSeries(s.points).filter(([x]) => x >= min - WALL.step && x <= max).map(([x, v]) => ({ x, y: Math.max(KEEP_FLOOR, v), raw: v }));
       return { label: s.label, borderColor: s.color, backgroundColor: s.color, borderWidth: 2.5, stepped: "before", data, pointStyle: "triangle",
@@ -195,12 +216,13 @@ function wallCharts(ids) {
       borderDash: [6, 4], borderWidth: 1.5, pointRadius: 0, pointStyle: "line", data: [{ x: min, y: 0 }, { x: max, y: 0 }] });
     // the dotted ¥0 line is filtered out, so the tooltip can have no items
     rate.options.plugins.tooltip = { filter: c => c.datasetIndex < o.series.length, callbacks: {
-      title: c => !c.length ? "" : lang === "ja" ? `${o.who}が${yen(c[0].raw.x)}円から${yen(c[0].raw.x + WALL.step)}円に増えると`
-                                : `If ${o.who} goes from ¥${yen(c[0].raw.x)} to ¥${yen(c[0].raw.x + WALL.step)}`,
+      title: c => !c.length ? "" : lang === "ja" ? [`${o.who}が`, `${yen(c[0].raw.x)}円→${yen(c[0].raw.x + WALL.step)}円に増えると`]
+                                : [`If ${o.who} goes`, `from ¥${yen(c[0].raw.x)} to ¥${yen(c[0].raw.x + WALL.step)}`],
       label: c => { const v = c.raw.raw;
-        return lang === "ja" ? `${c.dataset.label}：手取りは${yen(Math.abs(v))}円${v < 0 ? "減る（壁）" : "増える"}`
-                             : `${c.dataset.label}: take-home pay goes ${v < 0 ? "down" : "up"} by ¥${yen(Math.abs(v))}${v < 0 ? " (a wall)" : ""}`; } } };
+        return lang === "ja" ? `${shortName(c.dataset.label)}：手取りは${yen(Math.abs(v))}円${v < 0 ? "減る（壁）" : "増える"}`
+                             : `${shortName(c.dataset.label)}: ${v < 0 ? "down" : "up"} ¥${yen(Math.abs(v))}${v < 0 ? " (a wall)" : ""}`; } } };
     rate.options.scales.y.suggestedMax = WALL.step;
+    if (ids.table) table(o, min, max);
     for (const [ch, y] of [[disp, lang === "ja" ? "手取り（円／年）" : "Take-home pay (yen per year)"], [rate, lang === "ja" ? "手取りが増える額" : "Extra take-home pay"]]) {
       Object.assign(ch.options.scales.x, { min, max });
       ch.options.scales.x.title.text = o.axis;
@@ -208,20 +230,75 @@ function wallCharts(ids) {
       ch.update();
     }
   }
+  // the charted numbers as a table, every ¥100,000 of the range shown (for keyboard and screen-reader users)
+  function table(o, min, max) {
+    const tb = document.getElementById(ids.table), ja = lang === "ja";
+    const rows = o.series.map(s => new Map(s.points.map(p => [p[0], p[1]])));
+    const head = [incomeHead(o), ...o.series.map((s, i) => i ? `${shortName(s.label)}${ja ? "（2026年の制度との差）" : " (vs 2026 rules)"}` : `${s.label}${ja ? "：手取り" : ": take-home"}`)];
+    tb.innerHTML = "";
+    const hr = tb.createTHead().insertRow();
+    head.forEach(h => { const th = document.createElement("th"); th.textContent = h; hr.append(th); });
+    const body = tb.createTBody();
+    for (let x = Math.ceil(min / WALL.step) * WALL.step; x <= max; x += WALL.step) {
+      const r = body.insertRow(), base = rows[0].get(x);
+      r.insertCell().textContent = yen(x);
+      rows.forEach((m, i) => { const v = m.get(x); r.insertCell().textContent = i ? `${yen(v)}（${v >= base ? "+" : ""}${yen(v - base)}）` : yen(v); });
+    }
+  }
+  const incomeHead = o => lang === "ja" ? `${o.who}（円）` : `${o.who[0].toUpperCase() + o.who.slice(1)} (yen)`;
   return { draw };
 }
 
-// Plain-words list of the biggest walls for one series (at most `top`), into a <ul>; the rest are counted
-function listWalls(ul, pts, who, top = 3) {
-  ul.innerHTML = "";
-  const { walls, small } = bigWalls(pts);
-  const shown = [...walls].sort((a, b) => b.drop - a.drop).slice(0, top), rest = walls.length - shown.length + small;
-  for (const w of shown) li(ul, lang === "ja"
-    ? `${who}が${yen(w.from)}円から${yen(w.at)}円に増えると、世帯の手取りは年${yen(w.drop)}円減ります。` + (w.back ? `元の手取りに戻るのは${yen(w.back)}円のときです。` : "")
-    : `If ${who} goes from ¥${yen(w.from)} to ¥${yen(w.at)}, the household takes home ¥${yen(w.drop)} less a year.` + (w.back ? ` Take-home gets back to where it was at ¥${yen(w.back)}.` : ""));
-  if (!walls.length) li(ul, lang === "ja" ? "1万円多く稼いで手取りが1万円以上減るところはありません。" : "There is no point where earning ¥10,000 more cuts take-home pay by ¥10,000 or more.");
-  if (rest) li(ul, lang === "ja" ? `ほかに、手取りが少し減るところが${rest}か所あります（多くは、会社の保険料が収入の段階ごとに上がるため）。グラフで確かめられます。`
-                                 : `There are also ${rest} smaller dips, mostly because company insurance premiums go up in steps as pay rises. You can see them in the charts.`);
+// Why take-home falls at one wall, from outputs/wall_map.json wall_causes (2026 rules only):
+// "扶養から外れて、国民年金（年215,040円）と国民健康保険（年101,786円）の保険料がかかるためです。税は合わせて年48,600円減ります。"
+function wallReason(c) {
+  const ja = lang === "ja", m = v => ja ? `年${yen(v)}円` : `¥${yen(v)} a year`, ch = c.change;
+  const NAMES = { employee_insurance: { ja: "会社の健康保険・厚生年金などの保険料", en: "company health insurance and pension premiums" },
+    nhi: { ja: "国民健康保険料", en: "National Health Insurance" }, national_pension: { ja: "国民年金保険料", en: "National Pension" },
+    income_tax: { ja: "所得税", en: "income tax" }, resident_tax: { ja: "住民税", en: "resident tax" } };
+  const [before, after] = c.scheme;
+  let why;
+  if (before !== after && after === "nhi") {
+    const paid = ["national_pension", "nhi"].filter(k => ch[k] > 0).map(k => ja ? `${t(NAMES[k])}（${m(ch[k])}）` : `${t(NAMES[k])} (${m(ch[k])})`);
+    why = ja ? `${before === "dependant" ? "扶養から外れて、" : ""}${paid.join("と")}がかかるため` : `${before === "dependant" ? "the dependant status ends and " : ""}${paid.join(" and ")} must be paid`;
+  } else if (before !== after && after === "employee") {
+    why = ja ? `会社の健康保険・厚生年金に入り、保険料（${m(ch.employee_insurance)}）がかかるため` : `company health insurance and pension start (${m(ch.employee_insurance)})`;
+  } else {
+    // the changes that make the wall: at least ¥1,000 and at least a fifth of the largest (small steady rises are left out)
+    const big = Math.max(...Object.keys(NAMES).map(k => ch[k]), -ch.child_allowance);
+    const up = Object.keys(NAMES).filter(k => ch[k] >= Math.max(1000, big / 5)).sort((a, b) => ch[b] - ch[a]);
+    if (-ch.child_allowance >= Math.max(1000, big / 5)) up.push("child_allowance");
+    if (!up.length) return "";
+    // Japanese: every item but the last ends in 増え/減り, the last in 増える/減る
+    const say = (k, last) => k === "child_allowance" ? (ja ? `児童手当が${m(-ch[k])}${last ? "減る" : "減り"}` : `child allowance falls by ${m(-ch[k])}`)
+      : k === "employee_insurance" && before === "employee" ? (ja ? `会社の保険料が、収入の段階が上がって${m(ch[k])}${last ? "増える" : "増え"}` : `company insurance premiums step up by ${m(ch[k])}`)
+      : (ja ? `${t(NAMES[k])}が${m(ch[k])}${last ? "増える" : "増え"}` : `${t(NAMES[k])} goes up by ${m(ch[k])}`);
+    why = up.map((k, i) => say(k, i === up.length - 1)).join(ja ? "、" : ", ") + (ja ? "ため" : "");
+  }
+  const taxCut = -Math.min(0, ch.income_tax) - Math.min(0, ch.resident_tax);
+  return ja ? `${why}です。` + (taxCut >= 1000 ? `税は合わせて${m(taxCut)}減ります。` : "")
+            : `Why: ${why}.` + (taxCut >= 1000 ? ` Taxes fall by ${m(taxCut)} in all.` : "");
 }
 
-if (typeof module !== "undefined") module.exports = { keepSeries, bigWalls };
+// Plain-words list of the biggest walls for one series (at most `top`), into a <ul>; the rest are counted.
+// causes: wall_causes for the 2026 series (omitted for other series)
+function listWalls(ul, pts, who, top = 3, causes = []) {
+  ul.innerHTML = "";
+  const { walls, small } = bigWalls(pts);
+  const shown = [...walls].sort((a, b) => b.drop - a.drop).slice(0, top), more = walls.length - shown.length;
+  for (const w of shown) {
+    const c = causes.find(x => x.from === w.from);
+    const why = c ? (lang === "ja" ? "" : " ") + wallReason(c) : "";
+    li(ul, lang === "ja"
+      ? `${who}が${yen(w.from)}円から${yen(w.at)}円に増えると、世帯の手取りは年${yen(w.drop)}円減ります。${why}` + (w.back ? `元の手取りに戻るのは${yen(w.back)}円のときです（1万円きざみで計算）。` : "")
+      : `If ${who} goes from ¥${yen(w.from)} to ¥${yen(w.at)}, the household takes home ¥${yen(w.drop)} less a year.${why}` + (w.back ? ` Take-home gets back to where it was at ¥${yen(w.back)} (worked out in ¥10,000 steps).` : ""));
+  }
+  if (!walls.length) li(ul, lang === "ja" ? "1万円多く稼いで手取りが1万円以上減るところはありません。" : "There is no point where earning ¥10,000 more cuts take-home pay by ¥10,000 or more.");
+  if (more) li(ul, lang === "ja" ? `ほかに、手取りが1万円以上減るところが${more}か所あります。グラフで確かめられます。`
+                                 : `There are ${more} more places where take-home pay falls by ¥10,000 or more. You can see them in the charts.`);
+  if (small) li(ul, lang === "ja" ? `ほかに、手取りが1万円未満だけ減るところが${small}か所あります（税の控除や保険料が、収入の段階ごとに変わるため）。`
+                                  : `There are also ${small} places where take-home pay falls by less than ¥10,000 (deductions and premiums change in steps as income rises).`);
+  return shown;
+}
+
+if (typeof module !== "undefined") module.exports = { keepSeries, bigWalls, wallReason };

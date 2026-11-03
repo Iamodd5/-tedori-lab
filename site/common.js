@@ -13,8 +13,9 @@ const ABOUT = [
   ["sources.html", { ja: "出典とコード", en: "Sources & code" }],
   ["corrections.html", { ja: "訂正の記録", en: "Corrections" }],
 ];
-let lang = "ja";
-try { lang = localStorage.getItem("tedori-lang") === "en" ? "en" : "ja"; } catch (e) { /* storage blocked: stay Japanese */ }
+// Japanese unless the visitor chose English, or (first visit) their browser isn't set to Japanese
+let lang = /^ja\b/i.test(navigator.language || "ja") ? "ja" : "en";
+try { const saved = localStorage.getItem("tedori-lang"); if (saved) lang = saved === "en" ? "en" : "ja"; } catch (e) { /* storage blocked: use the browser's language */ }
 
 const t = o => (o && (o[lang] ?? o.ja)) ?? "";
 const yen = n => n == null ? "—" : Math.round(n).toLocaleString("ja-JP");
@@ -41,13 +42,19 @@ function describeIncomes(incomes) {
     return money.length ? `${who}${lang === "ja" ? "：" : ": "}${money.join(lang === "ja" ? "、" : ", ")}` : who;
   }).join(lang === "ja" ? " ／ " : " / ");
 }
+// a plan's name without its bracket, where space is short (tooltips, table rows): 大和総研案（2026年の…） → 大和総研案
+const shortName = s => s.replace(/\s*[（(].*$/, "");
 const li = (ul, text) => { const x = document.createElement("li"); x.textContent = text; ul.append(x); };
 
 function applyLang() {
   document.documentElement.lang = lang;
   document.documentElement.dataset.lang = lang;
   const b = document.getElementById("lang-toggle");
-  if (b) b.textContent = lang === "ja" ? "English" : "日本語";
+  if (b) { b.textContent = lang === "ja" ? "English" : "日本語"; b.lang = lang === "ja" ? "en" : "ja"; }
+  const skip = document.querySelector(".skip");
+  if (skip) skip.textContent = lang === "ja" ? "本文へ移動" : "Skip to content";
+  document.querySelector("header nav")?.setAttribute("aria-label", lang === "ja" ? "主なページ" : "Main pages");
+  document.querySelector("footer nav")?.setAttribute("aria-label", lang === "ja" ? "このサイトについて" : "About this site");
   document.querySelectorAll("header nav a").forEach((a, i) => a.textContent = t(PAGES[i][1]));
   document.querySelectorAll("footer nav a").forEach((a, i) => a.textContent = t(ABOUT[i][1]));
 }
@@ -55,9 +62,12 @@ function applyLang() {
 // onLangChange: pages with charts or generated text redraw themselves
 function setupPage(onLangChange = () => {}) {
   const here = location.pathname.split("/").pop() || "index.html";
+  // the page's own content goes in <main>, with a link to skip the header
+  const main = document.createElement("main"); main.id = "main"; main.tabIndex = -1;
+  main.append(...document.body.childNodes); document.body.append(main);
   const header = document.createElement("header");
-  header.innerHTML = `<a class="brand" href="index.html">手取りラボ<small>Tedori Lab</small></a><nav aria-label="Main pages"></nav>
-    <button id="lang-toggle" type="button" aria-label="Switch language / 言語を切り替え"></button>`;
+  header.innerHTML = `<a class="brand" href="index.html">手取りラボ<small lang="en">Tedori Lab</small></a><nav></nav>
+    <button id="lang-toggle" type="button"></button>`;
   const links = (nav, pages) => pages.forEach(([href]) => {
     const a = document.createElement("a"); a.href = href;
     if (href === here) a.setAttribute("aria-current", "page");
@@ -65,9 +75,10 @@ function setupPage(onLangChange = () => {}) {
   });
   links(header.querySelector("nav"), PAGES);
   document.body.prepend(header);
+  const skip = document.createElement("a"); skip.className = "skip"; skip.href = "#main"; document.body.prepend(skip);
   const footer = document.createElement("footer");
-  footer.innerHTML = `<nav aria-label="About this site"></nav><span lang="ja">数字はすべて試算です。制度が変わっても、人々の働き方は変わらないものとして計算しています。このサイトは特定の案・政党・政治家を支持するものではありません。</span>
-    <span lang="en">All numbers are estimates. They assume people don't change how much they work when the rules change. This site doesn't support any plan, party or politician.</span>`;
+  footer.innerHTML = `<nav></nav><span lang="ja">数字はすべて試算です。制度が変わっても、人々の働き方は変わらないものとして計算しています。このサイトは特定の案・政党・政治家を支持するものではありません。</span>
+    <span lang="en">Tedori (手取り) means take-home pay. All numbers are estimates. They assume people don't change how much they work when the rules change. This site doesn't support any plan, party or politician.</span>`;
   links(footer.querySelector("nav"), ABOUT);
   document.body.append(footer);
   if (window.Chart) {  // charts use the page's font and colours
@@ -85,7 +96,16 @@ function setupPage(onLangChange = () => {}) {
 }
 
 // Document pages render the project's own Markdown files, so the site and the docs never drift apart.
+// English-only documents are marked lang="en"; headings move down a level under the page's own h1;
+// question numbers such as (Q13) link to the list of open questions.
+const QUESTIONS = "https://github.com/Iamodd5/-tedori-lab/blob/main/OPEN_QUESTIONS.md";
 function renderDoc(el, urls) {
   const url = typeof urls === "string" ? urls : t(urls);
-  fetch(url, { cache: "no-cache" }).then(r => r.text()).then(md => { el.innerHTML = marked.parse(md); });
+  el.lang = typeof urls === "string" ? "en" : lang;
+  fetch(url, { cache: "no-cache" }).then(r => r.text()).then(md => {
+    el.innerHTML = marked.parse(md.replace(/\bQ(\d{1,2})\b(?![^\[]*\])/g, `[Q$1](${QUESTIONS})`));
+    [...el.querySelectorAll("h1, h2, h3, h4, h5")].forEach(h => {
+      const n = document.createElement("h" + (+h.tagName[1] + 1)); n.innerHTML = h.innerHTML; h.replaceWith(n);
+    });
+  });
 }

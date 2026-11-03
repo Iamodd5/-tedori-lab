@@ -10,11 +10,11 @@ name_en: Worker burden-relief payment (full system, FY2029 onward)
 label: {ja: 政府案（2029年度からの本格版）, en: "Government plan (full version, from FY2029)"}
 # What the plan does, in one line and in one paragraph, for the website (from the sources above)
 short:
-  ja: "2029年度から、働く人に年1回お金を支給する。金額はまだ公表されていない。"
-  en: "From fiscal 2029, a yearly cash payment to people who work. The amounts haven't been published."
+  ja: "2029年度から本格的に始まる支給。所得が中くらい以下の働く人に、前の年の所得と子どもの数に応じた額を年1回支給する（2029年度だけは半年分程度ずつ2回）。金額はまだ決まっていない。"
+  en: "From fiscal 2029, the full version of a payment to people in work on low or middle incomes, based on the previous year's income and the number of children, once a year (in fiscal 2029 only, two payments of about half a year each). The amounts haven't been decided."
 summary:
-  ja: "2029年度から、働いている人に年1回お金を支給する制度です（就業者負担軽減支援金）。前の年の収入をもとに、稼ぎが一定額を超えると支給が始まり、稼ぎが増えるにつれて支給額も増え、上限に達したあとは収入が一定額を超えると減っていきます。子ども1人ごとに上乗せがあります。対象になるのは、払っている税金と社会保険料（受け取る公的年金を差し引いた額）が一定額を超える人です。金額や収入の線引きは、政府がこれから政令で決めます。"
-  en: "From fiscal 2029, a yearly cash payment to people who work (the \"worker burden-relief payment\"). It is based on the previous year's income: it starts once earnings pass a minimum, grows as earnings grow, levels off, and then shrinks once total income passes a set level. There is extra for each child. To qualify, the tax and social insurance you pay, minus any public pension you receive, must be above a set level. The government will set the amounts and income limits later by Cabinet order."
+  ja: "政府が2026年10月9日に国会に提出した法律案の内容です（2026年11月3日時点で衆議院で審議中）。就業者負担軽減支援金は2027年4月に始まり、2029年度から本格的な形になります。ここで「本格版」と呼んでいるのは、この2029年度からの形です。前の年の所得をもとに年1回支給します（2029年度だけは、4月と年度内の2回に分けて、それぞれ半年分程度を支給）。勤労所得が一定額を超えると支給が始まり、低い所得では定額、そこから稼ぎが増えるにつれて支給額も増え、上限に達したあとは所得が一定額を超えると減っていきます。子ども1人ごとに上乗せがあります。対象になるのは、勤労所得が一定額を超え、合計所得が一定額以下で、払っている税金と社会保険料（受け取る公的年金を差し引いた額）が一定額を超える人です。結婚している人は、配偶者の前の年の合計所得が一定額を超えると対象になりません。自営業の人も、一定額を超える事業の所得は勤労所得に数えます。働いていない高齢者と、勤労所得が最低額に届かない人は対象外で、政府はそれぞれへの対応を別に決めるとしています。「年収の壁」で手取りが減る人には、壁が解消されるまでの時限的な措置として、上乗せ（就業促進特例加算）もあります。金額や収入の線引きは、法律案では後で政令で決めることになっていて、まだ決まっていません。"
+  en: "This is the content of a bill the government submitted to the Diet on 9 October 2026 (still being debated in the House of Representatives on 3 November 2026). The worker burden-relief payment starts in April 2027 and takes its full form from fiscal 2029; \"full version\" on this site means that form. It is paid once a year, based on the previous year's income (in fiscal 2029 only, it is paid twice, in April and later in the year, each about half a year's amount). Payment starts once earned income passes a minimum; it is a flat amount at low incomes, grows as earnings grow, levels off, and then shrinks once total income passes a set level. There is extra for each child. To qualify, earned income must be above a set level, total income at or below a set level, and the tax and social insurance you pay, minus any public pension you receive, above a set level. A married person does not qualify if their spouse's total income in the previous year is above a set level. For the self-employed, business income above a set amount counts as earned income. Older people who don't work, and people whose earned income is below the minimum, are not covered; the government says it will decide separately how to respond for each. For people whose take-home pay falls at an income wall (年収の壁), there is also a temporary top-up (就業促進特例加算) until the walls are removed. Under the bill, the amounts and income limits will be set later by Cabinet order; they haven't been decided."
 start_year: 2029  # 令和11年度 (fiscal year from April 2029); payment is based on the previous year's income
 status: unresolved
 
@@ -53,7 +53,7 @@ parameters:
   income_test_definition:
     value: "Upper eligibility limit and phase-out use previous-year 合計所得金額 (total income)"
     status: resolved
-    cite: {source: outline, page: 7, section: "第三 一 1(1)②, 2(1)⑤"}
+    cite: {source: outline, page: "7, 10", section: "第三 一 1(1)②, 2(1)⑤"}
   child_age_limit:
     value: 18  # 扶養児童 = dependants who are residents and under 19 (i.e. 18 or younger)
     status: resolved
@@ -133,8 +133,8 @@ published_estimates:  # for cross-checking only, never used as inputs
   take_home_recovery_after_13m_wall_yen: 1600000   # 年収約160万円程度 (category-3 → category-1 pension member)
   cite_recovery: {source: outline, page: 10, section: "第三 一 2(1)③"}
   claim_most_beneficiaries_gain_more_than_food_cut: "給付の対象となる中所得・低所得の現役勤労者の大宗については…飲食料品の消費税率引下げの効果を上回る支援を受けられる"
-  cite_claim: {title: 令和8年8月5日 資料3, file: sources/gov/20260805_03_siryou3.pdf, page: 2}
-not_eligible_named_by_government:  # basic policy explanation slide, 20260805 資料3 p.3 (対象外となる方)
+  cite_claim: {title: ７月30日総理会見のポイント（参考資料２、2026年8月5日公表）, file: sources/gov/20260805_03_siryou3.pdf, page: 2}
+not_eligible_named_by_government:  # PM press-conference points (参考資料２, 2026-08-05) p.3 (対象外となる方)
   - "勤労意欲のある低所得の方 (low-income people willing to work but below the earnings floor) — response to be decided before FY2029"
   - "就労しておられない高齢者の方 (older people not in work) — to be decided by 2030 alongside the pension reform"
 

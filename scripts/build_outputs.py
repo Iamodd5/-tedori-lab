@@ -9,6 +9,7 @@ from engine import household as h
 from engine import population as pop
 from engine import reforms as r
 from engine import wall_map as w
+from scripts import build_report as report
 
 OUT = pathlib.Path(__file__).resolve().parents[1] / "outputs"
 HOUSEHOLDS = [f"H{i}" for i in range(1, 9)]
@@ -35,7 +36,11 @@ for hid in HOUSEHOLDS:
     hh = h.load(hid)
     for d in DESIGNS:
         res = r.run(d, hh)
-        rows.append({"household": hid, "baseline_disposable": h.compute(hh)["disposable"],
+        base = h.compute(hh)
+        rows.append({"household": hid, "baseline_disposable": base["disposable"],
+                     "baseline_parts": {"income_tax": sum(o["income_tax"] for o in base["members"].values()),
+                                        "resident_tax": sum(o["resident_tax"] for o in base["members"].values()),
+                                        "social_insurance": base["social_insurance"], "child_allowance": base["child_allowance"]},
                      "label": r.design(d)["label"], **res})
 (OUT / "household_comparison.json").write_text(json.dumps(rows, ensure_ascii=False, indent=1))
 with open(OUT / "household_comparison.csv", "w", newline="") as f:
@@ -63,13 +68,15 @@ for hid in HOUSEHOLDS:
             walls["not_drawn"] = {**walls.get("not_drawn", {}), d: r.run(d, hh)["blocked_by"]}
             continue
         designs[d] = [[p["income"], p["disposable"], p["emr"]] for p in w.grid(hh, d)]
+    causes = w.wall_causes(hh, report.walls(designs["baseline"]))  # why each 2026 wall happens, shown in the wall list
     walls["households"][hid] = {"member": who[0], "income_field": who[1], "name_ja": hh["name_ja"],
                                 "member_role": next(m["role"] for m in hh["members"] if m["id"] == who[0]),
                                 "couple": any(m["role"] == "spouse" for m in hh["members"]),
                                 "reference_income": next(m for m in hh["members"] if m["id"] == who[0])[who[1]],
                                 "incomes": [{k: m[k] for k in ("role", "age", "salary", "business_income", "public_pension") if m.get(k)}
                                             for m in hh["members"]],
-                                "name_en": hh["name_en"], "assumptions": hh.get("assumptions", []), "designs": designs}
+                                "name_en": hh["name_en"], "assumptions": hh.get("assumptions", []), "designs": designs,
+                                "wall_causes": causes}
 (OUT / "wall_map.json").write_text(json.dumps(walls, ensure_ascii=False, separators=(",", ":")))
 # population view and cost (spec 9.3, 9.4): every number here is an approximation and is labelled so on the site
 p = pop.results(DESIGNS)

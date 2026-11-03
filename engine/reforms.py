@@ -15,9 +15,9 @@ from engine import household as h
 D = pathlib.Path(__file__).resolve().parents[1] / "parameters" / "designs"
 COMPONENTS = ("income_tax", "resident_tax", "social_insurance", "credit", "consumption_tax")
 # Why a design cannot be calculated yet, by open question, so different reasons are never shown as one
-BLOCKERS = {"Q9": {"ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）", "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"},
-            "Q8": {"ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません", "en": "we don't yet have food spending figures for the example households H1–H8"},
-            "Q3": {"ja": "連合が消費税還付制度の金額をまだ公表していません", "en": "Rengo hasn't published the amounts for its consumption tax refund"}}
+BLOCKERS = {"Q9": {"ja": "支給額や収入の線引きはまだ決まっていません（法律案では、後で政令で決めることになっています）", "en": "the payment amounts and income limits haven't been decided yet (under the bill, they will be set later by Cabinet order)"},
+            "Q3": {"ja": "連合が消費税還付制度の金額をまだ公表していません", "en": "Rengo hasn't published the amounts for its consumption tax refund"},
+            "Q8": {"ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません", "en": "we don't yet have food spending figures for the example households H1–H8"}}
 
 
 @functools.cache
@@ -100,7 +100,7 @@ def run(name, hh):
         return {"design": name, "status": "complete", "missing": [], "blocked_by": [], "components": c,
                 "disposable_change": change, "approximations": d["approximations"], "site_note": d["site_note"]}
     missing = unresolved(d["parameters"])
-    if name == "food_tax_cut" and hh["spending"].get("status") == "unresolved":
+    if name in ("food_tax_cut", "rengo") and hh["spending"].get("status") == "unresolved":  # both change the tax on food
         missing.append(f"household food spending ({hh['spending']['question']})")
     if not missing:
         raise NotImplementedError(f"{name}: all parameters now published; wire payment() into run()")

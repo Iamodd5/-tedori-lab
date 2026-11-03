@@ -17,7 +17,7 @@
 
 <label><span lang="ja">案を選ぶ：</span><span lang="en">Choose a plan: </span><select id="design"></select></label>
 <p id="summary"></p>
-<div id="status"></div>
+<div id="status" role="status"></div>
 
 <div id="results">
 <div class="summary"><ul id="findings"></ul></div>
@@ -39,27 +39,29 @@
   <th><span lang="ja">変わらない</span><span lang="en">No change</span></th>
 </tr></thead><tbody></tbody></table></div></details>
 
-<h2><span lang="ja">国のお金への影響（1年あたり）</span><span lang="en">What it means for government finances (per year)</span></h2>
+<h2><span lang="ja">（近似）国のお金への影響（1年あたり）</span><span lang="en">(Approximation) What it means for government finances (per year)</span></h2>
 <div class="scroll"><table id="cost"><thead><tr>
   <th></th>
   <th><span lang="ja">このサイトの試算</span><span lang="en">This site's estimate</span></th>
   <th><span lang="ja">案を出した側の試算</span><span lang="en">The plan authors' own estimate</span></th>
 </tr></thead><tbody></tbody></table></div>
+<p class="note"><span lang="ja">（近似）働き方は変わらないとした試算です（働く時間、給与、保険の入り方を、だれも変えないとしています）。大まかな試算なので、0.1兆円単位で示しています。</span><span lang="en">(Approximation) This assumes nobody changes their hours, pay or insurance status. It is a rough estimate, so it is shown to the nearest ¥0.1 trillion.</span></p>
 <p class="note" id="costnote"></p>
 <details><summary><span lang="ja">（近似）この案の計算の前提</span><span lang="en">(Approximation) What we assumed for this plan</span></summary><div id="notes"></div></details>
 </div>
 
 <details><summary><span lang="ja">（近似）このページで置いた仮定</span><span lang="en">(Approximation) What we assumed on this page</span></summary>
 <ul class="small" id="approx"></ul></details>
-<p class="note"><span lang="ja">この試算が公式の数字（世帯数、働く人の数、税収など）とどのくらい合っているかは、「検証」ページで確かめられます。</span>
-<span lang="en">To see how close these estimates come to official figures (number of households, number of workers, tax collected and more), see the Checks page.</span></p>
+<p class="note"><span lang="ja">ほかのページの例の世帯は、グループの平均ではありません。同じグループでも、働く人の数や税率によって変化の額は大きく違います。この試算が公式の数字（世帯数、働く人の数、調査から推計した税額など）とどのくらい合っているかは、<a href="validation.html">「検証」ページ</a>で確かめられます。たとえば、年収100万円以下で働く人が公式の数より多すぎ、年収1,000万円以上の人は少なすぎます。そのため、低い収入のグループで現金を受け取る額や、高い収入のグループで増える税は、実際とずれている可能性があります。</span>
+<span lang="en">The example households on other pages are not group averages: within one group, the change can differ a lot with the number of earners and the tax rate. To see how close these estimates come to official figures (number of households, number of workers, tax estimated from the survey and more), see the <a href="validation.html">Checks page</a>. For example, the estimate has too many people earning ¥1m or less and too few earning ¥10m or more, so the cash paid to low-income groups and the extra tax from high-income groups may be off.</span></p>
 
 <script>
 const C = { gain: "#009E73", lose: "#D55E00", same: "#BBBBBB", mean: "#0072B2" };
 let pop, charts = [];
 const pct = x => (x * 100).toFixed(1) + "%";
 const tp = v => lang === "ja" ? `約${v}兆円` : `about ¥${v} trillion`;  // the authors' own rounded figure
-const tn = x => x == null ? "—" : (lang === "ja" ? `${(x / 1e12).toFixed(2)}兆円` : `¥${(x / 1e12).toFixed(2)} trillion`);
+// rough estimates: shown to the nearest 0.1 trillion
+const tn = x => x == null ? "—" : (lang === "ja" ? `約${(x / 1e12).toFixed(1)}兆円` : `about ¥${(x / 1e12).toFixed(1)} trillion`);
 
 // Plain-words findings from the numbers on the page (no judgement, CLAUDE.md rule 8)
 function findings(d, labels) {
@@ -67,16 +69,18 @@ function findings(d, labels) {
   const by = d.by_decile, up = by.filter(x => x.mean_change > 0), down = by.filter(x => x.mean_change < 0);
   const range = xs => xs.length ? `${xs[0].decile}${xs.length > 1 ? (lang === "ja" ? "〜" : "–") + xs.at(-1).decile : ""}` : "";
   const most = xs => xs.reduce((a, b) => Math.abs(b.mean_change) > Math.abs(a.mean_change) ? b : a);
+  // shares of households whose take-home goes up / stays the same, as a range across the groups listed
+  const span = (xs, k) => { const v = xs.map(x => Math.round(x[k] * 100)); const a = Math.min(...v), b = Math.max(...v); return a === b ? `${a}%` : `${a}〜${b}%`.replace("〜", lang === "ja" ? "〜" : "–"); };
   if (up.length) li(ul, lang === "ja"
-    ? `グループ${range(up)}では、手取りが平均で増えます（最も多いグループ${most(up).decile}で年${yen(most(up).mean_change)}円）。`
-    : `In group${up.length > 1 ? "s" : ""} ${range(up)}, take-home pay goes up on average (most in group ${most(up).decile}: ¥${yen(most(up).mean_change)} a year).`);
+    ? `グループ${range(up)}では、手取りが平均で増えます（増える額が最も大きいグループ${most(up).decile}で年${yen(most(up).mean_change)}円）。ただし、これらのグループでも手取りが増えるのは各グループの${span(up, "winners_share")}の世帯で、${span(up, "unchanged_share")}の世帯は変わりません。`
+    : `In group${up.length > 1 ? "s" : ""} ${range(up)}, take-home pay goes up on average (by the most in group ${most(up).decile}: ¥${yen(most(up).mean_change)} a year). But within these groups, take-home goes up for ${span(up, "winners_share")} of households, and ${span(up, "unchanged_share")} see no change.`);
   if (down.length) li(ul, lang === "ja"
-    ? `グループ${range(down)}では、手取りが平均で減ります（最も多いグループ${most(down).decile}で年${yen(-most(down).mean_change)}円）。`
-    : `In group${down.length > 1 ? "s" : ""} ${range(down)}, take-home pay goes down on average (most in group ${most(down).decile}: ¥${yen(-most(down).mean_change)} a year).`);
+    ? `グループ${range(down)}では、手取りが平均で減ります（減る額が最も大きいグループ${most(down).decile}で年${yen(-most(down).mean_change)}円）。`
+    : `In group${down.length > 1 ? "s" : ""} ${range(down)}, take-home pay goes down on average (by the most in group ${most(down).decile}: ¥${yen(-most(down).mean_change)} a year).`);
   const net = d.cost_yen;
   li(ul, lang === "ja"
-    ? (net < 0 ? `国全体では、国の収入が年${(-net / 1e12).toFixed(2)}兆円増えます。` : `国全体では、国の負担が年${(net / 1e12).toFixed(2)}兆円増えます。`)
-    : (net < 0 ? `Overall, the government takes in ¥${(-net / 1e12).toFixed(2)} trillion more a year.` : `Overall, it costs the government ¥${(net / 1e12).toFixed(2)} trillion a year.`));
+    ? (net < 0 ? `国全体では、差し引きで国の収入が年${tn(-net)}増えます。` : `国全体では、差し引きで国の負担が年${tn(net)}増えます。`)
+    : (net < 0 ? `Overall, the government takes in ${tn(-net)} more a year, after paying out any cash.` : `Overall, it costs the government ${tn(net)} a year.`));
   li(ul, lang === "ja" ? "（近似）どれも大まかな試算です。" : "(Approximation) All of these are rough estimates.");
 }
 
@@ -93,27 +97,31 @@ function draw() {
     return;
   }
   st.className = ""; st.textContent = ""; res.hidden = false;
-  const labels = d.by_decile.map((x, i) => [(lang === "ja" ? "グループ" : "Group ") + x.decile, (lang === "ja" ? "平均" : "avg ") + roundMoney(pop.deciles[i].annual_income_mean)]);
+  // on a phone only the group number fits under each bar; every group is labelled (the axis title explains)
+  const narrow = document.getElementById("mean").parentElement.clientWidth < 560;
+  const labels = d.by_decile.map((x, i) => narrow ? String(x.decile) : [(lang === "ja" ? "グループ" : "Group ") + x.decile, (lang === "ja" ? "平均" : "avg ") + roundMoney(pop.deciles[i].annual_income_mean)]);
+  const xAxis = { ticks: { autoSkip: false, maxRotation: 0 }, title: { display: narrow, text: lang === "ja" ? "収入グループ（1が最も低い。平均年収は下の表）" : "Income group (1 = lowest; average incomes in the table below)" } };
   findings(d, labels);
   charts.push(new Chart(document.getElementById("mean"), { type: "bar",
     data: { labels, datasets: [{ label: lang === "ja" ? "手取りの変化（平均、円／年）" : "Average change (yen per year)",
       backgroundColor: C.mean, data: d.by_decile.map(x => x.mean_change) }] },
     options: { animation: false, maintainAspectRatio: false,
       plugins: { tooltip: { callbacks: { label: c => yen(c.raw) } } },
-      scales: { y: { title: { display: true, text: lang === "ja" ? "円／年" : "yen per year" } } } } }));
-  const part = (k, name, col) => ({ label: t(name), backgroundColor: col, data: d.by_decile.map(x => x[k] * 100) });
+      scales: { x: xAxis, y: { title: { display: true, text: lang === "ja" ? "円／年" : "yen per year" } } } } }));
+  // white borders keep the stacked parts apart where their colours are close in lightness
+  const part = (k, name, col) => ({ label: t(name), backgroundColor: col, borderColor: "#fff", borderWidth: 1.5, data: d.by_decile.map(x => x[k] * 100) });
   charts.push(new Chart(document.getElementById("share"), { type: "bar",
     data: { labels, datasets: [part("winners_share", { ja: "増える", en: "Better off" }, C.gain),
                                part("unchanged_share", { ja: "変わらない", en: "No change" }, C.same),
                                part("losers_share", { ja: "減る", en: "Worse off" }, C.lose)] },
     options: { animation: false, maintainAspectRatio: false,
       plugins: { tooltip: { callbacks: { label: c => `${c.dataset.label}: ${c.raw.toFixed(1)}%` } } },
-      scales: { x: { stacked: true }, y: { stacked: true, max: 100, title: { display: true, text: "%" } } } } }));
+      scales: { x: { ...xAxis, stacked: true }, y: { stacked: true, max: 100, title: { display: true, text: "%" } } } } }));
 
   const tb = document.querySelector("#tbl tbody"); tb.innerHTML = "";
   d.by_decile.forEach((x, i) => {
     const tr = tb.insertRow(), dec = pop.deciles[i];
-    [labels[i][0], yen(dec.annual_income_mean), yen(x.mean_change), pct(x.winners_share), pct(x.losers_share), pct(x.unchanged_share)]
+    [(lang === "ja" ? "グループ" : "Group ") + x.decile, yen(dec.annual_income_mean), yen(x.mean_change), pct(x.winners_share), pct(x.losers_share), pct(x.unchanged_share)]
       .forEach(v => tr.insertCell().textContent = v);
   });
 
@@ -122,11 +130,13 @@ function draw() {
   const row = (name, ours, theirs) => { const tr = cb.insertRow(); [t(name), ours, theirs].forEach(v => tr.insertCell().textContent = v); };
   row({ ja: "所得税の増加（税額控除を差し引いた後）", en: "Extra income tax collected (after any tax credit)" }, tn(d.cost_components_yen.income_tax), pub ? tp(pub.income_tax_increase_trillion_yen) : "—");
   row({ ja: "世帯に現金で払う額（給付、または税額控除のうち所得税を超える分）", en: "Cash paid to households (a payment, or the part of a tax credit bigger than the income tax owed)" }, tn(d.cost_components_yen.credit), pub ? tp(pub.refund_payments_trillion_yen) : "—");
-  row({ ja: "差し引きで国が負担する額（−は国の収入が増える）", en: "Net cost to the government (minus means it takes in more)" }, tn(d.cost_yen),
+  const net = d.cost_yen;
+  row({ ja: "差し引き", en: "Net effect" }, net == null ? "—" : net < 0 ? (lang === "ja" ? `国の収入が${tn(-net)}増える` : `government takes in ${tn(-net)} more`)
+      : (lang === "ja" ? `国の負担が${tn(net)}増える` : `costs the government ${tn(net)}`),
       pub ? (lang === "ja" ? "ほぼゼロ（財政中立）" : "about zero (fiscally neutral)") : "—");
   document.getElementById("costnote").textContent = sel.value === "daiwa"
-    ? (lang === "ja" ? "大和総研の試算は2025年の制度と税額控除5.65万円をもとにしています（資料1・7ページ）。このサイトは2026年の制度と5.2万円で計算しているので、二つは単純には比べられません。"
-                     : "Daiwa's estimate uses 2025 rules and a ¥56,500 credit (report pages 1 and 7). This site uses 2026 rules and ¥52,000, so the two can't be compared directly.")
+    ? (lang === "ja" ? "大和総研の試算は、2025年の制度と税額控除5.65万円をもとにしています（大和総研「働く低所得者の負担を軽減する『社会保険料還付付き税額控除』の提案」2025年10月10日、1・7ページ）。このサイトは2026年の制度と5.2万円で計算しているので、二つは単純には比べられません。差の主な理由：2026年の制度では、この案でなくなる所得税の基礎控除が大きく（所得489万円以下で104万円。2025年の制度では68万〜95万円）、なくなると所得税がより多く増えます。また、税額控除も5.65万円から5.2万円に下がります。大和総研は市町村の課税の統計を、このサイトは家計の調査の平均を使っている点も違います。"
+                     : "Daiwa's estimate uses 2025 rules and a ¥56,500 credit (Daiwa Institute of Research, proposal of 10 October 2025, pages 1 and 7). This site uses 2026 rules and ¥52,000, so the two can't be compared directly. The main reasons for the gap: under 2026 rules the income tax basic deduction that the plan removes is larger (¥1.04m at incomes up to ¥4.89m, against ¥680,000–950,000 under 2025 rules), so removing it raises more tax; and the credit falls from ¥56,500 to ¥52,000. Daiwa also used municipal tax statistics, while this site uses averages from a household survey.")
     : "";
   const nd = document.getElementById("notes"); nd.innerHTML = "";
   const note = text => { const p = document.createElement("p"); p.className = "warn"; p.textContent = text; nd.append(p); };

@@ -23,6 +23,8 @@ def git_json(commit, path):
 def value(commit, c):
     if "household" in c:
         pts = git_json(commit, "outputs/wall_map.json")["households"][c["household"]]["designs"][c["design"]]
+        if "income" in c:  # take-home pay at one income on the wall map
+            return next(p[1] for p in pts if p[0] == c["income"])
         return next(w for w in walls(pts) if w["from"] == c["from"])[c["field"]]
     by = git_json(commit, "outputs/population.json")["designs"][c["population"]]["by_decile"]
     return round(next(x for x in by if x["decile"] == c["decile"])["mean_change"])

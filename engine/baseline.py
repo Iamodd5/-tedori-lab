@@ -126,7 +126,7 @@ def nhi_household(members, householder=None):
     r = p["flat_reduction"]
     extra = r["pensioner_65_extra_deduction"]
     tested = members + ([householder] if householder else [])
-    test_income = sum(max(0, m["total_income"] - (extra["value"] if m["age"] >= extra["age_from"] and m["pension_income"] > 0 else 0)) for m in tested)
+    test_income = sum(m["total_income"] - (min(extra["value"], m["pension_income"]) if m["age"] >= extra["age_from"] else 0) for m in tested)
     earners = max(1, sum(m["has_earnings"] for m in tested))
     limit0 = r["base"]["value"] + (earners - 1) * r["per_extra_earner"]["value"]
     cut = 0.0
@@ -205,12 +205,20 @@ def resident_tax(total_income, deductions, diff, n_family, single_parent):
     taxable = floor_to(max(0, total_income - deductions), rt["rounding"]["taxable_income"]["value"])
     a = rt["adjustment_credit"]
     if taxable <= a["threshold"]["value"]:
-        credit = a["rate"]["value"] * min(diff, taxable)
+        base = min(diff, taxable)
     else:
-        credit = a["rate"]["value"] * max(diff - (taxable - a["threshold"]["value"]), a["minimum_base"]["value"])
-    levy = max(0, taxable * rt["income_levy_rate"]["value"] - credit)
-    levy = min(levy, total_income - levy_line)  # burden-relief band (resident_tax.yaml relief_band)
-    return floor_to(levy, rt["rounding"]["income_levy"]["value"]) + per_capita
+        base = max(diff - (taxable - a["threshold"]["value"]), a["minimum_base"]["value"])
+    # 特別区民税 and 都民税 each: rate × taxable − its share of the 調整控除
+    levies = [max(0, taxable * rt["income_levy_rate"][k]["value"] - a["rate"][k]["value"] * base) for k in ("ward", "tokyo")]
+    total = sum(levies)
+    if total > total_income - levy_line > 0:  # burden-relief band (relief_band): the excess comes off each tax in proportion
+        levies = [x * (total_income - levy_line) / total for x in levies]
+    return sum(floor_to(x, rt["rounding"]["income_levy"]["value"]) for x in levies) + per_capita
+
+
+def specific_relative_special_rt(income):
+    """特定親族特別控除 (resident tax, 令和9年度): a relative aged 19-22 whose income is above the dependant limit."""
+    return band(params("resident_tax")["personal_deductions"]["specific_relative_special"]["bands"], income)
 
 
 def basic_deduction_rt(total_income):

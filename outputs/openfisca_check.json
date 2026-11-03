@@ -48,7 +48,7 @@
     "openfisca": 25034
    },
    "resident_tax": {
-    "ours": 115700,
+    "ours": 115600,
     "openfisca": 96538
    }
   },
@@ -65,7 +65,7 @@
     "openfisca": 580271
    },
    "resident_tax": {
-    "ours": 530900,
+    "ours": 530800,
     "openfisca": 517918
    }
   },

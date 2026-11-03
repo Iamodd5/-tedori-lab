@@ -39,3 +39,32 @@ def grid(hh, design, top=10_000_000):
         ok = b is not None and a["disposable"] is not None and b["disposable"] is not None
         a["emr"] = round(1 - (b["disposable"] - a["disposable"]) / STEP, 4) if ok else None  # share of the next 10,000 lost
     return points
+
+
+def at_income(hh, income):
+    """The household with the wall map's moving income set to `income`."""
+    mid, field = varying_member(hh)
+    x = copy.deepcopy(hh)
+    next(m for m in x["members"] if m["id"] == mid)[field] = income
+    return x
+
+
+def parts(hh, income):
+    """What the household pays and receives at one income on the wall map (2026 rules), to explain a wall."""
+    res = h.compute(at_income(hh, income))
+    ms = res["members"].values()
+    total = lambda *ks: sum(o[k] for o in ms for k in ks)
+    return {"income_tax": total("income_tax"), "resident_tax": total("resident_tax"),
+            "employee_insurance": total("health", "child_levy", "pension", "employment"),
+            "national_pension": total("national_pension"), "nhi": total("nhi"),
+            "child_allowance": res["child_allowance"], "scheme": res["members"][varying_member(hh)[0]]["scheme"]}
+
+
+def wall_causes(hh, walls):
+    """For each wall {from, at, ...}: the change in each tax, premium and benefit, and the moving member's scheme before and after."""
+    out = []
+    for wl in walls:
+        a, b = parts(hh, wl["from"]), parts(hh, wl["at"])
+        out.append({"from": wl["from"], "scheme": [a["scheme"], b["scheme"]],
+                    "change": {k: b[k] - a[k] for k in a if k != "scheme"}})
+    return out

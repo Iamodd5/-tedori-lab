@@ -19,6 +19,7 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
   status: unresolved
   question: Q8
 assumptions:
-  - {ja: "配偶者は週20時間未満の勤務のため、会社の健康保険・厚生年金には入りません。年収130万円未満のあいだは、夫または妻の健康保険と年金に扶養として入り、自分の保険料はかかりません。", en: "The spouse works under 20 hours a week, so doesn't join their own employer's health insurance and pension. While earning under ¥1.3m a year, the spouse is covered as a dependant by their partner's health insurance and pension and pays no premiums of their own."}
+  - {ja: "配偶者は週20時間未満の勤務のため、会社の健康保険・厚生年金には入りません。年収130万円未満のあいだは、夫または妻の健康保険と年金に扶養として入り、自分の保険料はかかりません。週20時間以上・従業員51人以上の会社で働く配偶者は、自分で会社の保険に入るため、この例とは違います。", en: "The spouse works under 20 hours a week, so doesn't join their own employer's health insurance and pension. While earning under ¥1.3m a year, the spouse is covered as a dependant by their partner's health insurance and pension and pays no premiums of their own. A spouse working 20+ hours a week at a company with more than 50 employees joins that company's insurance, so this example doesn't apply to them."}
+  - {ja: "2026年4月からは、扶養に入れるかを、労働契約で決まった賃金から見込まれる年収で判断します。契約にない残業などで一時的に130万円を超えても、扶養のままでいられる場合があります。ここでは、契約上の年収が増える場合を計算しています。", en: "From April 2026, whether someone can be a dependant is judged from the yearly pay expected under their work contract. Going over ¥1.3m now and then, for example through overtime that isn't in the contract, may not end dependant status. Here we work out what happens when the contracted pay goes up."}  # sources/social/nenkin_oshirase_20260501_hifuyosha.html
   - {ja: "（近似）給与は毎月同じ額で、ボーナスはないものとしています。", en: "(Approximation) Pay is the same every month, with no bonus."}
   - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # chosen in HUMAN_TODO H-8

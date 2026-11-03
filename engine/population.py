@@ -178,7 +178,8 @@ def results(designs):
     earners = []
     for (label, n), lo, top in zip(official, [0] + NTA_BANDS, NTA_BANDS + [None]):  # checks.csv keeps the table's order
         ours = sum(w for s, w in persons if s > lo * 1_000_000 and (top is None or s <= top * 1_000_000))
-        earners.append({"band": label, "model": round(ours), "official": round(n)})
+        earners.append({"band": label, "model": round(ours), "official": round(n),
+                        "official_part_year": round(chk[f"wage_earners_part_year_upto_{label}"])})
     member_total = lambda k: round(sum(o[k] * x["weight"] for x in rows for o in x["base"]["members"].values()))
     out["calibration"] = {
         "households": {"model": round(sum(x["weight"] for x in rows)), "suppressed_cells": round(chk["households_in_suppressed_cells"]),

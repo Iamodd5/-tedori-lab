@@ -4,6 +4,8 @@ checks that the templates contain no numbers of their own and that outputs/repor
 import json
 import pathlib
 
+import yaml
+
 from engine import reforms as r
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -40,6 +42,12 @@ def facts():
     h4 = wm["households"]["H4"]["designs"]
     lead = max(walls(h4["baseline"]), key=lambda w: w["drop"])
     both.update(lead_from=yen(lead["from"]), lead_at=yen(lead["at"]), lead_drop=yen(lead["drop"]), lead_back=yen(lead["back"]))
+    cause = next(c for c in wm["households"]["H4"]["wall_causes"] if c["from"] == lead["from"])["change"]
+    assert cause["employee_insurance"] == 0 and cause["income_tax"] <= 0 and cause["resident_tax"] <= 0, "rewrite the lead's reason"
+    sc = yaml.safe_load((ROOT / "parameters" / "baseline_2026" / "social_insurance.yaml").read_text(encoding="utf-8"))["part_time_coverage"]
+    both.update(lead_np=yen(cause["national_pension"]), lead_nhi=yen(cause["nhi"]), lead_tax_cut=yen(-cause["income_tax"] - cause["resident_tax"]),
+                hours_min=sc["hours_min"]["value"], employer_min=sc["employer_size_min"]["value"])
+    f["ja"]["grid_step"], f["en"]["grid_step"] = f"{wm['step'] // 10_000}万円", f"¥{yen(wm['step'])}"
     daiwa_step = next(w for w in walls(h4["daiwa"]) if w["from"] == lead["from"])
     both.update(lead_daiwa_drop=yen(daiwa_step["drop"]), lead_daiwa_back=yen(daiwa_step["back"]),
                 h4_earner=yen(next(m["salary"] for m in wm["households"]["H4"]["incomes"] if m["role"] == "head")),
@@ -79,8 +87,13 @@ def facts():
         f[l]["up_groups"] = f"{up[0]['decile']}{dash}{up[-1]['decile']}"
         f[l]["down_groups"] = f"{down[0]['decile']}{dash}{down[-1]['decile']}"
     both.update(up_top_group=top_up["decile"], up_top=yen(top_up["mean_change"]), down_top_group=top_down["decile"],
-                down_top=yen(-top_down["mean_change"]), net=f"{-d['cost_yen'] / 1e12:.2f}",
-                it_up=f"{d['cost_components_yen']['income_tax'] / 1e12:.2f}", cash=f"{d['cost_components_yen']['credit'] / 1e12:.2f}")
+                down_top=yen(-top_down["mean_change"]), net=f"{-d['cost_yen'] / 1e12:.1f}",  # rough estimates: 0.1 trillion
+                it_up=f"{d['cost_components_yen']['income_tax'] / 1e12:.1f}", cash=f"{d['cost_components_yen']['credit'] / 1e12:.1f}")
+    pct_range = lambda k: (lambda v: f"{min(v)}" if min(v) == max(v) else f"{min(v)}{{dash}}{max(v)}")([round(x[k] * 100) for x in up])
+    for l in LANGS:
+        dash = "〜" if l == "ja" else "–"
+        f[l]["up_win"] = pct_range("winners_share").replace("{dash}", dash)
+        f[l]["up_same"] = pct_range("unchanged_share").replace("{dash}", dash)
     assert d["cost_yen"] < 0, "the report text says the government takes in more; rewrite it if this changes"
     pub = d["published_estimates"]
     both.update(pub_it=pub["headline_variant_with_refund"]["income_tax_increase_trillion_yen"],

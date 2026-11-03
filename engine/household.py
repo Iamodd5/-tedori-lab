@@ -16,7 +16,8 @@ def _gross(m):
     return m.get("salary", 0) + m.get("business_income", 0) + m.get("public_pension", 0)
 
 
-def _employee_covered(m):
+def _employee_covered(m, wage_test):
+    """wage_test: the 88,000-a-month condition for part-timers, which applied until September 2026."""
     if m.get("salary", 0) <= 0:
         return False
     w = m.get("work", {})
@@ -24,7 +25,18 @@ def _employee_covered(m):
         return True
     sc = b.params("social_insurance")["part_time_coverage"]
     return (w.get("hours_20_plus", False) and w.get("employer_51_plus", False) and not m.get("student", False)
-            and m["salary"] / 12 >= sc["monthly_wage_min"]["value"])
+            and (not wage_test or m["salary"] / 12 >= sc["monthly_wage_min"]["value"]))
+
+
+def _nhi_earner(m):
+    """給与所得者等 in the NHI reduction test (国保令29条の7第6項第1号, 附則5条)."""
+    e = b.params("social_insurance")["nhi_shinjuku_fy2026"]["flat_reduction"]["earner"]
+    if m.get("salary", 0) > e["salary_over"]["value"]:
+        return True
+    if b.employment_income(m.get("salary", 0)) > 0:  # people with salary income are not counted for their pension
+        return False
+    limit = e["pension_over_65_plus"] if m["age"] >= e["pension_over_65_plus"]["age_from"] else e["pension_over_under_65"]
+    return m.get("public_pension", 0) > limit["value"]
 
 
 def _dependant_limit(m):
@@ -37,26 +49,45 @@ def _dependant_limit(m):
     return d["general"]["value"]
 
 
+def _insurance(members, out, wage_test):
+    """Scheme and 12-month contributions of each member, with or without the part-time wage test."""
+    covered = {m["id"]: _employee_covered(m, wage_test) for m in members}
+    partners = [m for m in members if m["role"] in ("head", "spouse")]
+    other_partner_covered = lambda m: any(covered[p["id"]] for p in partners if p is not m)
+    np_month = b.params("social_insurance")["national_pension_monthly"]["value"]
+    ages = b.params("social_insurance")["national_pension_ages"]
+    res, nhi_members, householder = {}, [], None
+    for m in members:
+        o = out[m["id"]]
+        if covered[m["id"]]:
+            scheme = "employee"
+        elif (m.get("outside_health_dependant") or other_partner_covered(m)) and _gross(m) < _dependant_limit(m):
+            scheme = "dependant"
+        else:
+            scheme = "nhi"
+        prem = b.employee_premiums(m["salary"], m["age"]) if scheme == "employee" else {}
+        r = res[m["id"]] = {"scheme": scheme, **{k: prem.get(k, 0) for k in ("health", "child_levy", "pension", "employment")}, "nhi": 0}
+        spouse_of_employee = m in partners and other_partner_covered(m)  # category-3 pension member if a dependant
+        r["national_pension"] = 0
+        if scheme != "employee" and ages["from"]["value"] <= m["age"] < ages["to_exclusive"]["value"] and not (scheme == "dependant" and spouse_of_employee):
+            r["national_pension"] = 0 if m.get("student_pension_deferral") else 12 * np_month
+        tested = {"age": m["age"], "total_income": o["total_income"], "pension_income": o["pension_income"], "has_earnings": _nhi_earner(m)}
+        if scheme == "nhi":
+            nhi_members.append(tested)
+        elif m["role"] == "head":
+            householder = tested
+    head = next(m for m in members if m["role"] == "head")
+    res[head["id"]]["nhi"] = b.nhi_household(nhi_members, householder)  # the householder pays the household's NHI
+    return res
+
+
 def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
     """basic_deduction_it and it_credit (income-tax credit per person) let a reform change those two rules."""
     members = hh["members"]
     it, rt = b.params("income_tax"), b.params("resident_tax")
     out = {m["id"]: {"age": m["age"], "role": m["role"], "gross": _gross(m)} for m in members}
 
-    # 1. who is in which insurance scheme
-    covered = {m["id"]: _employee_covered(m) for m in members}
-    partners = [m for m in members if m["role"] in ("head", "spouse")]
-    other_partner_covered = lambda m: any(covered[p["id"]] for p in partners if p is not m)
-    for m in members:
-        o = out[m["id"]]
-        if covered[m["id"]]:
-            o["scheme"] = "employee"
-        elif (m.get("outside_health_dependant") or other_partner_covered(m)) and _gross(m) < _dependant_limit(m):
-            o["scheme"] = "dependant"
-        else:
-            o["scheme"] = "nhi"
-
-    # 2. incomes
+    # 1. incomes
     child_under_23 = any(m["role"] == "child" and m["age"] < it["adjustment_deduction"]["dependant_age_under"]["value"] for m in members)
     for m in members:
         o = out[m["id"]]
@@ -65,31 +96,23 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
         o["pension_income"] = b.pension_income(m.get("public_pension", 0), m["age"])
         o["total_income"] = emp - o["adjustment_deduction"] + m.get("business_income", 0) + o["pension_income"]
 
-    # 3. contributions
-    np_month = b.params("social_insurance")["national_pension_monthly"]["value"]
-    nhi_members, householder = [], None
+    # 2. insurance scheme and contributions: January–September with the part-time wage test, October–December
+    # without it (social_insurance.yaml part_time_coverage); each period's share of a 12-month year
+    sc = b.params("social_insurance")["part_time_coverage"]["monthly_wage_min"]
+    before, after = _insurance(members, out, True), _insurance(members, out, False)
+    m1 = sc["months_applied"]["value"]
     for m in members:
-        o = out[m["id"]]
-        prem = b.employee_premiums(m["salary"], m["age"]) if o["scheme"] == "employee" else {}
-        o.update({k: prem.get(k, 0) for k in ("health", "child_levy", "pension", "employment")})
-        spouse_of_employee = m in partners and other_partner_covered(m)  # category-3 pension member if a dependant
-        o["national_pension"] = 0
-        # ages 20-59: not yet in sources/, so not in parameters/ (OPEN_QUESTIONS Q30)
-        if o["scheme"] != "employee" and 20 <= m["age"] < 60 and not (o["scheme"] == "dependant" and spouse_of_employee):
-            o["national_pension"] = 0 if m.get("student_pension_deferral") else 12 * np_month
-        if o["scheme"] == "nhi":
-            nhi_members.append({"age": m["age"], "total_income": o["total_income"], "pension_income": o["pension_income"],
-                                "has_earnings": _gross(m) > 0})
-        elif m["role"] == "head":
-            householder = {"age": m["age"], "total_income": o["total_income"], "pension_income": o["pension_income"],
-                           "has_earnings": _gross(m) > 0}
-        o["nhi"] = 0
-    head = next(m for m in members if m["role"] == "head")
-    out[head["id"]]["nhi"] = b.nhi_household(nhi_members, householder)  # the householder pays the household's NHI
-    for o in out.values():
+        o, x, y = out[m["id"]], before[m["id"]], after[m["id"]]
+        o["scheme"] = x["scheme"]
+        if y["scheme"] != x["scheme"]:
+            o["scheme_from_october"] = y["scheme"]
+        for k in ("health", "child_levy", "pension", "employment", "national_pension", "nhi"):
+            o[k] = (x[k] * m1 + y[k] * (12 - m1)) // 12  # every amount is 12 equal months, except NHI (floored to the yen)
         o["social_insurance"] = o["health"] + o["child_levy"] + o["pension"] + o["employment"] + o["national_pension"] + o["nhi"]
+    partners = [m for m in members if m["role"] in ("head", "spouse")]
+    head = next(m for m in members if m["role"] == "head")
 
-    # 4. taxes: the higher-earning partner claims the other partner and the dependants (approximation, Q23)
+    # 3. taxes: the higher-earning partner claims the other partner and the dependants (approximation, Q23)
     claimant = max(partners, key=lambda p: out[p["id"]]["total_income"])
     spouse = next((p for p in partners if p is not claimant), None)
     deps = [m for m in members if m["role"] in ("child", "dependant")]
@@ -141,6 +164,8 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
                     elif age >= rp["dependent_general_age_from"]["value"]:
                         r_ded += rp["dependent_general_16_plus"]["value"]
                         diff += diff_p["dependent_general"]["value"]
+                elif specific_rt(age):  # no 調整控除 difference for this deduction (地方税法314条の6)
+                    r_ded += b.specific_relative_special_rt(di)
             if single_parent and ti <= it["single_parent_deduction"]["income_limit"]["value"]:
                 ded += it["single_parent_deduction"]["amount"]["value"]
                 r_ded += rp["single_parent"]["value"]

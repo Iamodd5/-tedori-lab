@@ -78,8 +78,8 @@ assumptions:
     en: Children aged 18 and over are treated as age 22 and share the survey's "other family members' earnings" equally.
   work:
     approximation: true
-    ja: 給料をもらう人は全員、週20時間以上・従業員51人以上の会社で働いているとしています。そのため月8.8万円以上稼ぐと、会社の健康保険と厚生年金に入ります。
-    en: Everyone with a wage is treated as working 20+ hours a week at a company with more than 50 employees, so they join the company's health insurance and pension once they earn ¥88,000 a month.
+    ja: 給料をもらう人は全員、週20時間以上・従業員51人以上の会社で働いているとしています。そのため、2026年9月までは月8.8万円以上稼ぐと、10月からは稼ぎにかかわらず、会社の健康保険と厚生年金に入ります（月8.8万円の条件は2026年10月1日になくなりました）。
+    en: Everyone with a wage is treated as working 20+ hours a week at a company with more than 50 employees. So they are in the company's health insurance and pension from January to September 2026 if they earn ¥88,000 a month or more, and from October whatever they earn (the ¥88,000 condition ended on 1 October 2026).
   income_sources:
     approximation: true
     ja: 計算に入れている収入は、給料・事業の収入・年金だけです。家賃収入、利子・配当、仕送りなどは入っていません。事業の収入は経費を引いた後の額として扱っています。

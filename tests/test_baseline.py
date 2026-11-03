@@ -78,9 +78,41 @@ def test_nhi_reduction_counts_householder_outside_nhi():
 # --- Burden-relief band above the income-levy exemption line: the levy is capped at the excess over the line.
 # MIC 個人住民税の基礎控除・非課税限度額等 (sources/tax/soumu_kojin_juminzei_kiso_kojo_r8.pdf) p.18: couple, line
 # 1,120,000, total income 1,124,200 -> income levy 4,200.
+def test_nhi_reduction_counts_earners_as_the_cabinet_order_does():
+    # tests/hand_calcs/H6.md revision 2026-11-03: the spouse's 800,000 pension (age 72) is not over 1,250,000, so 1 earner
+    import copy
+    hh = copy.deepcopy(h.load("H6"))
+    next(m for m in hh["members"] if m["role"] == "head")["public_pension"] = 1_700_000
+    assert h.compute(hh)["disposable"] == 2_414_941
+
+
+def test_specific_relative_special_rt():
+    # 特定親族特別控除 for resident tax, 令和9年度 (sources/tax/ota_shotokukojo.html table; 地方税法314条の2第1項第12号)
+    assert b.specific_relative_special_rt(620_001) == 450_000   # 62万超95万以下
+    assert b.specific_relative_special_rt(990_000) == 410_000   # 95万超100万以下
+    assert b.specific_relative_special_rt(1_230_000) == 30_000  # 120万超123万以下
+    assert b.specific_relative_special_rt(1_230_001) == 0
+
+
+def test_resident_tax_rounds_ward_and_tokyo_separately():
+    # Ota City worked example (sources/tax/ota_keisan_no_shikumi.html): total income 4,930,000, deductions 1,595,550 →
+    # taxable 3,334,000; 特別区民税 198,540 + 3,000 → 201,500; 都民税 132,360 + 1,000 → 133,300 (地方税法20条の4の2第3項).
+    # Plus the forest environment tax 1,000. Rounding the 10% once would give 330,900 + 5,000.
+    assert b.resident_tax(4_930_000, 1_595_550, 50_000, 0, False) == 201_500 + 133_300 + 1_000
+
+
+@pytest.mark.xfail(strict=True, reason="conflict recorded in OPEN_QUESTIONS Q22 (2026-11-03): MIC's p.18 figure shows one "
+                   "combined levy of 4,200; the law caps each tax in proportion and rounds each to 100 yen (2,500 + 1,600)")
 def test_resident_tax_relief_band_matches_mic_figure():
     # couple (N = 1): per-capita line 350,000 x 2 + 310,000 = 1,010,000 is passed, so the 5,000 per-capita levy applies
     assert b.resident_tax(1_124_200, 430_000 + 330_000, 100_000, 1, False) == 4_200 + 5_000
+
+
+def test_resident_tax_relief_band_by_law():
+    # 地方税法附則3条の3第2項・第5項: each tax's 所得割 is cut by the excess × its share, so the two together equal
+    # income − line = 4,200, shared 60:40 (only the 調整控除 applies: 3% and 2%) = 2,520 and 1,680; each rounded down
+    # to 100 yen (20条の4の2第3項) = 2,500 + 1,600. Per-capita 3,000 + 1,000 + forest 1,000.
+    assert b.resident_tax(1_124_200, 430_000 + 330_000, 100_000, 1, False) == 2_500 + 1_600 + 5_000
 
 
 def test_resident_tax_relief_band_h3_head():

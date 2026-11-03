@@ -5,35 +5,39 @@ A plain-Japanese version is in `docs/METHODS.ja.md`.
 ## The 2026 baseline
 
 - **Year.** All taxes and contributions are computed on income earned in calendar 2026. Income tax uses 令和8年分 rules (applied at the December 2026 year-end adjustment). Resident tax is the 令和9年度 tax that falls on 2026 income.
-- **Place.** Shinjuku ward, Tokyo: 協会けんぽ Tokyo rates for employees, Shinjuku rules for National Health Insurance and resident tax (HUMAN_TODO H-8).
+- **Place.** Shinjuku ward, Tokyo: 協会けんぽ (Japan Health Insurance Association) Tokyo rates for employees, Shinjuku rules for National Health Insurance and resident tax.
 - **Approximations** (each labelled `approximation: true` in the parameter files):
-  - Rates that start in March or April 2026 (health, child-support levy, employment insurance, national pension) are applied to all 12 months.
+  - Health and long-term care rates that start in March 2026, employment insurance from April, the child-support levy that is new from April, and the FY2026 national pension amount are applied to all 12 months (the employee pension rate, 18.3%, does not change).
+  - The employee's share of health insurance and of the child-support levy are rounded separately (a government Q&A said to round them together, but it has been withdrawn; Q38).
+  - The student deferral of National Pension is assumed at every income on H2's wall map, although it has an income limit.
   - NHI uses FY2026 rates on 2026 income, because FY2027 rates are not published.
-  - Resident-tax personal deduction amounts use the 令和7年度 Shinjuku table; the spouse/dependant income limit is 580,000 (MIC, 令和8年度) (Q13). Rounding rule source pending (Q14).
   - Salary is paid in 12 equal months with no bonus.
   - A child's age is held fixed for the whole year.
+- **Resident tax for 令和9年度.** Deductions and income limits come from the 地方税法 as amended by 令和8年法律第2号 (spouse/dependant limit 620,000; working student 890,000; 特定親族特別控除). 特別区民税 (6%) and 都民税 (4%) are worked out separately and each rounded down to 100 yen (地方税法20条の4の2).
+- **Part-time coverage.** People working 20+ hours a week at a firm with 51+ employees joined employee insurance only at ¥88,000 a month or more until September 2026; that test ended on 1 October 2026 (令和8年政令第275号), so January–September and October–December are worked out separately.
+- **NHI reduction.** An earner (給与所得者等) is someone with salary over 550,000, or a public pension over 600,000 (under 65) or 1,250,000 (65+) (国民健康保険法施行令29条の7第6項第1号, 附則5条).
 - **Not included in v1:** behaviour changes (static), long-term-care premiums for 65+ (Q15), 児童扶養手当 (Q17), the parents of the student household (Q16), national-pension low-income exemptions (Q20). Consumption tax enters only through the food tax cut design (household food spending still to be loaded, Q8).
 
-## Policy designs (Milestone 3)
+## Policy designs
 
 Each design is a reform in `engine/reforms.py` that reads only its own file in `parameters/designs/`. It runs the same household through the baseline twice, once unchanged and once with the reform, and reports the difference in five parts: income tax, resident tax, social insurance, credit or payment received, and consumption tax.
 
-- **Daiwa (headline variant).** Income-tax basic deduction set to 0; each person gets a tax credit sized by Daiwa's own formula, (1,780,000 − employment-income minimum − basic deduction) × 5%. On 2026 rules that is 52,000 (Daiwa's 56,500 is the same formula on 2025 rules; HUMAN_TODO H-12: B). Credit left after income tax is paid in cash up to the person's labour social insurance (employee health + pension; NHI + national pension for the self-employed). *Approximation:* the credit comes off before the 2.1% reconstruction surtax, as existing tax credits do (Q11). See also Q18, Q19.
-- **Government final** and the **payment part of the food tax cut.** The shape (flat, rising, flat, child add-on, phase-out, rounded up to 1,000 yen) is coded and tested with made-up numbers (`tests/hand_calcs/credit_shape.md`). Every real amount awaits a Cabinet order (Q9), so these show "not calculated" with the reason, and no number.
-- **Food tax cut, tax side.** Saving = food spending × (8% − 1%) ÷ 1.08 × pass-through (100%, with a 50% sensitivity). *Approximation:* full pass-through to prices. Household food spending is not yet loaded (Q8), so no number yet.
-- **Rengo.** No documents yet (Q3); shown as "not calculated" with that reason.
+- **Daiwa (the variant in Daiwa's summary).** Income-tax basic deduction set to 0; each person gets a tax credit sized by Daiwa's formula (Daiwa's definition, rearranged): (1,780,000 − employment-income minimum − the basic deduction under the plan, 0) × 5%. On 2026 rules that is (1,780,000 − 740,000 − 0) × 5% = 52,000 (Daiwa's 56,500 is the same formula on 2025 rules). Credit left after income tax is paid in cash up to the social insurance the person pays on their work: employee health insurance (with long-term care) and employee pension for employees; National Health Insurance and National Pension for other workers. People who pay no social insurance on work (for example people living on a pension) get no cash. *Approximations:* the credit comes off before the 2.1% reconstruction surtax, as existing tax credits do (Q11); the child and childcare support levy and employment insurance are not counted toward the cash cap (Q18); household NHI is paid by the head, so it counts only toward the head's cap; when the higher earner pays and deducts the spouse's National Pension, it still counts toward the spouse's own cap (Daiwa doesn't cover this case). See also Q19.
+- **Government final** and the **payment part of the food tax cut.** The shape (flat, rising, flat, child add-on, phase-out, rounded up to 1,000 yen) is coded and tested with made-up numbers (`tests/hand_calcs/credit_shape.md`). Every real amount is to be set by Cabinet order and hasn't been decided (Q9), so these show "not calculated" with the reason, and no number. The temporary top-up for people at an income wall (就業促進特例加算) is in the documents but not yet in the program, because its range and amount haven't been decided.
+- **Food tax cut, tax side.** Saving = food spending × (8% − 1%) ÷ 1.08 × pass-through (100%, with a 50% sensitivity). *Approximation:* full pass-through to prices. Food spending is loaded for the all-household estimate, but not yet for example households H1–H8 (Q8). The tax cut and the payment are shown as one plan, so no number is shown for the tax side alone until the payment amounts are decided.
+- **Rengo.** From Rengo's Tax Reform Plan (4th edition, revised, 28 May 2025) and its 2026 key policies. Of its two parts, the consumption-tax refund has no published amounts (per-person amount, or how it falls as income rises), so the plan is shown as "not calculated" with that reason (Q3). The other part (the work-support credit) is not shown on its own, because that would show only half of the plan.
 
-## Wall map and household comparison (Milestone 4)
+## Wall map and household comparison
 
 - **Household comparison** (`outputs/household_comparison.csv`, `.json`): for every household and design, the change in take-home pay at the reference income, split into income tax, resident tax, social insurance, money received, and consumption tax. Designs with unpublished numbers show `incomplete` and list what is missing.
-- **Wall map** (`outputs/wall_map.json`): one member's income moves from 0 to 10,000,000 yen in 10,000-yen steps; everything else about the household stays fixed (including "works 20+ hours at a 51+ firm"). At each step we record take-home pay and the **effective marginal rate**: 1 − (take-home at the next step − take-home here) ÷ 10,000. Above 100% means earning 10,000 more leaves you with less. In two-income households the moving income is set in the household file (`wall_map`, HUMAN_TODO H-11: D): H4 the spouse's salary; H3 and H8 the head's salary; H6 the head's pension.
+- **Wall map** (`outputs/wall_map.json`): one member's income moves from 0 to 10,000,000 yen in 10,000-yen steps; everything else about the household stays fixed (including "works 20+ hours at a 51+ firm"). At each step we record take-home pay and the **effective marginal rate**: 1 − (take-home at the next step − take-home here) ÷ 10,000. Above 100% means earning 10,000 more leaves you with less. In two-income households the moving income is set in the household file (`wall_map`): H4 the spouse's salary; H3 and H8 the head's salary; H6 the head's pension.
 - Built by `make outputs` (part of `make all`). The website (`site/`) reads these files directly; serve the repository root (e.g. `python3 -m http.server`) and open `site/index.html`.
 
-On the site, the second wall chart shows the same information in yen rather than as a rate: how much more take-home pay an extra ¥100,000 of income brings (below ¥0 is a wall), worked out in the browser from the take-home numbers in `outputs/wall_map.json` (`site/walls.js`). The effective marginal rate stays in the output file.
+On the site, the list of walls uses the 10,000-yen steps: every step where take-home pay falls by ¥10,000 or more, the three largest with their cause (the change in each tax and premium, `wall_causes` in `outputs/wall_map.json`). The second chart is coarser: how much more take-home pay an extra ¥100,000 of income brings, at round ¥100,000 incomes (below ¥0 is a wall). A wall narrower than ¥100,000 is netted against the rest of that ¥100,000 and may not go below ¥0 there, so the listed walls are also marked on the take-home chart. Both leave out the step up from an income of 0 (a full-time employee paid nothing is not a real case). The recovery point ("back at") is the first ¥10,000 step where take-home is back to where it was, so the real crossing can be up to ¥10,000 lower. The effective marginal rate stays in the output file.
 
-## Population view and cost (Milestone 7) — every number is an approximation
+## Population view and cost — every number is an approximation
 
-- **Data** (HUMAN_TODO H-17: A): households by type and 500,000-yen income band, with each band's average earnings, business income, pensions, ages and number of earners, from 令和6年全国家計構造調査 所得 第3-32-1表. Food spending from the same survey's 家計収支 第1-21表. Other official tables are used only as checks (§10 of `VALIDATION.md`). Extracted by `scripts/extract_population.py` into `population/*.csv`.
+- **Data:** households by type and 500,000-yen income band, with each band's average earnings, business income, pensions, ages and number of earners, from 令和6年全国家計構造調査 所得 第3-32-1表. Food spending from the same survey's 家計収支 第1-21表. Other official tables are used only as checks (§10 of `VALIDATION.md`). Extracted by `scripts/extract_population.py` into `population/*.csv`.
 - **Groups.** All households split into eight groups that do not overlap: single; couple only; couple with one, two, or three or more children; lone parent; couple living with parents; other households of two or more.
 - **Model households** (`engine/population.py`; hand calculation `tests/hand_calcs/population.md`). For each group and income band:
   - the cell is split into a household living on pensions and one living on work, in proportion to the pension share of its income; both keep the cell's total income;
@@ -44,19 +48,19 @@ On the site, the second wall chart shows the same information in yen rather than
 - **Cost.** National total of the change in take-home pay = net cost to the government before any financing, in a static estimate (no change in how people work). Shown next to the proposer's own estimate where one is published (Daiwa p.7).
 - **Not included:** the year gap (2024 survey, 2026 rules), income from rent, interest and dividends, households that both earn and draw pensions, differences between households in the same cell, and the larger deduction for elderly dependants (Q32).
 
-## Design builder (Milestone 8)
+## Design builder
 
-The "Build your own" page lets a visitor set the rules of a generic refundable credit (spec 8.5) with five sliders: phase-in rate, maximum per person, amount per child, the income where the phase-out starts, and the phase-out rate.
+The "Build your own" page lets a visitor set the rules of a generic refundable credit with five sliders: phase-in rate, maximum per person, amount per child, the income where the phase-out starts, and the phase-out rate.
 
 - **Rule.** Worked out per person. A person with earnings (salary + business income) gets min(phase-in rate × earnings, maximum). In a couple, the partner with the higher earnings (the head if equal) adds the amount per child for each child aged 18 or under (the child allowance's age limit). Above the phase-out income, where income = earnings + pensions, all before tax, the credit falls by the phase-out rate × the excess. It never goes below 0 and is rounded down to the yen. Hand calculation: `tests/hand_calcs/custom_credit.md`.
-- **No other effects.** The credit is paid in cash and added to take-home pay under 2026 rules. It is not taxed and changes no other tax, insurance or benefit. So the browser needs only the formula (`site/custom.js`) and precomputed 2026 numbers (`outputs/wall_map.json`, `outputs/builder.json`), as spec Section 5 requires.
-- **Same households.** The wall map uses H1–H8; the decile table and cost use the Milestone 7 model households and their decile split, so every population number on the page is an approximation.
+- **No other effects.** The credit is paid in cash and added to take-home pay under 2026 rules. It is not taxed and changes no other tax, insurance or benefit. So the browser needs only the formula (`site/custom.js`) and precomputed 2026 numbers (`outputs/wall_map.json`, `outputs/builder.json`), so it works without a server.
+- **Same households.** The wall map uses H1–H8; the decile table and cost use the model households from the population view and their decile split, so every population number on the page is an approximation.
 - **Checks.** The Python formula (`engine/reforms.py` `custom`) is tested against the hand calculation. `tests/test_custom.py` runs the JavaScript in Node on the same cases and on every model household, and compares.
 - **Starting values** (10%, ¥100,000, ¥50,000, ¥3,000,000, 5%) are placeholders for the sliders, the same as the hand calculation's test values. They come from no plan.
 
-## Website (Milestone 6)
+## Website
 
-- Static pages in `site/`; every number is read at page load from `outputs/` (no number is typed into a page).
+- Static pages in `site/`; every number on the result pages is read at page load from `outputs/`. The Checks page shows `docs/VALIDATION.md`, which is written by hand; its numbers are compared with `outputs/` by `tests/test_validation_doc.py`.
 - Japanese by default with an English toggle. Methods has a Japanese version (`METHODS.ja.md`); Validation and Sources show the English documents with a Japanese introduction.
 - Colours follow the Okabe-Ito colour-blind-safe palette, assigned in file order; no colour carries a meaning.
 - Charts have text labels and the comparison page repeats every charted number in a table.

@@ -21,6 +21,21 @@ source:
     url: https://www.mhlw.go.jp/tekiyoukakudai/jugyouin/taisho/
     file: sources/social/mhlw_tekiyoukakudai_taisho.html
     published: 2026 (page as downloaded 2026-10-30)
+  kokumin_law:
+    title: 国民年金法
+    url: https://laws.e-gov.go.jp/api/1/lawdata/334AC0000000141
+    file: sources/law/kokumin_nenkin_ho_334AC0000000141.xml
+    published: 2026
+  wage_test_end:
+    title: 令和8年政令第275号（年金制度の機能強化のための国民年金法等の一部を改正する法律の一部の施行期日を定める政令）
+    url: https://www.mhlw.go.jp/hourei/doc/hourei/H260911T0020.pdf
+    file: sources/law/seirei_R8_275_shikoukijitsu.pdf
+    published: 2026-09-11
+  wage_test_end_notice:
+    title: 日本年金機構 短時間労働者の賃金要件の撤廃について（2026年10月1日）
+    url: https://www.nenkin.go.jp/oshirase/taisetu/jigyosho/2026/202610/100104.html
+    file: sources/social/nenkin_oshirase_20261001_chingin_yoken_teppai.html
+    published: 2026-10-01
   dependant:
     title: 協会けんぽ 令和8年度被扶養者資格の再確認について
     url: https://www.kyoukaikenpo.or.jp/about/business/dependent_status/001/index.html
@@ -31,6 +46,11 @@ source:
     url: https://www.city.shinjuku.lg.jp/hoken/hoken01_001028.html
     file: sources/shinjuku/hoken01_001028.html
     published: 2026
+  nhi_order:
+    title: 国民健康保険法施行令（令和8年4月1日時点の条文）
+    url: https://laws.e-gov.go.jp/api/1/lawdata/333CO0000000362
+    file: sources/law/kokuho_sekourei_333CO0000000362_asof20260401.xml
+    published: 2026-04-01
   nhi_reduction:
     title: 新宿区 保険料の減免について（均等割額の軽減）
     url: https://www.city.shinjuku.lg.jp/hoken/hoken01_002030.html
@@ -39,16 +59,26 @@ source:
 
 employee:
   premium_table: {value: kyoukaikenpo_tokyo_r8.csv, cite: {source: kyoukai, page: 1}, note: "employee half; health_ltc_half for ages 40-64; pension grades 4-35 only (below grade 4 uses grade 4, above 35 uses 35)"}
-  rounding: {value: "employee half: 0.50 yen or less rounds down, over 0.50 rounds up", cite: {source: kyoukai, page: 1, section: "注①"}}
+  rounding:
+    value: "employee half: 0.50 yen or less rounds down, over 0.50 rounds up; health and child levy rounded separately"
+    cite: {source: kyoukai, page: 1, section: "注①"}
+    approximation: true
+    explanation: "MHLW/こども家庭庁 子ども・子育て支援金Q&A (2026-02-12) Q6 rounds the employee half once on the combined rate; that Q&A has been withdrawn (404). Open: Q38"
+    site:
+      ja: （近似）会社の健康保険料と子ども・子育て支援金の本人負担分は、それぞれ1円未満を丸めています。国の説明資料（2026年2月）は合計してから丸めるとしていましたが、その資料はいまは公開されていません。差は月1円以内です。
+      en: (Approximation) We round the employee's share of health insurance and of the child and childcare support levy separately to the yen. A government Q&A (February 2026) said to round them once, together, but it is no longer published. The difference is at most ¥1 a month.
   employment_insurance_worker_rate: {value: 0.005, cite: {source: koyo, page: 1, section: "一般の事業"}}
   ltc_age_from: {value: 40, cite: {source: kyoukai, page: 1}}
   ltc_age_to_exclusive: {value: 65, cite: {source: kyoukai, page: 1}}
   pension_age_to_exclusive: {value: 70, cite: {source: kyoukai, page: 1}, note: "厚生年金 to age 70"}
 
-part_time_coverage:  # 短時間労働者: employer 51+ staff (until Sep 2027), ≥20 h/week, monthly wage ≥ 88,000, not a student
+part_time_coverage:  # 短時間労働者: employer 51+ staff (until Sep 2027), ≥20 h/week, not a student; until Sep 2026 also monthly wage ≥ 88,000
   employer_size_min: {value: 51, cite: {source: coverage, page: 1}}
   hours_min: {value: 20, cite: {source: coverage, page: 1}}
-  monthly_wage_min: {value: 88000, cite: {source: coverage, page: 1}}
+  monthly_wage_min:
+    value: 88000
+    cite: {source: coverage, page: 1}
+    months_applied: {value: 9, cite: {source: wage_test_end, page: 1}, note: "January–September 2026; the wage test was abolished from 2026-10-01 (also wage_test_end_notice)"}
   students_excluded: {value: true, cite: {source: coverage, page: 1}}
 
 health_dependant_income_limit:  # annual income below this
@@ -57,7 +87,9 @@ health_dependant_income_limit:  # annual income below this
   age_60_plus: {value: 1800000, age_from: 60, cite: {source: dependant, page: 1}}
 
 national_pension_monthly: {value: 17920, cite: {source: kokumin, page: 1}, note: "FY2026"}
-national_pension_ages: {status: unresolved, question: Q30, note: "20 to under 60; not yet in sources/, so engine/household.py still holds these two numbers"}
+national_pension_ages:  # 第1号被保険者: 「二十歳以上六十歳未満」 (Q30 answered 2026-11-03)
+  from: {value: 20, cite: {source: kokumin_law, page: 1, section: "国民年金法7条1項1号"}}
+  to_exclusive: {value: 60, cite: {source: kokumin_law, page: 1, section: "国民年金法7条1項1号"}}
 
 nhi_shinjuku_fy2026:
   base_deduction: {value: 430000, cite: {source: nhi, page: 1}}
@@ -72,15 +104,20 @@ nhi_shinjuku_fy2026:
     seventy_percent: {per_member_add: 0, share: 0.7, cite: {source: nhi_reduction, page: 1}}
     fifty_percent: {per_member_add: 310000, share: 0.5, cite: {source: nhi_reduction, page: 1}}
     twenty_percent: {per_member_add: 570000, share: 0.2, cite: {source: nhi_reduction, page: 1}}
-    pensioner_65_extra_deduction: {value: 150000, age_from: 65, cite: {source: nhi_reduction, page: 1}}
+    pensioner_65_extra_deduction: {value: 150000, age_from: 65, cite: {source: nhi_order, page: 1, section: "附則5条"}, note: "taken off 65+ public-pension income only, never below 0 (Q25)"}
+    earner:  # 給与所得者等 (counted once each): salary revenue over 550,000, else public-pension revenue over the limit for the age
+      salary_over: {value: 550000, cite: {source: nhi_order, page: 1, section: "29条の7第6項第1号"}}
+      pension_over_under_65: {value: 600000, cite: {source: nhi_order, page: 1, section: "29条の7第6項第1号"}}
+      pension_over_65_plus: {value: 1250000, age_from: 65, cite: {source: nhi_order, page: 1, section: "29条の7第6項第1号, 附則5条 (110万 → 125万)"}}
 
 notes:
   approximation: true
   site:
-    ja: （近似）健康保険・子ども・子育て支援金・厚生年金の保険料率は2026年3月か4月から、雇用保険料率は4月から変わりますが、2026年の12か月すべてに新しい率を使っています。国民年金は2026年度の月額を全月に使っています。国民健康保険は2026年度の新宿区の料率を使っています（2026年の収入に本来かかる2027年度の料率はまだ公表されていません）。給与は毎月同じ額で、ボーナスはないものとしています。
-    en: (Approximation) Rates for health insurance, the child and childcare support levy and employee pension change in March or April 2026, and employment insurance in April. We use the new rates for all 12 months of 2026. National Pension uses the fiscal 2026 monthly amount for every month. National Health Insurance uses Shinjuku's fiscal 2026 rates, because the fiscal 2027 rates (which would apply to 2026 income) aren't published yet. Pay is the same every month, with no bonus.
+    ja: （近似）健康保険・介護保険の保険料率は2026年3月分から、雇用保険料率は4月から変わり、子ども・子育て支援金は4月分から新しく始まります（厚生年金の保険料率18.3%は変わりません）。計算では、2026年の12か月すべてに新しい率と支援金を使っています。国民年金は2026年度の月額を全月に使っています。国民健康保険は2026年度の新宿区の料率を使っています（2026年の収入に本来かかる2027年度の料率はまだ公表されていません）。給与は毎月同じ額で、ボーナスはないものとしています。
+    en: (Approximation) Health and long-term care insurance rates change from March 2026 and employment insurance from April; the child and childcare support levy is new from April (the employee pension rate, 18.3%, does not change). We use the new rates and the levy for all 12 months of 2026. National Pension uses the fiscal 2026 monthly amount for every month. National Health Insurance uses Shinjuku's fiscal 2026 rates, because the fiscal 2027 rates (which would apply to 2026 income) aren't published yet. Pay is the same every month, with no bonus.
   explanation: >
-    Health, child-support levy and pension rates start March/April 2026 and employment
+    Health and LTC rates start March 2026 (協会けんぽ table: 令和8年3月分～), the child-support levy is new from April 2026
+    (令和8年4月分～), the pension rate is unchanged since September 2017 (平成29年9月分～), and employment
     insurance April 2026; we apply them to all 12 months of 2026. National pension uses the FY2026 amount for all
     months. NHI uses FY2026 Shinjuku rates applied to 2026 income (FY2027 rates are not published). Salary is
     treated as 12 equal monthly payments with no bonus.

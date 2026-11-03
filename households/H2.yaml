@@ -16,8 +16,8 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
   status: unresolved
   question: Q8
 assumptions:
-  - {ja: "学生本人だけを計算しています。親は別の世帯として扱うため、学生を養うことで親の税金が安くなる分（扶養控除）は含まれません。", en: "Only the student is counted. The parents are treated as a separate household, so the tax break they get for supporting the student is not included."}  # OPEN_QUESTIONS Q16
+  - {ja: "学生本人だけを計算しています（この例の「世帯」は学生本人だけです）。親は別の世帯として扱うため、学生を養うことで親の税金が安くなる分（扶養控除など）は含まれません。学生の年収が増えると、親のこの控除が減ったりなくなったりすることがあります。", en: "Only the student is counted (in this example the \"household\" is just the student). The parents are treated as a separate household, so the tax break they get for supporting the student is not included. When the student earns more, the parents' tax break can shrink or end."}  # OPEN_QUESTIONS Q16
   - {ja: "年収が150万円（19〜22歳の扶養家族の上限）未満のあいだは、親の会社の健康保険に扶養家族として入っています。", en: "Is covered by a parent's company health insurance as a dependant while yearly income stays under ¥1.5m (the limit for dependants aged 19 to 22)."}
-  - {ja: "国民年金の学生納付特例を使い、2026年は保険料を払いません。", en: "Uses the student deferral for National Pension, so pays no pension contributions in 2026."}
+  - {ja: "国民年金の学生納付特例を使い、2026年は保険料を払いません。（近似）この特例には前の年の所得の上限（128万円＋扶養親族などの数×38万円＋社会保険料控除など）がありますが、グラフでは、どの収入でも特例を使うものとしています。", en: "Uses the student deferral for National Pension, so pays no pension contributions in 2026. (Approximation) The deferral has a limit on the previous year's income (¥1.28m + ¥380,000 per dependant + deductions such as social insurance), but the charts assume the deferral at every income."}  # sources/social/nenkin_gakusei_nofu_tokurei.html
   - {ja: "（近似）給与は毎月同じ額で、ボーナスはないものとしています。", en: "(Approximation) Pay is the same every month, with no bonus."}
   - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # chosen in HUMAN_TODO H-8

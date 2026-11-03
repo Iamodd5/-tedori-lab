@@ -473,3 +473,26 @@ Milestone 10 is about fixing what outside reviewers find, and keeping a public l
 - **The Checks page summary has no numbers typed by hand any more**: the calibration gaps and the ¥1m-earner counts come from `outputs/population.json`.
 
 123 tests pass. Waiting for the outside review (H-22).
+
+## Milestone 10 (part 2, 2026-11-03): fixes from a simulated-visitor review
+
+The human ran the review prompt (`docs/COWORK_REVIEW_PROMPT.md`) in Claude Cowork: 24 AI "visitors", from a part-time worker on a phone to a tax accountant, used the live site and reported 113 problems; other AI agents re-checked each claimed error. These are simulated visitors, not real people, so every claim was checked again here against a primary source before anything changed. Real outside reviewers are still needed (H-22).
+
+**Rules that were wrong, now fixed.** For each one, the source is saved in `sources/`, the hand calculation was corrected first, and the test was seen failing before the rule changed.
+
+- **Resident tax rounding.** Resident tax in Tokyo's wards is two taxes: the ward's (6%) and Tokyo's (4%). The law rounds each one down to the nearest 100 yen. We were adding them and rounding once. Fixing this adds 100 yen a year to the take-home pay of three example households (H3, H5, H8).
+- **Resident tax limits for 2027.** Tax paid in 2027 on 2026 income uses new limits that a law passed in March 2026 already set: a spouse or dependant can earn up to 620,000 yen of income (was 580,000 in our model), and a working student up to 890,000 (was 750,000). We also added a deduction for parents of 19- to 22-year-olds who earn a bit too much to be ordinary dependants. Result: the student example (H2) has a smaller wall at 1.5 million yen (−75,572 a year instead of −97,172) and a second, smaller wall at 1.63 million.
+- **Who counts as an "earner" for the health-insurance discount.** National Health Insurance is cheaper for low-income households, and the income limit rises by 100,000 yen for each extra earner in the household. The rule (a cabinet order) counts someone as an earner only if their salary is over 550,000 yen, or their pension is over 600,000 yen (1.25 million at 65 or over). We counted anyone with any income. For the pensioner couple (H6), the wife's 800,000-yen pension does not count, so their walls sit 100,000 yen lower.
+- **The "1.06 million yen wall" ended on 1 October 2026.** Part-timers working 20+ hours a week at a company with more than 50 employees used to join company health insurance and pension only if they earned at least 88,000 yen a month. A cabinet order removed that condition from 1 October 2026. We now split 2026 into January–September (old rule) and October–December (new rule). This changes the single part-timer example (H1) below 1,056,000 yen a year, and the all-household estimate.
+
+**Wrong or misleading statements, now fixed** (all listed on the Corrections page): the government payment starts in April 2027, not 2029; it is paid twice in fiscal 2029; it has a spouse-income test and a temporary top-up for people at an income wall; the English text gave its cap 12.5 times too small; the opening sentence now says what each plan aims to do rather than stating that all plans lighten burdens; the methods page gave an old reason for not calculating the Rengo plan; the Checks page still had an old figure for the main finding; the "official tax" we compare with is the survey's own estimate, not tax collected; and more.
+
+**Easier to use.**
+- **Walls.** Each wall in the list now says why take-home pay falls (for example "the spouse stops being a dependant, so National Pension of 215,040 yen and National Health Insurance of 101,786 yen start"). The listed walls are marked on the chart, and the chart explains its ¥100,000 steps.
+- **Phones.** Chart tooltips fit on a phone, and all five header links show.
+- **Your own household.** The household you choose is kept when you move between pages. The Compare page splits 2026 take-home pay into each tax, and says how to see the result at your own income.
+- **Accessibility.** The sliders have names, the full-screen chart is a proper dialog, charts have Japanese labels and number tables, English documents are marked as English, and there is a skip link.
+
+**Still to decide** (HUMAN_TODO H-23), with each question in OPEN_QUESTIONS: Q38 (one yen a month of rounding), Q25 (an "at or above" vs "above" wording conflict), adding the student's parents to H2 (Q16), and whether the site should say who made it.
+
+128 tests pass (and one test kept on purpose as an expected failure: a ministry diagram that the law now contradicts by 100 yen, Q22). Nothing is published yet.

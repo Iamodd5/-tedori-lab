@@ -5,70 +5,70 @@
    "households": 5353665,
    "annual_income_mean": 1203241,
    "annual_income_max": 1744000.0,
-   "baseline_disposable_mean": 940819
+   "baseline_disposable_mean": 944136
   },
   {
    "decile": 2,
    "households": 5353665,
    "annual_income_mean": 2128425,
    "annual_income_max": 2691000.0,
-   "baseline_disposable_mean": 1773952
+   "baseline_disposable_mean": 1775077
   },
   {
    "decile": 3,
    "households": 5353665,
    "annual_income_mean": 2920521,
    "annual_income_max": 3215804.0,
-   "baseline_disposable_mean": 2311164
+   "baseline_disposable_mean": 2313359
   },
   {
    "decile": 4,
    "households": 5353665,
    "annual_income_mean": 3561668,
    "annual_income_max": 4144000.0,
-   "baseline_disposable_mean": 2942415
+   "baseline_disposable_mean": 2942280
   },
   {
    "decile": 5,
    "households": 5353665,
    "annual_income_mean": 4391339,
    "annual_income_max": 4731000.0,
-   "baseline_disposable_mean": 3491426
+   "baseline_disposable_mean": 3487723
   },
   {
    "decile": 6,
    "households": 5353665,
    "annual_income_mean": 5303915,
    "annual_income_max": 5737000.0,
-   "baseline_disposable_mean": 4136672
+   "baseline_disposable_mean": 4137336
   },
   {
    "decile": 7,
    "households": 5353665,
    "annual_income_mean": 6408935,
    "annual_income_max": 7174000.0,
-   "baseline_disposable_mean": 4899035
+   "baseline_disposable_mean": 4897350
   },
   {
    "decile": 8,
    "households": 5353665,
    "annual_income_mean": 7757482,
    "annual_income_max": 8691000.0,
-   "baseline_disposable_mean": 5851324
+   "baseline_disposable_mean": 5859513
   },
   {
    "decile": 9,
    "households": 5353665,
    "annual_income_mean": 9678195,
    "annual_income_max": 11153000.0,
-   "baseline_disposable_mean": 7130863
+   "baseline_disposable_mean": 7141453
   },
   {
    "decile": 10,
    "households": 5353665,
    "annual_income_mean": 15840102,
    "annual_income_max": 40746000.0,
-   "baseline_disposable_mean": 10653137
+   "baseline_disposable_mean": 10665538
   }
  ],
  "designs": {
@@ -80,8 +80,8 @@
    "status": "incomplete",
    "blocked_by": [
     {
-     "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
-     "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
+     "ja": "支給額や収入の線引きはまだ決まっていません（法律案では、後で政令で決めることになっています）",
+     "en": "the payment amounts and income limits haven't been decided yet (under the bill, they will be set later by Cabinet order)"
     }
    ],
    "approximations": [],
@@ -94,15 +94,15 @@
     },
     "claim_most_beneficiaries_gain_more_than_food_cut": "給付の対象となる中所得・低所得の現役勤労者の大宗については…飲食料品の消費税率引下げの効果を上回る支援を受けられる",
     "cite_claim": {
-     "title": "令和8年8月5日 資料3",
+     "title": "７月30日総理会見のポイント（参考資料２、2026年8月5日公表）",
      "file": "sources/gov/20260805_03_siryou3.pdf",
      "page": 2
     }
    },
    "site_note": null,
    "summary": {
-    "ja": "2029年度から、働いている人に年1回お金を支給する制度です（就業者負担軽減支援金）。前の年の収入をもとに、稼ぎが一定額を超えると支給が始まり、稼ぎが増えるにつれて支給額も増え、上限に達したあとは収入が一定額を超えると減っていきます。子ども1人ごとに上乗せがあります。対象になるのは、払っている税金と社会保険料（受け取る公的年金を差し引いた額）が一定額を超える人です。金額や収入の線引きは、政府がこれから政令で決めます。",
-    "en": "From fiscal 2029, a yearly cash payment to people who work (the \"worker burden-relief payment\"). It is based on the previous year's income: it starts once earnings pass a minimum, grows as earnings grow, levels off, and then shrinks once total income passes a set level. There is extra for each child. To qualify, the tax and social insurance you pay, minus any public pension you receive, must be above a set level. The government will set the amounts and income limits later by Cabinet order."
+    "ja": "政府が2026年10月9日に国会に提出した法律案の内容です（2026年11月3日時点で衆議院で審議中）。就業者負担軽減支援金は2027年4月に始まり、2029年度から本格的な形になります。ここで「本格版」と呼んでいるのは、この2029年度からの形です。前の年の所得をもとに年1回支給します（2029年度だけは、4月と年度内の2回に分けて、それぞれ半年分程度を支給）。勤労所得が一定額を超えると支給が始まり、低い所得では定額、そこから稼ぎが増えるにつれて支給額も増え、上限に達したあとは所得が一定額を超えると減っていきます。子ども1人ごとに上乗せがあります。対象になるのは、勤労所得が一定額を超え、合計所得が一定額以下で、払っている税金と社会保険料（受け取る公的年金を差し引いた額）が一定額を超える人です。結婚している人は、配偶者の前の年の合計所得が一定額を超えると対象になりません。自営業の人も、一定額を超える事業の所得は勤労所得に数えます。働いていない高齢者と、勤労所得が最低額に届かない人は対象外で、政府はそれぞれへの対応を別に決めるとしています。「年収の壁」で手取りが減る人には、壁が解消されるまでの時限的な措置として、上乗せ（就業促進特例加算）もあります。金額や収入の線引きは、法律案では後で政令で決めることになっていて、まだ決まっていません。",
+    "en": "This is the content of a bill the government submitted to the Diet on 9 October 2026 (still being debated in the House of Representatives on 3 November 2026). The worker burden-relief payment starts in April 2027 and takes its full form from fiscal 2029; \"full version\" on this site means that form. It is paid once a year, based on the previous year's income (in fiscal 2029 only, it is paid twice, in April and later in the year, each about half a year's amount). Payment starts once earned income passes a minimum; it is a flat amount at low incomes, grows as earnings grow, levels off, and then shrinks once total income passes a set level. There is extra for each child. To qualify, earned income must be above a set level, total income at or below a set level, and the tax and social insurance you pay, minus any public pension you receive, above a set level. A married person does not qualify if their spouse's total income in the previous year is above a set level. For the self-employed, business income above a set amount counts as earned income. Older people who don't work, and people whose earned income is below the minimum, are not covered; the government says it will decide separately how to respond for each. For people whose take-home pay falls at an income wall (年収の壁), there is also a temporary top-up (就業促進特例加算) until the walls are removed. Under the bill, the amounts and income limits will be set later by Cabinet order; they haven't been decided."
    }
   },
   "rengo": {
@@ -121,8 +121,8 @@
    "published_estimates": null,
    "site_note": null,
    "summary": {
-    "ja": "労働組合の全国組織である連合の案で、二つの部分からなります。一つ目は、給与収入74万〜250万円の会社員などについて、本人が払う社会保険料・雇用保険料の半額を所得税から差し引き、所得税より大きい分は現金で払う制度です（給与収入200万円を超えると減っていき、250万円でなくなります）。二つ目は、所得税がかからない程度の収入の人に、食料品や光熱費など最低限の買い物にかかる消費税の分を、扶養している人数に応じた定額で払う制度です。二つ目の金額はまだ公表されていません。",
-    "en": "A proposal from Rengo, Japan's national federation of trade unions, in two parts. First, employees earning ¥740,000 to ¥2.5m in salary get half of the social and employment insurance they pay taken off their income tax, and any part bigger than their income tax is paid in cash (it shrinks above ¥2m and is gone at ¥2.5m). Second, people with incomes too low to pay income tax get a fixed cash amount, depending on how many people they support, to cover the consumption tax on basic spending such as food and utilities. The amounts for the second part haven't been published."
+    "ja": "労働組合の全国組織である連合の案です。ここで扱うのは、連合の「税制改革構想（第4次）」（改訂版、2025年5月28日）と「2026年度 連合の重点政策」にある「給付付き税額控除」の部分で、二つの制度からなります（基礎控除を税額控除に変えるなど、同じ構想のほかの提案は含めていません）。一つ目（就労支援給付制度）は、雇われて働く人が対象で（自営業の人は対象外）、給与収入74万〜250万円の会社員などについて（2025年の構想では65万円から）、本人が払う社会保険料・雇用保険料の半額を所得税から差し引き、所得税より大きい分は現金で払う制度です（給与収入200万円を超えると減っていき、250万円でなくなります）。二つ目（消費税還付制度）は、所得税がかからない程度の収入の人に、飲食料品や光熱費など最低限の買い物にかかる消費税の分を、扶養している人数に応じた定額で払う制度で、所得がその水準を超えると徐々に減ってなくなります。連合の構想では、この還付の導入に合わせて、食料品などの軽減税率（8%）を廃止するとしています。連合自身の想定では、必要な財源は一つ目が1.5〜2兆円程度（対象約600万人）、二つ目が消費税収の1割弱程度（対象4000万人程度）です。二つ目の1人あたりの金額はまだ公表されていません。",
+    "en": "A proposal from Rengo, Japan's national federation of trade unions. This site covers the \"refundable tax credit\" part of Rengo's Tax Reform Plan (4th edition, revised, 28 May 2025) and its 2026 key policies, which has two schemes (other proposals in the same plan, such as turning the basic deduction into a tax credit, are not included). First (the work-support credit), for employees only (not the self-employed): those earning ¥740,000 to ¥2.5m in salary (from ¥650,000 in the 2025 plan) get half of the social and employment insurance they pay taken off their income tax, and any part bigger than their income tax is paid in cash (it shrinks above ¥2m and is gone at ¥2.5m). Second (the consumption tax refund), people with incomes too low to pay income tax get a fixed cash amount, depending on how many people they support, to cover the consumption tax on basic spending such as food and utilities; it shrinks and ends as income rises above that level. Rengo's plan also abolishes the reduced 8% consumption tax rate on food and other items when the refund starts. Rengo's own estimate of the cost is about ¥1.5–2 trillion for the first scheme (about 6 million people) and a little under 10% of consumption tax revenue for the second (about 40 million people). The per-person amounts for the second scheme haven't been published."
    }
   },
   "daiwa": {
@@ -140,8 +140,13 @@
     },
     {
      "question": "Q18",
-     "ja": "税額控除が所得税より大きいときに現金で払う額は、健康保険（介護保険を含む）と年金の保険料の額までとしています。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。",
-     "en": "When the credit is bigger than your income tax, the cash paid out is capped at what you paid for health insurance (including long-term care insurance) and pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out."
+     "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主の上限にだけ数えています。",
+     "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap."
+    },
+    {
+     "question": "Q26",
+     "ja": "夫婦で収入の多い方が配偶者の国民年金保険料を払って所得から差し引く場合も、現金で払う額の上限には、配偶者本人の保険料として数えています。大和総研はこの場合を示していません。",
+     "en": "When the higher earner in a couple pays the spouse's National Pension premiums and deducts them, they still count toward the spouse's own cash cap. Daiwa doesn't cover this case."
     }
    ],
    "published_estimates": {
@@ -167,31 +172,31 @@
     }
    },
    "site_note": {
-    "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。",
-    "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published."
+    "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。2026年の制度では、なくなる基礎控除が大きく、税額控除は小さくなるため、どちらも手取りが大和総研の数字より少なく出る方向に働きます。",
+    "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger and the credit is smaller, and both push take-home pay below Daiwa's figures."
    },
    "summary": {
-    "ja": "民間の研究所である大和総研が2025年10月に出した案です。所得税を払うすべての人について、所得税の基礎控除をなくし、代わりに一定額の税額控除（所得税から直接差し引く額）を設けます。控除が所得税より大きい人には、残りを現金で払いますが、給与や事業の収入にかかる社会保険料として払った額までです。住民税は変えません。",
-    "en": "A proposal published in October 2025 by the Daiwa Institute of Research, a private research institute. For everyone who pays income tax, it removes the income tax basic deduction and gives a fixed tax credit instead (an amount subtracted straight from income tax). If the credit is bigger than your income tax, the rest is paid to you in cash, but only up to what you paid in social insurance on your wages or business income. Resident tax doesn't change."
+    "ja": "民間の研究所である大和総研が2025年10月に出した「社会保険料還付付き税額控除」の案です。所得税の対象となるすべての人（いま所得税が0円の人も含む）について、所得税の基礎控除をなくし、代わりに一定額の税額控除（所得税から直接差し引く額）を設けます。控除が所得税より大きい人には、残りを現金で払いますが、働いて払った社会保険料（給与や事業の収入にかかるもの）の額までです。自営業の人は、払った国民健康保険料と国民年金保険料の額まで現金を受け取れます。年金だけで暮らす人など、働いて保険料を払っていない人には現金は出ません。住民税は変えません。大和総研のレポートは、所得税がかかり始める年収（178万円か203万円か）、基礎控除をすべて税額控除にするか上乗せ分だけにするか、現金での支給があるかないかを組み合わせた8通りを試算しています。このサイトは、レポートの要約が取り上げた「基礎控除をすべてなくす、178万円、現金の支給あり」の案を計算しています。",
+    "en": "A proposal published in October 2025 by the Daiwa Institute of Research, a private research institute: a \"tax credit with a social-insurance refund\". For everyone subject to income tax (including people whose income tax is now zero), it removes the income tax basic deduction and gives a fixed tax credit instead (an amount subtracted straight from income tax). If the credit is bigger than your income tax, the rest is paid to you in cash, but only up to what you paid in social insurance on your wages or business income. The self-employed can receive cash up to the National Health Insurance and National Pension they paid. People who pay no social insurance on work, such as those living on a pension, get no cash. Resident tax doesn't change. Daiwa's report works out eight versions, combining: the income where income tax starts (¥1.78m or ¥2.03m), turning the whole basic deduction into a credit or only its recent top-up, and with or without the cash payment. This site calculates the version in the report's summary: the whole basic deduction removed, ¥1.78m, with the cash payment."
    },
    "by_decile": [
     {
      "decile": 1,
-     "mean_change": 9209,
+     "mean_change": 8659,
      "winners_share": 0.2055,
      "losers_share": 0.0,
      "unchanged_share": 0.7945
     },
     {
      "decile": 2,
-     "mean_change": 6498,
+     "mean_change": 6405,
      "winners_share": 0.2123,
      "losers_share": 0.0,
      "unchanged_share": 0.7877
     },
     {
      "decile": 3,
-     "mean_change": 4765,
+     "mean_change": 4739,
      "winners_share": 0.131,
      "losers_share": 0.0,
      "unchanged_share": 0.869
@@ -212,67 +217,67 @@
     },
     {
      "decile": 6,
-     "mean_change": -11256,
+     "mean_change": -11265,
      "winners_share": 0.1778,
      "losers_share": 0.475,
      "unchanged_share": 0.3472
     },
     {
      "decile": 7,
-     "mean_change": -27546,
+     "mean_change": -27607,
      "winners_share": 0.2306,
      "losers_share": 0.6761,
      "unchanged_share": 0.0933
     },
     {
      "decile": 8,
-     "mean_change": -24085,
+     "mean_change": -24223,
      "winners_share": 0.2983,
      "losers_share": 0.6943,
      "unchanged_share": 0.0074
     },
     {
      "decile": 9,
-     "mean_change": -52392,
+     "mean_change": -52396,
      "winners_share": 0.1435,
      "losers_share": 0.8565,
      "unchanged_share": 0.0
     },
     {
      "decile": 10,
-     "mean_change": -85759,
+     "mean_change": -85770,
      "winners_share": 0.055,
      "losers_share": 0.945,
      "unchanged_share": 0.0
     }
    ],
-   "cost_yen": -949669288812,
+   "cost_yen": -954445527256,
    "cost_components_yen": {
-    "income_tax": 1531233888720,
+    "income_tax": 1531276492104,
     "resident_tax": 0,
     "social_insurance": 0,
-    "credit": 581564599907,
+    "credit": 576830964848,
     "consumption_tax": 0
    }
   },
   "food_tax_cut": {
    "label": {
     "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
-    "en": "Government plan (FY2027–28 stopgap: 1% tax on food + payment)"
+    "en": "Government plan (FY2027–28 bridge: 1% tax on food + payment)"
    },
    "status": "incomplete",
    "blocked_by": [
     {
-     "ja": "政府が支給額や収入の線引きをまだ公表していません（後で政令で決める予定）",
-     "en": "the government hasn't yet published the payment amounts and income limits (they will be set later by Cabinet order)"
+     "ja": "支給額や収入の線引きはまだ決まっていません（法律案では、後で政令で決めることになっています）",
+     "en": "the payment amounts and income limits haven't been decided yet (under the bill, they will be set later by Cabinet order)"
     }
    ],
    "approximations": [],
    "published_estimates": null,
    "site_note": null,
    "summary": {
-    "ja": "2027年4月から2029年3月まで、いま8%の軽減税率がかかっている飲食料品の消費税を1%に下げます。同じ期間、働いている人への支給（2029年度から始まる政府案の支給を簡単にしたもの）も行い、その総額は飲食料品の消費税1%分以内とします。支給額はまだ公表されていません。",
-    "en": "From April 2027 to March 2029, consumption tax on food and drink that is now taxed at the reduced 8% rate falls to 1%. Over the same period there is also a simpler version of the government's worker payment (the one planned from fiscal 2029), with a total cost no larger than 1% of the consumption tax on food. The payment amounts haven't been published yet."
+    "ja": "政府が2026年10月9日に国会に提出した法律案の内容です（2026年11月3日時点で衆議院で審議中）。2027年4月から2029年3月まで、いま8%の軽減税率がかかっている飲食料品の消費税を1%に下げます。同じ期間、就業者負担軽減支援金を先に始めて、所得に応じて支給します（2029年度からの本格版と違い、配偶者の所得の条件はなく、子どもの上乗せは16歳未満が対象）。2年間の支給の総額は、1%に下げた後の飲食料品の消費税の税収（見込み）を超えない範囲とします。「年収の壁」で手取りが減る人への上乗せ（就業促進特例加算）もこの期間から支給します。支給額は、法律案では後で政令で決めることになっていて、まだ決まっていません。",
+    "en": "This is the content of a bill the government submitted to the Diet on 9 October 2026 (still being debated in the House of Representatives on 3 November 2026). From April 2027 to March 2029, consumption tax on food and drink that is now taxed at the reduced 8% rate falls to 1%. Over the same period the worker burden-relief payment starts early, paid according to income (unlike the full version from fiscal 2029, there is no test of the spouse's income, and the extra for children covers children under 16). The total paid over the two years is no larger than the expected revenue from the remaining 1% consumption tax on food. The temporary top-up for people whose take-home pay falls at an income wall (就業促進特例加算) is also paid in this period. Under the bill, the payment amounts will be set later by Cabinet order; they haven't been decided."
    }
   }
  },
@@ -286,72 +291,86 @@
    {
     "band": "100万円以下",
     "model": 15284541,
-    "official": 3703056
+    "official": 3703056,
+    "official_part_year": 5982206
    },
    {
     "band": "200万円以下",
     "model": 14622271,
-    "official": 5824930
+    "official": 5824930,
+    "official_part_year": 929309
    },
    {
     "band": "300万円以下",
     "model": 7578733,
-    "official": 6745640
+    "official": 6745640,
+    "official_part_year": 986585
    },
    {
     "band": "400万円以下",
     "model": 7617433,
-    "official": 7986672
+    "official": 7986672,
+    "official_part_year": 621454
    },
    {
     "band": "500万円以下",
     "model": 5659320,
-    "official": 7917758
+    "official": 7917758,
+    "official_part_year": 276015
    },
    {
     "band": "600万円以下",
     "model": 4955611,
-    "official": 6144924
+    "official": 6144924,
+    "official_part_year": 136777
    },
    {
     "band": "700万円以下",
     "model": 3782120,
-    "official": 4035253
+    "official": 4035253,
+    "official_part_year": 64794
    },
    {
     "band": "800万円以下",
     "model": 2360337,
-    "official": 2776867
+    "official": 2776867,
+    "official_part_year": 44854
    },
    {
     "band": "900万円以下",
     "model": 1547603,
-    "official": 1833950
+    "official": 1833950,
+    "official_part_year": 30897
    },
    {
     "band": "1,000万円以下",
     "model": 1007523,
-    "official": 1266070
+    "official": 1266070,
+    "official_part_year": 20871
    },
    {
     "band": "1,500万円以下",
     "model": 1187905,
-    "official": 2422427
+    "official": 2422427,
+    "official_part_year": 53697
    },
    {
     "band": "2,000万円以下",
     "model": 492655,
-    "official": 609530
+    "official": 609530,
+    "official_part_year": 13450
    },
    {
     "band": "2,500万円以下",
     "model": 52372,
-    "official": 167273
+    "official": 167273,
+    "official_part_year": 1985
    },
    {
     "band": "2,500万円超",
     "model": 0,
-    "official": 196244
+    "official": 196244,
+    "official_part_year": 1987
    }
   ],
   "people_65_plus": {
@@ -359,11 +378,11 @@
    "survey": 33376907
   },
   "income_tax": {
-   "model_baseline_2026": 10173502491124,
+   "model_baseline_2026": 10173944412868,
    "survey_estimate_2024": 11636229406234
   },
   "resident_tax": {
-   "model_baseline_2026": 12348195108512,
+   "model_baseline_2026": 12233606858147,
    "survey_estimate_2024": 12812796487612
   },
   "income_covered": {
@@ -456,8 +475,8 @@
   },
   {
    "key": "work",
-   "ja": "給料をもらう人は全員、週20時間以上・従業員51人以上の会社で働いているとしています。そのため月8.8万円以上稼ぐと、会社の健康保険と厚生年金に入ります。",
-   "en": "Everyone with a wage is treated as working 20+ hours a week at a company with more than 50 employees, so they join the company's health insurance and pension once they earn ¥88,000 a month."
+   "ja": "給料をもらう人は全員、週20時間以上・従業員51人以上の会社で働いているとしています。そのため、2026年9月までは月8.8万円以上稼ぐと、10月からは稼ぎにかかわらず、会社の健康保険と厚生年金に入ります（月8.8万円の条件は2026年10月1日になくなりました）。",
+   "en": "Everyone with a wage is treated as working 20+ hours a week at a company with more than 50 employees. So they are in the company's health insurance and pension from January to September 2026 if they earn ¥88,000 a month or more, and from October whatever they earn (the ¥88,000 condition ended on 1 October 2026)."
   },
   {
    "key": "income_sources",

@@ -1,8 +1,27 @@
 # Individual resident tax (特別区民税・都民税) charged on 2026 income (令和9年度分), Shinjuku ward.
 # Employment income and the income definitions follow income tax (MIC note p.20: 給与所得控除 "所得税と同様の対応").
-# Personal deduction amounts for 令和9年度 have not been published as a ward table yet; the 令和7年度 Shinjuku table
-# is used and labelled approximation (OPEN_QUESTIONS Q13).
+# Deduction amounts and limits are the 令和9年度 ones in the law as amended by 令和8年法律第2号 (OPEN_QUESTIONS Q13, answered 2026-11-03).
 source:
+  law:
+    title: 地方税法（令和8年法律第2号による改正後、令和9年1月1日施行の条文。令和9年度分の個人住民税に適用）
+    url: https://laws.e-gov.go.jp/api/2/law_data/325AC0000000226_20270101_508AC0000000002?law_full_text_format=xml&response_format=xml
+    file: sources/law/chihozeiho_20270101.xml
+    published: 2026-03-31
+  income_tax_law:
+    title: 所得税法（令和8年法律第12号による改正後、令和8年12月1日施行の条文）
+    url: https://laws.e-gov.go.jp/law/340AC0000000033
+    file: sources/law/shotokuzeiho_20261201.xml
+    published: 2026-03-31
+  ota_deductions:
+    title: 大田区 所得控除（住民税）
+    url: https://www.city.ota.tokyo.jp/seikatsu/zeikin/kazei/shotokukojyo.html
+    file: sources/tax/ota_shotokukojo.html
+    published: 2026-08-31
+  ota_example:
+    title: 大田区 住民税の計算のしくみ（計算例）
+    url: https://www.city.ota.tokyo.jp/seikatsu/zeikin/kazei/keisannosikumi.html
+    file: sources/tax/ota_keisan_no_shikumi.html
+    published: 2026-10-27
   mic:
     title: 個人住民税の基礎控除等について（総務省 自治税務局 市町村税課 資料３）
     url: https://www.soumu.go.jp/main_content/001075462.pdf
@@ -26,54 +45,50 @@ source:
 
 employment_income_same_as_income_tax: {value: true, cite: {source: mic, page: 20}}
 basic_deduction:
-  amount: {value: 430000, cite: {source: mic, page: 6}, note: "最高43万円, unchanged"}
+  amount: {value: 430000, cite: {source: law, page: 1, section: "314条の2第2項第1号"}, note: "最高43万円, unchanged for 令和9年度 (Chuo, Adachi)"}
   taper:
     bands: [[24000000, 430000], [24500000, 290000], [25000000, 150000]]
     above: 0
-    cite: {source: shinjuku_r7, page: 2}
-    approximation: true
-    explanation: "令和7年度 table; Q13"
-    site: &r7_table
-      ja: （近似）住民税の控除額（配偶者控除・扶養控除など）は、新宿区の2025年度分の案内から取っています。2026年の収入にかかる2027年度分の案内がまだ公表されていないためです。
-      en: (Approximation) Resident tax deduction amounts (for a spouse, dependants and so on) are taken from Shinjuku's guide for fiscal 2025, because the guide for fiscal 2027, which covers 2026 income, hasn't been published yet.
-personal_deductions:
-  approximation: true
-  explanation: "令和7年度 Shinjuku amounts; 令和9年度 ward table not yet published (Q13)"
-  site: *r7_table
-  spouse: {value: 330000, cite: {source: shinjuku_r7, page: 2}}
-  elderly_spouse: {value: 380000, cite: {source: shinjuku_r7, page: 2, section: "早見表① 老人控配 (earner ≤ 9m)"}}
-  dependent_general_16_plus: {value: 330000, cite: {source: shinjuku_r7, page: 2}}
-  dependent_specific_19_to_22: {value: 450000, cite: {source: shinjuku_r7, page: 2}}
-  single_parent: {value: 300000, cite: {source: shinjuku_r7, page: 2}}
-  working_student: {value: 260000, cite: {source: shinjuku_r7, page: 2}}
-  working_student_income_limit: {value: 750000, cite: {source: shinjuku_r7, page: 2}}
-  elderly_spouse_age_from: {value: 70, cite: {source: shinjuku_r7, page: 2}}
-  dependent_general_age_from: {value: 16, cite: {source: shinjuku_r7, page: 2}}
-  dependent_specific_age_from: {value: 19, cite: {source: shinjuku_r7, page: 2}}
-  dependent_specific_age_under: {value: 23, cite: {source: shinjuku_r7, page: 2}}
-  spouse_earner_income_limit: {value: 10000000, cite: {source: shinjuku_r7, page: 2}, note: "earner above this: no spouse deduction"}
-  spouse_earner_full_limit: {value: 9000000, cite: {source: shinjuku_r7, page: 2}, note: "earner ≤ 9m column; above it the spouse special deduction and spouse 差 are not counted here"}
-  dependant_income_limit: {value: 580000, cite: {source: mic, page: 28, section: "④扶養親族等に係る所得要件の引上げ 改正後：58万円 (令和8年度分から)"}}  # 令和9年度 may follow income tax to 620,000 (Q13)
-  spouse_special:  # spouse income bands (upper inclusive) -> amount, earner total income ≤ 9m column
+    cite: {source: law, page: 1, section: "314条の2第2項第1号〜第3号"}
+personal_deductions:  # 令和9年度 amounts from the law as amended (Q13 answered 2026-11-03); none changed except the two limits below
+  spouse: {value: 330000, cite: {source: law, page: 1, section: "314条の2第1項第10号イ(1)"}}
+  elderly_spouse: {value: 380000, cite: {source: law, page: 1, section: "314条の2第1項第10号イ(2) (earner ≤ 9m)"}}
+  dependent_general_16_plus: {value: 330000, cite: {source: law, page: 1, section: "314条の2第1項第11号"}}
+  dependent_specific_19_to_22: {value: 450000, cite: {source: law, page: 1, section: "314条の2第1項第11号"}}
+  single_parent: {value: 300000, cite: {source: law, page: 1, section: "314条の2第1項第8号の2"}, note: "33万 only from 令和10年度 (MIC p.35)"}
+  working_student: {value: 260000, cite: {source: law, page: 1, section: "314条の2第1項第9号"}}
+  working_student_income_limit: {value: 890000, cite: {source: income_tax_law, page: 1, section: "所得税法2条1項32号 (令和8年分), applied by 地方税法314条の2第9項 and 292条5項"}}
+  elderly_spouse_age_from: {value: 70, cite: {source: law, page: 1, section: "292条1項 (老人控除対象配偶者)"}}
+  dependent_general_age_from: {value: 16, cite: {source: law, page: 1, section: "314条の2第1項第11号"}}
+  dependent_specific_age_from: {value: 19, cite: {source: law, page: 1, section: "314条の2第1項第11号"}}
+  dependent_specific_age_under: {value: 23, cite: {source: law, page: 1, section: "314条の2第1項第11号"}}
+  spouse_earner_income_limit: {value: 10000000, cite: {source: law, page: 1, section: "292条1項8号"}, note: "earner above this: no spouse deduction"}
+  spouse_earner_full_limit: {value: 9000000, cite: {source: law, page: 1, section: "314条の2第1項第10号イ"}, note: "earner ≤ 9m column; above it the spouse special deduction and spouse 差 are not counted here (Q37)"}
+  dependant_income_limit: {value: 620000, cite: {source: law, page: 1, section: "292条1項7号・9号 (令和8年法律第2号; 附則11条2項: 令和9年度分から)"}, note: "also MIC p.35: 改正前58万円 → 改正後62万円"}
+  spouse_special:  # spouse income above 620,000 (upper inclusive) -> amount, earner total income ≤ 9m column
     bands: [[1000000, 330000], [1050000, 310000], [1100000, 260000], [1150000, 210000], [1200000, 160000], [1250000, 110000], [1300000, 60000], [1330000, 30000]]
-    cite: {source: shinjuku_r7, page: 2, section: "早見表②"}
-personal_deduction_difference:  # 人的控除額の差 used for the 調整控除 tax credit
-  approximation: true
-  explanation: "令和7年度 Shinjuku table; Q13"
-  site: *r7_table
-  basic: {value: 50000, cite: {source: shinjuku_r7, page: 3}}
-  spouse: {value: 50000, cite: {source: shinjuku_r7, page: 3}}
-  elderly_spouse: {value: 100000, cite: {source: shinjuku_r7, page: 3, section: "人的控除額の差 老人配偶者 (earner ≤ 9m)"}}
-  dependent_general: {value: 50000, cite: {source: shinjuku_r7, page: 3}}
-  dependent_specific: {value: 180000, cite: {source: shinjuku_r7, page: 3}}
-  single_parent_mother: {value: 50000, cite: {source: shinjuku_r7, page: 3}}
-  working_student: {value: 10000, cite: {source: shinjuku_r7, page: 3}}
-adjustment_credit:  # 調整控除: 5% of min(差, taxable) if taxable ≤ 2m; else 5% of max(差 - (taxable - 2m), 50,000)
-  rate: {value: 0.05, cite: {source: shinjuku_r7, page: 3}}
-  threshold: {value: 2000000, cite: {source: shinjuku_r7, page: 3}}
-  minimum_base: {value: 50000, cite: {source: shinjuku_r7, page: 3}}
-  income_limit: {value: 25000000, cite: {source: shinjuku_r7, page: 3}}
-income_levy_rate: {value: 0.10, cite: {source: mic_general, page: 1}, note: "ward 6% + Tokyo 4%"}
+    cite: {source: ota_deductions, page: 1, section: "配偶者特別控除額（令和9年度以降）; law 314条の2第1項第10号の2"}
+  specific_relative_special:  # 特定親族特別控除: relatives 19-22 with income above 620,000 up to 1,230,000 (upper inclusive) -> amount
+    bands: [[950000, 450000], [1000000, 410000], [1050000, 310000], [1100000, 210000], [1150000, 110000], [1200000, 60000], [1230000, 30000]]
+    cite: {source: ota_deductions, page: 1, section: "特定親族特別控除額（令和9年度以降）; law 314条の2第1項第12号"}
+personal_deduction_difference:  # 人的控除額の差 used for the 調整控除 tax credit (no entry for 特定親族特別控除)
+  basic: {value: 50000, cite: {source: law, page: 1, section: "314条の6第1号イ"}}
+  spouse: {value: 50000, cite: {source: law, page: 1, section: "314条の6第1号イ表(6)(i) (earner ≤ 9m)"}}
+  elderly_spouse: {value: 100000, cite: {source: law, page: 1, section: "314条の6第1号イ表(6)(ii) (earner ≤ 9m)"}}
+  dependent_general: {value: 50000, cite: {source: law, page: 1, section: "314条の6第1号イ表(8)(i)"}}
+  dependent_specific: {value: 180000, cite: {source: law, page: 1, section: "314条の6第1号イ表(8)(ii)"}}
+  single_parent_mother: {value: 50000, cite: {source: law, page: 1, section: "314条の6第1号イ表(4)"}}
+  working_student: {value: 10000, cite: {source: law, page: 1, section: "314条の6第1号イ表(5)"}}
+adjustment_credit:  # 調整控除: rate × min(差, taxable) if taxable ≤ 2m; else rate × max(差 - (taxable - 2m), 50,000)
+  rate:
+    ward: {value: 0.03, cite: {source: law, page: 1, section: "314条の6第1号・第2号"}}
+    tokyo: {value: 0.02, cite: {source: law, page: 1, section: "37条第1号・第2号"}}
+  threshold: {value: 2000000, cite: {source: law, page: 1, section: "314条の6第1号・第2号"}}
+  minimum_base: {value: 50000, cite: {source: law, page: 1, section: "314条の6第2号"}}
+  income_limit: {value: 25000000, cite: {source: law, page: 1, section: "314条の6"}}
+income_levy_rate:  # 特別区民税 and 都民税 are worked out and rounded separately (rounding below)
+  ward: {value: 0.06, cite: {source: law, page: 1, section: "314条の3第1項 (1条2項: 市町村 = 特別区)"}}
+  tokyo: {value: 0.04, cite: {source: law, page: 1, section: "35条第1項 (1条2項: 道府県 = 都)"}}
 per_capita_levy:  # 均等割: ward 3,000 + Tokyo 1,000, plus national forest environment tax 1,000
   ward: {value: 3000, cite: {source: shinjuku_r7, page: 1}}
   tokyo: {value: 1000, cite: {source: shinjuku_r7, page: 1}}
@@ -89,11 +104,7 @@ relief_band:  # just above the income-levy line, the income levy is at most the 
   value: "income levy <= total income - income-levy line (non_taxable, income_levy_add)"
   cite: {source: mic, page: 18, section: "（参考）非課税限度額（所得割）のイメージ — 負担調整措置"}
   note: "Read from MIC's worked figure (line 1,120,000; income 1,124,200; levy 4,200). Law text (地方税法附則3条の3) not yet in sources/ (OPEN_QUESTIONS Q22)."
-rounding:  # 地方税法 20条の4の2; the text of the law is not yet in sources/ (OPEN_QUESTIONS Q14). Effect < 1,100 yen.
-  approximation: true
-  explanation: "Rounding as commonly applied (taxable income to 1,000 yen, tax to 100 yen, both down); source to be added"
-  site:
-    ja: （近似）住民税では、課税される所得の1,000円未満と、税額の100円未満を切り捨てています。一般的に使われている方法ですが、法律の条文ではまだ確認していません（差は最大でも1,100円未満です）。
-    en: (Approximation) For resident tax, we round taxable income down to the nearest ¥1,000 and the tax down to the nearest ¥100. This is the common practice, but we haven't yet checked it against the text of the law (the difference is under ¥1,100 at most).
-  taxable_income: {value: 1000, note: "round down"}
-  income_levy: {value: 100, note: "round down"}
+rounding:  # Q14 answered 2026-11-03. 第8項 joins the two taxes only when a whole amount is under 100 yen.
+  taxable_income: {value: 1000, note: "round down", cite: {source: law, page: 1, section: "20条の4の2第1項"}}
+  income_levy: {value: 100, note: "round down, separately for 特別区民税 and 都民税", cite: {source: law, page: 1, section: "20条の4の2第3項・第8項"}}
+  example: {cite: {source: ota_example, page: 1, section: "特別区民税 201,540 → 201,500; 都民税 133,360 → 133,300"}}

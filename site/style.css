@@ -6,7 +6,10 @@
   --font: "BIZ UDPGothic", "BIZ UDPゴシック", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", system-ui, sans-serif;
 }
 * { box-sizing: border-box; }
-html[data-lang="ja"] [lang="en"]:not(html), html[data-lang="en"] [lang="ja"]:not(html) { display: none; }
+/* the two languages sit side by side in span/p pairs; other elements with lang (a document, the language button) always show */
+html[data-lang="ja"] :is(span, p)[lang="en"], html[data-lang="en"] :is(span, p)[lang="ja"] { display: none; }
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 16px; top: 8px; z-index: 200; background: var(--paper); padding: 6px 12px; border: 2px solid var(--ai); border-radius: var(--r); }
 body { font-family: var(--font); font-size: 16px; line-height: 1.75; color: var(--ink); background: var(--paper);
        margin: 0 auto; max-width: 960px; padding: 0 16px 56px; }
 html[lang="en"] body { line-height: 1.6; }
@@ -24,15 +27,15 @@ header nav::-webkit-scrollbar { display: none; }
 header nav a { color: var(--muted); text-decoration: none; white-space: nowrap; padding: 20px 0 17px; border-bottom: 3px solid transparent; font-size: 15px; }
 header nav a:hover { color: var(--ai); }
 header nav a[aria-current="page"] { color: var(--ink); font-weight: 700; border-bottom-color: var(--ai); }
+header nav a:focus-visible { outline-offset: -2px; }  /* the nav clips anything outside it */
 header button, .btn { font: inherit; font-size: 14px; padding: 5px 12px; border: 1px solid var(--rule); background: var(--paper);
                       color: var(--ink); border-radius: var(--r); cursor: pointer; }
 header button:hover, .btn:hover { border-color: var(--ai); color: var(--ai); }
-@media (min-width: 760px) { header { position: sticky; top: 0; z-index: 50; } }
+@media (min-width: 760px) { header { position: sticky; top: 0; z-index: 50; } html { scroll-padding-top: 80px; } }
 @media (max-width: 759px) {
   header { grid-template-columns: 1fr auto; }
-  header nav { grid-column: 1 / -1; grid-row: 2; gap: 18px; padding-right: 24px;
-               mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent); }  /* the fade says "scroll for more" */
-  header nav a { padding: 8px 0 9px; }
+  header nav { grid-column: 1 / -1; grid-row: 2; gap: 0 18px; flex-wrap: wrap; overflow: visible; }  /* all five links show on a phone */
+  header nav a { padding: 6px 0 7px; }
 }
 
 /* type */
@@ -110,7 +113,7 @@ td.reason { text-align: left; color: var(--muted); }
 .nav-window:active { cursor: grabbing; }
 .nav-window .grip { position: absolute; top: 15%; height: 70%; width: 10px; background: var(--ai); border-radius: 3px; cursor: ew-resize; }
 .nav-window .grip.l { left: -6px; } .nav-window .grip.r { right: -6px; }
-@media (pointer: coarse) { .nav-window .grip { width: 16px; } .nav-window .grip.l { left: -9px; } .nav-window .grip.r { right: -9px; } }
+@media (pointer: coarse) { .nav-window .grip { width: 24px; top: 0; height: 100%; min-height: 24px; } .nav-window .grip.l { left: -13px; } .nav-window .grip.r { right: -13px; } }
 .zoom-sel { position: absolute; display: none; background: rgba(31, 78, 121, .14); border-left: 1px solid var(--ai); border-right: 1px solid var(--ai); pointer-events: none; }
 .hint { margin: 2px 0 0; }
 .chart-panel.big { position: fixed; inset: 0; z-index: 100; margin: 0; border: 0; border-radius: 0; overflow: auto; padding: 0 16px 16px; }

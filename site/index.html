@@ -11,9 +11,10 @@
 </head>
 <body>
 <h1><span lang="ja">税の案ごとに、手取りはどう変わる？</span><span lang="en">How would each tax plan change your take-home pay?</span></h1>
-<p><span lang="ja">政府などが、働く人の税金や社会保険料の負担を軽くする案を出しています。その一つが「給付付き税額控除」で、所得税を減らし、減らしきれない分は現金で払うしくみです。このサイトでは、4つの案が、例として作った8つの世帯の手取り（税金と保険料を引いた後に残るお金）をどう変えるかを、同じ方法で計算しています。</span>
-<span lang="en">The government and others have put forward plans to lower the tax and social insurance that working people pay. One idea is a "refundable tax credit" (給付付き税額控除): it cuts your income tax, and if the cut is bigger than the tax you owe, you get the rest in cash. This site works out, with one method, how four of these plans would change the take-home pay (what is left after tax and insurance) of eight example households.</span></p>
-<section class="hero" aria-label="例 / Example">
+<p><span lang="ja">政府や労働団体、民間の研究所が、働く人の税金・社会保険料と給付のしくみを変える案を出しています。どの案も、所得の低い（または中くらいの）働く人の負担を軽くすることを目的に掲げていますが、世帯によって手取りが増える場合も減る場合もあります。案の一つの形が「給付付き税額控除」で、所得税を減らし、減らしきれない分は現金で払うしくみです。政府の案は、所得税を減らすのではなく、市区町村が現金で支給するしくみで、政府はこれを本格的な給付付き税額控除への「第一歩」としています。</span>
+<span lang="en">The government, a trade union federation and a private research institute have put forward plans that change how working people's tax, social insurance and benefits work. Each plan says it aims to lighten the burden on people in work on low (or middle) incomes, but depending on the household, take-home pay can go up or down. One form these plans take is a "refundable tax credit" (給付付き税額控除): it cuts your income tax, and if the cut is bigger than the tax you owe, you get the rest in cash. The government's plan doesn't cut income tax: municipalities pay the money in cash, and the government calls it a "first step" towards a full refundable tax credit.</span></p>
+<p id="intro2"></p>
+<section class="hero" id="hero">
   <div class="slip-head" id="sliphead"></div>
   <dl class="slip">
     <div><dt id="slip1t"></dt><dd id="slip1"></dd></div>
@@ -21,8 +22,10 @@
   </dl>
   <div class="slip-foot"><p id="lead"></p></div>
 </section>
+<p class="note" id="leadnote"></p>
+<p class="note"><span lang="ja">例の世帯はすべて東京都新宿区に住んでいるとしています。東京以外では、会社員の健康保険料率（協会けんぽ、都道府県ごと）と、国民健康保険料・住民税の一部（市区町村ごと）が変わります。所得税、厚生年金、雇用保険のしくみは全国共通です。</span><span lang="en">Every example household lives in Shinjuku, Tokyo. Elsewhere, the health insurance rate for employees (協会けんぽ, set by prefecture) and parts of National Health Insurance and resident tax (set by each municipality) are different. Income tax, employee pension and employment insurance work the same everywhere.</span></p>
 
-<nav class="cards" aria-label="What you can do here">
+<nav class="cards" id="cards">
   <a href="compare.html"><strong><span lang="ja">案を比べる</span><span lang="en">Compare the plans</span></strong><span lang="ja">例の世帯ごとに、どの案で手取りがいくら変わるか</span><span lang="en">How much each plan changes an example household's take-home pay</span></a>
   <a href="population.html"><strong><span lang="ja">全世帯で見る</span><span lang="en">See all households</span></strong><span lang="ja">収入の高い世帯・低い世帯で、得する人と損する人はどれくらいか</span><span lang="en">Who gains and who loses, from low to high incomes</span></a>
   <a href="builder.html"><strong><span lang="ja">自分で案を作る</span><span lang="en">Build your own plan</span></strong><span lang="ja">つまみを動かして、自分の案の効果を見る</span><span lang="en">Move sliders and see what your own plan would do</span></a>
@@ -40,9 +43,12 @@
 <span lang="en">Choose an example household to see how its take-home pay changes as one person's income goes up from zero. A "wall" is where income goes up but take-home pay goes down.</span></p>
 <label><span lang="ja">世帯を選ぶ：</span><span lang="en">Choose a household: </span><select id="hh"></select></label>
 <p class="info" id="incomes"></p>
+<p class="note"><span lang="ja">年齢や子どもの人数が違うと、結果も変わります（たとえば40〜64歳の人は介護保険料がかかり、16歳以上の子どもがいると扶養控除があります）。グラフは収入0円から1,000万円まで、どの収入でも見られます。</span><span lang="en">Different ages or numbers of children give different results (for example, people aged 40–64 pay long-term care insurance, and children aged 16 or over bring a dependant deduction). The charts cover every income from ¥0 to ¥10 million.</span></p>
 
 <h3 id="wallshead"></h3>
 <ul id="walls"></ul>
+<p class="note" id="planwall"></p>
+<p class="note"><span lang="ja">「106万円の壁」と呼ばれた、パートの社会保険の「月給8.8万円以上」の条件は、2026年10月1日になくなりました。週20時間以上・従業員51人以上の会社で働く人は、10月からは月給にかかわらず会社の健康保険と厚生年金に入ります（例の世帯H1の説明を参照）。</span><span lang="en">The ¥88,000-a-month condition for part-timers' social insurance, behind the so-called "¥1.06m wall", ended on 1 October 2026. People working 20+ hours a week at a company with more than 50 employees are in company health insurance and pension from October whatever their pay (see example household H1).</span></p>
 
 <div class="chart-panel" id="wallpanel">
 <div class="panel-bar"><div class="ranges" id="ranges"><span lang="ja">表示する範囲：</span><span lang="en">Show:</span></div></div>
@@ -50,35 +56,44 @@
 <p class="note hint"><span lang="ja">グラフの上をドラッグ（スマートフォンでは2本の指で広げる）と拡大できます。上の帯の枠を動かすと、見る範囲を移動できます。上のボタンで元に戻せます。</span><span lang="en">Drag across a chart (on a phone, spread two fingers) to zoom in. Move the frame in the strip above to look at other incomes. The buttons above take you back.</span></p>
 <h3><span lang="ja">収入ごとの手取り（円／年）</span><span lang="en">Take-home pay at each income (yen per year)</span></h3>
 <p class="note"><span lang="ja">線に触れると、その収入での手取りと、2026年の制度との差が出ます。〇はこの世帯の今の収入です。</span><span lang="en">Hover over or tap a line to see the take-home pay at that income and the difference from 2026 rules. The circle marks this household's income now.</span></p>
-<div class="chart"><canvas id="disp" role="img" aria-label="Take-home pay at each income: 2026 rules and each plan that can be calculated"></canvas></div>
+<div class="chart"><canvas id="disp" role="img" aria-describedby="walls"></canvas></div>
 <h3><span lang="ja">収入が10万円増えたら、手取りはいくら増える？</span><span lang="en">Earn ¥100,000 more: how much more do you take home?</span></h3>
 <p class="note"><span lang="ja">ふつうは、税金や保険料が増える分、10万円より少しだけ増えます。線が点線の0円より下に出るところが「壁」で、多く稼いだのに手取りが減ってしまいます。−20万円より下は▼で示しています。線に触れると金額が出ます。</span>
 <span lang="en">Usually a bit less than ¥100,000, because some goes to tax and insurance. Where the line drops below the dotted ¥0 line is a "wall": you earn more but end up with less. Values below −¥200,000 are marked ▼. Hover over or tap the line to see the amounts.</span></p>
-<div class="chart"><canvas id="emr" role="img" aria-label="How much more take-home pay an extra 100,000 yen of income brings, at each income: 2026 rules and each plan that can be calculated"></canvas></div>
+<p class="note"><span lang="ja">この図は10万円ごとの変化です。壁の幅が10万円より狭いと、その10万円の間に手取りが戻るため、線が0円より下に出ないことがあります。上の図の▼と、上の壁の一覧で確かめてください。収入0円からの変化は、グラフにも一覧にも入れていません（フルタイムで働いて給与が0円という場合は実際にはないため）。</span><span lang="en">This chart shows the change over each ¥100,000. If a wall is narrower than ¥100,000, take-home pay recovers within that ¥100,000, so the line may not go below ¥0. Check the ▼ marks on the chart above and the list of walls. The step up from an income of ¥0 is left out of the chart and the list (a full-time employee paid nothing doesn't happen in real life).</span></p>
+<div class="chart"><canvas id="emr" role="img"></canvas></div>
 </div>
+<details><summary><span lang="ja">数字の表を見る（表示中の範囲、10万円ごと）</span><span lang="en">See the numbers as a table (the range shown, every ¥100,000)</span></summary><div class="scroll"><table id="walltable"></table></div></details>
 <p class="note" id="notdrawn"></p>
 
 <details><summary><span lang="ja">この世帯について（計算の前提）</span><span lang="en">About this household (what we assumed)</span></summary><ul class="small" id="hhnotes"></ul></details>
 <details><summary><span lang="ja">（近似）すべての数字に共通する近似</span><span lang="en">(Approximation) Simplifications behind every number</span></summary><ul class="small" id="approx"></ul></details>
 
 <script>
-// Okabe-Ito palette: colour-blind safe, assigned in file order, carries no meaning
-const COLORS = { baseline: "#000000", government_final: "#0072B2", rengo: "#CC79A7", daiwa: "#E69F00", food_tax_cut: "#009E73" };
+// Okabe-Ito palette: colour-blind safe, assigned in file order, carries no meaning; orange darkened to #B87A00 so the line has 3:1 contrast on white
+const COLORS = { baseline: "#000000", government_final: "#0072B2", rengo: "#CC79A7", daiwa: "#B87A00", food_tax_cut: "#009E73" };
 let walls, wc;
 
 function lead() {
   // H4: the part-time spouse's 1.3m wall (tests/hand_calcs/wall_H4.md), read from outputs/wall_map.json, shown as a payslip
   const h = walls.households.H4, { walls: [w] } = bigWalls(h.designs.baseline), ja = lang === "ja";
+  const cause = h.wall_causes.find(c => c.from === w.from), kids = h.incomes.filter(m => m.role === "child").length;
   const set = (id, text, sub) => { const el = document.getElementById(id); el.textContent = text;
     if (sub) { const s = document.createElement("small"); s.textContent = sub; el.append(s); } };
-  set("sliphead", ja ? `例：世帯H4（${h.name_ja}）、2026年の制度` : `Example: household H4 (${h.name_en.toLowerCase()}), 2026 rules`);
-  set("slip1t", ja ? "パートの配偶者の年収が増える" : "The part-time spouse earns more", ja ? `${yen(w.from)}円 → ${yen(w.at)}円` : `¥${yen(w.from)} → ¥${yen(w.at)}`);
+  document.getElementById("hero").setAttribute("aria-label", ja ? "いまの制度での年収の壁の例" : "An income wall under today's rules");
+  set("sliphead", ja ? `いまの制度（2026年）の年収の壁の例：世帯H4（${h.name_ja}、${kids ? `子ども${kids}人` : "子どもなし"}、東京都新宿区）。どの案も入れる前の数字です。`
+                     : `An income wall under today's rules (2026), before any plan: household H4 (${h.name_en.toLowerCase()}, ${kids ? kids + " children" : "no children"}, Shinjuku, Tokyo)`);
+  set("slip1t", ja ? "パートの配偶者（週20時間未満の勤務で、勤め先の保険に入らない）の年収が増える" : "The part-time spouse (under 20 hours a week, not in their employer's insurance) earns more",
+      ja ? `${yen(w.from)}円 → ${yen(w.at)}円` : `¥${yen(w.from)} → ¥${yen(w.at)}`);
   set("slip1", ja ? `＋${yen(w.at - w.from)}円` : `+¥${yen(w.at - w.from)}`);
-  set("slip2t", ja ? "世帯の手取り（1年間）" : "The household's take-home pay (a year)");
+  set("slip2t", ja ? "世帯の手取りの変化（1年間）" : "Change in the household's take-home pay (a year)");
   set("slip2", ja ? `−${yen(w.drop)}円` : `−¥${yen(w.drop)}`);
   document.getElementById("lead").textContent = ja
-    ? `収入が${yen(w.at - w.from)}円増えたのに、手取りは${yen(w.drop)}円減ります。元の手取りに戻るには、年収${yen(w.back)}円まで働く必要があります。このような「壁」は、下のグラフで世帯ごとに見られます。`
-    : `Income goes up by ¥${yen(w.at - w.from)}, yet take-home pay falls by ¥${yen(w.drop)}. To get back to the same take-home pay, the spouse has to earn ¥${yen(w.back)}. You can see walls like this for every example household in the charts below.`;
+    ? `収入が${yen(w.at - w.from)}円増えたのに、手取りは${yen(w.drop)}円減ります。${wallReason(cause)}手取りが元に戻るのは、配偶者の年収が${yen(w.back)}円になったときです（1万円きざみで計算）。`
+    : `Income goes up by ¥${yen(w.at - w.from)}, yet take-home pay falls by ¥${yen(w.drop)}. ${wallReason(cause)} Take-home pay gets back to where it was when the spouse earns ¥${yen(w.back)} (worked out in ¥10,000 steps).`;
+  document.getElementById("leadnote").textContent = ja
+    ? "（近似）夫婦では、収入の多い方が、配偶者の国民年金保険料も払って所得から差し引くものとしています（法律上はどちらが差し引いてもかまいません）。このような「壁」は、下のグラフで世帯ごとに見られます。"
+    : "(Approximation) In a couple, we assume the partner with the higher income pays the spouse's National Pension premiums and deducts them from their own income (by law either partner may). You can see walls like this for every example household in the charts below.";
 }
 
 function plans() {
@@ -95,10 +110,13 @@ function plans() {
     p.textContent = t(walls.summaries[d]) + (nd[d] ? (lang === "ja" ? " 計算できない理由：" : " Why it can't be calculated yet: ") + joinT(nd[d]) : "");
     det.append(sum, p); box.append(det);
   }
-  const done = Object.keys(walls.summaries).filter(d => !nd[d]).map(d => t(walls.labels[d]));
+  const all = Object.keys(walls.summaries), done = all.filter(d => !nd[d]).map(d => t(walls.labels[d])), n = Object.keys(walls.households).length;
   document.getElementById("plansnote").textContent = lang === "ja"
-    ? `いま計算できるのは${done.join("、")}だけです。ほかの案は、必要な金額がまだ公表されていません。案の名前を押すと、くわしい説明が出ます。`
-    : `Right now only ${done.join(", ")} can be calculated; the others haven't published the amounts needed. Click a plan to read more.`;
+    ? `いま計算できるのは${done.join("、")}だけです。ほかの案は、計算に必要な金額がまだ決まっていないか、公表されていません。それぞれの理由は、案の名前を押すと出ます。`
+    : `Right now only the ${done.join(", ")} can be calculated. For the others, amounts needed for the calculation haven't been decided or published yet; click a plan to see why.`;
+  document.getElementById("intro2").textContent = lang === "ja"
+    ? `このサイトは、${all.length}つの案が、例として作った${n}つの世帯の手取り（税金と保険料を引き、児童手当を足した、手元に残るお金）をどう変えるかを、同じ方法で計算するしくみです。いま計算できるのは${done.length}つの案だけで、ほかの${all.length - done.length}つは、必要な金額が決まり公表されしだい計算します。`
+    : `This site works out, with one method, how ${all.length} plans would change the take-home pay (what is left after tax and insurance, plus child allowance) of ${n} example households. Right now ${done.length} of the plans can be calculated; the other ${all.length - done.length} will be once the amounts they need are decided and published.`;
 }
 
 function draw(newHousehold) {
@@ -106,12 +124,24 @@ function draw(newHousehold) {
   [...sel.options].forEach(o => { const x = walls.households[o.value]; o.textContent = `${o.value} ${lang === "ja" ? x.name_ja : x.name_en}`; });
   document.getElementById("incomes").textContent = (lang === "ja" ? "この世帯の今の収入（税引き前、年）：" : "This household's income now (before tax, per year): ") + describeIncomes(h.incomes);
   document.getElementById("wallshead").textContent = lang === "ja" ? `この世帯の壁（2026年の制度、${whoMoves(h)}が増えるとき）` : `This household's walls (2026 rules, as ${whoMoves(h)} goes up)`;
-  listWalls(document.getElementById("walls"), h.designs.baseline, whoMoves(h));
+  const marks = listWalls(document.getElementById("walls"), h.designs.baseline, whoMoves(h), 3, h.wall_causes);
+  const ja = lang === "ja";
+  // the same step under each plan that can be calculated (the biggest 2026 wall)
+  const top = marks[0], pw = [];
+  if (top) for (const [d, pts] of Object.entries(h.designs).filter(([d]) => d !== "baseline")) {
+    const at = new Map(pts.map(p => [p[0], p[1]])), drop = at.get(top.from) - at.get(top.at);
+    const back = pts.find(p => p[0] > top.from && p[1] >= at.get(top.from));
+    pw.push(ja ? `${t(walls.labels[d])}では、同じところで手取りは年${yen(Math.abs(drop))}円${drop > 0 ? "減ります" : "増えます"}` + (drop > 0 && back ? `（元に戻るのは${yen(back[0])}円のとき）。` : "。")
+               : `Under the ${t(walls.labels[d])}, take-home pay at the same point ${drop > 0 ? "falls" : "rises"} by ¥${yen(Math.abs(drop))} a year` + (drop > 0 && back ? ` (back where it was at ¥${yen(back[0])}).` : "."));
+  }
+  document.getElementById("planwall").textContent = pw.join(" ");
+  document.getElementById("disp").setAttribute("aria-label", ja ? "収入ごとの手取りのグラフ。数字は下の表で見られます。" : "Chart of take-home pay at each income. The numbers are in the table below.");
+  document.getElementById("emr").setAttribute("aria-label", ja ? "収入が10万円増えたときに手取りが増える額のグラフ。数字は下の表で見られます。" : "Chart of how much more take-home pay an extra ¥100,000 brings. The numbers are in the table below.");
   const ul = document.getElementById("hhnotes"); ul.innerHTML = ""; h.assumptions.forEach(a => li(ul, t(a)));
   const nd = Object.keys(walls.not_drawn || {}).map(d => t(walls.labels[d]));
   document.getElementById("notdrawn").textContent = nd.length
     ? (lang === "ja" ? `グラフにない案（まだ計算できないため）：${nd.join("、")}` : `Not in the charts (can't be calculated yet): ${nd.join("; ")}`) : "";
-  wc.draw({ axis: incomeAxis(h), who: whoMoves(h), ref: h.reference_income,
+  wc.draw({ axis: incomeAxis(h), who: whoMoves(h), ref: h.reference_income, marks,
     series: Object.entries(h.designs).map(([d, pts]) => ({ label: t(walls.labels[d]), color: COLORS[d], points: pts })) }, newHousehold);
   lead();
 }
@@ -127,9 +157,12 @@ loadJSON("../outputs/wall_map.json").then(w => {
   walls = w;
   const sel = document.getElementById("hh");
   for (const id of Object.keys(w.households)) sel.add(new Option(id, id));
-  sel.value = "H4";
-  sel.onchange = () => draw(true);
-  wc = wallCharts({ panel: "wallpanel", disp: "disp", rate: "emr", ranges: "ranges", nav: "nav" });
+  // the household chosen on another page (?hh=H3, or the last one chosen) stays chosen; H4 otherwise
+  let keep = new URLSearchParams(location.search).get("hh");
+  try { keep = keep || localStorage.getItem("tedori-hh"); } catch (e) { /* storage blocked */ }
+  sel.value = keep && w.households[keep] ? keep : "H4";
+  sel.onchange = () => { try { localStorage.setItem("tedori-hh", sel.value); } catch (e) { /* not kept */ } draw(true); };
+  wc = wallCharts({ panel: "wallpanel", disp: "disp", rate: "emr", ranges: "ranges", nav: "nav", table: "walltable" });
   draw(true); drawApprox();
 });
 </script>

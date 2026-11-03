@@ -3,14 +3,14 @@
 # bridge-period 就業者負担軽減支援金 are one package; results show them as separate components.
 name_ja: 飲食料品消費税率の臨時的な引下げ＋就業者負担軽減支援金（つなぎ、令和9・10年度）
 name_en: Temporary food consumption tax cut + bridge worker burden-relief payment (FY2027–FY2028)
-label: {ja: 政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）, en: "Government plan (FY2027–28 stopgap: 1% tax on food + payment)"}
+label: {ja: 政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）, en: "Government plan (FY2027–28 bridge: 1% tax on food + payment)"}
 # What the plan does, in one line and in one paragraph, for the website (from the sources above)
 short:
-  ja: "2027〜28年度、食料品の消費税を8%から1%に下げ、働く人への支給も行う。金額はまだ公表されていない。"
-  en: "In fiscal 2027–28, consumption tax on food falls from 8% to 1%, plus a payment to people who work. The amounts haven't been published."
+  ja: "2027〜28年度、食料品の消費税を8%から1%に下げ、所得に応じた支給（就業者負担軽減支援金）を先に始める。支給額はまだ決まっていない。"
+  en: "In fiscal 2027–28, consumption tax on food falls from 8% to 1%, and an income-based payment to people in work (the worker burden-relief payment) starts early. The payment amounts haven't been decided."
 summary:
-  ja: "2027年4月から2029年3月まで、いま8%の軽減税率がかかっている飲食料品の消費税を1%に下げます。同じ期間、働いている人への支給（2029年度から始まる政府案の支給を簡単にしたもの）も行い、その総額は飲食料品の消費税1%分以内とします。支給額はまだ公表されていません。"
-  en: "From April 2027 to March 2029, consumption tax on food and drink that is now taxed at the reduced 8% rate falls to 1%. Over the same period there is also a simpler version of the government's worker payment (the one planned from fiscal 2029), with a total cost no larger than 1% of the consumption tax on food. The payment amounts haven't been published yet."
+  ja: "政府が2026年10月9日に国会に提出した法律案の内容です（2026年11月3日時点で衆議院で審議中）。2027年4月から2029年3月まで、いま8%の軽減税率がかかっている飲食料品の消費税を1%に下げます。同じ期間、就業者負担軽減支援金を先に始めて、所得に応じて支給します（2029年度からの本格版と違い、配偶者の所得の条件はなく、子どもの上乗せは16歳未満が対象）。2年間の支給の総額は、1%に下げた後の飲食料品の消費税の税収（見込み）を超えない範囲とします。「年収の壁」で手取りが減る人への上乗せ（就業促進特例加算）もこの期間から支給します。支給額は、法律案では後で政令で決めることになっていて、まだ決まっていません。"
+  en: "This is the content of a bill the government submitted to the Diet on 9 October 2026 (still being debated in the House of Representatives on 3 November 2026). From April 2027 to March 2029, consumption tax on food and drink that is now taxed at the reduced 8% rate falls to 1%. Over the same period the worker burden-relief payment starts early, paid according to income (unlike the full version from fiscal 2029, there is no test of the spouse's income, and the extra for children covers children under 16). The total paid over the two years is no larger than the expected revenue from the remaining 1% consumption tax on food. The temporary top-up for people whose take-home pay falls at an income wall (就業促進特例加算) is also paid in this period. Under the bill, the payment amounts will be set later by Cabinet order; they haven't been decided."
 start_year: 2027
 status: unresolved
 

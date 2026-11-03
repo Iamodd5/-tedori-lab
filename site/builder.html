@@ -17,14 +17,14 @@
   .sliders output { font-weight: 700; font-size: 17px; color: var(--ai); }
   .sliders small { grid-column: 1 / -1; color: var(--muted); font-size: 13px; }
   .shape { height: 260px; }
-  .builder-top h3 { margin-top: 12px; }
+  .builder-top h2.flat { font-size: 17px; margin: 12px 0 6px; padding: 0; border: 0; }
   @media (min-width: 760px) { .builder-top { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; } }
 </style>
 </head>
 <body>
 <h1><span lang="ja">自分で案を作る</span><span lang="en">Build your own plan</span></h1>
-<p><span lang="ja">働く人に現金で払う「給付付き税額控除」を、自分で設計してみるページです。つまみを動かすと、右（スマートフォンでは下）の図と、ページの下の結果がすぐに変わります。</span>
-<span lang="en">Design your own "refundable tax credit": money paid to working people. Move the sliders and the picture beside them (below them on a phone) and the results further down update straight away.</span></p>
+<p><span lang="ja">「給付付き税額控除」を、自分で設計してみるページです。ここでは、所得税が減る分と現金で受け取る分を合わせて「もらえる額」として、まとめて計算しています。つまみを動かすと、右（スマートフォンでは下）の図と、ページの下の結果がすぐに変わります。</span>
+<span lang="en">Design your own "refundable tax credit". Here the income tax cut and the cash paid out are added together as one "amount received". Move the sliders and the picture beside them (below them on a phone) and the results further down update straight away.</span></p>
 
 <div class="builder-top">
   <div>
@@ -32,9 +32,9 @@
     <p class="note"><span lang="ja">最初の値は、動かし始めるための仮の値です。どの案からも取っていません。</span><span lang="en">The starting values are only a place to start. They don't come from any plan.</span></p>
   </div>
   <div>
-    <h3><span lang="ja">あなたの案で、一人がもらえる額</span><span lang="en">What one person gets under your plan</span></h3>
-    <p class="note"><span lang="ja">給与だけで暮らす人の場合。オレンジの線は子ども2人を育てている場合です。</span><span lang="en">For someone living on wages only. The orange line is for someone raising two children.</span></p>
-    <div class="chart shape"><canvas id="shape" role="img" aria-label="Credit for one person at each salary, with no children and with two children"></canvas></div>
+    <h2 class="flat"><span lang="ja">あなたの案で、一人がもらえる額</span><span lang="en">What one person gets under your plan</span></h2>
+    <p class="note"><span lang="ja">給与だけで暮らす人の場合。実線は子どもなし、点線は子ども2人を育てている場合です。</span><span lang="en">For someone living on wages only. The solid line is with no children; the dotted line is for someone raising two children.</span></p>
+    <div class="chart shape"><canvas id="shape" role="img"></canvas></div>
   </div>
 </div>
 
@@ -45,7 +45,7 @@
 <h2><span lang="ja">日本の全世帯で見ると（概算）</span><span lang="en">For every household in Japan (estimate)</span></h2>
 <p class="lead" id="cost"></p>
 <p class="note"><span lang="ja">（近似）この部分は、「全世帯で見ると」のページと同じ架空の世帯（2024年の国の調査の平均に合わせたもの）で計算した大まかな試算です。すべての世帯を年収の低い順に並べ、同じ数ずつ10のグループに分けています。</span><span lang="en">(Approximation) Rough estimates, worked out with the same made-up households as the All households page (matched to the averages in a 2024 government survey). Every household is lined up from lowest to highest yearly income and cut into ten equal groups.</span></p>
-<div class="chart"><canvas id="dec" role="img" aria-label="Average amount received per household by income group; the same numbers are in the table below"></canvas></div>
+<div class="chart"><canvas id="dec" role="img"></canvas></div>
 <details><summary><span lang="ja">数字の表を見る</span><span lang="en">See the numbers as a table</span></summary>
 <div class="scroll"><table id="tbl"><thead><tr>
   <th><span lang="ja">収入グループ</span><span lang="en">Income group</span></th>
@@ -66,12 +66,14 @@
 <p class="note hint"><span lang="ja">グラフの上をドラッグ（スマートフォンでは2本の指で広げる）と拡大できます。上の帯の枠を動かすと、見る範囲を移動できます。上のボタンで元に戻せます。</span><span lang="en">Drag across a chart (on a phone, spread two fingers) to zoom in. Move the frame in the strip above to look at other incomes. The buttons above take you back.</span></p>
 <h3><span lang="ja">収入ごとの手取り（円／年）</span><span lang="en">Take-home pay at each income (yen per year)</span></h3>
 <p class="note"><span lang="ja">線に触れると、その収入での手取りと、2026年の制度との差が出ます。〇はこの世帯の今の収入です。</span><span lang="en">Hover over or tap a line to see the take-home pay at that income and the difference from 2026 rules. The circle marks this household's income now.</span></p>
-<div class="chart"><canvas id="disp" role="img" aria-label="Take-home pay at each income: 2026 rules and your plan"></canvas></div>
+<div class="chart"><canvas id="disp" role="img" aria-describedby="walls"></canvas></div>
 <h3><span lang="ja">収入が10万円増えたら、手取りはいくら増える？</span><span lang="en">Earn ¥100,000 more: how much more do you take home?</span></h3>
 <p class="note"><span lang="ja">ふつうは、税金や保険料が増える分、10万円より少しだけ増えます。線が点線の0円より下に出るところが「壁」で、多く稼いだのに手取りが減ってしまいます。−20万円より下は▼で示しています。線に触れると金額が出ます。</span>
 <span lang="en">Usually a bit less than ¥100,000, because some goes to tax and insurance. Where the line drops below the dotted ¥0 line is a "wall": you earn more but end up with less. Values below −¥200,000 are marked ▼. Hover over or tap the line to see the amounts.</span></p>
-<div class="chart"><canvas id="emr" role="img" aria-label="How much more take-home pay an extra 100,000 yen of income brings, at each income: 2026 rules and your plan"></canvas></div>
+<p class="note"><span lang="ja">この図は10万円ごとの変化です。壁の幅が10万円より狭いと、線が0円より下に出ないことがあります。上の図の▼と、上の壁の一覧で確かめてください。</span><span lang="en">This chart shows the change over each ¥100,000. If a wall is narrower than ¥100,000, the line may not go below ¥0. Check the ▼ marks on the chart above and the list of walls.</span></p>
+<div class="chart"><canvas id="emr" role="img"></canvas></div>
 </div>
+<details><summary><span lang="ja">数字の表を見る（表示中の範囲、10万円ごと）</span><span lang="en">See the numbers as a table (the range shown, every ¥100,000)</span></summary><div class="scroll"><table id="walltable"></table></div></details>
 
 <details><summary><span lang="ja">（近似）このページの数字に含まれる近似</span><span lang="en">(Approximation) Simplifications behind the numbers on this page</span></summary><ul class="small" id="approx"></ul></details>
 
@@ -89,7 +91,7 @@ const SLIDERS = [
   { key: "phase_out_rate", ja: "減り方（超えた分の何％）", en: "How fast it shrinks (% of income above that)", min: 0, max: 50, step: 1, value: 5, x: 0.01, fmt: v => v + "%",
     help: { ja: "超えた100万円ごとに、この割合だけ減る（5%なら5万円）", en: "For every ¥1m above, the credit shrinks by this share (5% = ¥50,000)" } },
 ];
-const C = { base: "#000000", mine: "#D55E00", kids: "#E69F00" };
+const C = { base: "#000000", mine: "#D55E00", kids: "#B87A00" };
 let walls, pop, builder, wc, shape, dec;
 
 const params = () => Object.fromEntries(SLIDERS.map(s => [s.key, +document.getElementById(s.key).value * s.x]));
@@ -98,7 +100,8 @@ function makeSliders() {
   const box = document.getElementById("sliders");
   for (const s of SLIDERS) {
     const l = document.createElement("label");
-    l.innerHTML = `<span class="name"></span><output></output><input type="range" id="${s.key}" min="${s.min}" max="${s.max}" step="${s.step}" value="${s.value}"><small></small>`;
+    // the input is named by its own label text (a <label> would otherwise name it after the <output>)
+    l.innerHTML = `<span class="name" id="${s.key}-name"></span><output></output><input type="range" id="${s.key}" aria-labelledby="${s.key}-name" aria-describedby="${s.key}-help" min="${s.min}" max="${s.max}" step="${s.step}" value="${s.value}"><small id="${s.key}-help"></small>`;
     l.querySelector("input").oninput = () => update(false);
     box.append(l);
   }
@@ -111,17 +114,24 @@ function update(newHousehold) {
     l.querySelector(".name").textContent = s[lang];
     l.querySelector("small").textContent = t(s.help);
     l.querySelector("output").textContent = s.fmt(+input.value);
+    input.setAttribute("aria-valuetext", s.fmt(+input.value));
   }
   [...document.getElementById("hh").options].forEach(o => { const x = walls.households[o.value]; o.textContent = `${o.value} ${lang === "ja" ? x.name_ja : x.name_en}`; });
 
   // the credit's shape for one person on wages only
   const xs = Array.from({ length: 101 }, (_, i) => i * 100000);
-  shape.data.datasets = [[0, lang === "ja" ? "子どもなし" : "No children", C.mine], [2, lang === "ja" ? "子ども2人" : "Two children", C.kids]].map(([k, label, color]) => ({
-    label, borderColor: color, backgroundColor: color, pointRadius: 0, borderWidth: 2,
+  shape.data.datasets = [[0, lang === "ja" ? "子どもなし" : "No children", C.mine, []], [2, lang === "ja" ? "子ども2人（点線）" : "Two children (dotted)", C.kids, [6, 4]]].map(([k, label, color, dash]) => ({
+    label, borderColor: color, backgroundColor: color, pointRadius: 0, borderWidth: 2, borderDash: dash,
     data: xs.map(x => ({ x, y: customCredit([["p", x, 0], ...Array(k).fill(["k", 0, 0])], p) })) }));
   shape.options.scales.x.title.text = lang === "ja" ? "給与（税引き前、年）" : "Salary before tax (per year)";
   shape.options.scales.y.title.text = lang === "ja" ? "もらえる額（年）" : "Amount received (per year)";
   shape.update();
+  const ja = lang === "ja";
+  for (const [id, l] of [["shape", ja ? "給与ごとに一人がもらえる額のグラフ（子どもなし、子ども2人）" : "Chart of what one person gets at each salary, with no children and with two children"],
+                         ["dec", ja ? "収入グループごとの、1世帯あたりの平均の受取額のグラフ。数字は下の表にあります。" : "Chart of the average amount received per household by income group. The numbers are in the table below."],
+                         ["disp", ja ? "収入ごとの手取りのグラフ（2026年の制度とあなたの案）。数字は下の表で見られます。" : "Chart of take-home pay at each income (2026 rules and your plan). The numbers are in the table below."],
+                         ["emr", ja ? "収入が10万円増えたときに手取りが増える額のグラフ。数字は下の表で見られます。" : "Chart of how much more take-home pay an extra ¥100,000 brings. The numbers are in the table below."]])
+    document.getElementById(id).setAttribute("aria-label", l);
 
   // all households
   const r = populationResults(builder, p);
@@ -142,11 +152,11 @@ function update(newHousehold) {
   const mine = customWall(builder.households[hid], h.designs.baseline, p);
   document.getElementById("incomes").textContent = (lang === "ja" ? "この世帯の今の収入（税引き前、年）：" : "This household's income now (before tax, per year): ") + describeIncomes(h.incomes);
   document.getElementById("here").textContent = lang === "ja"
-    ? `この世帯は、今の収入のままなら、あなたの案で年${yen(customCredit(builder.households[hid].people, p))}円を受け取ります。`
-    : `With the incomes it has now, this household would get ¥${yen(customCredit(builder.households[hid].people, p))} a year under your plan.`;
+    ? `この世帯は、今の収入のままなら、あなたの案で年${yen(customCredit(builder.households[hid].people, p))}円を受け取ります（つまみで決めた案の場合。最初の値は、どの案からも取っていない仮の値です）。`
+    : `With the incomes it has now, this household would get ¥${yen(customCredit(builder.households[hid].people, p))} a year under your plan (the plan set with the sliders; the starting values are placeholders from no plan).`;
   document.getElementById("wallshead").textContent = lang === "ja" ? `あなたの案での壁（${whoMoves(h)}が増えるとき）` : `Walls under your plan (as ${whoMoves(h)} goes up)`;
-  listWalls(document.getElementById("walls"), mine, whoMoves(h));
-  wc.draw({ axis: incomeAxis(h), who: whoMoves(h), ref: h.reference_income, series: [
+  const marks = listWalls(document.getElementById("walls"), mine, whoMoves(h));
+  wc.draw({ axis: incomeAxis(h), who: whoMoves(h), ref: h.reference_income, marks, series: [
     { label: lang === "ja" ? "2026年の制度" : "2026 rules", color: C.base, points: h.designs.baseline },
     { label: lang === "ja" ? "あなたの案" : "Your plan", color: C.mine, points: mine }] }, newHousehold);
   const ul = document.getElementById("approx"); ul.innerHTML = "";
@@ -158,7 +168,10 @@ Promise.all(["wall_map", "population", "builder"].map(f => loadJSON(`../outputs/
   walls = w; pop = p; builder = b;
   const sel = document.getElementById("hh");
   Object.keys(b.households).forEach(id => sel.add(new Option(id, id)));
-  sel.value = "H5"; sel.onchange = () => update(true);
+  let keep = new URLSearchParams(location.search).get("hh");
+  try { keep = keep || localStorage.getItem("tedori-hh"); } catch (e) { /* storage blocked */ }
+  sel.value = keep && b.households[keep] ? keep : "H5";
+  sel.onchange = () => { try { localStorage.setItem("tedori-hh", sel.value); } catch (e) { /* not kept */ } update(true); };
   makeSliders();
   shape = new Chart(document.getElementById("shape"), { type: "line", data: { datasets: [] },
     options: { animation: false, maintainAspectRatio: false, parsing: false, interaction: { mode: "nearest", axis: "x", intersect: false },
@@ -168,7 +181,7 @@ Promise.all(["wall_map", "population", "builder"].map(f => loadJSON(`../outputs/
   dec = new Chart(document.getElementById("dec"), { type: "bar", data: { labels: [], datasets: [] },
     options: { animation: false, maintainAspectRatio: false, plugins: { tooltip: { callbacks: { label: c => `${yen(c.raw)}${lang === "ja" ? "円" : " yen"}` } } },
       scales: { x: { title: { display: true } }, y: { ticks: { callback: axisMoney } } } } });
-  wc = wallCharts({ panel: "wallpanel", disp: "disp", rate: "emr", ranges: "ranges", nav: "nav" });
+  wc = wallCharts({ panel: "wallpanel", disp: "disp", rate: "emr", ranges: "ranges", nav: "nav", table: "walltable" });
   update(true);
 });
 </script>
