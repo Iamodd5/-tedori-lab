@@ -18,16 +18,16 @@ Every number in this report is produced automatically from the same output files
 
 ## The 4 plans compared
 
-- **Government plan (full version, from FY2029)**: From fiscal 2029, the full version of a payment to people in work on low or middle incomes, once a year, based on the previous year's income and the number of children. There are conditions on earned income, total income, the tax and insurance you pay, and your spouse's income. The amounts and limits haven't been decided.
-- **Rengo (trade union confederation) plan**: Takes half of lower-paid employees' insurance payments off their income tax (any extra paid in cash), and gives people on low incomes cash for consumption tax (while abolishing the reduced tax rate on food). The amounts for the second part haven't been published.
-- **Daiwa Institute plan (adjusted to 2026 tax rules)**: Replaces the income tax basic deduction with a fixed tax credit. Any part of the credit bigger than your income tax is paid in cash, up to the social insurance you paid on your work (people who pay none on work, such as those living on a pension, get no cash).
 - **Government plan (FY2027–28 bridge: 1% tax on food + payment)**: In fiscal 2027–28, consumption tax on food falls from 8% to 1%, and an income-based payment to people in work (the worker burden-relief payment) starts early, with conditions on earned income, total income and the tax and insurance you pay. The payment amounts and limits haven't been decided.
+- **Government plan (full version, from FY2029)**: From fiscal 2029, the full version of a payment to people in work on low or middle incomes, once a year, based on the previous year's income and the number of children. There are conditions on earned income, total income, the tax and insurance you pay, and your spouse's income. The amounts and limits haven't been decided.
+- **Daiwa Institute plan (adjusted to 2026 tax rules)**: Replaces the income tax basic deduction with a fixed tax credit. Any part of the credit bigger than your income tax is paid in cash, up to the social insurance you paid on your work (people who pay none on work, such as those living on a pension, get no cash).
+- **Rengo (trade union confederation) plan**: Takes half of lower-paid employees' insurance payments off their income tax (any extra paid in cash), and gives people on low incomes cash for consumption tax (while abolishing the reduced tax rate on food). The amounts for the second part haven't been published.
 
 **Right now only the Daiwa Institute plan (adjusted to 2026 tax rules) can be calculated.** The other 3 plans can't be calculated yet, for these reasons:
 
+- Government plan (FY2027–28 bridge: 1% tax on food + payment): the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order); we don't yet have food spending figures for the example households H1–H8
 - Government plan (full version, from FY2029): the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)
 - Rengo (trade union confederation) plan: the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach); we don't yet have food spending figures for the example households H1–H8
-- Government plan (FY2027–28 bridge: 1% tax on food + payment): the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order); we don't yet have food spending figures for the example households H1–H8
 
 ## Example households: Daiwa Institute plan (adjusted to 2026 tax rules)
 

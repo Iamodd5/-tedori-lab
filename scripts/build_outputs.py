@@ -13,7 +13,7 @@ from scripts import build_report as report
 
 OUT = pathlib.Path(__file__).resolve().parents[1] / "outputs"
 HOUSEHOLDS = [f"H{i}" for i in range(1, 9)]
-DESIGNS = ["government_final", "rengo", "daiwa", "food_tax_cut"]
+DESIGNS = ["food_tax_cut", "government_final", "daiwa", "rengo"]  # the government's two plans in the order they start, then the others, newest first
 
 BASELINE = OUT.parent / "parameters" / "baseline_2026"
 

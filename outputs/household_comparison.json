@@ -10,30 +10,34 @@
    "child_rearing_allowance": 0
   },
   "label": {
-   "ja": "政府案（2029年度からの本格版）",
-   "en": "Government plan (full version, from FY2029)"
+   "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
+   "en": "Government plan (FY2027–28 bridge: 1% tax on food + payment)"
   },
-  "design": "government_final",
+  "design": "food_tax_cut",
   "status": "incomplete",
   "missing": [
-   "earned_income_floor (Q9)",
-   "income_ceiling (Q9)",
-   "net_burden_threshold (Q9)",
-   "spouse_income_ceiling (Q9)",
-   "flat_amount_low_income (Q9)",
-   "phase_in_start (Q9)",
-   "phase_in_rate (Q9)",
-   "phase_in_end (Q9)",
-   "basic_amount (Q9)",
-   "child_addition_per_child (Q9)",
-   "income_wall_addition (Q9)",
-   "phase_out_start (Q9)",
-   "phase_out_rate (Q9)"
+   "bridge_payment.earned_income_floor (Q9)",
+   "bridge_payment.income_ceiling (Q9)",
+   "bridge_payment.net_burden_threshold (Q9)",
+   "bridge_payment.flat_amount_low_income (Q9)",
+   "bridge_payment.phase_in_start (Q9)",
+   "bridge_payment.phase_in_rate (Q9)",
+   "bridge_payment.phase_in_end (Q9)",
+   "bridge_payment.basic_amount (Q9)",
+   "bridge_payment.child_addition_per_child (Q9)",
+   "bridge_payment.income_wall_addition (Q9)",
+   "bridge_payment.phase_out_start (Q9)",
+   "bridge_payment.phase_out_rate (Q9)",
+   "household food spending (Q8)"
   ],
   "blocked_by": [
    {
     "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
+   },
+   {
+    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
   "components": {
@@ -58,26 +62,30 @@
    "child_rearing_allowance": 0
   },
   "label": {
-   "ja": "連合案",
-   "en": "Rengo (trade union confederation) plan"
+   "ja": "政府案（2029年度からの本格版）",
+   "en": "Government plan (full version, from FY2029)"
   },
-  "design": "rengo",
+  "design": "government_final",
   "status": "incomplete",
   "missing": [
-   "work_support_benefit.phase_out_shape (Q34)",
-   "work_support_benefit.contributions_counted (Q35)",
-   "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.phase_out (Q3)",
-   "household food spending (Q8)"
+   "earned_income_floor (Q9)",
+   "income_ceiling (Q9)",
+   "net_burden_threshold (Q9)",
+   "spouse_income_ceiling (Q9)",
+   "flat_amount_low_income (Q9)",
+   "phase_in_start (Q9)",
+   "phase_in_rate (Q9)",
+   "phase_in_end (Q9)",
+   "basic_amount (Q9)",
+   "child_addition_per_child (Q9)",
+   "income_wall_addition (Q9)",
+   "phase_out_start (Q9)",
+   "phase_out_rate (Q9)"
   ],
   "blocked_by": [
    {
-    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
-    "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
-   },
-   {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
-    "en": "we don't yet have food spending figures for the example households H1–H8"
+    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    }
   ],
   "components": {
@@ -150,6 +158,50 @@
    "child_rearing_allowance": 0
   },
   "label": {
+   "ja": "連合案",
+   "en": "Rengo (trade union confederation) plan"
+  },
+  "design": "rengo",
+  "status": "incomplete",
+  "missing": [
+   "work_support_benefit.phase_out_shape (Q34)",
+   "work_support_benefit.contributions_counted (Q35)",
+   "consumption_tax_refund.amount (Q3)",
+   "consumption_tax_refund.phase_out (Q3)",
+   "household food spending (Q8)"
+  ],
+  "blocked_by": [
+   {
+    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+    "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
+   },
+   {
+    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "en": "we don't yet have food spending figures for the example households H1–H8"
+   }
+  ],
+  "components": {
+   "income_tax": null,
+   "resident_tax": null,
+   "social_insurance": null,
+   "credit": null,
+   "consumption_tax": null
+  },
+  "disposable_change": null,
+  "approximations": [],
+  "site_note": null
+ },
+ {
+  "household": "H2",
+  "baseline_disposable": 1000000,
+  "baseline_parts": {
+   "income_tax": 0,
+   "resident_tax": 0,
+   "social_insurance": 0,
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
+  },
+  "label": {
    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
    "en": "Government plan (FY2027–28 bridge: 1% tax on food + payment)"
   },
@@ -226,50 +278,6 @@
    {
     "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
-   }
-  ],
-  "components": {
-   "income_tax": null,
-   "resident_tax": null,
-   "social_insurance": null,
-   "credit": null,
-   "consumption_tax": null
-  },
-  "disposable_change": null,
-  "approximations": [],
-  "site_note": null
- },
- {
-  "household": "H2",
-  "baseline_disposable": 1000000,
-  "baseline_parts": {
-   "income_tax": 0,
-   "resident_tax": 0,
-   "social_insurance": 0,
-   "child_allowance": 0,
-   "child_rearing_allowance": 0
-  },
-  "label": {
-   "ja": "連合案",
-   "en": "Rengo (trade union confederation) plan"
-  },
-  "design": "rengo",
-  "status": "incomplete",
-  "missing": [
-   "work_support_benefit.phase_out_shape (Q34)",
-   "work_support_benefit.contributions_counted (Q35)",
-   "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.phase_out (Q3)",
-   "household food spending (Q8)"
-  ],
-  "blocked_by": [
-   {
-    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
-    "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
-   },
-   {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
-    "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
   "components": {
@@ -342,6 +350,50 @@
    "child_rearing_allowance": 0
   },
   "label": {
+   "ja": "連合案",
+   "en": "Rengo (trade union confederation) plan"
+  },
+  "design": "rengo",
+  "status": "incomplete",
+  "missing": [
+   "work_support_benefit.phase_out_shape (Q34)",
+   "work_support_benefit.contributions_counted (Q35)",
+   "consumption_tax_refund.amount (Q3)",
+   "consumption_tax_refund.phase_out (Q3)",
+   "household food spending (Q8)"
+  ],
+  "blocked_by": [
+   {
+    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+    "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
+   },
+   {
+    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "en": "we don't yet have food spending figures for the example households H1–H8"
+   }
+  ],
+  "components": {
+   "income_tax": null,
+   "resident_tax": null,
+   "social_insurance": null,
+   "credit": null,
+   "consumption_tax": null
+  },
+  "disposable_change": null,
+  "approximations": [],
+  "site_note": null
+ },
+ {
+  "household": "H3",
+  "baseline_disposable": 6248008,
+  "baseline_parts": {
+   "income_tax": 100600,
+   "resident_tax": 324100,
+   "social_insurance": 1127292,
+   "child_allowance": 300000,
+   "child_rearing_allowance": 0
+  },
+  "label": {
    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
    "en": "Government plan (FY2027–28 bridge: 1% tax on food + payment)"
   },
@@ -418,50 +470,6 @@
    {
     "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
-   }
-  ],
-  "components": {
-   "income_tax": null,
-   "resident_tax": null,
-   "social_insurance": null,
-   "credit": null,
-   "consumption_tax": null
-  },
-  "disposable_change": null,
-  "approximations": [],
-  "site_note": null
- },
- {
-  "household": "H3",
-  "baseline_disposable": 6248008,
-  "baseline_parts": {
-   "income_tax": 100600,
-   "resident_tax": 324100,
-   "social_insurance": 1127292,
-   "child_allowance": 300000,
-   "child_rearing_allowance": 0
-  },
-  "label": {
-   "ja": "連合案",
-   "en": "Rengo (trade union confederation) plan"
-  },
-  "design": "rengo",
-  "status": "incomplete",
-  "missing": [
-   "work_support_benefit.phase_out_shape (Q34)",
-   "work_support_benefit.contributions_counted (Q35)",
-   "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.phase_out (Q3)",
-   "household food spending (Q8)"
-  ],
-  "blocked_by": [
-   {
-    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
-    "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
-   },
-   {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
-    "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
   "components": {
@@ -534,6 +542,50 @@
    "child_rearing_allowance": 0
   },
   "label": {
+   "ja": "連合案",
+   "en": "Rengo (trade union confederation) plan"
+  },
+  "design": "rengo",
+  "status": "incomplete",
+  "missing": [
+   "work_support_benefit.phase_out_shape (Q34)",
+   "work_support_benefit.contributions_counted (Q35)",
+   "consumption_tax_refund.amount (Q3)",
+   "consumption_tax_refund.phase_out (Q3)",
+   "household food spending (Q8)"
+  ],
+  "blocked_by": [
+   {
+    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+    "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
+   },
+   {
+    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "en": "we don't yet have food spending figures for the example households H1–H8"
+   }
+  ],
+  "components": {
+   "income_tax": null,
+   "resident_tax": null,
+   "social_insurance": null,
+   "credit": null,
+   "consumption_tax": null
+  },
+  "disposable_change": null,
+  "approximations": [],
+  "site_note": null
+ },
+ {
+  "household": "H4",
+  "baseline_disposable": 4961316,
+  "baseline_parts": {
+   "income_tax": 70200,
+   "resident_tax": 205500,
+   "social_insurance": 762984,
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
+  },
+  "label": {
    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
    "en": "Government plan (FY2027–28 bridge: 1% tax on food + payment)"
   },
@@ -610,50 +662,6 @@
    {
     "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
-   }
-  ],
-  "components": {
-   "income_tax": null,
-   "resident_tax": null,
-   "social_insurance": null,
-   "credit": null,
-   "consumption_tax": null
-  },
-  "disposable_change": null,
-  "approximations": [],
-  "site_note": null
- },
- {
-  "household": "H4",
-  "baseline_disposable": 4961316,
-  "baseline_parts": {
-   "income_tax": 70200,
-   "resident_tax": 205500,
-   "social_insurance": 762984,
-   "child_allowance": 0,
-   "child_rearing_allowance": 0
-  },
-  "label": {
-   "ja": "連合案",
-   "en": "Rengo (trade union confederation) plan"
-  },
-  "design": "rengo",
-  "status": "incomplete",
-  "missing": [
-   "work_support_benefit.phase_out_shape (Q34)",
-   "work_support_benefit.contributions_counted (Q35)",
-   "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.phase_out (Q3)",
-   "household food spending (Q8)"
-  ],
-  "blocked_by": [
-   {
-    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
-    "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
-   },
-   {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
-    "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
   "components": {
@@ -726,6 +734,50 @@
    "child_rearing_allowance": 0
   },
   "label": {
+   "ja": "連合案",
+   "en": "Rengo (trade union confederation) plan"
+  },
+  "design": "rengo",
+  "status": "incomplete",
+  "missing": [
+   "work_support_benefit.phase_out_shape (Q34)",
+   "work_support_benefit.contributions_counted (Q35)",
+   "consumption_tax_refund.amount (Q3)",
+   "consumption_tax_refund.phase_out (Q3)",
+   "household food spending (Q8)"
+  ],
+  "blocked_by": [
+   {
+    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+    "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
+   },
+   {
+    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "en": "we don't yet have food spending figures for the example households H1–H8"
+   }
+  ],
+  "components": {
+   "income_tax": null,
+   "resident_tax": null,
+   "social_insurance": null,
+   "credit": null,
+   "consumption_tax": null
+  },
+  "disposable_change": null,
+  "approximations": [],
+  "site_note": null
+ },
+ {
+  "household": "H5",
+  "baseline_disposable": 2651836,
+  "baseline_parts": {
+   "income_tax": 0,
+   "resident_tax": 58500,
+   "social_insurance": 353064,
+   "child_allowance": 120000,
+   "child_rearing_allowance": 443400
+  },
+  "label": {
    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
    "en": "Government plan (FY2027–28 bridge: 1% tax on food + payment)"
   },
@@ -802,50 +854,6 @@
    {
     "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
-   }
-  ],
-  "components": {
-   "income_tax": null,
-   "resident_tax": null,
-   "social_insurance": null,
-   "credit": null,
-   "consumption_tax": null
-  },
-  "disposable_change": null,
-  "approximations": [],
-  "site_note": null
- },
- {
-  "household": "H5",
-  "baseline_disposable": 2651836,
-  "baseline_parts": {
-   "income_tax": 0,
-   "resident_tax": 58500,
-   "social_insurance": 353064,
-   "child_allowance": 120000,
-   "child_rearing_allowance": 443400
-  },
-  "label": {
-   "ja": "連合案",
-   "en": "Rengo (trade union confederation) plan"
-  },
-  "design": "rengo",
-  "status": "incomplete",
-  "missing": [
-   "work_support_benefit.phase_out_shape (Q34)",
-   "work_support_benefit.contributions_counted (Q35)",
-   "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.phase_out (Q3)",
-   "household food spending (Q8)"
-  ],
-  "blocked_by": [
-   {
-    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
-    "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
-   },
-   {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
-    "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
   "components": {
@@ -918,6 +926,50 @@
    "child_rearing_allowance": 443400
   },
   "label": {
+   "ja": "連合案",
+   "en": "Rengo (trade union confederation) plan"
+  },
+  "design": "rengo",
+  "status": "incomplete",
+  "missing": [
+   "work_support_benefit.phase_out_shape (Q34)",
+   "work_support_benefit.contributions_counted (Q35)",
+   "consumption_tax_refund.amount (Q3)",
+   "consumption_tax_refund.phase_out (Q3)",
+   "household food spending (Q8)"
+  ],
+  "blocked_by": [
+   {
+    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+    "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
+   },
+   {
+    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "en": "we don't yet have food spending figures for the example households H1–H8"
+   }
+  ],
+  "components": {
+   "income_tax": null,
+   "resident_tax": null,
+   "social_insurance": null,
+   "credit": null,
+   "consumption_tax": null
+  },
+  "disposable_change": null,
+  "approximations": [],
+  "site_note": null
+ },
+ {
+  "household": "H6",
+  "baseline_disposable": 2611921,
+  "baseline_parts": {
+   "income_tax": 0,
+   "resident_tax": 0,
+   "social_insurance": 188079,
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
+  },
+  "label": {
    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
    "en": "Government plan (FY2027–28 bridge: 1% tax on food + payment)"
   },
@@ -994,50 +1046,6 @@
    {
     "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
-   }
-  ],
-  "components": {
-   "income_tax": null,
-   "resident_tax": null,
-   "social_insurance": null,
-   "credit": null,
-   "consumption_tax": null
-  },
-  "disposable_change": null,
-  "approximations": [],
-  "site_note": null
- },
- {
-  "household": "H6",
-  "baseline_disposable": 2611921,
-  "baseline_parts": {
-   "income_tax": 0,
-   "resident_tax": 0,
-   "social_insurance": 188079,
-   "child_allowance": 0,
-   "child_rearing_allowance": 0
-  },
-  "label": {
-   "ja": "連合案",
-   "en": "Rengo (trade union confederation) plan"
-  },
-  "design": "rengo",
-  "status": "incomplete",
-  "missing": [
-   "work_support_benefit.phase_out_shape (Q34)",
-   "work_support_benefit.contributions_counted (Q35)",
-   "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.phase_out (Q3)",
-   "household food spending (Q8)"
-  ],
-  "blocked_by": [
-   {
-    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
-    "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
-   },
-   {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
-    "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
   "components": {
@@ -1110,6 +1118,50 @@
    "child_rearing_allowance": 0
   },
   "label": {
+   "ja": "連合案",
+   "en": "Rengo (trade union confederation) plan"
+  },
+  "design": "rengo",
+  "status": "incomplete",
+  "missing": [
+   "work_support_benefit.phase_out_shape (Q34)",
+   "work_support_benefit.contributions_counted (Q35)",
+   "consumption_tax_refund.amount (Q3)",
+   "consumption_tax_refund.phase_out (Q3)",
+   "household food spending (Q8)"
+  ],
+  "blocked_by": [
+   {
+    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+    "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
+   },
+   {
+    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "en": "we don't yet have food spending figures for the example households H1–H8"
+   }
+  ],
+  "components": {
+   "income_tax": null,
+   "resident_tax": null,
+   "social_insurance": null,
+   "credit": null,
+   "consumption_tax": null
+  },
+  "disposable_change": null,
+  "approximations": [],
+  "site_note": null
+ },
+ {
+  "household": "H7",
+  "baseline_disposable": 2170281,
+  "baseline_parts": {
+   "income_tax": 71700,
+   "resident_tax": 204000,
+   "social_insurance": 554019,
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
+  },
+  "label": {
    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
    "en": "Government plan (FY2027–28 bridge: 1% tax on food + payment)"
   },
@@ -1186,50 +1238,6 @@
    {
     "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
-   }
-  ],
-  "components": {
-   "income_tax": null,
-   "resident_tax": null,
-   "social_insurance": null,
-   "credit": null,
-   "consumption_tax": null
-  },
-  "disposable_change": null,
-  "approximations": [],
-  "site_note": null
- },
- {
-  "household": "H7",
-  "baseline_disposable": 2170281,
-  "baseline_parts": {
-   "income_tax": 71700,
-   "resident_tax": 204000,
-   "social_insurance": 554019,
-   "child_allowance": 0,
-   "child_rearing_allowance": 0
-  },
-  "label": {
-   "ja": "連合案",
-   "en": "Rengo (trade union confederation) plan"
-  },
-  "design": "rengo",
-  "status": "incomplete",
-  "missing": [
-   "work_support_benefit.phase_out_shape (Q34)",
-   "work_support_benefit.contributions_counted (Q35)",
-   "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.phase_out (Q3)",
-   "household food spending (Q8)"
-  ],
-  "blocked_by": [
-   {
-    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
-    "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
-   },
-   {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
-    "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
   "components": {
@@ -1302,6 +1310,50 @@
    "child_rearing_allowance": 0
   },
   "label": {
+   "ja": "連合案",
+   "en": "Rengo (trade union confederation) plan"
+  },
+  "design": "rengo",
+  "status": "incomplete",
+  "missing": [
+   "work_support_benefit.phase_out_shape (Q34)",
+   "work_support_benefit.contributions_counted (Q35)",
+   "consumption_tax_refund.amount (Q3)",
+   "consumption_tax_refund.phase_out (Q3)",
+   "household food spending (Q8)"
+  ],
+  "blocked_by": [
+   {
+    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+    "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
+   },
+   {
+    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "en": "we don't yet have food spending figures for the example households H1–H8"
+   }
+  ],
+  "components": {
+   "income_tax": null,
+   "resident_tax": null,
+   "social_insurance": null,
+   "credit": null,
+   "consumption_tax": null
+  },
+  "disposable_change": null,
+  "approximations": [],
+  "site_note": null
+ },
+ {
+  "household": "H8",
+  "baseline_disposable": 12009068,
+  "baseline_parts": {
+   "income_tax": 879800,
+   "resident_tax": 906300,
+   "social_insurance": 2324832,
+   "child_allowance": 120000,
+   "child_rearing_allowance": 0
+  },
+  "label": {
    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
    "en": "Government plan (FY2027–28 bridge: 1% tax on food + payment)"
   },
@@ -1402,50 +1454,6 @@
    "child_rearing_allowance": 0
   },
   "label": {
-   "ja": "連合案",
-   "en": "Rengo (trade union confederation) plan"
-  },
-  "design": "rengo",
-  "status": "incomplete",
-  "missing": [
-   "work_support_benefit.phase_out_shape (Q34)",
-   "work_support_benefit.contributions_counted (Q35)",
-   "consumption_tax_refund.amount (Q3)",
-   "consumption_tax_refund.phase_out (Q3)",
-   "household food spending (Q8)"
-  ],
-  "blocked_by": [
-   {
-    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
-    "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
-   },
-   {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
-    "en": "we don't yet have food spending figures for the example households H1–H8"
-   }
-  ],
-  "components": {
-   "income_tax": null,
-   "resident_tax": null,
-   "social_insurance": null,
-   "credit": null,
-   "consumption_tax": null
-  },
-  "disposable_change": null,
-  "approximations": [],
-  "site_note": null
- },
- {
-  "household": "H8",
-  "baseline_disposable": 12009068,
-  "baseline_parts": {
-   "income_tax": 879800,
-   "resident_tax": 906300,
-   "social_insurance": 2324832,
-   "child_allowance": 120000,
-   "child_rearing_allowance": 0
-  },
-  "label": {
    "ja": "大和総研案（2026年の税制に合わせて計算）",
    "en": "Daiwa Institute plan (adjusted to 2026 tax rules)"
   },
@@ -1494,30 +1502,22 @@
    "child_rearing_allowance": 0
   },
   "label": {
-   "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
-   "en": "Government plan (FY2027–28 bridge: 1% tax on food + payment)"
+   "ja": "連合案",
+   "en": "Rengo (trade union confederation) plan"
   },
-  "design": "food_tax_cut",
+  "design": "rengo",
   "status": "incomplete",
   "missing": [
-   "bridge_payment.earned_income_floor (Q9)",
-   "bridge_payment.income_ceiling (Q9)",
-   "bridge_payment.net_burden_threshold (Q9)",
-   "bridge_payment.flat_amount_low_income (Q9)",
-   "bridge_payment.phase_in_start (Q9)",
-   "bridge_payment.phase_in_rate (Q9)",
-   "bridge_payment.phase_in_end (Q9)",
-   "bridge_payment.basic_amount (Q9)",
-   "bridge_payment.child_addition_per_child (Q9)",
-   "bridge_payment.income_wall_addition (Q9)",
-   "bridge_payment.phase_out_start (Q9)",
-   "bridge_payment.phase_out_rate (Q9)",
+   "work_support_benefit.phase_out_shape (Q34)",
+   "work_support_benefit.contributions_counted (Q35)",
+   "consumption_tax_refund.amount (Q3)",
+   "consumption_tax_refund.phase_out (Q3)",
    "household food spending (Q8)"
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
-    "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
+    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+    "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
    },
    {
     "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",

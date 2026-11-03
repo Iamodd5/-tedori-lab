@@ -115,7 +115,7 @@ A snapshot test now fails if any household × design result changes without `mak
 
 Numbers from `outputs/population.json` → `calibration` (rebuilt by `make all`). The model is a 2024 survey run under 2026 rules, so a perfect match is not expected; the gaps are listed so readers can judge them.
 
-The tax comparators are not tax actually collected. They are the 2024 全国家計構造調査's own estimate of income tax and resident tax, which the Statistics Bureau works out from the incomes people reported (table 第3-32-1, summed over the cells the model uses). They come from the same table the model is built on, so this is a consistency check, not an independent one.
+The tax comparators are not tax actually collected. They are the 2024 全国家計構造調査's own estimate of income tax and resident tax, which the Statistics Bureau works out from the incomes people reported (table 第3-32-1, summed over the cells the model uses). They come from the same table the model is built on, so this is a consistency check, not an independent one. We have not confirmed whether the survey's 2024 tax estimate takes off the one-off flat-rate tax cut of 2024 (定額減税); if it does, the official figures are lower than in a normal year and the model's gap is smaller than shown.
 
 | Check | Model | Official | Gap | Why |
 |---|---|---|---|---|

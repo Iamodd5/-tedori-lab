@@ -72,6 +72,26 @@
   }
  ],
  "designs": {
+  "food_tax_cut": {
+   "label": {
+    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
+    "en": "Government plan (FY2027–28 bridge: 1% tax on food + payment)"
+   },
+   "status": "incomplete",
+   "blocked_by": [
+    {
+     "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
+    }
+   ],
+   "approximations": [],
+   "published_estimates": null,
+   "site_note": null,
+   "summary": {
+    "ja": "政府が2026年10月9日に国会に提出した法律案の内容です（2026年11月3日時点で衆議院で審議中）。2027年4月から2029年3月まで、いま8%の軽減税率がかかっている飲食料品の消費税を1%に下げます。同じ期間、就業者負担軽減支援金を先に始めて、所得に応じて支給します（2029年度からの本格版と違い、配偶者の所得の条件はなく、子どもの上乗せは16歳未満が対象）。支給額は、各年度の支給の総額が、その年度の1%分の飲食料品の消費税の税収（見込み）を超えないことを考慮して決めることになっています（2029年4月に支給される本格版への移行分は除く）。その年の1月1日に日本に住所がない人には支給されません。会社の保険に入って保険料を払うようになった人への上乗せ（就業促進特例加算）も、この期間から支給します。支給額は、法律案では後で政令で決めることになっていて、まだ決まっていません。",
+    "en": "This is the content of a bill the government submitted to the Diet on 9 October 2026 (still being debated in the House of Representatives on 3 November 2026). From April 2027 to March 2029, consumption tax on food and drink that is now taxed at the reduced 8% rate falls to 1%. Over the same period the worker burden-relief payment starts early, paid according to income (unlike the full version from fiscal 2029, there is no test of the spouse's income, and the extra for children covers children under 16). The amounts are to be set taking into account that each year's total payments should not exceed that year's expected revenue from the remaining 1% consumption tax on food (not counting the April 2029 advance of the full version). People with no address in Japan on 1 January of the year are not paid. The top-up for people who start paying company insurance premiums at an income wall (就業促進特例加算) is also paid in this period. Under the bill, the payment amounts will be set later by Cabinet order; they haven't been decided."
+   }
+  },
   "government_final": {
    "label": {
     "ja": "政府案（2029年度からの本格版）",
@@ -103,26 +123,6 @@
    "summary": {
     "ja": "政府が2026年10月9日に国会に提出した法律案の内容です（2026年11月3日時点で衆議院で審議中）。就業者負担軽減支援金は2027年4月に始まり、2029年度から本格的な形になります。ここで「本格版」と呼んでいるのは、この2029年度からの形です。前の年の所得をもとに年1回支給します。2029年度分は、本格版の額の半年分程度です。これとは別に2029年4月に、2028年度に支給を受けた人へ、本格版の額の半年分程度が先に支給されます（法律案では2028年度分への上乗せ）。支給額の形は2026年9月15日の大綱によるもので、勤労所得が一定額を超えると支給が始まり、低い所得では定額、そこから稼ぎが増えるにつれて支給額も増え、上限に達したあとは所得が一定額を超えると減っていきます。子ども1人ごとに上乗せがあります。対象になるのは、勤労所得が一定額を超え、合計所得が一定額以下で、払っている税金と社会保険料（受け取る公的年金を差し引いた額）が一定額を超える人です。結婚している人は、配偶者の前の年の合計所得が一定額を超えると対象になりません。自営業の人も、一定額を超える事業の所得は勤労所得に数えます。その年の1月1日に日本に住所がない人には支給されません（国籍による条件は書かれていません）。働いていない高齢者と、勤労所得が最低額に届かない人は対象外で、政府はそれぞれへの対応を別に決めるとしています。壁が解消されるまでの時限的な措置として、会社の保険に入って保険料を払うようになった人のうち、勤労所得が「年収の壁」で減った手取りが元に戻る水準までの人には、上乗せ（就業促進特例加算）もあります（大綱9ページ。国民健康保険と国民年金に入る人も対象かは、はっきりしていません）。金額や収入の線引きは、法律案では後で政令で決めることになっていて、まだ決まっていません。",
     "en": "This is the content of a bill the government submitted to the Diet on 9 October 2026 (still being debated in the House of Representatives on 3 November 2026). The worker burden-relief payment starts in April 2027 and takes its full form from fiscal 2029; \"full version\" on this site means that form. It is paid once a year, based on the previous year's income. The fiscal 2029 payment is about half of the full-version amount. Separately, in April 2029, people who received the fiscal 2028 payment get about half of the full-version amount in advance (in the bill, an addition to the fiscal 2028 payment). The shape of the payment comes from the Cabinet outline of 15 September 2026: payment starts once earned income passes a minimum; it is a flat amount at low incomes, grows as earnings grow, levels off, and then shrinks once total income passes a set level. There is extra for each child. To qualify, earned income must be above a set level, total income at or below a set level, and the tax and social insurance you pay, minus any public pension you receive, above a set level. A married person does not qualify if their spouse's total income in the previous year is above a set level. For the self-employed, business income above a set amount counts as earned income. People with no address in Japan on 1 January of the year are not paid (no nationality condition is written). Older people who don't work, and people whose earned income is below the minimum, are not covered; the government says it will decide separately how to respond for each. Until the income walls (年収の壁) are removed, there is also a temporary top-up (就業促進特例加算) for people who start paying company insurance premiums and whose earned income is below the level where the take-home pay lost at the wall is regained (outline, page 9; it is unclear whether people who move into National Health Insurance and National Pension also qualify). Under the bill, the amounts and income limits will be set later by Cabinet order; they haven't been decided."
-   }
-  },
-  "rengo": {
-   "label": {
-    "ja": "連合案",
-    "en": "Rengo (trade union confederation) plan"
-   },
-   "status": "incomplete",
-   "blocked_by": [
-    {
-     "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
-     "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
-    }
-   ],
-   "approximations": [],
-   "published_estimates": null,
-   "site_note": null,
-   "summary": {
-    "ja": "労働組合の全国組織である連合の案です。ここで扱うのは、連合の「税制改革構想（第4次）」（改訂版、2025年5月28日）と「2026年度 連合の重点政策」にある「給付付き税額控除」の部分で、二つの制度からなります（基礎控除を税額控除に変えるなど、同じ構想のほかの提案は含めていません）。一つ目（就労支援給付制度）は、雇われて働く人が対象で（自営業の人は対象外）、給与収入74万〜250万円の会社員などについて（2025年の構想では65万円から）、本人が払う社会保険料・雇用保険料の半額を所得税から差し引き、所得税より大きい分は現金で払う制度です（給与収入200万円を超えると減っていき、250万円でなくなります）。二つ目（消費税還付制度）は、所得税がかからない程度の収入の人に、飲食料品や光熱費など最低限の買い物にかかる消費税の分を、扶養している人数に応じた定額で払う制度で、所得がその水準を超えると徐々に減ってなくなります。連合の構想では、この還付の導入に合わせて、食料品などの軽減税率（8%）を廃止するとしています。連合自身の想定では、必要な財源は、一つ目が1.5〜2兆円程度（対象は給与収入65万〜250万円の雇われて働く人約2100万人。このうち、額が減っていく200万〜250万円の人が約600万人）、二つ目が消費税収の1割弱程度（対象4000万人程度）です（構想の27〜28ページ）。二つ目の1人あたりの金額はまだ公表されていません。",
-    "en": "A proposal from Rengo, Japan's national federation of trade unions. This site covers the \"refundable tax credit\" part of Rengo's Tax Reform Plan (4th edition, revised, 28 May 2025) and its 2026 key policies, which has two schemes (other proposals in the same plan, such as turning the basic deduction into a tax credit, are not included). First (the work-support credit), for employees only (not the self-employed): those earning ¥740,000 to ¥2.5m in salary (from ¥650,000 in the 2025 plan) get half of the social and employment insurance they pay taken off their income tax, and any part bigger than their income tax is paid in cash (it shrinks above ¥2m and is gone at ¥2.5m). Second (the consumption tax refund), people with incomes too low to pay income tax get a fixed cash amount, depending on how many people they support, to cover the consumption tax on basic spending such as food and utilities; it shrinks and ends as income rises above that level. Rengo's plan also abolishes the reduced 8% consumption tax rate on food and other items when the refund starts. Rengo's own estimate of the cost is about ¥1.5–2 trillion for the first scheme (about 21 million employees earning ¥650,000 to ¥2.5m, of whom about 6 million are in the ¥2m–¥2.5m band where it shrinks) and a little under 10% of consumption tax revenue for the second (about 40 million people) (plan, pages 27–28). The per-person amounts for the second scheme haven't been published."
    }
   },
   "daiwa": {
@@ -260,24 +260,24 @@
     "consumption_tax": 0
    }
   },
-  "food_tax_cut": {
+  "rengo": {
    "label": {
-    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
-    "en": "Government plan (FY2027–28 bridge: 1% tax on food + payment)"
+    "ja": "連合案",
+    "en": "Rengo (trade union confederation) plan"
    },
    "status": "incomplete",
    "blocked_by": [
     {
-     "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
-     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
+     "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+     "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
     }
    ],
    "approximations": [],
    "published_estimates": null,
    "site_note": null,
    "summary": {
-    "ja": "政府が2026年10月9日に国会に提出した法律案の内容です（2026年11月3日時点で衆議院で審議中）。2027年4月から2029年3月まで、いま8%の軽減税率がかかっている飲食料品の消費税を1%に下げます。同じ期間、就業者負担軽減支援金を先に始めて、所得に応じて支給します（2029年度からの本格版と違い、配偶者の所得の条件はなく、子どもの上乗せは16歳未満が対象）。支給額は、各年度の支給の総額が、その年度の1%分の飲食料品の消費税の税収（見込み）を超えないことを考慮して決めることになっています（2029年4月に支給される本格版への移行分は除く）。その年の1月1日に日本に住所がない人には支給されません。会社の保険に入って保険料を払うようになった人への上乗せ（就業促進特例加算）も、この期間から支給します。支給額は、法律案では後で政令で決めることになっていて、まだ決まっていません。",
-    "en": "This is the content of a bill the government submitted to the Diet on 9 October 2026 (still being debated in the House of Representatives on 3 November 2026). From April 2027 to March 2029, consumption tax on food and drink that is now taxed at the reduced 8% rate falls to 1%. Over the same period the worker burden-relief payment starts early, paid according to income (unlike the full version from fiscal 2029, there is no test of the spouse's income, and the extra for children covers children under 16). The amounts are to be set taking into account that each year's total payments should not exceed that year's expected revenue from the remaining 1% consumption tax on food (not counting the April 2029 advance of the full version). People with no address in Japan on 1 January of the year are not paid. The top-up for people who start paying company insurance premiums at an income wall (就業促進特例加算) is also paid in this period. Under the bill, the payment amounts will be set later by Cabinet order; they haven't been decided."
+    "ja": "労働組合の全国組織である連合の案です。ここで扱うのは、連合の「税制改革構想（第4次）」（改訂版、2025年5月28日）と「2026年度 連合の重点政策」にある「給付付き税額控除」の部分で、二つの制度からなります（基礎控除を税額控除に変えるなど、同じ構想のほかの提案は含めていません）。一つ目（就労支援給付制度）は、雇われて働く人が対象で（自営業の人は対象外）、給与収入74万〜250万円の会社員などについて（2025年の構想では65万円から）、本人が払う社会保険料・雇用保険料の半額を所得税から差し引き、所得税より大きい分は現金で払う制度です（給与収入200万円を超えると減っていき、250万円でなくなります）。二つ目（消費税還付制度）は、所得税がかからない程度の収入の人に、飲食料品や光熱費など最低限の買い物にかかる消費税の分を、扶養している人数に応じた定額で払う制度で、所得がその水準を超えると徐々に減ってなくなります。連合の構想では、この還付の導入に合わせて、食料品などの軽減税率（8%）を廃止するとしています。連合自身の想定では、必要な財源は、一つ目が1.5〜2兆円程度（対象は給与収入65万〜250万円の雇われて働く人約2100万人。このうち、額が減っていく200万〜250万円の人が約600万人）、二つ目が消費税収の1割弱程度（対象4000万人程度）です（構想の27〜28ページ）。二つ目の1人あたりの金額はまだ公表されていません。",
+    "en": "A proposal from Rengo, Japan's national federation of trade unions. This site covers the \"refundable tax credit\" part of Rengo's Tax Reform Plan (4th edition, revised, 28 May 2025) and its 2026 key policies, which has two schemes (other proposals in the same plan, such as turning the basic deduction into a tax credit, are not included). First (the work-support credit), for employees only (not the self-employed): those earning ¥740,000 to ¥2.5m in salary (from ¥650,000 in the 2025 plan) get half of the social and employment insurance they pay taken off their income tax, and any part bigger than their income tax is paid in cash (it shrinks above ¥2m and is gone at ¥2.5m). Second (the consumption tax refund), people with incomes too low to pay income tax get a fixed cash amount, depending on how many people they support, to cover the consumption tax on basic spending such as food and utilities; it shrinks and ends as income rises above that level. Rengo's plan also abolishes the reduced 8% consumption tax rate on food and other items when the refund starts. Rengo's own estimate of the cost is about ¥1.5–2 trillion for the first scheme (about 21 million employees earning ¥650,000 to ¥2.5m, of whom about 6 million are in the ¥2m–¥2.5m band where it shrinks) and a little under 10% of consumption tax revenue for the second (about 40 million people) (plan, pages 27–28). The per-person amounts for the second scheme haven't been published."
    }
   }
  },

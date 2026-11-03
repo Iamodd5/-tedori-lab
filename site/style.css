@@ -134,6 +134,7 @@ th:first-child, td:first-child { text-align: left; padding-left: 0; }
 th:last-child, td:last-child { padding-right: 0; }
 td.reason { text-align: left; color: var(--ink-2); }
 .scroll { overflow-x: auto; margin: 12px 0 14px; }
+.scroll :is(th, td:first-child) { white-space: nowrap; }  /* on a phone the table scrolls sideways instead */
 .md table { margin: 12px 0 18px; }
 
 /* charts */

@@ -1,4 +1,4 @@
-id,group,band,variant,weight,annual_income,baseline_disposable,change_government_final,change_rengo,change_daiwa,change_food_tax_cut
+id,group,band,variant,weight,annual_income,baseline_disposable,change_food_tax_cut,change_government_final,change_daiwa,change_rengo
 single-01-pension,single,01,pension,1145565.61,686000.0,550079,,,0,
 single-01-work,single,01,work,280349.39,686000.0,562583,,,25461,
 single-02-pension,single,02,pension,1518000.05,1232000.0,952159,,,0,

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>未解決の点 / Open questions — Tedori Lab</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="common.js"></script>
+<style>
+  .md tr:target td { background: var(--wash); }
+  .md td:first-child { font-weight: 700; }
+</style>
+</head>
+<body>
+<h1><span lang="ja">未解決の点</span><span lang="en">Open questions</span></h1>
+<p><span lang="ja">資料で確かめきれていない点、計算に入れていないもの、決め方を選んだ点の一覧です（英語）。それぞれ、何に影響するか、どの資料を見たか、いまの扱いを書いています。</span><span lang="en">Points not yet confirmed in the sources, things left out of the calculation, and choices made in how to model something. Each row says what it affects, which sources were checked, and how it is handled now.</span></p>
+<div class="md" id="doc"></div>
+<script>
+// the list is OPEN_QUESTIONS.md; each row gets an id (q13 for Q13) so question links on other pages open at that row
+const el = document.getElementById("doc");
+const draw = () => renderDoc(el, "../OPEN_QUESTIONS.md").then(() => {
+  el.querySelectorAll("tr").forEach(tr => { const m = tr.cells[0]?.textContent.trim().match(/^Q(\d+)$/); if (m) tr.id = "q" + m[1]; });
+  const row = location.hash && document.getElementById(location.hash.slice(1));
+  if (row) row.scrollIntoView();
+});
+setupPage(draw);
+draw();
+</script>
+</body>
+</html>

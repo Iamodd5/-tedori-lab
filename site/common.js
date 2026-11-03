@@ -100,8 +100,10 @@ function setupPage(onLangChange = () => {}) {
     d.plugins.legend.align = "start";
     d.datasets.bar.maxBarThickness = 40;
     Object.assign(d.plugins.legend.labels, { boxWidth: 12, boxHeight: 12, padding: 14 });
+    const narrow = matchMedia("(max-width: 360px)").matches;  // tooltips must fit a 320px screen
     Object.assign(d.plugins.tooltip, { backgroundColor: "#fff", titleColor: ink, bodyColor: ink, borderColor: "#D3DAE3", borderWidth: 1,
-                                       cornerRadius: 2, padding: 10, titleFont: { weight: "bold" }, boxPadding: 4 });
+                                       cornerRadius: 2, padding: narrow ? 6 : 10, titleFont: { weight: "bold", size: narrow ? 11 : 12 },
+                                       bodyFont: { size: narrow ? 11 : 12 }, boxPadding: narrow ? 2 : 4 });
   }
   header.querySelector("#lang-toggle").onclick = () => {
     lang = lang === "ja" ? "en" : "ja";
@@ -114,12 +116,11 @@ function setupPage(onLangChange = () => {}) {
 // Document pages render the project's own Markdown files, so the site and the docs never drift apart.
 // English-only documents are marked lang="en"; headings move down a level under the page's own h1;
 // question numbers such as (Q13) link to the list of open questions.
-const QUESTIONS = "https://github.com/Iamodd5/-tedori-lab/blob/main/OPEN_QUESTIONS.md";
 function renderDoc(el, urls) {
   const url = typeof urls === "string" ? urls : t(urls);
   el.lang = typeof urls === "string" ? "en" : lang;
-  fetch(url, { cache: "no-cache" }).then(r => r.text()).then(md => {
-    el.innerHTML = marked.parse(md.replace(/\bQ(\d{1,2})\b(?![^\[]*\])/g, `[Q$1](${QUESTIONS})`));
+  return fetch(url, { cache: "no-cache" }).then(r => r.text()).then(md => {
+    el.innerHTML = marked.parse(md.replace(/\bQ(\d{1,2})\b(?![^\[]*\])/g, "[Q$1](questions.html#q$1)"));
     const ownH1 = document.querySelectorAll("h1").length > el.querySelectorAll("h1").length;  // the report page has none
     if (ownH1) [...el.querySelectorAll("h1, h2, h3, h4, h5")].forEach(h => {
       const n = document.createElement("h" + (+h.tagName[1] + 1)); n.innerHTML = h.innerHTML; h.replaceWith(n);
