@@ -2,7 +2,7 @@
 # scripts/extract_population.py turns the sources below into cells.csv, food.csv and checks.csv;
 # engine/population.py builds one model household per group and income band from them.
 # Everything in `assumptions` is a modelling choice, not a policy number: each is approximation: true and is
-# shown wherever population numbers appear (CLAUDE.md rule 3).
+# shown wherever population numbers appear (project rule 3).
 
 sources:
   zkk_income:

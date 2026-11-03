@@ -1,4 +1,4 @@
-"""docs/VALIDATION.md is shown on the website, so the numbers it copies from outputs/ must match them (CLAUDE.md rule 7)."""
+"""docs/VALIDATION.md is shown on the website, so the numbers it copies from outputs/ must match them (project rule 7)."""
 import json
 import pathlib
 import re

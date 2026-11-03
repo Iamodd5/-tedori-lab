@@ -1,4 +1,4 @@
-"""Milestone 1 acceptance check: every design parameter is cited or marked unresolved (CLAUDE.md rules 1-2)."""
+"""Milestone 1 acceptance check: every design parameter is cited or marked unresolved (project rules 1-2)."""
 import pathlib
 
 import pytest

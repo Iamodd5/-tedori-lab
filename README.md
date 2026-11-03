@@ -7,7 +7,6 @@ Japan is designing a refundable tax credit (給付付き税額控除) and a temp
 - Website: `site/index.html` (Japanese, with an English button)
 - How it works: [`docs/METHODS.ja.md`](docs/METHODS.ja.md) (日本語), [`docs/METHODS.md`](docs/METHODS.md) (English)
 - Checks: [`docs/VALIDATION.md`](docs/VALIDATION.md); open questions: [`OPEN_QUESTIONS.md`](OPEN_QUESTIONS.md)
-- Plain-language log of every rule: [`docs/LOG.md`](docs/LOG.md)
 
 The site states findings only. It does not recommend any design, party or politician.
 

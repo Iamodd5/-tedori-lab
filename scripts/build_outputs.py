@@ -19,7 +19,7 @@ BASELINE = OUT.parent / "parameters" / "baseline_2026"
 
 
 def approximations(node, where):
-    """Every baseline approximation (CLAUDE.md rule 3), in the plain words the site shows next to the numbers."""
+    """Every baseline approximation (project rule 3), in the plain words the site shows next to the numbers."""
     if isinstance(node, dict):
         if node.get("approximation") is True:
             assert "site" in node, f"{where}: an approximation needs `site: {{ja, en}}` text for the website"

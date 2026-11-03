@@ -1,4 +1,4 @@
-"""Every number in parameters/baseline_2026/*.yaml is read by the engine (CLAUDE.md rule 1, OPEN_QUESTIONS Q28).
+"""Every number in parameters/baseline_2026/*.yaml is read by the engine (project rule 1, OPEN_QUESTIONS Q28).
 
 The test wraps params() so each read is recorded, runs every household (at its reference income and across a
 coarse wall-map grid) plus three made-up households that reach the remaining branches, then lists the numbers

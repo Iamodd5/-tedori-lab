@@ -17,5 +17,5 @@ parameters:
   child_addition:      {value: null, status: user_input}   # yen per child
 
 notes: >
-  Same household data and method as every other design (CLAUDE.md rule 8). Only the credit formula is ported
+  Same household data and method as every other design (project rule 8). Only the credit formula is ported
   to JavaScript for the site; the rest of the tax system uses precomputed grids.

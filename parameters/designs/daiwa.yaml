@@ -89,7 +89,7 @@ published_estimates:  # for cross-checking only (spec Section 6), never used as 
   take_home_recovery_salary_yen: 1200000     # vs 1.24m today, for a worker joining social insurance at 1.06m
   cite: {source: daiwa, page: 7}
 
-# How unresolved items are bridged in the calculation; shown with every Daiwa number (CLAUDE.md rule 3).
+# How unresolved items are bridged in the calculation; shown with every Daiwa number (project rule 3).
 approximations:
   - question: Q11
     ja: 所得税には2.1%の復興特別所得税が上乗せされます。大和総研は、税額控除をこの上乗せの前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく、先に税額控除を差し引いてから2.1%を上乗せしています。

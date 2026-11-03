@@ -1,7 +1,7 @@
 """Policy designs as reforms on top of the 2026 baseline (spec Section 8). Numbers come from parameters/designs/.
 
 run(design, hh) returns the change versus baseline in yen per year. A design with unpublished numbers returns
-status "incomplete", the list of missing parameters, and no number (CLAUDE.md rule 2).
+status "incomplete", the list of missing parameters, and no number (project rule 2).
 """
 import functools
 import math

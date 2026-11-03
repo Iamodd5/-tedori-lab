@@ -110,7 +110,7 @@ def facts():
                 gap_income_tax=gap(cal["income_tax"]["model_baseline_2026"], cal["income_tax"]["survey_estimate_2024"]),
                 gap_resident_tax=gap(cal["resident_tax"]["model_baseline_2026"], cal["resident_tax"]["survey_estimate_2024"]))
 
-    # every approximation behind the numbers in the report (CLAUDE.md rule 3)
+    # every approximation behind the numbers in the report (project rule 3)
     for l in LANGS:
         lab = "（近似）" if l == "ja" else "(Approximation) "
         f[l]["approx_baseline"] = "\n".join(f"- {a[l]}" for a in wm["baseline_approximations"])
