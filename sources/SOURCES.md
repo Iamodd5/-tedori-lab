@@ -65,7 +65,7 @@ The original page (…/teigen/?p=5465) and the whole 政策提言 section still 
 |---|---|---|---|---|---|
 | daiwa/daiwa_20251010.pdf | 働く低所得者の負担を軽減する「社会保険料還付付き税額控除」の提案 ― 追加財政負担なしで課税最低限（年収の壁）178 万円達成も可能（大和総研, p.1） | 2025-10-10 (p.1) | https://www.dir.co.jp/report/research/law-research/tax/20251010_025349.pdf | 8 | downloaded |
 
-Note: this report predates the council's work. Whether Daiwa published an updated design in 2026 is still to be checked (OPEN_QUESTIONS Q7).
+Note: this report predates the council's work. Checked 2026-11-03: no later dir.co.jp report revises this design; two later reports add variants (OPEN_QUESTIONS Q7).
 
 ## 5. Income tax and resident tax (2026 rules)
 
