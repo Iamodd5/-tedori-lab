@@ -5,6 +5,8 @@
   --ink: #16243A; --ink-2: #4E5B70; --paper: #F6F7F9; --sheet: #FFFFFF; --wash: #ECEFF3; --rule: #D3DAE3; --rule-2: #E4E8EE;
   --band: #16243A; --ai: #1F56A0; --shu: #B3261E; --gain: #0B6E4F; --caution: #8A6A14; --r: 2px;
   --font: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", "BIZ UDPゴシック", "Noto Sans JP", "Yu Gothic UI", system-ui, sans-serif;
+  /* running text in 明朝, as in a printed white paper; installed fonts only (no download, no third-party request) */
+  --serif: "Hiragino Mincho ProN", "Hiragino Mincho Pro", "BIZ UDPMincho", "BIZ UDP明朝 Medium", "Yu Mincho", "YuMincho", "Noto Serif JP", serif;
 }
 * { box-sizing: border-box; }
 /* the two languages sit side by side in span/p pairs; other elements with lang (a document, the language button) always show */
@@ -17,6 +19,10 @@ body { font-family: var(--font); font-size: 16px; line-height: 1.85; letter-spac
 html[lang="en"] body { line-height: 1.6; letter-spacing: 0; }
 p, li { max-width: 42em; }
 p { margin: 0 0 14px; }
+/* running text is set in Mincho and justified like print; headings, numbers in tables, notes and controls stay Gothic */
+main :is(p, li):not(.note, .info, .hint, .small, .warn, .small *, .warn *, .hero *) { font-family: var(--serif); font-size: 16.5px; line-height: 1.95; }
+main :is(p, li):not(.note, .info, .hint, .small, .warn, .small *, .warn *, .hero *):lang(ja) { text-align: justify; text-justify: inter-character; }
+main .lead:not(.hero *) { font-size: 18px; }
 a { color: var(--ai); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a:hover { text-decoration-thickness: 2px; }
 strong { font-weight: 700; }
