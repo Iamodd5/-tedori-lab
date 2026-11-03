@@ -264,12 +264,14 @@ function wallReason(c) {
     why = ja ? `会社の健康保険・厚生年金に入り、保険料（${m(ch.employee_insurance)}）がかかるため` : `company health insurance and pension start (${m(ch.employee_insurance)})`;
   } else {
     // the changes that make the wall: at least ¥1,000 and at least a fifth of the largest (small steady rises are left out)
-    const big = Math.max(...Object.keys(NAMES).map(k => ch[k]), -ch.child_allowance);
+    const BENEFITS = { child_allowance: { ja: "児童手当", en: "child allowance" }, child_rearing_allowance: { ja: "児童扶養手当", en: "the single-parent allowance (児童扶養手当)" } };
+    const fall = k => -(ch[k] || 0);
+    const big = Math.max(...Object.keys(NAMES).map(k => ch[k]), ...Object.keys(BENEFITS).map(fall));
     const up = Object.keys(NAMES).filter(k => ch[k] >= Math.max(1000, big / 5)).sort((a, b) => ch[b] - ch[a]);
-    if (-ch.child_allowance >= Math.max(1000, big / 5)) up.push("child_allowance");
+    up.push(...Object.keys(BENEFITS).filter(k => fall(k) >= Math.max(1000, big / 5)));
     if (!up.length) return "";
     // Japanese: every item but the last ends in 増え/減り, the last in 増える/減る
-    const say = (k, last) => k === "child_allowance" ? (ja ? `児童手当が${m(-ch[k])}${last ? "減る" : "減り"}` : `child allowance falls by ${m(-ch[k])}`)
+    const say = (k, last) => k in BENEFITS ? (ja ? `${BENEFITS[k].ja}が${m(fall(k))}${last ? "減る" : "減り"}` : `${BENEFITS[k].en} falls by ${m(fall(k))}`)
       : k === "employee_insurance" && before === "employee" ? (ja ? `会社の保険料が、収入の段階が上がって${m(ch[k])}${last ? "増える" : "増え"}` : `company insurance premiums step up by ${m(ch[k])}`)
       : (ja ? `${t(NAMES[k])}が${m(ch[k])}${last ? "増える" : "増え"}` : `${t(NAMES[k])} goes up by ${m(ch[k])}`);
     why = up.map((k, i) => say(k, i === up.length - 1)).join(ja ? "、" : ", ") + (ja ? "ため" : "");

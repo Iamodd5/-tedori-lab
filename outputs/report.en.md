@@ -37,7 +37,7 @@ Every number in this report is produced automatically from the same output files
 | H2 | University student with a part-time job, parents' dependant | 1,000,000 | ±0 |
 | H3 | Dual-income employee couple, two children (2 and 8) | 6,248,008 | −27,500 |
 | H4 | Single-earner employee, spouse working part-time | 4,961,316 | −23,900 |
-| H5 | Single parent employee, one child (10) | 2,208,436 | +3,700 |
+| H5 | Single parent employee, one child (10) | 2,651,836 | +3,700 |
 | H6 | Pensioner couple, both 72 | 2,683,201 | ±0 |
 | H7 | Self-employed (freelancer), single | 2,170,281 | −25,200 |
 | H8 | High-income dual-earner couple, one child (5) | 12,009,068 | −157,300 |
@@ -67,6 +67,7 @@ We lined up every household from lowest to highest yearly income and cut the lin
 Behind every number:
 
 - (Approximation) Each child's age stays the same for the whole year.
+- (Approximation) The single-parent allowance (児童扶養手当) uses the amounts from April 2026 for all 12 months, judged on the same year's income (in fact, the previous year's income sets the amount from November to the next October). We assume the mother receives it and gets no child support payments.
 - (Approximation) In a couple, the partner with the higher income claims the deductions for the spouse and children, and pays and deducts the other partner's National Pension contributions. By law either partner may do this.
 - (Approximation) We round the employee's share of health insurance and of the child and childcare support levy separately to the yen. A government Q&A (February 2026) said to round them once, together, but it is no longer published. The difference is at most ¥1 a month.
 - (Approximation) From October 2026, the only people working 20+ hours a week for under ¥88,000 a month are workers with a minimum-wage exception (at every regional minimum wage, 20 hours a week pays more than ¥88,000 a month). They join company insurance only if they ask; we assume they don't.

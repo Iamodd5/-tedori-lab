@@ -1,0 +1,46 @@
+# 児童扶養手当 (child-rearing allowance for single parents), amounts from April 2026. OPEN_QUESTIONS Q17.
+# Hand calculation: tests/hand_calcs/H5.md (revision 2026-11-03).
+source:
+  act:
+    title: 児童扶養手当法
+    url: https://laws.e-gov.go.jp/api/1/lawdata/336AC0000000238
+    file: sources/law/jido_fuyo_teate_ho_336AC0000000238.xml
+    published: 2025-06-01 (text in force; downloaded 2026-11-03)
+  order:
+    title: 児童扶養手当法施行令（令和8年政令第55号による改正後）
+    url: https://laws.e-gov.go.jp/api/1/lawdata/336CO0000000405
+    file: sources/law/jido_fuyo_teate_sekourei_336CO0000000405.xml
+    published: 2026-04-01 (text in force; downloaded 2026-11-03)
+  cfa:
+    title: こども家庭庁 児童扶養手当制度の概要
+    url: https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/71de338f-5ed2-4c95-9848-3fd387d0b4d7/a4e6f323/20260408_policies_hitori-oya_fuyou-teate_19.pdf
+    file: sources/child/cfa_20260408_jido_fuyo_teate_gaiyou.pdf
+    published: 2026-04-08
+
+child_age_max: {value: 18, cite: {source: act, page: 1, section: "3条1項 (18歳に達する日以後の最初の3月31日まで)"}, note: "ages are held fixed for the year, so a child counts while 18 or under"}
+monthly:
+  first_child: {value: 48050, cite: {source: order, page: 1, section: "2条の2第1項"}, note: "also cfa p.1 全部支給 48,050円"}
+  each_further_child: {value: 11350, cite: {source: order, page: 1, section: "2条の2第2項"}}
+income_test:  # 施行令4条1項: salary and public-pension income together less 100,000 (not below 0), then the total less 80,000
+  salary_pension_deduction: {value: 100000, cite: {source: order, page: 1, section: "4条1項"}}
+  fixed_deduction: {value: 80000, cite: {source: order, page: 1, section: "4条1項"}}
+limits:  # 前年所得 at or above which payment is reduced (full) or stops (partial)
+  full_base: {value: 690000, cite: {source: order, page: 1, section: "2条の4第1項第1号"}}
+  partial_base: {value: 2080000, cite: {source: order, page: 1, section: "2条の4第2項第1号イ"}}
+  per_dependant: {value: 380000, cite: {source: order, page: 1, section: "2条の4第1項第2号イ, 第2項第1号ロ(1)"}, note: "each dependant or supported child, other than below"}
+  per_specific: {value: 530000, cite: {source: order, page: 1, section: "2条の4第1項第2号ハ"}, note: "特定扶養親族等: 特定扶養親族 and 控除対象扶養親族 under 19, i.e. dependants aged 16 to 22"}
+withheld:  # 2条の4第3項・第4項: (income − full limit) × rate, rounded to 10 yen (under 5 down, 5 or more up), plus 10
+  first_child_rate: {value: 0.0264029, cite: {source: order, page: 1, section: "2条の4第3項"}}
+  further_child_rate: {value: 0.0040719, cite: {source: order, page: 1, section: "2条の4第4項"}}
+  round_to: {value: 10, cite: {source: order, page: 1, section: "2条の4第3項"}}
+  plus: {value: 10, cite: {source: order, page: 1, section: "2条の4第3項"}}
+not_taxed: {value: true, cite: {source: act, page: 1, section: "25条 (公課の禁止)"}}
+notes:
+  approximation: true
+  explanation: >
+    The April 2026 amounts are used for all 12 months, and the test uses the same year's income (the law uses the
+    previous year's income for November to October). The claimant is the mother, with no child support (養育費) and none of
+    the 施行令4条2項 deductions; dependants aged 70+ and other household members' incomes are not tested.
+  site:
+    ja: （近似）ひとり親の児童扶養手当は、2026年4月からの額を1年分すべてに使い、その年の所得で判定しています（実際は前の年の所得で、11月から翌年10月までの額が決まります）。受け取るのは母親で、養育費は受け取っていないものとしています。
+    en: (Approximation) The single-parent allowance (児童扶養手当) uses the amounts from April 2026 for all 12 months, judged on the same year's income (in fact, the previous year's income sets the amount from November to the next October). We assume the mother receives it and gets no child support payments.

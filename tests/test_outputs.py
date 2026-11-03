@@ -50,7 +50,8 @@ def test_h4_wall_cause_matches_hand_calculation():
     (c,) = w.wall_causes(h.load("H4"), [{"from": 1_290_000, "at": 1_300_000}])
     assert c["scheme"] == ["dependant", "nhi"]
     assert c["change"] == {"income_tax": -16_100, "resident_tax": -32_500, "employee_insurance": 0,
-                           "national_pension": 215_040, "nhi": 101_786, "child_allowance": 0}
+                           "national_pension": 215_040, "nhi": 101_786, "child_allowance": 0,
+                           "child_rearing_allowance": 0}  # field added with 児童扶養手当 (Q17); no value changed
 
 
 def test_outputs_snapshot_is_current():

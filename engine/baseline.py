@@ -260,3 +260,23 @@ def spouse_deduction_rt(earner, spouse, age):
         return amount, diff
     unit = rp["spouse_earner_above_9m"]["special_round_up"]
     return math.ceil(band(rp["spouse_special"]["bands"], spouse) * thirds / 3 / unit) * unit, 0  # 0 above 1,330,000
+
+
+def child_rearing_allowance(income, children, ordinary, specific):
+    """Annual 児童扶養手当 for a claimant with `children` (監護等児童) whose test income is `income` (施行令4条1項). Dependants and
+    supported children raise the limits: `ordinary` at 380,000 each, `specific` (aged 16 to 22) at 530,000 each (施行令2条の4)."""
+    if children <= 0:
+        return 0
+    p = params("child_rearing_allowance")
+    lim, m, wh = p["limits"], p["monthly"], p["withheld"]
+    extra = ordinary * lim["per_dependant"]["value"] + specific * lim["per_specific"]["value"]
+    full, stop = lim["full_base"]["value"] + extra, lim["partial_base"]["value"] + extra
+    if income >= stop:
+        return 0
+    unit = wh["round_to"]["value"]
+    # rounded to 10 yen, under 5 down and 5 or more up, then plus 10 (2条の4第3項・第4項); nothing withheld below the full limit
+    withheld = lambda rate: 0 if income < full else math.floor((income - full) * rate / unit + 0.5) * unit + wh["plus"]["value"]
+    monthly = (m["first_child"]["value"] - withheld(wh["first_child_rate"]["value"])
+               + (children - 1) * (m["each_further_child"]["value"] - withheld(wh["further_child_rate"]["value"])))
+    return 12 * monthly
+

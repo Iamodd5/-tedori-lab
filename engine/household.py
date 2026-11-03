@@ -178,8 +178,25 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
 
     child_ages = [m["age"] for m in members if m["role"] == "child" and m["age"] <= b.params("child_allowance")["eligible_age_max"]["value"]]
     allowance = b.child_allowance(child_ages)
+    rearing = _child_rearing_allowance(members, out) if single_parent else 0
     gross = sum(o["gross"] for o in out.values())
     tax = sum(o["income_tax"] + o["resident_tax"] for o in out.values())
     si = sum(o["social_insurance"] for o in out.values())
-    return {"members": out, "child_allowance": allowance, "gross": gross, "taxes": tax, "social_insurance": si,
-            "disposable": gross + allowance - tax - si}
+    return {"members": out, "child_allowance": allowance, "child_rearing_allowance": rearing, "gross": gross, "taxes": tax,
+            "social_insurance": si, "disposable": gross + allowance + rearing - tax - si}
+
+
+def _child_rearing_allowance(members, out):
+    """児童扶養手当 for a single-parent head (households/H5.yaml; tests/hand_calcs/H5.md revision)."""
+    p = b.params("child_rearing_allowance")
+    head = next(m for m in members if m["role"] == "head")
+    kids = [m for m in members if m["role"] == "child" and m["age"] <= p["child_age_max"]["value"]]
+    t = p["income_test"]
+    earned = b.employment_income(head.get("salary", 0)) + out[head["id"]]["pension_income"]
+    income = max(0, max(0, earned - t["salary_pension_deduction"]["value"]) + head.get("business_income", 0) - t["fixed_deduction"]["value"])
+    it = b.params("income_tax")["dependent_deduction"]
+    deps = [m for m in members if m["role"] in ("child", "dependant") and (m in kids or out[m["id"]]["total_income"] <= it["income_limit"]["value"])]
+    # 特定扶養親族等 (施行令2条の4第1項第2号ハ): dependants for tax aged 16 to 22, i.e. 控除対象 from 16 and under 23
+    specific = sum(it["general_age_from"]["value"] <= m["age"] < it["specific_age_under"]["value"] for m in deps
+                   if out[m["id"]]["total_income"] <= it["income_limit"]["value"])
+    return b.child_rearing_allowance(income, len(kids), ordinary=len(deps) - specific, specific=specific)

@@ -162,3 +162,15 @@ def test_h4_head_resident_tax_at_the_620000_spouse_limit():
     from engine import wall_map as w
     head = lambda s: h.compute(w.at_income(h.load("H4"), s))["members"]["a"]["resident_tax"]
     assert (head(1_340_000), head(1_370_000)) == (171_300, 173_500)
+
+
+# --- 児童扶養手当 (tests/hand_calcs/H5.md, revision; OPEN_QUESTIONS Q17)
+@pytest.mark.parametrize("income, children, specific, expected", [
+    (1_490_000, 1, 0, 12 * 36_950),           # H5
+    (1_000_000, 1, 0, 12 * 48_050),           # below the full-payment limit 1,070,000
+    (2_459_999, 1, 0, 12 * 11_340),           # just below the partial limit: the ministry's minimum
+    (2_460_000, 1, 0, 0),                     # at the partial limit: nothing
+    (1_000_000, 2, 0, 12 * (48_050 + 11_350)),  # second child, full payment (limit 1,450,000)
+    (1_000_000, 1, 1, 12 * 48_050)])          # one 16-18 child counts 530,000 (limit 1,220,000)
+def test_child_rearing_allowance(income, children, specific, expected):
+    assert b.child_rearing_allowance(income, children, ordinary=children - specific, specific=specific) == expected

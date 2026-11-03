@@ -83,7 +83,6 @@ function drawOwn() {
   li(ul, ja ? `給与が年${yen(v)}円のとき${v !== raw ? "（1万円単位に丸めています）" : ""}、2026年の制度での世帯の手取りは年${yen(base)}円です。`
             : `With a salary of ¥${yen(v)} a year${v !== raw ? " (rounded to ¥10,000)" : ""}, the household's take-home pay under 2026 rules is ¥${yen(base)} a year.`);
   for (const d of own.designs) li(ul, ja ? `（近似）${t(walls.labels[d])}：年${signed(grid[d][i] - base)}円` : `(Approximation) ${t(walls.labels[d])}: ${signed(grid[d][i] - base)} yen a year`);
-  if (shape === "single_parent") li(ul, ja ? "ひとり親向けの児童扶養手当は、まだ入っていません。" : "The child-rearing allowance for single parents (児童扶養手当) is not included yet.");
 }
 const signed = v => (v > 0 ? "+" : v < 0 ? "−" : "±") + yen(Math.abs(v));
 const pctSigned = x => (x > 0 ? "+" : x < 0 ? "−" : "±") + Math.abs(x * 100).toFixed(1) + "%";
@@ -113,11 +112,11 @@ function draw(newHousehold) {
   try { localStorage.setItem("tedori-hh", sel.value); } catch (e) { /* not kept; fine */ }
   const res = document.getElementById("result"); res.innerHTML = "";
   li(res, ja ? `2026年の制度での手取り：年${yen(base)}円` : `Take-home pay under 2026 rules: ¥${yen(base)} a year`);
-  li(res, ja ? `内訳：所得税${yen(bp.income_tax)}円・住民税${yen(bp.resident_tax)}円・社会保険料${yen(bp.social_insurance)}円を払い、児童手当${yen(bp.child_allowance)}円を受け取ります。`
-             : `Made up of: income tax ¥${yen(bp.income_tax)}, resident tax ¥${yen(bp.resident_tax)} and social insurance ¥${yen(bp.social_insurance)} paid, child allowance ¥${yen(bp.child_allowance)} received.`);
-  const old = h.incomes.some(m => m.age >= 65), single = !h.incomes.some(m => m.role === "spouse") && h.incomes.some(m => m.role === "child");
+  const rearing = bp.child_rearing_allowance ? (ja ? `と児童扶養手当${yen(bp.child_rearing_allowance)}円` : ` and the single-parent allowance (児童扶養手当) ¥${yen(bp.child_rearing_allowance)}`) : "";
+  li(res, ja ? `内訳：所得税${yen(bp.income_tax)}円・住民税${yen(bp.resident_tax)}円・社会保険料${yen(bp.social_insurance)}円を払い、児童手当${yen(bp.child_allowance)}円${rearing}を受け取ります。`
+             : `Made up of: income tax ¥${yen(bp.income_tax)}, resident tax ¥${yen(bp.resident_tax)} and social insurance ¥${yen(bp.social_insurance)} paid, child allowance ¥${yen(bp.child_allowance)}${rearing} received.`);
+  const old = h.incomes.some(m => m.age >= 65);
   if (old) li(res, ja ? "65歳以上の人が払う介護保険料は、まだ引いていません。" : "The long-term care premium paid by people aged 65 or over is not taken off yet.");
-  if (single) li(res, ja ? "ひとり親向けの児童扶養手当は、まだ入っていません。" : "The child-rearing allowance for single parents (児童扶養手当) is not included yet.");
   for (const r of done) li(res, lang === "ja"
     ? `${t(r.label)}：年${signed(r.disposable_change)}円（${pctSigned(r.disposable_change / base)}）`
     : `${t(r.label)}: ${signed(r.disposable_change)} yen a year (${pctSigned(r.disposable_change / base)})`);

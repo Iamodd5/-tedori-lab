@@ -6,7 +6,8 @@
    "income_tax": 0,
    "resident_tax": 5000,
    "social_insurance": 183348,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "政府案（2029年度からの本格版）",
@@ -53,7 +54,8 @@
    "income_tax": 0,
    "resident_tax": 5000,
    "social_insurance": 183348,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "連合案",
@@ -96,7 +98,8 @@
    "income_tax": 0,
    "resident_tax": 5000,
    "social_insurance": 183348,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "大和総研案（2026年の税制に合わせて計算）",
@@ -143,7 +146,8 @@
    "income_tax": 0,
    "resident_tax": 5000,
    "social_insurance": 183348,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
@@ -194,7 +198,8 @@
    "income_tax": 0,
    "resident_tax": 0,
    "social_insurance": 0,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "政府案（2029年度からの本格版）",
@@ -241,7 +246,8 @@
    "income_tax": 0,
    "resident_tax": 0,
    "social_insurance": 0,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "連合案",
@@ -284,7 +290,8 @@
    "income_tax": 0,
    "resident_tax": 0,
    "social_insurance": 0,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "大和総研案（2026年の税制に合わせて計算）",
@@ -331,7 +338,8 @@
    "income_tax": 0,
    "resident_tax": 0,
    "social_insurance": 0,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
@@ -382,7 +390,8 @@
    "income_tax": 100600,
    "resident_tax": 324100,
    "social_insurance": 1127292,
-   "child_allowance": 300000
+   "child_allowance": 300000,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "政府案（2029年度からの本格版）",
@@ -429,7 +438,8 @@
    "income_tax": 100600,
    "resident_tax": 324100,
    "social_insurance": 1127292,
-   "child_allowance": 300000
+   "child_allowance": 300000,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "連合案",
@@ -472,7 +482,8 @@
    "income_tax": 100600,
    "resident_tax": 324100,
    "social_insurance": 1127292,
-   "child_allowance": 300000
+   "child_allowance": 300000,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "大和総研案（2026年の税制に合わせて計算）",
@@ -519,7 +530,8 @@
    "income_tax": 100600,
    "resident_tax": 324100,
    "social_insurance": 1127292,
-   "child_allowance": 300000
+   "child_allowance": 300000,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
@@ -570,7 +582,8 @@
    "income_tax": 70200,
    "resident_tax": 205500,
    "social_insurance": 762984,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "政府案（2029年度からの本格版）",
@@ -617,7 +630,8 @@
    "income_tax": 70200,
    "resident_tax": 205500,
    "social_insurance": 762984,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "連合案",
@@ -660,7 +674,8 @@
    "income_tax": 70200,
    "resident_tax": 205500,
    "social_insurance": 762984,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "大和総研案（2026年の税制に合わせて計算）",
@@ -707,7 +722,8 @@
    "income_tax": 70200,
    "resident_tax": 205500,
    "social_insurance": 762984,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
@@ -753,12 +769,13 @@
  },
  {
   "household": "H5",
-  "baseline_disposable": 2208436,
+  "baseline_disposable": 2651836,
   "baseline_parts": {
    "income_tax": 0,
    "resident_tax": 58500,
    "social_insurance": 353064,
-   "child_allowance": 120000
+   "child_allowance": 120000,
+   "child_rearing_allowance": 443400
   },
   "label": {
    "ja": "政府案（2029年度からの本格版）",
@@ -800,12 +817,13 @@
  },
  {
   "household": "H5",
-  "baseline_disposable": 2208436,
+  "baseline_disposable": 2651836,
   "baseline_parts": {
    "income_tax": 0,
    "resident_tax": 58500,
    "social_insurance": 353064,
-   "child_allowance": 120000
+   "child_allowance": 120000,
+   "child_rearing_allowance": 443400
   },
   "label": {
    "ja": "連合案",
@@ -843,12 +861,13 @@
  },
  {
   "household": "H5",
-  "baseline_disposable": 2208436,
+  "baseline_disposable": 2651836,
   "baseline_parts": {
    "income_tax": 0,
    "resident_tax": 58500,
    "social_insurance": 353064,
-   "child_allowance": 120000
+   "child_allowance": 120000,
+   "child_rearing_allowance": 443400
   },
   "label": {
    "ja": "大和総研案（2026年の税制に合わせて計算）",
@@ -890,12 +909,13 @@
  },
  {
   "household": "H5",
-  "baseline_disposable": 2208436,
+  "baseline_disposable": 2651836,
   "baseline_parts": {
    "income_tax": 0,
    "resident_tax": 58500,
    "social_insurance": 353064,
-   "child_allowance": 120000
+   "child_allowance": 120000,
+   "child_rearing_allowance": 443400
   },
   "label": {
    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
@@ -946,7 +966,8 @@
    "income_tax": 0,
    "resident_tax": 0,
    "social_insurance": 116799,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "政府案（2029年度からの本格版）",
@@ -993,7 +1014,8 @@
    "income_tax": 0,
    "resident_tax": 0,
    "social_insurance": 116799,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "連合案",
@@ -1036,7 +1058,8 @@
    "income_tax": 0,
    "resident_tax": 0,
    "social_insurance": 116799,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "大和総研案（2026年の税制に合わせて計算）",
@@ -1083,7 +1106,8 @@
    "income_tax": 0,
    "resident_tax": 0,
    "social_insurance": 116799,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
@@ -1134,7 +1158,8 @@
    "income_tax": 71700,
    "resident_tax": 204000,
    "social_insurance": 554019,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "政府案（2029年度からの本格版）",
@@ -1181,7 +1206,8 @@
    "income_tax": 71700,
    "resident_tax": 204000,
    "social_insurance": 554019,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "連合案",
@@ -1224,7 +1250,8 @@
    "income_tax": 71700,
    "resident_tax": 204000,
    "social_insurance": 554019,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "大和総研案（2026年の税制に合わせて計算）",
@@ -1271,7 +1298,8 @@
    "income_tax": 71700,
    "resident_tax": 204000,
    "social_insurance": 554019,
-   "child_allowance": 0
+   "child_allowance": 0,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",
@@ -1322,7 +1350,8 @@
    "income_tax": 879800,
    "resident_tax": 906300,
    "social_insurance": 2324832,
-   "child_allowance": 120000
+   "child_allowance": 120000,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "政府案（2029年度からの本格版）",
@@ -1369,7 +1398,8 @@
    "income_tax": 879800,
    "resident_tax": 906300,
    "social_insurance": 2324832,
-   "child_allowance": 120000
+   "child_allowance": 120000,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "連合案",
@@ -1412,7 +1442,8 @@
    "income_tax": 879800,
    "resident_tax": 906300,
    "social_insurance": 2324832,
-   "child_allowance": 120000
+   "child_allowance": 120000,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "大和総研案（2026年の税制に合わせて計算）",
@@ -1459,7 +1490,8 @@
    "income_tax": 879800,
    "resident_tax": 906300,
    "social_insurance": 2324832,
-   "child_allowance": 120000
+   "child_allowance": 120000,
+   "child_rearing_allowance": 0
   },
   "label": {
    "ja": "政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）",

@@ -172,6 +172,8 @@ Laws and cabinet orders (not copyrighted, 著作権法13条) and national docume
 | law/chihozeiho_sekourei_20270101.xml | 地方税法施行令, text from 2027-01-01 | 2026 | https://laws.e-gov.go.jp/law/325CO0000000245 | single-parent child's income limit |
 | law/shotokuzeiho_20261201.xml | 所得税法, text from 2026-12-01 (令和8年法律第12号) | 2026-03-31 | https://laws.e-gov.go.jp/law/340AC0000000033 | working-student limit 890,000 |
 | law/kokuho_sekourei_333CO0000000362_asof20260401.xml, law/kokuho_sekourei_333CO0000000362.xml | 国民健康保険法施行令 (2026-04-01 and current) | 2026 | https://laws.e-gov.go.jp/api/1/lawdata/333CO0000000362 | NHI reduction: who counts as an earner (29条の7第6項第1号, 附則5条) |
+| law/jido_fuyo_teate_ho_336AC0000000238.xml, law/jido_fuyo_teate_sekourei_336CO0000000405.xml | 児童扶養手当法 and 施行令 (施行令 in force 2026-04-01; downloaded 2026-11-03) | 2026 | https://laws.e-gov.go.jp/api/1/lawdata/336CO0000000405 | single-parent allowance: amounts, limits, income test |
+| child/cfa_20260408_jido_fuyo_teate_gaiyou.pdf | こども家庭庁 児童扶養手当制度の概要 | 2026-04-08 | https://www.cfa.go.jp/policies/hitori-oya/fuyou-teate | check of the amounts and the partial-payment range |
 | law/koyo_hoken_ho_349AC0000000116.xml | 雇用保険法 (downloaded 2026-11-03) | 2026 | https://laws.e-gov.go.jp/api/1/lawdata/349AC0000000116 | 6条: who is outside employment insurance (no pay condition) |
 | social/mhlw_r8_minimum_wage_ichiran.pdf | 厚生労働省 令和8年度地域別最低賃金 全国一覧 (downloaded 2026-11-03) | 2026 | https://www.mhlw.go.jp/content/11200000/001753404.pdf | lowest rate in force October–December 2026: 1,023 yen (特定減額特例, wall_H1.md revision 2) |
 | law/seirei_R8_275_shikoukijitsu.pdf | 令和8年政令第275号 (start date 2026-10-01) | 2026-09-11 | https://www.mhlw.go.jp/hourei/doc/hourei/H260911T0020.pdf | end of the 88,000-yen wage test |

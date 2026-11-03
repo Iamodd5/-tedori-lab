@@ -40,7 +40,8 @@ for hid in HOUSEHOLDS:
         rows.append({"household": hid, "baseline_disposable": base["disposable"],
                      "baseline_parts": {"income_tax": sum(o["income_tax"] for o in base["members"].values()),
                                         "resident_tax": sum(o["resident_tax"] for o in base["members"].values()),
-                                        "social_insurance": base["social_insurance"], "child_allowance": base["child_allowance"]},
+                                        "social_insurance": base["social_insurance"], "child_allowance": base["child_allowance"],
+                                        "child_rearing_allowance": base["child_rearing_allowance"]},
                      "label": r.design(d)["label"], **res})
 (OUT / "household_comparison.json").write_text(json.dumps(rows, ensure_ascii=False, indent=1))
 with open(OUT / "household_comparison.csv", "w", newline="") as f:
