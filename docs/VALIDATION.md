@@ -29,6 +29,8 @@ Caveat: the hand calculations and the engine were written by the same author fro
 | 協会けんぽ Tokyo premium lookups | 令和8年3月分からの保険料額表 | match |
 | Resident tax rounded separately for 特別区民税 and 都民税: taxable 3,334,000 → 201,500 + 133,300 | 大田区 住民税の計算のしくみ (worked example) | match |
 | Resident-tax 特定親族特別控除, 令和9年度 bands | 大田区 所得控除 table; 地方税法314条の2第1項第12号 | match |
+| 児童扶養手当: full amount 48,050; partial range down to 11,340 just below the stop limit | こども家庭庁「児童扶養手当制度の概要」 (2026-04-08) | match |
+| 65+ long-term-care premium: 18 bands, base 79,200; the 826,500 line | 新宿区 介護保険料の決まり方 (令和8年度); 介護保険法施行令38条1項 | match (the table's own amounts) |
 | Just above the income-levy exemption line (income 1,124,200, line 1,120,000) | MIC 資料３ p.18 figure | match before rounding: the figure plots the income levy as a continuous line, 4,200 (2,520 + 1,680 by 地方税法附則3条の3), as the engine has it. The law then rounds each tax down to 100 yen (20条の4の2第3項): 2,500 + 1,600 = 4,100. A test written from the figure compared 4,200 with the rounded amount; it is kept as an expected failure so that going back to one combined rounding would be caught (Q22). An earlier version of this row wrongly called the figure a conflict with the law |
 
 ## 3. Comparison with OpenFisca-Japan (commit 1f8d13d)
@@ -152,7 +154,7 @@ The official counts leave out public servants, so the model should be higher in 
 
 **Daiwa cost** (2026 rules): income tax +1.52 trillion, refunds 0.58 trillion, net: the government collects 0.94 trillion more (the result pages round these to 0.1 trillion: 1.5, 0.6 and 0.9). Daiwa's own estimate (2025 rules, credit 56,500; p.7): income tax +0.7 trillion, refunds 0.7 trillion, net about zero. Most of the gap has the same cause as in §9: under 2026 rules the basic deduction that the design removes is larger (1,040,000 at incomes up to 4.89 million), so removing it raises more tax. Daiwa built its estimate from MIC tax-assessment statistics, not household-survey averages, and the model has too few high earners (above), so the second decimal place should not be relied on.
 
-**Method changed during the milestone.** The first version split each cell by the share of people aged 65+. Its first run counted 35.8 million earners at 1 million yen or less, because it gave pensioners small salaries. It was replaced by the pension/work split before anything was published. The test and hand calculation were rewritten with it (`tests/hand_calcs/population.md`, revision note), and an arithmetic slip in the first hand calculation is recorded there too.
+**Method changed during development.** The first version split each cell by the share of people aged 65+. Its first run counted 35.8 million earners at 1 million yen or less, because it gave pensioners small salaries. It was replaced by the pension/work split before anything was published. The test and hand calculation were rewritten with it (`tests/hand_calcs/population.md`, revision note), and an arithmetic slip in the first hand calculation is recorded there too.
 
 ## 11. Corrections after review
 
@@ -182,4 +184,17 @@ A second review checked the fixes in section 11 against the law and the publishe
 | Household NHI counts toward the head's Daiwa cash cap whenever the head works (before, not when the head was in company insurance) | Daiwa p.4 | none (the head's own premiums already exceed the credit) |
 
 Tests changed, each after the hand calculation: `test_h1_baseline_walls_match_hand_calculation` (+69,994 → +95,257, plus take-home 809,595 at 1,050,000). New: `test_h2_walls_match_hand_calculation` (`H2.md`, wall map points; it fails if the working-student limit goes back to 750,000) and `test_wall_map_section_matches_engine` (the "Engine" column of section 6).
+
+## 13. Rules added before release
+
+Four rules that were listed as missing are now in the calculation, each from a hand calculation written first and tested.
+
+| Rule | Source | Effect |
+|---|---|---|
+| Single-parent allowance (児童扶養手当): 48,050 a month for the first child and 11,350 for each further one, reduced above an income limit and stopped at a higher one; a public pension of the parent is taken off month by month | 児童扶養手当法, 施行令2条の2, 2条の4, 4条, 6条の5 | H5 receives 443,400 a year: take-home 2,208,436 → 2,651,836 (`tests/hand_calcs/H5.md`). A new wall where it stops (salary 3.85m) |
+| Long-term-care premium for people 65 and over (Shinjuku, fiscal 2026) | 新宿区 table; 介護保険法施行令38条 | H6 pays 51,480 + 19,800: take-home 2,683,201 → 2,611,921 (`tests/hand_calcs/H6.md`). A new wall where the head starts to pay resident tax (pension 2.12m) |
+| Resident-tax spouse deduction for earners with total income above 9m (220,000 / 110,000) | 地方税法314条の2第1項第10号・第10号の2, 314条の6 | none of H1–H8 at their reference incomes; resident tax 11,000–22,000 lower than before for such earners (`tests/hand_calcs/spouse_rt.md`) |
+| Student pension deferral only while the student's income after insurance is at most 1,280,000 | 国民年金法90条の3; 施行令6条の9, 6条の12 | H2's wall map: national pension 215,040 from a salary of about 2.2m (step −174,798, `tests/hand_calcs/H2.md`) |
+
+The all-household numbers moved a little with these rules (for example the Daiwa plan's net effect on government revenue, 0.95 → 0.94 trillion). Still not modelled: the National Pension exemption for low incomes, which has to be applied for and lowers the future pension (Q20).
 

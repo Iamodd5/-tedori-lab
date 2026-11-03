@@ -121,8 +121,8 @@ The 2026 part-time coverage rules (the 88,000-yen monthly wage test ended on 202
 
 | File | Title (publisher, date) | URL | Status and use |
 |---|---|---|---|
-| stats/zkk2024_shotoku_3-32-1.xlsx | 令和6年全国家計構造調査 所得 第3-32-1表 年間収入階級，世帯類型，所得構成別1世帯当たり年間収入額（総務省統計局, 2026-08-28） | https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040482919&fileKind=0 | downloaded 2026-11-01; population view households (H-17: A) |
-| stats/zkk2024_kakei_1-21.xlsx | 令和6年全国家計構造調査 家計収支 第1-21表 年間収入階級・十分位階級別1世帯当たり1か月間の収入と支出（総務省統計局, 2025-12-19） | https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040379252&fileKind=0 | downloaded 2026-11-01; food spending (H-17: A) |
+| stats/zkk2024_shotoku_3-32-1.xlsx | 令和6年全国家計構造調査 所得 第3-32-1表 年間収入階級，世帯類型，所得構成別1世帯当たり年間収入額（総務省統計局, 2026-08-28） | https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040482919&fileKind=0 | downloaded 2026-11-01; population view households |
+| stats/zkk2024_kakei_1-21.xlsx | 令和6年全国家計構造調査 家計収支 第1-21表 年間収入階級・十分位階級別1世帯当たり1か月間の収入と支出（総務省統計局, 2025-12-19） | https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040379252&fileKind=0 | downloaded 2026-11-01; food spending |
 | stats/kakei2025_sosetai_3.xlsx | 家計調査 2025年 総世帯 第3表 年間収入五分位・十分位階級別（総務省統計局, 2026-02-06） | https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040409804&fileKind=0 | downloaded 2026-11-01; check only |
 | stats/kiso2025_setai_2.csv | 2025年国民生活基礎調査 世帯票 第2表 世帯数－構成割合，世帯構造・年次別（厚生労働省, 2026-07-15） | https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040472271&fileKind=1 | downloaded 2026-11-01; check only |
 | stats/minkan_r7_3.xlsx | 令和7年分民間給与実態統計調査 第3表 給与階級別の総括表（国税庁, e-Stat copy, 2026-09-29） | https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040505068&fileKind=0 | downloaded 2026-11-01; check only |

@@ -199,7 +199,7 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0, ltc_65=Tru
 
     child_ages = [m["age"] for m in members if m["role"] == "child" and m["age"] <= b.params("child_allowance")["eligible_age_max"]["value"]]
     allowance = b.child_allowance(child_ages)
-    rearing = _child_rearing_allowance(members, out) if single_parent else 0
+    rearing = _child_rearing_allowance(members, out) if spouse is None and head.get("single_parent") else 0  # no tax test of the child
     gross = sum(o["gross"] for o in out.values())
     tax = sum(o["income_tax"] + o["resident_tax"] for o in out.values())
     si = sum(o["social_insurance"] for o in out.values())
@@ -220,4 +220,4 @@ def _child_rearing_allowance(members, out):
     # 特定扶養親族等 (施行令2条の4第1項第2号ハ): dependants for tax aged 16 to 22, i.e. 控除対象 from 16 and under 23
     specific = sum(it["general_age_from"]["value"] <= m["age"] < it["specific_age_under"]["value"] for m in deps
                    if out[m["id"]]["total_income"] <= it["income_limit"]["value"])
-    return b.child_rearing_allowance(income, len(kids), ordinary=len(deps) - specific, specific=specific)
+    return b.child_rearing_allowance(income, len(kids), ordinary=len(deps) - specific, specific=specific, pension=head.get("public_pension", 0))

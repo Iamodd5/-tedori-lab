@@ -11,8 +11,8 @@
 </head>
 <body>
 <h1><span lang="ja">税の案ごとに、手取りはどう変わる？</span><span lang="en">How would each tax plan change your take-home pay?</span></h1>
-<p><span lang="ja">政府や労働団体、民間の研究所が、働く人の税金・社会保険料と給付のしくみを変える案を出しています。それぞれの案は、所得の低い人や中くらいの人の負担を軽くすることなどを目的に掲げています（各案の内容は下の一覧のとおりです）。いま計算できる一つの案では、世帯によって手取りが増える場合も減る場合もあります。案の一つの形が「給付付き税額控除」で、所得税を減らし、減らしきれない分は現金で払うしくみです。政府の案は、所得税を減らすのではなく、市区町村が現金で支給するしくみで、政府はこれを本格的な給付付き税額控除への「第一歩」としています。</span>
-<span lang="en">The government, a trade union federation and a private research institute have put forward plans that change how working people's tax, social insurance and benefits work. Each plan states its own aims, such as easing the burden on people on low or middle incomes (see each plan below). Under the one plan that can be calculated now, take-home pay goes up for some households and down for others. One form these plans take is a "refundable tax credit" (給付付き税額控除): it cuts your income tax, and if the cut is bigger than the tax you owe, you get the rest in cash. The government's plan doesn't cut income tax: municipalities pay the money in cash, and the government calls it a "first step" towards a full refundable tax credit.</span></p>
+<p><span lang="ja">政府や労働団体、民間の研究所が、働く人の税金・社会保険料と給付のしくみを変える案を出しています。それぞれの案は、所得の低い人や中くらいの人の負担を軽くすることなどを目的に掲げています（各案の内容は下の一覧のとおりです）。いま計算できる一つの案では、世帯によって手取りが増える場合も減る場合もあります。案の一つの形が「給付付き税額控除」で、所得税を減らし、減らしきれない分は現金で払うしくみです。政府の案は、市区町村が所得に応じて現金を支給するしくみで、政府はこれを本格的な給付付き税額控除への「第一歩」としています。</span>
+<span lang="en">The government, a trade union federation and a private research institute have put forward plans that change how working people's tax, social insurance and benefits work. Each plan states its own aims, such as easing the burden on people on low or middle incomes (see each plan below). Under the one plan that can be calculated now, take-home pay goes up for some households and down for others. One form these plans take is a "refundable tax credit" (給付付き税額控除): it cuts your income tax, and if the cut is bigger than the tax you owe, you get the rest in cash. In the government's plan, municipalities pay cash according to income, and the government calls it a "first step" towards a full refundable tax credit.</span></p>
 <p id="intro2"></p>
 <section class="hero" id="hero">
   <div class="slip-head" id="sliphead"></div>
@@ -43,7 +43,7 @@
 <span lang="en">Choose an example household to see how its take-home pay changes as one person's income goes up from zero. A "wall" is where income goes up but take-home pay goes down.</span></p>
 <label><span lang="ja">世帯を選ぶ：</span><span lang="en">Choose a household: </span><select id="hh"></select></label>
 <p class="info" id="incomes"></p>
-<p class="note"><span lang="ja">年齢や子どもの人数が違うと、結果も変わります（たとえば40〜64歳の人は介護保険料がかかり、16歳以上の子どもがいると扶養控除があります）。グラフは収入0円から1,000万円まで、どの収入でも見られます。</span><span lang="en">Different ages or numbers of children give different results (for example, people aged 40–64 pay long-term care insurance, and children aged 16 or over bring a dependant deduction). The charts cover every income from ¥0 to ¥10 million.</span></p>
+<p class="note"><span lang="ja">年齢や子どもの人数が違うと、結果も変わります（たとえば40歳以上の人は介護保険料がかかり、16歳以上の子どもがいると扶養控除があります）。グラフは収入0円から1,000万円まで、どの収入でも見られます。</span><span lang="en">Different ages or numbers of children give different results (for example, people aged 40 and over pay long-term care insurance, and children aged 16 or over bring a dependant deduction). The charts cover every income from ¥0 to ¥10 million.</span></p>
 
 <h3 id="wallshead"></h3>
 <ul id="walls"></ul>
@@ -116,8 +116,8 @@ function plans() {
     ? `いま計算できるのは${done.join("、")}だけです。ほかの案は、計算に必要な金額がまだ示されていません。それぞれの理由は、案の名前を押すと出ます。並び順は、政府の2つの案が始まる順、そのあと民間と労働団体の案が公表の新しい順です。`
     : `Right now only the ${done.join(", ")} can be calculated. For the others, amounts needed for the calculation haven't been set out yet; click a plan to see why. The government's two plans are listed in the order they start, then the other plans, most recently published first.`;
   document.getElementById("intro2").textContent = lang === "ja"
-    ? `このサイトは、${all.length}つの案が、例として作った${n}つの世帯の手取り（税金と保険料を引き、児童手当を足した、手元に残るお金）をどう変えるかを、同じ方法で計算するしくみです。いま計算できるのは${done.length}つの案だけで、ほかの${all.length - done.length}つは、必要な金額が決まり公表されしだい計算します。`
-    : `This site works out, with one method, how ${all.length} plans would change the take-home pay (what is left after tax and insurance, plus child allowance) of ${n} example households. Right now ${done.length} of the plans can be calculated; the other ${all.length - done.length} will be once the amounts they need are decided and published.`;
+    ? `このサイトは、${all.length}つの案が、例として作った${n}つの世帯の手取り（税金と保険料を引き、児童手当と児童扶養手当を足した、手元に残るお金）をどう変えるかを、同じ方法で計算するしくみです。いま計算できるのは${done.length}つの案だけで、ほかの${all.length - done.length}つは、必要な金額が決まり公表されしだい計算します。`
+    : `This site works out, with one method, how ${all.length} plans would change the take-home pay (what is left after tax and insurance, plus child allowance and the single-parent allowance) of ${n} example households. Right now ${done.length} of the plans can be calculated; the other ${all.length - done.length} will be once the amounts they need are decided and published.`;
 }
 
 function draw(newHousehold) {

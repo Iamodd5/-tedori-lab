@@ -5,7 +5,7 @@ Variable and parameter names are in Japanese in the upstream code; they are quot
 
 Legend: ✅ implemented and looks usable · ⚠️ implemented but needs checking or updating for 2026 · ❌ not implemented
 
-## Baseline rules Tedori Lab needs (spec Section 3)
+## Baseline rules Tedori Lab needs
 
 | Rule | Upstream variable(s) | Status | Notes |
 |---|---|---|---|
@@ -23,6 +23,9 @@ Legend: ✅ implemented and looks usable · ⚠️ implemented but needs checkin
 | National health insurance (self-employed) | – | ❌ | Upstream explicitly skips it ("varies by municipality"). Tedori Lab must implement it for one reference municipality (H7). |
 | National pension contribution | `国民年金保険料` | ⚠️ | Parameter is **17,510 yen/month dated 2015** – stale. Must update to the FY2026 amount. Upstream fix candidate. |
 | Child allowance (児童手当) | `児童手当` (+ parameters/福祉/育児/児童手当) | ⚠️ | Covers children up to high school. Must confirm the Oct 2024 reform (no income limit, 30,000 yen from 3rd child). |
+| Single-parent allowance (児童扶養手当) | `児童扶養手当` (variables/福祉/育児/児童扶養手当.py) | ⚠️ | Exists, with open TODOs for the partial-payment formula (施行令2条の4) and the public-pension offset (施行令6条の5). Tedori Lab implements both (`engine/baseline.py` `child_rearing_allowance`, tested from `tests/hand_calcs/H5.md`): a ready upstream contribution. |
+| Long-term care premium, 65+ (介護保険 第1号) | – | ❌ | Set by each municipality. Tedori Lab implements Shinjuku's fiscal 2026 table (`parameters/baseline_2026/ltc_65.yaml`). |
+| Student pension deferral and low-income exemptions (国民年金) | – | ❌ | Tedori Lab implements the deferral's income limit (施行令6条の9); the exemptions are not modelled (Q20). |
 | Consumption tax | – | ❌ | Not in scope upstream. Tedori Lab computes it outside OpenFisca from household spending (approximation, labelled). |
 | Refundable credit / any of the four designs | – | ❌ | To be built as reform files in `engine/`. |
 

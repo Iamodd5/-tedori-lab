@@ -32,5 +32,5 @@ notes:
     (in law, the previous year's). The fiscal 2026 adjustment for the 2025 change in the employment-income deduction, welfare
     recipients and the 老齢福祉年金 are not modelled.
   site:
-    ja: （近似）65歳以上の介護保険料は、新宿区の2026年度の表をその年の所得と住民税の課税状況にあてはめています（実際は前の年の所得と課税状況で決まります）。
-    en: (Approximation) Long-term care premiums for people aged 65 and over use Shinjuku's fiscal 2026 table, applied to the same year's income and resident-tax status (in fact, the previous year's decide the band).
+    ja: （近似）65歳以上の介護保険料は、新宿区の2026年度の表をその年の所得と住民税の課税状況にあてはめています（実際は前の年の所得と課税状況で決まります）。2026年度だけの、給与の控除を改正前の額で計算し直す調整は入れていません。
+    en: (Approximation) Long-term care premiums for people aged 65 and over use Shinjuku's fiscal 2026 table, applied to the same year's income and resident-tax status (in fact, the previous year's decide the band). Shinjuku's one-year adjustment for fiscal 2026, which works out salary income with the old employment-income deduction, is not included.

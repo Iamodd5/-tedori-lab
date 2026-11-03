@@ -18,6 +18,6 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
   question: Q8
 assumptions:
   - {ja: "二人とも新宿区の国民健康保険に入っています。", en: "Both are in Shinjuku's National Health Insurance."}
-  - {ja: "65歳以上が払う介護保険料は、まだ計算に入れていません。", en: "The long-term care insurance premium paid by people aged 65 and over is not included yet."}  # OPEN_QUESTIONS Q15
+  - {ja: "65歳以上の介護保険料（新宿区の2026年度の表）を引いています。この世帯では世帯主が年51,480円、配偶者が年19,800円です。", en: "Long-term care premiums for people aged 65 and over (Shinjuku's fiscal 2026 table) are taken off: ¥51,480 a year for the head and ¥19,800 for the spouse in this household."}  # OPEN_QUESTIONS Q15
   - {ja: "グラフは、世帯主の年金が増えたとき（年金額の改定など）の目安です。年金生活の世帯では、働いて収入を増やす場合とは違います。", en: "The charts show what happens if the head's pension goes up (for example when pensions are revised); for a pensioner household this is not about working more."}
   - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # project owner's choice

@@ -262,9 +262,10 @@ def spouse_deduction_rt(earner, spouse, age):
     return math.ceil(band(rp["spouse_special"]["bands"], spouse) * thirds / 3 / unit) * unit, 0  # 0 above 1,330,000
 
 
-def child_rearing_allowance(income, children, ordinary, specific):
+def child_rearing_allowance(income, children, ordinary, specific, pension=0):
     """Annual 児童扶養手当 for a claimant with `children` (監護等児童) whose test income is `income` (施行令4条1項). Dependants and
-    supported children raise the limits: `ordinary` at 380,000 each, `specific` (aged 16 to 22) at 530,000 each (施行令2条の4)."""
+    supported children raise the limits: `ordinary` at 380,000 each, `specific` (aged 16 to 22) at 530,000 each (施行令2条の4).
+    A public pension of the claimant (`pension`, a year) is taken off month by month (施行令6条の5)."""
     if children <= 0:
         return 0
     p = params("child_rearing_allowance")
@@ -274,11 +275,12 @@ def child_rearing_allowance(income, children, ordinary, specific):
     if income >= stop:
         return 0
     unit = wh["round_to"]["value"]
-    # rounded to 10 yen, under 5 down and 5 or more up, then plus 10 (2条の4第3項・第4項); nothing withheld below the full limit
-    withheld = lambda rate: 0 if income < full else math.floor((income - full) * rate / unit + 0.5) * unit + wh["plus"]["value"]
+    to_unit = lambda x: math.floor(x / unit + 0.5) * unit  # under 5 down, 5 or more up (2条の4第3項, 6条の5第2項第8号)
+    # nothing withheld below the full limit; above it the rounded share plus 10 (2条の4第3項・第4項)
+    withheld = lambda rate: 0 if income < full else to_unit((income - full) * rate) + wh["plus"]["value"]
     monthly = (m["first_child"]["value"] - withheld(wh["first_child_rate"]["value"])
                + (children - 1) * (m["each_further_child"]["value"] - withheld(wh["further_child_rate"]["value"])))
-    return 12 * monthly
+    return 12 * max(0, monthly - to_unit(pension // 12))
 
 
 def ltc_65_premium(taxed, household_taxed, total_income, pension_revenue, pension_income, salary_income):

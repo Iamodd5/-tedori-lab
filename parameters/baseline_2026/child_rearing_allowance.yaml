@@ -34,13 +34,14 @@ withheld:  # 2条の4第3項・第4項: (income − full limit) × rate, rounded
   further_child_rate: {value: 0.0040719, cite: {source: order, page: 1, section: "2条の4第4項"}}
   round_to: {value: 10, cite: {source: order, page: 1, section: "2条の4第3項"}}
   plus: {value: 10, cite: {source: order, page: 1, section: "2条の4第3項"}}
+pension_offset: {value: true, cite: {source: order, page: 1, section: "6条の5 (法13条の2第2項第1号)"}, note: "the monthly allowance is reduced by the claimant's monthly public pension (annual ÷ 12, yen floored, then rounded to 10 yen as above)"}
 not_taxed: {value: true, cite: {source: act, page: 1, section: "25条 (公課の禁止)"}}
 notes:
   approximation: true
   explanation: >
     The April 2026 amounts are used for all 12 months, and the test uses the same year's income (the law uses the
     previous year's income for November to October). The claimant is the mother, with no child support (養育費) and none of
-    the 施行令4条2項 deductions; dependants aged 70+ and other household members' incomes are not tested.
+    the 施行令4条2項 deductions; every child aged 18 or under counts as supported (生計維持児童) even with income of its own; dependants aged 70+ and other household members' incomes are not tested.
   site:
     ja: （近似）ひとり親の児童扶養手当は、2026年4月からの額を1年分すべてに使い、その年の所得で判定しています（実際は前の年の所得で、11月から翌年10月までの額が決まります）。受け取るのは母親で、養育費は受け取っていないものとしています。
     en: (Approximation) The single-parent allowance (児童扶養手当) uses the amounts from April 2026 for all 12 months, judged on the same year's income (in fact, the previous year's income sets the amount from November to the next October). We assume the mother receives it and gets no child support payments.

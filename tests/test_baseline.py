@@ -177,6 +177,20 @@ def test_child_rearing_allowance(income, children, specific, expected):
     assert b.child_rearing_allowance(income, children, ordinary=children - specific, specific=specific) == expected
 
 
+@pytest.mark.parametrize("pension, expected", [(120_000, 12 * (48_050 - 10_000)), (886_000, 0)])
+def test_child_rearing_allowance_less_pension(pension, expected):
+    # 施行令6条の5: the monthly pension (120,000 ÷ 12 = 10,000; 886,000 ÷ 12 = 73,833 → 73,830) is taken off the allowance
+    assert b.child_rearing_allowance(0, 1, ordinary=1, specific=0, pension=pension) == expected
+
+
+def test_child_rearing_allowance_has_no_test_of_the_childs_income():
+    # a mother on 2.5m with a 17-year-old earning 1.5m: the child is no tax dependant (so no ひとり親控除), but the allowance is
+    # still paid. The child counts as a supported child (生計維持児童, 法9条1項) at 380,000, as H5's does: income 1,490,000 → 36,950 a month
+    hh = {"members": [{"id": "a", "role": "head", "age": 45, "salary": 2_500_000, "single_parent": True, "work": {"full_time": True}},
+                      {"id": "c", "role": "child", "age": 17, "salary": 1_500_000}]}
+    assert h.compute(hh)["child_rearing_allowance"] == 12 * 36_950
+
+
 # --- Long-term-care premiums for people 65+ (tests/hand_calcs/H6.md, revision; OPEN_QUESTIONS Q15)
 @pytest.mark.parametrize("pension, head, spouse, disposable", [
     (2_000_000, 51_480, 19_800, 2_611_921), (1_700_000, 51_480, 19_800, 2_343_661), (2_120_000, 87_120, 63_360, 2_635_025)])
@@ -184,3 +198,23 @@ def test_h6_ltc_65(pension, head, spouse, disposable):
     from engine import wall_map as w
     res = h.compute(w.at_income(h.load("H6"), pension))
     assert (res["members"]["a"]["ltc_65"], res["members"]["b"]["ltc_65"], res["disposable"]) == (head, spouse, disposable)
+
+
+@pytest.mark.parametrize("taxed, household_taxed, income, pension, salary_income, expected", [
+    (False, False, 0, 826_500, 0, 19_800), (False, False, 0, 826_501, 0, 27_720),        # the 826,500 line (施行令38条1項1号ハ)
+    (False, False, 0, 1_200_000, 0, 27_720), (False, False, 0, 1_200_001, 0, 51_480),    # the 1,200,000 line (band 2/3)
+    (False, True, 0, 826_500, 0, 63_360), (False, True, 0, 826_501, 0, 79_200),          # bands 4/5
+    (False, False, 900_000, 0, 900_000, 19_800), (False, False, 930_000, 0, 930_000, 27_720),  # salary income less 100,000
+    (True, True, 1_249_999, 0, 0, 87_120), (True, True, 1_250_000, 0, 0, 95_040),        # 未満: 1,250,000 is band 7
+    (True, True, 54_999_999, 0, 0, 403_920), (True, True, 55_000_000, 0, 0, 459_360)])
+def test_ltc_65_band_edges(taxed, household_taxed, income, pension, salary_income, expected):
+    # Shinjuku fiscal 2026 table (ltc_65.yaml); pension income is 0 when the pension is at most 1,100,000 at 65+
+    assert b.ltc_65_premium(taxed, household_taxed, income, pension, 0, salary_income) == expected
+
+
+def test_child_rearing_allowance_child_aged_16_to_18():
+    # a dependant aged 16-18 adds 530,000 (施行令2条の4第1項第2号ハ): limits 1,220,000 / 2,610,000; income 1,490,000
+    # → withheld round10(270,000 × 0.0264029 = 7,128.8) + 10 = 7,140 → 40,910 a month
+    hh = {"members": [{"id": "a", "role": "head", "age": 45, "salary": 2_500_000, "single_parent": True, "work": {"full_time": True}},
+                      {"id": "c", "role": "child", "age": 17}]}
+    assert h.compute(hh)["child_rearing_allowance"] == 12 * 40_910
