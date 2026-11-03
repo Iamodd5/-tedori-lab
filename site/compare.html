@@ -67,7 +67,7 @@ function draw() {
   for (const r of done) li(res, lang === "ja"
     ? `${t(r.label)}：年${signed(r.disposable_change)}円（${pctSigned(r.disposable_change / base)}）`
     : `${t(r.label)}: ${signed(r.disposable_change)} yen a year (${pctSigned(r.disposable_change / base)})`);
-  // why, in plain words, for the two results readers asked about (persona review C5, C11)
+  // why, in plain words, for the two results readers asked about
   for (const r of done.filter(r => r.design === "daiwa")) {
     if (r.components.income_tax > 0) li(res, ja
       ? "この世帯では、なくなる基礎控除（税金を計算する前に所得から差し引く額）による減税額が、新しい税額控除より大きいため、所得税が増えます。税率が高い人ほど、基礎控除がなくなったときに増える税金が大きくなります。"

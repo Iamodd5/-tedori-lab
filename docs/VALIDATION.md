@@ -15,7 +15,7 @@ Each household's 2026 disposable income was worked out by hand, step by step, fr
 | H7 | 2,170,281 | 2,170,281 | 0 |
 | H8 | 12,009,068 | 12,009,068 | 0 |
 
-Caveat: the hand calculations and the engine were written by the same author (Claude, an AI) from the same rule files. They catch arithmetic and coding slips, not misreadings of the law. The official checks in section 2 are the independent ones. The persona review of 2026-11-03 found two misreadings that both had missed (section 11): the resident-tax rounding and the earner count in the NHI reduction test.
+Caveat: the hand calculations and the engine were written by the same author from the same rule files. They catch arithmetic and coding slips, not misreadings of the law. The official checks in section 2 are the independent ones. A later review found two misreadings that both had missed (section 11): the resident-tax rounding and the earner count in the NHI reduction test.
 
 ## 2. Official worked examples and tables
 
@@ -29,7 +29,7 @@ Caveat: the hand calculations and the engine were written by the same author (Cl
 | 協会けんぽ Tokyo premium lookups | 令和8年3月分からの保険料額表 | match |
 | Resident tax rounded separately for 特別区民税 and 都民税: taxable 3,334,000 → 201,500 + 133,300 | 大田区 住民税の計算のしくみ (worked example) | match |
 | Resident-tax 特定親族特別控除, 令和9年度 bands | 大田区 所得控除 table; 地方税法314条の2第1項第12号 | match |
-| Just above the income-levy exemption line (income 1,124,200, line 1,120,000) | MIC 資料３ p.18 figure | match before rounding: the figure plots the income levy as a continuous line, 4,200 (2,520 + 1,680 by 地方税法附則3条の3), as the engine has it. The law then rounds each tax down to 100 yen (20条の4の2第3項): 2,500 + 1,600 = 4,100. A test written from the figure compared 4,200 with the rounded amount; it is kept as an expected failure so that going back to one combined rounding would be caught (Q22). Until the 2026-11-03 recheck this row wrongly called the figure a conflict with the law |
+| Just above the income-levy exemption line (income 1,124,200, line 1,120,000) | MIC 資料３ p.18 figure | match before rounding: the figure plots the income levy as a continuous line, 4,200 (2,520 + 1,680 by 地方税法附則3条の3), as the engine has it. The law then rounds each tax down to 100 yen (20条の4の2第3項): 2,500 + 1,600 = 4,100. A test written from the figure compared 4,200 with the rounded amount; it is kept as an expected failure so that going back to one combined rounding would be caught (Q22). An earlier version of this row wrongly called the figure a conflict with the law |
 
 ## 3. Comparison with OpenFisca-Japan (commit 1f8d13d)
 
@@ -47,7 +47,7 @@ Likely causes, not yet traced line by line:
 - Social insurance: OF-J uses a 10% health rate on actual pay instead of the Tokyo 9.85% rate on banded pay, and has no 子ども・子育て支援金.
 - Income tax: OF-J's results are not rounded to 100 yen, and it uses 2025 employment-income rules.
 - Resident tax: for the four people above the flat per-person levy, OF-J is 12,882–19,937 yen lower (H1 is the same). The cause is not yet found (Q27).
-- Corrections: until 2026-11-02 the line above said "about 17,000–20,000 yen lower", and the website repeated it; H8 a was 12,982 lower, so the range was wrong. On 2026-11-03 our resident tax for H3 b and H8 a fell by 100 yen (section 11), so the range is now 12,882–19,937. Both are in the website's corrections log.
+- Corrections: an earlier version of the line above said "about 17,000–20,000 yen lower", and the website repeated it; H8 a was 12,982 lower, so the range was wrong. After the rounding fix in section 11, our resident tax for H3 b and H8 a fell by 100 yen, so the range is now 12,882–19,937.
 
 ## 4. Outside calculator
 
@@ -57,10 +57,10 @@ Not done yet: take-home pay for H1, H3 and H8 at three incomes compared with a r
 
 | Check | Ours | Published | Why they differ |
 |---|---|---|---|
-| Daiwa: single employee, salary 5,000,000 (age 30) | −40,700 yen/year | −13,000 (Daiwa p.7) | Daiwa used 2025 rules (basic deduction 680,000 for this worker). Under 2026 rules the deduction is 1,040,000, so losing it costs more. Q19, answered 2026-11-01; see §9. |
+| Daiwa: single employee, salary 5,000,000 (age 30) | −40,700 yen/year | −13,000 (Daiwa p.7) | Daiwa used 2025 rules (basic deduction 680,000 for this worker). Under 2026 rules the deduction is 1,040,000, so losing it costs more. Q19; see §9. |
 | Daiwa: H1, H3, H7 | +40,200 / −18,300 / −20,700 | hand calculations, `tests/hand_calcs/daiwa.md` | match to the yen |
 
-Correction 2026-11-03: this table said "basic deduction 580,000". Under 2025 rules a single employee on 5,000,000 has total income 3,560,000 and a basic deduction of 680,000 (NTA No.1199; 580,000 applies only above 6,550,000).
+Correction: an earlier version of this table said "basic deduction 580,000". Under 2025 rules a single employee on 5,000,000 has total income 3,560,000 and a basic deduction of 680,000 (NTA No.1199; 580,000 applies only above 6,550,000).
 
 ## 6. Wall map
 
@@ -69,15 +69,15 @@ Correction 2026-11-03: this table said "basic deduction 580,000". Under 2025 rul
 | H1, salary 1,110,000 → 1,120,000 (premium band 88,000 → 98,000) | marginal rate 170.88% | 170.88% (`tests/hand_calcs/wall_H1.md`) |
 | H1, salary 1,050,000 → 1,060,000 (joins employee insurance at 88,000 a month; employment insurance at both) | take-home +95,257 | +95,257 (wall_H1.md, revision 2) |
 | H5, salary 2,090,000 → 2,100,000 | resident tax +31,100 | Shinjuku single-parent exemption ends at total income 1,350,000 (`resident_tax.yaml` non_taxable) |
-| H4, spouse salary 1,290,000 → 1,300,000 (the 1.3m wall) | take-home −258,226; marginal rate 2,682% | −258,226 (`tests/hand_calcs/wall_H4.md`, revision 2026-11-01) |
+| H4, spouse salary 1,290,000 → 1,300,000 (the 1.3m wall) | take-home −258,226; marginal rate 2,682% | −258,226 (`tests/hand_calcs/wall_H4.md`) |
 | H4, the same step: why | national pension +215,040, NHI +101,786, income tax −16,100, resident tax −32,500 | same (wall_H4.md) |
-| H6, head's pension 1,700,000 | take-home 2,414,941 | 2,414,941 (`tests/hand_calcs/H6.md`, revision 2026-11-03) |
+| H6, head's pension 1,700,000 | take-home 2,414,941 | 2,414,941 (`tests/hand_calcs/H6.md`) |
 
 A test written first expected a wall at 1,056,000 for H1. It was wrong: H1 is single, so joining employee insurance replaces the more expensive NHI + national pension (see Q21). The test was replaced, before any commit, by the documented hand calculation above.
 
-The H4 wall was −281,926 at first, −280,126 after the resident-tax limit was corrected (section 8) and −258,226 since 2026-11-01, when the higher earner deducts the spouse's national pension (wall_H4.md). The website shows the current value.
+The H4 wall was −281,926 at first, −280,126 after the resident-tax limit was corrected (section 8) and −258,226 since the higher earner deducts the spouse's national pension (wall_H4.md). The website shows the current value.
 
-The list of walls on the website uses 10,000-yen steps and leaves out the step from income 0 (a full-time employee paid nothing is not a real case). The "extra ¥100,000" chart uses 100,000-yen steps, so a wall narrower than 100,000 yen may not go below zero there; the website says so under the chart and marks the listed walls on the take-home chart. Since 2026-11-03 the chart also leaves out income 0, as the list does.
+The list of walls on the website uses 10,000-yen steps and leaves out the step from income 0 (a full-time employee paid nothing is not a real case). The "extra ¥100,000" chart uses 100,000-yen steps, so a wall narrower than 100,000 yen may not go below zero there; the website says so under the chart and marks the listed walls on the take-home chart. The chart also leaves out income 0, as the list does.
 
 ### Two baseline rules corrected after the wall map exposed them
 
@@ -88,17 +88,17 @@ The list of walls on the website uses 10,000-yen steps and leaves out the step f
 
 | Check | Ours | Government | Note |
 |---|---|---|---|
-| Pay at which take-home recovers after the 1.3m wall (spouse becomes a category-1 pension member) | 1,640,000 (H4, first salary on the 10,000 grid where take-home ≥ the 1,290,000 level) | about 1,600,000 (outline p.10, 第三 一 2(1)③) | The government's figure is rounded and its household is not stated; ours is a Shinjuku household with the head on 5.0m. Same order of size. This row said 1,650,000 until 2026-11-03 (the value before the 2026-11-01 revision). |
+| Pay at which take-home recovers after the 1.3m wall (spouse becomes a category-1 pension member) | 1,640,000 (H4, first salary on the 10,000 grid where take-home ≥ the 1,290,000 level) | about 1,600,000 (outline p.10, 第三 一 2(1)③) | The government's figure is rounded and its household is not stated; ours is a Shinjuku household with the head on 5.0m. Same order of size. An earlier version of this row said 1,650,000 (the value before the H4 revision in section 6). |
 
-## 8. Corrections from the first self-review (2026-11-01)
+## 8. Corrections from an internal review
 
 | Fix | Effect at reference incomes | Effect on wall maps |
 |---|---|---|
 | Elderly spouse (70+) deduction now used: income tax 480,000 (NTA p.55), resident tax 380,000, 調整控除 difference 100,000 | none (H6 head is below the resident-tax line) | H6 at higher head pensions pays less tax |
 | Higher-earning partner claims the spouse and children; a partner can be the dependant of an employee-insured spouse (Q23) | none | H3/H8 at low head pay: no NHI or national pension when the spouse is an employee; spouse deduction claimed by the earner (hand calc `claimant.md`: 26,600 → 7,200) |
-| Resident-tax spouse/dependant income limit 480,000 → 580,000 (MIC p.28) | none | H4's 1.3m wall: −281,926 → −280,126 (superseded: −258,226 since 2026-11-01, section 6) |
+| Resident-tax spouse/dependant income limit 480,000 → 580,000 (MIC p.28) | none | H4's 1.3m wall: −281,926 → −280,126 (superseded: now −258,226, section 6) |
 
-The H4 wall test's expected value was changed from 29.1926 to 29.0126, and on 2026-11-01 to 26.8226. Each time the hand calculation was corrected first, with the source for the change, and the test was watched failing before the parameter was fixed. Changes to tests are listed here so they are visible.
+The H4 wall test's expected value was changed from 29.1926 to 29.0126, and later to 26.8226. Each time the hand calculation was corrected first, with the source for the change, and the test was watched failing before the parameter was fixed. Changes to tests are listed here so they are visible.
 
 A snapshot test now fails if any household × design result changes without `make outputs` being rerun.
 
@@ -154,9 +154,9 @@ The official counts leave out public servants, so the model should be higher in 
 
 **Method changed during the milestone.** The first version split each cell by the share of people aged 65+. Its first run counted 35.8 million earners at 1 million yen or less, because it gave pensioners small salaries. It was replaced by the pension/work split before anything was published. The test and hand calculation were rewritten with it (`tests/hand_calcs/population.md`, revision note), and an arithmetic slip in the first hand calculation is recorded there too.
 
-## 11. Corrections after the persona review (2026-11-03)
+## 11. Corrections after review
 
-A simulated review (24 AI personas, docs/COWORK_REVIEW_PROMPT.md) reported errors that the checks above had missed. Each fix below was checked against a primary source saved in `sources/`. For the rounding, NHI-earner and wage-test fixes the hand calculation was corrected first and the test was watched failing before the rule was changed. For the 令和9年度 limits this was not true at first: no hand calculation or test depended on 620,000 or 890,000, so the tests still passed with the old limits. The recheck found this (section 12), and the 890,000 limit now has a hand calculation and a test; the 620,000 limit is checked against the law text only (Q40).
+A review of the published site reported errors that the checks above had missed. Each fix below was checked against a primary source saved in `sources/`. For the rounding, NHI-earner and wage-test fixes the hand calculation was corrected first and the test was watched failing before the rule was changed. For the 令和9年度 limits this was not true at first: no hand calculation or test depended on 620,000 or 890,000, so the tests still passed with the old limits. The second review found this (section 12), and the 890,000 limit now has a hand calculation and a test; the 620,000 limit is checked against the law text only (Q40).
 
 | Fix | Source | Effect |
 |---|---|---|
@@ -168,9 +168,9 @@ A simulated review (24 AI personas, docs/COWORK_REVIEW_PROMPT.md) reported error
 
 Tests changed with these fixes, all after correcting the hand calculation: `expected.yaml` (H3, H5, H8 +100); `test_h1_baseline_walls_match_hand_calculation` (+90,013 → +69,994); `test_keep_per_100000` (income 0 left out of the chart); `test_resident_tax_relief_band_matches_mic_figure` kept and marked as an expected failure (section 2); `test_incomplete_designs_say_why` (Rengo also needs household food spending, because its plan abolishes the reduced 8% rate on food: Rengo 税制改革構想 PDF p.33).
 
-## 12. Corrections after the recheck (2026-11-03)
+## 12. Corrections after a second review
 
-A second simulated review checked the fixes in section 11 against the law and the published site. What it found, and what changed:
+A second review checked the fixes in section 11 against the law and the published site. What it found, and what changed:
 
 | Fix | Source | Effect |
 |---|---|---|

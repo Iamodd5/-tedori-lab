@@ -161,7 +161,7 @@ The tables were chosen by the project owner on 2026-11-01 (options in `docs/M7_D
 
 Fingerprints for every file are in `sources/SHA256SUMS` (69 files).
 
-## 12. Added after the persona review (2026-11-03)
+## 12. Added later: laws, cabinet orders and local guides
 
 Laws and cabinet orders (not copyrighted, 著作権法13条) and national documents are stored in git; city, ward and 協会けんぽ pages are fetched by `make` (EXTERNAL.tsv).
 

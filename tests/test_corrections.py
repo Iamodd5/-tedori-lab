@@ -44,7 +44,3 @@ def test_numbers_match_published_versions(entry, n):
     assert value(entry["previous"], n["check"]) == n["before"]
     assert value(entry["published"], n["check"]) == n["after"]
 
-
-def test_site_copy_is_current():
-    # the site reads outputs/corrections.json; run `make outputs` after editing docs/CORRECTIONS.yaml
-    assert json.loads((ROOT / "outputs" / "corrections.json").read_text()) == json.loads(json.dumps(LOG, default=str))

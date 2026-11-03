@@ -11,7 +11,6 @@ const ABOUT = [
   ["methods.html", { ja: "計算方法", en: "How it works" }],
   ["validation.html", { ja: "検証", en: "Checks" }],
   ["sources.html", { ja: "出典とコード", en: "Sources & code" }],
-  ["corrections.html", { ja: "訂正の記録", en: "Corrections" }],
   ["press.html", { ja: "報道関係の方へ", en: "For the press" }],
 ];
 // Japanese unless the visitor chose English, or (first visit) their browser isn't set to Japanese
@@ -87,8 +86,8 @@ function setupPage(onLangChange = () => {}) {
   document.body.prepend(header);
   const skip = document.createElement("a"); skip.className = "skip"; skip.href = "#main"; document.body.prepend(skip);
   const footer = document.createElement("footer");
-  footer.innerHTML = `<nav></nav><span lang="ja">数字はすべて試算です。制度が変わっても、人々の働き方は変わらないものとして計算しています。このサイトは特定の案・政党・政治家を支持するものではありません。個人がAIアシスタント（Claude）を使って作っています。</span>
-    <span lang="en">Tedori (手取り) means take-home pay. All numbers are estimates. They assume people don't change how much they work when the rules change. This site doesn't support any plan, party or politician. Made by an individual with an AI assistant (Claude).</span>`;
+  footer.innerHTML = `<nav></nav><span lang="ja">数字はすべて試算です。制度が変わっても、人々の働き方は変わらないものとして計算しています。このサイトは特定の案・政党・政治家を支持するものではありません。</span>
+    <span lang="en">Tedori (手取り) means take-home pay. All numbers are estimates. They assume people don't change how much they work when the rules change. This site doesn't support any plan, party or politician.</span>`;
   links(footer.querySelector("nav"), ABOUT);
   document.body.append(footer);
   if (window.Chart) {  // charts use the page's font and colours

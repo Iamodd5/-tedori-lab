@@ -63,7 +63,7 @@ const tp = v => lang === "ja" ? `約${v}兆円` : `about ¥${v} trillion`;  // t
 // rough estimates: shown to the nearest 0.1 trillion
 const tn = x => x == null ? "—" : (lang === "ja" ? `約${(x / 1e12).toFixed(1)}兆円` : `about ¥${(x / 1e12).toFixed(1)} trillion`);
 
-// Plain-words findings from the numbers on the page (no judgement, CLAUDE.md rule 8)
+// Plain-words findings from the numbers on the page (no judgement)
 function findings(d, labels) {
   const ul = document.getElementById("findings"); ul.innerHTML = "";
   const by = d.by_decile, up = by.filter(x => x.mean_change > 0), down = by.filter(x => x.mean_change < 0);

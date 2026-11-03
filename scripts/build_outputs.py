@@ -103,6 +103,3 @@ for hid in walls["households"]:
 (OUT / "builder.json").write_text(json.dumps(builder, separators=(",", ":")))
 print(f"wrote {len(rows)} comparison rows, wall maps for {list(walls['households'])}, skipped {list(walls['skipped'])}, {len(hh_rows)} population households")
 
-# corrections log (spec 10, page 8), read by site/corrections.html
-log = yaml.safe_load((OUT.parent / "docs" / "CORRECTIONS.yaml").read_text(encoding="utf-8"))
-(OUT / "corrections.json").write_text(json.dumps(log, ensure_ascii=False, indent=1, default=str))

@@ -132,7 +132,7 @@ function draw(newHousehold) {
   if (top) for (const [d, pts] of Object.entries(h.designs).filter(([d]) => d !== "baseline")) {
     const at = new Map(pts.map(p => [p[0], p[1]])), drop = at.get(top.from) - at.get(top.at);
     const back = pts.find(p => p[0] > top.from && p[1] >= at.get(top.from));
-    // every number from a calculated plan carries that plan's approximations (CLAUDE.md rule 3)
+    // every number from a calculated plan carries that plan's approximations
     pw.push(ja ? `（近似）${t(walls.labels[d])}では、同じところ（${yen(top.from)}円→${yen(top.at)}円）で手取りは年${yen(Math.abs(drop))}円${drop > 0 ? "減ります" : "増えます"}` + (drop > 0 && back ? `（元に戻るのは${yen(back[0])}円のとき。1万円きざみで計算）。` : "。")
                : `(Approximation) Under the ${t(walls.labels[d])}, take-home pay at the same step (¥${yen(top.from)} → ¥${yen(top.at)}) ${drop > 0 ? "falls" : "rises"} by ¥${yen(Math.abs(drop))} a year` + (drop > 0 && back ? ` (back where it was at ¥${yen(back[0])}, checked in ¥10,000 steps).` : "."));
   }
