@@ -83,7 +83,8 @@ def test_nhi_reduction_counts_earners_as_the_cabinet_order_does():
     import copy
     hh = copy.deepcopy(h.load("H6"))
     next(m for m in hh["members"] if m["role"] == "head")["public_pension"] = 1_700_000
-    assert h.compute(hh)["disposable"] == 2_414_941
+    # the 65+ long-term-care premium (Q15, added later) is left out here so the check stays on NHI; test_h6_ltc_65 adds it
+    assert h.compute(hh, ltc_65=False)["disposable"] == 2_414_941
 
 
 def test_specific_relative_special_rt():
@@ -174,3 +175,12 @@ def test_h4_head_resident_tax_at_the_620000_spouse_limit():
     (1_000_000, 1, 1, 12 * 48_050)])          # one 16-18 child counts 530,000 (limit 1,220,000)
 def test_child_rearing_allowance(income, children, specific, expected):
     assert b.child_rearing_allowance(income, children, ordinary=children - specific, specific=specific) == expected
+
+
+# --- Long-term-care premiums for people 65+ (tests/hand_calcs/H6.md, revision; OPEN_QUESTIONS Q15)
+@pytest.mark.parametrize("pension, head, spouse, disposable", [
+    (2_000_000, 51_480, 19_800, 2_611_921), (1_700_000, 51_480, 19_800, 2_343_661), (2_120_000, 87_120, 63_360, 2_635_025)])
+def test_h6_ltc_65(pension, head, spouse, disposable):
+    from engine import wall_map as w
+    res = h.compute(w.at_income(h.load("H6"), pension))
+    assert (res["members"]["a"]["ltc_65"], res["members"]["b"]["ltc_65"], res["disposable"]) == (head, spouse, disposable)

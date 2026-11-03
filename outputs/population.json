@@ -5,70 +5,70 @@
    "households": 5353665,
    "annual_income_mean": 1203241,
    "annual_income_max": 1744000.0,
-   "baseline_disposable_mean": 954137
+   "baseline_disposable_mean": 920944
   },
   {
    "decile": 2,
    "households": 5353665,
    "annual_income_mean": 2128425,
    "annual_income_max": 2691000.0,
-   "baseline_disposable_mean": 1773623
+   "baseline_disposable_mean": 1728841
   },
   {
    "decile": 3,
    "households": 5353665,
    "annual_income_mean": 2920521,
    "annual_income_max": 3215804.0,
-   "baseline_disposable_mean": 2309995
+   "baseline_disposable_mean": 2280690
   },
   {
    "decile": 4,
    "households": 5353665,
    "annual_income_mean": 3561668,
    "annual_income_max": 4144000.0,
-   "baseline_disposable_mean": 2941535
+   "baseline_disposable_mean": 2867321
   },
   {
    "decile": 5,
    "households": 5353665,
    "annual_income_mean": 4391339,
    "annual_income_max": 4731000.0,
-   "baseline_disposable_mean": 3489060
+   "baseline_disposable_mean": 3445594
   },
   {
    "decile": 6,
    "households": 5353665,
    "annual_income_mean": 5303915,
    "annual_income_max": 5737000.0,
-   "baseline_disposable_mean": 4136862
+   "baseline_disposable_mean": 4103868
   },
   {
    "decile": 7,
    "households": 5353665,
    "annual_income_mean": 6408935,
    "annual_income_max": 7174000.0,
-   "baseline_disposable_mean": 4898967
+   "baseline_disposable_mean": 4875455
   },
   {
    "decile": 8,
    "households": 5353665,
    "annual_income_mean": 7757482,
    "annual_income_max": 8691000.0,
-   "baseline_disposable_mean": 5849937
+   "baseline_disposable_mean": 5829373
   },
   {
    "decile": 9,
    "households": 5353665,
    "annual_income_mean": 9678195,
    "annual_income_max": 11153000.0,
-   "baseline_disposable_mean": 7136335
+   "baseline_disposable_mean": 7120899
   },
   {
    "decile": 10,
    "households": 5353665,
    "annual_income_mean": 15840102,
    "annual_income_max": 40746000.0,
-   "baseline_disposable_mean": 10662989
+   "baseline_disposable_mean": 10651092
   }
  ],
  "designs": {
@@ -203,60 +203,60 @@
     },
     {
      "decile": 4,
-     "mean_change": 4142,
+     "mean_change": 4499,
      "winners_share": 0.1054,
      "losers_share": 0.0681,
      "unchanged_share": 0.8265
     },
     {
      "decile": 5,
-     "mean_change": -963,
+     "mean_change": -832,
      "winners_share": 0.129,
      "losers_share": 0.4642,
      "unchanged_share": 0.4069
     },
     {
      "decile": 6,
-     "mean_change": -11252,
+     "mean_change": -11117,
      "winners_share": 0.1778,
      "losers_share": 0.475,
      "unchanged_share": 0.3472
     },
     {
      "decile": 7,
-     "mean_change": -27532,
+     "mean_change": -27033,
      "winners_share": 0.2306,
      "losers_share": 0.6761,
      "unchanged_share": 0.0933
     },
     {
      "decile": 8,
-     "mean_change": -24046,
+     "mean_change": -23649,
      "winners_share": 0.2983,
      "losers_share": 0.6943,
      "unchanged_share": 0.0074
     },
     {
      "decile": 9,
-     "mean_change": -52392,
-     "winners_share": 0.1435,
-     "losers_share": 0.8565,
+     "mean_change": -51860,
+     "winners_share": 0.1458,
+     "losers_share": 0.8542,
      "unchanged_share": 0.0
     },
     {
      "decile": 10,
-     "mean_change": -85755,
-     "winners_share": 0.055,
-     "losers_share": 0.945,
+     "mean_change": -85341,
+     "winners_share": 0.0556,
+     "losers_share": 0.9444,
      "unchanged_share": 0.0
     }
    ],
-   "cost_yen": -949210047993,
+   "cost_yen": -936015511636,
    "cost_components_yen": {
-    "income_tax": 1531233888720,
+    "income_tax": 1519925510950,
     "resident_tax": 0,
     "social_insurance": 0,
-    "credit": 582023840726,
+    "credit": 583909999313,
     "consumption_tax": 0
    }
   },
@@ -378,11 +378,11 @@
    "survey": 33376907
   },
   "income_tax": {
-   "model_baseline_2026": 10173502491124,
+   "model_baseline_2026": 10132075082828,
    "survey_estimate_2024": 11636229406234
   },
   "resident_tax": {
-   "model_baseline_2026": 12236409192633,
+   "model_baseline_2026": 12129669772668,
    "survey_estimate_2024": 12812796487612
   },
   "income_covered": {

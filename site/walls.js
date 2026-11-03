@@ -251,10 +251,12 @@ function wallCharts(ids) {
 // Why take-home falls at one wall, from outputs/wall_map.json wall_causes (2026 rules only):
 // "扶養から外れて、国民年金（年215,040円）と国民健康保険（年101,786円）の保険料がかかるためです。税は合わせて年48,600円減ります。"
 function wallReason(c) {
-  const ja = lang === "ja", m = v => ja ? `年${yen(v)}円` : `¥${yen(v)} a year`, ch = c.change;
+  const ja = lang === "ja", m = v => ja ? `年${yen(v)}円` : `¥${yen(v)} a year`;
   const NAMES = { employee_insurance: { ja: "会社の健康保険・厚生年金などの保険料", en: "company health insurance and pension premiums" },
     nhi: { ja: "国民健康保険料", en: "National Health Insurance" }, national_pension: { ja: "国民年金保険料", en: "National Pension" },
+    ltc_65: { ja: "65歳以上の介護保険料", en: "long-term care premiums for people aged 65 or over" },
     income_tax: { ja: "所得税", en: "income tax" }, resident_tax: { ja: "住民税", en: "resident tax" } };
+  const ch = { ...Object.fromEntries(Object.keys(NAMES).map(k => [k, 0])), ...c.change };  // a part missing from older data counts as 0
   const [before, after] = c.scheme;
   let why;
   if (before !== after && after === "nhi") {

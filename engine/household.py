@@ -89,8 +89,9 @@ def _insurance(members, out):
     return res
 
 
-def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
-    """basic_deduction_it and it_credit (income-tax credit per person) let a reform change those two rules."""
+def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0, ltc_65=True):
+    """basic_deduction_it and it_credit (income-tax credit per person) let a reform change those two rules.
+    ltc_65=False leaves out the 65+ long-term-care premium: its band is set from a first pass without it (ltc_65.yaml)."""
     members = hh["members"]
     it, rt = b.params("income_tax"), b.params("resident_tax")
     out = {m["id"]: {"age": m["age"], "role": m["role"], "gross": _gross(m)} for m in members}
@@ -108,7 +109,18 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
     for mid, x in _insurance(members, out).items():
         out[mid].update(x)
         o = out[mid]
+        o["ltc_65"] = 0
         o["social_insurance"] = o["health"] + o["child_levy"] + o["pension"] + o["employment"] + o["national_pension"] + o["nhi"]
+    old = [m for m in members if m["age"] >= b.params("ltc_65")["age_from"]["value"]]
+    if ltc_65 and old:
+        first = compute(hh, basic_deduction_it, it_credit, ltc_65=False)["members"]
+        household_taxed = any(o["resident_tax"] > 0 for o in first.values())
+        for m in old:
+            f = first[m["id"]]
+            p = b.ltc_65_premium(f["resident_tax"] > 0, household_taxed, f["total_income"], m.get("public_pension", 0),
+                                 f["pension_income"], b.employment_income(m.get("salary", 0)))
+            out[m["id"]]["ltc_65"] = p
+            out[m["id"]]["social_insurance"] += p
     partners = [m for m in members if m["role"] in ("head", "spouse")]
     head = next(m for m in members if m["role"] == "head")
 

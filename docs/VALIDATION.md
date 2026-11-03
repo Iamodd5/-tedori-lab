@@ -11,7 +11,7 @@ Each household's 2026 disposable income was worked out by hand, step by step, fr
 | H3 | 6,248,008 | 6,248,008 | 0 |
 | H4 | 4,961,316 | 4,961,316 | 0 |
 | H5 | 2,651,836 | 2,651,836 | 0 |
-| H6 | 2,683,201 | 2,683,201 | 0 |
+| H6 | 2,611,921 | 2,611,921 | 0 |
 | H7 | 2,170,281 | 2,170,281 | 0 |
 | H8 | 12,009,068 | 12,009,068 | 0 |
 
@@ -71,7 +71,7 @@ Correction: an earlier version of this table said "basic deduction 580,000". Und
 | H5, salary 2,090,000 → 2,100,000 | resident tax +31,100 | Shinjuku single-parent exemption ends at total income 1,350,000 (`resident_tax.yaml` non_taxable) |
 | H4, spouse salary 1,290,000 → 1,300,000 (the 1.3m wall) | take-home −258,226; marginal rate 2,682% | −258,226 (`tests/hand_calcs/wall_H4.md`) |
 | H4, the same step: why | national pension +215,040, NHI +101,786, income tax −16,100, resident tax −32,500 | same (wall_H4.md) |
-| H6, head's pension 1,700,000 | take-home 2,414,941 | 2,414,941 (`tests/hand_calcs/H6.md`) |
+| H6, head's pension 1,700,000 | take-home 2,343,661 | 2,343,661 (`tests/hand_calcs/H6.md`, with the 65+ long-term-care premiums) |
 
 A test written first expected a wall at 1,056,000 for H1. It was wrong: H1 is single, so joining employee insurance replaces the more expensive NHI + national pension (see Q21). The test was replaced, before any commit, by the documented hand calculation above.
 
@@ -121,8 +121,8 @@ The tax comparators are not tax actually collected. They are the 2024 全国家�
 |---|---|---|---|---|
 | Households | 53,536,652 (+254,087 in cells the survey hides) | 55,058,000 (国民生活基礎調査 2025) | −2.8% | different survey and year; the hidden cells are too small to model |
 | People aged 65+ | 26,897,965 | 33,376,907 (全国家計構造調査 2024, the table the model is built from, Σ 65歳以上人員) | −19% | older people who work are modelled in work households at age 64 or under |
-| Income tax | 10.17 trillion (2026 rules) | 11.64 trillion (the survey's own estimate of tax, 2024) | −12.6% | 2025–26 tax cuts (larger basic deduction), averages taxed instead of individuals, rent and interest not modelled |
-| Resident tax | 12.23 trillion | 12.81 trillion (the survey's own estimate of tax) | −4.5% | as above, smaller because resident tax changed less |
+| Income tax | 10.13 trillion (2026 rules) | 11.64 trillion (the survey's own estimate of tax, 2024) | −12.9% | 2025–26 tax cuts (larger basic deduction), averages taxed instead of individuals, rent and interest not modelled |
+| Resident tax | 12.13 trillion | 12.81 trillion (the survey's own estimate of tax) | −5.3% | as above, smaller because resident tax changed less |
 | Income modelled | 297.5 trillion | 316.9 trillion (survey 年間収入) | −6% | rent, interest, transfers left out; 4.3 trillion of other members' earnings had nobody to go to |
 | Food at 8%, per household per month | 54,832 (Oct–Nov 2024) | 57,177 (家計調査 2025 full year) | −4% | season; not used by any number yet (the food tax cut cannot be calculated yet) |
 
@@ -150,7 +150,7 @@ The official counts leave out public servants, so the model should be higher in 
 
 **Decile boundaries** (highest cell average in each model decile vs the survey's own decile upper limits, 第1-21表): 1.74m / 1.86m, 2.69m / 2.59m, 3.22m / 3.28m, 4.14m / 4.00m, 4.73m / 4.83m, 5.74m / 5.77m, 7.17m / 6.99m, 8.69m / 8.50m, 11.15m / 11.00m. All within 7%.
 
-**Daiwa cost** (2026 rules): income tax +1.53 trillion, refunds 0.58 trillion, net: the government collects 0.95 trillion more (the result pages round these to 0.1 trillion: 1.5, 0.6 and 0.9). Daiwa's own estimate (2025 rules, credit 56,500; p.7): income tax +0.7 trillion, refunds 0.7 trillion, net about zero. Most of the gap has the same cause as in §9: under 2026 rules the basic deduction that the design removes is larger (1,040,000 at incomes up to 4.89 million), so removing it raises more tax. Daiwa built its estimate from MIC tax-assessment statistics, not household-survey averages, and the model has too few high earners (above), so the second decimal place should not be relied on.
+**Daiwa cost** (2026 rules): income tax +1.52 trillion, refunds 0.58 trillion, net: the government collects 0.94 trillion more (the result pages round these to 0.1 trillion: 1.5, 0.6 and 0.9). Daiwa's own estimate (2025 rules, credit 56,500; p.7): income tax +0.7 trillion, refunds 0.7 trillion, net about zero. Most of the gap has the same cause as in §9: under 2026 rules the basic deduction that the design removes is larger (1,040,000 at incomes up to 4.89 million), so removing it raises more tax. Daiwa built its estimate from MIC tax-assessment statistics, not household-survey averages, and the model has too few high earners (above), so the second decimal place should not be relied on.
 
 **Method changed during the milestone.** The first version split each cell by the share of people aged 65+. Its first run counted 35.8 million earners at 1 million yen or less, because it gave pensioners small salaries. It was replaced by the pension/work split before anything was published. The test and hand calculation were rewritten with it (`tests/hand_calcs/population.md`, revision note), and an arithmetic slip in the first hand calculation is recorded there too.
 

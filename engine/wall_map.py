@@ -56,7 +56,7 @@ def parts(hh, income):
     total = lambda *ks: sum(o[k] for o in ms for k in ks)
     return {"income_tax": total("income_tax"), "resident_tax": total("resident_tax"),
             "employee_insurance": total("health", "child_levy", "pension", "employment"),
-            "national_pension": total("national_pension"), "nhi": total("nhi"),
+            "national_pension": total("national_pension"), "nhi": total("nhi"), "ltc_65": total("ltc_65"),
             "child_allowance": res["child_allowance"], "child_rearing_allowance": res["child_rearing_allowance"], "scheme": res["members"][varying_member(hh)[0]]["scheme"]}
 
 

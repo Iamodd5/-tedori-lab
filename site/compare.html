@@ -115,8 +115,6 @@ function draw(newHousehold) {
   const rearing = bp.child_rearing_allowance ? (ja ? `と児童扶養手当${yen(bp.child_rearing_allowance)}円` : ` and the single-parent allowance (児童扶養手当) ¥${yen(bp.child_rearing_allowance)}`) : "";
   li(res, ja ? `内訳：所得税${yen(bp.income_tax)}円・住民税${yen(bp.resident_tax)}円・社会保険料${yen(bp.social_insurance)}円を払い、児童手当${yen(bp.child_allowance)}円${rearing}を受け取ります。`
              : `Made up of: income tax ¥${yen(bp.income_tax)}, resident tax ¥${yen(bp.resident_tax)} and social insurance ¥${yen(bp.social_insurance)} paid, child allowance ¥${yen(bp.child_allowance)}${rearing} received.`);
-  const old = h.incomes.some(m => m.age >= 65);
-  if (old) li(res, ja ? "65歳以上の人が払う介護保険料は、まだ引いていません。" : "The long-term care premium paid by people aged 65 or over is not taken off yet.");
   for (const r of done) li(res, lang === "ja"
     ? `${t(r.label)}：年${signed(r.disposable_change)}円（${pctSigned(r.disposable_change / base)}）`
     : `${t(r.label)}: ${signed(r.disposable_change)} yen a year (${pctSigned(r.disposable_change / base)})`);

@@ -1,0 +1,36 @@
+# Long-term-care insurance premiums for people aged 65 and over (介護保険 第1号被保険者), Shinjuku, fiscal 2026. OPEN_QUESTIONS Q15.
+# Hand calculation: tests/hand_calcs/H6.md (revision 2026-11-03).
+source:
+  shinjuku:
+    title: 新宿区 介護保険料の決まり方（65歳以上（第1号被保険者）の方の介護保険料（令和8年度））
+    url: https://www.city.shinjuku.lg.jp/fukushi/file07_02_00006.html
+    file: sources/shinjuku/file07_02_00006.html  # not in git (sources/EXTERNAL.tsv)
+    published: 2026-03-25 (page's last update)
+  order:
+    title: 介護保険法施行令（令和8年4月1日時点の条文）
+    url: https://laws.e-gov.go.jp/api/2/law_data/410CO0000000412?asof=2026-04-01
+    file: sources/law/kaigo_sekourei_410CO0000000412_asof20260401.xml
+    published: 2026-04-01 (text in force; downloaded 2026-11-03)
+
+age_from: {value: 65, cite: {source: shinjuku, page: 1}}
+# Bands 1-5: nobody (1-3) or only other members (4-5) of the household pay resident tax. Judged on 課税年金収入 + その他の合計所得金額.
+low_line: {value: 826500, cite: {source: order, page: 1, section: "38条1項1号ハ"}, note: "also the Shinjuku table (82.65万円)"}
+mid_line: {value: 1200000, cite: {source: shinjuku, page: 1, section: "第2段階・第3段階"}}
+salary_adjustment: {value: 100000, cite: {source: shinjuku, page: 1, section: "介護保険制度における所得指標の取扱いについて（第1段階から第5段階の方）"}, note: "給与所得 less 100,000 for bands 1-5 (施行令22条の2第4項第1号)"}
+household_untaxed: {value: [19800, 27720, 51480], cite: {source: shinjuku, page: 1, section: "第1〜3段階"}, note: "up to the low line, up to the mid line, above"}
+household_taxed: {value: [63360, 79200], cite: {source: shinjuku, page: 1, section: "第4〜5段階"}, note: "up to the low line, above"}
+# Bands 6-18: the person pays resident tax. By 合計所得金額, each upper limit exclusive (未満).
+taxed:
+  bands: [[1250000, 87120], [2500000, 95040], [3750000, 110880], [5000000, 122760], [6250000, 146520], [7500000, 166320],
+          [10000000, 194040], [15000000, 229680], [25000000, 269280], [35000000, 308880], [45000000, 348480], [55000000, 403920]]
+  above: 459360
+  cite: {source: shinjuku, page: 1, section: "第6〜18段階"}
+notes:
+  approximation: true
+  explanation: >
+    Shinjuku's fiscal 2026 table is applied to 2026 income, and the band is set from the same year's income and resident-tax status
+    (in law, the previous year's). The fiscal 2026 adjustment for the 2025 change in the employment-income deduction, welfare
+    recipients and the 老齢福祉年金 are not modelled.
+  site:
+    ja: （近似）65歳以上の介護保険料は、新宿区の2026年度の表をその年の所得と住民税の課税状況にあてはめています（実際は前の年の所得と課税状況で決まります）。
+    en: (Approximation) Long-term care premiums for people aged 65 and over use Shinjuku's fiscal 2026 table, applied to the same year's income and resident-tax status (in fact, the previous year's decide the band).

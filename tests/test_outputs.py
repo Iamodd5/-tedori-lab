@@ -51,7 +51,7 @@ def test_h4_wall_cause_matches_hand_calculation():
     assert c["scheme"] == ["dependant", "nhi"]
     assert c["change"] == {"income_tax": -16_100, "resident_tax": -32_500, "employee_insurance": 0,
                            "national_pension": 215_040, "nhi": 101_786, "child_allowance": 0,
-                           "child_rearing_allowance": 0}  # field added with 児童扶養手当 (Q17); no value changed
+                           "child_rearing_allowance": 0, "ltc_65": 0}  # fields added with Q17 and Q15; no value changed
 
 
 def test_outputs_snapshot_is_current():

@@ -961,11 +961,11 @@
  },
  {
   "household": "H6",
-  "baseline_disposable": 2683201,
+  "baseline_disposable": 2611921,
   "baseline_parts": {
    "income_tax": 0,
    "resident_tax": 0,
-   "social_insurance": 116799,
+   "social_insurance": 188079,
    "child_allowance": 0,
    "child_rearing_allowance": 0
   },
@@ -1009,11 +1009,11 @@
  },
  {
   "household": "H6",
-  "baseline_disposable": 2683201,
+  "baseline_disposable": 2611921,
   "baseline_parts": {
    "income_tax": 0,
    "resident_tax": 0,
-   "social_insurance": 116799,
+   "social_insurance": 188079,
    "child_allowance": 0,
    "child_rearing_allowance": 0
   },
@@ -1053,11 +1053,11 @@
  },
  {
   "household": "H6",
-  "baseline_disposable": 2683201,
+  "baseline_disposable": 2611921,
   "baseline_parts": {
    "income_tax": 0,
    "resident_tax": 0,
-   "social_insurance": 116799,
+   "social_insurance": 188079,
    "child_allowance": 0,
    "child_rearing_allowance": 0
   },
@@ -1101,11 +1101,11 @@
  },
  {
   "household": "H6",
-  "baseline_disposable": 2683201,
+  "baseline_disposable": 2611921,
   "baseline_parts": {
    "income_tax": 0,
    "resident_tax": 0,
-   "social_insurance": 116799,
+   "social_insurance": 188079,
    "child_allowance": 0,
    "child_rearing_allowance": 0
   },

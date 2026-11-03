@@ -38,7 +38,7 @@ Every number in this report is produced automatically from the same output files
 | H3 | Dual-income employee couple, two children (2 and 8) | 6,248,008 | −27,500 |
 | H4 | Single-earner employee, spouse working part-time | 4,961,316 | −23,900 |
 | H5 | Single parent employee, one child (10) | 2,651,836 | +3,700 |
-| H6 | Pensioner couple, both 72 | 2,683,201 | ±0 |
+| H6 | Pensioner couple, both 72 | 2,611,921 | ±0 |
 | H7 | Self-employed (freelancer), single | 2,170,281 | −25,200 |
 | H8 | High-income dual-earner couple, one child (5) | 12,009,068 | −157,300 |
 
@@ -51,7 +51,7 @@ Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that 
 We lined up every household from lowest to highest yearly income and cut the line into ten groups of the same size. (Approximation) All of the following are rough estimates.
 
 - (Approximation) In groups 1–4, take-home pay goes up on average (by the most in group 1: ¥9,228 a year). But within these groups, take-home goes up for 11–21% of households, and 79–87% see no change. In group 4, 7% of households are worse off.
-- (Approximation) In groups 5–10, take-home pay goes down on average (by the most in group 10: ¥85,755 a year).
+- (Approximation) In groups 5–10, take-home pay goes down on average (by the most in group 10: ¥85,341 a year).
 - (Approximation) Overall, income tax rises by about ¥1.5 trillion a year and about ¥0.6 trillion is paid out in cash (the part of the credit bigger than income tax), so the government takes in about ¥0.9 trillion more a year (a rough estimate that assumes nobody changes how they work).
 - Daiwa's own estimate is about ¥0.7 trillion more income tax and about ¥0.7 trillion paid in cash: about zero overall (fiscally neutral). Daiwa used 2025 tax rules and a ¥56,500 credit; this site uses 2026 rules and ¥52,000, so the two can't be compared directly.
 
@@ -59,7 +59,7 @@ We lined up every household from lowest to highest yearly income and cut the lin
 
 - We assume nobody changes how much they work. Some people would change their hours when the rules change; that is not included.
 - The example households live in Shinjuku, Tokyo. Outside Shinjuku, parts of National Health Insurance and resident tax (set by each municipality) are different, and outside Tokyo so is the health insurance rate for employees (協会けんぽ, set by prefecture).
-- The all-household numbers are rough estimates from made-up households matched to the averages in a 2024 government survey. Compared with official figures, the household count is 2.8% lower. Total income tax is 12.6% lower and total resident tax 4.5% lower than the tax that survey itself estimates from reported incomes (not tax actually collected). The estimate has too many low-paid workers and too few high earners compared with official counts, so the cash paid out and the extra income tax may be off (see the Checks page).
+- The all-household numbers are rough estimates from made-up households matched to the averages in a 2024 government survey. Compared with official figures, the household count is 2.8% lower. Total income tax is 12.9% lower and total resident tax 5.3% lower than the tax that survey itself estimates from reported incomes (not tax actually collected). The estimate has too many low-paid workers and too few high earners compared with official counts, so the cash paid out and the extra income tax may be off (see the Checks page).
 - The plans that can't be calculated yet will be calculated once the amounts they need are decided and published (the reasons for each are listed above).
 
 ## All approximations
@@ -69,6 +69,7 @@ Behind every number:
 - (Approximation) Each child's age stays the same for the whole year.
 - (Approximation) The single-parent allowance (児童扶養手当) uses the amounts from April 2026 for all 12 months, judged on the same year's income (in fact, the previous year's income sets the amount from November to the next October). We assume the mother receives it and gets no child support payments.
 - (Approximation) In a couple, the partner with the higher income claims the deductions for the spouse and children, and pays and deducts the other partner's National Pension contributions. By law either partner may do this.
+- (Approximation) Long-term care premiums for people aged 65 and over use Shinjuku's fiscal 2026 table, applied to the same year's income and resident-tax status (in fact, the previous year's decide the band).
 - (Approximation) We round the employee's share of health insurance and of the child and childcare support levy separately to the yen. A government Q&A (February 2026) said to round them once, together, but it is no longer published. The difference is at most ¥1 a month.
 - (Approximation) From October 2026, the only people working 20+ hours a week for under ¥88,000 a month are workers with a minimum-wage exception (at every regional minimum wage, 20 hours a week pays more than ¥88,000 a month). They join company insurance only if they ask; we assume they don't.
 - (Approximation) Health and long-term care insurance rates change from March 2026 and employment insurance from April; the child and childcare support levy is new from April (the employee pension rate, 18.3%, does not change). We use the new rates and the levy for all 12 months of 2026. National Pension uses the fiscal 2026 monthly amount for every month. National Health Insurance uses Shinjuku's fiscal 2026 rates, because the fiscal 2027 rates (which would apply to 2026 income) aren't published yet. Pay is the same every month, with no bonus.
