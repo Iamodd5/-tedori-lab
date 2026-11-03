@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1><span lang="ja">訂正の記録</span><span lang="en">Corrections</span></h1>
-<p><span lang="ja">公開した後に、数字や説明の誤り、誤解を招く書き方を直したときは、ここに日付と理由を残します。言い回しを変えただけで、事実や数字が変わらないものは載せていません。</span><span lang="en">When we fix a wrong number, a wrong statement or misleading wording after publishing it, we list it here with the date and the reason. Changes in wording that keep the same facts and numbers are not listed.</span></p>
+<p><span lang="ja">公開した後に、数字や説明の誤り、誤解を招く書き方を直したときは、ここに日付と理由を残します。言い回しを変えただけで、事実や数字が変わらないものは載せていません。表には変わった数字のうち主なものを載せていて、すべてではありません。</span><span lang="en">When we fix a wrong number, a wrong statement or misleading wording after publishing it, we list it here with the date and the reason. Changes in wording that keep the same facts and numbers are not listed. The tables show the main numbers that changed, not all of them.</span></p>
 <p class="note"><span lang="ja">「直す前の版」「直した版」のリンク先で、それぞれの時点のプログラムとデータを見られます。</span><span lang="en">The "version before" and "fixed version" links show the program and data as they were at each point.</span></p>
 <div id="log"></div>
 <script>
@@ -27,6 +27,7 @@ function render() {
   for (const e of log) {
     root.append(el("h2", day(e.date)), el("p", t(e.what)));
     root.append(el("p", (lang === "ja" ? "理由：" : "Why: ") + t(e.why)));
+    if (e.later) root.append(el("p", (lang === "ja" ? "その後：" : "Later: ") + t(e.later), "note"));
     if (e.numbers) {
       const wrap = el("div", null, "scroll"), table = el("table"), head = table.insertRow();
       for (const h of [t({ ja: "数字", en: "Number" }), t({ ja: "直す前", en: "Before" }), t({ ja: "直した後", en: "After" })]) head.append(el("th", h));

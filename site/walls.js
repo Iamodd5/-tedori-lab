@@ -31,7 +31,6 @@ function bigWalls(pts) {
 
 // Short money labels for chart axes: 300万 / ¥3m
 // rounded, for labels: 120万円 / ¥1.2m
-const roundMoney = x => lang === "ja" ? `${Math.round(x / 1e4).toLocaleString("ja-JP")}万円` : `¥${(x / 1e6).toFixed(1)}m`;
 const axisMoney = x => lang === "ja" ? `${(x / 1e4).toLocaleString("ja-JP")}万` : `¥${+(x / 1e6).toFixed(2)}m`;
 
 // Two linked wall charts with zoom. ids: { panel, disp, rate, ranges, nav }.
@@ -195,7 +194,7 @@ function wallCharts(ids) {
     const base = new Map(o.series[0].points.map(p => [p[0], p[1]]));
     disp.data.datasets = o.series.map(s => ({ label: s.label, borderColor: s.color, backgroundColor: s.color, pointRadius: 0, pointStyle: "line",
       borderWidth: 2.5, data: shown(s.points).map(p => ({ x: p[0], y: p[1] })) }));
-    const at = new Map(o.series[0].points.map(p => [p[0], p[1]]));
+    const at = new Map(o.series[o.marksOn || 0].points.map(p => [p[0], p[1]]));  // marksOn: the series the walls were found in
     const marks = (o.marks || []).filter(w => w.from >= min && w.at <= max);
     if (marks.length) disp.data.datasets.push({ label: lang === "ja" ? "壁（上の一覧）" : "Walls (listed above)", showLine: false, pointRadius: 6,
       pointStyle: "triangle", rotation: 180, borderColor: "#C23B22", backgroundColor: "#C23B22", data: marks.map(w => ({ x: w.at, y: at.get(w.at) })) });
@@ -295,7 +294,7 @@ function listWalls(ul, pts, who, top = 3, causes = []) {
   }
   if (!walls.length) li(ul, lang === "ja" ? "1万円多く稼いで手取りが1万円以上減るところはありません。" : "There is no point where earning ¥10,000 more cuts take-home pay by ¥10,000 or more.");
   if (more) li(ul, lang === "ja" ? `ほかに、手取りが1万円以上減るところが${more}か所あります。グラフで確かめられます。`
-                                 : `There are ${more} more places where take-home pay falls by ¥10,000 or more. You can see them in the charts.`);
+                                 : `There ${more === 1 ? "is 1 more place" : `are ${more} more places`} where take-home pay falls by ¥10,000 or more. You can see them in the charts.`);
   if (small) li(ul, lang === "ja" ? `ほかに、手取りが1万円未満だけ減るところが${small}か所あります（税の控除や保険料が、収入の段階ごとに変わるため）。`
                                   : `There are also ${small} places where take-home pay falls by less than ¥10,000 (deductions and premiums change in steps as income rises).`);
   return shown;

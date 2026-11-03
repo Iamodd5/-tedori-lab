@@ -58,7 +58,7 @@ personal_deductions:  # 令和9年度 amounts from the law as amended (Q13 answe
   single_parent: {value: 300000, cite: {source: law, page: 1, section: "314条の2第1項第8号の2"}, note: "33万 only from 令和10年度 (MIC p.35)"}
   working_student: {value: 260000, cite: {source: law, page: 1, section: "314条の2第1項第9号"}}
   working_student_income_limit: {value: 890000, cite: {source: income_tax_law, page: 1, section: "所得税法2条1項32号 (令和8年分), applied by 地方税法314条の2第9項 and 292条5項"}}
-  elderly_spouse_age_from: {value: 70, cite: {source: law, page: 1, section: "292条1項 (老人控除対象配偶者)"}}
+  elderly_spouse_age_from: {value: 70, cite: {source: law, page: 1, section: "314条の2第1項第10号イ (老人控除対象配偶者)"}}
   dependent_general_age_from: {value: 16, cite: {source: law, page: 1, section: "314条の2第1項第11号"}}
   dependent_specific_age_from: {value: 19, cite: {source: law, page: 1, section: "314条の2第1項第11号"}}
   dependent_specific_age_under: {value: 23, cite: {source: law, page: 1, section: "314条の2第1項第11号"}}
@@ -103,7 +103,7 @@ non_taxable:  # Shinjuku, from 令和3年度. No levy if total income ≤ per_pe
 relief_band:  # just above the income-levy line, the income levy is at most the excess of total income over the line
   value: "income levy <= total income - income-levy line (non_taxable, income_levy_add)"
   cite: {source: mic, page: 18, section: "（参考）非課税限度額（所得割）のイメージ — 負担調整措置"}
-  note: "Read from MIC's worked figure (line 1,120,000; income 1,124,200; levy 4,200). Law text (地方税法附則3条の3) not yet in sources/ (OPEN_QUESTIONS Q22)."
+  note: "地方税法附則3条の3第2項・第5項 (sources/law/chihozeiho_20270101.xml): each tax's income levy is cut by the excess × its share, then each is rounded. MIC's figure (line 1,120,000; income 1,124,200) shows the same amount before rounding, 4,200 (OPEN_QUESTIONS Q22)."
 rounding:  # Q14 answered 2026-11-03. 第8項 joins the two taxes only when a whole amount is under 100 yen.
   taxable_income: {value: 1000, note: "round down", cite: {source: law, page: 1, section: "20条の4の2第1項"}}
   income_levy: {value: 100, note: "round down, separately for 特別区民税 and 都民税", cite: {source: law, page: 1, section: "20条の4の2第3項・第8項"}}

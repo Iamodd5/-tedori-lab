@@ -70,7 +70,7 @@
 <h3><span lang="ja">収入が10万円増えたら、手取りはいくら増える？</span><span lang="en">Earn ¥100,000 more: how much more do you take home?</span></h3>
 <p class="note"><span lang="ja">ふつうは、税金や保険料が増える分、10万円より少しだけ増えます。線が点線の0円より下に出るところが「壁」で、多く稼いだのに手取りが減ってしまいます。−20万円より下は▼で示しています。線に触れると金額が出ます。</span>
 <span lang="en">Usually a bit less than ¥100,000, because some goes to tax and insurance. Where the line drops below the dotted ¥0 line is a "wall": you earn more but end up with less. Values below −¥200,000 are marked ▼. Hover over or tap the line to see the amounts.</span></p>
-<p class="note"><span lang="ja">この図は10万円ごとの変化です。壁の幅が10万円より狭いと、線が0円より下に出ないことがあります。上の図の▼と、上の壁の一覧で確かめてください。</span><span lang="en">This chart shows the change over each ¥100,000. If a wall is narrower than ¥100,000, the line may not go below ¥0. Check the ▼ marks on the chart above and the list of walls.</span></p>
+<p class="note"><span lang="ja">この図は10万円ごとの変化です。その10万円のうち、壁で減る額が、ほかの部分で増える額より小さいと（壁の幅が狭いときや、減る額が小さいとき）、線は0円より下に出ません。上の図の▼と、上の壁の一覧で確かめてください。収入0円からの変化は、グラフにも一覧にも入れていません（フルタイムで働いて給与が0円という場合は実際にはないため）。</span><span lang="en">This chart shows the change over each ¥100,000. If a wall takes away less than the rest of that ¥100,000 adds (because the wall is narrow or the drop is small), the line stays above ¥0. Check the ▼ marks on the chart above and the list of walls. The step up from an income of ¥0 is left out of the chart and the list (a full-time employee paid nothing doesn't happen in real life).</span></p>
 <div class="chart"><canvas id="emr" role="img"></canvas></div>
 </div>
 <details><summary><span lang="ja">数字の表を見る（表示中の範囲、10万円ごと）</span><span lang="en">See the numbers as a table (the range shown, every ¥100,000)</span></summary><div class="scroll"><table id="walltable"></table></div></details>
@@ -136,16 +136,16 @@ function update(newHousehold) {
   // all households
   const r = populationResults(builder, p);
   document.getElementById("cost").textContent = lang === "ja"
-    ? `（近似）国が払う額の合計：年${(r.cost / 1e12).toFixed(2)}兆円。もらえる世帯は、収入の低いグループ1で${(r.share[0] * 100).toFixed(0)}%、高いグループ10で${(r.share[9] * 100).toFixed(0)}%です。`
-    : `(Approximation) Total paid by the government: ¥${(r.cost / 1e12).toFixed(2)} trillion a year. ${(r.share[0] * 100).toFixed(0)}% of households in the lowest income group (group 1) get something, and ${(r.share[9] * 100).toFixed(0)}% in the highest (group 10).`;
-  const labels = r.mean.map((_, k) => [(lang === "ja" ? "グループ" : "Group ") + (k + 1), (lang === "ja" ? "平均" : "avg ") + roundMoney(pop.deciles[k].annual_income_mean)]);
+    ? `（近似）国が払う額の合計：年${(r.cost / 1e12).toFixed(1)}兆円。もらえる世帯は、収入の低いグループ1で${(r.share[0] * 100).toFixed(0)}%、高いグループ10で${(r.share[9] * 100).toFixed(0)}%です。`
+    : `(Approximation) Total paid by the government: ¥${(r.cost / 1e12).toFixed(1)} trillion a year. ${(r.share[0] * 100).toFixed(0)}% of households in the lowest income group (group 1) get something, and ${(r.share[9] * 100).toFixed(0)}% in the highest (group 10).`;
+  const labels = r.mean.map((_, k) => String(k + 1));  // two-line labels did not fit on phones; the table has the averages
   dec.data = { labels, datasets: [{ label: lang === "ja" ? "1世帯あたりの平均の受取額（円／年）" : "Average received per household (yen per year)", backgroundColor: C.mine, data: r.mean.map(Math.round) }] };
-  dec.options.scales.x.title.text = lang === "ja" ? "収入グループ（年収の低い順、グループごとの平均年収）" : "Income group (lowest to highest, with average yearly income)";
+  dec.options.scales.x.title.text = lang === "ja" ? "収入グループ（1が最も低い。平均年収は下の表）" : "Income group (1 = lowest; average incomes in the table below)";
   dec.update();
   const tb = document.querySelector("#tbl tbody"); tb.innerHTML = "";
   r.mean.forEach((m, k) => {
     const tr = tb.insertRow();
-    [labels[k][0], yen(pop.deciles[k].annual_income_mean), yen(m), (r.share[k] * 100).toFixed(1) + "%"].forEach(v => tr.insertCell().textContent = v);
+    [(lang === "ja" ? "グループ" : "Group ") + (k + 1), yen(pop.deciles[k].annual_income_mean), yen(m), (r.share[k] * 100).toFixed(1) + "%"].forEach(v => tr.insertCell().textContent = v);
   });
 
   // the example household
@@ -156,7 +156,7 @@ function update(newHousehold) {
     : `With the incomes it has now, this household would get ¥${yen(customCredit(builder.households[hid].people, p))} a year under your plan (the plan set with the sliders; the starting values are placeholders from no plan).`;
   document.getElementById("wallshead").textContent = lang === "ja" ? `あなたの案での壁（${whoMoves(h)}が増えるとき）` : `Walls under your plan (as ${whoMoves(h)} goes up)`;
   const marks = listWalls(document.getElementById("walls"), mine, whoMoves(h));
-  wc.draw({ axis: incomeAxis(h), who: whoMoves(h), ref: h.reference_income, marks, series: [
+  wc.draw({ axis: incomeAxis(h), who: whoMoves(h), ref: h.reference_income, marks, marksOn: 1, series: [
     { label: lang === "ja" ? "2026年の制度" : "2026 rules", color: C.base, points: h.designs.baseline },
     { label: lang === "ja" ? "あなたの案" : "Your plan", color: C.mine, points: mine }] }, newHousehold);
   const ul = document.getElementById("approx"); ul.innerHTML = "";
@@ -168,9 +168,7 @@ Promise.all(["wall_map", "population", "builder"].map(f => loadJSON(`../outputs/
   walls = w; pop = p; builder = b;
   const sel = document.getElementById("hh");
   Object.keys(b.households).forEach(id => sel.add(new Option(id, id)));
-  let keep = new URLSearchParams(location.search).get("hh");
-  try { keep = keep || localStorage.getItem("tedori-hh"); } catch (e) { /* storage blocked */ }
-  sel.value = keep && b.households[keep] ? keep : "H5";
+  sel.value = keptHousehold(Object.keys(b.households), "H5");
   sel.onchange = () => { try { localStorage.setItem("tedori-hh", sel.value); } catch (e) { /* not kept */ } update(true); };
   makeSliders();
   shape = new Chart(document.getElementById("shape"), { type: "line", data: { datasets: [] },

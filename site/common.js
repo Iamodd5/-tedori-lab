@@ -46,6 +46,15 @@ function describeIncomes(incomes) {
 const shortName = s => s.replace(/\s*[（(].*$/, "");
 const li = (ul, text) => { const x = document.createElement("li"); x.textContent = text; ul.append(x); };
 
+// The household chosen on another page (?hh=H3, or the last one chosen) stays chosen, if it is one of `ids`.
+function keptHousehold(ids, fallback) {
+  let keep = new URLSearchParams(location.search).get("hh");
+  try { keep = keep || localStorage.getItem("tedori-hh"); } catch (e) { /* storage blocked */ }
+  if (!ids.includes(keep)) return fallback;
+  try { localStorage.setItem("tedori-hh", keep); } catch (e) { /* not kept; fine */ }
+  return keep;
+}
+
 function applyLang() {
   document.documentElement.lang = lang;
   document.documentElement.dataset.lang = lang;
@@ -104,7 +113,8 @@ function renderDoc(el, urls) {
   el.lang = typeof urls === "string" ? "en" : lang;
   fetch(url, { cache: "no-cache" }).then(r => r.text()).then(md => {
     el.innerHTML = marked.parse(md.replace(/\bQ(\d{1,2})\b(?![^\[]*\])/g, `[Q$1](${QUESTIONS})`));
-    [...el.querySelectorAll("h1, h2, h3, h4, h5")].forEach(h => {
+    const ownH1 = document.querySelectorAll("h1").length > el.querySelectorAll("h1").length;  // the report page has none
+    if (ownH1) [...el.querySelectorAll("h1, h2, h3, h4, h5")].forEach(h => {
       const n = document.createElement("h" + (+h.tagName[1] + 1)); n.innerHTML = h.innerHTML; h.replaceWith(n);
     });
   });

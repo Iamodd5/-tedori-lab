@@ -95,8 +95,8 @@ approximations:
     ja: 所得税には2.1%の復興特別所得税が上乗せされます。大和総研は、税額控除をこの上乗せの前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく、先に税額控除を差し引いてから2.1%を上乗せしています。
     en: Income tax has a 2.1% reconstruction surtax added on top. Daiwa doesn't say whether the credit is subtracted before or after that surtax. We subtract the credit first and then add the 2.1%, which is how existing tax credits work.
   - question: Q18
-    ja: 税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主の上限にだけ数えています。
-    en: "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap."
+    ja: 税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。
+    en: "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
   - question: Q26
     ja: 夫婦で収入の多い方が配偶者の国民年金保険料を払って所得から差し引く場合も、現金で払う額の上限には、配偶者本人の保険料として数えています。大和総研はこの場合を示していません。
     en: When the higher earner in a couple pays the spouse's National Pension premiums and deducts them, they still count toward the spouse's own cash cap. Daiwa doesn't cover this case.

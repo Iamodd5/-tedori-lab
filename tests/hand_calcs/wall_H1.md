@@ -32,3 +32,32 @@ Salary **1,050,000** (87,500 a month), single:
 - Take-home = 1,050,000 − 215,142 = **834,858** (was 814,839).
 - Salary 1,060,000 is in employee insurance all year, as before: 904,852. Step 1,050,000 → 1,060,000 = **+69,994** (was +90,013).
 
+
+## Revision 2, 2026-11-03 (recheck): the October split above was wrong; the 88,000 line still decides, and employment insurance is due all year
+The revision above treated every part-timer on 20+ hours as joining from October at any wage. Two rules it missed:
+- 厚生年金保険法附則4条の6第1項・第2項 and 健康保険法附則8条の3の2第1項・第2項 (sources/law/): a short-time worker who
+  is paid under the minimum wage with a 最低賃金法7条 exception and earns under 88,000 a month (「特定減額特例対象者」) is
+  「被保険者としない」 / 「被保険者となることができない」 unless they ask to join (申出).
+- MHLW 令和8年度地域別最低賃金全国一覧 (sources/social/mhlw_r8_minimum_wage_ichiran.pdf): the lowest rate in force at any
+  time from October to December 2026 is 1,023 yen an hour (高知 until 10/28, 宮崎 until 10/23, 沖縄 until 12/1).
+  20 hours a week at 1,023 yen = 1,023 × 20 × 52 ÷ 12 = 88,660 a month, which is over 88,000.
+
+So from October, a part-timer on 20+ hours paid under 88,000 a month is paid under every minimum wage in force, which is
+lawful only with a 最低賃金法7条 exception; that makes them a 特定減額特例対象者, outside company insurance unless they ask.
+We take the default (they don't ask). With January–September under the wage test itself, the 88,000 line decides company
+insurance for all 12 months, as in the first version of this file.
+
+Employment insurance has no pay condition: 雇用保険法6条 (sources/law/koyo_hoken_ho_349AC0000000116.xml) excludes people
+under 20 hours a week (1号), people not expected to stay 31 days (2号) and most daytime students (4号). H1 works 20+ hours and
+is not a student, so they pay it in every month, in or out of company insurance (closes OPEN_QUESTIONS Q24).
+
+Salary **1,050,000** (87,500 a month), single, all year outside company insurance:
+- NHI 20,121; national pension 17,920 × 12 = 215,040 (as in the first version).
+- Employment insurance: 0.5% × 87,500 = 437.5 → 437 (50 sen or less rounds down) × 12 = 5,244.
+- Total 240,405. No income or resident tax (total income 310,000; the premiums are deducted but nothing is due anyway).
+- Take-home = 1,050,000 − 240,405 = **809,595**.
+
+Salary **1,060,000**: in company insurance all year, employment insurance included, unchanged: **904,852**.
+Step 1,050,000 → 1,060,000 = 904,852 − 809,595 = **+95,257**, so the effective marginal rate there is 1 − 95,257 ÷ 10,000 = **−8.5257**.
+
+Salary 1,110,000 → 1,120,000 (above): unchanged, both in company insurance all year (EMR 1.7088).

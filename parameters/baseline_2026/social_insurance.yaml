@@ -36,6 +36,26 @@ source:
     url: https://www.nenkin.go.jp/oshirase/taisetu/jigyosho/2026/202610/100104.html
     file: sources/social/nenkin_oshirase_20261001_chingin_yoken_teppai.html
     published: 2026-10-01
+  kousei_law:
+    title: 厚生年金保険法（附則4条の6 特定減額特例対象者）
+    url: https://laws.e-gov.go.jp/api/1/lawdata/329AC0000000115
+    file: sources/law/kousei_nenkin_hoken_ho_329AC0000000115.xml
+    published: 2026
+  kenko_law:
+    title: 健康保険法（附則8条の3の2 特定減額特例対象者）
+    url: https://laws.e-gov.go.jp/api/1/lawdata/211AC0000000070
+    file: sources/law/kenkou_hoken_ho_211AC0000000070.xml
+    published: 2026
+  minimum_wage:
+    title: 令和8年度地域別最低賃金 全国一覧（厚生労働省）
+    url: https://www.mhlw.go.jp/content/11200000/001753404.pdf
+    file: sources/social/mhlw_r8_minimum_wage_ichiran.pdf
+    published: 2026 (downloaded 2026-11-03)
+  koyo_law:
+    title: 雇用保険法（6条 適用除外）
+    url: https://laws.e-gov.go.jp/api/1/lawdata/349AC0000000116
+    file: sources/law/koyo_hoken_ho_349AC0000000116.xml
+    published: 2026 (downloaded 2026-11-03)
   dependant:
     title: 協会けんぽ 令和8年度被扶養者資格の再確認について
     url: https://www.kyoukaikenpo.or.jp/about/business/dependent_status/001/index.html
@@ -72,14 +92,28 @@ employee:
   ltc_age_to_exclusive: {value: 65, cite: {source: kyoukai, page: 1}}
   pension_age_to_exclusive: {value: 70, cite: {source: kyoukai, page: 1}, note: "厚生年金 to age 70"}
 
-part_time_coverage:  # 短時間労働者: employer 51+ staff (until Sep 2027), ≥20 h/week, not a student; until Sep 2026 also monthly wage ≥ 88,000
+part_time_coverage:  # 短時間労働者: employer 51+ staff (until Sep 2027), ≥20 h/week, not a student, monthly wage ≥ 88,000 (see note)
   employer_size_min: {value: 51, cite: {source: coverage, page: 1}}
   hours_min: {value: 20, cite: {source: coverage, page: 1}}
   monthly_wage_min:
     value: 88000
     cite: {source: coverage, page: 1}
-    months_applied: {value: 9, cite: {source: wage_test_end, page: 1}, note: "January–September 2026; the wage test was abolished from 2026-10-01 (also wage_test_end_notice)"}
+    note: >
+      Applied to all 12 months of 2026. January–September: the wage test itself (it was abolished from 2026-10-01:
+      wage_test_end, wage_test_end_notice). October–December: a short-time worker paid under 88,000 a month with a
+      最低賃金法7条 exception is a 特定減額特例対象者 and is not insured unless they ask to join (kousei_law 附則4条の6第1項・第2項;
+      kenko_law 附則8条の3の2第1項・第2項). At 20 hours a week the lowest minimum wage in force from October to December
+      2026, 1,023 yen (minimum_wage: 高知・宮崎・沖縄 before their new rates start), pays 1,023 × 20 × 52 ÷ 12 = 88,660 a month,
+      so on 20+ hours anyone paid under 88,000 can only be such a worker. Hand calculation: tests/hand_calcs/wall_H1.md, revision 2.
+    approximation: true
+    explanation: "From October, people paid under 88,000 a month on 20+ hours are taken not to ask to join company insurance (the legal default)."
+    site:
+      ja: （近似）2026年10月からは、週20時間以上働いて月給が8.8万円未満の人は、最低賃金の減額特例を受けている人だけです（どの地域の最低賃金でも、週20時間なら月8.8万円を超えるため）。この人たちは、自分で申し出ないかぎり会社の保険に入りません。申し出はしないものとして計算しています。
+      en: (Approximation) From October 2026, the only people working 20+ hours a week for under ¥88,000 a month are workers with a minimum-wage exception (at every regional minimum wage, 20 hours a week pays more than ¥88,000 a month). They join company insurance only if they ask; we assume they don't.
   students_excluded: {value: true, cite: {source: coverage, page: 1}}
+  employment_insurance:  # 雇用保険: 20+ hours a week, expected 31+ days, not a daytime student; no pay or employer-size condition
+    note: "Charged to every wage earner on 20+ hours who is not a student, in or out of company insurance (OPEN_QUESTIONS Q24, answered 2026-11-03)"
+    cite: {source: koyo_law, page: 1, section: "雇用保険法6条1号・2号・4号"}
 
 health_dependant_income_limit:  # annual income below this
   general: {value: 1300000, cite: {source: dependant, page: 1}}

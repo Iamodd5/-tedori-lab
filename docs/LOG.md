@@ -495,4 +495,32 @@ The human ran the review prompt (`docs/COWORK_REVIEW_PROMPT.md`) in Claude Cowor
 
 **Still to decide** (HUMAN_TODO H-23), with each question in OPEN_QUESTIONS: Q38 (one yen a month of rounding), Q25 (an "at or above" vs "above" wording conflict), adding the student's parents to H2 (Q16), and whether the site should say who made it.
 
-128 tests pass (and one test kept on purpose as an expected failure: a ministry diagram that the law now contradicts by 100 yen, Q22). Nothing is published yet.
+128 tests pass (and one test kept on purpose as an expected failure: it compares a ministry diagram's amount before rounding with our amount after rounding, Q22; the recheck below explains). Nothing is published yet.
+
+## Milestone 10 (part 3, 2026-11-03): fixes from the recheck
+
+A second simulated review checked the morning's fixes against the law and the live site. It agreed with three of the four rule changes (resident-tax rounding, the 2027 limits, the NHI earner count) and found that the fourth was wrong. These are the changes, in plain words.
+
+**Part-timers and the ¥88,000 line (the rule changed back).**
+- Until September 2026, a part-timer working 20+ hours a week at a company with more than 50 employees joined company health insurance and pension only if paid ¥88,000 a month or more. That condition ended on 1 October 2026, and this morning we treated every such part-timer as joining from October.
+- That missed two facts. First, the minimum wage: at 20 hours a week, even the lowest hourly minimum wage in force from October to December (¥1,023) gives ¥88,660 a month. So nobody working 20+ hours can lawfully earn under ¥88,000, except a few workers who have official permission to be paid below the minimum wage.
+- Second, the law has a special rule for exactly those workers: they stay out of company insurance unless they ask to join. We assume they don't ask.
+- So, for a part-timer on 20+ hours, ¥88,000 a month is still the line all year. Example H1 at ¥1,050,000 again pays National Health Insurance and National Pension for all 12 months.
+
+**Employment insurance (a rule added).** Employment insurance has no pay condition: anyone working 20+ hours a week who is not a student pays it, about 0.5% of pay. We used to charge it only to people in company health insurance. Now H1 pays ¥5,244 a year of it even at ¥1,050,000. Their take-home pay there is ¥809,595, and earning ¥10,000 more (¥1,060,000) adds ¥95,257, because company insurance is cheaper for H1 than paying National Health Insurance and National Pension on their own.
+
+**All households.** Because nobody now changes insurance in October, a fault in the Daiwa plan's cash cap went away: it had missed the premiums of people joining in October. The lowest income group now gains ¥9,228 a year on average under the Daiwa plan (it showed ¥8,659), and the government's net gain is about ¥0.9 trillion (it showed about ¥1.0 trillion). The page now also says that in group 4, 7% of households lose, not only that most see no change.
+
+**A test that could not fail now can.** We had said every fix was checked by a hand calculation first. For the 2027 resident-tax limits that wasn't true: putting the old limits back still passed every test. There is now a hand calculation for the student (H2) at ¥1.49m/1.5m and ¥1.63m/1.64m. Its test fails if the working-student limit goes back to ¥750,000. The other limit (¥620,000 for a spouse) still has no test, because one detail of the 2027 law is unclear; that is question Q40.
+
+**Words.**
+- Rengo's cost of ¥1.5–2 trillion is for about 21 million employees; "6 million" was only the group whose amount shrinks.
+- The government's 2027–28 payments are limited year by year, not as a two-year total. The April 2029 payment goes to people who got the fiscal 2028 payment. The top-up for "income walls" is for people who start paying company insurance premiums. People without an address in Japan on 1 January are not paid.
+- The first sentence on Home no longer suggests that take-home pay can fall under plans we can't calculate. The report no longer says "still … (the wall remains)" about the Daiwa plan: it gives both numbers instead. Every uncalculated plan's reason now uses the same words.
+- A ministry diagram we had called a "conflict" with the law agrees with it: the diagram shows the tax before rounding to ¥100.
+
+**Site.** A made-up address such as `?hh=constructor` no longer empties Home and Build your own. The All households and Build your own charts show group numbers only, because longer labels overlapped. The report page has its heading back. The "Corrections" page now lists the numbers each fix changed, says its tables show the main numbers rather than all of them, and has a "Later" note on entries that were changed again.
+
+**Not done (still open):** a salary box and editable ages or children (C6, C10); the plan order (C49); English glosses (C61); phone table headings (A11); tap snapping on the chart (A19); the 2024 flat tax cut in the survey's tax figures (DOCS-1); question links that open at the right row (REG-SITE-14); tooltips at 320px wide (A-1-1). Decisions 2–5 of H-23 are still open.
+
+141 tests pass, with the one expected failure explained in Q22. Nothing from this part is published yet.

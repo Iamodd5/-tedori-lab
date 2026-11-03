@@ -27,7 +27,7 @@ header nav::-webkit-scrollbar { display: none; }
 header nav a { color: var(--muted); text-decoration: none; white-space: nowrap; padding: 20px 0 17px; border-bottom: 3px solid transparent; font-size: 15px; }
 header nav a:hover { color: var(--ai); }
 header nav a[aria-current="page"] { color: var(--ink); font-weight: 700; border-bottom-color: var(--ai); }
-header nav a:focus-visible { outline-offset: -2px; }  /* the nav clips anything outside it */
+header nav a[href]:focus-visible { outline-offset: -2px; }  /* the nav clips anything outside it; [href] outranks the :is() rule above */
 header button, .btn { font: inherit; font-size: 14px; padding: 5px 12px; border: 1px solid var(--rule); background: var(--paper);
                       color: var(--ink); border-radius: var(--r); cursor: pointer; }
 header button:hover, .btn:hover { border-color: var(--ai); color: var(--ai); }

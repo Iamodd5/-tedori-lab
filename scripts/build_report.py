@@ -56,7 +56,7 @@ def facts():
     # the designs: which can be calculated, and why the others cannot
     first = [x for x in cmp if x["household"] == "H1"]
     done = [x for x in first if x["status"] == "complete"]
-    both.update(n_plans=len(first), n_done=len(done), n_blocked=len(first) - len(done))
+    both.update(n_plans=len(first), n_done=len(done), n_blocked=len(first) - len(done), full_year=r.design("government_final")["start_year"])
     for l in LANGS:
         sep = "：" if l == "ja" else ": "
         f[l]["done_labels"] = "、".join(x["label"][l] for x in done) if l == "ja" else ", ".join(x["label"][l] for x in done)
@@ -94,6 +94,9 @@ def facts():
         dash = "〜" if l == "ja" else "–"
         f[l]["up_win"] = pct_range("winners_share").replace("{dash}", dash)
         f[l]["up_same"] = pct_range("unchanged_share").replace("{dash}", dash)
+    lose = [(x["decile"], round(x["losers_share"] * 100)) for x in up if round(x["losers_share"] * 100) > 0]
+    f["ja"]["up_lose"] = "".join(f"グループ{g}では{p}%の世帯で手取りが減ります。" for g, p in lose)
+    f["en"]["up_lose"] = "".join(f" In group {g}, {p}% of households are worse off." for g, p in lose)
     assert d["cost_yen"] < 0, "the report text says the government takes in more; rewrite it if this changes"
     pub = d["published_estimates"]
     both.update(pub_it=pub["headline_variant_with_refund"]["income_tax_increase_trillion_yen"],

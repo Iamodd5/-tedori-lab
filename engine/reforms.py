@@ -15,8 +15,8 @@ from engine import household as h
 D = pathlib.Path(__file__).resolve().parents[1] / "parameters" / "designs"
 COMPONENTS = ("income_tax", "resident_tax", "social_insurance", "credit", "consumption_tax")
 # Why a design cannot be calculated yet, by open question, so different reasons are never shown as one
-BLOCKERS = {"Q9": {"ja": "支給額や収入の線引きはまだ決まっていません（法律案では、後で政令で決めることになっています）", "en": "the payment amounts and income limits haven't been decided yet (under the bill, they will be set later by Cabinet order)"},
-            "Q3": {"ja": "連合が消費税還付制度の金額をまだ公表していません", "en": "Rengo hasn't published the amounts for its consumption tax refund"},
+BLOCKERS = {"Q9": {"ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）", "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"},
+            "Q3": {"ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）", "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"},
             "Q8": {"ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません", "en": "we don't yet have food spending figures for the example households H1–H8"}}
 
 
@@ -78,13 +78,14 @@ def _daiwa(hh):
     refund = 0
     for mid, o in ref["members"].items():
         m = next(x for x in hh["members"] if x["id"] == mid)
-        if o["scheme"] == "employee":
-            labour_si = o["health"] + o["pension"]  # child levy and employment insurance not named by Daiwa (Q18)
-        elif m.get("salary", 0) + m.get("business_income", 0) > 0:
-            # shortcut: household NHI sits with the head (household.py), so only the head's refund can use it
-            labour_si = o["national_pension"] + o["nhi"]
-        else:
+        # child levy and employment insurance not named by Daiwa (Q18). Household NHI is billed to the head
+        # (household.py), so it counts only toward the head's cap, and only if the head works
+        if m.get("salary", 0) + m.get("business_income", 0) <= 0:
             labour_si = 0
+        elif o["scheme"] == "employee":
+            labour_si = o["health"] + o["pension"] + o["nhi"]
+        else:
+            labour_si = o["national_pension"] + o["nhi"]
         refund += min(o["unused_credit"], labour_si)
     tax = lambda res, k: sum(o[k] for o in res["members"].values())
     return {"income_tax": tax(ref, "income_tax") - tax(base, "income_tax"),

@@ -74,7 +74,7 @@ function draw() {
       : "For this household, the tax saved by the basic deduction (an amount taken off income before tax is worked out) is bigger than the new tax credit, so income tax goes up. The higher your tax rate, the more tax goes up when the basic deduction is removed.");
     if (r.disposable_change === 0 && !r.components.credit) li(res, ja
       ? "この世帯では、所得税も現金の支給も変わりません。現金は働いて払った社会保険料の額までしか出ないため、働いて保険料を払っていないこの世帯には出ません。"
-      : "For this household, neither income tax nor cash changes. Cash is paid only up to the social insurance paid on work, and nobody here pays any.");
+      : "For this household, neither income tax nor cash changes. Cash is paid only up to the social insurance paid on work income, and nobody in this household pays insurance on work income.");
   }
   document.getElementById("atincome").innerHTML = "";
   const a = document.createElement("a"); a.href = `index.html?hh=${sel.value}#walls-section`;
@@ -127,10 +127,7 @@ Promise.all([loadJSON("../outputs/household_comparison.json"), loadJSON("../outp
   rows = cmp; walls = w;
   const sel = document.getElementById("hh");
   [...new Set(rows.map(r => r.household))].forEach(id => sel.add(new Option(id, id)));
-  // the household chosen on another page (?hh=H3, or the last one chosen) stays chosen
-  let keep = new URLSearchParams(location.search).get("hh");
-  try { keep = keep || localStorage.getItem("tedori-hh"); } catch (e) { /* storage blocked */ }
-  if (keep && rows.some(r => r.household === keep)) sel.value = keep;
+  sel.value = keptHousehold(rows.map(r => r.household), sel.value);
   sel.onchange = draw; draw();
 });
 </script>

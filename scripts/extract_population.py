@@ -156,14 +156,14 @@ def checks(zkk_food8, zkk_decile_bounds, suppressed):
     row = next(line for line in block.splitlines() if line.startswith("2025"))
     add("households_total", int(row.split(",")[1]) * 1000, "kiso_2025")
     add("households_in_suppressed_cells", suppressed, "zkk_income")
-    # 民間給与実態統計調査 令和7年分 第3表 その1: private-sector earners by pay band, men + women,
-    # full-year (１年を通じて勤務) and part-year (１年未満勤続) separately
+    # 民間給与実態統計調査 令和7年分 第3表 その1: private-sector earners by pay band, the 計 (men and women) rows,
+    # full-year (１年を通じて勤務) and part-year (１年未満勤続) separately. Men + women can differ from 計 by 1 (rounding)
     sheet = xlsx(S / "minkan_r7_3.xlsx")["03_01"]
     for kind, prefix in (("１年を通じて勤務した給与所得者", "wage_earners_upto_"), ("１年未満勤続の給与所得者", "wage_earners_part_year_upto_")):
         bands = {}
         for r in sheet.values():
-            if r.get("B") == kind and r.get("C", "")[:1] in ("男", "女") and r.get("A") != "計":
-                bands[r["A"]] = bands.get(r["A"], 0) + int(float(r["F"]))
+            if r.get("B") == kind and r.get("C") == "計" and r.get("A") != "計":
+                bands[r["A"]] = int(float(r["F"]))
         for label, n in bands.items():
             add(f"{prefix}{label}", n, "minkan_r7")
     kakei = xlsx(S / "kakei2025_sosetai_3.xlsx")["総"].values()

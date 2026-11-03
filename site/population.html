@@ -22,8 +22,8 @@
 <div id="results">
 <div class="summary"><ul id="findings"></ul></div>
 <h2><span lang="ja">収入グループごとの手取りの変化（1世帯あたり平均、円／年）</span><span lang="en">How take-home pay changes for each income group (average per household, yen per year)</span></h2>
-<p class="note"><span lang="ja">すべての世帯を年収の低い順に並べ、同じ数ずつ10のグループに分けています。グループ1が最も年収が低く、グループ10が最も高い世帯で、どのグループにも約535万世帯が入ります。2026年の制度と比べた変化です。グループ名の下は、そのグループの平均年収です。</span>
-<span lang="en">We line up every household from lowest to highest yearly income and cut the line into ten groups of the same size. Group 1 has the lowest incomes and group 10 the highest; each group has about 5.35 million households. Changes are compared with 2026 rules. Under each group is its average yearly income.</span></p>
+<p class="note"><span lang="ja">すべての世帯を年収の低い順に並べ、同じ数ずつ10のグループに分けています。グループ1が最も年収が低く、グループ10が最も高い世帯で、どのグループにも約535万世帯が入ります。2026年の制度と比べた変化です。グラフの下の数字はグループの番号で、各グループの平均年収は下の表にあります。</span>
+<span lang="en">We line up every household from lowest to highest yearly income and cut the line into ten groups of the same size. Group 1 has the lowest incomes and group 10 the highest; each group has about 5.35 million households. Changes are compared with 2026 rules. The numbers under the charts are the group numbers; each group's average yearly income is in the table below.</span></p>
 <div class="chart"><canvas id="mean" role="img"></canvas></div>
 
 <h2><span lang="ja">手取りが増える世帯・減る世帯の割合</span><span lang="en">How many households are better or worse off</span></h2>
@@ -56,7 +56,7 @@
 <span lang="en">The example households on other pages are not group averages: within one group, the change can differ a lot with the number of earners and the tax rate. To see how close these estimates come to official figures (number of households, number of workers, tax estimated from the survey and more), see the <a href="validation.html">Checks page</a>. For example, the estimate has too many people earning ¥1m or less and too few earning ¥10m or more, so the cash paid to low-income groups and the extra tax from high-income groups may be off.</span></p>
 
 <script>
-const C = { gain: "#009E73", lose: "#D55E00", same: "#BBBBBB", mean: "#0072B2" };
+const C = { gain: "#009E73", lose: "#D55E00", same: "#8C8C8C", mean: "#0072B2" };
 let pop, charts = [];
 const pct = x => (x * 100).toFixed(1) + "%";
 const tp = v => lang === "ja" ? `約${v}兆円` : `about ¥${v} trillion`;  // the authors' own rounded figure
@@ -71,9 +71,10 @@ function findings(d, labels) {
   const most = xs => xs.reduce((a, b) => Math.abs(b.mean_change) > Math.abs(a.mean_change) ? b : a);
   // shares of households whose take-home goes up / stays the same, as a range across the groups listed
   const span = (xs, k) => { const v = xs.map(x => Math.round(x[k] * 100)); const a = Math.min(...v), b = Math.max(...v); return a === b ? `${a}%` : `${a}〜${b}%`.replace("〜", lang === "ja" ? "〜" : "–"); };
+  const pct0 = s => Math.round(s * 100), lose = up.filter(x => pct0(x.losers_share) > 0);
   if (up.length) li(ul, lang === "ja"
-    ? `グループ${range(up)}では、手取りが平均で増えます（増える額が最も大きいグループ${most(up).decile}で年${yen(most(up).mean_change)}円）。ただし、これらのグループでも手取りが増えるのは各グループの${span(up, "winners_share")}の世帯で、${span(up, "unchanged_share")}の世帯は変わりません。`
-    : `In group${up.length > 1 ? "s" : ""} ${range(up)}, take-home pay goes up on average (by the most in group ${most(up).decile}: ¥${yen(most(up).mean_change)} a year). But within these groups, take-home goes up for ${span(up, "winners_share")} of households, and ${span(up, "unchanged_share")} see no change.`);
+    ? `グループ${range(up)}では、手取りが平均で増えます（増える額が最も大きいグループ${most(up).decile}で年${yen(most(up).mean_change)}円）。ただし、これらのグループでも手取りが増えるのは各グループの${span(up, "winners_share")}の世帯で、${span(up, "unchanged_share")}の世帯は変わりません。${lose.map(x => `グループ${x.decile}では${pct0(x.losers_share)}%の世帯で手取りが減ります。`).join("")}`
+    : `In group${up.length > 1 ? "s" : ""} ${range(up)}, take-home pay goes up on average (by the most in group ${most(up).decile}: ¥${yen(most(up).mean_change)} a year). But within these groups, take-home goes up for ${span(up, "winners_share")} of households, and ${span(up, "unchanged_share")} see no change.${lose.map(x => ` In group ${x.decile}, ${pct0(x.losers_share)}% of households are worse off.`).join("")}`);
   if (down.length) li(ul, lang === "ja"
     ? `グループ${range(down)}では、手取りが平均で減ります（減る額が最も大きいグループ${most(down).decile}で年${yen(-most(down).mean_change)}円）。`
     : `In group${down.length > 1 ? "s" : ""} ${range(down)}, take-home pay goes down on average (by the most in group ${most(down).decile}: ¥${yen(-most(down).mean_change)} a year).`);
@@ -97,10 +98,9 @@ function draw() {
     return;
   }
   st.className = ""; st.textContent = ""; res.hidden = false;
-  // on a phone only the group number fits under each bar; every group is labelled (the axis title explains)
-  const narrow = document.getElementById("mean").parentElement.clientWidth < 560;
-  const labels = d.by_decile.map((x, i) => narrow ? String(x.decile) : [(lang === "ja" ? "グループ" : "Group ") + x.decile, (lang === "ja" ? "平均" : "avg ") + roundMoney(pop.deciles[i].annual_income_mean)]);
-  const xAxis = { ticks: { autoSkip: false, maxRotation: 0 }, title: { display: narrow, text: lang === "ja" ? "収入グループ（1が最も低い。平均年収は下の表）" : "Income group (1 = lowest; average incomes in the table below)" } };
+  // only the group number fits under each bar at the page's width (two-line labels overlapped); the axis title explains
+  const labels = d.by_decile.map(x => String(x.decile));
+  const xAxis = { ticks: { autoSkip: false, maxRotation: 0 }, title: { display: true, text: lang === "ja" ? "収入グループ（1が最も低い。平均年収は下の表）" : "Income group (1 = lowest; average incomes in the table below)" } };
   findings(d, labels);
   const ja = lang === "ja";
   document.getElementById("mean").setAttribute("aria-label", ja ? "収入グループごとの手取りの平均の変化のグラフ。数字は下の表にあります。" : "Chart of the average change in take-home pay by income group. The numbers are in the table below.");

@@ -1,6 +1,6 @@
 # Sources index
 
-All files were downloaded on **2026-10-29** with `curl`. Paths are relative to `sources/`.
+Most files were downloaded on **2026-10-29** with `curl`; files added later, from 2026-10-30 to 2026-11-03, have their download date in the table or in the parameter file that cites them. Paths are relative to `sources/`.
 Every file's SHA-256 fingerprint is in `sources/SHA256SUMS`. Check all of them with `cd sources && shasum -a 256 -c SHA256SUMS` (every line should end in `OK`).
 Plain-text copies of every PDF are in `sources/text/` (regenerate with `.venv/bin/python -I scripts/pdf_to_text.py sources`).
 
@@ -172,6 +172,8 @@ Laws and cabinet orders (not copyrighted, 著作権法13条) and national docume
 | law/chihozeiho_sekourei_20270101.xml | 地方税法施行令, text from 2027-01-01 | 2026 | https://laws.e-gov.go.jp/law/325CO0000000245 | single-parent child's income limit |
 | law/shotokuzeiho_20261201.xml | 所得税法, text from 2026-12-01 (令和8年法律第12号) | 2026-03-31 | https://laws.e-gov.go.jp/law/340AC0000000033 | working-student limit 890,000 |
 | law/kokuho_sekourei_333CO0000000362_asof20260401.xml, law/kokuho_sekourei_333CO0000000362.xml | 国民健康保険法施行令 (2026-04-01 and current) | 2026 | https://laws.e-gov.go.jp/api/1/lawdata/333CO0000000362 | NHI reduction: who counts as an earner (29条の7第6項第1号, 附則5条) |
+| law/koyo_hoken_ho_349AC0000000116.xml | 雇用保険法 (downloaded 2026-11-03) | 2026 | https://laws.e-gov.go.jp/api/1/lawdata/349AC0000000116 | 6条: who is outside employment insurance (no pay condition) |
+| social/mhlw_r8_minimum_wage_ichiran.pdf | 厚生労働省 令和8年度地域別最低賃金 全国一覧 (downloaded 2026-11-03) | 2026 | https://www.mhlw.go.jp/content/11200000/001753404.pdf | lowest rate in force October–December 2026: 1,023 yen (特定減額特例, wall_H1.md revision 2) |
 | law/seirei_R8_275_shikoukijitsu.pdf | 令和8年政令第275号 (start date 2026-10-01) | 2026-09-11 | https://www.mhlw.go.jp/hourei/doc/hourei/H260911T0020.pdf | end of the 88,000-yen wage test |
 | law/kenkou_hoken_ho_211AC0000000070.xml, law/kousei_nenkin_hoken_ho_329AC0000000115.xml, law/kokumin_nenkin_ho_334AC0000000141.xml, law/kokumin_kenkou_hoken_ho_333AC0000000192.xml | 健康保険法, 厚生年金保険法, 国民年金法, 国民健康保険法 | 2026 | https://laws.e-gov.go.jp/ | coverage from 2026-10-01; premiums counted by month; national pension ages 20–59 (国民年金法7条) |
 | social/mhlw_tsuchi_R80911_hohatsu0911_6.pdf | 保発0911第6号 | 2026-09-11 | https://www.mhlw.go.jp/hourei/doc/tsuchi/T260915T0020.pdf | wage test ends 2026-10-01 |

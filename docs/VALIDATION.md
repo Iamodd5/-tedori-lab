@@ -29,7 +29,7 @@ Caveat: the hand calculations and the engine were written by the same author (Cl
 | 協会けんぽ Tokyo premium lookups | 令和8年3月分からの保険料額表 | match |
 | Resident tax rounded separately for 特別区民税 and 都民税: taxable 3,334,000 → 201,500 + 133,300 | 大田区 住民税の計算のしくみ (worked example) | match |
 | Resident-tax 特定親族特別控除, 令和9年度 bands | 大田区 所得控除 table; 地方税法314条の2第1項第12号 | match |
-| Just above the income-levy exemption line (income 1,124,200, line 1,120,000) | MIC 資料３ p.18 figure | **conflict**: the figure shows one combined levy of 4,200; the law caps each tax in proportion and rounds each, giving 2,500 + 1,600 = 4,100. The engine follows the law; the test from the figure is kept and marked as an expected failure (Q22) |
+| Just above the income-levy exemption line (income 1,124,200, line 1,120,000) | MIC 資料３ p.18 figure | match before rounding: the figure plots the income levy as a continuous line, 4,200 (2,520 + 1,680 by 地方税法附則3条の3), as the engine has it. The law then rounds each tax down to 100 yen (20条の4の2第3項): 2,500 + 1,600 = 4,100. A test written from the figure compared 4,200 with the rounded amount; it is kept as an expected failure so that going back to one combined rounding would be caught (Q22). Until the 2026-11-03 recheck this row wrongly called the figure a conflict with the law |
 
 ## 3. Comparison with OpenFisca-Japan (commit 1f8d13d)
 
@@ -67,7 +67,7 @@ Correction 2026-11-03: this table said "basic deduction 580,000". Under 2025 rul
 | Check | Engine | Hand calculation |
 |---|---|---|
 | H1, salary 1,110,000 → 1,120,000 (premium band 88,000 → 98,000) | marginal rate 170.88% | 170.88% (`tests/hand_calcs/wall_H1.md`) |
-| H1, salary 1,050,000 → 1,060,000 (in employee insurance from January rather than October) | take-home +69,994 | +69,994 (wall_H1.md, revision 2026-11-03) |
+| H1, salary 1,050,000 → 1,060,000 (joins employee insurance at 88,000 a month; employment insurance at both) | take-home +95,257 | +95,257 (wall_H1.md, revision 2) |
 | H5, salary 2,090,000 → 2,100,000 | resident tax +31,100 | Shinjuku single-parent exemption ends at total income 1,350,000 (`resident_tax.yaml` non_taxable) |
 | H4, spouse salary 1,290,000 → 1,300,000 (the 1.3m wall) | take-home −258,226; marginal rate 2,682% | −258,226 (`tests/hand_calcs/wall_H4.md`, revision 2026-11-01) |
 | H4, the same step: why | national pension +215,040, NHI +101,786, income tax −16,100, resident tax −32,500 | same (wall_H4.md) |
@@ -120,7 +120,7 @@ The tax comparators are not tax actually collected. They are the 2024 全国家�
 | Check | Model | Official | Gap | Why |
 |---|---|---|---|---|
 | Households | 53,536,652 (+254,087 in cells the survey hides) | 55,058,000 (国民生活基礎調査 2025) | −2.8% | different survey and year; the hidden cells are too small to model |
-| People aged 65+ | 26,897,965 | 33,376,907 (same survey, Σ 65歳以上人員) | −19% | older people who work are modelled in work households at age 64 or under |
+| People aged 65+ | 26,897,965 | 33,376,907 (全国家計構造調査 2024, the table the model is built from, Σ 65歳以上人員) | −19% | older people who work are modelled in work households at age 64 or under |
 | Income tax | 10.17 trillion (2026 rules) | 11.64 trillion (the survey's own estimate of tax, 2024) | −12.6% | 2025–26 tax cuts (larger basic deduction), averages taxed instead of individuals, rent and interest not modelled |
 | Resident tax | 12.23 trillion | 12.81 trillion (the survey's own estimate of tax) | −4.5% | as above, smaller because resident tax changed less |
 | Income modelled | 297.5 trillion | 316.9 trillion (survey 年間収入) | −6% | rent, interest, transfers left out; 4.3 trillion of other members' earnings had nobody to go to |
@@ -131,39 +131,55 @@ The tax comparators are not tax actually collected. They are the 2024 全国家�
 | Pay | Model | Official, full year | Official, part of the year | Gap to full year |
 |---|---|---|---|---|
 | up to 1m | 15,284,541 | 3,703,056 | 5,982,206 | +313% |
-| 1–2m | 14,622,271 | 5,824,930 | 929,309 | +151% |
-| 2–3m | 7,578,733 | 6,745,640 | 986,585 | +12% |
+| 1–2m | 14,622,271 | 5,824,931 | 929,310 | +151% |
+| 2–3m | 7,578,733 | 6,745,640 | 986,586 | +12% |
 | 3–4m | 7,617,433 | 7,986,672 | 621,454 | −5% |
-| 4–5m | 5,659,320 | 7,917,758 | 276,015 | −29% |
+| 4–5m | 5,659,320 | 7,917,759 | 276,016 | −29% |
 | 5–6m | 4,955,611 | 6,144,924 | 136,777 | −19% |
-| 6–7m | 3,782,120 | 4,035,253 | 64,794 | −6% |
+| 6–7m | 3,782,120 | 4,035,252 | 64,794 | −6% |
 | 7–8m | 2,360,337 | 2,776,867 | 44,854 | −15% |
 | 8–9m | 1,547,603 | 1,833,950 | 30,897 | −16% |
-| 9–10m | 1,007,523 | 1,266,070 | 20,871 | −20% |
-| 10–15m | 1,187,905 | 2,422,427 | 53,697 | −51% |
+| 9–10m | 1,007,523 | 1,266,070 | 20,872 | −20% |
+| 10–15m | 1,187,905 | 2,422,426 | 53,697 | −51% |
 | 15–20m | 492,655 | 609,530 | 13,450 | −19% |
 | 20–25m | 52,372 | 167,273 | 1,985 | −69% |
-| over 25m | 0 | 196,244 | 1,987 | −100% |
-| Total | 66,148,424 | 51,630,594 | | +28% |
+| over 25m | 0 | 196,243 | 1,987 | −100% |
+| Total | 66,148,424 | 51,630,593 | | +28% |
 
 The official counts leave out public servants, so the model should be higher in total. Counting part-year workers too, about 9.69 million private-sector employees earned ¥1m or less, so the model's 15.28 million is about 1.6 times too many (it is about 4 times the full-year count alone). The top bands are too empty: averaging within a cell squeezes pay towards the middle, and adult children and relatives share an average salary (Q33). Too few high earners and 19% too few people aged 65+ matter for a plan that raises tax at the top.
 
 **Decile boundaries** (highest cell average in each model decile vs the survey's own decile upper limits, 第1-21表): 1.74m / 1.86m, 2.69m / 2.59m, 3.22m / 3.28m, 4.14m / 4.00m, 4.73m / 4.83m, 5.74m / 5.77m, 7.17m / 6.99m, 8.69m / 8.50m, 11.15m / 11.00m. All within 7%.
 
-**Daiwa cost** (2026 rules): income tax +1.53 trillion, refunds 0.58 trillion, net: the government collects 0.95 trillion more. Daiwa's own estimate (2025 rules, credit 56,500; p.7): income tax +0.7 trillion, refunds 0.7 trillion, net about zero. Most of the gap has the same cause as in §9: under 2026 rules the basic deduction that the design removes is larger (1,040,000 at incomes up to 4.89 million), so removing it raises more tax. Daiwa built its estimate from MIC tax-assessment statistics, not household-survey averages, and the model has too few high earners (above), so the second decimal place should not be relied on.
+**Daiwa cost** (2026 rules): income tax +1.53 trillion, refunds 0.58 trillion, net: the government collects 0.95 trillion more (the result pages round these to 0.1 trillion: 1.5, 0.6 and 0.9). Daiwa's own estimate (2025 rules, credit 56,500; p.7): income tax +0.7 trillion, refunds 0.7 trillion, net about zero. Most of the gap has the same cause as in §9: under 2026 rules the basic deduction that the design removes is larger (1,040,000 at incomes up to 4.89 million), so removing it raises more tax. Daiwa built its estimate from MIC tax-assessment statistics, not household-survey averages, and the model has too few high earners (above), so the second decimal place should not be relied on.
 
 **Method changed during the milestone.** The first version split each cell by the share of people aged 65+. Its first run counted 35.8 million earners at 1 million yen or less, because it gave pensioners small salaries. It was replaced by the pension/work split before anything was published. The test and hand calculation were rewritten with it (`tests/hand_calcs/population.md`, revision note), and an arithmetic slip in the first hand calculation is recorded there too.
 
 ## 11. Corrections after the persona review (2026-11-03)
 
-A simulated review (24 AI personas, docs/COWORK_REVIEW_PROMPT.md) reported errors that the checks above had missed. Each fix below was checked against a primary source saved in `sources/`, the hand calculation was corrected first, and the test was watched failing before the rule was changed.
+A simulated review (24 AI personas, docs/COWORK_REVIEW_PROMPT.md) reported errors that the checks above had missed. Each fix below was checked against a primary source saved in `sources/`. For the rounding, NHI-earner and wage-test fixes the hand calculation was corrected first and the test was watched failing before the rule was changed. For the 令和9年度 limits this was not true at first: no hand calculation or test depended on 620,000 or 890,000, so the tests still passed with the old limits. The recheck found this (section 12), and the 890,000 limit now has a hand calculation and a test; the 620,000 limit is checked against the law text only (Q40).
 
 | Fix | Source | Effect |
 |---|---|---|
 | Resident tax: 特別区民税 (6%) and 都民税 (4%) each rounded down to 100 yen, not the 10% once (Q14) | 地方税法20条の4の2第3項・第8項; 大田区 worked example | H3, H5 and H8 take-home +100; several walls move by 100 yen |
-| Resident tax for 令和9年度: spouse/dependant income limit 580,000 → 620,000; working-student limit 750,000 → 890,000; 特定親族特別控除 added; every amount now cited to the law, so the "fiscal 2025 guide" approximation is gone (Q13) | 地方税法292条1項7号・9号, 314条の2 (令和8年法律第2号); 所得税法2条1項32号 | H2's wall at 1.5m: −97,172 → −75,572 (back at 1,590,000), plus a separate −18,458 wall at 1.63m; H3/H4 at spouse pay 1.33m–1.36m; population view |
+| Resident tax for 令和9年度: spouse/dependant income limit 580,000 → 620,000; working-student limit 750,000 → 890,000; 特定親族特別控除 added; every amount now cited to the law, so the "fiscal 2025 guide" approximation is gone (Q13) | 地方税法292条1項7号・9号, 314条の2 (令和8年法律第2号); 所得税法2条1項32号 | H2's wall at 1.5m: −97,172 → −75,572 (back at 1,590,000), plus a separate −18,458 wall at 1.63m; H3 at the head's pay and H4 at the spouse's pay of 1.33m–1.36m; population view |
 | NHI reduction: an earner is someone with salary over 550,000, or pension over 600,000 (under 65) / 1,250,000 (65+); the 65+ 150,000 comes off pension income only (Q25) | 国民健康保険法施行令29条の7第6項第1号, 附則5条 | H6's walls 100,000 yen lower (1.78m → 1.68m, 2.4m → 2.3m); no change at reference incomes |
-| Part-time wage test (88,000 a month) applied January–September only; from 2026-10-01 part-timers working 20+ hours at a 51+ firm are in employee insurance at any wage | 令和8年政令第275号; 日本年金機構 notice 2026-10-01 | H1 below 1,056,000 (e.g. 1,050,000: 814,839 → 834,858); population view |
+| Part-time wage test (88,000 a month) applied January–September only; from 2026-10-01 part-timers working 20+ hours at a 51+ firm are in employee insurance at any wage. **Withdrawn in section 12**: it missed the 特定減額特例 rule | 令和8年政令第275号; 日本年金機構 notice 2026-10-01 | H1 below 1,056,000 (e.g. 1,050,000: 814,839 → 834,858); population view |
 | National pension ages 20–59 now read from parameters (Q30) | 国民年金法7条1項1号 | none |
 
 Tests changed with these fixes, all after correcting the hand calculation: `expected.yaml` (H3, H5, H8 +100); `test_h1_baseline_walls_match_hand_calculation` (+90,013 → +69,994); `test_keep_per_100000` (income 0 left out of the chart); `test_resident_tax_relief_band_matches_mic_figure` kept and marked as an expected failure (section 2); `test_incomplete_designs_say_why` (Rengo also needs household food spending, because its plan abolishes the reduced 8% rate on food: Rengo 税制改革構想 PDF p.33).
+
+## 12. Corrections after the recheck (2026-11-03)
+
+A second simulated review checked the fixes in section 11 against the law and the published site. What it found, and what changed:
+
+| Fix | Source | Effect |
+|---|---|---|
+| The October split of section 11 is withdrawn. From October 2026, a part-timer on 20+ hours paid under 88,000 a month can only be a worker paid below the minimum wage with an exception (the lowest rate in force from October to December is 1,023 yen: 20 hours a week pays 88,660 a month), and such a worker (特定減額特例対象者) joins company insurance only if they ask. We assume they don't, so the 88,000 line decides for all 12 months again | 厚生年金保険法附則4条の6, 健康保険法附則8条の3の2; 厚生労働省 令和8年度地域別最低賃金 全国一覧 | H1 at 1,050,000: 834,858 → 809,595; the step to 1,060,000: +69,994 → +95,257 (`wall_H1.md`, revision 2). Population view: nobody changes scheme in October, which also removes a fault where the Daiwa cash cap missed October joiners' premiums |
+| Employment insurance is charged to every non-student wage earner on 20+ hours, in or out of company insurance (Q24 answered) | 雇用保険法6条 | H1 below 1,056,000: −5,244 a year (437 × 12 at 1,050,000); population view |
+| Rengo's cost of 1.5–2 trillion yen was paired with "about 6 million people", which is Rengo's count for the taper band only; it is for about 21 million employees | 連合「税制改革構想」 pp.27–28 | text only |
+| The ministry figure in section 2 is a match before rounding, not a conflict | MIC 資料３ p.18; 地方税法20条の4の2第3項 | text only; the expected-failure test now says why it fails |
+| Official pay-band counts now read from the table's 計 rows (adding men and women was off by 1 in nine cells) | 民間給与実態統計調査 令和7年分 第3表 | section 10 table |
+| Household NHI counts toward the head's Daiwa cash cap whenever the head works (before, not when the head was in company insurance) | Daiwa p.4 | none (the head's own premiums already exceed the credit) |
+
+Tests changed, each after the hand calculation: `test_h1_baseline_walls_match_hand_calculation` (+69,994 → +95,257, plus take-home 809,595 at 1,050,000). New: `test_h2_walls_match_hand_calculation` (`H2.md`, wall map points; it fails if the working-student limit goes back to 750,000) and `test_wall_map_section_matches_engine` (the "Engine" column of section 6).
+

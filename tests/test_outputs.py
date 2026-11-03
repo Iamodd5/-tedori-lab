@@ -7,9 +7,17 @@ def test_h1_baseline_walls_match_hand_calculation():
     # tests/hand_calcs/wall_H1.md
     emr = {r["income"]: r["emr"] for r in w.grid(h.load("H1"), "baseline", top=1_200_000)}
     assert emr[1_110_000] == 1.7088                    # premium band step 88,000 -> 98,000
-    # joining employee insurance raises take-home. Revised 2026-11-03 (wall_H1.md revision, persona review E3): the wage
-    # test ended on 2026-10-01, so at 1,050,000 H1 is already in employee insurance for October–December (+90,013 before)
-    assert emr[1_050_000] == round(1 - 69_994 / 10_000, 4)
+    # joining employee insurance raises take-home. wall_H1.md revision 2 (2026-11-03 recheck): below 88,000 a month H1
+    # stays out all year (特定減額特例), and pays employment insurance at every wage (+90,013 first, +69,994 in revision 1)
+    assert emr[1_050_000] == round(1 - 95_257 / 10_000, 4)
+    assert h.compute(w.at_income(h.load("H1"), 1_050_000))["disposable"] == 809_595
+
+
+def test_h2_walls_match_hand_calculation():
+    # tests/hand_calcs/H2.md, wall map points (令和9年度 working-student limit 890,000)
+    hh = h.load("H2")
+    got = {s: h.compute(w.at_income(hh, s))["disposable"] for s in (1_490_000, 1_500_000, 1_630_000, 1_640_000)}
+    assert got == {1_490_000: 1_482_000, 1_500_000: 1_406_428, 1_630_000: 1_516_074, 1_640_000: 1_497_616}
 
 
 def test_grid_point_at_reference_income_matches_household():

@@ -16,8 +16,8 @@ def _gross(m):
     return m.get("salary", 0) + m.get("business_income", 0) + m.get("public_pension", 0)
 
 
-def _employee_covered(m, wage_test):
-    """wage_test: the 88,000-a-month condition for part-timers, which applied until September 2026."""
+def _employee_covered(m):
+    """Part-timers need 88,000 a month all year: the wage test to September 2026, then 特定減額特例 (social_insurance.yaml)."""
     if m.get("salary", 0) <= 0:
         return False
     w = m.get("work", {})
@@ -25,7 +25,13 @@ def _employee_covered(m, wage_test):
         return True
     sc = b.params("social_insurance")["part_time_coverage"]
     return (w.get("hours_20_plus", False) and w.get("employer_51_plus", False) and not m.get("student", False)
-            and (not wage_test or m["salary"] / 12 >= sc["monthly_wage_min"]["value"]))
+            and m["salary"] / 12 >= sc["monthly_wage_min"]["value"])
+
+
+def _employment_insured(m):
+    """雇用保険法6条: 20+ hours a week and not a student; no pay condition and no employer-size condition."""
+    w = m.get("work", {})
+    return m.get("salary", 0) > 0 and (w.get("full_time") or w.get("hours_20_plus", False)) and not m.get("student", False)
 
 
 def _nhi_earner(m):
@@ -49,9 +55,9 @@ def _dependant_limit(m):
     return d["general"]["value"]
 
 
-def _insurance(members, out, wage_test):
-    """Scheme and 12-month contributions of each member, with or without the part-time wage test."""
-    covered = {m["id"]: _employee_covered(m, wage_test) for m in members}
+def _insurance(members, out):
+    """Scheme and 12-month contributions of each member."""
+    covered = {m["id"]: _employee_covered(m) for m in members}
     partners = [m for m in members if m["role"] in ("head", "spouse")]
     other_partner_covered = lambda m: any(covered[p["id"]] for p in partners if p is not m)
     np_month = b.params("social_insurance")["national_pension_monthly"]["value"]
@@ -65,7 +71,9 @@ def _insurance(members, out, wage_test):
             scheme = "dependant"
         else:
             scheme = "nhi"
-        prem = b.employee_premiums(m["salary"], m["age"]) if scheme == "employee" else {}
+        prem = b.employee_premiums(m["salary"], m["age"]) if scheme == "employee" or _employment_insured(m) else {}
+        if scheme != "employee":
+            prem = {"employment": prem.get("employment", 0)}  # employment insurance has no pay condition (雇用保険法6条)
         r = res[m["id"]] = {"scheme": scheme, **{k: prem.get(k, 0) for k in ("health", "child_levy", "pension", "employment")}, "nhi": 0}
         spouse_of_employee = m in partners and other_partner_covered(m)  # category-3 pension member if a dependant
         r["national_pension"] = 0
@@ -96,18 +104,10 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
         o["pension_income"] = b.pension_income(m.get("public_pension", 0), m["age"])
         o["total_income"] = emp - o["adjustment_deduction"] + m.get("business_income", 0) + o["pension_income"]
 
-    # 2. insurance scheme and contributions: January–September with the part-time wage test, October–December
-    # without it (social_insurance.yaml part_time_coverage); each period's share of a 12-month year
-    sc = b.params("social_insurance")["part_time_coverage"]["monthly_wage_min"]
-    before, after = _insurance(members, out, True), _insurance(members, out, False)
-    m1 = sc["months_applied"]["value"]
-    for m in members:
-        o, x, y = out[m["id"]], before[m["id"]], after[m["id"]]
-        o["scheme"] = x["scheme"]
-        if y["scheme"] != x["scheme"]:
-            o["scheme_from_october"] = y["scheme"]
-        for k in ("health", "child_levy", "pension", "employment", "national_pension", "nhi"):
-            o[k] = (x[k] * m1 + y[k] * (12 - m1)) // 12  # every amount is 12 equal months, except NHI (floored to the yen)
+    # 2. insurance scheme and contributions
+    for mid, x in _insurance(members, out).items():
+        out[mid].update(x)
+        o = out[mid]
         o["social_insurance"] = o["health"] + o["child_levy"] + o["pension"] + o["employment"] + o["national_pension"] + o["nhi"]
     partners = [m for m in members if m["role"] in ("head", "spouse")]
     head = next(m for m in members if m["role"] == "head")

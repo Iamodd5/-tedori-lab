@@ -101,8 +101,9 @@ def test_resident_tax_rounds_ward_and_tokyo_separately():
     assert b.resident_tax(4_930_000, 1_595_550, 50_000, 0, False) == 201_500 + 133_300 + 1_000
 
 
-@pytest.mark.xfail(strict=True, reason="conflict recorded in OPEN_QUESTIONS Q22 (2026-11-03): MIC's p.18 figure shows one "
-                   "combined levy of 4,200; the law caps each tax in proportion and rounds each to 100 yen (2,500 + 1,600)")
+@pytest.mark.xfail(strict=True, reason="OPEN_QUESTIONS Q22 (reread 2026-11-03 recheck): MIC's p.18 figure plots the levy "
+                   "before rounding, 4,200 = 2,520 + 1,680, which the engine also reaches; this test compares it with the "
+                   "rounded amount, 2,500 + 1,600 (地方税法20条の4の2第3項). Kept so a return to one combined rounding fails")
 def test_resident_tax_relief_band_matches_mic_figure():
     # couple (N = 1): per-capita line 350,000 x 2 + 310,000 = 1,010,000 is passed, so the 5,000 per-capita levy applies
     assert b.resident_tax(1_124_200, 430_000 + 330_000, 100_000, 1, False) == 4_200 + 5_000
