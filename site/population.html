@@ -24,10 +24,10 @@
 <h2><span lang="ja">収入グループごとの手取りの変化（1世帯あたり平均、円／年）</span><span lang="en">How take-home pay changes for each income group (average per household, yen per year)</span></h2>
 <p class="note"><span lang="ja">すべての世帯を年収の低い順に並べ、同じ数ずつ10のグループに分けています。グループ1が最も年収が低く、グループ10が最も高い世帯で、どのグループにも約535万世帯が入ります。2026年の制度と比べた変化です。グループ名の下は、そのグループの平均年収です。</span>
 <span lang="en">We line up every household from lowest to highest yearly income and cut the line into ten groups of the same size. Group 1 has the lowest incomes and group 10 the highest; each group has about 5.35 million households. Changes are compared with 2026 rules. Under each group is its average yearly income.</span></p>
-<div class="chart"><canvas id="mean" role="img" aria-label="Average change in take-home pay by income group; the same numbers are in the table below"></canvas></div>
+<div class="chart"><canvas id="mean" role="img"></canvas></div>
 
 <h2><span lang="ja">手取りが増える世帯・減る世帯の割合</span><span lang="en">How many households are better or worse off</span></h2>
-<div class="chart"><canvas id="share" role="img" aria-label="Share of households better off, worse off or unchanged by income group; the same numbers are in the table below"></canvas></div>
+<div class="chart"><canvas id="share" role="img"></canvas></div>
 
 <details><summary><span lang="ja">数字の表を見る</span><span lang="en">See the numbers as a table</span></summary>
 <div class="scroll"><table id="tbl"><thead><tr>
@@ -102,6 +102,9 @@ function draw() {
   const labels = d.by_decile.map((x, i) => narrow ? String(x.decile) : [(lang === "ja" ? "グループ" : "Group ") + x.decile, (lang === "ja" ? "平均" : "avg ") + roundMoney(pop.deciles[i].annual_income_mean)]);
   const xAxis = { ticks: { autoSkip: false, maxRotation: 0 }, title: { display: narrow, text: lang === "ja" ? "収入グループ（1が最も低い。平均年収は下の表）" : "Income group (1 = lowest; average incomes in the table below)" } };
   findings(d, labels);
+  const ja = lang === "ja";
+  document.getElementById("mean").setAttribute("aria-label", ja ? "収入グループごとの手取りの平均の変化のグラフ。数字は下の表にあります。" : "Chart of the average change in take-home pay by income group. The numbers are in the table below.");
+  document.getElementById("share").setAttribute("aria-label", ja ? "収入グループごとの、手取りが増える・変わらない・減る世帯の割合のグラフ。数字は下の表にあります。" : "Chart of the share of households better off, unchanged or worse off by income group. The numbers are in the table below.");
   charts.push(new Chart(document.getElementById("mean"), { type: "bar",
     data: { labels, datasets: [{ label: lang === "ja" ? "手取りの変化（平均、円／年）" : "Average change (yen per year)",
       backgroundColor: C.mean, data: d.by_decile.map(x => x.mean_change) }] },
