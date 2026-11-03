@@ -18,6 +18,8 @@ def test_h2_walls_match_hand_calculation():
     hh = h.load("H2")
     got = {s: h.compute(w.at_income(hh, s))["disposable"] for s in (1_490_000, 1_500_000, 1_630_000, 1_640_000)}
     assert got == {1_490_000: 1_482_000, 1_500_000: 1_406_428, 1_630_000: 1_516_074, 1_640_000: 1_497_616}
+    # H2.md, student deferral income limit (Q39): no deferral above 1,280,000 after the social-insurance deduction
+    assert [h.compute(w.at_income(hh, s))["disposable"] for s in (2_190_000, 2_200_000)] == [1_916_111, 1_741_313]
 
 
 def test_grid_point_at_reference_income_matches_household():

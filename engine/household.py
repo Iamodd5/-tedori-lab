@@ -86,6 +86,15 @@ def _insurance(members, out):
             householder = tested
     head = next(m for m in members if m["role"] == "head")
     res[head["id"]]["nhi"] = b.nhi_household(nhi_members, householder)  # the householder pays the household's NHI
+    # 学生納付特例 has an income limit (国民年金法90条の3; social_insurance.yaml student_deferral)
+    sd, wl = b.params("social_insurance")["student_deferral"], b.params("resident_tax")["personal_deductions"]["working_student_income_limit"]["value"]
+    for m in members:
+        r, ti = res[m["id"]], out[m["id"]]["total_income"]
+        if m.get("student_pension_deferral") and r["scheme"] != "employee" and ages["from"]["value"] <= m["age"] < ages["to_exclusive"]["value"]:
+            own_si = r["health"] + r["child_levy"] + r["pension"] + r["employment"] + r["nhi"]
+            working = sd["working_student_deduction"]["value"] if m.get("student") and m.get("salary", 0) > 0 and ti <= wl else 0
+            if ti - own_si - working > sd["income_limit"]["value"]:
+                r["national_pension"] = 12 * np_month
     return res
 
 

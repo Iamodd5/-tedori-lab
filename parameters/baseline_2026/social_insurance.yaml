@@ -66,6 +66,11 @@ source:
     url: https://www.city.shinjuku.lg.jp/hoken/hoken01_001028.html
     file: sources/shinjuku/hoken01_001028.html
     published: 2026
+  kokumin_order:
+    title: 国民年金法施行令（令和8年10月1日時点の条文）
+    url: https://laws.e-gov.go.jp/api/1/lawdata/334CO0000000184
+    file: sources/law/kokumin_nenkin_sekourei_334CO0000000184.xml
+    published: 2026-10-01 (text in force; downloaded 2026-11-03)
   nhi_order:
     title: 国民健康保険法施行令（令和8年4月1日時点の条文）
     url: https://laws.e-gov.go.jp/api/1/lawdata/333CO0000000362
@@ -121,6 +126,14 @@ health_dependant_income_limit:  # annual income below this
   age_60_plus: {value: 1800000, age_from: 60, cite: {source: dependant, page: 1}}
 
 national_pension_monthly: {value: 17920, cite: {source: kokumin, page: 1}, note: "FY2026"}
+student_deferral:  # 学生納付特例 (国民年金法90条の3): only while the student's own income is at most the limit. OPEN_QUESTIONS Q39
+  income_limit: {value: 1280000, cite: {source: kokumin_order, page: 1, section: "6条の9 (no dependants)"}}
+  working_student_deduction: {value: 270000, cite: {source: kokumin_order, page: 1, section: "6条の12第2項第2号"}}
+  note: "Income = 総所得金額 less the social-insurance deduction (6条の12第2項第1号) and, for a working student, 270,000. Hand calculation: tests/hand_calcs/H2.md"
+  approximation: true
+  site:
+    ja: （近似）学生の国民年金保険料の納付猶予（学生納付特例）は、その年の所得で判定しています（実際は前の年の所得）。
+    en: (Approximation) Whether a student may put off National Pension payments (the student deferral) is judged on the same year's income (in fact, the previous year's).
 national_pension_ages:  # 第1号被保険者: 「二十歳以上六十歳未満」 (Q30 answered 2026-11-03)
   from: {value: 20, cite: {source: kokumin_law, page: 1, section: "国民年金法7条1項1号"}}
   to_exclusive: {value: 60, cite: {source: kokumin_law, page: 1, section: "国民年金法7条1項1号"}}

@@ -9,7 +9,7 @@ A plain-Japanese version is in `docs/METHODS.ja.md`.
 - **Approximations** (each labelled `approximation: true` in the parameter files):
   - Health and long-term care rates that start in March 2026, employment insurance from April, the child-support levy that is new from April, and the FY2026 national pension amount are applied to all 12 months (the employee pension rate, 18.3%, does not change).
   - The employee's share of health insurance and of the child-support levy are rounded separately (a government Q&A said to round them together, but it has been withdrawn; Q38).
-  - The student deferral of National Pension is assumed at every income on H2's wall map, although it has an income limit.
+  - The student deferral of National Pension applies only while the student's own income, after social insurance, is at most ¥1,280,000 (国民年金法施行令6条の9), judged on the same year's income (in law, the previous year's).
   - NHI uses FY2026 rates on 2026 income, because FY2027 rates are not published.
   - Salary is paid in 12 equal months with no bonus.
   - A child's age is held fixed for the whole year.

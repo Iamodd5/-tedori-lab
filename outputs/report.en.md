@@ -72,6 +72,7 @@ Behind every number:
 - (Approximation) Long-term care premiums for people aged 65 and over use Shinjuku's fiscal 2026 table, applied to the same year's income and resident-tax status (in fact, the previous year's decide the band).
 - (Approximation) We round the employee's share of health insurance and of the child and childcare support levy separately to the yen. A government Q&A (February 2026) said to round them once, together, but it is no longer published. The difference is at most ¥1 a month.
 - (Approximation) From October 2026, the only people working 20+ hours a week for under ¥88,000 a month are workers with a minimum-wage exception (at every regional minimum wage, 20 hours a week pays more than ¥88,000 a month). They join company insurance only if they ask; we assume they don't.
+- (Approximation) Whether a student may put off National Pension payments (the student deferral) is judged on the same year's income (in fact, the previous year's).
 - (Approximation) Health and long-term care insurance rates change from March 2026 and employment insurance from April; the child and childcare support levy is new from April (the employee pension rate, 18.3%, does not change). We use the new rates and the levy for all 12 months of 2026. National Pension uses the fiscal 2026 monthly amount for every month. National Health Insurance uses Shinjuku's fiscal 2026 rates, because the fiscal 2027 rates (which would apply to 2026 income) aren't published yet. Pay is the same every month, with no bonus.
 
 Daiwa Institute plan (adjusted to 2026 tax rules):
