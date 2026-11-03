@@ -29,11 +29,11 @@ def test_grid_point_at_reference_income_matches_household():
 def test_daiwa_grid_adds_change_to_baseline():
     hh = h.load("H1")
     base = w.grid(hh, "baseline", top=1_250_000)[-1]["disposable"]
-    assert w.grid(hh, "daiwa", top=1_250_000)[-1]["disposable"] == base + 35_700   # tests/hand_calcs/daiwa.md (revision H-12: B)
+    assert w.grid(hh, "daiwa", top=1_250_000)[-1]["disposable"] == base + 35_700   # tests/hand_calcs/daiwa.md
 
 
 def test_two_income_households_use_the_chosen_member():
-    # HUMAN_TODO H-11: D
+    # the project owner's choice of whose income moves
     assert [w.varying_member(h.load(x)) for x in ("H3", "H4", "H6", "H8")] == [
         ("a", "salary"), ("b", "salary"), ("a", "public_pension"), ("a", "salary")]
 
@@ -41,7 +41,7 @@ def test_two_income_households_use_the_chosen_member():
 def test_h4_spouse_hits_the_13m_wall():
     # tests/hand_calcs/wall_H4.md
     emr = {r["income"]: r["emr"] for r in w.grid(h.load("H4"), "baseline", top=1_300_000)}
-    assert emr[1_290_000] == 26.8226  # main earner deducts the spouse's national pension (H-13); see hand calc revision
+    assert emr[1_290_000] == 26.8226  # main earner deducts the spouse's national pension; see hand calc revision
 
 
 def test_h4_wall_cause_matches_hand_calculation():
@@ -54,7 +54,7 @@ def test_h4_wall_cause_matches_hand_calculation():
 
 
 def test_outputs_snapshot_is_current():
-    # Spec 12.1: fails on any unexplained change. After an intended change, run `make outputs` and explain it in docs/LOG.md.
+    # Spec 12.1: fails on any unexplained change. After an intended change, run `make outputs` and explain it in the commit message.
     import json, pathlib
     from engine import reforms as r
     saved = json.loads((pathlib.Path(__file__).parents[1] / "outputs" / "household_comparison.json").read_text())

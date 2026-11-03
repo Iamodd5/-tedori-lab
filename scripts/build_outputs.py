@@ -60,7 +60,7 @@ for hid in HOUSEHOLDS:
     hh = h.load(hid)
     who = w.varying_member(hh)
     if who is None:
-        walls["skipped"][hid] = "two incomes: which member's income moves is pending HUMAN_TODO H-11"
+        walls["skipped"][hid] = "two incomes: which member's income moves is still to be chosen"
         continue
     designs = {}
     for d in ["baseline"] + DESIGNS:

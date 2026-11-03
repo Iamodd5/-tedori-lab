@@ -1,4 +1,4 @@
-"""Build the population-view input tables in population/ from the official statistics in sources/stats/ (H-17: A).
+"""Build the population-view input tables in population/ from the official statistics in sources/stats/.
 
 1. cells.csv: households by group (population/population.yaml) and 年間収入 band, with the income sources, ages
    and the survey's own tax estimates, from 令和6年全国家計構造調査 所得 第3-32-1表. Amounts in yen per year.

@@ -8,7 +8,7 @@ HOUSEHOLDS = [f"H{i}" for i in range(1, 9)]
 DESIGNS = ["government_final", "rengo", "daiwa", "food_tax_cut"]
 
 
-# --- Daiwa headline variant, credit from Daiwa's formula on 2026 rules (tests/hand_calcs/daiwa.md, revision H-12: B)
+# --- Daiwa headline variant, credit from Daiwa's formula on 2026 rules (tests/hand_calcs/daiwa.md, revision)
 def test_daiwa_credit_formula():
     assert r.daiwa_credit() == 52_000
     assert r.daiwa_credit(employment_income_minimum=650_000) == 56_500   # 2025 rules: Daiwa's published credit (p.1)
@@ -64,6 +64,6 @@ def test_unpublished_designs_are_incomplete():
 def test_incomplete_designs_say_why():
     reasons = {d: [b["en"] for b in r.run(d, h.load("H1"))["blocked_by"]] for d in ("government_final", "rengo", "food_tax_cut")}
     # Rengo also needs food spending since 2026-11-03: its plan abolishes the reduced 8% rate (rengo.yaml reduced_rate;
-    # persona review C29). Recorded in docs/VALIDATION.md section 11.
+    # review item C29). Recorded in docs/VALIDATION.md section 11.
     assert reasons == {"government_final": [r.BLOCKERS["Q9"]["en"]], "rengo": [r.BLOCKERS["Q3"]["en"], r.BLOCKERS["Q8"]["en"]],
                        "food_tax_cut": [r.BLOCKERS["Q9"]["en"], r.BLOCKERS["Q8"]["en"]]}

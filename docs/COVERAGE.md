@@ -43,9 +43,9 @@ The Code for Japan note (`sources/scrapbox_openfisca_mcp.json`) describes an MCP
 2. Move hard-coded deduction amounts (基礎控除, 給与所得控除) into dated parameters.
 3. Add `特定親族特別控除` if missing.
 
-Opening any issue or PR upstream is a human action (spec Section 13).
+Opening any issue or PR upstream is for the project owner.
 
-## Decision taken in Milestone 2 (2026-10-30) — confirmed by the human 2026-10-31 (HUMAN_TODO H-9: A)
+## Decision taken in Milestone 2 (2026-10-30) — confirmed by the project owner
 
 OpenFisca-Japan installs only on Python 3.11 (its numpy pin), and does so now (`requirements.txt`). But for the 2026 baseline nearly every rule we need had to change: employment-income deduction (2025 and 2026 reforms), basic deduction amounts, the Tokyo health rate and band table, the new 子ども・子育て支援金, the national pension amount, NHI (missing), public-pension income (missing), resident-tax exemption limits and 調整控除. So the baseline is written as a small standalone engine (`engine/baseline.py`, one function per rule, every number read from `parameters/baseline_2026/`). OpenFisca-Japan is used as a cross-check (docs/VALIDATION.md §3). Each corrected rule is a candidate upstream fix.
 
@@ -61,4 +61,4 @@ values:
     value: 17920
 ```
 
-Small, self-contained, and backed by a national primary source, so it is a good first pull request. Opening it is the human's action (spec Section 13); it is not urgent and is not yet in HUMAN_TODO.
+Small, self-contained, and backed by a national primary source, so it is a good first pull request. Opening it is for the project owner; it is not urgent.

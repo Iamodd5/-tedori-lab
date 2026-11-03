@@ -2,7 +2,7 @@ id: H3
 name_ja: 共働き・子2人（2歳・8歳）
 name_en: Dual-income employee couple, two children (2 and 8)
 municipality: 新宿区 (Shinjuku, Tokyo)
-reference_income_source: docs/HUMAN_TODO.md H-8 (chosen 2026-10-30)
+reference_income_source: project owner's choice
 members:
   - id: a
     role: head
@@ -16,7 +16,7 @@ members:
     work: {full_time: true}
   - {id: c1, role: child, age: 8}
   - {id: c2, role: child, age: 2}
-wall_map: {member: a, income: salary}  # whose income moves on the wall map (HUMAN_TODO H-11: D)
+wall_map: {member: a, income: salary}  # whose income moves on the wall map
 spending:  # food and other taxable consumption, from the Family Income and Expenditure Survey
   status: unresolved
   question: Q8
@@ -24,4 +24,4 @@ assumptions:
   - {ja: "二人とも正社員で、協会けんぽ（東京）の健康保険に入っています。", en: "Both work full time and are in the Japan Health Insurance Association plan (Tokyo)."}
   - {ja: "（近似）給与は毎月同じ額で、ボーナスはないものとしています。", en: "(Approximation) Pay is the same every month, with no bonus."}
   - {ja: "グラフで動かすのは世帯主の給与で、配偶者の給与は3,000,000円のままです。", en: "The charts move the head's salary; the spouse's salary stays at ¥3,000,000."}
-  - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # chosen in HUMAN_TODO H-8
+  - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # project owner's choice

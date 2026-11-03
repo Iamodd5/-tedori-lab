@@ -127,7 +127,7 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
         o = out[m["id"]]
         ti = o["total_income"]
         is_claimant = m is claimant
-        # income tax. The claimant also deducts the other partner's national pension (HUMAN_TODO H-13, 所得税法74条)
+        # income tax. The claimant also deducts the other partner's national pension (所得税法74条)
         own_si = o["social_insurance"] - (o["national_pension"] if spouse is m else 0)
         if is_claimant and spouse is not None:
             own_si += out[spouse["id"]]["national_pension"]

@@ -1,7 +1,7 @@
 """Wall map (spec 9.2): disposable income and effective marginal rate across an income grid, 10,000-yen steps.
 
 Only one member's income moves; everyone else stays at the reference income. In a household with two incomes
-the household file names the member (`wall_map`, chosen by the human: HUMAN_TODO H-11: D).
+the household file names the member (`wall_map`, chosen by the project owner).
 """
 import copy
 

@@ -41,9 +41,9 @@ for a spouse (50,000) is added:
 Corrected change in take-home pay = +10,000 − 215,040 − 101,786 + 9,500 + 5,200 + 12,000 = **−280,126**.
 Effective marginal rate = 1 + 290,126 / 10,000 = **29.0126**.
 
-## Revision 2026-11-01: the main earner deducts the spouse's national pension (HUMAN_TODO H-13, OPEN_QUESTIONS Q26)
+## Revision 2026-11-01: the main earner deducts the spouse's national pension (OPEN_QUESTIONS Q26)
 
-The human decided that a partner's national pension is deducted by the higher-earning partner (the same partner who
+The project owner decided that a partner's national pension is deducted by the higher-earning partner (the same partner who
 claims the spouse deduction, Q23). 所得税法74条 lets a taxpayer deduct social insurance they pay for a spouse in
 the same household. Only the 1,300,000 point changes; 1,290,000 is as above.
 

@@ -23,7 +23,7 @@ def test_h4_wall_is_listed_with_its_drop_and_recovery():
 
 def test_keep_per_100000():
     # take-home 0 → 90,000 → 50,000 at income 0 / 100,000 / 200,000: keep 90,000 of the first ¥100,000, then −40,000 (a wall).
-    # Changed 2026-11-03 (persona review E14): the step from income 0 is left out of the chart, as it already was from
+    # Changed 2026-11-03 (review item E14): the step from income 0 is left out of the chart, as it already was from
     # the wall list, so [0, 90_000] is no longer expected. Recorded in docs/VALIDATION.md (project rule 5).
     pts = [[x * 10_000, round(x * 9_000) if x <= 10 else 90_000 - (x - 10) * 4_000] for x in range(21)]
     assert js("w.keepSeries(d)", pts) == [[100_000, -40_000]]

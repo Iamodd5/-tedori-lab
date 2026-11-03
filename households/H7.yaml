@@ -2,7 +2,7 @@ id: H7
 name_ja: フリーランス・単身
 name_en: Self-employed (freelancer), single
 municipality: 新宿区 (Shinjuku, Tokyo)
-reference_income_source: docs/HUMAN_TODO.md H-8 (chosen 2026-10-30)
+reference_income_source: project owner's choice
 members:
   - id: a
     role: head
@@ -14,4 +14,4 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
 assumptions:
   - {ja: "新宿区の国民健康保険と国民年金に入っています。", en: "Is in Shinjuku's National Health Insurance and pays into the National Pension."}
   - {ja: "事業の収入は、売上から経費を引いた後の額（事業所得）です。青色申告特別控除は使っていないものとしています。", en: "Business income here is after expenses (business income for tax). The blue-return special deduction is not used."}
-  - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # chosen in HUMAN_TODO H-8
+  - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # project owner's choice

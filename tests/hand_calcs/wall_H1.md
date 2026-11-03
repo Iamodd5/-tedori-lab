@@ -18,7 +18,7 @@ Insurance (20,121) and the national pension (215,040) = 235,161. At 1,060,000 th
 would otherwise be a **dependant** (for example H4's spouse), not single people.
 
 
-## Revision 2026-11-03: the 88,000-a-month test ended on 2026-10-01 (persona review E3)
+## Revision 2026-11-03: the 88,000-a-month test ended on 2026-10-01 (review item E3)
 令和8年政令第275号 (sources/law/seirei_R8_275_shikoukijitsu.pdf) brought the abolition of the wage test into force on
 2026-10-01; 日本年金機構's notice says 「賃金要件（所定内賃金が月額8.8万円以上）について、2026（令和8）年10月1日に撤廃されました」
 (sources/social/nenkin_oshirase_20261001_chingin_yoken_teppai.html). So a part-timer working 20+ hours at a 51+ firm is in

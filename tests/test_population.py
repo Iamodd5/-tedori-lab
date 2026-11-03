@@ -60,7 +60,7 @@ def test_every_model_household_runs_and_weights_add_up():
 
 
 def test_population_snapshot_is_current():
-    # Spec 12.1, as for household_comparison.json: after an intended change, run `make outputs` and explain it in docs/LOG.md
+    # Spec 12.1, as for household_comparison.json: after an intended change, run `make outputs` and explain it in the commit message
     import json
     saved = json.loads((ROOT / "outputs" / "population.json").read_text())
     now = pop.results(list(saved["designs"]))

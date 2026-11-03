@@ -1,7 +1,7 @@
 # Daiwa Institute of Research proposal: 社会保険料還付付き税額控除 (social-insurance-refundable tax credit).
 # The report tests 8 variants (Figure 4, p.5). The parameters below are the variant the report's summary
 # highlights (p.1, p.7): income-tax basic deduction abolished and replaced by a 56,500-yen credit.
-# Which variant(s) to show is a human decision (OPEN_QUESTIONS Q10); the others are listed under `variants`.
+# Which variant(s) to show is the project owner's decision (OPEN_QUESTIONS Q10); the others are listed under `variants`.
 name_ja: 社会保険料還付付き税額控除（大和総研案）
 name_en: Social-insurance-refundable tax credit (Daiwa Institute of Research proposal)
 label: {ja: 大和総研案（2026年の税制に合わせて計算）, en: "Daiwa Institute plan (adjusted to 2026 tax rules)"}
@@ -35,7 +35,7 @@ parameters:
     value: 1780000
     status: resolved
     cite: {source: daiwa, page: 1, section: "要約"}
-  tax_credit_rule:  # recomputed on 2026 rules (HUMAN_TODO H-12: B): (1,780,000 − 740,000) × 5% = 52,000
+  tax_credit_rule:  # recomputed on 2026 rules: (1,780,000 − 740,000) × 5% = 52,000
     value: "credit = (target threshold − employment-income minimum − basic deduction) × lowest income-tax rate"
     status: resolved
     cite: {source: daiwa, page: 5, section: "図表4 注1; p.6 課税最低限まで不足する分を税額控除とする"}
@@ -67,10 +67,10 @@ parameters:
     value: "credit taken off before the 2.1% surtax, as existing tax credits are"
     status: resolved
     approximation: true
-    explanation: "Daiwa does not state the order; approved by the human 2026-11-01 (HUMAN_TODO H-12)"
+    explanation: "Daiwa does not state the order; approved by the project owner"
     cite: {source: daiwa, page: 6, section: "脚注11"}
 
-variants:  # from Figure 4 (p.5); not modelled unless the human chooses them (Q10)
+variants:  # from Figure 4 (p.5); not modelled unless the project owner chooses them (Q10)
   - {threshold: 1780000, basic_deduction: 580000, tax_credit: 27500}
   - {threshold: 1780000, basic_deduction: 0, tax_credit: 56500}   # headline, used above
   - {threshold: 2030000, basic_deduction: 580000, tax_credit: 40000}
@@ -101,7 +101,7 @@ approximations:
     ja: 夫婦で収入の多い方が配偶者の国民年金保険料を払って所得から差し引く場合も、現金で払う額の上限には、配偶者本人の保険料として数えています。大和総研はこの場合を示していません。
     en: When the higher earner in a couple pays the spouse's National Pension premiums and deducts them, they still count toward the spouse's own cash cap. Daiwa doesn't cover this case.
 
-# Shown wherever a Daiwa number appears (HUMAN_TODO H-10: A, OPEN_QUESTIONS Q19).
+# Shown wherever a Daiwa number appears (OPEN_QUESTIONS Q19).
 site_note:
   ja: "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。2026年の制度では、なくなる基礎控除が大きく、税額控除は小さくなるため、どちらも手取りが大和総研の数字より少なく出る方向に働きます。"
   en: "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger and the credit is smaller, and both push take-home pay below Daiwa's figures."

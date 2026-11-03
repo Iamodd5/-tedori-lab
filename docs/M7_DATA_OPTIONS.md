@@ -1,4 +1,4 @@
-# Milestone 7: which official tables to use (Q8, H-17)
+# Milestone 7: which official tables to use (Q8)
 
 Checked 2026-11-01. Every file below downloads from e-Stat (HTTP 200). All are national government statistics under the 公共データ利用規約 1.0, so they can be stored in the repository with credit.
 

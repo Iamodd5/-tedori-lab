@@ -107,7 +107,7 @@ final_rounding: {value: 100, cite: {source: nencho, page: 39}, note: "年調年�
 # Who claims family deductions in a couple (engine/household.py). Either partner may legally claim; this is a modelling choice.
 couple_claims:
   approximation: true
-  explanation: "higher-earning partner claims the spouse and dependants (OPEN_QUESTIONS Q23) and deducts the other partner's national pension (Q26, HUMAN_TODO H-13)"
+  explanation: "higher-earning partner claims the spouse and dependants (OPEN_QUESTIONS Q23) and deducts the other partner's national pension (Q26)"
   site:
     ja: （近似）夫婦では、収入の多い方が配偶者控除・扶養控除を受け、もう一方の国民年金保険料も払って所得から差し引くものとしています。法律上はどちらが受けてもかまいません。
     en: (Approximation) In a couple, the partner with the higher income claims the deductions for the spouse and children, and pays and deducts the other partner's National Pension contributions. By law either partner may do this.
