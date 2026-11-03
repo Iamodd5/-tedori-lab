@@ -182,7 +182,7 @@ function wallCharts(ids) {
       const r = WALL.ranges.find(r => r >= 2 * o.ref) || MAX;
       home = { min: 0, max: r }; view = { ...home };
     }
-    nav.data.datasets = [{ data: o.series[0].points.map(p => ({ x: p[0], y: p[1] })), borderColor: "#4A5463", borderWidth: 1.2, pointRadius: 0 }];
+    nav.data.datasets = [{ data: o.series[0].points.map(p => ({ x: p[0], y: p[1] })), borderColor: "#4E5B70", borderWidth: 1.2, pointRadius: 0 }];
     nav.update();
     render();
   }
@@ -200,7 +200,7 @@ function wallCharts(ids) {
       pointStyle: "triangle", rotation: 180, borderColor: "#B3261E", backgroundColor: "#B3261E", data: marks.map(w => ({ x: w.at, y: at.get(w.at) })) });
     const here = o.series[0].points.find(p => p[0] >= o.ref);
     if (here && o.ref >= min && o.ref <= max) disp.data.datasets.push({ label: lang === "ja" ? "この世帯の今の収入" : "This household now", showLine: false,
-      pointRadius: 6, pointStyle: "circle", borderColor: "#1D2430", backgroundColor: "#fff", borderWidth: 2, data: [{ x: o.ref, y: here[1] }] });
+      pointRadius: 6, pointStyle: "circle", borderColor: "#16243A", backgroundColor: "#fff", borderWidth: 2, data: [{ x: o.ref, y: here[1] }] });
     disp.options.plugins.tooltip = { callbacks: {
       title: c => !c.length ? "" : (lang === "ja" ? `${o.who} ${yen(c[0].raw.x)}円` : `${o.who[0].toUpperCase() + o.who.slice(1)}: ¥${yen(c[0].raw.x)}`),
       label: c => `${shortName(c.dataset.label)}: ${lang === "ja" ? yen(c.raw.y) + "円" : "¥" + yen(c.raw.y)}`,

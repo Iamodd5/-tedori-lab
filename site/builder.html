@@ -91,7 +91,7 @@ const SLIDERS = [
   { key: "phase_out_rate", ja: "減り方（超えた分の何％）", en: "How fast it shrinks (% of income above that)", min: 0, max: 50, step: 1, value: 5, x: 0.01, fmt: v => v + "%",
     help: { ja: "超えた100万円ごとに、この割合だけ減る（5%なら5万円）", en: "For every ¥1m above, the credit shrinks by this share (5% = ¥50,000)" } },
 ];
-const C = { base: "#1D2430", mine: "#D55E00", kids: "#B87A00" };
+const C = { base: "#16243A", mine: "#D55E00", kids: "#B87A00" };
 let walls, pop, builder, wc, shape, dec;
 
 const params = () => Object.fromEntries(SLIDERS.map(s => [s.key, +document.getElementById(s.key).value * s.x]));
