@@ -63,3 +63,11 @@ def test_outputs_snapshot_is_current():
         now = r.run(row["design"], hh)
         assert (h.compute(hh)["disposable"], now["disposable_change"], now["components"]) == \
                (row["baseline_disposable"], row["disposable_change"], row["components"]), (row["household"], row["design"])
+
+
+def test_own_household_shapes_match_example_households():
+    # the "your own household" shapes are built like the example households they resemble
+    disp = lambda shape, age, kids, s: h.compute(w.own(shape, age, kids, s))["disposable"]
+    assert disp("single", 30, 0, 1_250_000) == h.compute(h.load("H1"))["disposable"]          # H1: 30, part-time 20+ hours
+    assert disp("couple_part", 45, 0, 5_000_000) == h.compute(h.load("H4"))["disposable"]     # H4: head 5.0m, spouse 1.0m under 20 hours
+    assert len(list(w.own_combinations())) == 24

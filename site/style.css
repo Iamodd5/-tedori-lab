@@ -79,6 +79,12 @@ select { font: inherit; font-size: 15px; max-width: 100%; padding: 6px 30px 6px 
          appearance: none; cursor: pointer; }
 select:hover { border-color: var(--ink-2); }
 label > select { margin-left: 6px; }
+input[type="number"] { font: inherit; font-size: 15px; width: 11em; padding: 6px 10px; border: 1px solid var(--rule); border-radius: var(--r);
+                       color: var(--ink); background: var(--sheet); font-variant-numeric: tabular-nums; }
+input[type="number"]:hover { border-color: var(--ink-2); }
+.myincome { max-width: 42em; margin: 8px 0 16px; padding: 12px 0 4px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.myincome label { display: block; font-size: 14px; margin-bottom: 6px; }
+.myincome ul { margin: 10px 0 0; padding-left: 1.2rem; }
 
 /* the Home hero: one payslip */
 .hero { border: 1px solid var(--ink); margin: 28px 0 12px; max-width: 42em; background: var(--sheet); }

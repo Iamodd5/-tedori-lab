@@ -240,3 +240,23 @@ def child_allowance(child_ages):
         else:
             total += m["age_3_to_high_school"]["value"]
     return 12 * total
+
+
+def spouse_deduction_rt(earner, spouse, age):
+    """Resident-tax deduction for a spouse and its 調整控除 difference, from the earner's and the spouse's total income
+    (地方税法314条の2第1項第10号・第10号の2, 314条の6第1号イ表(6); tests/hand_calcs/spouse_rt.md)."""
+    rt = params("resident_tax")
+    rp, dp = rt["personal_deductions"], rt["personal_deduction_difference"]
+    if earner > rp["spouse_earner_income_limit"]["value"]:
+        return 0, 0
+    elderly = age >= rp["elderly_spouse_age_from"]["value"]
+    if earner <= rp["spouse_earner_full_limit"]["value"]:
+        key = "elderly_spouse" if elderly else "spouse"
+        amount, diff, thirds = rp[key]["value"], dp[key]["value"], 3
+    else:
+        upper, sp, old, d, d_old, thirds = next(r for r in rp["spouse_earner_above_9m"]["bands"] if earner <= r[0])
+        amount, diff = (old, d_old) if elderly else (sp, d)
+    if spouse <= rp["dependant_income_limit"]["value"]:
+        return amount, diff
+    unit = rp["spouse_earner_above_9m"]["special_round_up"]
+    return math.ceil(band(rp["spouse_special"]["bands"], spouse) * thirds / 3 / unit) * unit, 0  # 0 above 1,330,000

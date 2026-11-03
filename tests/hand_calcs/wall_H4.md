@@ -63,3 +63,17 @@ Correction (same day): this section first said 1 + 268,226 / 10,000 = 27.8226. T
 section above, where "1 + 290,126 / 10,000" should read 1 + 280,126 / 10,000 (its result, 29.0126, was right).
 The engine's line items matched this hand calculation exactly (54,100; 172,000; 15,500; −258,226); only the final
 division was wrong.
+
+## The ¥620,000 spouse limit (OPEN_QUESTIONS Q40)
+Spouse salary **1,340,000** (total income 600,000 ≤ 620,000, so a 控除対象配偶者): NHI with base 170,000 = 47,600 + 12,767 +
+17,600 + 4,760 + 17,800 + 4,131 + 1,873 + 459 = 106,990; national pension 215,040; both deducted by the head.
+- Head resident tax: 3,560,000 − 762,984 − 106,990 − 215,040 − 430,000 − 330,000 (spouse deduction) = 1,714,986 → 1,714,000.
+  特別区民税 102,840 − 3% × 100,000 (差: basic 50,000 + spouse 50,000) = 99,840 → 99,800; 都民税 68,560 − 2,000 = 66,560 → 66,500.
+  Plus per-capita 5,000 = **171,300**.
+- Under the old limit (580,000) the spouse would get the spouse special deduction instead (also 330,000, but no 差): 102,840 − 1,500
+  = 101,340 → 101,300; 68,560 − 1,000 = 67,560 → 67,500; total 173,800. So the test below fails if the limit goes back.
+
+Spouse salary **1,370,000** (total income 630,000 > 620,000): spouse special deduction 330,000, 差 50,000 (basic only).
+NHI base 200,000: 47,600 + 15,020 + 17,600 + 5,600 + 17,800 + 4,860 + 1,873 + 540 = 110,893.
+Head: 3,560,000 − 762,984 − 110,893 − 215,040 − 430,000 − 330,000 = 1,711,083 → 1,711,000; 102,660 − 1,500 = 101,160 → 101,100;
+68,440 − 1,000 = 67,440 → 67,400; plus 5,000 = **173,500**.

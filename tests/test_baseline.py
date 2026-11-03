@@ -139,3 +139,26 @@ def test_partner_can_be_dependant_of_employee_spouse():
     hh["members"][0]["salary"] = 0
     a = h.compute(hh)["members"]["a"]
     assert a["scheme"] == "dependant" and a["national_pension"] == 0 and a["nhi"] == 0
+
+
+# --- Resident-tax spouse deduction by the earner's income, 令和9年度 (tests/hand_calcs/spouse_rt.md; OPEN_QUESTIONS Q37)
+@pytest.mark.parametrize("earner, spouse, age, expected", [
+    (8_000_000, 0, 40, (330_000, 50_000)), (9_050_000, 0, 40, (220_000, 40_000)), (9_550_000, 0, 72, (130_000, 30_000)),
+    (8_000_000, 1_200_000, 40, (160_000, 0)), (9_050_000, 1_200_000, 40, (110_000, 0)), (9_550_000, 1_200_000, 40, (60_000, 0)),
+    (10_050_000, 0, 40, (0, 0))])
+def test_spouse_deduction_rt(earner, spouse, age, expected):
+    assert b.spouse_deduction_rt(earner, spouse, age) == expected
+
+
+@pytest.mark.parametrize("salary, lower", [(10_500_000, 33_000), (11_000_000, 22_000), (11_500_000, 11_000)])
+def test_spouse_lowers_resident_tax_by_earner_band(salary, lower):
+    from engine import wall_map as w
+    rt = lambda shape: h.compute(w.own(shape, 45, 0, salary))["members"]["a"]["resident_tax"]
+    assert rt("single") - rt("couple") == lower
+
+
+def test_h4_head_resident_tax_at_the_620000_spouse_limit():
+    # tests/hand_calcs/wall_H4.md, "The ¥620,000 spouse limit" (OPEN_QUESTIONS Q40)
+    from engine import wall_map as w
+    head = lambda s: h.compute(w.at_income(h.load("H4"), s))["members"]["a"]["resident_tax"]
+    assert (head(1_340_000), head(1_370_000)) == (171_300, 173_500)

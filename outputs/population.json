@@ -68,7 +68,7 @@
    "households": 5353665,
    "annual_income_mean": 15840102,
    "annual_income_max": 40746000.0,
-   "baseline_disposable_mean": 10663780
+   "baseline_disposable_mean": 10662989
   }
  ],
  "designs": {
@@ -382,7 +382,7 @@
    "survey_estimate_2024": 11636229406234
   },
   "resident_tax": {
-   "model_baseline_2026": 12232173286429,
+   "model_baseline_2026": 12236409192633,
    "survey_estimate_2024": 12812796487612
   },
   "income_covered": {

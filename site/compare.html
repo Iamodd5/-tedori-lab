@@ -12,11 +12,17 @@
 <h1><span lang="ja">案の比較</span><span lang="en">Compare the plans</span></h1>
 <p><span lang="ja">例の世帯を選ぶと、それぞれの案で、その世帯の1年間の手取り（税金と保険料を引き、児童手当を足した、手元に残るお金）がいくら変わるかが分かります。比べる相手は「2026年の制度」、つまり2026年に実際に使われている、どの案もまだ入っていない制度です。</span>
 <span lang="en">Choose an example household to see how much each plan would change its take-home pay for a year (what is left after tax and insurance, plus child allowance). Each plan is compared with "2026 rules": the rules actually in force in 2026, before any of these plans.</span></p>
+<p class="note"><span lang="ja">例の世帯にない形は、ページの下の<a href="#own">「自分の世帯の形で見る」</a>で試せます。</span><span lang="en">For a household not among the examples, see <a href="#own">"Try your own household's shape"</a> further down.</span></p>
 <label><span lang="ja">世帯を選ぶ：</span><span lang="en">Choose a household: </span><select id="hh"></select></label>
 <p class="info" id="incomes"></p>
 
 <div class="summary"><ul id="result"></ul></div>
 <p class="note" id="atincome"></p>
+<div class="myincome">
+<label for="myincome" id="myincome-label"></label>
+<input type="number" id="myincome" min="0" max="10000000" step="10000" inputmode="numeric"> <span lang="ja">円</span><span lang="en">yen</span>
+<ul id="myresult" aria-live="polite"></ul>
+</div>
 <div id="sitenotes"></div>
 
 <h2><span lang="ja">手取りの変化の内訳</span><span lang="en">Where the change comes from</span></h2>
@@ -35,6 +41,16 @@
 <p class="note"><span lang="ja">表の税金・保険料の列は、払う額の増減です（＋は多く払う、−は少なく払う）。手取りの変化 ＝ 受け取るお金 − 税金・保険料の増えた分。金額はすべて円／年。</span>
 <span lang="en">The tax and insurance columns show how much more or less is paid (+ means paying more, − paying less). Change in take-home = cash received − extra tax and insurance. All amounts are yen per year.</span></p>
 
+<h2 id="own"><span lang="ja">自分の世帯の形で見る</span><span lang="en">Try your own household's shape</span></h2>
+<p class="note"><span lang="ja">例の世帯と同じ計算で、世帯の形・年齢・子どもの人数・給与を選んで見られます。どの形も、東京都新宿区に住み、働く人は学生でなく週20時間以上・従業員51人以上の会社で働き、子どもは8歳としています。</span><span lang="en">The same calculation as for the example households, for a household shape, age, number of children and salary you choose. Every shape lives in Shinjuku, Tokyo; whoever works is a non-student on 20+ hours a week at a company with more than 50 employees; children are aged 8.</span></p>
+<div class="myincome own">
+<label><span lang="ja">世帯の形：</span><span lang="en">Household: </span><select id="own-shape"></select></label>
+<label><span lang="ja">年齢：</span><span lang="en">Age: </span><select id="own-age"></select></label>
+<label><span lang="ja">子ども（3〜15歳）の人数：</span><span lang="en">Children (aged 3 to 15): </span><select id="own-kids"></select></label>
+<label><span lang="ja">給与（税引き前、年）：</span><span lang="en">Salary (before tax, per year): </span><input type="number" id="own-salary" min="0" max="10000000" step="10000" inputmode="numeric" value="3000000"> <span lang="ja">円</span><span lang="en">yen</span></label>
+<ul id="own-result" aria-live="polite"></ul>
+</div>
+
 <h2><span lang="ja">まだ計算できない案</span><span lang="en">Plans that can't be calculated yet</span></h2>
 <ul id="blocked"></ul>
 
@@ -45,11 +61,49 @@
 const COLORS = { income_tax: "#0072B2", resident_tax: "#56B4E9", social_insurance: "#CC79A7", credit: "#B87A00", consumption_tax: "#009E73" };
 const PARTS = { credit: { ja: "受け取るお金", en: "Cash received" }, income_tax: { ja: "所得税", en: "Income tax" }, resident_tax: { ja: "住民税", en: "Resident tax" },
   social_insurance: { ja: "社会保険料", en: "Social insurance" }, consumption_tax: { ja: "消費税", en: "Consumption tax" } };
-let rows, walls, chart;
+let rows, walls, chart, own;
+const OWN = { single: { ja: "一人で暮らす", en: "Living alone" }, couple: { ja: "夫婦で、働くのは一人", en: "A couple, one partner works" },
+  couple_part: { ja: "夫婦で、配偶者は年収100万円のパート（週20時間未満）", en: "A couple, the spouse earns ¥1m part-time (under 20 hours a week)" },
+  single_parent: { ja: "ひとり親", en: "A single parent" } };
+// "your own household": the precomputed grid for the chosen shape (outputs/own_household.json), read at the salary entered
+function drawOwn() {
+  const ja = lang === "ja", get = id => document.getElementById(id);
+  const shape = get("own-shape").value || "single", ages = own.ages;
+  const fill = (sel, opts) => { const v = sel.value; sel.replaceChildren(...opts.map(([k, text]) => new Option(text, k))); if (opts.some(([k]) => String(k) === v)) sel.value = v; };
+  fill(get("own-shape"), Object.keys(OWN).map(k => [k, t(OWN[k])]));
+  get("own-shape").value = shape;
+  fill(get("own-age"), [[ages[0], ja ? `39歳以下（${ages[0]}歳として計算）` : `39 or under (worked out at ${ages[0]})`],
+                        [ages[1], ja ? `40〜64歳（${ages[1]}歳として計算）` : `40 to 64 (worked out at ${ages[1]})`]]);
+  const kidsRange = shape === "single" ? [0] : shape === "single_parent" ? [1, 2, 3] : [0, 1, 2, 3];
+  fill(get("own-kids"), kidsRange.map(k => [k, ja ? `${k}人` : String(k)]));
+  const grid = own.grids[`${shape}|${get("own-age").value}|${get("own-kids").value}`], ul = get("own-result"); ul.innerHTML = "";
+  const raw = Number(get("own-salary").value);
+  if (!grid || !Number.isFinite(raw) || raw < 0) return;
+  const v = Math.min(10_000_000, Math.round(raw / own.step) * own.step), i = v / own.step, base = grid.baseline[i];
+  li(ul, ja ? `給与が年${yen(v)}円のとき${v !== raw ? "（1万円単位に丸めています）" : ""}、2026年の制度での世帯の手取りは年${yen(base)}円です。`
+            : `With a salary of ¥${yen(v)} a year${v !== raw ? " (rounded to ¥10,000)" : ""}, the household's take-home pay under 2026 rules is ¥${yen(base)} a year.`);
+  for (const d of own.designs) li(ul, ja ? `（近似）${t(walls.labels[d])}：年${signed(grid[d][i] - base)}円` : `(Approximation) ${t(walls.labels[d])}: ${signed(grid[d][i] - base)} yen a year`);
+  if (shape === "single_parent") li(ul, ja ? "ひとり親向けの児童扶養手当は、まだ入っていません。" : "The child-rearing allowance for single parents (児童扶養手当) is not included yet.");
+}
 const signed = v => (v > 0 ? "+" : v < 0 ? "−" : "±") + yen(Math.abs(v));
 const pctSigned = x => (x > 0 ? "+" : x < 0 ? "−" : "±") + Math.abs(x * 100).toFixed(1) + "%";
 
-function draw() {
+// the household at any income on the wall map's 10,000-yen grid (0 to 10m): 2026 take-home and each calculated plan
+function atIncome(h) {
+  const ja = lang === "ja", ul = document.getElementById("myresult"); ul.innerHTML = "";
+  const raw = Number(document.getElementById("myincome").value);
+  if (!Number.isFinite(raw) || raw < 0) return;
+  const v = Math.min(10_000_000, Math.round(raw / 10_000) * 10_000), at = pts => pts.find(p => p[0] === v)[1];
+  const base = at(h.designs.baseline);
+  li(ul, ja ? `${whoMoves(h)}が年${yen(v)}円のとき${v !== raw ? "（1万円単位に丸めています）" : ""}、2026年の制度での手取りは年${yen(base)}円です。`
+            : `With ${whoMoves(h)} at ¥${yen(v)} a year${v !== raw ? " (rounded to ¥10,000)" : ""}, take-home pay under 2026 rules is ¥${yen(base)} a year.`);
+  for (const [d, pts] of Object.entries(h.designs).filter(([d]) => d !== "baseline")) {
+    const ch = at(pts) - base;
+    li(ul, ja ? `（近似）${t(walls.labels[d])}：年${signed(ch)}円` : `(Approximation) ${t(walls.labels[d])}: ${signed(ch)} yen a year`);
+  }
+}
+
+function draw(newHousehold) {
   const sel = document.getElementById("hh"), mine = rows.filter(r => r.household === sel.value), h = walls.households[sel.value];
   [...sel.options].forEach(o => { const x = walls.households[o.value]; o.textContent = `${o.value} ${lang === "ja" ? x.name_ja : x.name_en}`; });
   document.getElementById("incomes").textContent = (lang === "ja" ? "この世帯の収入（税引き前、年）：" : "This household's income (before tax, per year): ") + describeIncomes(h.incomes);
@@ -79,8 +133,12 @@ function draw() {
   document.getElementById("atincome").innerHTML = "";
   const a = document.createElement("a"); a.href = `index.html?hh=${sel.value}#walls-section`;
   a.textContent = ja ? "ホームのグラフ" : "the charts on the Home page";
-  document.getElementById("atincome").append(ja ? "この金額は、この世帯の今の収入のときのものです。年収が違うと金額も変わります。ほかの年収での金額は、" : "These amounts are for this household's income now; at other incomes they are different. To see them, use ",
-    a, ja ? "で線に触れると見られます（0円から1,000万円まで）。" : " and tap or hover over a line (any income from ¥0 to ¥10m).");
+  document.getElementById("atincome").append(ja ? "この金額は、この世帯の今の収入のときのものです。ほかの年収での金額は、下に年収を入れるか、" : "These amounts are for this household's income now. For other incomes, enter one below or use ",
+    a, ja ? "で見られます。" : ".");
+  document.getElementById("myincome-label").textContent = ja ? `${whoMoves(h)}（税引き前、年）を入れて見る：` : `Try another amount for ${whoMoves(h)} (before tax, per year): `;
+  const box = document.getElementById("myincome");
+  if (newHousehold || !box.value) box.value = h.reference_income;
+  atIncome(h);
   li(res, lang === "ja" ? `ほかの${mine.length - done.length}つの案は、まだ計算できません（下を参照）。` : `The other ${mine.length - done.length} plans can't be calculated yet (see below).`);
 
   if (chart) chart.destroy();
@@ -122,13 +180,17 @@ function draw() {
   h.assumptions.forEach(a => { const p = document.createElement("p"); p.className = "small"; p.textContent = t(a); hn.append(p); });
 }
 
-setupPage(() => rows && draw());
-Promise.all([loadJSON("../outputs/household_comparison.json"), loadJSON("../outputs/wall_map.json")]).then(([cmp, w]) => {
-  rows = cmp; walls = w;
+setupPage(() => { if (rows) { draw(); drawOwn(); } });
+Promise.all(["household_comparison", "wall_map", "own_household"].map(f => loadJSON(`../outputs/${f}.json`))).then(([cmp, w, o]) => {
+  rows = cmp; walls = w; own = o;
+  ["own-shape", "own-age", "own-kids"].forEach(id => document.getElementById(id).onchange = drawOwn);
+  document.getElementById("own-salary").oninput = drawOwn;
+  drawOwn();
   const sel = document.getElementById("hh");
   [...new Set(rows.map(r => r.household))].forEach(id => sel.add(new Option(id, id)));
   sel.value = keptHousehold(rows.map(r => r.household), sel.value);
-  sel.onchange = draw; draw();
+  sel.onchange = () => draw(true); draw(true);
+  document.getElementById("myincome").oninput = () => atIncome(walls.households[sel.value]);
 });
 </script>
 </body>

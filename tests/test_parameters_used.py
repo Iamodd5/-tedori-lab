@@ -76,6 +76,8 @@ def _scenarios():
     yield {"members": [{"id": "a", "role": "head", "age": 62, "salary": 5_000_000, "work": full},  # dependant aged 60+
                        {"id": "b", "role": "spouse", "age": 61, "salary": 500_000}]}
     yield {"members": [{"id": "a", "role": "head", "age": 45, "salary": 50_000_000, "work": full}]}  # top tax band
+    for age, salary in ((45, 11_000_000), (45, 11_500_000), (72, 11_000_000)):  # resident-tax spouse deduction above 9m
+        yield {"members": [{"id": "a", "role": "head", "age": age, "salary": salary, "work": full}, {"id": "b", "role": "spouse", "age": age}]}
 
 
 def test_every_baseline_number_is_read(monkeypatch):

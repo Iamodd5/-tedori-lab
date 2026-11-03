@@ -78,6 +78,14 @@ for hid in HOUSEHOLDS:
                                 "name_en": hh["name_en"], "assumptions": hh.get("assumptions", []), "designs": designs,
                                 "wall_causes": causes}
 (OUT / "wall_map.json").write_text(json.dumps(walls, ensure_ascii=False, separators=(",", ":")))
+
+# "your own household" on the Compare page: take-home at every salary on the grid for a few household shapes
+drawn = [d for d in DESIGNS if r.run(d, w.own("single", 30, 0))["status"] == "complete"]
+own = {"step": w.STEP, "ages": w.OWN_AGES, "child_age": w.OWN_CHILD_AGE, "spouse_part": w.OWN_SPOUSE_PART, "designs": drawn, "grids": {}}
+for shape, age, kids in w.own_combinations():
+    hh = w.own(shape, age, kids)
+    own["grids"][f"{shape}|{age}|{kids}"] = {d: [p["disposable"] for p in w.grid(hh, d)] for d in ["baseline"] + drawn}
+(OUT / "own_household.json").write_text(json.dumps(own, separators=(",", ":")))
 # population view and cost (spec 9.3, 9.4): every number here is an approximation and is labelled so on the site
 p = pop.results(DESIGNS)
 hh_rows = p.pop("households_csv_rows")

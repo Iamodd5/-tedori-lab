@@ -68,3 +68,30 @@ def wall_causes(hh, walls):
         out.append({"from": wl["from"], "scheme": [a["scheme"], b["scheme"]],
                     "change": {k: b[k] - a[k] for k in a if k != "scheme"}})
     return out
+
+
+# Households for "your own household" on the Compare page: a few shapes at every salary on the grid. Everyone in work
+# is a non-student on 20+ hours at a firm with 51+ staff (as in the population view); children are aged 8; Shinjuku.
+OWN_SHAPES = {"single": "one person living alone", "couple": "a couple, one partner earns",
+              "couple_part": "a couple, the spouse earns 1,000,000 part-time under 20 hours a week (like H4)",
+              "single_parent": "a single parent"}
+OWN_AGES, OWN_CHILD_AGE, OWN_SPOUSE_PART = (30, 45), 8, 1_000_000
+
+
+def own(shape, age, kids, salary=0):
+    work = {"hours_20_plus": True, "employer_51_plus": True}
+    m = [{"id": "a", "role": "head", "age": age, "salary": salary, "work": work, "single_parent": shape == "single_parent"}]
+    if shape.startswith("couple"):
+        part = shape == "couple_part"
+        m.append({"id": "b", "role": "spouse", "age": age, "salary": OWN_SPOUSE_PART if part else 0,
+                  "work": {"hours_20_plus": False, "employer_51_plus": False}})
+    m += [{"id": f"c{i}", "role": "child", "age": OWN_CHILD_AGE} for i in range(kids)]
+    return {"id": f"own-{shape}-{age}-{kids}", "members": m, "wall_map": {"member": "a", "income": "salary"},
+            "spending": {"status": "unresolved", "question": "Q8"}}
+
+
+def own_combinations():
+    for shape in OWN_SHAPES:
+        for age in OWN_AGES:
+            for kids in ([0] if shape == "single" else range(1, 4) if shape == "single_parent" else range(4)):
+                yield shape, age, kids

@@ -122,7 +122,6 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
     dd = it["dependent_deduction"]
     specific_it = lambda age: dd["specific_age_from"]["value"] <= age < dd["specific_age_under"]["value"]
     specific_rt = lambda age: rp["dependent_specific_age_from"]["value"] <= age < rp["dependent_specific_age_under"]["value"]
-    full_spouse_rt = rp["spouse_earner_full_limit"]["value"]
     for m in members:
         o = out[m["id"]]
         ti = o["total_income"]
@@ -137,15 +136,11 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0):
         n_family = 0
         if is_claimant and spouse is not None:
             si = out[spouse["id"]]["total_income"]
-            elderly = spouse["age"] >= rp["elderly_spouse_age_from"]["value"]
             ded += b.spouse_deduction_it(ti, si, spouse["age"])
-            if ti <= rp["spouse_earner_income_limit"]["value"]:
-                if si <= rp["dependant_income_limit"]["value"]:
-                    r_ded += rp["elderly_spouse" if elderly else "spouse"]["value"]
-                    diff += diff_p["elderly_spouse" if elderly else "spouse"]["value"] if ti <= full_spouse_rt else 0
-                    n_family += 1
-                else:  # the band table gives 0 above its last row (1,330,000)
-                    r_ded += b.band(rp["spouse_special"]["bands"], si) if ti <= full_spouse_rt else 0
+            r_sp, d_sp = b.spouse_deduction_rt(ti, si, spouse["age"])
+            r_ded, diff = r_ded + r_sp, diff + d_sp
+            if ti <= rp["spouse_earner_income_limit"]["value"] and si <= rp["dependant_income_limit"]["value"]:
+                n_family += 1
         if is_claimant:
             for d in deps:
                 di, age = out[d["id"]]["total_income"], d["age"]
