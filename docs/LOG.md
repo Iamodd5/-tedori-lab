@@ -524,3 +524,5 @@ A second simulated review checked the morning's fixes against the law and the li
 **Not done (still open):** a salary box and editable ages or children (C6, C10); the plan order (C49); English glosses (C61); phone table headings (A11); tap snapping on the chart (A19); the 2024 flat tax cut in the survey's tax figures (DOCS-1); question links that open at the right row (REG-SITE-14); tooltips at 320px wide (A-1-1). Decisions 2–5 of H-23 are still open.
 
 141 tests pass, with the one expected failure explained in Q22. Nothing from this part is published yet.
+
+**Decisions (HUMAN_TODO H-23, 2026-11-03).** Health insurance and the child levy stay rounded separately, labelled as an approximation (Q38). An NHI earner is someone "above" the limits, as the cabinet order says (Q25). H2's parents stay a note, now with the 2026 thresholds (Q16). The footer on every page now says the site is made by an individual with an AI assistant (Claude).
