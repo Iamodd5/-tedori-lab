@@ -15,7 +15,7 @@
   .sliders label { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; font-size: 15px; padding: 10px 0 8px; border-top: 1px solid var(--rule); }
   .sliders input { grid-column: 1 / -1; width: 100%; margin: 6px 0 2px; }
   .sliders output { font-weight: 700; font-size: 17px; color: var(--ai); }
-  .sliders small { grid-column: 1 / -1; color: var(--muted); font-size: 13px; }
+  .sliders small { grid-column: 1 / -1; color: var(--ink-2); font-size: 13px; }
   .shape { height: 260px; }
   .builder-top h2.flat { font-size: 17px; margin: 12px 0 6px; padding: 0; border: 0; }
   @media (min-width: 760px) { .builder-top { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; } }
@@ -91,7 +91,7 @@ const SLIDERS = [
   { key: "phase_out_rate", ja: "減り方（超えた分の何％）", en: "How fast it shrinks (% of income above that)", min: 0, max: 50, step: 1, value: 5, x: 0.01, fmt: v => v + "%",
     help: { ja: "超えた100万円ごとに、この割合だけ減る（5%なら5万円）", en: "For every ¥1m above, the credit shrinks by this share (5% = ¥50,000)" } },
 ];
-const C = { base: "#000000", mine: "#D55E00", kids: "#B87A00" };
+const C = { base: "#1D2430", mine: "#D55E00", kids: "#B87A00" };
 let walls, pop, builder, wc, shape, dec;
 
 const params = () => Object.fromEntries(SLIDERS.map(s => [s.key, +document.getElementById(s.key).value * s.x]));
@@ -173,7 +173,7 @@ Promise.all(["wall_map", "population", "builder"].map(f => loadJSON(`../outputs/
   makeSliders();
   shape = new Chart(document.getElementById("shape"), { type: "line", data: { datasets: [] },
     options: { animation: false, maintainAspectRatio: false, parsing: false, interaction: { mode: "nearest", axis: "x", intersect: false },
-      plugins: { tooltip: { callbacks: { title: c => `${yen(c[0].raw.x)}${lang === "ja" ? "円" : " yen"}`, label: c => `${c.dataset.label}: ${yen(c.raw.y)}${lang === "ja" ? "円" : " yen"}` } } },
+      plugins: { legend: { labels: { boxWidth: 18, boxHeight: 2 } }, tooltip: { callbacks: { title: c => `${yen(c[0].raw.x)}${lang === "ja" ? "円" : " yen"}`, label: c => `${c.dataset.label}: ${yen(c.raw.y)}${lang === "ja" ? "円" : " yen"}` } } },
       scales: { x: { type: "linear", max: 1e7, ticks: { callback: axisMoney, maxTicksLimit: 6 }, title: { display: true } },
                 y: { min: 0, ticks: { callback: axisMoney }, title: { display: true } } } } });
   dec = new Chart(document.getElementById("dec"), { type: "bar", data: { labels: [], datasets: [] },

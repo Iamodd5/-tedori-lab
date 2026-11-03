@@ -91,10 +91,17 @@ function setupPage(onLangChange = () => {}) {
   links(footer.querySelector("nav"), ABOUT);
   document.body.append(footer);
   if (window.Chart) {  // charts use the page's font and colours
-    Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
-    Chart.defaults.font.size = 13;
-    Chart.defaults.color = "#5A6676";
-    Chart.defaults.borderColor = "#E3E9EF";
+    const d = Chart.defaults, ink = "#1D2430";
+    d.font.family = getComputedStyle(document.body).fontFamily;
+    d.font.size = 12;
+    d.color = "#4A5463";
+    d.borderColor = "#EEF1F4";
+    d.scale.border = { color: "#D9DEE5" };
+    d.plugins.legend.align = "start";
+    d.datasets.bar.maxBarThickness = 40;
+    Object.assign(d.plugins.legend.labels, { boxWidth: 12, boxHeight: 12, padding: 14 });
+    Object.assign(d.plugins.tooltip, { backgroundColor: "#fff", titleColor: ink, bodyColor: ink, borderColor: "#D9DEE5", borderWidth: 1,
+                                       cornerRadius: 2, padding: 10, titleFont: { weight: "bold" }, boxPadding: 4 });
   }
   header.querySelector("#lang-toggle").onclick = () => {
     lang = lang === "ja" ? "en" : "ja";

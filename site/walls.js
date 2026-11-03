@@ -44,7 +44,7 @@ function wallCharts(ids) {
   const make = (id, yTicks, pointLegend) => new Chart(document.getElementById(id), { type: "line", data: { datasets: [] },
     options: { animation: false, maintainAspectRatio: false, parsing: false,
       interaction: { mode: "nearest", axis: "x", intersect: false },
-      plugins: { legend: { labels: { boxWidth: 14, usePointStyle: pointLegend } } },
+      plugins: { legend: { labels: pointLegend ? { usePointStyle: true, pointStyleWidth: 18, boxHeight: 8 } : { boxWidth: 18, boxHeight: 2 } } },  // lines show as lines
       scales: { x: { type: "linear", ticks: { callback: axisMoney, maxTicksLimit: 7 }, title: { display: true } },
                 y: { ticks: { callback: yTicks }, title: { display: true } } } } });
   const disp = make(ids.disp, axisMoney, true), rate = make(ids.rate, keepTick, false);  // rate's ▼ markers are not a legend symbol
@@ -182,7 +182,7 @@ function wallCharts(ids) {
       const r = WALL.ranges.find(r => r >= 2 * o.ref) || MAX;
       home = { min: 0, max: r }; view = { ...home };
     }
-    nav.data.datasets = [{ data: o.series[0].points.map(p => ({ x: p[0], y: p[1] })), borderColor: "#5A6676", borderWidth: 1.5, pointRadius: 0 }];
+    nav.data.datasets = [{ data: o.series[0].points.map(p => ({ x: p[0], y: p[1] })), borderColor: "#4A5463", borderWidth: 1.2, pointRadius: 0 }];
     nav.update();
     render();
   }
@@ -197,10 +197,10 @@ function wallCharts(ids) {
     const at = new Map(o.series[o.marksOn || 0].points.map(p => [p[0], p[1]]));  // marksOn: the series the walls were found in
     const marks = (o.marks || []).filter(w => w.from >= min && w.at <= max);
     if (marks.length) disp.data.datasets.push({ label: lang === "ja" ? "壁（上の一覧）" : "Walls (listed above)", showLine: false, pointRadius: 6,
-      pointStyle: "triangle", rotation: 180, borderColor: "#C23B22", backgroundColor: "#C23B22", data: marks.map(w => ({ x: w.at, y: at.get(w.at) })) });
+      pointStyle: "triangle", rotation: 180, borderColor: "#B3261E", backgroundColor: "#B3261E", data: marks.map(w => ({ x: w.at, y: at.get(w.at) })) });
     const here = o.series[0].points.find(p => p[0] >= o.ref);
     if (here && o.ref >= min && o.ref <= max) disp.data.datasets.push({ label: lang === "ja" ? "この世帯の今の収入" : "This household now", showLine: false,
-      pointRadius: 6, pointStyle: "circle", borderColor: "#1C2633", backgroundColor: "#fff", borderWidth: 2, data: [{ x: o.ref, y: here[1] }] });
+      pointRadius: 6, pointStyle: "circle", borderColor: "#1D2430", backgroundColor: "#fff", borderWidth: 2, data: [{ x: o.ref, y: here[1] }] });
     disp.options.plugins.tooltip = { callbacks: {
       title: c => !c.length ? "" : (lang === "ja" ? `${o.who} ${yen(c[0].raw.x)}円` : `${o.who[0].toUpperCase() + o.who.slice(1)}: ¥${yen(c[0].raw.x)}`),
       label: c => `${shortName(c.dataset.label)}: ${lang === "ja" ? yen(c.raw.y) + "円" : "¥" + yen(c.raw.y)}`,
@@ -211,7 +211,7 @@ function wallCharts(ids) {
       return { label: s.label, borderColor: s.color, backgroundColor: s.color, borderWidth: 2.5, stepped: "before", data, pointStyle: "triangle",
         rotation: 180, pointRadius: data.map(q => q.raw !== q.y ? 5 : 0) };
     });
-    rate.data.datasets.push({ label: lang === "ja" ? "0円（ここより下が壁）" : "¥0 (below this is a wall)", borderColor: "#C23B22",
+    rate.data.datasets.push({ label: lang === "ja" ? "0円（ここより下が壁）" : "¥0 (below this is a wall)", borderColor: "#B3261E",
       borderDash: [6, 4], borderWidth: 1.5, pointRadius: 0, pointStyle: "line", data: [{ x: min, y: 0 }, { x: max, y: 0 }] });
     // the dotted ¥0 line is filtered out, so the tooltip can have no items
     rate.options.plugins.tooltip = { filter: c => c.datasetIndex < o.series.length, callbacks: {
