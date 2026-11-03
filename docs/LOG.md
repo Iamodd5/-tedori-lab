@@ -526,3 +526,10 @@ A second simulated review checked the morning's fixes against the law and the li
 141 tests pass, with the one expected failure explained in Q22. Nothing from this part is published yet.
 
 **Decisions (HUMAN_TODO H-23, 2026-11-03).** Health insurance and the child levy stay rounded separately, labelled as an approximation (Q38). An NHI earner is someone "above" the limits, as the cabinet order says (Q25). H2's parents stay a note, now with the 2026 thresholds (Q16). The footer on every page now says the site is made by an individual with an AI assistant (Claude).
+
+## Design pass 2: a printed white paper (2026-11-03)
+
+The owner found the site's look plain and "AI-generated". Nothing in the numbers or the wording changed; only how the pages look.
+- **Colours.** A deep indigo band runs across the top. The page is a soft grey-white, the text is indigo-black, and links are blue. The H4 example, dropdowns and buttons are white, so they stand out like sheets of paper. Red still means a loss and green a gain; the plan colours in the charts are unchanged because they are safe for colour-blind readers.
+- **Type.** Paragraphs are set in Mincho (明朝), justified, as in a Japanese government white paper; headings, numbers, tables, notes and buttons stay in Gothic. Only fonts already on the reader's device are used, so nothing is downloaded from another site.
+- **Shapes.** No tinted boxes or rounded "pill" labels. Each section starts with a dark rule, tables are ruled top and bottom, and the range buttons are one joined control. Charts have lighter gridlines, line legends and plain white tooltips.
