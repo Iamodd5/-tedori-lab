@@ -38,3 +38,17 @@ def test_h4_wall_reason():
     c = {"from": 0, "scheme": ["employee", "employee"], "change": {"income_tax": 0, "resident_tax": 31_200, "employee_insurance": 17_088,
          "national_pension": 0, "nhi": 0, "child_allowance": 0}}
     assert js("w.wallReason(d)", c, "ja") == "住民税が年31,200円増え、会社の保険料が、収入の段階が上がって年17,088円増えるためです。"
+
+
+def test_wall_reason_names_what_starts_or_stops():
+    # H2 at 2.19m: the deferral's income limit (tests/hand_calcs/H2.md). H6 at 2.11m → 2.12m: the head starts paying
+    # resident tax (5,000), which moves the head from band 3 (51,480) to band 6 (87,120) and the spouse from band 1 (19,800)
+    # to band 4 (63,360) (tests/hand_calcs/H6.md): 35,640 + 43,560 = 79,200. H5 at 3.85m: tests/hand_calcs/H5.md.
+    causes = json.loads((ROOT / "outputs" / "wall_map.json").read_text())["households"]
+    h2 = next(x for x in causes["H2"]["wall_causes"] if x["from"] == 2_190_000)
+    assert h2["trigger"] == ["deferral_ends"]
+    assert js("w.wallReason(d)", h2, "ja").startswith("学生納付特例（学生の国民年金保険料を後払いにできる制度）の所得の上限を超えて、国民年金保険料（年215,040円）がかかるためです。")
+    h6 = next(x for x in causes["H6"]["wall_causes"] if x["from"] == 2_110_000)
+    assert js("w.wallReason(d)", h6, "ja") == "住民税がかかり始め（年5,000円）、そのため65歳以上の介護保険料の段階が上がって年79,200円増えるためです。"
+    h5 = next(x for x in causes["H5"]["wall_causes"] if x["from"] == 3_850_000)
+    assert js("w.wallReason(d)", h5, "ja") == "所得が児童扶養手当の上限を超えて、手当（年136,560円）が止まるためです。"

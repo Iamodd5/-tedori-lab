@@ -59,8 +59,8 @@ assumptions:
     en: Each group is split into households living on pensions and households living on work, in the same ratio as pensions to total income in that group. For example, if 60% of the group's income is pensions, 60% of its households are treated as living on pensions. Households with both a pension and a wage, such as older people who still work, don't appear.
   spouse_earnings:
     approximation: true
-    ja: 働いて暮らす夫婦は、調査の「働いている人の数」をもとに、共働きと片働きに分けています。
-    en: Working couples are split into two-earner and one-earner households, based on how many people work in each household according to the survey.
+    ja: 調査の「働いている人の数」のうち、世帯主より多い分を、配偶者とほかの大人の家族に同じ割合で割り振っています。たとえば、その割合が半分なら、半分の世帯では配偶者が働き、半分の世帯では働いていないものとします。働いている人の収入は、調査の平均が変わらないように決めています。
+    en: The survey gives the number of people working in each household. Those beyond the head are spread evenly over spouses and other adults in the household. For example, if the share is one half, the spouse works in half of the households and doesn't work in the other half. Earnings of those who work are set so that the survey's averages stay the same.
   older_age:
     value: 70
     approximation: true
@@ -74,8 +74,8 @@ assumptions:
   adult_child_age:
     value: 22
     approximation: true
-    ja: 18歳以上の子どもは22歳とし、調査の「その他の家族の収入」を均等に分けています。
-    en: Children aged 18 and over are treated as age 22 and share the survey's "other family members' earnings" equally.
+    ja: 18歳以上の子どもは22歳としています。働いている場合は、調査の「その他の家族の収入」を働いている人で均等に分けています。
+    en: Children aged 18 and over are treated as age 22. Those who work share the survey's "other family members' earnings" equally.
   work:
     approximation: true
     ja: 給料をもらう人は全員、週20時間以上・従業員51人以上の会社で働く学生でない人としています。そのため、月8.8万円以上稼ぐ人は1年を通して会社の健康保険と厚生年金に入り、それより少ない人は入りません（月8.8万円の条件は2026年10月1日になくなりましたが、10月からも、週20時間以上でこれより少ない給料は最低賃金の減額特例を受けている人だけで、この人たちは申し出ないかぎり入りません）。雇用保険料は、給料をもらう人全員が払います。
@@ -90,8 +90,8 @@ assumptions:
     en: Food spending is the average for households of the same kind (one person, or two or more people) with the same income, from a survey taken in October–November 2024. It isn't adjusted for the time of year.
   elderly_dependants:  # OPEN_QUESTIONS Q32
     approximation: true
-    ja: 70歳以上の親などを養っていても、税金が通常より安くなる特別な控除（老人扶養親族）は入れず、通常の扶養の控除で計算しています。
-    en: If a household supports a parent or relative aged 70 or over, we use the normal tax break for dependants, not the larger one for older dependants.
+    ja: 世帯主や配偶者以外の70歳以上の家族は、全員、世帯主か配偶者の親で一緒に住んでいるものとして、税の扶養控除を計算しています（親と同居している場合の控除は、ほかの70歳以上の家族の場合より大きくなります）。祖父母など親以外の家族も同じ扱いです。
+    en: Every family member aged 70 or over other than the head and spouse is treated as a parent of the head or spouse living with them, for the tax deduction for dependants. This deduction is larger for a parent living with you than for other relatives aged 70 or over. Grandparents and other relatives are treated the same way.
   survey_year:
     approximation: true
     ja: 世帯の数と収入は2024年の調査の数字のままで、2026年向けに調整していません。

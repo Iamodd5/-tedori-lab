@@ -5,70 +5,70 @@
    "households": 5353665,
    "annual_income_mean": 1203241,
    "annual_income_max": 1744000.0,
-   "baseline_disposable_mean": 915157
+   "baseline_disposable_mean": 915023
   },
   {
    "decile": 2,
    "households": 5353665,
    "annual_income_mean": 2128425,
    "annual_income_max": 2691000.0,
-   "baseline_disposable_mean": 1728841
+   "baseline_disposable_mean": 1727959
   },
   {
    "decile": 3,
    "households": 5353665,
    "annual_income_mean": 2920521,
    "annual_income_max": 3215804.0,
-   "baseline_disposable_mean": 2280690
+   "baseline_disposable_mean": 2284556
   },
   {
    "decile": 4,
    "households": 5353665,
    "annual_income_mean": 3561668,
    "annual_income_max": 4144000.0,
-   "baseline_disposable_mean": 2867321
+   "baseline_disposable_mean": 2871616
   },
   {
    "decile": 5,
    "households": 5353665,
    "annual_income_mean": 4391339,
    "annual_income_max": 4731000.0,
-   "baseline_disposable_mean": 3445594
+   "baseline_disposable_mean": 3436620
   },
   {
    "decile": 6,
    "households": 5353665,
    "annual_income_mean": 5303915,
    "annual_income_max": 5737000.0,
-   "baseline_disposable_mean": 4103868
+   "baseline_disposable_mean": 4101945
   },
   {
    "decile": 7,
    "households": 5353665,
    "annual_income_mean": 6408935,
    "annual_income_max": 7174000.0,
-   "baseline_disposable_mean": 4875455
+   "baseline_disposable_mean": 4869818
   },
   {
    "decile": 8,
    "households": 5353665,
    "annual_income_mean": 7757482,
    "annual_income_max": 8691000.0,
-   "baseline_disposable_mean": 5829373
+   "baseline_disposable_mean": 5827451
   },
   {
    "decile": 9,
    "households": 5353665,
    "annual_income_mean": 9678195,
    "annual_income_max": 11153000.0,
-   "baseline_disposable_mean": 7120899
+   "baseline_disposable_mean": 7116115
   },
   {
    "decile": 10,
    "households": 5353665,
    "annual_income_mean": 15840102,
    "annual_income_max": 40746000.0,
-   "baseline_disposable_mean": 10651092
+   "baseline_disposable_mean": 10683119
   }
  ],
  "designs": {
@@ -182,81 +182,81 @@
    "by_decile": [
     {
      "decile": 1,
-     "mean_change": 9228,
+     "mean_change": 9257,
      "winners_share": 0.2055,
      "losers_share": 0.0,
      "unchanged_share": 0.7945
     },
     {
      "decile": 2,
-     "mean_change": 6503,
+     "mean_change": 6740,
      "winners_share": 0.2123,
      "losers_share": 0.0,
      "unchanged_share": 0.7877
     },
     {
      "decile": 3,
-     "mean_change": 4765,
-     "winners_share": 0.131,
+     "mean_change": 6290,
+     "winners_share": 0.1401,
      "losers_share": 0.0,
-     "unchanged_share": 0.869
+     "unchanged_share": 0.8599
     },
     {
      "decile": 4,
-     "mean_change": 4499,
-     "winners_share": 0.1054,
+     "mean_change": 3679,
+     "winners_share": 0.1246,
      "losers_share": 0.0681,
-     "unchanged_share": 0.8265
+     "unchanged_share": 0.8073
     },
     {
      "decile": 5,
-     "mean_change": -832,
-     "winners_share": 0.129,
+     "mean_change": -5959,
+     "winners_share": 0.1369,
      "losers_share": 0.4642,
-     "unchanged_share": 0.4069
+     "unchanged_share": 0.3989
     },
     {
      "decile": 6,
-     "mean_change": -11117,
-     "winners_share": 0.1778,
-     "losers_share": 0.475,
-     "unchanged_share": 0.3472
+     "mean_change": -7708,
+     "winners_share": 0.2472,
+     "losers_share": 0.5088,
+     "unchanged_share": 0.244
     },
     {
      "decile": 7,
-     "mean_change": -27033,
-     "winners_share": 0.2306,
-     "losers_share": 0.6761,
-     "unchanged_share": 0.0933
+     "mean_change": -29884,
+     "winners_share": 0.2231,
+     "losers_share": 0.6936,
+     "unchanged_share": 0.0832
     },
     {
      "decile": 8,
-     "mean_change": -23649,
-     "winners_share": 0.2983,
-     "losers_share": 0.6943,
-     "unchanged_share": 0.0074
+     "mean_change": -28771,
+     "winners_share": 0.1941,
+     "losers_share": 0.7227,
+     "unchanged_share": 0.0832
     },
     {
      "decile": 9,
-     "mean_change": -51860,
-     "winners_share": 0.1458,
-     "losers_share": 0.8542,
-     "unchanged_share": 0.0
+     "mean_change": -55338,
+     "winners_share": 0.0389,
+     "losers_share": 0.951,
+     "unchanged_share": 0.01
     },
     {
      "decile": 10,
-     "mean_change": -85341,
-     "winners_share": 0.0556,
-     "losers_share": 0.9444,
-     "unchanged_share": 0.0
+     "mean_change": -101548,
+     "winners_share": 0.0195,
+     "losers_share": 0.975,
+     "unchanged_share": 0.0055
     }
    ],
-   "cost_yen": -936015511636,
+   "cost_yen": -1088091677300,
    "cost_components_yen": {
-    "income_tax": 1519925510950,
+    "income_tax": 1472442520595,
     "resident_tax": 0,
     "social_insurance": 0,
-    "credit": 583909999313,
+    "credit": 384350843295,
     "consumption_tax": 0
    }
   },
@@ -290,73 +290,73 @@
   "wage_earners": [
    {
     "band": "100万円以下",
-    "model": 15284541,
+    "model": 6916206,
     "official": 3703056,
     "official_part_year": 5982206
    },
    {
     "band": "200万円以下",
-    "model": 14622271,
+    "model": 12404620,
     "official": 5824931,
     "official_part_year": 929310
    },
    {
     "band": "300万円以下",
-    "model": 7578733,
+    "model": 12568392,
     "official": 6745640,
     "official_part_year": 986586
    },
    {
     "band": "400万円以下",
-    "model": 7617433,
+    "model": 9746749,
     "official": 7986672,
     "official_part_year": 621454
    },
    {
     "band": "500万円以下",
-    "model": 5659320,
+    "model": 7082389,
     "official": 7917759,
     "official_part_year": 276016
    },
    {
     "band": "600万円以下",
-    "model": 4955611,
+    "model": 5392662,
     "official": 6144924,
     "official_part_year": 136777
    },
    {
     "band": "700万円以下",
-    "model": 3782120,
+    "model": 3244262,
     "official": 4035252,
     "official_part_year": 64794
    },
    {
     "band": "800万円以下",
-    "model": 2360337,
+    "model": 1965479,
     "official": 2776867,
     "official_part_year": 44854
    },
    {
     "band": "900万円以下",
-    "model": 1547603,
+    "model": 938648,
     "official": 1833950,
     "official_part_year": 30897
    },
    {
     "band": "1,000万円以下",
-    "model": 1007523,
+    "model": 625624,
     "official": 1266070,
     "official_part_year": 20872
    },
    {
     "band": "1,500万円以下",
-    "model": 1187905,
+    "model": 847754,
     "official": 2422426,
     "official_part_year": 53697
    },
    {
     "band": "2,000万円以下",
-    "model": 492655,
+    "model": 272693,
     "official": 609530,
     "official_part_year": 13450
    },
@@ -378,11 +378,11 @@
    "survey": 33376907
   },
   "income_tax": {
-   "model_baseline_2026": 10132075082828,
+   "model_baseline_2026": 9122732539822,
    "survey_estimate_2024": 11636229406234
   },
   "resident_tax": {
-   "model_baseline_2026": 12129669772668,
+   "model_baseline_2026": 12166666966033,
    "survey_estimate_2024": 12812796487612
   },
   "income_covered": {
@@ -455,8 +455,8 @@
   },
   {
    "key": "spouse_earnings",
-   "ja": "働いて暮らす夫婦は、調査の「働いている人の数」をもとに、共働きと片働きに分けています。",
-   "en": "Working couples are split into two-earner and one-earner households, based on how many people work in each household according to the survey."
+   "ja": "調査の「働いている人の数」のうち、世帯主より多い分を、配偶者とほかの大人の家族に同じ割合で割り振っています。たとえば、その割合が半分なら、半分の世帯では配偶者が働き、半分の世帯では働いていないものとします。働いている人の収入は、調査の平均が変わらないように決めています。",
+   "en": "The survey gives the number of people working in each household. Those beyond the head are spread evenly over spouses and other adults in the household. For example, if the share is one half, the spouse works in half of the households and doesn't work in the other half. Earnings of those who work are set so that the survey's averages stay the same."
   },
   {
    "key": "older_age",
@@ -470,8 +470,8 @@
   },
   {
    "key": "adult_child_age",
-   "ja": "18歳以上の子どもは22歳とし、調査の「その他の家族の収入」を均等に分けています。",
-   "en": "Children aged 18 and over are treated as age 22 and share the survey's \"other family members' earnings\" equally."
+   "ja": "18歳以上の子どもは22歳としています。働いている場合は、調査の「その他の家族の収入」を働いている人で均等に分けています。",
+   "en": "Children aged 18 and over are treated as age 22. Those who work share the survey's \"other family members' earnings\" equally."
   },
   {
    "key": "work",
@@ -490,8 +490,8 @@
   },
   {
    "key": "elderly_dependants",
-   "ja": "70歳以上の親などを養っていても、税金が通常より安くなる特別な控除（老人扶養親族）は入れず、通常の扶養の控除で計算しています。",
-   "en": "If a household supports a parent or relative aged 70 or over, we use the normal tax break for dependants, not the larger one for older dependants."
+   "ja": "世帯主や配偶者以外の70歳以上の家族は、全員、世帯主か配偶者の親で一緒に住んでいるものとして、税の扶養控除を計算しています（親と同居している場合の控除は、ほかの70歳以上の家族の場合より大きくなります）。祖父母など親以外の家族も同じ扱いです。",
+   "en": "Every family member aged 70 or over other than the head and spouse is treated as a parent of the head or spouse living with them, for the tax deduction for dependants. This deduction is larger for a parent living with you than for other relatives aged 70 or over. Grandparents and other relatives are treated the same way."
   },
   {
    "key": "survey_year",

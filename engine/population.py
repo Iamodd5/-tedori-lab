@@ -67,23 +67,30 @@ def model_households(cell):
     work, pens = wh + ws + bus, ph + ps
     total = work + pens
     pi = pens / total if total else 0.0
+    others = adult_children + relatives if cell["wage_other"] > 0 else 0
+    rate = 0.0
     variants = []  # (name, share of the cell, age, spouse salary, pension)
     if pi > 0:
         variants.append(("pension", pi, old_age, 0.0, total))
     if pi < 1:
         age = min(64, max(20, round((cell["head_age"] - pi * old_age) / (1 - pi))))
-        # assumption spouse_earnings: the survey's earners per household decide how many spouses earn
-        others_earning = adult_children + relatives if cell["wage_other"] > 0 else 0
-        q = min(1.0, max(0.0, (cell["earners"] - others_earning) / (1 - pi) - 1, ws / work if work else 0.0)) if ws > 0 else 0.0
+        # assumption spouse_earnings: earners beyond the working heads are spread evenly over spouses and other adults
+        seats = ((1 - pi) if ws > 0 else 0) + others
+        rate = min(1.0, max(0.0, (cell["earners"] - (1 - pi)) / seats)) if seats else 0.0
+        q = min(1.0, max(rate, ws / work if work else 0.0)) if ws > 0 else 0.0
         if q < 1:
             variants.append(("work_one_earner" if g["spouse"] else "work", (1 - pi) * (1 - q), age, 0.0, 0.0))
         if q > 0:
             variants.append(("work_two_earners", (1 - pi) * q, age, ws / ((1 - pi) * q), 0.0))
 
     takers = adult_children + relatives
+    r = rate if others and rate > 0 else 1.0  # share of households whose other adults earn (all of them, if the survey gives no room)
     other_dropped = (cell["wage_other"] if not takers else 0) + (cell["pension_other"] if not relatives_old else 0)
+    if others and r < 1:  # assumption spouse_earnings: some households' other adults earn, the rest earn nothing
+        variants = [(f"{n}{tag}", sh * k, a, w, p) for n, sh, a, w, p in variants for tag, k in (("_others_earn", r), ("", 1 - r))]
     out = []
     for name, share, age, w_spouse, p in variants:
+        w_other = round(cell["wage_other"] / (r * takers)) if takers and name.endswith("_others_earn") or (takers and r == 1) else 0
         w_head, b_head = _share(total - p - w_spouse, [wh, bus])
         p_head, p_spouse = _share(p, [ph, ps])
         members = [{"id": "a", "role": "head", "age": age, "salary": round(w_head), "business_income": round(b_head),
@@ -91,11 +98,12 @@ def model_households(cell):
         if g["spouse"]:
             members.append({"id": "b", "role": "spouse", "age": age, "salary": round(w_spouse), "public_pension": round(p_spouse)})
         members += [{"id": f"c{i}", "role": "child", "age": child_age} for i in range(kids)]
-        members += [{"id": f"d{i}", "role": "child", "age": adult_child_age, "salary": round(cell["wage_other"] / takers)}
+        members += [{"id": f"d{i}", "role": "child", "age": adult_child_age, "salary": w_other}
                     for i in range(adult_children)]
         members += [{"id": f"r{i}", "role": "dependant", "age": old_age if relatives_old else age,
-                     "salary": round(cell["wage_other"] / takers),
-                     "public_pension": round(cell["pension_other"] / relatives) if relatives_old else 0} for i in range(relatives)]
+                     "salary": w_other,
+                     "public_pension": round(cell["pension_other"] / relatives) if relatives_old else 0,
+                     "parent": relatives_old} for i in range(relatives)]  # assumption elderly_dependants
         for m in members:
             if m.get("salary"):
                 m["work"] = {"hours_20_plus": True, "employer_51_plus": True}  # assumption `work`

@@ -62,11 +62,17 @@ def parts(hh, income):
 
 def wall_causes(hh, walls):
     """For each wall {from, at, ...}: the change in each tax, premium and benefit, and the moving member's scheme before and after."""
+    mid = varying_member(hh)[0]
+    deferral = next(m for m in hh["members"] if m["id"] == mid).get("student_pension_deferral", False)
     out = []
     for wl in walls:
         a, b = parts(hh, wl["from"]), parts(hh, wl["at"])
+        trigger = [name for name, hit in (  # what starts or stops at this step, named in the wall list
+            ("deferral_ends", deferral and a["scheme"] == b["scheme"] and b["national_pension"] > a["national_pension"]),
+            ("resident_tax_starts", a["resident_tax"] == 0 < b["resident_tax"]),
+            ("allowance_stops", a["child_rearing_allowance"] > 0 == b["child_rearing_allowance"])) if hit]
         out.append({"from": wl["from"], "scheme": [a["scheme"], b["scheme"]],
-                    "change": {k: b[k] - a[k] for k in a if k != "scheme"}})
+                    "change": {k: b[k] - a[k] for k in a if k != "scheme"}, "trigger": trigger})
     return out
 
 

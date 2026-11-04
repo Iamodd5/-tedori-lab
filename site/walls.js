@@ -257,9 +257,15 @@ function wallReason(c) {
     ltc_65: { ja: "65歳以上の介護保険料", en: "long-term care premiums for people aged 65 or over" },
     income_tax: { ja: "所得税", en: "income tax" }, resident_tax: { ja: "住民税", en: "resident tax" } };
   const ch = { ...Object.fromEntries(Object.keys(NAMES).map(k => [k, 0])), ...c.change };  // a part missing from older data counts as 0
-  const [before, after] = c.scheme;
+  const [before, after] = c.scheme, trig = c.trigger || [];
   let why;
-  if (before !== after && after === "nhi") {
+  if (trig.includes("deferral_ends")) {
+    why = ja ? `学生納付特例（学生の国民年金保険料を後払いにできる制度）の所得の上限を超えて、国民年金保険料（${m(ch.national_pension)}）がかかるため`
+             : `income passes the limit for the student deferral of National Pension, so National Pension must be paid (${m(ch.national_pension)})`;
+  } else if (trig.includes("allowance_stops")) {
+    why = ja ? `所得が児童扶養手当の上限を超えて、手当（${m(-ch.child_rearing_allowance)}）が止まるため`
+             : `income passes the limit for the single-parent allowance (児童扶養手当), so it stops (${m(-ch.child_rearing_allowance)})`;
+  } else if (before !== after && after === "nhi") {
     const paid = ["national_pension", "nhi"].filter(k => ch[k] > 0).map(k => ja ? `${t(NAMES[k])}（${m(ch[k])}）` : `${t(NAMES[k])} (${m(ch[k])})`);
     why = ja ? `${before === "dependant" ? "扶養から外れて、" : ""}${paid.join("と")}がかかるため` : `${before === "dependant" ? "the dependant status ends and " : ""}${paid.join(" and ")} must be paid`;
   } else if (before !== after && after === "employee") {
@@ -271,9 +277,13 @@ function wallReason(c) {
     const big = Math.max(...Object.keys(NAMES).map(k => ch[k]), ...Object.keys(BENEFITS).map(fall));
     const up = Object.keys(NAMES).filter(k => ch[k] >= Math.max(1000, big / 5)).sort((a, b) => ch[b] - ch[a]);
     up.push(...Object.keys(BENEFITS).filter(k => fall(k) >= Math.max(1000, big / 5)));
+    const starts = trig.includes("resident_tax_starts");  // named first, however small: it moves the 65+ care premium band
+    if (starts) up.splice(0, up.length, "resident_tax", ...up.filter(k => k !== "resident_tax"));
     if (!up.length) return "";
     // Japanese: every item but the last ends in 増え/減り, the last in 増える/減る
-    const say = (k, last) => k in BENEFITS ? (ja ? `${BENEFITS[k].ja}が${m(fall(k))}${last ? "減る" : "減り"}` : `${BENEFITS[k].en} falls by ${m(fall(k))}`)
+    const say = (k, last) => starts && k === "resident_tax" ? (ja ? `住民税がかかり始め${last ? "る" : ""}（${m(ch[k])}）` : `resident tax starts (${m(ch[k])})`)
+      : starts && k === "ltc_65" ? (ja ? `そのため65歳以上の介護保険料の段階が上がって${m(ch[k])}${last ? "増える" : "増え"}` : `so the long-term care premium for people aged 65 or over moves up a band, by ${m(ch[k])}`)
+      : k in BENEFITS ? (ja ? `${BENEFITS[k].ja}が${m(fall(k))}${last ? "減る" : "減り"}` : `${BENEFITS[k].en} falls by ${m(fall(k))}`)
       : k === "employee_insurance" && before === "employee" ? (ja ? `会社の保険料が、収入の段階が上がって${m(ch[k])}${last ? "増える" : "増え"}` : `company insurance premiums step up by ${m(ch[k])}`)
       : (ja ? `${t(NAMES[k])}が${m(ch[k])}${last ? "増える" : "増え"}` : `${t(NAMES[k])} goes up by ${m(ch[k])}`);
     why = up.map((k, i) => say(k, i === up.length - 1)).join(ja ? "、" : ", ") + (ja ? "ため" : "");

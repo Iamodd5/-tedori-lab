@@ -50,16 +50,16 @@ Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that 
 
 We lined up every household from lowest to highest yearly income and cut the line into ten groups of the same size. (Approximation) All of the following are rough estimates.
 
-- (Approximation) In groups 1–4, take-home pay goes up on average (by the most in group 1: ¥9,228 a year). But within these groups, take-home goes up for 11–21% of households, and 79–87% see no change. In group 4, 7% of households are worse off.
-- (Approximation) In groups 5–10, take-home pay goes down on average (by the most in group 10: ¥85,341 a year).
-- (Approximation) Overall, income tax rises by about ¥1.5 trillion a year and about ¥0.6 trillion is paid out in cash (the part of the credit bigger than income tax), so the government takes in about ¥0.9 trillion more a year (a rough estimate that assumes nobody changes how they work).
+- (Approximation) In groups 1–4, take-home pay goes up on average (by the most in group 1: ¥9,257 a year). But within these groups, take-home goes up for 12–21% of households, and 79–86% see no change. In group 4, 7% of households are worse off.
+- (Approximation) In groups 5–10, take-home pay goes down on average (by the most in group 10: ¥101,548 a year).
+- (Approximation) Overall, income tax rises by about ¥1.5 trillion a year and about ¥0.4 trillion is paid out in cash (the part of the credit bigger than income tax), so the government takes in about ¥1.1 trillion more a year (a rough estimate that assumes nobody changes how they work).
 - Daiwa's own estimate is about ¥0.7 trillion more income tax and about ¥0.7 trillion paid in cash: about zero overall (fiscally neutral). Daiwa used 2025 tax rules and a ¥56,500 credit; this site uses 2026 rules and ¥52,000, so the two can't be compared directly.
 
 ## Limits
 
 - We assume nobody changes how much they work. Some people would change their hours when the rules change; that is not included.
 - The example households live in Shinjuku, Tokyo. Outside Shinjuku, parts of National Health Insurance and resident tax (set by each municipality) are different, and outside Tokyo so is the health insurance rate for employees (協会けんぽ, set by prefecture).
-- The all-household numbers are rough estimates from made-up households matched to the averages in a 2024 government survey. Compared with official figures, the household count is 2.8% lower. Total income tax is 12.9% lower and total resident tax 5.3% lower than the tax that survey itself estimates from reported incomes (not tax actually collected). The estimate has too many low-paid workers and too few high earners compared with official counts, so the cash paid out and the extra income tax may be off (see the Checks page).
+- The all-household numbers are rough estimates from made-up households matched to the averages in a 2024 government survey. Compared with official figures, the household count is 2.8% lower. Total income tax is 21.6% lower and total resident tax 5.0% lower than the tax that survey itself estimates from reported incomes (not tax actually collected). The estimate has too many low-paid workers and too few high earners compared with official counts, so the cash paid out and the extra income tax may be off (see the Checks page).
 - The plans that can't be calculated yet will be calculated once the amounts they need are decided and published (the reasons for each are listed above).
 
 ## All approximations
@@ -85,14 +85,14 @@ All-household numbers:
 
 - (Approximation) The survey doesn't publish data on individual households, only averages for each type of household in each ¥500,000 income range. So for each type-and-income group we make up two or three households that match the group's averages. Differences between households in the same group are lost.
 - (Approximation) Each group is split into households living on pensions and households living on work, in the same ratio as pensions to total income in that group. For example, if 60% of the group's income is pensions, 60% of its households are treated as living on pensions. Households with both a pension and a wage, such as older people who still work, don't appear.
-- (Approximation) Working couples are split into two-earner and one-earner households, based on how many people work in each household according to the survey.
+- (Approximation) The survey gives the number of people working in each household. Those beyond the head are spread evenly over spouses and other adults in the household. For example, if the share is one half, the spouse works in half of the households and doesn't work in the other half. Earnings of those who work are set so that the survey's averages stay the same.
 - (Approximation) Everyone living on a pension is treated as age 70. The separate health insurance system that people aged 75 and over join (後期高齢者医療制度) is not included.
 - (Approximation) All children under 18 are treated as age 10. Working adults get an age based on the survey's average for their group (between 20 and 64).
-- (Approximation) Children aged 18 and over are treated as age 22 and share the survey's "other family members' earnings" equally.
+- (Approximation) Children aged 18 and over are treated as age 22. Those who work share the survey's "other family members' earnings" equally.
 - (Approximation) Everyone with a wage is treated as a non-student working 20+ hours a week at a company with more than 50 employees. So people earning ¥88,000 a month or more are in the company's health insurance and pension all year, and people earning less are not. (The ¥88,000 condition ended on 1 October 2026, but from October the only people on 20+ hours paid less are workers with a minimum-wage exception, who join only if they ask.) Everyone with a wage pays employment insurance.
 - (Approximation) Only wages, business income and pensions are counted. Rent, interest, dividends and money from family are left out. Business income is treated as profit after costs.
 - (Approximation) Food spending is the average for households of the same kind (one person, or two or more people) with the same income, from a survey taken in October–November 2024. It isn't adjusted for the time of year.
-- (Approximation) If a household supports a parent or relative aged 70 or over, we use the normal tax break for dependants, not the larger one for older dependants.
+- (Approximation) Every family member aged 70 or over other than the head and spouse is treated as a parent of the head or spouse living with them, for the tax deduction for dependants. This deduction is larger for a parent living with you than for other relatives aged 70 or over. Grandparents and other relatives are treated the same way.
 - (Approximation) Household numbers and incomes are from 2024 and haven't been updated to 2026.
 
 ## Method and sources

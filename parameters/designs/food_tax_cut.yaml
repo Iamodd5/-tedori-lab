@@ -20,6 +20,11 @@ source:
     url: https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20260915/01_siryou1.pdf
     file: sources/gov/20260915_01_siryou1.pdf
     published: 2026-09-15
+  nta6303:
+    title: タックスアンサー No.6303 消費税および地方消費税の税率
+    url: https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6303.htm
+    file: sources/tax/nta_6303_shohizei_ritsu.html
+    published: 2026-04-01 (令和8年4月1日現在法令等; downloaded 2026-11-04)
   bill_summary:
     title: 「租税及び社会保険料による負担の軽減のための飲食料品に係る消費税率の臨時的な引下げ及び就業者負担軽減支援金の支給に関する法律案」について（概要）
     url: https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou1.pdf
@@ -45,6 +50,10 @@ parameters:
       value: 0.0078
       status: resolved
       cite: {source: outline, page: 2, section: "第二 一 1"}
+    current_combined_rate_on_food:  # the reduced rate now in force (national 6.24% + local 1.76%)
+      value: 0.08
+      status: resolved
+      cite: {source: nta6303, page: 1, section: "軽減税率 合計8パーセント"}
     combined_rate_on_food:     # national + local consumption tax
       value: 0.01
       status: resolved

@@ -148,6 +148,7 @@ The tables were chosen by the project owner on 2026-11-01 (options in `docs/M7_D
 | tax/nta_1171_hitorioya.html | No.1171 ひとり親控除 | 2026 | https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171.htm | single-parent deduction |
 | tax/nta_1175_kinro_gakusei.html | No.1175 勤労学生控除 | 2026 | https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1175.htm | working-student deduction |
 | tax/nta_1411_shotoku_kingaku_chosei.html | No.1411 所得金額調整控除 | 2026 | https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1411.htm | income-adjustment deduction |
+| tax/nta_6303_shohizei_ritsu.html | No.6303 消費税および地方消費税の税率 | 2026-04-01 | https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6303.htm | the current 8% rate on food (food tax cut) |
 | tax/soumu_kojin_juminzei_kiso_kojo_r8.pdf | 個人住民税の基礎控除等について（総務省 資料３） | 2026-05-29 | https://www.soumu.go.jp/main_content/001075462.pdf | resident tax follows the new employment deduction; basic deduction stays 430,000 |
 | shinjuku/hoken01_001028.html | 新宿区 国民健康保険料の計算方法（令和8年度） | 2026 | https://www.city.shinjuku.lg.jp/hoken/hoken01_001028.html | NHI rates |
 | shinjuku/hoken01_002030.html | 新宿区 保険料の減免について | 2026 | https://www.city.shinjuku.lg.jp/hoken/hoken01_002030.html | NHI reductions |

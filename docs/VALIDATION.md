@@ -39,17 +39,22 @@ Same salaries, each run as a single person in OpenFisca-Japan with the calculati
 
 | Household | Person | Salary | Social ins. (ours) | (OF-J) | Income tax (ours) | (OF-J) | Resident tax (ours) | (OF-J) |
 |---|---|---|---|---|---|---|---|---|
-| H1 | a | 1,250,000 | 183,348 | 183,125 | 0 | 0 | 5,000 | 5,000 |
-| H3 | a | 4,500,000 | 669,564 | 659,250 | 74,000 | 72,013 | 208,500 | 188,563 |
-| H3 | b | 3,000,000 | 457,728 | 439,500 | 26,600 | 25,034 | 115,600 | 96,538 |
-| H8 | a | 9,000,000 | 1,285,188 | 1,280,700 | 603,700 | 580,271 | 530,800 | 517,918 |
-| H8 | b | 7,000,000 | 1,039,644 | 1,025,500 | 276,100 | 244,403 | 375,500 | 358,438 |
+| H1 | a | 1,250,000 | 183,348 | 183,125 | 0 | 0 | 5,000 | 11,188 |
+| H3 | a | 4,500,000 | 669,564 | 659,250 | 74,000 | 82,739 | 208,500 | 212,075 |
+| H3 | b | 3,000,000 | 457,728 | 439,500 | 26,600 | 35,761 | 115,600 | 117,550 |
+| H8 | a | 9,000,000 | 1,285,188 | 1,280,700 | 603,700 | 623,178 | 530,800 | 538,930 |
+| H8 | b | 7,000,000 | 1,039,644 | 1,025,500 | 276,100 | 287,309 | 375,500 | 379,450 |
 
-Likely causes, not yet traced line by line:
+Each person is run as an employee in 厚生年金. OpenFisca-Japan assumes everyone pays National Pension unless told otherwise
+(its input 国民年金保険に加入している defaults to yes), so the comparison now says no for employees. An earlier version
+left it at yes: OpenFisca-Japan then deducted 210,120 yen of National Pension that employees don't pay, and its resident
+tax came out 12,882–19,937 yen lower than ours (OPEN_QUESTIONS Q27, now explained).
+
+Remaining differences, traced step by step:
 - Social insurance: OF-J uses a 10% health rate on actual pay instead of the Tokyo 9.85% rate on banded pay, and has no 子ども・子育て支援金.
-- Income tax: OF-J's results are not rounded to 100 yen, and it uses 2025 employment-income rules.
-- Resident tax: for the four people above the flat per-person levy, OF-J is 12,882–19,937 yen lower (H1 is the same). The cause is not yet found (Q27).
-- Corrections: an earlier version of the line above said "about 17,000–20,000 yen lower", and the website repeated it; H8 a was 12,982 lower, so the range was wrong. After the rounding fix in section 11, our resident tax for H3 b and H8 a fell by 100 yen, so the range is now 12,882–19,937.
+- Income tax: OF-J uses the 2025 basic deduction (880,000 for H3, 630,000 and 580,000 for H8, against 1,040,000, 670,000 and 620,000 for 2026) and the 2025 employment-income deduction (H1: income 700,000 against 510,000); it doesn't apply the income adjustment deduction for H8 a (salary over 8.5m with a child under 23: 50,000); and it doesn't round to 100 yen.
+- Resident tax: OF-J's 調整控除 drops to 0 above taxable income of 2m, where the law keeps a minimum of 5% of 50,000 (地方税法314条の6第2号): 2,500 yen for H3 a and both H8 earners. Together with the social-insurance difference, the missing income adjustment (H8 a) and no rounding, OF-J is 1,950–8,130 yen higher. H1: OF-J's 2025 employment-income rules leave 86,875 yen taxable where ours leave nothing, so OF-J charges 6,188 yen of 所得割.
+- These OF-J differences (the National Pension default for employees, the 調整控除 minimum, the income adjustment deduction) are candidates for upstream fixes (docs/COVERAGE.md).
 
 ## 4. Outside calculator
 
@@ -123,8 +128,8 @@ The tax comparators are not tax actually collected. They are the 2024 全国家�
 |---|---|---|---|---|
 | Households | 53,536,652 (+254,087 in cells the survey hides) | 55,058,000 (国民生活基礎調査 2025) | −2.8% | different survey and year; the hidden cells are too small to model |
 | People aged 65+ | 26,897,965 | 33,376,907 (全国家計構造調査 2024, the table the model is built from, Σ 65歳以上人員) | −19% | older people who work are modelled in work households at age 64 or under |
-| Income tax | 10.13 trillion (2026 rules) | 11.64 trillion (the survey's own estimate of tax, 2024) | −12.9% | 2025–26 tax cuts (larger basic deduction), averages taxed instead of individuals, rent and interest not modelled |
-| Resident tax | 12.13 trillion | 12.81 trillion (the survey's own estimate of tax) | −5.3% | as above, smaller because resident tax changed less |
+| Income tax | 9.12 trillion (2026 rules) | 11.64 trillion (the survey's own estimate of tax, 2024) | −21.6% | 2025–26 tax cuts (larger basic deduction), averages taxed instead of individuals, rent and interest not modelled |
+| Resident tax | 12.17 trillion | 12.81 trillion (the survey's own estimate of tax) | −5.0% | as above, smaller because resident tax changed less |
 | Income modelled | 297.5 trillion | 316.9 trillion (survey 年間収入) | −6% | rent, interest, transfers left out; 4.3 trillion of other members' earnings had nobody to go to |
 | Food at 8%, per household per month | 54,832 (Oct–Nov 2024) | 57,177 (家計調査 2025 full year) | −4% | season; not used by any number yet (the food tax cut cannot be calculated yet) |
 
@@ -132,27 +137,31 @@ The tax comparators are not tax actually collected. They are the 2024 全国家�
 
 | Pay | Model | Official, full year | Official, part of the year | Gap to full year |
 |---|---|---|---|---|
-| up to 1m | 15,284,541 | 3,703,056 | 5,982,206 | +313% |
-| 1–2m | 14,622,271 | 5,824,931 | 929,310 | +151% |
-| 2–3m | 7,578,733 | 6,745,640 | 986,586 | +12% |
-| 3–4m | 7,617,433 | 7,986,672 | 621,454 | −5% |
-| 4–5m | 5,659,320 | 7,917,759 | 276,016 | −29% |
-| 5–6m | 4,955,611 | 6,144,924 | 136,777 | −19% |
-| 6–7m | 3,782,120 | 4,035,252 | 64,794 | −6% |
-| 7–8m | 2,360,337 | 2,776,867 | 44,854 | −15% |
-| 8–9m | 1,547,603 | 1,833,950 | 30,897 | −16% |
-| 9–10m | 1,007,523 | 1,266,070 | 20,872 | −20% |
-| 10–15m | 1,187,905 | 2,422,426 | 53,697 | −51% |
-| 15–20m | 492,655 | 609,530 | 13,450 | −19% |
-| 20–25m | 52,372 | 167,273 | 1,985 | −69% |
-| over 25m | 0 | 196,243 | 1,987 | −100% |
-| Total | 66,148,424 | 51,630,593 | | +28% |
+| up to 1m | 6,916,206 | 3,703,056 | 5,982,206 | +87% |
+| 1–2m | 12,404,620 | 5,824,931 | 929,310 | +113% |
+| 2–3m | 12,568,392 | 6,745,640 | 986,586 | +86% |
+| 3–4m | 9,746,749 | 7,986,672 | 621,454 | +22% |
+| 4–5m | 7,082,389 | 7,917,759 | 276,016 | -11% |
+| 5–6m | 5,392,662 | 6,144,924 | 136,777 | -12% |
+| 6–7m | 3,244,262 | 4,035,252 | 64,794 | -20% |
+| 7–8m | 1,965,479 | 2,776,867 | 44,854 | -29% |
+| 8–9m | 938,648 | 1,833,950 | 30,897 | -49% |
+| 9–10m | 625,624 | 1,266,070 | 20,872 | -51% |
+| 10–15m | 847,754 | 2,422,426 | 53,697 | -65% |
+| 15–20m | 272,693 | 609,530 | 13,450 | -55% |
+| 20–25m | 52,372 | 167,273 | 1,985 | -69% |
+| over 25m | 0 | 196,243 | 1,987 | -100% |
+| Total | 62,057,850 | 51,630,593 | | +20% |
 
-The official counts leave out public servants, so the model should be higher in total. Counting part-year workers too, about 9.69 million private-sector employees earned ¥1m or less, so the model's 15.28 million is about 1.6 times too many (it is about 4 times the full-year count alone). The top bands are too empty: averaging within a cell squeezes pay towards the middle, and adult children and relatives share an average salary (Q33). Too few high earners and 19% too few people aged 65+ matter for a plan that raises tax at the top.
+The official counts leave out public servants, so the model should be higher in total. At ¥1m or less the model (6.92 million) now lies between the full-year count (3.70 million) and the count including part-year workers (9.69 million). It has too many people earning ¥1m–3m (24.97 million against 14.49 million including part-year workers) and too few earning ¥10m or more. Averaging within a cell squeezes pay towards the middle. Too few high earners and 19% too few people aged 65+ matter for a plan that raises tax at the top.
+
+**Earners other than the head (Q33, changed 2026-11-04).** Earlier versions gave the survey's "other members' earnings" to every adult child and relative in every household, which made 15.28 million earners at ¥1m or less (1.6 times the official count including part-year workers). Now the survey's number of earners per household decides how many spouses and other adults earn: the earners beyond the head are spread evenly over spouses and other adults, and those who earn get the cell's average divided by that share (`tests/hand_calcs/population.md` section 5). This also gives working spouses more realistic pay: before, in cells with an adult child, all the room for extra earners went to the child, so only a few spouses earned, at high pay. Effects: earners 66.15 → 62.06 million; income tax 10.13 → 9.12 trillion (lower pay for spouses and other adults, and more of them claimed as dependants); Daiwa's refunds 0.58 → 0.38 trillion (fewer people with too little tax to use the credit).
+
+**Dependants aged 70 and over (Q32, 2026-11-04).** The model now gives the larger deduction for a dependant aged 70+ (income tax 480,000, or 580,000 for a parent living with the taxpayer; resident tax 380,000 or 450,000). Every relative aged 70+ in the model is treated as a parent of the head or spouse living with them (labelled approximation). People with both salary and pension income now get the income adjustment deduction (Q41). Together these lower income tax by less than 0.01 trillion.
 
 **Decile boundaries** (highest cell average in each model decile vs the survey's own decile upper limits, 第1-21表): 1.74m / 1.86m, 2.69m / 2.59m, 3.22m / 3.28m, 4.14m / 4.00m, 4.73m / 4.83m, 5.74m / 5.77m, 7.17m / 6.99m, 8.69m / 8.50m, 11.15m / 11.00m. All within 7%.
 
-**Daiwa cost** (2026 rules): income tax +1.52 trillion, refunds 0.58 trillion, net: the government collects 0.94 trillion more (the result pages round these to 0.1 trillion: 1.5, 0.6 and 0.9). Daiwa's own estimate (2025 rules, credit 56,500; p.7): income tax +0.7 trillion, refunds 0.7 trillion, net about zero. Most of the gap has the same cause as in §9: under 2026 rules the basic deduction that the design removes is larger (1,040,000 at incomes up to 4.89 million), so removing it raises more tax. Daiwa built its estimate from MIC tax-assessment statistics, not household-survey averages, and the model has too few high earners (above), so the second decimal place should not be relied on.
+**Daiwa cost** (2026 rules): income tax +1.47 trillion, refunds 0.38 trillion, net: the government collects 1.09 trillion more (the result pages round these to 0.1 trillion: 1.5, 0.4 and 1.1). Daiwa's own estimate (2025 rules, credit 56,500; p.7): income tax +0.7 trillion, refunds 0.7 trillion, net about zero. Most of the gap has the same cause as in §9: under 2026 rules the basic deduction that the design removes is larger (1,040,000 at incomes up to 4.89 million), so removing it raises more tax. Daiwa built its estimate from MIC tax-assessment statistics, not household-survey averages, and the model has too few high earners (above). The refund total depends on how many people earn little, which the survey averages can't pin down: it moved from 0.58 to 0.38 trillion when the split of other earners changed (above). So the second decimal place should not be relied on.
 
 **Method changed during development.** The first version split each cell by the share of people aged 65+. Its first run counted 35.8 million earners at 1 million yen or less, because it gave pensioners small salaries. It was replaced by the pension/work split before anything was published. The test and hand calculation were rewritten with it (`tests/hand_calcs/population.md`, revision note), and an arithmetic slip in the first hand calculation is recorded there too.
 
@@ -196,5 +205,5 @@ Four rules that were listed as missing are now in the calculation, each from a h
 | Resident-tax spouse deduction for earners with total income above 9m (220,000 / 110,000) | 地方税法314条の2第1項第10号・第10号の2, 314条の6 | none of H1–H8 at their reference incomes; resident tax 11,000–22,000 lower than before for such earners (`tests/hand_calcs/spouse_rt.md`) |
 | Student pension deferral only while the student's income after insurance is at most 1,280,000 | 国民年金法90条の3; 施行令6条の9, 6条の12 | H2's wall map: national pension 215,040 from a salary of about 2.2m (step −174,798, `tests/hand_calcs/H2.md`) |
 
-The all-household numbers moved a little with these rules (for example the Daiwa plan's net effect on government revenue, 0.95 → 0.94 trillion). Still not modelled: the National Pension exemption for low incomes, which has to be applied for and lowers the future pension (Q20).
+The all-household numbers moved a little with these rules (for example the Daiwa plan's net effect on government revenue, 0.95 → 0.94 trillion; it later became 1.09 trillion with the change in §10). Still not modelled: the National Pension exemption for low incomes, which has to be applied for and lowers the future pension (Q20).
 

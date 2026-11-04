@@ -15,7 +15,7 @@
    },
    "resident_tax": {
     "ours": 5000,
-    "openfisca": 5000
+    "openfisca": 11188
    }
   },
   {
@@ -28,11 +28,11 @@
    },
    "income_tax": {
     "ours": 74000,
-    "openfisca": 72013
+    "openfisca": 82739
    },
    "resident_tax": {
     "ours": 208500,
-    "openfisca": 188563
+    "openfisca": 212075
    }
   },
   {
@@ -45,11 +45,11 @@
    },
    "income_tax": {
     "ours": 26600,
-    "openfisca": 25034
+    "openfisca": 35761
    },
    "resident_tax": {
     "ours": 115600,
-    "openfisca": 96538
+    "openfisca": 117550
    }
   },
   {
@@ -62,11 +62,11 @@
    },
    "income_tax": {
     "ours": 603700,
-    "openfisca": 580271
+    "openfisca": 623178
    },
    "resident_tax": {
     "ours": 530800,
-    "openfisca": 517918
+    "openfisca": 538930
    }
   },
   {
@@ -79,11 +79,11 @@
    },
    "income_tax": {
     "ours": 276100,
-    "openfisca": 244403
+    "openfisca": 287309
    },
    "resident_tax": {
     "ours": 375500,
-    "openfisca": 358438
+    "openfisca": 379450
    }
   }
  ]

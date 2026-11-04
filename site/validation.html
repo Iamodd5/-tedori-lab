@@ -14,8 +14,8 @@
 <div class="summary"><ul>
   <li><span lang="ja"><strong>手計算：</strong>8つの例の世帯すべてについて、手で一歩ずつ計算した手取りと、プログラムの結果が一致しています。ただし、手計算とプログラムは同じ作成者が同じルールから作ったもので、計算や入力の誤りは見つけられますが、法律の読み違いは見つけられません。</span><span lang="en"><strong>By hand:</strong> for all eight example households, the take-home pay worked out by hand, step by step, matches the program exactly. But the hand calculations and the program were made by the same author from the same rules: they catch arithmetic and input mistakes, not misreadings of the law.</span></li>
   <li><span lang="ja"><strong>公式の計算例：</strong>国税庁の年末調整の計算例、新宿区の国民健康保険料の早見表、協会けんぽの保険料額表と、すべて一致しています。</span><span lang="en"><strong>Official examples:</strong> the National Tax Agency's worked examples, Shinjuku's National Health Insurance quick-reference table and the Japan Health Insurance Association's premium table all match.</span></li>
-  <li><span lang="ja"><strong>ほかの計算ツール：</strong>公開されている計算ツール（OpenFisca-Japan）とは結果が少しずつ違います。そちらは2025〜26年の税制改正にまだ対応していないためと考えられますが、住民税がそちらの方で<span data-n="ofgap"></span>低い理由は、まだ分かっていません。</span><span lang="en"><strong>Another calculator:</strong> an open calculator (OpenFisca-Japan) gives somewhat different results, most likely because it hasn't been updated for the 2025–26 tax changes. Its resident tax is <span data-n="ofgap"></span> lower, and we haven't found why yet.</span></li>
-  <li><span lang="ja"><strong>全世帯の試算と公式の数字：</strong>（近似）世帯数は公式より<span data-n="hh"></span>少なめです。所得税の合計は<span data-n="it"></span>、住民税は<span data-n="rt"></span>、2024年の調査が回答された収入から推計した税額より低めです（実際に集めた税収との比較ではありません）。年収100万円以下で働く人は、1年を通して働いた人だけで約<span data-n="lowoff"></span>、途中で働き始めた・辞めた人を含めると約<span data-n="lowall"></span>（国税庁の統計、民間の会社のみ）ですが、この試算では<span data-n="lowmodel"></span>と多すぎます。年収1,000万円以上の人は少なすぎ、65歳以上の人は<span data-n="old"></span>少なめです。</span><span lang="en"><strong>All-household estimate vs official figures:</strong> (Approximation) the household count is <span data-n="hh"></span> below the official one. Total income tax is <span data-n="it"></span> lower and resident tax <span data-n="rt"></span> lower than the tax the 2024 survey itself estimates from reported incomes (not tax actually collected). About <span data-n="lowoff"></span> people who worked the whole year earned ¥1m or less, or about <span data-n="lowall"></span> counting those who worked part of the year (National Tax Agency, private companies only), but this estimate has <span data-n="lowmodel"></span>: far too many. It has too few people earning ¥10m or more, and <span data-n="old"></span> too few people aged 65 or over.</span></li>
+  <li><span lang="ja"><strong>ほかの計算ツール：</strong>公開されている計算ツール（OpenFisca-Japan）とは結果が少しずつ違いますが、違いの理由はすべて分かっています。そちらは、2025年の控除額を使っていること、住民税の調整控除の最低額（2,500円）がないこと、年収850万円を超える子育て中の人の所得金額調整控除がないこと、健康保険料を一律10%で計算していることなどです。人ごとの比較は、下のくわしい比較表にあります。</span><span lang="en"><strong>Another calculator:</strong> an open calculator (OpenFisca-Japan) gives somewhat different results, and we have traced every difference. It uses the 2025 deduction amounts, leaves out the minimum resident-tax adjustment credit (¥2,500) and the income adjustment for parents earning over ¥8.5m, and uses a flat 10% health insurance rate. The full comparison table below shows each person.</span></li>
+  <li><span lang="ja"><strong>全世帯の試算と公式の数字：</strong>（近似）世帯数は公式より<span data-n="hh"></span>少なめです。所得税の合計は<span data-n="it"></span>、住民税は<span data-n="rt"></span>、2024年の調査が回答された収入から推計した税額より低めです（実際に集めた税収との比較ではありません）。年収100万円以下で働く人は、1年を通して働いた人だけで約<span data-n="lowoff"></span>、途中で働き始めた・辞めた人を含めると約<span data-n="lowall"></span>（国税庁の統計、民間の会社のみ）で、この試算では<span data-n="lowmodel"></span>です。年収100万〜300万円の人は約<span data-n="midmodel"></span>で、公式の約<span data-n="midall"></span>より多すぎます。年収1,000万円以上の人は少なすぎ、65歳以上の人は<span data-n="old"></span>少なめです。</span><span lang="en"><strong>All-household estimate vs official figures:</strong> (Approximation) the household count is <span data-n="hh"></span> below the official one. Total income tax is <span data-n="it"></span> lower and resident tax <span data-n="rt"></span> lower than the tax the 2024 survey itself estimates from reported incomes (not tax actually collected). About <span data-n="lowoff"></span> people who worked the whole year earned ¥1m or less, or about <span data-n="lowall"></span> counting those who worked part of the year (National Tax Agency, private companies only); this estimate has <span data-n="lowmodel"></span>. It has about <span data-n="midmodel"></span> people earning ¥1m–3m, far more than the official <span data-n="midall"></span>, and too few people earning ¥10m or more, and <span data-n="old"></span> too few people aged 65 or over.</span></li>
   <li><span lang="ja"><strong>まだやっていないこと：</strong>民間の手取り計算サイトとの比べ合わせ。</span><span lang="en"><strong>Not done yet:</strong> a comparison with a public take-home pay calculator.</span></li>
 </ul></div>
 <details><summary><span lang="ja">くわしい比較表（英語・専門的な内容）</span><span lang="en">Full comparison tables (for specialists)</span></summary>
@@ -24,18 +24,18 @@
 setupPage();
 renderDoc(document.getElementById("doc"), "../docs/VALIDATION.md");
 // the numbers in the summary come from outputs/
-Promise.all([loadJSON("../outputs/population.json"), loadJSON("../outputs/openfisca_check.json")]).then(([pop, of]) => {
+loadJSON("../outputs/population.json").then(pop => {
   const c = pop.calibration, gap = (a, b) => (Math.abs(a - b) / b * 100).toFixed(1) + "%";
-  const k = n => yen(Math.round(n / 1000) * 1000);
-  const rt = of.rows.map(r => r.resident_tax.ours - r.resident_tax.openfisca).filter(g => g > 0);
   const low = c.wage_earners.find(b => b.band === "100万円以下");
+  const mid = c.wage_earners.filter(b => ["200万円以下", "300万円以下"].includes(b.band));
+  const sum = f => mid.reduce((s, b) => s + f(b), 0);
   const people = n => ({ ja: yen(n / 1e4) + "万人", en: (n / 1e6).toFixed(1) + " million" });
   const N = {
-    ofgap: { ja: `${k(Math.min(...rt))}〜${k(Math.max(...rt))}円`, en: `¥${k(Math.min(...rt))}–${k(Math.max(...rt))}` },
     hh: gap(c.households.model, c.households.official_kiso_2025),
     it: gap(c.income_tax.model_baseline_2026, c.income_tax.survey_estimate_2024),
     rt: gap(c.resident_tax.model_baseline_2026, c.resident_tax.survey_estimate_2024),
     lowmodel: people(low.model), lowoff: people(low.official), lowall: people(low.official + low.official_part_year),
+    midmodel: people(sum(b => b.model)), midall: people(sum(b => b.official + b.official_part_year)),
     old: gap(c.people_65_plus.model, c.people_65_plus.survey).replace(/\.\d%/, "%"),
   };
   document.querySelectorAll("[data-n]").forEach(el => {

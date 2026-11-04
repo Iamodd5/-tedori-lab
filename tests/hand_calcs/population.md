@@ -77,3 +77,32 @@ against 3.7 million in the tax agency's count (民間給与実態統計調査). 
 workers to Daiwa's refund rule. So the split now follows the income itself (π = pensions / total). The test was
 rewritten with this section; nothing had been published from the first version. The arithmetic slip described in
 the note above belonged to the first version (it is kept because the same salary split, 1,898,334, is still used).
+
+## 5. A cell with another adult: who else earns (OPEN_QUESTIONS Q33)
+
+Row `couple_1child,10` (夫婦と未婚の子供が１人の世帯, band 500–550万円): 374,101 households, 3.0 people, 0.42 children under 18
+(rounds to 0, so the one child is an adult, aged 22), 1.63 earners per household, head aged 57.3 on average; head earnings
+2,203,000, spouse earnings 558,000, other members' earnings 477,000, business 556,000, pensions head 804,000 + spouse 338,000.
+
+Before this section the model gave the other members' earnings to every adult child in every household (477,000 each),
+which made many small salaries (VALIDATION §10). Now the earners beyond the working heads are spread evenly over the
+spouses and the other adults, as the spouses alone were before (assumption `spouse_earnings`):
+
+- Work income 3,317,000 + pensions 1,142,000 = T = 4,459,000; π = 1,142,000 / 4,459,000 = 0.256111; 1 − π = 0.743889
+- Places for extra earners: spouses in work households 0.743889 + one other adult = 1.743889
+- Extra earners: 1.63 − 0.743889 (the working heads) = 0.886111
+- Share that earns: 0.886111 / 1.743889 = **0.508124**, for spouses (q; at least 558,000 / 3,317,000 = 0.168224, and it is)
+  and for the other adult (r)
+
+| Household | Weight | Head | Spouse | Adult child |
+|---|---|---|---|---|
+| Pension, child earns | 374,101 × 0.256111 × 0.508124 = **48,684.08** | age 70, pension 4,459,000 × 804/1,142 = **3,139,261** | age 70, pension **1,319,739** | salary 477,000 / 0.508124 = **938,748** |
+| Pension | 374,101 × 0.256111 × 0.491876 = **47,127.39** | as above | as above | none |
+| Work, one earner, child earns | 374,101 × 0.743889 × 0.491876 × 0.508124 = **69,554.02** | age 53, salary 4,459,000 × 2,203/2,759 = **3,560,412**, business **898,588** | no earnings | **938,748** |
+| Work, one earner | × 0.491876 × 0.491876 = **67,330.00** | as above | none | none |
+| Work, two earners, child earns | × 0.508124 × 0.508124 = **71,851.49** | salary (4,459,000 − 1,476,239) × 2,203/2,759 = **2,381,668**, business **601,093** | salary 558,000 / (0.743889 × 0.508124) = **1,476,239** | **938,748** |
+| Work, two earners | × 0.508124 × 0.491876 = **69,554.02** | as above | as above | none |
+
+Head age in work households: (57.3 − 0.256111 × 70) / 0.743889 = 52.93 → **53**.
+Check: the child's salary averages 0.508124 × 938,748 = 477,000 over the cell; the spouse's 0.743889 × 0.508124 × 1,476,239 = 558,000.
+The old split gave q = 0.168224 (the floor), so the few spouses who earned got about 4.46 million each.

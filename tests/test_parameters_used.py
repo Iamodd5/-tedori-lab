@@ -17,7 +17,6 @@ HOUSEHOLDS = sorted(p.stem for p in (pathlib.Path(__file__).parents[1] / "househ
 # Numbers kept in the YAML for the record but not used by any rule. Each needs a reason.
 NOT_READ = {
     ("income_tax", "public_pension_income", "age65_plus", 0, "floor_zero_until"): "restates the next row, which starts at 1,100,001",
-    ("income_tax", "dependent_deduction", "elderly_70_plus_not_living_together", "value"): "not modelled: no household has a dependant aged 70+",
     ("resident_tax", "basic_deduction", "amount", "value"): "the taper's first band holds the same 430,000",
     ("resident_tax", "adjustment_credit", "income_limit", "value"): "not modelled: no household or wall-map point reaches 25m",
     ("social_insurance", "part_time_coverage", "employer_size_min", "value"): "household files state this test as yes/no (employer_51_plus)",
@@ -78,6 +77,9 @@ def _scenarios():
     yield {"members": [{"id": "a", "role": "head", "age": 45, "salary": 50_000_000, "work": full}]}  # top tax band
     for age, salary in ((45, 11_000_000), (45, 11_500_000), (72, 11_000_000)):  # resident-tax spouse deduction above 9m
         yield {"members": [{"id": "a", "role": "head", "age": age, "salary": salary, "work": full}, {"id": "b", "role": "spouse", "age": age}]}
+    for parent in (False, True):  # dependants aged 70+ (tests/hand_calcs/elderly_dependant.md)
+        yield {"members": [{"id": "a", "role": "head", "age": 45, "salary": 11_000_000, "work": full},
+                           {"id": "d", "role": "dependant", "age": 75, "parent": parent}]}
 
 
 def test_every_baseline_number_is_read(monkeypatch):

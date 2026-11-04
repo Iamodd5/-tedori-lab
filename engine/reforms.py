@@ -52,12 +52,15 @@ def payment(earned, total_income, n_children, p):
     amount += n_children * p["child_addition_per_child"]
     if total_income > p["phase_out_start"]:
         amount = min(amount, max(0, top - p["phase_out_rate"] * (total_income - p["phase_out_start"])))
-    return math.ceil(amount / 1000) * 1000
+    unit = design("government_final")["parameters"]["rounding"]["value"]  # 1,000 yen, rounded up
+    return math.ceil(amount / unit) * unit
 
 
 def food_tax_saving(food_spending, pass_through):
     """Food bought at today's 8%-inclusive prices costs 1.01/1.08 as much at 1%, times the share passed to prices."""
-    return round(food_spending * (0.08 - 0.01) / 1.08 * pass_through)
+    c = design("food_tax_cut")["parameters"]["consumption_tax_cut"]
+    now, cut = c["current_combined_rate_on_food"]["value"], c["combined_rate_on_food"]["value"]
+    return round(food_spending * (now - cut) / (1 + now) * pass_through)
 
 
 def daiwa_credit(employment_income_minimum=None):

@@ -112,6 +112,9 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0, ltc_65=Tru
         emp = b.employment_income(m.get("salary", 0))
         o["adjustment_deduction"] = min(emp, b.adjustment_deduction(m.get("salary", 0), child_under_23))
         o["pension_income"] = b.pension_income(m.get("public_pension", 0), m["age"])
+        cap = it["adjustment_deduction"]["salary_and_pension_cap"]["value"]  # second kind: salary and pension income together
+        if emp - o["adjustment_deduction"] > 0 and o["pension_income"] > 0:
+            o["adjustment_deduction"] += max(0, min(emp - o["adjustment_deduction"], cap) + min(o["pension_income"], cap) - cap)
         o["total_income"] = emp - o["adjustment_deduction"] + m.get("business_income", 0) + o["pension_income"]
 
     # 2. insurance scheme and contributions
@@ -168,6 +171,8 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0, ltc_65=Tru
                 if di <= dd["income_limit"]["value"]:
                     if specific_it(age):
                         ded += dd["specific_19_to_22"]["value"]
+                    elif age >= dd["elderly_age_from"]["value"]:
+                        ded += dd["elderly_70_plus_living_together" if d.get("parent") else "elderly_70_plus_not_living_together"]["value"]
                     elif age >= dd["general_age_from"]["value"]:
                         ded += dd["general_16_plus"]["value"]
                 elif specific_it(age):
@@ -177,6 +182,9 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0, ltc_65=Tru
                     if specific_rt(age):
                         r_ded += rp["dependent_specific_19_to_22"]["value"]
                         diff += diff_p["dependent_specific"]["value"]
+                    elif age >= rp["dependent_elderly_age_from"]["value"]:  # `parent`: a parent or grandparent living with them
+                        r_ded += rp["dependent_elderly_parent" if d.get("parent") else "dependent_elderly_70_plus"]["value"]
+                        diff += diff_p["dependent_elderly_parent" if d.get("parent") else "dependent_elderly"]["value"]
                     elif age >= rp["dependent_general_age_from"]["value"]:
                         r_ded += rp["dependent_general_16_plus"]["value"]
                         diff += diff_p["dependent_general"]["value"]

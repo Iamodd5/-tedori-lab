@@ -67,3 +67,15 @@ def test_population_snapshot_is_current():
     for d, entry in saved["designs"].items():
         assert (entry.get("by_decile"), entry.get("cost_yen")) == (now["designs"][d].get("by_decile"), now["designs"][d].get("cost_yen")), d
     assert saved["calibration"] == json.loads(json.dumps(now["calibration"])), "calibration"
+
+
+def test_cell_with_an_adult_child_splits_earners_by_hand_calc():
+    # tests/hand_calcs/population.md section 5 (OPEN_QUESTIONS Q33)
+    cell = next(c for c in pop.cells() if c["group"] == "couple_1child" and c["band"] == "10")
+    got = {x["variant"]: x for x in pop.model_households(cell)}
+    assert {k: round(x["weight"], 2) for k, x in got.items()} == {
+        "pension_others_earn": 48_684.08, "pension": 47_127.39, "work_one_earner_others_earn": 69_554.02,
+        "work_one_earner": 67_330.0, "work_two_earners_others_earn": 71_851.49, "work_two_earners": 69_554.02}
+    pick = lambda v, k: [m.get("salary", 0) for m in got[v]["household"]["members"] if m["role"] == k][0]
+    assert (pick("work_two_earners_others_earn", "spouse"), pick("work_two_earners_others_earn", "child"), pick("pension", "child")) == (1_476_239, 938_748, 0)
+    assert pick("work_two_earners", "head") == 2_381_668 and pick("work_one_earner", "head") == 3_560_412

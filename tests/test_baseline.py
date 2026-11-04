@@ -218,3 +218,23 @@ def test_child_rearing_allowance_child_aged_16_to_18():
     hh = {"members": [{"id": "a", "role": "head", "age": 45, "salary": 2_500_000, "single_parent": True, "work": {"full_time": True}},
                       {"id": "c", "role": "child", "age": 17}]}
     assert h.compute(hh)["child_rearing_allowance"] == 12 * 40_910
+
+
+# --- 所得金額調整控除 for salary and pension income together (tests/hand_calcs/salary_and_pension.md; OPEN_QUESTIONS Q41)
+@pytest.mark.parametrize("salary, pension, expected", [
+    (1_000_000, 2_000_000, 1_060_000), (800_000, 1_160_000, 100_000), (790_000, 1_130_000, 80_000), (1_000_000, 0, 260_000)])
+def test_salary_and_pension_adjustment(salary, pension, expected):
+    hh = {"members": [{"id": "a", "role": "head", "age": 70, "salary": salary, "public_pension": pension}]}
+    assert h.compute(hh)["members"]["a"]["total_income"] == expected
+
+
+# --- Dependants aged 70+ (tests/hand_calcs/elderly_dependant.md; OPEN_QUESTIONS Q32)
+def _with_dependant(age, parent=False):
+    head = {"id": "a", "role": "head", "age": 45, "salary": 11_000_000, "work": {"full_time": True}}
+    return h.compute({"members": [head, {"id": "d", "role": "dependant", "age": age, "parent": parent}]})["members"]["a"]
+
+
+def test_elderly_dependant_deductions():
+    general, elderly, parent = _with_dependant(40), _with_dependant(75), _with_dependant(75, parent=True)
+    assert (general["income_tax"], elderly["income_tax"], parent["income_tax"]) == (916_900, 896_500, 876_100)
+    assert (general["resident_tax"] - elderly["resident_tax"], general["resident_tax"] - parent["resident_tax"]) == (5_000, 12_000)
