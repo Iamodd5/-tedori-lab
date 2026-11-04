@@ -282,7 +282,7 @@ function wallReason(c) {
     if (!up.length) return "";
     // Japanese: every item but the last ends in 増え/減り, the last in 増える/減る
     const say = (k, last) => starts && k === "resident_tax" ? (ja ? `住民税がかかり始め${last ? "る" : ""}（${m(ch[k])}）` : `resident tax starts (${m(ch[k])})`)
-      : starts && k === "ltc_65" ? (ja ? `そのため65歳以上の介護保険料の段階が上がって${m(ch[k])}${last ? "増える" : "増え"}` : `so the long-term care premium for people aged 65 or over moves up a band, by ${m(ch[k])}`)
+      : starts && k === "ltc_65" ? (ja ? `そのため65歳以上の介護保険料の段階が上がって${m(ch[k])}${last ? "増える" : "増え"}` : `so the long-term care premium for people aged 65 or over moves to a higher band, up ${m(ch[k])}`)
       : k in BENEFITS ? (ja ? `${BENEFITS[k].ja}が${m(fall(k))}${last ? "減る" : "減り"}` : `${BENEFITS[k].en} falls by ${m(fall(k))}`)
       : k === "employee_insurance" && before === "employee" ? (ja ? `会社の保険料が、収入の段階が上がって${m(ch[k])}${last ? "増える" : "増え"}` : `company insurance premiums step up by ${m(ch[k])}`)
       : (ja ? `${t(NAMES[k])}が${m(ch[k])}${last ? "増える" : "増え"}` : `${t(NAMES[k])} goes up by ${m(ch[k])}`);

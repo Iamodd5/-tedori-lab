@@ -4,6 +4,42 @@
 # previous: the last published commit with the old version. published: the first published commit with the new
 # one (left out until it is pushed). Either version can be rebuilt with `git checkout <commit> && make all`.
 # A number with `check` is recomputed from those two commits by tests/test_corrections.py.
+- date: 2026-11-04
+  previous: 8efa8b5
+  what:
+    ja: 全世帯の試算で、配偶者やほかの大人の家族のうちだれが働くかの決め方を変えました。大和総研案の国全体の金額と、収入グループごとの手取りの平均の変化が変わりました。
+    en: Changed how the all-household estimate decides which spouses and other adults work. The Daiwa plan's national totals and the average change for each income group changed.
+  why:
+    ja: 前の決め方では、大人の子どもや親族の全員に、調査の「その他の家族の収入」を均等に分けていたため、年収100万円以下で働く人が1,528万人と、公式の数（途中で働いた人を含めて約969万人）の1.6倍になっていました。また、働く配偶者が少なすぎ、その人たちに世帯の収入がほぼすべて集まっていました。いまは、調査の「働いている人の数」に合わせて、働く人と働かない人に分けています。
+    en: The old way gave every adult child and relative an equal share of the survey's "other family members' earnings", which made 15.28 million earners at ¥1m or less, 1.6 times the official count including part-year workers (about 9.69 million). It also left too few working spouses, who took almost all of their household's pay. Now the survey's number of workers decides who works and who doesn't.
+  numbers:
+    - label: {ja: （近似）全世帯・大和総研案：差し引きで増える国の収入（兆円／年）, en: "(Approximation) All households, Daiwa Institute plan: net gain in government revenue (trillion yen a year)"}
+      before: 0.9
+      after: 1.1
+    - label: {ja: （近似）全世帯・大和総研案：現金で払う額（兆円／年）, en: "(Approximation) All households, Daiwa Institute plan: cash paid out (trillion yen a year)"}
+      before: 0.6
+      after: 0.4
+    - label: {ja: （近似）全世帯・大和総研案：年収の最も高いグループの手取りの平均の変化（円／年）, en: "(Approximation) All households, Daiwa Institute plan: average change in take-home pay, highest income group (yen a year)"}
+      before: -85341
+      after: -101548
+    - label: {ja: （近似）全世帯・大和総研案：年収の最も低いグループの手取りの平均の変化（円／年）, en: "(Approximation) All households, Daiwa Institute plan: average change in take-home pay, lowest income group (yen a year)"}
+      before: 9228
+      after: 9257
+    - label: {ja: 「検証」ページ：所得税の合計と調査の推計の差（%）, en: "Checks page: gap between modelled income tax and the survey's estimate (%)"}
+      before: -12.9
+      after: -21.6
+- date: 2026-11-04
+  previous: 8efa8b5
+  what:
+    ja: 「検証」ページで、公開されている計算ツール（OpenFisca-Japan）の住民税がこのサイトより低い理由は「まだ分かっていない」としていましたが、理由が分かり、比較のしかたを直しました。比較表のOpenFisca-Japan側の数字が変わりました。
+    en: The Checks page said we hadn't found why an open calculator (OpenFisca-Japan) gives lower resident tax. We found the reason and corrected the comparison; OpenFisca-Japan's numbers in the table changed.
+  why:
+    ja: OpenFisca-Japanは、指定しないかぎり全員が国民年金保険料を払うものとして計算します。会社員について指定していなかったため、払っていない保険料21万120円を所得から差し引いていました。会社員は払わないと指定すると、残る違いはすべて理由が分かります（2025年以前の控除額、調整控除の最低額がないことなど）。
+    en: OpenFisca-Japan assumes everyone pays National Pension unless told otherwise. The comparison didn't say employees don't, so it took ¥210,120 of premiums they don't pay off their income. With that set, every remaining difference has a known reason (deduction amounts from 2025 and earlier, no minimum in the adjustment credit, and so on).
+  numbers:
+    - label: {ja: 「検証」ページ：H3の世帯主のOpenFisca-Japanの住民税（円／年）, en: "Checks page: OpenFisca-Japan's resident tax for H3's head (yen a year)"}
+      before: 188563
+      after: 212075
 - date: 2026-11-03
   previous: 1204115
   published: 2f1f1c5

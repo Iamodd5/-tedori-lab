@@ -68,8 +68,8 @@ One person's income goes from ¥0 to ¥10,000,000 in ¥10,000 steps, and take-ho
 - **Household types.** Single; couple only; couple with one, two, or three or more children; lone parent with children; couple living with parents; other households of two or more.
 - **Made-up households.** For each type and income band, households matching the band's averages:
   - split into households living on pensions and households living on work, in the same ratio as pensions to total income;
-  - the survey's earners beyond the head are spread evenly over spouses and other adults, so some households have a working spouse or adult child and some don't; earnings are set so the survey's averages stay the same;
-  - children under 18 are aged 10, adult children 22, people living on a pension 70; family members aged 70+ other than the head and spouse are treated as a parent of the head or spouse living with them.
+  - the survey's earners, after the heads of households living on work, are spread evenly over the spouses in those households and over other adults, so some households have a working spouse or adult child and some don't (spouses in households living on pensions don't work); earnings are set so the survey's averages stay the same;
+  - children under 18 are aged 10, adult children 22, people living on a pension 70; family members aged 70+ other than the head and spouse are treated as a parent or grandparent of the head or spouse living with them.
 - **Results.** Every made-up household is worked out with the same rules as the example households. Households are sorted by annual income and cut into ten groups of equal size; for each group, the average change in take-home pay and the shares of households that gain, lose or see no change.
 - **Cost.** The national total of the change in take-home pay: the government's net cost before any financing, assuming nobody changes how they work. Shown next to the proposer's own estimate where one is published.
 - **Not included:** the gap between 2024 (survey) and 2026 (rules), income from rent, interest and dividends, and differences between households in the same type and income band.

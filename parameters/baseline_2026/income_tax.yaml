@@ -40,7 +40,7 @@ adjustment_deduction:  # 所得金額調整控除 for salary > 8.5m with a depen
   dependant_age_under: {value: 23, cite: {source: ta1411, page: 1}, note: "has a dependant under 23"}
   salary_cap: {value: 10000000, cite: {source: ta1411, page: 1}}
   rate: {value: 0.10, cite: {source: ta1411, page: 1}}
-  salary_and_pension_cap: {value: 100000, cite: {source: ta1411, page: 1, section: "給与所得と年金所得の双方を有する者に対する所得金額調整控除"}, note: "min(salary income, cap) + min(pension income, cap) - cap, after the first kind (措法41条の3の12; Q41)"}
+  salary_and_pension_cap: {value: 100000, cite: {source: ta1411, page: 1, section: "給与所得と年金所得の双方を有する者に対する所得金額調整控除"}, note: "min(salary income, cap) + min(pension income, cap) - cap, after the first kind (措法41条の3の11第2項; Q41)"}
 
 public_pension_income:  # 65 or older, other income ≤ 10m (fig. 1 lower half); [収入 from, rate, minus]
   age65_plus:
@@ -83,7 +83,7 @@ dependent_deduction:
   specific_age_under: {value: 23, cite: {source: nencho, page: 56}}
   general_16_plus: {value: 380000, cite: {source: nencho, page: 56}}
   specific_19_to_22: {value: 630000, cite: {source: nencho, page: 56}}
-  elderly_age_from: {value: 70, cite: {source: nencho, page: 12, section: "老人扶養親族"}, note: "also 所得税法2条1項34号の4"}
+  elderly_age_from: {value: 70, cite: {source: nencho, page: 11, section: "老人扶養親族"}, note: "also 所得税法2条1項34号の4"}
   elderly_70_plus_not_living_together: {value: 480000, cite: {source: nencho, page: 56}}
   elderly_70_plus_living_together: {value: 580000, cite: {source: nencho, page: 56}, note: "同居老親等: a parent or grandparent of the taxpayer or spouse who lives with them (p.12)"}
 

@@ -113,8 +113,10 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0, ltc_65=Tru
         o["adjustment_deduction"] = min(emp, b.adjustment_deduction(m.get("salary", 0), child_under_23))
         o["pension_income"] = b.pension_income(m.get("public_pension", 0), m["age"])
         cap = it["adjustment_deduction"]["salary_and_pension_cap"]["value"]  # second kind: salary and pension income together
+        o["adjustment_salary_pension"] = 0
         if emp - o["adjustment_deduction"] > 0 and o["pension_income"] > 0:
-            o["adjustment_deduction"] += max(0, min(emp - o["adjustment_deduction"], cap) + min(o["pension_income"], cap) - cap)
+            o["adjustment_salary_pension"] = max(0, min(emp - o["adjustment_deduction"], cap) + min(o["pension_income"], cap) - cap)
+            o["adjustment_deduction"] += o["adjustment_salary_pension"]
         o["total_income"] = emp - o["adjustment_deduction"] + m.get("business_income", 0) + o["pension_income"]
 
     # 2. insurance scheme and contributions
@@ -130,7 +132,7 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0, ltc_65=Tru
         for m in old:
             f = first[m["id"]]
             p = b.ltc_65_premium(f["resident_tax"] > 0, household_taxed, f["total_income"], m.get("public_pension", 0),
-                                 f["pension_income"], b.employment_income(m.get("salary", 0)))
+                                 f["pension_income"], b.employment_income(m.get("salary", 0)), f["adjustment_salary_pension"])
             out[m["id"]]["ltc_65"] = p
             out[m["id"]]["social_insurance"] += p
     partners = [m for m in members if m["role"] in ("head", "spouse")]

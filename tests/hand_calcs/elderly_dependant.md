@@ -29,3 +29,16 @@ case, and the deduction alone moves the tax: 6% (ward) and 4% (Tokyo), each a wh
 - aged 75, a parent: 450,000 − 330,000 = 120,000 → 7,200 + 4,800 = **12,000 lower** than aged 40.
 
 Before this rule the engine gave the general amounts at every age (OPEN_QUESTIONS Q32): 916,900 and no difference.
+
+## A lower income, where the 調整控除 differences count
+
+Head aged 45, salary 3,500,000 (employee): salary income 3,500,000 × 70% − 80,000 = 2,370,000; social insurance
+206,460 + 4,140 + 329,400 + 17,496 = 557,496; resident-tax basic deduction 430,000. Taxable income T (rounded down to
+1,000) is under 2,000,000, so the 調整控除 is 3% (ward) and 2% (Tokyo) of the smaller of the total
+difference and T. Each tax is rounded down to 100; the flat per-person part is 5,000.
+
+| Dependant | Deduction | T | Differences (basic 50,000 +) | Ward 6% − 3% | Tokyo 4% − 2% | Resident tax |
+|---|---|---|---|---|---|---|
+| aged 40 | 330,000 | 1,052,000 | 100,000 | 63,120 − 3,000 → 60,100 | 42,080 − 2,000 → 40,000 | **105,100** |
+| aged 75, not a parent | 380,000 | 1,002,000 | 150,000 | 60,120 − 4,500 → 55,600 | 40,080 − 3,000 → 37,000 | **97,600** |
+| aged 75, a parent living with them | 450,000 | 932,000 | 180,000 | 55,920 − 5,400 → 50,500 | 37,280 − 3,600 → 33,600 | **89,100** |

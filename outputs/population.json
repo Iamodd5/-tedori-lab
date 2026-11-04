@@ -455,8 +455,8 @@
   },
   {
    "key": "spouse_earnings",
-   "ja": "調査の「働いている人の数」のうち、世帯主より多い分を、配偶者とほかの大人の家族に同じ割合で割り振っています。たとえば、その割合が半分なら、半分の世帯では配偶者が働き、半分の世帯では働いていないものとします。働いている人の収入は、調査の平均が変わらないように決めています。",
-   "en": "The survey gives the number of people working in each household. Those beyond the head are spread evenly over spouses and other adults in the household. For example, if the share is one half, the spouse works in half of the households and doesn't work in the other half. Earnings of those who work are set so that the survey's averages stay the same."
+   "ja": "調査の「働いている人の数」から、働いて暮らす世帯の世帯主の分を引き、残りを、働いて暮らす世帯の配偶者と、ほかの大人の家族に同じ割合で割り振っています。たとえば、その割合が半分なら、働いて暮らす世帯の半分で配偶者が働き、残りの半分では働いていないものとします（年金で暮らす世帯の配偶者は働いていないものとします）。働いている人の収入は、調査の平均が変わらないように決めています。",
+   "en": "The survey gives the number of people working in each household. After the heads of households living on work, the rest are spread evenly over the spouses in those households and over other adults. For example, if the share is one half, the spouse works in half of the households living on work and doesn't in the other half (spouses in households living on pensions don't work). Earnings of those who work are set so that the survey's averages stay the same."
   },
   {
    "key": "older_age",
@@ -490,8 +490,8 @@
   },
   {
    "key": "elderly_dependants",
-   "ja": "世帯主や配偶者以外の70歳以上の家族は、全員、世帯主か配偶者の親で一緒に住んでいるものとして、税の扶養控除を計算しています（親と同居している場合の控除は、ほかの70歳以上の家族の場合より大きくなります）。祖父母など親以外の家族も同じ扱いです。",
-   "en": "Every family member aged 70 or over other than the head and spouse is treated as a parent of the head or spouse living with them, for the tax deduction for dependants. This deduction is larger for a parent living with you than for other relatives aged 70 or over. Grandparents and other relatives are treated the same way."
+   "ja": "世帯主や配偶者以外の70歳以上の家族は、全員、世帯主か配偶者の親や祖父母で一緒に住んでいるものとして、税の扶養控除を計算しています（この場合の控除は、ほかの70歳以上の家族より大きくなります）。兄弟姉妹など、親や祖父母でない家族も同じ扱いです。年金で暮らす世帯では、世帯主と同じ70歳の家族も親として扱っています。",
+   "en": "Every family member aged 70 or over other than the head and spouse is treated as a parent or grandparent of the head or spouse living with them, for the tax deduction for dependants (this deduction is larger than for other relatives aged 70 or over). Relatives who aren't parents or grandparents, such as brothers and sisters, are treated the same way. In households living on pensions, family members of the same age as the head (70) are also treated as parents."
   },
   {
    "key": "survey_year",

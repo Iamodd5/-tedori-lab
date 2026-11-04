@@ -283,14 +283,15 @@ def child_rearing_allowance(income, children, ordinary, specific, pension=0):
     return 12 * max(0, monthly - to_unit(pension // 12))
 
 
-def ltc_65_premium(taxed, household_taxed, total_income, pension_revenue, pension_income, salary_income):
+def ltc_65_premium(taxed, household_taxed, total_income, pension_revenue, pension_income, salary_income, salary_pension_adjustment=0):
     """Shinjuku fiscal 2026 long-term-care premium for one person aged 65+ (ltc_65.yaml; tests/hand_calcs/H6.md revision).
-    taxed: the person pays resident tax; household_taxed: someone in the household does."""
+    taxed: the person pays resident tax; household_taxed: someone in the household does.
+    salary_pension_adjustment: the 所得金額調整控除 for salary and pension income, added back for bands 1-5 (施行令22条の2第4項第1号)."""
     p = params("ltc_65")
     if taxed:
         return next((a for upper, a in p["taxed"]["bands"] if total_income < upper), p["taxed"]["above"])
     # 課税年金収入 + その他の合計所得金額, with 給与所得 less 100,000 (bands 1-5)
-    other = max(0, total_income - pension_income - min(p["salary_adjustment"]["value"], salary_income))
+    other = max(0, total_income + salary_pension_adjustment - pension_income - min(p["salary_adjustment"]["value"], salary_income))
     measure = pension_revenue + other
     low, mid = p["low_line"]["value"], p["mid_line"]["value"]
     if household_taxed:

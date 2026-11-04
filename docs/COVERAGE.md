@@ -15,7 +15,7 @@ Legend: ✅ implemented and looks usable · ⚠️ implemented but needs checkin
 | Income tax rate schedule + reconstruction surtax | `基準所得税額`, `復興特別所得税`, `所得税` | ✅/⚠️ | Exists; check brackets against NTA No.2260. |
 | Resident tax (income levy + per-capita levy, 調整控除) | `住民税所得割`, `住民税均等割`, `調整控除`, `住民税` | ⚠️ | Exists. Per-capita parameter `均等割` = 4,000 since 2000; the forest environment tax (1,000) is a separate parameter. Check. Upstream `調整控除` drops to 0 above taxable income 2m; the law keeps a minimum of 5% of 50,000 (地方税法314条の6第2号): upstream fix candidate (VALIDATION §3). |
 | Public pension deduction (公的年金等控除) | not found as a separate variable | ❌/⚠️ | Needed for H6 (pensioner couple). Pension income handling must be verified. |
-| Income adjustment deduction (所得金額調整控除) | not found | ❌ | Tedori Lab implements both kinds: salary over 8.5m with a dependant under 23, and salary and pension income together (措法41条の3の11・12; NTA No.1411). Upstream fix candidate. |
+| Income adjustment deduction (所得金額調整控除) | not found | ❌ | Tedori Lab implements both kinds: salary over 8.5m with a dependant under 23, and salary and pension income together (措法41条の3の11第1項・第2項; NTA No.1411). Upstream fix candidate. |
 | Health insurance (employee) | `健康保険料`, `標準報酬月額_健康保険料` | ⚠️ | Rate parameter `健康保険料率` is a single **10% placeholder since 2000**, not the 2026 Tokyo rate. Must use the 協会けんぽ Tokyo R8 table. Upstream fix candidate. |
 | Long-term care premium (age 40–64) | `介護保険料`, `介護保険料率` | ⚠️ | Exists; check 2026 rate. |
 | Employee pension | `厚生年金保険料`, `標準報酬月額_厚生年金保険料` | ✅ | Rate 18.3% (unchanged since 2017-09). Check band table and caps. |

@@ -229,8 +229,8 @@ def test_salary_and_pension_adjustment(salary, pension, expected):
 
 
 # --- Dependants aged 70+ (tests/hand_calcs/elderly_dependant.md; OPEN_QUESTIONS Q32)
-def _with_dependant(age, parent=False):
-    head = {"id": "a", "role": "head", "age": 45, "salary": 11_000_000, "work": {"full_time": True}}
+def _with_dependant(age, parent=False, salary=11_000_000):
+    head = {"id": "a", "role": "head", "age": 45, "salary": salary, "work": {"full_time": True}}
     return h.compute({"members": [head, {"id": "d", "role": "dependant", "age": age, "parent": parent}]})["members"]["a"]
 
 
@@ -238,3 +238,16 @@ def test_elderly_dependant_deductions():
     general, elderly, parent = _with_dependant(40), _with_dependant(75), _with_dependant(75, parent=True)
     assert (general["income_tax"], elderly["income_tax"], parent["income_tax"]) == (916_900, 896_500, 876_100)
     assert (general["resident_tax"] - elderly["resident_tax"], general["resident_tax"] - parent["resident_tax"]) == (5_000, 12_000)
+
+
+def test_care_premium_measure_ignores_salary_and_pension_adjustment():
+    # tests/hand_calcs/salary_and_pension.md, last section (介護保険法施行令22条の2第4項第1号)
+    hh = {"members": [{"id": "a", "role": "head", "age": 70, "salary": 900_000, "public_pension": 1_150_000}]}
+    m = h.compute(hh)["members"]["a"]
+    assert (m["total_income"], m["resident_tax"], m["ltc_65"]) == (160_000, 0, 51_480)
+
+
+def test_elderly_dependant_adjustment_credit_differences():
+    # tests/hand_calcs/elderly_dependant.md, second table: the 100,000 / 130,000 調整控除 differences count here
+    rt = [_with_dependant(age, parent, 3_500_000)["resident_tax"] for age, parent in ((40, False), (75, False), (75, True))]
+    assert rt == [105_100, 97_600, 89_100]

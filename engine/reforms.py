@@ -52,7 +52,8 @@ def payment(earned, total_income, n_children, p):
     amount += n_children * p["child_addition_per_child"]
     if total_income > p["phase_out_start"]:
         amount = min(amount, max(0, top - p["phase_out_rate"] * (total_income - p["phase_out_start"])))
-    unit = design("government_final")["parameters"]["rounding"]["value"]  # 1,000 yen, rounded up
+    # 1,000 yen, rounded up: the same outline rule (第三 一 2(1)⑥) for both plans; food_tax_cut.yaml repeats it
+    unit = design("government_final")["parameters"]["rounding"]["value"]
     return math.ceil(amount / unit) * unit
 
 
