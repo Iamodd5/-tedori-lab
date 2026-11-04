@@ -21,7 +21,7 @@ const t = o => (o && (o[lang] ?? o.ja)) ?? "";
 const yen = n => n == null ? "—" : Math.round(n).toLocaleString("ja-JP");
 const loadJSON = u => fetch(u, { cache: "no-cache" }).then(r => r.json());
 // joins several reasons in the page language
-const joinT = list => list.map(t).join(lang === "ja" ? "。" : "; ");
+const joinT = list => list.map(t).join(lang === "ja" ? "。" : "; ") + (lang === "ja" ? "。" : ".");
 const FIELDS = { salary: { ja: "給与", en: "salary" }, business_income: { ja: "事業の収入", en: "business income" }, public_pension: { ja: "年金", en: "pension" } };
 // whose income moves on a wall map (wall_map.json households entry): "配偶者の給与" / "the spouse's salary"
 function whoMoves(h) {

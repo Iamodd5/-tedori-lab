@@ -185,7 +185,7 @@ function draw(newHousehold) {
   for (const r of mine.filter(r => r.status !== "complete")) li(bl, `${t(r.label)}${lang === "ja" ? "：" : ": "}${joinT(r.blocked_by)}`);
 
   const sn = document.getElementById("sitenotes"); sn.innerHTML = "";
-  for (const r of done.filter(r => r.site_note)) { const p = document.createElement("p"); p.className = "note"; p.textContent = `${t(r.label)}: ${t(r.site_note)}`; sn.append(p); }
+  for (const r of done.filter(r => r.site_note)) { const p = document.createElement("p"); p.className = "note"; p.textContent = `${t(r.label)}${lang === "ja" ? "：" : ": "}${t(r.site_note)}`; sn.append(p); }
   const nd = document.getElementById("notes"); nd.innerHTML = "";
   const note = text => { const p = document.createElement("p"); p.className = "small"; p.textContent = text; nd.append(p); };
   for (const r of done) {

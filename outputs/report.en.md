@@ -25,9 +25,9 @@ Every number in this report is produced automatically from the same output files
 
 **Right now only the Daiwa Institute plan (adjusted to 2026 tax rules) can be calculated.** The other 3 plans can't be calculated yet, for these reasons:
 
-- Government plan (FY2027–28 bridge: 1% tax on food + payment): the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order); we don't yet have food spending figures for the example households H1–H8
-- Government plan (full version, from FY2029): the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)
-- Rengo (trade union confederation) plan: the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach); we don't yet have food spending figures for the example households H1–H8
+- Government plan (FY2027–28 bridge: 1% tax on food + payment): the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order); we don't yet have food spending figures for the example households H1–H8.
+- Government plan (full version, from FY2029): the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order).
+- Rengo (trade union confederation) plan: the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach); we don't yet have food spending figures for the example households H1–H8.
 
 ## Example households: Daiwa Institute plan (adjusted to 2026 tax rules)
 
@@ -59,7 +59,7 @@ We lined up every household from lowest to highest yearly income and cut the lin
 
 - We assume nobody changes how much they work. Some people would change their hours when the rules change; that is not included.
 - The example households live in Shinjuku, Tokyo. Outside Shinjuku, parts of National Health Insurance and resident tax (set by each municipality) are different, and outside Tokyo so is the health insurance rate for employees (協会けんぽ, set by prefecture).
-- The all-household numbers are rough estimates from made-up households matched to the averages in a 2024 government survey. Compared with official figures, the household count is 2.8% lower. Total income tax is 21.6% lower and total resident tax 5.0% lower than the tax that survey itself estimates from reported incomes (not tax actually collected). The estimate has too many low-paid workers and too few high earners compared with official counts, so the cash paid out and the extra income tax may be off (see the Checks page).
+- The all-household numbers are rough estimates from made-up households matched to the averages in a 2024 government survey. Compared with official figures, the household count is 2.8% lower. Total income tax is 21.6% lower and total resident tax 5.0% lower than the tax that survey itself estimates from reported incomes (not tax actually collected; income tax is lower mainly because of recent tax cuts (a larger basic deduction) and because the estimate has too few high earners). The estimate has too many low-paid workers and too few high earners compared with official counts, so the cash paid out and the extra income tax may be off (see the Checks page).
 - The plans that can't be calculated yet will be calculated once the amounts they need are decided and published (the reasons for each are listed above).
 
 ## All approximations

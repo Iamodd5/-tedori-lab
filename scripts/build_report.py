@@ -61,7 +61,7 @@ def facts():
         sep = "：" if l == "ja" else ": "
         f[l]["done_labels"] = "、".join(x["label"][l] for x in done) if l == "ja" else ", ".join(x["label"][l] for x in done)
         f[l]["plan_list"] = "\n".join(f"- **{wm['labels'][d][l]}**{sep}{wm['shorts'][d][l]}" for d in wm["shorts"])
-        f[l]["blocked_list"] = "\n".join(f"- {x['label'][l]}{sep}{(('。' if l == 'ja' else '; ').join(b[l] for b in x['blocked_by']))}"
+        f[l]["blocked_list"] = "\n".join(f"- {x['label'][l]}{sep}{(('。' if l == 'ja' else '; ').join(b[l] for b in x['blocked_by']))}{'。' if l == 'ja' else '.'}"
                                          for x in first if x["status"] != "complete")
 
     # example households under the calculated design

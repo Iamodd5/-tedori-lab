@@ -196,7 +196,7 @@ Tests changed, each after the hand calculation: `test_h1_baseline_walls_match_ha
 
 ## 13. Rules added before release
 
-Four rules that were listed as missing are now in the calculation, each from a hand calculation written first and tested.
+Rules that were listed as missing are now in the calculation, each from a hand calculation written first and tested.
 
 | Rule | Source | Effect |
 |---|---|---|
@@ -204,6 +204,10 @@ Four rules that were listed as missing are now in the calculation, each from a h
 | Long-term-care premium for people 65 and over (Shinjuku, fiscal 2026) | 新宿区 table; 介護保険法施行令38条 | H6 pays 51,480 + 19,800: take-home 2,683,201 → 2,611,921 (`tests/hand_calcs/H6.md`). A new wall where the head starts to pay resident tax (pension 2.12m) |
 | Resident-tax spouse deduction for earners with total income above 9m (220,000 / 110,000) | 地方税法314条の2第1項第10号・第10号の2, 314条の6 | none of H1–H8 at their reference incomes; resident tax 11,000–22,000 lower than before for such earners (`tests/hand_calcs/spouse_rt.md`) |
 | Student pension deferral only while the student's income after insurance is at most 1,280,000 | 国民年金法90条の3; 施行令6条の9, 6条の12 | H2's wall map: national pension 215,040 from a salary of about 2.2m (step −174,798, `tests/hand_calcs/H2.md`) |
+| Dependants aged 70+: income tax 480,000 (580,000 for a parent or grandparent living with the taxpayer), resident tax 380,000 (450,000), 調整控除 differences 100,000 (130,000) | NTA 年末調整のしかた pp.12, 56; 地方税法314条の2第1項第11号・第4項, 314条の6第1号イ表(8)(iii)・(9) | none of H1–H8; in the all-household estimate, relatives aged 70+ (treated as parents living with the household, labelled approximation) (`tests/hand_calcs/elderly_dependant.md`) |
+| Income adjustment deduction for people with both salary and pension income: min(salary income, 100,000) + min(pension income, 100,000) − 100,000 | NTA No.1411 (措法41条の3の12); 大田区 計算のしくみ 注釈2(2) for resident tax | none of H1–H8; in the all-household estimate, relatives aged 70 with a share of other members' earnings (`tests/hand_calcs/salary_and_pension.md`) |
 
-The all-household numbers moved a little with these rules (for example the Daiwa plan's net effect on government revenue, 0.95 → 0.94 trillion; it later became 1.09 trillion with the change in §10). Still not modelled: the National Pension exemption for low incomes, which has to be applied for and lowers the future pension (Q20).
+The all-household numbers moved a little with these rules (for example the Daiwa plan's net effect on government revenue, 0.95 → 0.94 trillion; it later became 1.09 trillion with the change in §10). Not modelled, by decision: the National Pension exemption for low incomes, which has to be applied for and lowers the future pension; nobody is assumed to apply (Q20).
+
+The wall list also names the rule that starts or stops at a wall where one does: the student deferral's income limit (H2 at 2.19m), resident tax starting, which also moves the 65+ care premium band (H6 at 2.11m; H5 at 2.09m), and the single-parent allowance stopping (H5 at 3.85m). Tested in `tests/test_site.py`.
 
