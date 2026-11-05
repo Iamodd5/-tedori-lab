@@ -24,14 +24,14 @@
 // the summary and charts are generated from outputs/ by scripts/build_press.py (Milestone 11)
 const url = "../outputs/press/summary.ja.md", el = document.getElementById("doc");
 const FIGS = [["fig1_wall_h4.svg", { ja: "図1　例の世帯H4：配偶者の給与と世帯の手取り", en: "Figure 1: household H4, the spouse's pay and take-home pay" }],
-              ["fig2_households.svg", { ja: "図2　大和総研案：例の世帯の手取りの変化", en: "Figure 2: Daiwa Institute plan, change for the example households" }],
-              ["fig3_groups.svg", { ja: "図3　（近似）大和総研案：全世帯の手取りの変化", en: "Figure 3: (Approximation) Daiwa Institute plan, change across all households" }]];
+              ["fig2_households.svg", { ja: "図2　（近似）大和総研案（2026年の税制に合わせて計算）：例の世帯の手取りの変化", en: "Figure 2: (Approximation) Daiwa Institute plan (adjusted to 2026 tax rules), change for the example households" }],
+              ["fig3_groups.svg", { ja: "図3　（近似）大和総研案（2026年の税制に合わせて計算）：全世帯の手取りの変化", en: "Figure 3: (Approximation) Daiwa Institute plan (adjusted to 2026 tax rules), change across all households" }]];
 function draw() {
   renderDoc(el, { ja: url, en: url }); el.lang = "ja";  // the summary is in Japanese on both language versions
   const box = document.getElementById("figs"); box.replaceChildren();
   for (const [file, cap] of FIGS) {
     const fig = document.createElement("figure"), img = document.createElement("img"), c = document.createElement("figcaption"), a = document.createElement("a");
-    img.src = `../outputs/press/${file}`; img.alt = t(cap); img.width = 720; img.height = 440;
+    img.src = `../outputs/press/${file}`; img.alt = t(cap); img.width = 720; img.height = 470;
     a.href = img.src; a.download = file; a.textContent = lang === "ja" ? "SVGをダウンロード" : "Download SVG";
     c.append(t(cap), "　", a); fig.append(img, c); box.append(fig);
   }

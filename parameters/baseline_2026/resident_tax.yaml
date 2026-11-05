@@ -43,7 +43,7 @@ source:
     file: sources/tax/soumu_kojin_juminzei.html
     published: 2026 (page as downloaded 2026-10-29)
 
-employment_income_same_as_income_tax: {value: true, cite: {source: mic, page: 20}}
+employment_income_same_as_income_tax: {value: true, cite: {source: mic, page: 35}}
 basic_deduction:
   amount: {value: 430000, cite: {source: law, page: 1, section: "314条の2第2項第1号"}, note: "最高43万円, unchanged for 令和9年度 (Chuo, Adachi)"}
   taper:
@@ -51,8 +51,8 @@ basic_deduction:
     above: 0
     cite: {source: law, page: 1, section: "314条の2第2項第1号〜第3号"}
 personal_deductions:  # 令和9年度 amounts from the law as amended (Q13 answered 2026-11-03); none changed except the two limits below
-  spouse: {value: 330000, cite: {source: law, page: 1, section: "314条の2第1項第10号イ(1)"}}
-  elderly_spouse: {value: 380000, cite: {source: law, page: 1, section: "314条の2第1項第10号イ(2) (earner ≤ 9m)"}}
+  spouse: {value: 330000, cite: {source: law, page: 1, section: "314条の2第1項第10号イ"}}
+  elderly_spouse: {value: 380000, cite: {source: law, page: 1, section: "314条の2第1項第10号イ括弧書 (earner ≤ 9m)"}}
   dependent_general_16_plus: {value: 330000, cite: {source: law, page: 1, section: "314条の2第1項第11号"}}
   dependent_specific_19_to_22: {value: 450000, cite: {source: law, page: 1, section: "314条の2第1項第11号"}}
   dependent_elderly_70_plus: {value: 380000, cite: {source: law, page: 1, section: "314条の2第1項第11号 (老人扶養親族)"}}

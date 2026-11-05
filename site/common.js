@@ -43,7 +43,8 @@ function describeIncomes(incomes) {
   }).join(lang === "ja" ? " ／ " : " / ");
 }
 // a plan's name without its bracket, where space is short (tooltips, table rows): 大和総研案（2026年の…） → 大和総研案
-const shortName = s => s.replace(/\s*[（(].*$/, "");
+// a plan label without its bracketed qualifier, keeping a leading (Approximation) tag
+const shortName = s => s.replace(/^(（近似）|\(Approximation\) )?(.*?)\s*[（(].*$/, "$1$2");
 const li = (ul, text) => { const x = document.createElement("li"); x.textContent = text; ul.append(x); };
 
 // The household chosen on another page (?hh=H3, or the last one chosen) stays chosen, if it is one of `ids`.

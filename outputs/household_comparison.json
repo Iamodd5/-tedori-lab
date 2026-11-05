@@ -62,8 +62,8 @@
    "child_rearing_allowance": 0
   },
   "label": {
-   "ja": "政府案（2029年度からの本格版）",
-   "en": "Government plan (full version, from FY2029)"
+   "ja": "政府案（2029年度から）",
+   "en": "Government plan (from FY2029)"
   },
   "design": "government_final",
   "status": "incomplete",
@@ -133,8 +133,8 @@
    },
    {
     "question": "Q18",
-    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
    },
    {
     "question": "Q26",
@@ -254,8 +254,8 @@
    "child_rearing_allowance": 0
   },
   "label": {
-   "ja": "政府案（2029年度からの本格版）",
-   "en": "Government plan (full version, from FY2029)"
+   "ja": "政府案（2029年度から）",
+   "en": "Government plan (from FY2029)"
   },
   "design": "government_final",
   "status": "incomplete",
@@ -325,8 +325,8 @@
    },
    {
     "question": "Q18",
-    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
    },
    {
     "question": "Q26",
@@ -446,8 +446,8 @@
    "child_rearing_allowance": 0
   },
   "label": {
-   "ja": "政府案（2029年度からの本格版）",
-   "en": "Government plan (full version, from FY2029)"
+   "ja": "政府案（2029年度から）",
+   "en": "Government plan (from FY2029)"
   },
   "design": "government_final",
   "status": "incomplete",
@@ -517,8 +517,8 @@
    },
    {
     "question": "Q18",
-    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
    },
    {
     "question": "Q26",
@@ -638,8 +638,8 @@
    "child_rearing_allowance": 0
   },
   "label": {
-   "ja": "政府案（2029年度からの本格版）",
-   "en": "Government plan (full version, from FY2029)"
+   "ja": "政府案（2029年度から）",
+   "en": "Government plan (from FY2029)"
   },
   "design": "government_final",
   "status": "incomplete",
@@ -709,8 +709,8 @@
    },
    {
     "question": "Q18",
-    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
    },
    {
     "question": "Q26",
@@ -830,8 +830,8 @@
    "child_rearing_allowance": 443400
   },
   "label": {
-   "ja": "政府案（2029年度からの本格版）",
-   "en": "Government plan (full version, from FY2029)"
+   "ja": "政府案（2029年度から）",
+   "en": "Government plan (from FY2029)"
   },
   "design": "government_final",
   "status": "incomplete",
@@ -901,8 +901,8 @@
    },
    {
     "question": "Q18",
-    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
    },
    {
     "question": "Q26",
@@ -1022,8 +1022,8 @@
    "child_rearing_allowance": 0
   },
   "label": {
-   "ja": "政府案（2029年度からの本格版）",
-   "en": "Government plan (full version, from FY2029)"
+   "ja": "政府案（2029年度から）",
+   "en": "Government plan (from FY2029)"
   },
   "design": "government_final",
   "status": "incomplete",
@@ -1093,8 +1093,8 @@
    },
    {
     "question": "Q18",
-    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
    },
    {
     "question": "Q26",
@@ -1214,8 +1214,8 @@
    "child_rearing_allowance": 0
   },
   "label": {
-   "ja": "政府案（2029年度からの本格版）",
-   "en": "Government plan (full version, from FY2029)"
+   "ja": "政府案（2029年度から）",
+   "en": "Government plan (from FY2029)"
   },
   "design": "government_final",
   "status": "incomplete",
@@ -1285,8 +1285,8 @@
    },
    {
     "question": "Q18",
-    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
    },
    {
     "question": "Q26",
@@ -1406,8 +1406,8 @@
    "child_rearing_allowance": 0
   },
   "label": {
-   "ja": "政府案（2029年度からの本格版）",
-   "en": "Government plan (full version, from FY2029)"
+   "ja": "政府案（2029年度から）",
+   "en": "Government plan (from FY2029)"
   },
   "design": "government_final",
   "status": "incomplete",
@@ -1477,8 +1477,8 @@
    },
    {
     "question": "Q18",
-    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
    },
    {
     "question": "Q26",

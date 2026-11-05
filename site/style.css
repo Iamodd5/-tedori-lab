@@ -40,7 +40,8 @@ header nav::-webkit-scrollbar { display: none; }
 header nav a { color: #C6CFDB; text-decoration: none; white-space: nowrap; padding: 20px 0 16px; border-bottom: 2px solid transparent; font-size: 14px; }
 header nav a:hover { color: #fff; }
 header nav a[aria-current="page"] { color: #fff; font-weight: 700; border-bottom-color: #fff; }
-header :is(a, button):focus-visible { outline-color: #fff; }
+header :is(a, button, [tabindex]):focus-visible { outline-color: #fff; }  /* [tabindex] matches the general rule's specificity, so this one wins */
+header .brand:focus-visible { outline-offset: -2px; }
 header nav a[href]:focus-visible { outline-offset: -2px; }  /* the nav clips anything outside it; [href] outranks the :is() rule above */
 header button, .btn { font: inherit; font-size: 13px; letter-spacing: .04em; padding: 4px 12px; border: 1px solid var(--rule); background: var(--sheet);
                       color: var(--ink); border-radius: var(--r); cursor: pointer; transition: border-color .15s; }
@@ -181,6 +182,7 @@ td.reason { text-align: left; color: var(--ink-2); }
 .md td, .md th { text-align: left; }
 .md code { font-size: .85em; background: var(--wash); padding: 1px 4px; border-radius: var(--r); }
 .md, .md code { overflow-wrap: anywhere; }
+.md table { overflow-wrap: normal; }  /* tables scroll instead of breaking numbers mid-figure */
 pre { overflow-x: auto; background: var(--wash); padding: 12px; font-size: 13px; border-radius: var(--r); }
 
 /* footer: the about pages and the neutrality note */

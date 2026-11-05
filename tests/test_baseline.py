@@ -251,3 +251,25 @@ def test_elderly_dependant_adjustment_credit_differences():
     # tests/hand_calcs/elderly_dependant.md, second table: the 100,000 / 130,000 調整控除 differences count here
     rt = [_with_dependant(age, parent, 3_500_000)["resident_tax"] for age, parent in ((40, False), (75, False), (75, True))]
     assert rt == [105_100, 97_600, 89_100]
+
+
+def test_first_adjustment_needs_a_dependant_under_23():
+    # tests/hand_calcs/salary_and_pension.md, "The first kind needs a dependant under 23"
+    def head(child_salary):
+        hh = {"members": [{"id": "a", "role": "head", "age": 45, "salary": 9_000_000, "work": {"full_time": True}},
+                          {"id": "c", "role": "child", "age": 20, "salary": child_salary}]}
+        return h.compute(hh)["members"]["a"]["total_income"]
+    assert (head(0), head(1_600_000)) == (7_000_000, 7_050_000)
+
+
+def test_allowance_limit_for_a_dependant_aged_70_plus():
+    # tests/hand_calcs/H5.md, last section (施行令2条の4第1項第2号ロ)
+    hh = h.load("H5")
+    hh = {"members": hh["members"] + [{"id": "g", "role": "dependant", "age": 75}]}
+    assert h.compute(hh)["child_rearing_allowance"] == 576_600
+
+
+def test_no_adjustment_credit_above_25m():
+    # tests/hand_calcs/adjustment_credit_25m.md
+    hh = {"members": [{"id": "a", "role": "head", "age": 45, "salary": 30_000_000, "work": {"full_time": True}}]}
+    assert h.compute(hh)["members"]["a"]["resident_tax"] == 2_626_000

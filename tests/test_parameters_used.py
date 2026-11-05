@@ -18,7 +18,6 @@ HOUSEHOLDS = sorted(p.stem for p in (pathlib.Path(__file__).parents[1] / "househ
 NOT_READ = {
     ("income_tax", "public_pension_income", "age65_plus", 0, "floor_zero_until"): "restates the next row, which starts at 1,100,001",
     ("resident_tax", "basic_deduction", "amount", "value"): "the taper's first band holds the same 430,000",
-    ("resident_tax", "adjustment_credit", "income_limit", "value"): "not modelled: no household or wall-map point reaches 25m",
     ("social_insurance", "part_time_coverage", "employer_size_min", "value"): "household files state this test as yes/no (employer_51_plus)",
     ("social_insurance", "part_time_coverage", "hours_min", "value"): "household files state this test as yes/no (hours_20_plus)",
     ("social_insurance", "nhi_shinjuku_fy2026", "preschool_flat_reduction", "value"): "not modelled: no household has a preschool child in NHI",

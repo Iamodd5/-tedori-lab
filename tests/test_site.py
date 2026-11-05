@@ -23,7 +23,7 @@ def test_h4_wall_is_listed_with_its_drop_and_recovery():
 
 def test_keep_per_100000():
     # take-home 0 → 90,000 → 50,000 at income 0 / 100,000 / 200,000: keep 90,000 of the first ¥100,000, then −40,000 (a wall).
-    # Changed 2026-11-03 (review item E14): the step from income 0 is left out of the chart, as it already was from
+    # Changed 2026-11-03: the step from income 0 is left out of the chart, as it already was from
     # the wall list, so [0, 90_000] is no longer expected. Recorded in docs/VALIDATION.md (project rule 5).
     pts = [[x * 10_000, round(x * 9_000) if x <= 10 else 90_000 - (x - 10) * 4_000] for x in range(21)]
     assert js("w.keepSeries(d)", pts) == [[100_000, -40_000]]
@@ -49,6 +49,20 @@ def test_wall_reason_names_what_starts_or_stops():
     assert h2["trigger"] == ["deferral_ends"]
     assert js("w.wallReason(d)", h2, "ja").startswith("学生納付特例（学生の国民年金保険料を後払いにできる制度）の所得の上限を超えて、国民年金保険料（年215,040円）がかかるためです。")
     h6 = next(x for x in causes["H6"]["wall_causes"] if x["from"] == 2_110_000)
-    assert js("w.wallReason(d)", h6, "ja") == "住民税がかかり始め（年5,000円）、そのため65歳以上の介護保険料の段階が上がって年79,200円増えるためです。"
+    assert js("w.wallReason(d)", h6, "ja") == "住民税がかかり始め（年5,000円）、そのため65歳以上の人の介護保険料の段階が上がり、合わせて年79,200円増えるためです。"
     h5 = next(x for x in causes["H5"]["wall_causes"] if x["from"] == 3_850_000)
     assert js("w.wallReason(d)", h5, "ja") == "所得が児童扶養手当の上限を超えて、手当（年136,560円）が止まるためです。"
+
+
+def test_typed_amounts_and_walls_between_grid_points():
+    # compare.html calculators: H4's spouse pay ¥1,295,000 lies between grid points 1.29m and 1.3m with the 1.3m wall
+    # between them (tests/hand_calcs/wall_H4.md), so both points must be shown, not the nearest one
+    assert js('["1300000", "1,300,000", "130万", "１３０万円", "", "abc"].map(w.readYen)', None) == [1_300_000] * 4 + [None, None]
+    pts = json.loads((ROOT / "outputs" / "wall_map.json").read_text())["households"]["H4"]["designs"]["baseline"]
+    pick = lambda raw: js(f"w.gridPoint({raw}, 10000, (k, x) => d.find(p => p[0] === x)[1], ['b'])", pts)
+    assert pick(1_295_000) == {"lo": 1_290_000, "hi": 1_300_000, "wall": True, "v": 1_300_000}
+    assert pick(1_254_000) == {"lo": 1_250_000, "hi": 1_260_000, "wall": False, "v": 1_250_000}
+    assert pick(12_000_000) == {"lo": 10_000_000, "hi": 10_000_000, "wall": False, "v": 10_000_000}
+    # a jump up counts too: H1 joins company insurance between 1.05m and 1.06m (+95,257, tests/hand_calcs/wall_H1.md)
+    h1 = json.loads((ROOT / "outputs" / "wall_map.json").read_text())["households"]["H1"]["designs"]["baseline"]
+    assert js("w.gridPoint(1055000, 10000, (k, x) => d.find(p => p[0] === x)[1], ['b']).wall", h1) is True

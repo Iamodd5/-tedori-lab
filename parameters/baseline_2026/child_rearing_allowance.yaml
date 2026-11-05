@@ -28,6 +28,7 @@ limits:  # 前年所得 at or above which payment is reduced (full) or stops (pa
   full_base: {value: 690000, cite: {source: order, page: 1, section: "2条の4第1項第1号"}}
   partial_base: {value: 2080000, cite: {source: order, page: 1, section: "2条の4第2項第1号イ"}}
   per_dependant: {value: 380000, cite: {source: order, page: 1, section: "2条の4第1項第2号イ, 第2項第1号ロ(1)"}, note: "each dependant or supported child, other than below"}
+  per_elderly: {value: 480000, cite: {source: order, page: 1, section: "2条の4第1項第2号ロ"}, note: "老人扶養親族 and 70歳以上同一生計配偶者"}
   per_specific: {value: 530000, cite: {source: order, page: 1, section: "2条の4第1項第2号ハ"}, note: "特定扶養親族等: 特定扶養親族 and 控除対象扶養親族 under 19, i.e. dependants aged 16 to 22"}
 withheld:  # 2条の4第3項・第4項: (income − full limit) × rate, rounded to 10 yen (under 5 down, 5 or more up), plus 10
   first_child_rate: {value: 0.0264029, cite: {source: order, page: 1, section: "2条の4第3項"}}

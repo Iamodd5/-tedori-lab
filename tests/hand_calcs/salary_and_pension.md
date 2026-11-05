@@ -7,8 +7,9 @@ same deduction: 大田区「計算のしくみ」 注釈2 (2) (sources/tax/ota_k
 - Applies to a person with both 給与所得控除後の給与等の金額 (salary income) and 公的年金等に係る雑所得 (pension income),
   when the two add up to more than 100,000.
 - Deduction = min(salary income, 100,000) + min(pension income, 100,000) − 100,000, taken off salary income.
-- If the first kind (salary over 8.5m with a dependant under 23) also applies, the second kind uses the salary income
-  after the first.
+- If the first kind (salary over 8.5m with a dependant under 23) also applies, the 100,000 cap uses salary income before
+  the first kind (措法41条の3の11第4項第5号), and the result comes off salary income after it. With salary over 8.5m,
+  salary income is far above 100,000 either way, so this changes no number.
 
 Salary income for 2026 (令和8年分): revenue 741,000–2,190,999 → revenue − 740,000.
 Pension income, aged 65 or over, pension revenue up to 3,300,000, other income up to 10m → revenue − 1,100,000.
@@ -35,3 +36,10 @@ Age 70, living alone, salary 900,000, pension 1,150,000:
 - deduction 100,000 + 50,000 − 100,000 = 50,000; total income 160,000 − 50,000 + 50,000 = 160,000; no resident tax (450,000 limit);
 - premium measure: 課税年金収入 1,150,000 + (160,000 − 100,000) = **1,210,000**, above 1,200,000 → band 3, **51,480**
   (taking the deduction off as well would give 1,160,000 → band 2, 27,720).
+
+## The first kind needs a dependant under 23 (a child with income of their own may not count)
+
+措法41条の3の11第1項 and NTA No.1411: the first kind needs a 扶養親族 under 23, and a 扶養親族 has total income of at most
+620,000 (令和8年分). Head aged 45, salary 9,000,000: salary income 9,000,000 − 1,950,000 = 7,050,000.
+- Child aged 20 with no income: a 扶養親族 → (9,000,000 − 8,500,000) × 10% = 50,000 off → total income **7,000,000**.
+- Child aged 20 with salary 1,600,000 (salary income 860,000, above 620,000): not a 扶養親族 → nothing off → **7,050,000**.

@@ -68,7 +68,7 @@
    "households": 5353665,
    "annual_income_mean": 15840102,
    "annual_income_max": 40746000.0,
-   "baseline_disposable_mean": 10683119
+   "baseline_disposable_mean": 10680592
   }
  ],
  "designs": {
@@ -88,14 +88,14 @@
    "published_estimates": null,
    "site_note": null,
    "summary": {
-    "ja": "政府が2026年10月9日に国会に提出した法律案の内容です（2026年11月3日時点で衆議院で審議中）。2027年4月から2029年3月まで、いま8%の軽減税率がかかっている飲食料品の消費税を1%に下げます。同じ期間、就業者負担軽減支援金を先に始めて、所得に応じて支給します（2029年度からの本格版と違い、配偶者の所得の条件はなく、子どもの上乗せは16歳未満が対象）。支給額は、各年度の支給の総額が、その年度の1%分の飲食料品の消費税の税収（見込み）を超えないことを考慮して決めることになっています（2029年4月に支給される本格版への移行分は除く）。その年の1月1日に日本に住所がない人には支給されません。会社の保険に入って保険料を払うようになった人への上乗せ（就業促進特例加算）も、この期間から支給します。支給額は、法律案では後で政令で決めることになっていて、まだ決まっていません。",
-    "en": "This is the content of a bill the government submitted to the Diet on 9 October 2026 (still being debated in the House of Representatives on 3 November 2026). From April 2027 to March 2029, consumption tax on food and drink that is now taxed at the reduced 8% rate falls to 1%. Over the same period the worker burden-relief payment starts early, paid according to income (unlike the full version from fiscal 2029, there is no test of the spouse's income, and the extra for children covers children under 16). The amounts are to be set taking into account that each year's total payments should not exceed that year's expected revenue from the remaining 1% consumption tax on food (not counting the April 2029 advance of the full version). People with no address in Japan on 1 January of the year are not paid. The top-up for people who start paying company insurance premiums at an income wall (就業促進特例加算) is also paid in this period. Under the bill, the payment amounts will be set later by Cabinet order; they haven't been decided."
+    "ja": "政府が2026年10月9日に国会に提出した法律案の内容です（2026年11月3日時点で衆議院で審議中）。2027年4月から2029年3月まで、いま8%の軽減税率がかかっている飲食料品の消費税を1%に下げます。同じ期間、就業者負担軽減支援金を先に始めて、所得に応じて支給します（2029年度からの形と違い、配偶者の所得の条件はなく、子どもの上乗せは16歳未満が対象）。支給額は、各年度の支給の総額が、その年度の1%分の飲食料品の消費税の税収（見込み）を超えないことを考慮して決めることになっています（2029年4月に支給される2029年度からの形への移行分は除く）。その年の1月1日に日本に住所がない人には支給されません（国籍による条件は書かれていません）。「年収の壁」に直面する人などへの上乗せ（就業促進特例加算）も、この期間から支給します（大綱8〜9ページ）。支給額は、法律案では後で政令で決めることになっていて、まだ決まっていません。",
+    "en": "This is the content of a bill the government submitted to the Diet on 9 October 2026 (still being debated in the House of Representatives on 3 November 2026). From April 2027 to March 2029, consumption tax on food and drink that is now taxed at the reduced 8% rate falls to 1%. Over the same period the worker burden-relief payment starts early, paid according to income (unlike the form from fiscal 2029, there is no test of the spouse's income, and the extra for children covers children under 16). The amounts are to be set taking into account that each year's total payments should not exceed that year's expected revenue from the remaining 1% consumption tax on food (not counting the April 2029 advance of the fiscal 2029 form). People with no address in Japan on 1 January of the year are not paid (no nationality condition is written). The top-up for people facing an income wall and others (就業促進特例加算) is also paid in this period (outline, pages 8–9). Under the bill, the payment amounts will be set later by Cabinet order; they haven't been decided."
    }
   },
   "government_final": {
    "label": {
-    "ja": "政府案（2029年度からの本格版）",
-    "en": "Government plan (full version, from FY2029)"
+    "ja": "政府案（2029年度から）",
+    "en": "Government plan (from FY2029)"
    },
    "status": "incomplete",
    "blocked_by": [
@@ -121,8 +121,8 @@
    },
    "site_note": null,
    "summary": {
-    "ja": "政府が2026年10月9日に国会に提出した法律案の内容です（2026年11月3日時点で衆議院で審議中）。就業者負担軽減支援金は2027年4月に始まり、2029年度から本格的な形になります。ここで「本格版」と呼んでいるのは、この2029年度からの形です。前の年の所得をもとに年1回支給します。2029年度分は、本格版の額の半年分程度です。これとは別に2029年4月に、2028年度に支給を受けた人へ、本格版の額の半年分程度が先に支給されます（法律案では2028年度分への上乗せ）。支給額の形は2026年9月15日の大綱によるもので、勤労所得が一定額を超えると支給が始まり、低い所得では定額、そこから稼ぎが増えるにつれて支給額も増え、上限に達したあとは所得が一定額を超えると減っていきます。子ども1人ごとに上乗せがあります。対象になるのは、勤労所得が一定額を超え、合計所得が一定額以下で、払っている税金と社会保険料（受け取る公的年金を差し引いた額）が一定額を超える人です。結婚している人は、配偶者の前の年の合計所得が一定額を超えると対象になりません。自営業の人も、一定額を超える事業の所得は勤労所得に数えます。その年の1月1日に日本に住所がない人には支給されません（国籍による条件は書かれていません）。働いていない高齢者と、勤労所得が最低額に届かない人は対象外で、政府はそれぞれへの対応を別に決めるとしています。壁が解消されるまでの時限的な措置として、会社の保険に入って保険料を払うようになった人のうち、勤労所得が「年収の壁」で減った手取りが元に戻る水準までの人には、上乗せ（就業促進特例加算）もあります（大綱9ページ。国民健康保険と国民年金に入る人も対象かは、はっきりしていません）。金額や収入の線引きは、法律案では後で政令で決めることになっていて、まだ決まっていません。",
-    "en": "This is the content of a bill the government submitted to the Diet on 9 October 2026 (still being debated in the House of Representatives on 3 November 2026). The worker burden-relief payment starts in April 2027 and takes its full form from fiscal 2029; \"full version\" on this site means that form. It is paid once a year, based on the previous year's income. The fiscal 2029 payment is about half of the full-version amount. Separately, in April 2029, people who received the fiscal 2028 payment get about half of the full-version amount in advance (in the bill, an addition to the fiscal 2028 payment). The shape of the payment comes from the Cabinet outline of 15 September 2026: payment starts once earned income passes a minimum; it is a flat amount at low incomes, grows as earnings grow, levels off, and then shrinks once total income passes a set level. There is extra for each child. To qualify, earned income must be above a set level, total income at or below a set level, and the tax and social insurance you pay, minus any public pension you receive, above a set level. A married person does not qualify if their spouse's total income in the previous year is above a set level. For the self-employed, business income above a set amount counts as earned income. People with no address in Japan on 1 January of the year are not paid (no nationality condition is written). Older people who don't work, and people whose earned income is below the minimum, are not covered; the government says it will decide separately how to respond for each. Until the income walls (年収の壁) are removed, there is also a temporary top-up (就業促進特例加算) for people who start paying company insurance premiums and whose earned income is below the level where the take-home pay lost at the wall is regained (outline, page 9; it is unclear whether people who move into National Health Insurance and National Pension also qualify). Under the bill, the amounts and income limits will be set later by Cabinet order; they haven't been decided."
+    "ja": "政府が2026年10月9日に国会に提出した法律案の内容です（2026年11月3日時点で衆議院で審議中）。就業者負担軽減支援金は2027年4月に始まり、2029年度からこの形になります（政府はこれを「本格導入」としています）。前の年の所得をもとに年度ごとに支給します。2029年度分は、この形の額の半年分程度です。これとは別に2029年4月に、2028年度に支給を受けた人へ、この形の額の半年分程度が先に支給されます（法律案では2028年度分への上乗せ）。支給額の形は2026年9月15日の大綱によるもので、勤労所得が一定額を超えると支給が始まり、低い所得では定額、そこから稼ぎが増えるにつれて支給額も増え、上限に達したあとは所得が一定額を超えると減っていきます。子ども1人ごとに上乗せがあります。対象になるのは、勤労所得が一定額を超え、合計所得が一定額以下で、払っている税金と社会保険料（受け取る公的年金を差し引いた額）が一定額を超える人です。結婚している人は、配偶者の前の年の合計所得が一定額を超えると対象になりません。自営業の人も、一定額を超える事業の所得は勤労所得に数えます。その年の1月1日に日本に住所がない人には支給されません（国籍による条件は書かれていません）。働いていない高齢者と、勤労所得が最低額に届かない人は対象外です。法律案は、対象にならない所得の低い働く人や、病気や障害などで働くことが難しい人への支援のあり方を検討して2028年度中に結論を出し、必要があると認めるときは2029年度以降に措置を講ずること、働いていない高齢者などへの支援のあり方を検討して次の年金の財政検証の翌年までに結論を出すことを定めています（第36条第4項・第5項）。いわゆる「年収の壁」に直面する人と、同じ程度の社会保険料を負担する人には、大綱が「「年収の壁」が解消するまでの時限的な措置」とする上乗せ（就業促進特例加算）もあります。大綱は「年収の壁」を、会社の保険に入ること、または国民健康保険・国民年金に入ることで保険料の負担が増えることとし、上乗せの対象を、勤労所得がパートが会社の保険に入る線（年収106万円）から、壁で減った手取りが元に戻る水準までの人としています。扶養されていた配偶者が年収130万円で国民年金の第1号被保険者になる例では、手取りが戻るのは年収約160万円です（大綱9〜10ページ）。細かい条件と金額はまだ決まっていません。費用は国が3分の2以上を負担し、国の分の財源は、赤字国債（特例公債）に頼らず歳出・歳入全般の見直しで確保するとしています（第21条、第39条）。支給の総額の見込みは、まだ示されていません。金額や収入の線引きは、法律案では後で政令で決めることになっていて、まだ決まっていません。",
+    "en": "This is the content of a bill the government submitted to the Diet on 9 October 2026 (still being debated in the House of Representatives on 3 November 2026). The worker burden-relief payment starts in April 2027 and takes this form from fiscal 2029 (the government calls it the full introduction). It is paid each fiscal year, based on the previous year's income. The fiscal 2029 payment is about half of this form's amount. Separately, in April 2029, people who received the fiscal 2028 payment get about half of this form's amount in advance (in the bill, an addition to the fiscal 2028 payment). The shape of the payment comes from the Cabinet outline of 15 September 2026: payment starts once earned income passes a minimum; it is a flat amount at low incomes, grows as earnings grow, levels off, and then shrinks once total income passes a set level. There is extra for each child. To qualify, earned income must be above a set level, total income at or below a set level, and the tax and social insurance you pay, minus any public pension you receive, above a set level. A married person does not qualify if their spouse's total income in the previous year is above a set level. For the self-employed, business income above a set amount counts as earned income. People with no address in Japan on 1 January of the year are not paid (no nationality condition is written). Older people who don't work, and people whose earned income is below the minimum, are not covered. The bill says the government will consider support for low earners left out and for people who find it hard to work because of illness or disability, reach a conclusion during fiscal 2028 and, if it finds it necessary, take measures from fiscal 2029; and that it will consider support for older people who don't work and reach a conclusion by the year after the next public pension review (article 36, paragraphs 4 and 5). People facing an income wall (年収の壁), and people with a similar insurance burden, also get a top-up (就業促進特例加算) that the outline calls temporary until the walls are removed. The outline defines the wall as the extra premiums of joining company insurance or of moving into National Health Insurance and National Pension, and covers earned income from the line where part-timers join company insurance (¥1.06m a year) up to where the take-home pay lost at the wall is regained. In its example, a dependent spouse who reaches ¥1.3m and moves into National Pension regains take-home pay at about ¥1.6m (outline, pages 9–10). The detailed conditions and the amount haven't been decided. The national government pays at least two-thirds of the cost, and its share is to be financed without deficit-covering bonds, by reviewing spending and revenue as a whole (articles 21 and 39). No estimate of the total cost has been published. Under the bill, the amounts and income limits will be set later by Cabinet order; they haven't been decided."
    }
   },
   "daiwa": {
@@ -140,8 +140,8 @@
     },
     {
      "question": "Q18",
-     "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-     "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+     "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+     "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
     },
     {
      "question": "Q26",
@@ -176,8 +176,8 @@
     "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger and the credit is smaller, and both push take-home pay below Daiwa's figures."
    },
    "summary": {
-    "ja": "民間の研究所である大和総研が2025年10月に出した「社会保険料還付付き税額控除」の案です。所得税の対象となるすべての人（いま所得税が0円の人も含む）について、所得税の基礎控除をなくし、代わりに一定額の税額控除（所得税から直接差し引く額）を設けます。控除が所得税より大きい人には、残りを現金で払いますが、働いて払った社会保険料（給与や事業の収入にかかるもの）の額までです。自営業の人は、払った国民健康保険料と国民年金保険料の額まで現金を受け取れます。年金だけで暮らす人など、働いて保険料を払っていない人には現金は出ません。住民税は変えません。大和総研のレポートは、所得税がかかり始める年収（178万円か203万円か）、基礎控除をすべて税額控除にするか上乗せ分だけにするか、現金での支給があるかないかを組み合わせた8通りを試算しています。このサイトは、レポートの要約が取り上げた「基礎控除をすべてなくす、178万円、現金の支給あり」の案を計算しています。",
-    "en": "A proposal published in October 2025 by the Daiwa Institute of Research, a private research institute: a \"tax credit with a social-insurance refund\". For everyone subject to income tax (including people whose income tax is now zero), it removes the income tax basic deduction and gives a fixed tax credit instead (an amount subtracted straight from income tax). If the credit is bigger than your income tax, the rest is paid to you in cash, but only up to what you paid in social insurance on your wages or business income. The self-employed can receive cash up to the National Health Insurance and National Pension they paid. People who pay no social insurance on work, such as those living on a pension, get no cash. Resident tax doesn't change. Daiwa's report works out eight versions, combining: the income where income tax starts (¥1.78m or ¥2.03m), turning the whole basic deduction into a credit or only its recent top-up, and with or without the cash payment. This site calculates the version in the report's summary: the whole basic deduction removed, ¥1.78m, with the cash payment."
+    "ja": "民間の研究所である大和総研が2025年10月に出した「社会保険料還付付き税額控除」の案です。所得税の対象となるすべての人（いま所得税が0円の人も含む）について、所得税の基礎控除をなくし、代わりに一定額の税額控除（所得税から直接差し引く額）を設けます。控除が所得税より大きい人には、残りを現金で払いますが、働いて払った社会保険料（給与や事業の収入にかかるもの）の額までです。自営業の人は、払った国民健康保険料と国民年金保険料（65歳以上は介護保険料も）の額まで現金を受け取れます。年金だけで暮らす人など、働いて保険料を払っていない人には現金は出ません。住民税は変えません。大和総研のレポートは、所得税がかかり始める年収（178万円か203万円か）、基礎控除をすべて税額控除にするか上乗せ分だけにするか、現金での支給があるかないかを組み合わせた8通りを試算しています。このサイトは、レポートの要約が取り上げた「基礎控除をすべてなくす、178万円、現金の支給あり」の案を計算しています。",
+    "en": "A proposal published in October 2025 by the Daiwa Institute of Research, a private research institute: a \"tax credit with a social-insurance refund\". For everyone subject to income tax (including people whose income tax is now zero), it removes the income tax basic deduction and gives a fixed tax credit instead (an amount subtracted straight from income tax). If the credit is bigger than your income tax, the rest is paid to you in cash, but only up to what you paid in social insurance on your wages or business income. The self-employed can receive cash up to the National Health Insurance and National Pension they paid (and, at 65 or over, the long-term care premium). People who pay no social insurance on work, such as those living on a pension, get no cash. Resident tax doesn't change. Daiwa's report works out eight versions, combining: the income where income tax starts (¥1.78m or ¥2.03m), turning the whole basic deduction into a credit or only its recent top-up, and with or without the cash payment. This site calculates the version in the report's summary: the whole basic deduction removed, ¥1.78m, with the cash payment."
    },
    "by_decile": [
     {
@@ -189,45 +189,45 @@
     },
     {
      "decile": 2,
-     "mean_change": 6740,
-     "winners_share": 0.2123,
+     "mean_change": 6882,
+     "winners_share": 0.2146,
      "losers_share": 0.0,
-     "unchanged_share": 0.7877
+     "unchanged_share": 0.7854
     },
     {
      "decile": 3,
-     "mean_change": 6290,
-     "winners_share": 0.1401,
+     "mean_change": 6605,
+     "winners_share": 0.1468,
      "losers_share": 0.0,
-     "unchanged_share": 0.8599
+     "unchanged_share": 0.8532
     },
     {
      "decile": 4,
-     "mean_change": 3679,
-     "winners_share": 0.1246,
+     "mean_change": 4305,
+     "winners_share": 0.1314,
      "losers_share": 0.0681,
-     "unchanged_share": 0.8073
+     "unchanged_share": 0.8005
     },
     {
      "decile": 5,
-     "mean_change": -5959,
-     "winners_share": 0.1369,
+     "mean_change": -4947,
+     "winners_share": 0.1444,
      "losers_share": 0.4642,
-     "unchanged_share": 0.3989
+     "unchanged_share": 0.3914
     },
     {
      "decile": 6,
-     "mean_change": -7708,
-     "winners_share": 0.2472,
+     "mean_change": -7363,
+     "winners_share": 0.2504,
      "losers_share": 0.5088,
-     "unchanged_share": 0.244
+     "unchanged_share": 0.2408
     },
     {
      "decile": 7,
-     "mean_change": -29884,
-     "winners_share": 0.2231,
+     "mean_change": -28991,
+     "winners_share": 0.232,
      "losers_share": 0.6936,
-     "unchanged_share": 0.0832
+     "unchanged_share": 0.0743
     },
     {
      "decile": 8,
@@ -245,18 +245,18 @@
     },
     {
      "decile": 10,
-     "mean_change": -101548,
+     "mean_change": -101574,
      "winners_share": 0.0195,
      "losers_share": 0.975,
      "unchanged_share": 0.0055
     }
    ],
-   "cost_yen": -1088091677300,
+   "cost_yen": -1070381753171,
    "cost_components_yen": {
-    "income_tax": 1472442520595,
+    "income_tax": 1472584760609,
     "resident_tax": 0,
     "social_insurance": 0,
-    "credit": 384350843295,
+    "credit": 402203007439,
     "consumption_tax": 0
    }
   },
@@ -378,11 +378,11 @@
    "survey": 33376907
   },
   "income_tax": {
-   "model_baseline_2026": 9122732539822,
+   "model_baseline_2026": 9132879087264,
    "survey_estimate_2024": 11636229406234
   },
   "resident_tax": {
-   "model_baseline_2026": 12166666966033,
+   "model_baseline_2026": 12170050983294,
    "survey_estimate_2024": 12812796487612
   },
   "income_covered": {
@@ -445,8 +445,8 @@
  "approximations": [
   {
    "key": "one_household_per_cell",
-   "ja": "調査は世帯一つひとつのデータではなく、「世帯の種類 × 年収50万円刻み」ごとの平均だけを公表しています。そこで、それぞれの組み合わせについて、その平均に合わせた架空の世帯を2〜3通り作っています。同じ組み合わせの中での世帯ごとの違いは反映されません。",
-   "en": "The survey doesn't publish data on individual households, only averages for each type of household in each ¥500,000 income range. So for each type-and-income group we make up two or three households that match the group's averages. Differences between households in the same group are lost."
+   "ja": "調査は世帯一つひとつのデータではなく、「世帯の種類 × 年収50万円刻み」ごとの平均だけを公表しています。そこで、それぞれの組み合わせについて、その平均に合わせた架空の世帯を1〜6通り（平均約4通り、全部で約1,200世帯）作っています。同じ組み合わせの中での世帯ごとの違いは反映されません。",
+   "en": "The survey doesn't publish data on individual households, only averages for each type of household in each ¥500,000 income range. So for each type-and-income group we make up one to six households (about four on average, about 1,200 in all) that match the group's averages. Differences between households in the same group are lost."
   },
   {
    "key": "income_split",

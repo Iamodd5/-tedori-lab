@@ -1,7 +1,7 @@
 """2026 baseline: income tax, resident tax (Shinjuku), social insurance and child allowance for one household.
 
 All amounts are annual yen for calendar-year 2026 income. Every number comes from parameters/baseline_2026/.
-Each function is one rule so it can be tested alone and offered to OpenFisca-Japan as a formula.
+Each function is one rule so it can be tested alone; each could be rewritten as an OpenFisca-Japan formula.
 """
 import bisect
 import csv
@@ -204,7 +204,9 @@ def resident_tax(total_income, deductions, diff, n_family, single_parent):
         return per_capita
     taxable = floor_to(max(0, total_income - deductions), rt["rounding"]["taxable_income"]["value"])
     a = rt["adjustment_credit"]
-    if taxable <= a["threshold"]["value"]:
+    if total_income > a["income_limit"]["value"]:  # no 調整控除 above total income of 25m (314条の6, 37条)
+        base = 0
+    elif taxable <= a["threshold"]["value"]:
         base = min(diff, taxable)
     else:
         base = max(diff - (taxable - a["threshold"]["value"]), a["minimum_base"]["value"])
@@ -262,15 +264,16 @@ def spouse_deduction_rt(earner, spouse, age):
     return math.ceil(band(rp["spouse_special"]["bands"], spouse) * thirds / 3 / unit) * unit, 0  # 0 above 1,330,000
 
 
-def child_rearing_allowance(income, children, ordinary, specific, pension=0):
+def child_rearing_allowance(income, children, ordinary, specific, pension=0, elderly=0):
     """Annual 児童扶養手当 for a claimant with `children` (監護等児童) whose test income is `income` (施行令4条1項). Dependants and
-    supported children raise the limits: `ordinary` at 380,000 each, `specific` (aged 16 to 22) at 530,000 each (施行令2条の4).
+    supported children raise the limits: `ordinary` at 380,000 each, `specific` (aged 16 to 22) at 530,000 each, `elderly`
+    (aged 70+) at 480,000 each (施行令2条の4).
     A public pension of the claimant (`pension`, a year) is taken off month by month (施行令6条の5)."""
     if children <= 0:
         return 0
     p = params("child_rearing_allowance")
     lim, m, wh = p["limits"], p["monthly"], p["withheld"]
-    extra = ordinary * lim["per_dependant"]["value"] + specific * lim["per_specific"]["value"]
+    extra = ordinary * lim["per_dependant"]["value"] + specific * lim["per_specific"]["value"] + elderly * lim["per_elderly"]["value"]
     full, stop = lim["full_base"]["value"] + extra, lim["partial_base"]["value"] + extra
     if income >= stop:
         return 0

@@ -67,7 +67,7 @@
 <p class="note" id="notdrawn"></p>
 
 <details><summary><span lang="ja">この世帯について（計算の前提）</span><span lang="en">About this household (what we assumed)</span></summary><ul class="small" id="hhnotes"></ul></details>
-<details><summary><span lang="ja">（近似）すべての数字に共通する近似</span><span lang="en">(Approximation) Simplifications behind every number</span></summary><ul class="small" id="approx"></ul></details>
+<details><summary><span lang="ja">（近似）数字に含まれる近似（すべての数字に共通のものと、計算できる案のもの）</span><span lang="en">(Approximation) Simplifications behind the numbers (for every number, and for each plan that can be calculated)</span></summary><ul class="small" id="approx"></ul></details>
 
 <script>
 // Okabe-Ito palette: colour-blind safe, assigned in file order, carries no meaning; orange darkened to #B87A00 so the line has 3:1 contrast on white
@@ -113,8 +113,8 @@ function plans() {
   }
   const all = Object.keys(walls.summaries), done = all.filter(d => !nd[d]).map(d => t(walls.labels[d])), n = Object.keys(walls.households).length;
   document.getElementById("plansnote").textContent = lang === "ja"
-    ? `いま計算できるのは${done.join("、")}だけです。ほかの案は、計算に必要な金額がまだ示されていません。それぞれの理由は、案の名前を押すと出ます。並び順は、政府の2つの案が始まる順、そのあと民間と労働団体の案が公表の新しい順です。`
-    : `Right now only the ${done.join(", ")} can be calculated. For the others, amounts needed for the calculation haven't been set out yet; click a plan to see why. The government's two plans are listed in the order they start, then the other plans, most recently published first.`;
+    ? `いま計算できるのは${done.join("、")}だけです。ほかの案は、計算に必要な金額がまだ示されていません。それぞれの理由は、案の名前を押すと出ます。並び順は、政府の2つの案が始まる順、そのあと民間と労働団体の案を、もとになった案の公表の新しい順（大和総研2025年10月、連合2025年5月の構想）に並べています。`
+    : `Right now only the ${done.join(", ")} can be calculated. For the others, amounts needed for the calculation haven't been set out yet; click a plan to see why. The government's two plans are listed in the order they start, then the other plans by the date of the proposal they come from, newest first (Daiwa, October 2025; Rengo's plan, May 2025).`;
   document.getElementById("intro2").textContent = lang === "ja"
     ? `このサイトは、${all.length}つの案が、例として作った${n}つの世帯の手取り（税金と保険料を引き、児童手当と児童扶養手当を足した、手元に残るお金）をどう変えるかを、同じ方法で計算するしくみです。いま計算できるのは${done.length}つの案だけで、ほかの${all.length - done.length}つは、必要な金額が決まり公表されしだい計算します。`
     : `This site works out, with one method, how ${all.length} plans would change the take-home pay (what is left after tax and insurance, plus child allowance and the single-parent allowance) of ${n} example households. Right now ${done.length} of the plans can be calculated; the other ${all.length - done.length} will be once the amounts they need are decided and published.`;
@@ -144,13 +144,15 @@ function draw(newHousehold) {
   document.getElementById("notdrawn").textContent = nd.length
     ? (lang === "ja" ? `グラフにない案（まだ計算できないため）：${nd.join("、")}` : `Not in the charts (can't be calculated yet): ${nd.join("; ")}`) : "";
   wc.draw({ axis: incomeAxis(h), who: whoMoves(h), ref: h.reference_income, marks,
-    series: Object.entries(h.designs).map(([d, pts]) => ({ label: t(walls.labels[d]), color: COLORS[d], points: pts })) }, newHousehold);
+    series: Object.entries(h.designs).map(([d, pts]) => ({ label: (d === "baseline" ? "" : ja ? "（近似）" : "(Approximation) ") + t(walls.labels[d]), color: COLORS[d], points: pts })) }, newHousehold);
   lead();
 }
 
 function drawApprox() {
   const ul = document.getElementById("approx"); ul.innerHTML = "";
   walls.baseline_approximations.forEach(a => li(ul, t(a)));
+  for (const [d, list] of Object.entries(walls.design_approximations || {}))
+    list.forEach(a => li(ul, `${t(walls.labels[d])}${lang === "ja" ? "：（近似）" : ": (Approximation) "}${t(a)}`));
   plans();
 }
 

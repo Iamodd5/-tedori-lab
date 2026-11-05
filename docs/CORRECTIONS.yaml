@@ -4,8 +4,27 @@
 # previous: the last published commit with the old version. published: the first published commit with the new
 # one (left out until it is pushed). Either version can be rebuilt with `git checkout <commit> && make all`.
 # A number with `check` is recomputed from those two commits by tests/test_corrections.py.
+- date: 2026-11-06
+  previous: 263b817
+  what:
+    ja: 3つのルールを直しました。所得金額調整控除（給与850万円超）は、所得が62万円以下の23歳未満の扶養親族がいる場合だけにしました。合計所得2,500万円を超える人には住民税の調整控除をなくしました。大和総研案で現金を払う上限に、働く65歳以上の人の介護保険料を数えるようにしました。全世帯の試算の数字が少し変わりました。「検証」ページの2つの説明も直しました。
+    en: Corrected three rules. The income adjustment deduction for salaries over ¥8.5m now needs a dependant under 23 with income of ¥620,000 or less; there is no resident-tax adjustment credit above total income of ¥25m; and under the Daiwa plan, the 65+ care premium of people who work counts toward the cash limit. The all-household numbers moved a little. Two statements on the Checks page were also corrected.
+  why:
+    ja: 措置法41条の3の11第1項は扶養親族（所得62万円以下）を条件としています。地方税法314条の6と37条は、調整控除を合計所得2,500万円以下の人に限っています。大和総研の資料（4ページ図表3の注1）は、事業や給与の収入がある人の介護保険料（第1号）を数えるとしています。「検証」ページは、調査の税額の推計に2024年の定額減税が入っているかを「確認していない」とし、入っていれば差は小さくなると書いていましたが、統計局の推計方法は定額減税を差し引いていて、ふつうの年と比べた差は大きくなります。また、年収900万〜1,000万円の人の配偶者控除の見直しで住民税が下がるとしていましたが、配偶者の所得が62万円以下なら上がります。
+    en: 措置法41条の3の11第1項 requires a 扶養親族 (income of ¥620,000 or less). 地方税法314条の6 and 37条 limit the adjustment credit to total income of ¥25m or less. Daiwa's note (page 4, 図表3 注1) counts the category-1 long-term care premium of people with business or employment income. The Checks page said it was unconfirmed whether the survey's tax estimate includes the 2024 flat tax cut and that if it did the gap would be smaller; the Statistics Bureau's method takes the cut off, so against a normal year the gap is larger. It also said the spouse-deduction change for earners on ¥9m–10m lowered resident tax; it raises it when the spouse's income is ¥620,000 or less.
+  numbers:
+    - label: {ja: （近似）全世帯・大和総研案：年収の最も高いグループの手取りの平均の変化（円／年）, en: "(Approximation) All households, Daiwa Institute plan: average change in take-home pay, highest income group (yen a year)"}
+      before: -101548
+      after: -101574
+    - label: {ja: （近似）全世帯・大和総研案：年収の低い方から2番目のグループの手取りの平均の変化（円／年）, en: "(Approximation) All households, Daiwa Institute plan: average change in take-home pay, 2nd income group from the bottom (yen a year)"}
+      before: 6740
+      after: 6882
+    - label: {ja: 「検証」ページ：所得税の合計と調査の推計の差（%）, en: "Checks page: gap between modelled income tax and the survey's estimate (%)"}
+      before: -21.6
+      after: -21.5
 - date: 2026-11-04
   previous: 8efa8b5
+  published: 263b817
   what:
     ja: 全世帯の試算で、配偶者やほかの大人の家族のうちだれが働くかの決め方を変えました。大和総研案の国全体の金額と、収入グループごとの手取りの平均の変化が変わりました。
     en: Changed how the all-household estimate decides which spouses and other adults work. The Daiwa plan's national totals and the average change for each income group changed.
@@ -30,6 +49,7 @@
       after: -21.6
 - date: 2026-11-04
   previous: 8efa8b5
+  published: 263b817
   what:
     ja: 「検証」ページで、公開されている計算ツール（OpenFisca-Japan）の住民税がこのサイトより低い理由は「まだ分かっていない」としていましたが、理由が分かり、比較のしかたを直しました。比較表のOpenFisca-Japan側の数字が変わりました。
     en: The Checks page said we hadn't found why an open calculator (OpenFisca-Japan) gives lower resident tax. We found the reason and corrected the comparison; OpenFisca-Japan's numbers in the table changed.
@@ -47,8 +67,8 @@
     ja: パートの社会保険の計算を直しました。同じ日の修正で、2026年10月からは週20時間以上で働くパートは月給にかかわらず会社の保険に入るとしましたが、月給8.8万円未満の人は、1年を通して会社の保険に入らないものに戻しました。あわせて、雇用保険料を、会社の健康保険や厚生年金に入っていない人にもかけるようにしました（週20時間以上で働く学生でない人）。例の世帯H1の年収105万6,000円未満と、全世帯の試算が変わりました（グループ6〜9の平均の変化も、それぞれ年200円未満変わりました）。
     en: Corrected how part-timers' social insurance is worked out. The fix earlier the same day put part-timers working 20+ hours a week into company insurance from October 2026 whatever their pay; people paid under ¥88,000 a month are now again outside company insurance all year. Employment insurance is now also charged to people outside company health insurance and pension (non-students working 20+ hours a week). Example household H1 below ¥1,056,000 a year and the all-household estimate change (the average changes for groups 6–9 each move by less than ¥200 a year).
   why:
-    ja: 週20時間働くと、2026年10〜12月に使われているどの地域の最低賃金でも月8.8万円を超えます（最も低い1,023円で月88,660円。厚生労働省「令和8年度地域別最低賃金 全国一覧」）。それより少ない月給で週20時間以上働けるのは、最低賃金の減額特例を受けている人だけで、この人たちは申し出ないかぎり会社の保険に入りません（厚生年金保険法附則4条の6、健康保険法附則8条の3の2）。申し出はしないものとして計算しています。雇用保険には給料の条件がありません（雇用保険法6条）。前の修正のままでは、10月から会社の保険に入る人の保険料が、大和総研案で現金が出る上限に数えられていませんでした。（再度のレビューで指摘。前の修正は、最初のレビューの提案に沿ったものでした）
-    en: At 20 hours a week, every regional minimum wage in force from October to December 2026 pays more than ¥88,000 a month (the lowest, ¥1,023 an hour, gives ¥88,660; MHLW list of regional minimum wages for fiscal 2026). Only workers with a minimum-wage exception can work 20+ hours for less, and they join company insurance only if they ask (Employees' Pension Insurance Act supplementary article 4-6; Health Insurance Act supplementary article 8-3-2). We assume they don't ask. Employment insurance has no pay condition (Employment Insurance Act article 6). The earlier fix also left out the premiums of people joining in October from the Daiwa plan's cash cap. (Found in a second review. The earlier fix had followed the first review's suggestion.)
+    ja: 週20時間働くと、2026年10〜12月に使われているどの地域の最低賃金でも月8.8万円を超えます（最も低い1,023円で月88,660円。厚生労働省「令和8年度地域別最低賃金 全国一覧」）。それより少ない月給で週20時間以上働けるのは、最低賃金の減額特例を受けている人だけで、この人たちは申し出ないかぎり会社の保険に入りません（厚生年金保険法附則4条の6、健康保険法附則8条の3の2）。申し出はしないものとして計算しています。雇用保険には給料の条件がありません（雇用保険法6条）。前の修正のままでは、10月から会社の保険に入る人の保険料が、大和総研案で現金が出る上限に数えられていませんでした。
+    en: At 20 hours a week, every regional minimum wage in force from October to December 2026 pays more than ¥88,000 a month (the lowest, ¥1,023 an hour, gives ¥88,660; MHLW list of regional minimum wages for fiscal 2026). Only workers with a minimum-wage exception can work 20+ hours for less, and they join company insurance only if they ask (Employees' Pension Insurance Act supplementary article 4-6; Health Insurance Act supplementary article 8-3-2). We assume they don't ask. Employment insurance has no pay condition (Employment Insurance Act article 6). The earlier fix also left out the premiums of people joining in October from the Daiwa plan's cash cap.
   numbers:
     - label: {ja: H1：給与105万円のときの手取り（円／年）, en: "H1: take-home pay at a salary of ¥1.05m (yen a year)"}
       before: 834858
@@ -82,8 +102,8 @@
     ja: 連合案の説明で、就労支援給付制度の財源1.5〜2兆円程度を「対象約600万人」としていました。連合の構想では、対象は給与収入65万〜250万円の雇われて働く人約2100万人で、約600万人は額が減っていく200万〜250万円の人の数です。
     en: The Rengo plan's description paired the work-support credit's cost of about ¥1.5–2 trillion with "about 6 million people". In Rengo's plan it is for about 21 million employees earning ¥650,000 to ¥2.5m; about 6 million is the number in the ¥2m–¥2.5m band where it shrinks.
   why:
-    ja: 連合「税制改革構想」（改訂版、2025年5月28日）27ページの「雇用労働者（約2100万人）」「（対象者約600万人）」の読み違いです。もとは最初のレビューが提案した文でした。（再度のレビューで指摘）
-    en: A misreading of Rengo's Tax Reform Plan (revised, 28 May 2025), page 27, which gives about 21 million employees and, for the taper, about 6 million. The wording came from the first review's suggestion. (Found in a second review.)
+    ja: 連合「税制改革構想」（改訂版、2025年5月28日）27ページの「雇用労働者（約2100万人）」「（対象者約600万人）」の読み違いです。
+    en: A misreading of Rengo's Tax Reform Plan (revised, 28 May 2025), page 27, which gives about 21 million employees and, for the taper, about 6 million.
 - date: 2026-11-03
   previous: 1204115
   published: 2f1f1c5
@@ -91,8 +111,8 @@
     ja: 政府の2つの案の説明を直しました。2027〜28年度の支給の上限は「2年間の総額」ではなく、各年度の総額がその年度の1%分の飲食料品の消費税収（見込み）を超えないことを考慮して決めるものです。2029年4月の支給は、2028年度に支給を受けた人への先行分（法律案では2028年度分への上乗せ）で、2029年度分は本格版の半年分程度です。上乗せ（就業促進特例加算）の対象は、会社の保険に入って保険料を払うようになった人のうち、勤労所得が手取りの戻る水準までの人です。1月1日に日本に住所がない人は対象外であることと、短い説明に支給の条件があることも書き加えました。レポートの最初の段落でも、上乗せの対象と2029年度からの配偶者の所得の条件を書き加えました。
     en: Corrected the descriptions of the two government plans. The 2027–28 payments are not capped as "a two-year total"; each year's amounts are to be set taking into account that the year's total should not exceed that year's expected revenue from the remaining 1% consumption tax on food. The April 2029 payment is an advance to people who received the fiscal 2028 payment (in the bill, an addition to the fiscal 2028 payment), and the fiscal 2029 payment is about half of the full amount. The top-up (就業促進特例加算) is for people who start paying company insurance premiums and whose earned income is below the level where take-home pay recovers. We also added that people with no address in Japan on 1 January are not paid, and put the payment conditions into the one-line descriptions. The report's first section now also gives who the top-up is for and the spouse-income test from fiscal 2029.
   why:
-    ja: 法律案の要綱（2026年10月9日）第十条第三項〜第五項、第九条第四項と、大綱（2026年9月15日）9〜11ページに合わせました。前の書き方は、上限を実際より強く、2029年4月の支給を受ける人をあいまいに、上乗せの対象を広く見せていました。レポートでは、上乗せは書いていたのに配偶者の所得の条件を書いていませんでした。（再度のレビューで指摘。一部は最初のレビューが提案した文でした）
-    en: To match the bill summary of 9 October 2026 (article 10, paragraphs 3–5; article 9, paragraph 4) and the Cabinet outline of 15 September 2026 (pages 9–11). The old wording made the limit sound firmer than it is, blurred who gets the April 2029 payment, and made the top-up sound wider than it is. The report gave the top-up but not the spouse-income test. (Found in a second review. Some of the old wording came from the first review's suggestions.)
+    ja: 法律案の要綱（2026年10月9日）第十条第三項〜第五項、第九条第四項と、大綱（2026年9月15日）9〜11ページに合わせました。前の書き方は、上限を実際より強く、2029年4月の支給を受ける人をあいまいに、上乗せの対象を広く見せていました。レポートでは、上乗せは書いていたのに配偶者の所得の条件を書いていませんでした。
+    en: To match the bill summary of 9 October 2026 (article 10, paragraphs 3–5; article 9, paragraph 4) and the Cabinet outline of 15 September 2026 (pages 9–11). The old wording made the limit sound firmer than it is, blurred who gets the April 2029 payment, and made the top-up sound wider than it is. The report gave the top-up but not the spouse-income test.
 - date: 2026-11-03
   previous: 1204115
   published: 2f1f1c5
@@ -100,8 +120,8 @@
     ja: ホームとレポートの最初の段落を直しました。前の文は「どの案も、所得の低い（または中くらいの）働く人の負担を軽くすることを目的に掲げていますが、世帯によって手取りが増える場合も減る場合もあります」で、計算できない案についても手取りが減る場合があると読めました。いまは、各案が目的を掲げていることと、いま計算できる一つの案で手取りが増える世帯も減る世帯もあることを分けて書いています。レポートの「いちばん伝えたいこと」の、大和総研案で「でも…減り（壁は残ります）」という書き方は、2026年の制度での減り方と並べる書き方にしました。まだ計算できない案の理由も、どの案も「まだ示されていません」と同じ書き方にしました（連合案だけ「公表していません」としていました）。
     en: Corrected the first paragraph on Home and in the report. It said "Each plan says it aims to lighten the burden on people in work on low (or middle) incomes, but depending on the household, take-home pay can go up or down", which read as if take-home pay could fall under the plans that can't be calculated. It now says separately that each plan states its own aims, and that under the one plan that can be calculated some households gain and some lose. In the report's main finding, the Daiwa plan sentence ("still falls … (the wall remains)") now sets the drop next to the drop under 2026 rules. The reasons why plans can't be calculated now use the same words for every plan (only Rengo's said "hasn't published").
   why:
-    ja: 計算できない案について、手取りが減るとする根拠はありません。「でも」「壁は残ります」は、大和総研案がなくすとは言っていない壁について、案を低く見せる書き方でした。前の最初の文は、最初のレビューが提案した文でした。（再度のレビューで指摘）
-    en: Nothing shows a loss under the plans that can't be calculated. "Still" and "the wall remains" judged the Daiwa plan against removing a wall it never claimed to remove. The old first sentence was the first review's suggestion. (Found in a second review.)
+    ja: 計算できない案について、手取りが減るとする根拠はありません。「でも」「壁は残ります」は、大和総研案がなくすとは言っていない壁について、案を低く見せる書き方でした。
+    en: Nothing shows a loss under the plans that can't be calculated. "Still" and "the wall remains" judged the Daiwa plan against removing a wall it never claimed to remove.
 - date: 2026-11-03
   previous: 1204115
   published: 2f1f1c5
@@ -109,8 +129,8 @@
     ja: 「全世帯で見ると」とレポートで、手取りが平均で増えるグループの説明に、グループ4では7%の世帯で手取りが減ることを書き加えました。「自分で案を作る」の国全体の金額も0.1兆円単位にしました。
     en: On All households and in the report, the sentence on the groups whose take-home pay rises on average now adds that 7% of households in group 4 are worse off. The national total on Build your own is now shown to ¥0.1 trillion as well.
   why:
-    ja: 増える世帯と変わらない世帯の割合だけを書いていたため、これらのグループでは減る世帯がないように読めました。（再度のレビューで指摘）
-    en: Giving only the shares that gain or see no change made it look as if nobody in those groups loses. (Found in a second review.)
+    ja: 増える世帯と変わらない世帯の割合だけを書いていたため、これらのグループでは減る世帯がないように読めました。
+    en: Giving only the shares that gain or see no change made it look as if nobody in those groups loses.
 - date: 2026-11-03
   previous: 1204115
   published: 2f1f1c5
@@ -118,8 +138,8 @@
     ja: 「検証」と「計算方法」のページの記述を直しました。総務省の資料３（18ページ）の図を「法律と食い違う」としていましたが、図は100円未満を切り捨てる前の額（4,200円）で、法律と合っています。住民税の令和9年度の条件の修正について、手計算を先に直しテストが失敗するのを確かめたと書いていましたが、そのときは確かめていませんでした（いまは勤労学生の89万円に手計算とテストがあります）。民間給与実態統計調査の人数9か所を、男女を足した数から表の「計」の数に直しました（それぞれ1人の差）。65歳以上の人数の出典名、勤労学生の89万円の根拠（所得税法）、大和総研案で国民健康保険料を数える条件、消費税が入る案（つなぎの案と連合案）、最初に表示する言語の説明、「東京以外では」を「新宿区以外では」とする場所の説明も直しました。
     en: Corrected statements on the Checks and How it works pages. The Checks page called a figure in the Ministry of Internal Affairs' material 3 (page 18) a conflict with the law; the figure shows the amount before rounding to ¥100 (¥4,200) and agrees with the law. It said that for the fiscal 2027 resident-tax limits the hand calculation was corrected first and the test seen failing; that wasn't so at the time (the ¥890,000 working-student limit now has a hand calculation and a test). Nine counts from the National Tax Agency's wage survey were men plus women instead of the table's own totals (1 person off each). We also corrected the source named for people aged 65+, the basis of the ¥890,000 working-student limit (the Income Tax Act), when household NHI counts toward the Daiwa cash cap, which plans include consumption tax (the bridge plan and Rengo), how the first language is chosen, and the note on place ("outside Shinjuku", not "outside Tokyo").
   why:
-    ja: 図は所得割を切り捨てる前の連続した線で描いていました。ほかは、手で書いた説明が計算や出典と合っていませんでした。（再度のレビューで指摘）
-    en: The figure draws the income levy before rounding, as a continuous line. The rest were hand-written statements that didn't match the calculation or the sources. (Found in a second review.)
+    ja: 図は所得割を切り捨てる前の連続した線で描いていました。ほかは、手で書いた説明が計算や出典と合っていませんでした。
+    en: The figure draws the income levy before rounding, as a continuous line. The rest were hand-written statements that didn't match the calculation or the sources.
 - date: 2026-11-03
   previous: 4e1c6be
   published: 1204115
@@ -127,8 +147,8 @@
     ja: 住民税の100円未満の切り捨てを、特別区民税と都民税のそれぞれで行うように直しました。例の世帯H3、H5、H8の手取りが年100円増え、いくつかの壁の金額が100円変わりました。「（近似）住民税では、課税される所得の1,000円未満と、税額の100円未満を切り捨てています。一般的に使われている方法ですが、法律の条文ではまだ確認していません」という注意書きは、法律で確かめたため外しました。
     en: Resident tax is now rounded down to the nearest ¥100 separately for the ward tax and the Tokyo tax. Take-home pay for example households H3, H5 and H8 goes up by ¥100 a year, and some walls change by ¥100. The note "(Approximation) For resident tax, we round taxable income down to the nearest ¥1,000 and the tax down to the nearest ¥100. This is the common practice, but we haven't yet checked it against the text of the law" is gone, because the rule is now checked against the law.
   why:
-    ja: 地方税法20条の4の2第3項では、税ごとに100円未満を切り捨てます。以前は、二つの税を合わせた10%を一度に切り捨てていました。大田区の計算例も税ごとに切り捨てています。（レビューで指摘）
-    en: Under the Local Tax Act (article 20-4-2, paragraph 3), each tax is rounded down to ¥100 on its own. We used to round the combined 10% once. Ota City's worked example also rounds each tax. (Found in review.)
+    ja: 地方税法20条の4の2第3項では、税ごとに100円未満を切り捨てます。以前は、二つの税を合わせた10%を一度に切り捨てていました。大田区の計算例も税ごとに切り捨てています。
+    en: Under the Local Tax Act (article 20-4-2, paragraph 3), each tax is rounded down to ¥100 on its own. We used to round the combined 10% once. Ota City's worked example also rounds each tax.
   numbers:
     - label: {ja: 2026年の制度での手取り：H3（円／年）, en: "Take-home pay under 2026 rules: H3 (yen a year)"}
       before: 6247908
@@ -153,8 +173,8 @@
     ja: 2026年の収入にかかる住民税（令和9年度分）の、配偶者・扶養親族の所得の条件を58万円から62万円に、勤労学生の所得の条件を75万円から89万円に直し、19〜22歳の親族の特定親族特別控除を加えました。例の世帯H2（大学生）の年収150万円の壁が小さくなり、別に163万円の壁が分かれて出ます。「（近似）住民税の控除額（配偶者控除・扶養控除など）は、新宿区の2025年度分の案内から取っています」という注意書きは外しました。例の世帯H3（世帯主の給与）とH4（配偶者の給与）では、133万〜136万円の4か所で手取りが年2,600円増えました。
     en: For resident tax on 2026 income (fiscal 2027), the income limit for a spouse or dependant goes from ¥580,000 to ¥620,000 and for a working student from ¥750,000 to ¥890,000, and the special deduction for relatives aged 19 to 22 is added. Example household H2's (a university student) wall at ¥1.5m is smaller, and a separate wall at ¥1.63m appears. The note "(Approximation) Resident tax deduction amounts (for a spouse, dependants and so on) are taken from Shinjuku's guide for fiscal 2025" is gone. For example households H3 (the head's pay) and H4 (the spouse's pay), take-home pay goes up by ¥2,600 a year at four points between ¥1.33m and ¥1.36m.
   why:
-    ja: 令和9年度分の金額は、2026年3月に改正された地方税法（令和8年法律第2号）ですでに決まっていました。勤労学生の89万円は、所得税法の条件（令和8年法律第12号）を地方税法314条の2第9項で住民税にも使うものです。以前は古い案内の金額を使っていました。（レビューで指摘）
-    en: The fiscal 2027 amounts were already set by the Local Tax Act as amended in March 2026. The working-student limit of ¥890,000 is the income-tax limit (Income Tax Act as amended by Act No. 12 of 2026), which the Local Tax Act (article 314-2, paragraph 9) applies to resident tax. We were using an older guide. (Found in review.)
+    ja: 令和9年度分の金額は、2026年3月に改正された地方税法（令和8年法律第2号）ですでに決まっていました。勤労学生の89万円は、所得税法の条件（令和8年法律第12号）を地方税法314条の2第9項で住民税にも使うものです。以前は古い案内の金額を使っていました。
+    en: The fiscal 2027 amounts were already set by the Local Tax Act as amended in March 2026. The working-student limit of ¥890,000 is the income-tax limit (Income Tax Act as amended by Act No. 12 of 2026), which the Local Tax Act (article 314-2, paragraph 9) applies to resident tax. We were using an older guide.
   numbers:
     - label: {ja: H2：給与149万円→150万円で減る手取り（円／年）, en: "H2: take-home pay lost going from ¥1.49m to ¥1.5m (yen a year)"}
       before: 97172
@@ -179,8 +199,8 @@
     ja: 国民健康保険料の軽減で、世帯の「給与所得者等」に数える人を、政令のとおりにしました（給与収入55万円超、または年金収入60万円超、65歳以上は125万円超）。例の世帯H6（年金生活の夫婦）の国民健康保険料による3つの壁が、10万円低い年金の位置に移りました（178万→168万円、240万→230万円、292万→282万円）。このうち2つは大きさも変わりました（28,201→28,301円、15,188→16,088円）。所得税による655万円の壁は動いていません。今の収入での手取りは変わりません。
     en: For the National Health Insurance reduction, who counts as an earner in the household now follows the Cabinet order (salary over ¥550,000, or a pension over ¥600,000 for people under 65 and over ¥1.25m at 65 or over). Example household H6's (a pensioner couple) three walls caused by National Health Insurance move to pensions ¥100,000 lower (¥1.78m → ¥1.68m, ¥2.40m → ¥2.30m, ¥2.92m → ¥2.82m), and two of them change size (¥28,201 → ¥28,301, ¥15,188 → ¥16,088). The income-tax wall at ¥6.55m doesn't move. Take-home pay at their current income doesn't change.
   why:
-    ja: 以前は、収入が少しでもある人をすべて数えていました。国民健康保険法施行令29条の7第6項第1号と附則5条では、年金80万円の配偶者（72歳）は数えません。（レビューで指摘）
-    en: We used to count everyone with any income. Under the National Health Insurance Act Enforcement Order (article 29-7, paragraph 6, item 1, and supplementary article 5), the 72-year-old spouse with a ¥800,000 pension does not count. (Found in review.)
+    ja: 以前は、収入が少しでもある人をすべて数えていました。国民健康保険法施行令29条の7第6項第1号と附則5条では、年金80万円の配偶者（72歳）は数えません。
+    en: We used to count everyone with any income. Under the National Health Insurance Act Enforcement Order (article 29-7, paragraph 6, item 1, and supplementary article 5), the 72-year-old spouse with a ¥800,000 pension does not count.
   numbers:
     - label: {ja: H6：世帯主の年金170万円のときの手取り（円／年）, en: "H6: take-home pay with the head's pension at ¥1.7m (yen a year)"}
       before: 2441771
@@ -193,8 +213,8 @@
     ja: パートの社会保険の「月給8.8万円以上」の条件を、今も続くものとして書き、2026年の12か月すべてに当てはめていました。この条件は2026年10月1日になくなったので、10〜12月は月給にかかわらず会社の保険に入るとして計算し直しました。例の世帯H1の年収105万6,000円未満と、全世帯の試算が変わりました。
     en: We described the ¥88,000-a-month condition for part-timers' social insurance as still in force and applied it to all 12 months of 2026. It ended on 1 October 2026, so October to December are now worked out with part-timers in company insurance whatever their pay. Example household H1 below ¥1,056,000 a year and the all-household estimate change.
   why:
-    ja: 令和8年政令第275号で、2026年10月1日から賃金の条件がなくなりました（日本年金機構の2026年10月1日のお知らせ）。（レビューで指摘）
-    en: Cabinet Order No. 275 of 2026 ended the pay condition from 1 October 2026 (Japan Pension Service notice of 1 October 2026). (Found in review.)
+    ja: 令和8年政令第275号で、2026年10月1日から賃金の条件がなくなりました（日本年金機構の2026年10月1日のお知らせ）。
+    en: Cabinet Order No. 275 of 2026 ended the pay condition from 1 October 2026 (Japan Pension Service notice of 1 October 2026).
   later:
     ja: この修正の10〜12月の部分は、同じ日の再確認で取り消しました（上の記録）。
     en: The October–December part of this fix was withdrawn after a recheck the same day (entry above).
@@ -214,8 +234,8 @@
     ja: 政府案の説明で、就業者負担軽減支援金が「2029年度から始まる」と書いていました。正しくは2027年4月に始まり、2029年度から本格的な形になります。あわせて、2029年度だけは半年分程度ずつ2回支給すること、結婚している人には配偶者の所得の条件があること、「年収の壁」で手取りが減る人への時限的な上乗せ（就業促進特例加算）があること、所得に応じた支給であること、国会で審議中の法律案であることを書き加えました。英語の説明で、2027〜28年度の支給の上限を「食料品の消費税の1%」としていたのも直しました（正しくは、1%に下げた後の食料品の消費税の税収見込みの範囲内）。
     en: The government plans' descriptions said the worker burden-relief payment "starts in fiscal 2029". It starts in April 2027 and takes its full form from fiscal 2029. We also added that fiscal 2029 has two payments of about half a year each, that married people face a test of their spouse's income, that there is a temporary top-up for people whose take-home pay falls at an income wall (就業促進特例加算), that the payment depends on income, and that the plan is a bill still before the Diet. The English text also gave the 2027–28 payments' cap as "1% of the consumption tax on food"; it is the expected revenue from the remaining 1% consumption tax on food.
   why:
-    ja: 大綱（2026年9月15日）13ページ「支援金制度は、令和９年４月から導入する。」、9ページ（就業促進特例加算）、10〜11ページ（2029年度の2回の支給）、法律案の概要（2026年10月9日）の4つの条件に合わせました。上乗せを書いていなかったことは政府案に不利に、配偶者の所得の条件を書いていなかったことは政府案に有利に読めるものでした。（レビューで指摘）
-    en: To match the Cabinet outline of 15 September 2026 (page 13 on the April 2027 start, page 9 on the top-up, pages 10–11 on fiscal 2029) and the four conditions in the bill summary of 9 October 2026. Leaving out the top-up could be read as less favourable to the government plans, and leaving out the spouse test as more favourable. (Found in review.)
+    ja: 大綱（2026年9月15日）13ページ「支援金制度は、令和９年４月から導入する。」、9ページ（就業促進特例加算）、10〜11ページ（2029年度の2回の支給）、法律案の概要（2026年10月9日）の4つの条件に合わせました。上乗せを書いていなかったことは政府案に不利に、配偶者の所得の条件を書いていなかったことは政府案に有利に読めるものでした。
+    en: To match the Cabinet outline of 15 September 2026 (page 13 on the April 2027 start, page 9 on the top-up, pages 10–11 on fiscal 2029) and the four conditions in the bill summary of 9 October 2026. Leaving out the top-up could be read as less favourable to the government plans, and leaving out the spouse test as more favourable.
   later:
     ja: 2029年度の2回の支給の書き方と、2027〜28年度の支給の上限の書き方は、再確認でさらに直しました（上の記録）。
     en: The wording on the two fiscal 2029 payments and on the 2027–28 limit was corrected again after a recheck (entry above).
@@ -226,8 +246,8 @@
     ja: ホームとレポートの最初の文で、どの案も「働く人の負担を軽くする案」だと事実として書いていました。どの案も所得の低い（または中くらいの）働く人の負担を軽くすることを目的に掲げているが、世帯によって手取りが増える場合も減る場合もある、と直しました。あわせて、このサイトが「4つの案を計算している」と読める文を、いま計算できるのは1つだけだと分かる文に直しました。
     en: The first sentence on Home and in the report stated as fact that the plans lower working people's tax and social insurance. It now says each plan aims to lighten the burden on people in work on low (or middle) incomes, but that take-home pay can go up or down depending on the household. A sentence that read as if the site calculates all four plans now says that only one can be calculated so far.
   why:
-    ja: 計算できる唯一の案では、8つの例の世帯のうち4世帯の手取りが減り、国の収入は増えます。最初の文が案の側の言い方をそのまま使っていたためです。（レビューで指摘）
-    en: Under the one plan that can be calculated, 4 of the 8 example households take home less and the government takes in more. The first sentence had used the proposers' own framing. (Found in review.)
+    ja: 計算できる唯一の案では、8つの例の世帯のうち4世帯の手取りが減り、国の収入は増えます。最初の文が案の側の言い方をそのまま使っていたためです。
+    en: Under the one plan that can be calculated, 4 of the 8 example households take home less and the government takes in more. The first sentence had used the proposers' own framing.
   later:
     ja: この文は、再確認でさらに直しました（上の記録）。
     en: This sentence was corrected again after a recheck (entry above).
@@ -238,8 +258,8 @@
     ja: 「計算方法」のページで、連合案を計算しない理由を「連合の資料をまだ入手できていないため」と書いていました。正しくは、資料は入手済みで、消費税還付制度の金額が公表されていないためです。同じページの、大和総研案で現金で戻る上限に数える保険料も「健康保険と厚生年金だけ」と書いていましたが、会社の保険に入っていない働く人は国民健康保険と国民年金を数えています（計算はもともとこのとおりです）。
     en: The How it works page said the Rengo plan isn't calculated because "we haven't been able to get Rengo's documents". We have them; the reason is that the amounts of its consumption tax refund aren't published. The Japanese version of the same page said the Daiwa plan's cash cap counts only health insurance and employee pension (「健康保険と厚生年金だけ」); for workers outside company insurance it counts National Health Insurance and National Pension (the calculation always did this).
   why:
-    ja: 2026年11月1日にほかのページを直したとき、この2か所を直し忘れていました。（レビューで指摘）
-    en: These two places were missed when the other pages were corrected on 1 November 2026. (Found in review.)
+    ja: 2026年11月1日にほかのページを直したとき、この2か所を直し忘れていました。
+    en: These two places were missed when the other pages were corrected on 1 November 2026.
 - date: 2026-11-03
   previous: 4e1c6be
   published: 1204115
@@ -247,8 +267,8 @@
     ja: 「検証」ページのくわしい表で、例の世帯H4の130万円の壁を古い数字（手取り−281,926円、元に戻る年収1,650,000円）のまま載せていました。ほかのページと同じ−258,226円、1,640,000円に直しました（実効限界負担率も2,919%から2,682%に）。同じ表の、大和総研が使った2025年の基礎控除を「58万円」としていたのも、68万円に直しました。
     en: 'The detailed tables on the Checks page still showed old figures for example household H4''s ¥1.3m wall (take-home −¥281,926, back at ¥1,650,000). They now match the other pages: −¥258,226 and ¥1,640,000 (and the effective marginal rate 2,919% → 2,682%). The same tables gave the 2025 basic deduction Daiwa used as ¥580,000; it is ¥680,000.'
   why:
-    ja: このページの表は手で書いていて、2026年11月1日の修正のときに直し忘れていました。このため、公開したときから、ほかのページと合っていませんでした。基礎控除は、年収500万円の会社員（所得356万円）では68万円です（国税庁No.1199）。（レビューで指摘）
-    en: These tables are written by hand and were missed in the correction of 1 November 2026, so they never matched the other pages while published. For an employee on ¥5m (income ¥3.56m) the 2025 basic deduction is ¥680,000 (National Tax Agency No.1199). (Found in review.)
+    ja: このページの表は手で書いていて、2026年11月1日の修正のときに直し忘れていました。このため、公開したときから、ほかのページと合っていませんでした。基礎控除は、年収500万円の会社員（所得356万円）では68万円です（国税庁No.1199）。
+    en: These tables are written by hand and were missed in the correction of 1 November 2026, so they never matched the other pages while published. For an employee on ¥5m (income ¥3.56m) the 2025 basic deduction is ¥680,000 (National Tax Agency No.1199).
   numbers:
     - label: {ja: 「検証」ページ：H4の壁で減る手取り（円／年）, en: "Checks page: take-home pay lost at H4's wall (yen a year)"}
       before: 281926
@@ -263,8 +283,8 @@
     ja: 全世帯の試算と比べる「公式の数字」の税額は、実際に集めた税収ではなく、2024年の調査が回答された収入から推計した税額です。「税収」と書いていた所を直しました。年収100万円以下で働く人の比較には、途中で働き始めた・辞めた人の数（約598万人）も加えました。ホーム、全世帯で見ると、レポートの国全体の金額は、0.01兆円単位から0.1兆円単位にしました（「検証」ページの表は0.01兆円単位のままです）。
     en: The tax figures we compare the all-household estimate with are not tax actually collected; they are the 2024 survey's own estimate of tax from reported incomes. Where we wrote "tax collected", that is fixed. The comparison of people earning ¥1m or less now also counts people who worked only part of the year (about 5.98 million). National totals on Home, All households and the report are now shown to the nearest ¥0.1 trillion, not ¥0.01 trillion (the Checks page tables keep ¥0.01 trillion).
   why:
-    ja: 推計税額は試算と同じ表から取っているため、独立した確かめではありません。また1年を通して働いた人だけと比べると、試算の多すぎる度合いが約4倍に見えますが、同じ定義で比べると約1.6倍です。0.01兆円の精度はこの試算にはありません。（レビューで指摘）
-    en: The estimated tax comes from the same table as the model, so it isn't an independent check. Comparing only with full-year workers made the model look about 4 times too high; like for like it is about 1.6 times. The estimate isn't accurate to ¥0.01 trillion. (Found in review.)
+    ja: 推計税額は試算と同じ表から取っているため、独立した確かめではありません。また1年を通して働いた人だけと比べると、試算の多すぎる度合いが約4倍に見えますが、同じ定義で比べると約1.6倍です。0.01兆円の精度はこの試算にはありません。
+    en: The estimated tax comes from the same table as the model, so it isn't an independent check. Comparing only with full-year workers made the model look about 4 times too high; like for like it is about 1.6 times. The estimate isn't accurate to ¥0.01 trillion.
 - date: 2026-11-03
   previous: 4e1c6be
   published: 1204115
@@ -272,8 +292,8 @@
     ja: 年収の壁のグラフと一覧の説明を直しました。小さく手取りが減るところの理由を、どの世帯にも「会社の保険料が段階ごとに上がるため」と書いていましたが、会社の保険に入っていない世帯もあるので、一般的な説明にしました。一覧の壁が「10万円増えたら」のグラフで0円より下に出ないことがある理由（グラフは10万円ごと）を書き、収入0円からの変化をグラフからも外しました。「元の手取りに戻るには年収○円まで働く必要があります」は、1万円きざみで計算した値だと分かるように直しました。
     en: The explanations of the income-wall charts and list are corrected. The reason given for small dips, "company insurance premiums go up in steps", was shown for every household, including those not in company insurance; it is now general. We now say why a listed wall may not go below ¥0 on the "earn ¥100,000 more" chart (that chart moves in ¥100,000 steps), and the step from an income of 0 is left out of the chart as it already was from the list. "The spouse has to earn ¥X to get back" now says it is worked out in ¥10,000 steps.
   why:
-    ja: 一覧とグラフで、壁の数え方が違って見えていました。（レビューで指摘）
-    en: The list and the charts seemed to disagree about the walls. (Found in review.)
+    ja: 一覧とグラフで、壁の数え方が違って見えていました。
+    en: The list and the charts seemed to disagree about the walls.
 - date: 2026-11-03
   previous: 4e1c6be
   published: 1204115
@@ -281,8 +301,8 @@
     ja: 保険料率の注意書きで、厚生年金の料率が2026年に変わると読める書き方と、子ども・子育て支援金を料率の変更と書いていたのを直しました。厚生年金の料率18.3%は変わらず、子ども・子育て支援金は2026年4月分から新しく始まりました。
     en: The note on premium rates read as if the employee pension rate changed in 2026, and called the child and childcare support levy a rate change. The employee pension rate (18.3%) didn't change, and the levy is new from April 2026.
   why:
-    ja: 協会けんぽ東京支部の保険料額表に「厚生年金保険料率：平成29年9月分～適用」「子ども・子育て支援金率：令和8年4月分（5月納付分）～適用」とあります。（レビューで指摘）
-    en: The Japan Health Insurance Association's Tokyo premium table says the pension rate has applied since September 2017 and the levy from April 2026. (Found in review.)
+    ja: 協会けんぽ東京支部の保険料額表に「厚生年金保険料率：平成29年9月分～適用」「子ども・子育て支援金率：令和8年4月分（5月納付分）～適用」とあります。
+    en: The Japan Health Insurance Association's Tokyo premium table says the pension rate has applied since September 2017 and the levy from April 2026.
 - date: 2026-11-03
   previous: 4e1c6be
   published: 1204115
@@ -290,8 +310,8 @@
     ja: 「計算方法」のページに「ページに直接書いた数字はない」とありましたが、「検証」ページには手で書いた数字がありました。そう分かるように直し、そのうち3節と10節の数字を出力ファイルと比べるテストを加えました（ほかの節は手で直しています）。
     en: The How it works page said no number is typed into a page, but the Checks page had hand-written numbers. It now says so, and a test compares the numbers in its sections 3 and 10 with the output files (the other sections are kept up to date by hand).
   why:
-    ja: 手で書いた数字が古いまま残っていました（このページの別の記録を参照）。（レビューで指摘）
-    en: Hand-written numbers had gone out of date (see the other entries on this page). (Found in review.)
+    ja: 手で書いた数字が古いまま残っていました（このページの別の記録を参照）。
+    en: Hand-written numbers had gone out of date (see the other entries on this page).
 - date: 2026-11-02
   previous: 4e1c6be
   published: 1204115

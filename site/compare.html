@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="common.js"></script>
+<script src="walls.js"></script>
 </head>
 <body>
 <h1><span lang="ja">案の比較</span><span lang="en">Compare the plans</span></h1>
@@ -20,12 +21,12 @@
 <p class="note" id="atincome"></p>
 <div class="myincome">
 <label for="myincome" id="myincome-label"></label>
-<input type="number" id="myincome" min="0" max="10000000" step="10000" inputmode="numeric"> <span lang="ja">円</span><span lang="en">yen</span>
+<input type="text" id="myincome" inputmode="numeric" autocomplete="off"> <span lang="ja">円</span><span lang="en">yen</span>
 <ul id="myresult" aria-live="polite"></ul>
 </div>
 <div id="sitenotes"></div>
 
-<h2><span lang="ja">手取りの変化の内訳</span><span lang="en">Where the change comes from</span></h2>
+<h2><span lang="ja">手取りの変化の内訳（この世帯の今の収入のとき）</span><span lang="en">Where the change comes from (at this household's income now)</span></h2>
 <p class="note"><span lang="ja">右向きの棒は手取りを増やす分（受け取るお金や、減る税金）、左向きは手取りを減らす分（増える税金や保険料）です。</span><span lang="en">Bars to the right add to take-home pay (cash received, or less tax); bars to the left take away from it (more tax or insurance).</span></p>
 <p class="info" id="nochange" hidden></p>
 <div class="chart" style="height:220px"><canvas id="bar" role="img"></canvas></div>
@@ -47,7 +48,7 @@
 <label><span lang="ja">世帯の形：</span><span lang="en">Household: </span><select id="own-shape"></select></label>
 <label><span lang="ja">年齢：</span><span lang="en">Age: </span><select id="own-age"></select></label>
 <label><span lang="ja">子どもの人数：</span><span lang="en">Children: </span><select id="own-kids"></select></label>
-<label><span lang="ja">給与（税引き前、年）：</span><span lang="en">Salary (before tax, per year): </span><input type="number" id="own-salary" min="0" max="10000000" step="10000" inputmode="numeric" value="3000000"> <span lang="ja">円</span><span lang="en">yen</span></label>
+<label><span id="own-salary-label"></span><input type="text" id="own-salary" inputmode="numeric" autocomplete="off" value="3000000"> <span lang="ja">円</span><span lang="en">yen</span></label>
 <ul id="own-result" aria-live="polite"></ul>
 <ul class="small" id="own-notes"></ul>
 </div>
@@ -66,14 +67,26 @@ let rows, walls, chart, own;
 const OWN = { single: { ja: "一人で暮らす", en: "Living alone" }, couple: { ja: "夫婦で、働くのは一人", en: "A couple, one partner works" },
   couple_part: { ja: "夫婦で、配偶者はパート", en: "A couple, the spouse works part-time" },
   single_parent: { ja: "ひとり親", en: "A single parent" } };
-// an entered income on the 10,000-yen grid (0 to 10m): null when the box is empty, with a note when it was rounded or capped
-function onGrid(box, step) {
-  const s = box.value.trim(), raw = Number(s);
-  if (s === "" || !Number.isFinite(raw) || raw < 0) return null;
-  const top = 10_000_000, v = Math.min(top, Math.round(raw / step) * step), ja = lang === "ja";
-  const note = raw > top ? (ja ? "（1,000万円までしか計算していないため、1,000万円で示しています）" : " (worked out only up to ¥10m, so shown at ¥10m)")
+// results on the 10,000-yen grid (0 to 10m); between two grid points with a wall in between, both points are shown
+function gridLines(ul, box, step, who, household, value, plans) {
+  const ja = lang === "ja", raw = readYen(box.value);
+  if (raw === null) return;
+  if (Number.isNaN(raw)) return li(ul, ja ? "金額を数字で入れてください（例：1300000 または 130万）。" : "Enter an amount in figures (for example 1300000).");
+  const { lo, hi, wall, v } = gridPoint(raw, step, value, ["baseline", ...plans]);
+  const take = ja ? (household ? "世帯の手取り" : "手取り") : (household ? "the household's take-home pay" : "take-home pay");
+  if (wall) {
+    li(ul, ja ? `${who.ja}が年${yen(raw)}円のときの${take}は、1万円きざみの計算の間にあります。年${yen(lo)}円なら${yen(value("baseline", lo))}円、年${yen(hi)}円なら${yen(value("baseline", hi))}円です（2026年の制度）。この間で手取りが大きく変わる境目（年収の壁など）があり、入力した額が境目の手前か先かで大きく違います。`
+              : `With ${who.en} at ¥${yen(raw)} a year, ${take} falls between two points of the ¥10,000 grid: ¥${yen(value("baseline", lo))} at ¥${yen(lo)} and ¥${yen(value("baseline", hi))} at ¥${yen(hi)} (2026 rules). Take-home pay changes sharply between them (at an income wall or a similar line), so it depends on which side of that line the amount falls.`);
+    for (const d of plans) li(ul, ja ? `（近似）${t(walls.labels[d])}：年${yen(lo)}円なら年${signed(value(d, lo) - value("baseline", lo))}円、年${yen(hi)}円なら年${signed(value(d, hi) - value("baseline", hi))}円`
+                                     : `(Approximation) ${t(walls.labels[d])}: ${signed(value(d, lo) - value("baseline", lo))} yen a year at ¥${yen(lo)}, ${signed(value(d, hi) - value("baseline", hi))} at ¥${yen(hi)}`);
+    return;
+  }
+  const note = raw > 10_000_000 ? (ja ? "（1,000万円までしか計算していないため、1,000万円で示しています）" : " (worked out only up to ¥10m, so shown at ¥10m)")
              : v !== raw ? (ja ? "（1万円単位に丸めています）" : " (rounded to ¥10,000)") : "";
-  return { v, note };
+  li(ul, ja ? `${who.ja}が年${yen(v)}円のとき${note}、2026年の制度での${take}は年${yen(value("baseline", v))}円です。`
+            : `With ${who.en} at ¥${yen(v)} a year${note}, ${take} under 2026 rules is ¥${yen(value("baseline", v))} a year.`);
+  for (const d of plans) li(ul, ja ? `（近似）${t(walls.labels[d])}：年${signed(value(d, v) - value("baseline", v))}円（2026年の制度と比べた変化）`
+                                   : `(Approximation) ${t(walls.labels[d])}: ${signed(value(d, v) - value("baseline", v))} yen a year (change from 2026 rules)`);
 }
 
 // "your own household": the precomputed grid for the chosen shape (outputs/own_household.json), read at the salary entered
@@ -93,32 +106,30 @@ function drawOwn() {
    ja ? `働く人は学生でなく、週${own.hours_min}時間以上・従業員${own.employer_min}人以上の会社で働いているものとしています（「配偶者はパート」の配偶者は、年収${yen(own.spouse_part)}円で週${own.hours_min}時間未満）。`
       : `Whoever works is a non-student on ${own.hours_min}+ hours a week at a company with at least ${own.employer_min} employees (in "the spouse works part-time", the spouse earns ¥${yen(own.spouse_part)} a year on under ${own.hours_min} hours).`,
    ja ? `子どもは${own.child_age}歳としています。` : `Children are aged ${own.child_age}.`,
+   ja ? `給与が月${yen(own.employee_line / 12)}円（年${yen(own.employee_line)}円）に届かないと会社の保険に入らず、国民健康保険と国民年金保険料を払います（夫婦で、働いていない配偶者の国民年金保険料も）。このため、この線の前後で手取りが大きく変わります。`
+      : `Below ¥${yen(own.employee_line / 12)} a month (¥${yen(own.employee_line)} a year) the earner is not in company insurance and pays National Health Insurance and National Pension (in a couple, also the National Pension of a spouse who doesn't work). So take-home pay jumps at this line.`,
+   ja ? `40〜64歳は${own.ages[1]}歳として計算しています。60〜64歳の人は国民年金保険料を払わないため、給与が少ないとき（上の線より下）は、実際の手取りはここより多くなります。`
+      : `Ages 40 to 64 are worked out at ${own.ages[1]}. People aged 60 to 64 don't pay National Pension, so at low salaries (below the line above) their real take-home pay is higher than shown.`,
    ja ? "収入が少ないときに申請できる国民年金保険料の免除は、申請しないものとしています。" : "Nobody applies for the National Pension exemption available on low incomes.",
-   ja ? "ひとり親は母親で、養育費は受け取っていないものとし、児童扶養手当はその年の所得で判定しています。" : "A single parent is the mother, gets no child support, and the single-parent allowance is judged on the same year's income.",
+   ja ? "（近似）ひとり親は母親で、養育費は受け取っていないものとし、児童扶養手当はその年の所得で判定しています（実際は前の年の所得で決まります）。" : "(Approximation) A single parent is the mother and gets no child support; the single-parent allowance is judged on the same year's income (in fact, the previous year's).",
+   ja ? `ほかの${Object.keys(walls.labels).length - own.designs.length}つの案は、まだ計算できないため出していません（理由はページの下にあります）。`
+      : `The other ${Object.keys(walls.labels).length - own.designs.length} plans can't be calculated yet, so they aren't shown (reasons further down).`,
    ja ? "ほかの前提と近似は、ページの下の「すべての世帯に共通する前提と近似」にあります。" : "Other assumptions are under \"Assumptions behind every household\" at the bottom of the page."].forEach(x => li(notes, x));
-  const at = onGrid(get("own-salary"), own.step);
-  if (!grid || !at) return;
-  const { v, note } = at, i = v / own.step, base = grid.baseline[i];
-  li(ul, ja ? `給与が年${yen(v)}円のとき${note}、2026年の制度での世帯の手取りは年${yen(base)}円です。`
-            : `With a salary of ¥${yen(v)} a year${note}, the household's take-home pay under 2026 rules is ¥${yen(base)} a year.`);
-  for (const d of own.designs) li(ul, ja ? `（近似）${t(walls.labels[d])}：年${signed(grid[d][i] - base)}円` : `(Approximation) ${t(walls.labels[d])}: ${signed(grid[d][i] - base)} yen a year`);
+  const couple = shape.startsWith("couple");
+  get("own-salary-label").textContent = ja ? (couple ? "主に稼ぐ人の給与（税引き前、年）：" : "給与（税引き前、年）：") : (couple ? "Main earner's salary (before tax, per year): " : "Salary (before tax, per year): ");
+  if (!grid) return;
+  gridLines(ul, get("own-salary"), own.step, { ja: couple ? "主に稼ぐ人の給与" : "給与", en: couple ? "the main earner's salary" : "a salary" }, true,
+            (k, x) => grid[k][x / own.step], own.designs);
 }
 const signed = v => (v > 0 ? "+" : v < 0 ? "−" : "±") + yen(Math.abs(v));
 const pctSigned = x => (x > 0 ? "+" : x < 0 ? "−" : "±") + Math.abs(x * 100).toFixed(1) + "%";
 
 // the household at any income on the wall map's 10,000-yen grid (0 to 10m): 2026 take-home and each calculated plan
 function atIncome(h) {
-  const ja = lang === "ja", ul = document.getElementById("myresult"); ul.innerHTML = "";
-  const g = onGrid(document.getElementById("myincome"), walls.step);
-  if (!g) return;
-  const { v, note } = g, at = pts => pts.find(p => p[0] === v)[1];
-  const base = at(h.designs.baseline);
-  li(ul, ja ? `${whoMoves(h)}が年${yen(v)}円のとき${note}、2026年の制度での手取りは年${yen(base)}円です。`
-            : `With ${whoMoves(h)} at ¥${yen(v)} a year${note}, take-home pay under 2026 rules is ¥${yen(base)} a year.`);
-  for (const [d, pts] of Object.entries(h.designs).filter(([d]) => d !== "baseline")) {
-    const ch = at(pts) - base;
-    li(ul, ja ? `（近似）${t(walls.labels[d])}：年${signed(ch)}円` : `(Approximation) ${t(walls.labels[d])}: ${signed(ch)} yen a year`);
-  }
+  const ul = document.getElementById("myresult"); ul.innerHTML = "";
+  const value = (k, x) => h.designs[k].find(p => p[0] === x)[1];
+  gridLines(ul, document.getElementById("myincome"), walls.step, { ja: whoMoves(h), en: whoMoves(h) }, false, value,
+            Object.keys(h.designs).filter(d => d !== "baseline"));
 }
 
 function draw(newHousehold) {
@@ -134,9 +145,10 @@ function draw(newHousehold) {
   const rearing = bp.child_rearing_allowance ? (ja ? `と児童扶養手当${yen(bp.child_rearing_allowance)}円` : ` and the single-parent allowance (児童扶養手当) ¥${yen(bp.child_rearing_allowance)}`) : "";
   li(res, ja ? `内訳：所得税${yen(bp.income_tax)}円・住民税${yen(bp.resident_tax)}円・社会保険料${yen(bp.social_insurance)}円を払い、児童手当${yen(bp.child_allowance)}円${rearing}を受け取ります。`
              : `Made up of: income tax ¥${yen(bp.income_tax)}, resident tax ¥${yen(bp.resident_tax)} and social insurance ¥${yen(bp.social_insurance)} paid, child allowance ¥${yen(bp.child_allowance)}${rearing} received.`);
+  const approx = r => r.approximations.length ? (ja ? "（近似）" : "(Approximation) ") : "";
   for (const r of done) li(res, lang === "ja"
-    ? `${t(r.label)}：年${signed(r.disposable_change)}円（${pctSigned(r.disposable_change / base)}）`
-    : `${t(r.label)}: ${signed(r.disposable_change)} yen a year (${pctSigned(r.disposable_change / base)})`);
+    ? `${approx(r)}${t(r.label)}：年${signed(r.disposable_change)}円（${pctSigned(r.disposable_change / base)}）`
+    : `${approx(r)}${t(r.label)}: ${signed(r.disposable_change)} yen a year (${pctSigned(r.disposable_change / base)})`);
   // why, in plain words, for the two results readers asked about
   for (const r of done.filter(r => r.design === "daiwa")) {
     if (r.components.income_tax > 0) li(res, ja
@@ -173,12 +185,12 @@ function draw(newHousehold) {
     options: { animation: false, maintainAspectRatio: false, indexAxis: "y",
       plugins: { tooltip: { callbacks: { label: c => `${c.dataset.label}: ${signed(c.raw)}` } } },
       scales: { x: { stacked: true, title: { display: true, text: lang === "ja" ? "手取りへの影響（円／年）" : "Effect on take-home pay (yen per year)" } },
-                y: { stacked: true, ticks: { callback: (v, i) => shortName(t(done[i].label)) } } } } });
+                y: { stacked: true, ticks: { callback: (v, i) => approx(done[i]) + shortName(t(done[i].label)) } } } } });
 
   const tb = document.querySelector("#cmp tbody"); tb.innerHTML = "";
   for (const r of done) {
     const c = r.components, tr = tb.insertRow();
-    tr.insertCell().textContent = shortName(t(r.label));
+    tr.insertCell().textContent = approx(r) + shortName(t(r.label));
     [r.disposable_change, c.credit, c.income_tax, c.resident_tax, c.social_insurance, c.consumption_tax].forEach(v => tr.insertCell().textContent = signed(v));
   }
   const bl = document.getElementById("blocked"); bl.innerHTML = "";

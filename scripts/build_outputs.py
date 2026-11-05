@@ -69,6 +69,8 @@ for hid in HOUSEHOLDS:
         if d != "baseline" and r.run(d, hh)["status"] == "incomplete":
             walls["not_drawn"] = {**walls.get("not_drawn", {}), d: r.run(d, hh)["blocked_by"]}
             continue
+        if d != "baseline":  # listed on Home with the plan's numbers (project rule 3)
+            walls.setdefault("design_approximations", {})[d] = r.run(d, hh)["approximations"]
         designs[d] = [[p["income"], p["disposable"], p["emr"]] for p in w.grid(hh, d)]
     causes = w.wall_causes(hh, report.walls(designs["baseline"]))  # why each 2026 wall happens, shown in the wall list
     walls["households"][hid] = {"member": who[0], "income_field": who[1], "name_ja": hh["name_ja"],
@@ -85,7 +87,8 @@ for hid in HOUSEHOLDS:
 drawn = [d for d in DESIGNS if r.run(d, w.own("single", 30, 0))["status"] == "complete"]
 pt = b.params("social_insurance")["part_time_coverage"]
 own = {"step": w.STEP, "ages": w.OWN_AGES, "child_age": w.OWN_CHILD_AGE, "spouse_part": w.OWN_SPOUSE_PART, "designs": drawn, "grids": {},
-       "hours_min": pt["hours_min"]["value"], "employer_min": pt["employer_size_min"]["value"]}
+       "hours_min": pt["hours_min"]["value"], "employer_min": pt["employer_size_min"]["value"],
+       "employee_line": 12 * pt["monthly_wage_min"]["value"]}
 for shape, age, kids in w.own_combinations():
     hh = w.own(shape, age, kids)
     own["grids"][f"{shape}|{age}|{kids}"] = {d: [p["disposable"] for p in w.grid(hh, d)] for d in ["baseline"] + drawn}

@@ -101,8 +101,8 @@ working_student_deduction:
 
 rate_schedule:  # taxable income rounded down to 1,000 yen; [upper inclusive, rate, minus]
   bands: [[1950000, 0.05, 0], [3300000, 0.10, 97500], [6950000, 0.20, 427500], [9000000, 0.23, 636000], [18000000, 0.33, 1536000], [40000000, 0.40, 2796000]]
-  top: [0.45, 4796000]  # above 40m: タックスアンサー No.2260 (sources/tax/nta_2260_shotokuzei_ritsu.html)
-  cite: {source: nencho, page: 55}
+  top: [0.45, 4796000]  # above 40m
+  cite: {source: nencho, page: 55, section: "所得税の税額表; the 45% band above 40m from タックスアンサー No.2260 (sources/tax/nta_2260_shotokuzei_ritsu.html)"}
   taxable_income_rounding: {value: 1000, cite: {source: nencho, page: 55, section: "注1"}, note: "round down"}
 reconstruction_surtax_factor: {value: 1.021, cite: {source: nencho, page: 37}}
 final_rounding: {value: 100, cite: {source: nencho, page: 39}, note: "年調年税額 rounded down to 100 yen"}

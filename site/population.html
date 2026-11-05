@@ -45,7 +45,7 @@
   <th><span lang="ja">このサイトの試算</span><span lang="en">This site's estimate</span></th>
   <th><span lang="ja">案を出した側の試算</span><span lang="en">The plan authors' own estimate</span></th>
 </tr></thead><tbody></tbody></table></div>
-<p class="note"><span lang="ja">（近似）働き方は変わらないとした試算です（働く時間、給与、保険の入り方を、だれも変えないとしています）。大まかな試算なので、0.1兆円単位で示しています。架空の世帯の作り方の仮定を一つ変えただけで、国全体の金額が0.1兆円以上変わったこともあります（「検証」ページ）。</span><span lang="en">(Approximation) This assumes nobody changes their hours, pay or insurance status. It is a rough estimate, so it is shown to the nearest ¥0.1 trillion. Changing a single assumption in how the made-up households are built has moved the national totals by more than ¥0.1 trillion (see the Checks page).</span></p>
+<p class="note"><span lang="ja">（近似）働き方は変わらないとした試算です（働く時間、給与、保険の入り方を、だれも変えないとしています）。大まかな試算なので、0.1兆円単位で示しています。架空の世帯の作り方の仮定を一つ変えただけで、国全体の金額が0.1兆円以上変わったこともあります。また、公式の統計と比べると、この試算は年収100万〜300万円の人が多すぎ、1,000万円以上の人が少なすぎます。どちらも現金で払う額を多めに、増える所得税を少なめに見せる方向に働くため、大和総研案で差し引き増える国の収入は、示した額より大きい可能性が高いと考えられます（「検証」ページ）。</span><span lang="en">(Approximation) This assumes nobody changes their hours, pay or insurance status. It is a rough estimate, so it is shown to the nearest ¥0.1 trillion. Changing a single assumption in how the made-up households are built has moved the national totals by more than ¥0.1 trillion. Also, compared with official figures this estimate has too many people earning ¥1m–3m and too few earning ¥10m or more. Both make the cash paid out look larger and the extra income tax smaller, so the Daiwa plan's net gain to the government is more likely above the figure shown than below (see the Checks page).</span></p>
 <p class="note" id="costnote"></p>
 <details><summary><span lang="ja">（近似）この案の計算の前提</span><span lang="en">(Approximation) What we assumed for this plan</span></summary><div id="notes"></div></details>
 </div>
@@ -56,7 +56,7 @@
 <span lang="en">The example households on other pages are not group averages: within one group, the change can differ a lot with the number of earners and the tax rate. To see how close these estimates come to official figures (number of households, number of workers, tax estimated from the survey and more), see the <a href="validation.html">Checks page</a>. For example, the estimate has too many people earning ¥1m–3m and too few earning ¥10m or more, so the cash paid to low-income groups and the extra tax from high-income groups may be off.</span></p>
 
 <script>
-const C = { gain: "#009E73", lose: "#D55E00", same: "#8C8C8C", mean: "#0072B2" };
+const C = { gain: "#009E73", lose: "#D55E00", same: "#5F6368", mean: "#0072B2" };
 let pop, charts = [];
 const pct = x => (x * 100).toFixed(1) + "%";
 const tp = v => lang === "ja" ? `約${v}兆円` : `about ¥${v} trillion`;  // the authors' own rounded figure

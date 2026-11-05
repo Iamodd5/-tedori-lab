@@ -1,6 +1,6 @@
 # Sources index
 
-Most files were downloaded on **2026-10-29** with `curl`; files added later, from 2026-10-30 to 2026-11-03, have their download date in the table or in the parameter file that cites them. Paths are relative to `sources/`.
+Most files were downloaded on **2026-10-29** with `curl`; files added later have their download date in the table or in the parameter file that cites them. Paths are relative to `sources/`.
 Every file's SHA-256 fingerprint is in `sources/SHA256SUMS`. Check all of them with `cd sources && shasum -a 256 -c SHA256SUMS` (every line should end in `OK`).
 Plain-text copies of every PDF are in `sources/text/` (regenerate with `.venv/bin/python -I scripts/pdf_to_text.py sources`).
 
@@ -122,6 +122,7 @@ The 2026 part-time coverage rules (the 88,000-yen monthly wage test ended on 202
 | File | Title (publisher, date) | URL | Status and use |
 |---|---|---|---|
 | stats/zkk2024_shotoku_3-32-1.xlsx | 令和6年全国家計構造調査 所得 第3-32-1表 年間収入階級，世帯類型，所得構成別1世帯当たり年間収入額（総務省統計局, 2026-08-28） | https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040482919&fileKind=0 | downloaded 2026-11-01; population view households |
+| stats/zkk2024_hisyouhi2024.pdf | 令和6年全国家計構造調査 年間非消費支出の推計方法（総務省統計局） | https://www.stat.go.jp/data/zenkokukakei/2024/pdf/hisyouhi2024.pdf | downloaded 2026-11-06; how the survey estimates income tax and resident tax (takes off the 2024 flat tax cut, adds tax on interest and dividends): Checks §10 |
 | stats/zkk2024_kakei_1-21.xlsx | 令和6年全国家計構造調査 家計収支 第1-21表 年間収入階級・十分位階級別1世帯当たり1か月間の収入と支出（総務省統計局, 2025-12-19） | https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040379252&fileKind=0 | downloaded 2026-11-01; food spending |
 | stats/kakei2025_sosetai_3.xlsx | 家計調査 2025年 総世帯 第3表 年間収入五分位・十分位階級別（総務省統計局, 2026-02-06） | https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040409804&fileKind=0 | downloaded 2026-11-01; check only |
 | stats/kiso2025_setai_2.csv | 2025年国民生活基礎調査 世帯票 第2表 世帯数－構成割合，世帯構造・年次別（厚生労働省, 2026-07-15） | https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040472271&fileKind=1 | downloaded 2026-11-01; check only |
@@ -134,7 +135,7 @@ The tables were chosen by the project owner on 2026-11-01 (options in `docs/M7_D
 | Item | Location | Notes |
 |---|---|---|
 | OpenFisca-Japan repository | https://github.com/project-inclusive/OpenFisca-Japan | Inspected at commit `1f8d13dbe735b064373fe67377859454dd750b9c` (2026-08-26). Not vendored into this repo; see `docs/COVERAGE.md`. |
-| scrapbox_openfisca_mcp.json | https://scrapbox.io/api/pages/c4j/OpenFisca-Japan_MCP/text | Code for Japan design note on the OpenFisca-Japan MCP server. downloaded |
+| scrapbox_openfisca_mcp.json | https://scrapbox.io/api/pages/c4j/OpenFisca-Japan_MCP/text | Code for Japan design note on the OpenFisca-Japan MCP server. Not stored in git (third-party page); `make fetch-sources` downloads it (EXTERNAL.tsv) |
 
 ## 11. Added 2026-10-30
 
@@ -148,7 +149,6 @@ The tables were chosen by the project owner on 2026-11-01 (options in `docs/M7_D
 | tax/nta_1171_hitorioya.html | No.1171 ひとり親控除 | 2026 | https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171.htm | single-parent deduction |
 | tax/nta_1175_kinro_gakusei.html | No.1175 勤労学生控除 | 2026 | https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1175.htm | working-student deduction |
 | tax/nta_1411_shotoku_kingaku_chosei.html | No.1411 所得金額調整控除 | 2026 | https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1411.htm | income-adjustment deduction |
-| tax/nta_6303_shohizei_ritsu.html | No.6303 消費税および地方消費税の税率 | undated (law as of 2026-04-01) | https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6303.htm | the current 8% rate on food (food tax cut) |
 | tax/soumu_kojin_juminzei_kiso_kojo_r8.pdf | 個人住民税の基礎控除等について（総務省 資料３） | 2026-05-29 | https://www.soumu.go.jp/main_content/001075462.pdf | resident tax follows the new employment deduction; basic deduction stays 430,000 |
 | shinjuku/hoken01_001028.html | 新宿区 国民健康保険料の計算方法（令和8年度） | 2026 | https://www.city.shinjuku.lg.jp/hoken/hoken01_001028.html | NHI rates |
 | shinjuku/hoken01_002030.html | 新宿区 保険料の減免について | 2026 | https://www.city.shinjuku.lg.jp/hoken/hoken01_002030.html | NHI reductions |
@@ -168,6 +168,7 @@ Laws and cabinet orders (not copyrighted, 著作権法13条) and national docume
 
 | File | Title | Published | URL | Used for |
 |---|---|---|---|---|
+| tax/nta_6303_shohizei_ritsu.html | No.6303 消費税および地方消費税の税率 | undated (law as of 2026-04-01) | https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6303.htm | the current 8% rate on food (food tax cut) |
 | law/chihozeiho_20270101.xml | 地方税法, text in force from 2027-01-01 (令和8年法律第2号; applies to 令和9年度) | 2026-03-31 | https://laws.e-gov.go.jp/api/2/law_data/325AC0000000226_20270101_508AC0000000002?law_full_text_format=xml&response_format=xml | resident-tax deductions, limits, rates, 調整控除, rounding (20条の4の2), relief band (附則3条の3) |
 | law/chihozeiho.xml, law/chihozeiho_revisions.json | 地方税法 as in force on 2026-11-03, and its revision list | 2026-11-01 | https://laws.e-gov.go.jp/api/1/lawdata/325AC0000000226 | check of which text applies when |
 | law/chihozeiho_sekourei_20270101.xml | 地方税法施行令, text from 2027-01-01 | 2026 | https://laws.e-gov.go.jp/law/325CO0000000245 | single-parent child's income limit |

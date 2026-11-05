@@ -51,8 +51,8 @@ groups:
 assumptions:
   one_household_per_cell:
     approximation: true
-    ja: 調査は世帯一つひとつのデータではなく、「世帯の種類 × 年収50万円刻み」ごとの平均だけを公表しています。そこで、それぞれの組み合わせについて、その平均に合わせた架空の世帯を2〜3通り作っています。同じ組み合わせの中での世帯ごとの違いは反映されません。
-    en: The survey doesn't publish data on individual households, only averages for each type of household in each ¥500,000 income range. So for each type-and-income group we make up two or three households that match the group's averages. Differences between households in the same group are lost.
+    ja: 調査は世帯一つひとつのデータではなく、「世帯の種類 × 年収50万円刻み」ごとの平均だけを公表しています。そこで、それぞれの組み合わせについて、その平均に合わせた架空の世帯を1〜6通り（平均約4通り、全部で約1,200世帯）作っています。同じ組み合わせの中での世帯ごとの違いは反映されません。
+    en: The survey doesn't publish data on individual households, only averages for each type of household in each ¥500,000 income range. So for each type-and-income group we make up one to six households (about four on average, about 1,200 in all) that match the group's averages. Differences between households in the same group are lost.
   income_split:
     approximation: true
     ja: それぞれの組み合わせを「年金で暮らす世帯」と「働いて暮らす世帯」に分けています。たとえば、その組み合わせの収入の6割が年金なら、6割の世帯を「年金で暮らす世帯」とします。年金をもらいながら働く世帯（働く高齢者など）は表れません。

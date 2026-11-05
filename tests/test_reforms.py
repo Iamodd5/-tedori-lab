@@ -63,7 +63,13 @@ def test_unpublished_designs_are_incomplete():
 
 def test_incomplete_designs_say_why():
     reasons = {d: [b["en"] for b in r.run(d, h.load("H1"))["blocked_by"]] for d in ("government_final", "rengo", "food_tax_cut")}
-    # Rengo also needs food spending since 2026-11-03: its plan abolishes the reduced 8% rate (rengo.yaml reduced_rate;
-    # review item C29). Recorded in docs/VALIDATION.md section 11.
+    # Rengo also needs food spending since 2026-11-03: its plan abolishes the reduced 8% rate (rengo.yaml reduced_rate).
+    # Recorded in docs/VALIDATION.md section 11.
     assert reasons == {"government_final": [r.BLOCKERS["Q9"]["en"]], "rengo": [r.BLOCKERS["Q3"]["en"], r.BLOCKERS["Q8"]["en"]],
                        "food_tax_cut": [r.BLOCKERS["Q9"]["en"], r.BLOCKERS["Q8"]["en"]]}
+
+
+def test_daiwa_cash_limit_counts_the_65_plus_care_premium():
+    # tests/hand_calcs/daiwa_care_premium.md
+    hh = {"members": [{"id": "a", "role": "head", "age": 70, "salary": 1_000_000}]}
+    assert r.run("daiwa", hh)["components"]["credit"] == 39_921

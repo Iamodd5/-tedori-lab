@@ -1,6 +1,6 @@
 # OpenFisca-Japan coverage map
 
-Inspected: `project-inclusive/OpenFisca-Japan`, commit `1f8d13dbe735b064373fe67377859454dd750b9c` (2026-08-26), by reading the source (not yet installed or run).
+Inspected: `project-inclusive/OpenFisca-Japan`, commit `1f8d13dbe735b064373fe67377859454dd750b9c` (2026-08-26), first by reading the source; since installed and run for the cross-check in docs/VALIDATION.md §3.
 Variable and parameter names are in Japanese in the upstream code; they are quoted as-is.
 
 Legend: ✅ implemented and looks usable · ⚠️ implemented but needs checking or updating for 2026 · ❌ not implemented
@@ -9,7 +9,7 @@ Legend: ✅ implemented and looks usable · ⚠️ implemented but needs checkin
 
 | Rule | Upstream variable(s) | Status | Notes |
 |---|---|---|---|
-| Employment income deduction (給与所得控除) | `給与所得控除額` (variables/所得.py) | ⚠️ | Exists. Need to confirm it uses the 2025 reform (minimum 650,000 yen) for tax year 2026. Amounts are hard-coded in the formula, not in `parameters/`. |
+| Employment income deduction (給与所得控除) | `給与所得控除額` (variables/所得.py) | ⚠️ | Exists. It uses the rule from before 2025 (minimum 550,000); 2025 raised it to 650,000 and 2026 to 740,000. Amounts are hard-coded in the formula, not in `parameters/`. |
 | Basic deduction, income tax (基礎控除) | `基礎控除` | ⚠️ | Has `formula_2025_01_01` and `formula_2027_01_01` tiers (e.g. 950,000 yen up to 1.32 million of total income from 2027). The 2026 values must be checked against NTA No.1199. Hard-coded, not parameters. |
 | Spouse / spouse special / dependent deductions | `配偶者控除`, `配偶者特別控除`, `扶養控除` | ⚠️ | Exist. Check 2025 changes (e.g. dependent income limit raised) and the new 特定親族特別控除 (No.1177), which does not appear to be implemented. Tedori Lab also implements dependants aged 70+ (老人扶養親族 480,000; 同居老親等 580,000; resident tax 380,000 / 450,000). |
 | Income tax rate schedule + reconstruction surtax | `基準所得税額`, `復興特別所得税`, `所得税` | ✅/⚠️ | Exists; check brackets against NTA No.2260. |
@@ -22,7 +22,7 @@ Legend: ✅ implemented and looks usable · ⚠️ implemented but needs checkin
 | Employment insurance | `雇用保険料`, `雇用保険料率` | ✅ | Has a 2026-04-01 worker rate of 0.5%. Verify against MHLW page. |
 | Coverage thresholds (106万 / 週20時間 / 130万 dependent) | `社会保険料納付条件`, `週労働時間20時間以上`, `扶養者収入基準_*` | ⚠️ | Uses monthly wage ≥ 88,000 yen and 20 hours. Need to check 2026 law changes (wage requirement abolition timing, firm-size rule). |
 | National health insurance (self-employed) | – | ❌ | Upstream explicitly skips it ("varies by municipality"). Tedori Lab must implement it for one reference municipality (H7). |
-| National pension contribution | `国民年金保険料` | ⚠️ | Parameter is **17,510 yen/month dated 2015** – stale. Must update to the FY2026 amount. Upstream fix candidate. Also: the input `国民年金保険に加入している` defaults to True for everyone, employees included, and `社会保険料控除` then deducts a premium employees don't pay; the cross-check sets it to False for employees (Q27). Upstream fix candidate: derive it from 厚生年金 coverage. |
+| National pension contribution | `国民年金保険料` | ⚠️ | Parameter is **17,510 yen/month dated 2015-01-01**: 17,510 is the FY2025 (令和7年度) amount, and FY2015's was 15,590 (日本年金機構, 国民年金保険料の変遷). Must be dated correctly and updated to FY2026. Upstream fix candidate. Also: the input `国民年金保険に加入している` defaults to True for everyone, employees included, and `社会保険料控除` then deducts a premium employees don't pay; the cross-check sets it to False for employees (Q27). Upstream fix candidate: derive it from 厚生年金 coverage. |
 | Child allowance (児童手当) | `児童手当` (+ parameters/福祉/育児/児童手当) | ⚠️ | Covers children up to high school. Must confirm the Oct 2024 reform (no income limit, 30,000 yen from 3rd child). |
 | Single-parent allowance (児童扶養手当) | `児童扶養手当` (variables/福祉/育児/児童扶養手当.py) | ⚠️ | Exists, with open TODOs for the partial-payment formula (施行令2条の4) and the public-pension offset (施行令6条の5). Tedori Lab implements both (`engine/baseline.py` `child_rearing_allowance`, tested from `tests/hand_calcs/H5.md`): a ready upstream contribution. |
 | Long-term care premium, 65+ (介護保険 第1号) | – | ❌ | Set by each municipality. Tedori Lab implements Shinjuku's fiscal 2026 table (`parameters/baseline_2026/ltc_65.yaml`). |
@@ -58,11 +58,11 @@ OpenFisca-Japan installs only on Python 3.11 (its numpy pin), and does so now (`
 
 ## First upstream-ready contribution (identified in Milestone 3, 2026-10-31)
 
-**Update `国民年金保険料` to FY2026.** Upstream file `openfisca_japan/parameters/社会保険料/国民年金保険料.yaml` has one value, 17,510 yen from 2015-01-01. The FY2026 amount is 17,920 yen a month (Japan Pension Service, `sources/social/nenkin_kokumin_hokenryo.html`; our `parameters/baseline_2026/social_insurance.yaml` line 59). Proposed change, adding one dated value and keeping the old one:
+**Update `国民年金保険料` and date it correctly.** Upstream file `openfisca_japan/parameters/社会保険料/国民年金保険料.yaml` has one value, 17,510 yen from 2015-01-01. 17,510 is the FY2025 (令和7年度) amount; FY2015's was 15,590 (日本年金機構, 国民年金保険料の変遷). The FY2026 amount is 17,920 yen a month (Japan Pension Service, `sources/social/nenkin_kokumin_hokenryo.html`; our `parameters/baseline_2026/social_insurance.yaml`, `national_pension_monthly`). Proposed change, giving each value its own fiscal year (the upstream test that expects 17,510 × 12 at 2023-06-01 would need 16,520 × 12):
 
 ```yaml
 values:
-  2015-01-01:
+  2025-04-01:          # 令和7年度
     value: 17510
   2026-04-01:          # 令和8年度 (April 2026 – March 2027)
     value: 17920

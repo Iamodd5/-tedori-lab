@@ -87,9 +87,9 @@ def _daiwa(hh):
         if m.get("salary", 0) + m.get("business_income", 0) <= 0:
             labour_si = 0
         elif o["scheme"] == "employee":
-            labour_si = o["health"] + o["pension"] + o["nhi"]
+            labour_si = o["health"] + o["pension"] + o["nhi"] + o["ltc_65"]
         else:
-            labour_si = o["national_pension"] + o["nhi"]
+            labour_si = o["national_pension"] + o["nhi"] + o["ltc_65"]  # 65+ care premium: 介護（第1号）, daiwa.yaml
         refund += min(o["unused_credit"], labour_si)
     tax = lambda res, k: sum(o[k] for o in res["members"].values())
     return {"income_tax": tax(ref, "income_tax") - tax(base, "income_tax"),

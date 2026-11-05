@@ -21,7 +21,7 @@ Copy the Japanese or the English part into an email or message. Replies come bac
 
 **返信のしかた：** このメッセージへの返信で、ページの名前と、気になった文や数字をそのまま書いてください。間違いかどうか自信がなくても大丈夫です。
 
-いただいた指摘で数字や説明を直したときは、サイトの「訂正の記録」ページに日付と理由を載せます。お名前は、ご希望がない限り載せません。
+いただいた指摘で数字や説明を直したときは、サイトの「検証」ページに、何をなぜ直したかを載せます。お名前は、ご希望がない限り載せません。
 
 ---
 
@@ -42,4 +42,4 @@ Before the official release, we'd like people outside the project to check it. O
 
 **How to reply:** reply to this message with the page name and the sentence or number you're unsure about, copied as it is. It's fine if you're not sure it's a mistake.
 
-If your comments lead us to fix a number or an explanation, the fix is listed with its date and reason on the site's Corrections page. We won't name you unless you ask us to.
+If your comments lead us to fix a number or an explanation, the fix and its reason are listed on the site's Checks page. We won't name you unless you ask us to.

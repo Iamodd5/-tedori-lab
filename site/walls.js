@@ -57,7 +57,7 @@ function wallCharts(ids) {
     bar.append(b); return b;
   });
   const viewing = document.createElement("span"); viewing.className = "viewing"; viewing.setAttribute("aria-live", "polite"); bar.append(viewing);
-  // zoom buttons for one-pointer and keyboard use (A17): − widens, ＋ narrows around the middle of the view
+  // zoom buttons for one-pointer and keyboard use: − widens, ＋ narrows around the middle of the view
   const zoom = f => { const span = view.max - view.min, mid = (view.min + view.max) / 2; setView(mid - span * f / 2, mid + span * f / 2); };
   const zoomOut = document.createElement("button"), zoomIn = document.createElement("button");
   zoomOut.type = zoomIn.type = "button"; zoomOut.textContent = "−"; zoomIn.textContent = "＋";
@@ -282,11 +282,12 @@ function wallReason(c) {
     if (!up.length) return "";
     // Japanese: every item but the last ends in 増え/減り, the last in 増える/減る
     const say = (k, last) => starts && k === "resident_tax" ? (ja ? `住民税がかかり始め${last ? "る" : ""}（${m(ch[k])}）` : `resident tax starts (${m(ch[k])})`)
-      : starts && k === "ltc_65" ? (ja ? `そのため65歳以上の介護保険料の段階が上がって${m(ch[k])}${last ? "増える" : "増え"}` : `so the long-term care premium for people aged 65 or over moves to a higher band, up ${m(ch[k])}`)
+      : starts && k === "ltc_65" ? (ja ? `そのため65歳以上の人の介護保険料の段階が上がり、合わせて${m(ch[k])}${last ? "増える" : "増え"}` : `so the long-term care premiums of people aged 65 or over move to higher bands, up ${m(ch[k])} in all`)
       : k in BENEFITS ? (ja ? `${BENEFITS[k].ja}が${m(fall(k))}${last ? "減る" : "減り"}` : `${BENEFITS[k].en} falls by ${m(fall(k))}`)
       : k === "employee_insurance" && before === "employee" ? (ja ? `会社の保険料が、収入の段階が上がって${m(ch[k])}${last ? "増える" : "増え"}` : `company insurance premiums step up by ${m(ch[k])}`)
       : (ja ? `${t(NAMES[k])}が${m(ch[k])}${last ? "増える" : "増え"}` : `${t(NAMES[k])} goes up by ${m(ch[k])}`);
-    why = up.map((k, i) => say(k, i === up.length - 1)).join(ja ? "、" : ", ") + (ja ? "ため" : "");
+    const parts = up.map((k, i) => say(k, i === up.length - 1));
+    why = ja ? parts.join("、") + "ため" : parts.length > 1 ? parts.slice(0, -1).join(", ") + " and " + parts.at(-1) : parts[0];
   }
   const taxCut = -Math.min(0, ch.income_tax) - Math.min(0, ch.resident_tax);
   return ja ? `${why}です。` + (taxCut >= 1000 ? `税は合わせて${m(taxCut)}減ります。` : "")
@@ -308,10 +309,28 @@ function listWalls(ul, pts, who, top = 3, causes = []) {
   }
   if (!walls.length) li(ul, lang === "ja" ? "1万円多く稼いで手取りが1万円以上減るところはありません。" : "There is no point where earning ¥10,000 more cuts take-home pay by ¥10,000 or more.");
   if (more) li(ul, lang === "ja" ? `ほかに、手取りが1万円以上減るところが${more}か所あります。グラフで確かめられます。`
-                                 : `There ${more === 1 ? "is 1 more place" : `are ${more} more places`} where take-home pay falls by ¥10,000 or more. You can see them in the charts.`);
+                                 : `There ${more === 1 ? "is 1 more place" : `are ${more} more places`} where take-home pay falls by ¥10,000 or more. You can see ${more === 1 ? "it" : "them"} in the charts.`);
   if (small) li(ul, lang === "ja" ? `ほかに、手取りが1万円未満だけ減るところが${small}か所あります（税の控除や保険料が、収入の段階ごとに変わるため）。`
-                                  : `There are also ${small} places where take-home pay falls by less than ¥10,000 (deductions and premiums change in steps as income rises).`);
+                                  : `There ${small === 1 ? "is also 1 place" : `are also ${small} places`} where take-home pay falls by less than ¥10,000 (deductions and premiums change in steps as income rises).`);
   return shown;
 }
 
-if (typeof module !== "undefined") module.exports = { keepSeries, bigWalls, wallReason };
+// An amount typed into a box ("1300000", "1,300,000", "130万", full-width digits): null when empty, NaN when not a number.
+function readYen(text) {
+  let s = text.normalize("NFKC").replace(/[,\s円¥]/g, ""), mul = 1;
+  if (s.endsWith("万")) { mul = 10_000; s = s.slice(0, -1); }
+  if (s === "") return null;
+  const n = Number(s) * mul;
+  return Number.isFinite(n) && n >= 0 ? n + 0 : NaN;  // + 0 turns -0 into 0
+}
+
+// Where an amount sits on a precomputed grid (0 to 10m): the grid points either side, whether take-home jumps between
+// them in any series (falls, or rises by more than the step: a line the grid can't place), and otherwise the nearest
+// point. value(key, x) reads a series.
+function gridPoint(raw, step, value, keys) {
+  const top = 10_000_000, lo = Math.min(top, Math.floor(raw / step) * step), hi = raw >= top || lo === raw ? lo : lo + step;
+  const wall = hi !== lo && keys.some(k => { const d = value(k, hi) - value(k, lo); return d < 0 || d > step; });
+  return { lo, hi, wall, v: hi === lo ? lo : (raw - lo < hi - raw ? lo : hi) };
+}
+
+if (typeof module !== "undefined") module.exports = { keepSeries, bigWalls, wallReason, readYen, gridPoint };

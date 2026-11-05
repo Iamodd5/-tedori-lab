@@ -106,7 +106,10 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0, ltc_65=Tru
     out = {m["id"]: {"age": m["age"], "role": m["role"], "gross": _gross(m)} for m in members}
 
     # 1. incomes
-    child_under_23 = any(m["role"] == "child" and m["age"] < it["adjustment_deduction"]["dependant_age_under"]["value"] for m in members)
+    # the first income adjustment needs a 扶養親族 under 23: a relative with total income within the dependant limit
+    own_income = lambda m: b.employment_income(m.get("salary", 0)) + m.get("business_income", 0) + b.pension_income(m.get("public_pension", 0), m["age"])
+    child_under_23 = any(m["role"] in ("child", "dependant") and m["age"] < it["adjustment_deduction"]["dependant_age_under"]["value"]
+                         and own_income(m) <= it["dependent_deduction"]["income_limit"]["value"] for m in members)
     for m in members:
         o = out[m["id"]]
         emp = b.employment_income(m.get("salary", 0))
@@ -115,7 +118,7 @@ def compute(hh, basic_deduction_it=b.basic_deduction_it, it_credit=0, ltc_65=Tru
         cap = it["adjustment_deduction"]["salary_and_pension_cap"]["value"]  # second kind: salary and pension income together
         o["adjustment_salary_pension"] = 0
         if emp - o["adjustment_deduction"] > 0 and o["pension_income"] > 0:
-            o["adjustment_salary_pension"] = max(0, min(emp - o["adjustment_deduction"], cap) + min(o["pension_income"], cap) - cap)
+            o["adjustment_salary_pension"] = max(0, min(emp, cap) + min(o["pension_income"], cap) - cap)  # cap on salary income before the first kind
             o["adjustment_deduction"] += o["adjustment_salary_pension"]
         o["total_income"] = emp - o["adjustment_deduction"] + m.get("business_income", 0) + o["pension_income"]
 
@@ -228,6 +231,8 @@ def _child_rearing_allowance(members, out):
     it = b.params("income_tax")["dependent_deduction"]
     deps = [m for m in members if m["role"] in ("child", "dependant") and (m in kids or out[m["id"]]["total_income"] <= it["income_limit"]["value"])]
     # 特定扶養親族等 (施行令2条の4第1項第2号ハ): dependants for tax aged 16 to 22, i.e. 控除対象 from 16 and under 23
-    specific = sum(it["general_age_from"]["value"] <= m["age"] < it["specific_age_under"]["value"] for m in deps
-                   if out[m["id"]]["total_income"] <= it["income_limit"]["value"])
-    return b.child_rearing_allowance(income, len(kids), ordinary=len(deps) - specific, specific=specific, pension=head.get("public_pension", 0))
+    taxed_dep = [m for m in deps if out[m["id"]]["total_income"] <= it["income_limit"]["value"]]
+    specific = sum(it["general_age_from"]["value"] <= m["age"] < it["specific_age_under"]["value"] for m in taxed_dep)
+    elderly = sum(m["age"] >= it["elderly_age_from"]["value"] for m in taxed_dep)  # 老人扶養親族 (第2号ロ)
+    return b.child_rearing_allowance(income, len(kids), ordinary=len(deps) - specific - elderly, specific=specific, elderly=elderly,
+                                     pension=head.get("public_pension", 0))
