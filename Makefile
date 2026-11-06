@@ -3,12 +3,10 @@ PY = .venv/bin/python
 
 all: fetch-sources check-sources text tables test outputs
 
-# Documents whose publishers do not allow redistribution are not committed; download them from the publisher.
-# sources/EXTERNAL.tsv: path under sources/ <TAB> URL. check-sources then verifies their fingerprints.
+# Documents whose publishers do not allow redistribution are not committed; download them (sources/EXTERNAL.tsv).
+# The publisher's file is tried first, then the Internet Archive copy if the publisher's no longer matches SHA256SUMS.
 fetch-sources:
-	@grep -v '^#' sources/EXTERNAL.tsv | while IFS="$$(printf '\t')" read -r path url; do \
-	  [ -f "sources/$$path" ] || { mkdir -p "$$(dirname "sources/$$path")" && curl -sfL --retry 3 -A "Mozilla/5.0" "$$url" -o "sources/$$path" && echo "downloaded $$path" || { echo "could not download $$url (sources/$$path)"; exit 1; }; }; \
-	done
+	$(PY) -I scripts/fetch_sources.py
 
 check-sources:
 	cd sources && shasum -a 256 -c --quiet SHA256SUMS

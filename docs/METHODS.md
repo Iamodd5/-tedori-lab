@@ -99,7 +99,7 @@ Every plan uses the same households, data and method. Results are stated as find
 
 ## The website and how to reproduce it
 
-- Every number can be rebuilt by getting the repository and running `make all`. Rates and amounts are in `parameters/` (each with its source), the example households in `households/`, and the hand calculations in `tests/hand_calcs/`.
+- Every number can be rebuilt by getting the repository and running `make all`. Pages from other publishers are downloaded during the build; if a publisher has replaced a page, the copy saved at the Internet Archive is used, checked against the same fingerprint. Rates and amounts are in `parameters/` (each with its source), the example households in `households/`, and the hand calculations in `tests/hand_calcs/`.
 - The result pages read their numbers from the calculation output files (`outputs/`) when they open. On the Checks page, the numbers in the tables comparing with another calculator, the income-wall table and the calibration tables are checked against those outputs by tests; numbers in the text around them are kept up to date by hand.
 - On a first visit the site is in Japanese if the browser's language is Japanese, and in English otherwise; a button switches language.
 - Chart colours follow a colour-blind-safe palette (Okabe-Ito) and carry no meaning. Charts have text labels, and the Compare page repeats every charted number in a table.

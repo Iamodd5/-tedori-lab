@@ -164,7 +164,7 @@ Fingerprints for every file are in `sources/SHA256SUMS` (69 files).
 
 ## 12. Added later: laws, cabinet orders and local guides
 
-Laws and cabinet orders (not copyrighted, 著作権法13条) and national documents are stored in git; city, ward and 協会けんぽ pages are fetched by `make` (EXTERNAL.tsv).
+Laws and cabinet orders (not copyrighted, 著作権法13条) and national documents are stored in git; city, ward and 協会けんぽ pages are fetched by `make` (EXTERNAL.tsv). Where a publisher replaces a page, `make` uses the copy saved at the Internet Archive (the third column of EXTERNAL.tsv), checked against the same fingerprint.
 
 | File | Title | Published | URL | Used for |
 |---|---|---|---|---|
