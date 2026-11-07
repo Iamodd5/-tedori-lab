@@ -5,16 +5,19 @@ alone (`make check-sources` checks it). The publisher's file is tried first; if 
 matches its fingerprint (publishers replace pages when their year rolls over), the archived copy is used instead."""
 import hashlib
 import pathlib
+import subprocess
 import sys
-import urllib.request
 
 UA = "Mozilla/5.0"
 
 
 def download(url):
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=120) as r:
-        return r.read()
+    # curl, as the build used before: it trusts the system's certificates; Python's own store lacks the root that
+    # Adachi ward's site uses.
+    r = subprocess.run(["curl", "-sSfL", "--max-time", "120", "-A", UA, url], capture_output=True)
+    if r.returncode:
+        raise OSError(r.stderr.decode(errors="replace").strip() or f"curl exit code {r.returncode}")
+    return r.stdout
 
 
 def fetch(root):
