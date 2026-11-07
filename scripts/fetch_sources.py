@@ -35,7 +35,8 @@ def fetch(root):
             except Exception as e:  # unreachable or refused: try the next copy
                 tried.append(f"{url}: {e}")
                 continue
-            if hashlib.sha256(body).hexdigest() == sums[path]:
+            # No fingerprint: the page embeds a per-request token (SHA256SUMS.volatile), so the publisher's file is used.
+            if path not in sums or hashlib.sha256(body).hexdigest() == sums[path]:
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(body)
                 print(f"downloaded {path}" + ("" if url == urls[0] else " (Internet Archive copy; the publisher's file has changed)"))

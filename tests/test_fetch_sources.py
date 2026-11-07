@@ -30,6 +30,14 @@ def test_archive_copy_used_when_the_publisher_changed_the_page(tmp_path):
     assert (tmp_path / "sources" / "ward" / "page.html").read_bytes() == good
 
 
+def test_page_without_a_fingerprint_is_taken_from_the_publisher(tmp_path):
+    # Pages that embed a per-request token are not in SHA256SUMS (see SHA256SUMS.volatile).
+    setup(tmp_path, b"page with this request's token", b"archived copy")
+    (tmp_path / "sources" / "SHA256SUMS").write_text("")
+    fs.fetch(tmp_path)
+    assert (tmp_path / "sources" / "ward" / "page.html").read_bytes() == b"page with this request's token"
+
+
 def test_build_stops_when_no_copy_matches(tmp_path):
     setup(tmp_path, b"next year's page", b"also different")
     with pytest.raises(SystemExit):
