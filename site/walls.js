@@ -315,22 +315,4 @@ function listWalls(ul, pts, who, top = 3, causes = []) {
   return shown;
 }
 
-// An amount typed into a box ("1300000", "1,300,000", "130万", full-width digits): null when empty, NaN when not a number.
-function readYen(text) {
-  let s = text.normalize("NFKC").replace(/[,\s円¥]/g, ""), mul = 1;
-  if (s.endsWith("万")) { mul = 10_000; s = s.slice(0, -1); }
-  if (s === "") return null;
-  const n = Number(s) * mul;
-  return Number.isFinite(n) && n >= 0 ? n + 0 : NaN;  // + 0 turns -0 into 0
-}
-
-// Where an amount sits on a precomputed grid (0 to 10m): the grid points either side, whether take-home jumps between
-// them in any series (falls, or rises by more than the step: a line the grid can't place), and otherwise the nearest
-// point. value(key, x) reads a series.
-function gridPoint(raw, step, value, keys) {
-  const top = 10_000_000, lo = Math.min(top, Math.floor(raw / step) * step), hi = raw >= top || lo === raw ? lo : lo + step;
-  const wall = hi !== lo && keys.some(k => { const d = value(k, hi) - value(k, lo); return d < 0 || d > step; });
-  return { lo, hi, wall, v: hi === lo ? lo : (raw - lo < hi - raw ? lo : hi) };
-}
-
-if (typeof module !== "undefined") module.exports = { keepSeries, bigWalls, wallReason, readYen, gridPoint };
+if (typeof module !== "undefined") module.exports = { keepSeries, bigWalls, wallReason };

@@ -254,3 +254,7 @@ These checks were added before any of the fixes they lead to, so each fix below 
 | `scripts/check_changes_logged.py` | a change to outputs/, report/ or press/ with no record of why in this file or `docs/CORRECTIONS.yaml` |
 
 `test_household_matches_hand_calculation` in `tests/test_baseline.py` now requires each household to match its hand calculation to the yen. It used to allow a tolerance wide enough for a small change to a deduction to pass unnoticed. All eight households already matched exactly (section 1), so no number changed.
+
+### Fix 1: calculators show both grid points
+
+Both Compare calculators read a precomputed grid in ¥10,000 steps. Before, an amount between two grid points was shown at the nearer point ("rounded to ¥10,000") unless a wall was found between them. Now any amount between two grid points shows the result at both points and says the exact amount isn't calculated; when take-home pay falls, or rises by more than the step, between them, the page also says it depends on which side of that line the amount falls. Above the top of the grid the result is still shown at ¥10m and says so. `site/grid.js` holds the input reading (`readYen`), the choice of grid points (`gridPoints`) and the jump test (`jumpBetween`); the earlier `gridPoint` and `readYen` in `site/walls.js` are removed. `test_typed_amounts_and_walls_between_grid_points` in `tests/test_site.py` now calls the same checks through `site/grid.js` with the same households and amounts; `tests/test_calculator_grid.py` passes. No published number changed.

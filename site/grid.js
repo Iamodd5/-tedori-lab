@@ -19,4 +19,9 @@ function gridPoints(text, step, top) {
   const lo = Math.floor(raw / step) * step, hi = Math.min(top, Math.ceil(raw / step) * step);
   return { lo, hi, exact: lo === hi, capped: false };
 }
-if (typeof module !== "undefined") module.exports = { readYen, gridPoints };
+// Whether take-home jumps between two grid points in any series (falls, or rises by more than the step): a line,
+// such as an income wall, that the grid can't place. value(key, x) reads a series.
+function jumpBetween(lo, hi, step, value, keys) {
+  return hi !== lo && keys.some(k => { const d = value(k, hi) - value(k, lo); return d < 0 || d > step; });
+}
+if (typeof module !== "undefined") module.exports = { readYen, gridPoints, jumpBetween };

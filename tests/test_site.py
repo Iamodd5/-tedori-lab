@@ -1,4 +1,4 @@
-"""Chart helpers in site/walls.js (wall list, and how much of an extra ¥100,000 you keep), run in Node.
+"""Chart helpers in site/walls.js (wall list, and how much of an extra ¥100,000 you keep) and the calculator grid in site/grid.js, run in Node.
 Expected values: tests/hand_calcs/wall_H4.md (the 1.3m wall) and the arithmetic in the comments."""
 import json
 import pathlib
@@ -56,13 +56,14 @@ def test_wall_reason_names_what_starts_or_stops():
 
 def test_typed_amounts_and_walls_between_grid_points():
     # compare.html calculators: H4's spouse pay ¥1,295,000 lies between grid points 1.29m and 1.3m with the 1.3m wall
-    # between them (tests/hand_calcs/wall_H4.md), so both points must be shown, not the nearest one
-    assert js('["1300000", "1,300,000", "130万", "１３０万円", "", "abc"].map(w.readYen)', None) == [1_300_000] * 4 + [None, None]
+    # between them (tests/hand_calcs/wall_H4.md), so both points must be shown, not the nearest one (site/grid.js)
+    g = lambda body: f"((g, v) => {body})(require('./site/grid.js'), (k, x) => d.find(p => p[0] === x)[1])"
+    assert js(g('["1300000", "1,300,000", "130万", "１３０万円", "", "abc"].map(g.readYen).map(x => Number.isNaN(x) ? "NaN" : x)'), None) == [1_300_000] * 4 + [None, "NaN"]
     pts = json.loads((ROOT / "outputs" / "wall_map.json").read_text())["households"]["H4"]["designs"]["baseline"]
-    pick = lambda raw: js(f"w.gridPoint({raw}, 10000, (k, x) => d.find(p => p[0] === x)[1], ['b'])", pts)
-    assert pick(1_295_000) == {"lo": 1_290_000, "hi": 1_300_000, "wall": True, "v": 1_300_000}
-    assert pick(1_254_000) == {"lo": 1_250_000, "hi": 1_260_000, "wall": False, "v": 1_250_000}
-    assert pick(12_000_000) == {"lo": 10_000_000, "hi": 10_000_000, "wall": False, "v": 10_000_000}
+    pick = lambda raw: js(g(f"{{ const p = g.gridPoints('{raw}', 10000, 1e7); return {{...p, jump: g.jumpBetween(p.lo, p.hi, 10000, v, ['b'])}}; }}"), pts)
+    assert pick(1_295_000) == {"lo": 1_290_000, "hi": 1_300_000, "exact": False, "capped": False, "jump": True}
+    assert pick(1_254_000) == {"lo": 1_250_000, "hi": 1_260_000, "exact": False, "capped": False, "jump": False}
+    assert pick(12_000_000) == {"lo": 10_000_000, "hi": 10_000_000, "exact": False, "capped": True, "jump": False}
     # a jump up counts too: H1 joins company insurance between 1.05m and 1.06m (+95,257, tests/hand_calcs/wall_H1.md)
     h1 = json.loads((ROOT / "outputs" / "wall_map.json").read_text())["households"]["H1"]["designs"]["baseline"]
-    assert js("w.gridPoint(1055000, 10000, (k, x) => d.find(p => p[0] === x)[1], ['b']).wall", h1) is True
+    assert js(g("g.jumpBetween(1050000, 1060000, 10000, v, ['b'])"), h1) is True

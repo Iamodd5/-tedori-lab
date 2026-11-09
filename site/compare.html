@@ -8,6 +8,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="common.js"></script>
 <script src="walls.js"></script>
+<script src="grid.js"></script>
 </head>
 <body>
 <h1><span lang="ja">案の比較</span><span lang="en">Compare the plans</span></h1>
@@ -67,26 +68,31 @@ let rows, walls, chart, own;
 const OWN = { single: { ja: "一人で暮らす", en: "Living alone" }, couple: { ja: "夫婦で、働くのは一人", en: "A couple, one partner works" },
   couple_part: { ja: "夫婦で、配偶者はパート", en: "A couple, the spouse works part-time" },
   single_parent: { ja: "ひとり親", en: "A single parent" } };
-// results on the 10,000-yen grid (0 to 10m); between two grid points with a wall in between, both points are shown
+// results on the 10,000-yen grid (0 to 10m). An amount between two grid points shows both points, never the nearer one
+// (site/grid.js); a wall, or a jump up, between them is pointed out.
 function gridLines(ul, box, step, who, household, value, plans) {
-  const ja = lang === "ja", raw = readYen(box.value);
-  if (raw === null) return;
-  if (Number.isNaN(raw)) return li(ul, ja ? "金額を数字で入れてください（例：1300000 または 130万）。" : "Enter an amount in figures (for example 1300000).");
-  const { lo, hi, wall, v } = gridPoint(raw, step, value, ["baseline", ...plans]);
+  const ja = lang === "ja", top = 10_000_000;
+  if (readYen(box.value) === null) return;
+  const p = gridPoints(box.value, step, top);
+  if (!p) return li(ul, ja ? "金額を数字で入れてください（例：1300000 または 130万）。" : "Enter an amount in figures (for example 1300000).");
   const take = ja ? (household ? "世帯の手取り" : "手取り") : (household ? "the household's take-home pay" : "take-home pay");
-  if (wall) {
-    li(ul, ja ? `${who.ja}が年${yen(raw)}円のときの${take}は、1万円きざみの計算の間にあります。年${yen(lo)}円なら${yen(value("baseline", lo))}円、年${yen(hi)}円なら${yen(value("baseline", hi))}円です（2026年の制度）。この間で手取りが大きく変わる境目（年収の壁など）があり、入力した額が境目の手前か先かで大きく違います。`
-              : `With ${who.en} at ¥${yen(raw)} a year, ${take} falls between two points of the ¥10,000 grid: ¥${yen(value("baseline", lo))} at ¥${yen(lo)} and ¥${yen(value("baseline", hi))} at ¥${yen(hi)} (2026 rules). Take-home pay changes sharply between them (at an income wall or a similar line), so it depends on which side of that line the amount falls.`);
-    for (const d of plans) li(ul, ja ? `（近似）${t(walls.labels[d])}：年${yen(lo)}円なら年${signed(value(d, lo) - value("baseline", lo))}円、年${yen(hi)}円なら年${signed(value(d, hi) - value("baseline", hi))}円`
-                                     : `(Approximation) ${t(walls.labels[d])}: ${signed(value(d, lo) - value("baseline", lo))} yen a year at ¥${yen(lo)}, ${signed(value(d, hi) - value("baseline", hi))} at ¥${yen(hi)}`);
+  const change = (d, x) => value(d, x) - value("baseline", x);
+  if (!p.exact && !p.capped) {
+    const { lo, hi } = p, raw = readYen(box.value);
+    const jump = jumpBetween(lo, hi, step, value, ["baseline", ...plans]);
+    li(ul, (ja ? `${who.ja}が年${yen(raw)}円のときの${take}は、1万円きざみでしか計算していないため、正確な額は出していません。年${yen(lo)}円なら${yen(value("baseline", lo))}円、年${yen(hi)}円なら${yen(value("baseline", hi))}円です（2026年の制度）。`
+               : `With ${who.en} at ¥${yen(raw)} a year, ${take} isn't worked out exactly: it is calculated only every ¥10,000. At ¥${yen(lo)} it is ¥${yen(value("baseline", lo))}, and at ¥${yen(hi)} it is ¥${yen(value("baseline", hi))} (2026 rules).`)
+       + (!jump ? "" : ja ? "この間で手取りが大きく変わる境目（年収の壁など）があり、入力した額が境目の手前か先かで大きく違います。"
+                          : " Take-home pay changes sharply between them (at an income wall or a similar line), so it depends on which side of that line the amount falls."));
+    for (const d of plans) li(ul, ja ? `（近似）${t(walls.labels[d])}：年${yen(lo)}円なら年${signed(change(d, lo))}円、年${yen(hi)}円なら年${signed(change(d, hi))}円（2026年の制度と比べた変化）`
+                                     : `(Approximation) ${t(walls.labels[d])}: ${signed(change(d, lo))} yen a year at ¥${yen(lo)}, ${signed(change(d, hi))} at ¥${yen(hi)} (change from 2026 rules)`);
     return;
   }
-  const note = raw > 10_000_000 ? (ja ? "（1,000万円までしか計算していないため、1,000万円で示しています）" : " (worked out only up to ¥10m, so shown at ¥10m)")
-             : v !== raw ? (ja ? "（1万円単位に丸めています）" : " (rounded to ¥10,000)") : "";
+  const v = p.lo, note = p.capped ? (ja ? "（1,000万円までしか計算していないため、1,000万円で示しています）" : " (worked out only up to ¥10m, so shown at ¥10m)") : "";
   li(ul, ja ? `${who.ja}が年${yen(v)}円のとき${note}、2026年の制度での${take}は年${yen(value("baseline", v))}円です。`
             : `With ${who.en} at ¥${yen(v)} a year${note}, ${take} under 2026 rules is ¥${yen(value("baseline", v))} a year.`);
-  for (const d of plans) li(ul, ja ? `（近似）${t(walls.labels[d])}：年${signed(value(d, v) - value("baseline", v))}円（2026年の制度と比べた変化）`
-                                   : `(Approximation) ${t(walls.labels[d])}: ${signed(value(d, v) - value("baseline", v))} yen a year (change from 2026 rules)`);
+  for (const d of plans) li(ul, ja ? `（近似）${t(walls.labels[d])}：年${signed(change(d, v))}円（2026年の制度と比べた変化）`
+                                   : `(Approximation) ${t(walls.labels[d])}: ${signed(change(d, v))} yen a year (change from 2026 rules)`);
 }
 
 // "your own household": the precomputed grid for the chosen shape (outputs/own_household.json), read at the salary entered
