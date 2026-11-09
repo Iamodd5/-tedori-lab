@@ -302,7 +302,7 @@ The same facts were brought in line in `docs/METHODS.md`, `docs/METHODS.ja.md`, 
 
 ### Fixes from the check before publishing
 
-- **Single-parent allowance cases in `tests/hand_calcs/parameter_edges.md`.** Cases 27 and 28 counted no supported child, but a child the parent looks after raises each income limit by 380,000 (児童扶養手当法施行令2条の4), and the engine counts it. Both cases now include it (stop limit 2,940,000 and full limit 1,550,000 in case 27; full limit 1,450,000 in case 28) and their tests were changed after the hand calculation. The parameters they pin are the same.
+- **Single-parent allowance cases in `tests/hand_calcs/parameter_edges.md`.** Cases 27 and 28 counted no supported child, but a child under 16 whom the parent supports raises each income limit by 380,000 (児童扶養手当法施行令2条の4; a child aged 16 to 18 who is a dependant for income tax adds 530,000), and the engine counts it. Both cases now include it (stop limit 2,940,000 and full limit 1,550,000 in case 27; full limit 1,450,000 in case 28) and their tests were changed after the hand calculation. They pin the same parameters, and now also the 380,000 per child.
 - **Case 23** now treats the pensioner as an earner, as the reduction test does for a pension over the 65+ line; with one member this gives the same 49,406.
 - **The government plan's review clause** (第36条第4項): "who are left out of this payment" now covers both low earners and people who find it hard to work because of illness, as in the bill outline (p.6), in both languages.
 - **Section 10** says "about 0.16 trillion", since both figures it comes from are rounded, and marks those two old figures as history.

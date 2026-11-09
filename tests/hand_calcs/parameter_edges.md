@@ -79,11 +79,11 @@ basic deduction and insurance, so their difference is the personal deduction alo
 25. **Child allowance to 18**: one child aged 18 → 10,000 × 12 = **120,000**; aged 19 → **0**.
 26. **Single-parent allowance for children to 18**: a single parent with one child aged 19 gets **0**; with the child
     aged 18, more than 0.
-27. **Limit +480,000 for a dependant aged 70+**: one child (a supported child, +380,000 to each limit) and one
+27. **Limit +480,000 for a dependant aged 70+**: one child under 16 whom the parent supports (+380,000 to each limit) and one
     elderly dependant: stop limit 2,080,000 + 380,000 + 480,000 = 2,940,000, so income 2,940,000 gets **0**. Income
     2,930,000: full limit 690,000 + 380,000 + 480,000 = 1,550,000; withheld (2,930,000 − 1,550,000) × 0.0264029 =
     36,436.0 → 36,440 + 10 = 36,450; 48,050 − 36,450 = 11,600 a month, **139,200** a year.
-28. **Further-child rate 0.0040719**: two children (supported children, +380,000 each), so the full limit is
+28. **Further-child rate 0.0040719**: two children under 16 whom the parent supports (+380,000 each), so the full limit is
     690,000 + 760,000 = 1,450,000 and the stop limit 2,840,000. Income 2,450,000 (1,000,000 above the full limit): first child
     withheld 26,402.9 → 26,400 + 10 = 26,410; further child 4,071.9 → 4,070 + 10 = 4,080;
     (48,050 − 26,410) + (11,350 − 4,080) = 28,910 a month, **346,920** a year.
