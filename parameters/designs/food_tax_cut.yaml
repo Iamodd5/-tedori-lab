@@ -6,11 +6,11 @@ name_en: Temporary food consumption tax cut + bridge worker burden-relief paymen
 label: {ja: 政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）, en: "Government plan (FY2027–28 bridge: 1% tax on food + payment)"}
 # What the plan does, in one line and in one paragraph, for the website (from the sources above)
 short:
-  ja: "2027〜28年度、食料品の消費税を8%から1%に下げ、働く人への所得に応じた支給（就業者負担軽減支援金）を先に始める。支給には勤労所得、合計所得、払っている税金と保険料の条件がある。支給額と条件の線引きはまだ決まっていない。"
-  en: "In fiscal 2027–28, consumption tax on food falls from 8% to 1%, and an income-based payment to people in work (the worker burden-relief payment) starts early, with conditions on earned income, total income and the tax and insurance you pay. The payment amounts and limits haven't been decided."
+  ja: "2027年4月から2029年3月まで、いま8%の軽減税率がかかる飲食料品の消費税を1%に下げ、同じ期間に、中低所得の働く人へ所得に応じた支援金（就業者負担軽減支援金）を支給する。政府はこの2年間の仕組みを、2029年度の本格導入までの「つなぎ」としている。支給には、勤労所得、合計所得、税・社会保険料の負担額から公的年金等の収入額を引いた額についての条件がある。支給額と、条件の線引きとなる金額は、法律案では政令で定めることになっている。"
+  en: "From April 2027 to March 2029, consumption tax on food and drink now taxed at the reduced 8% rate falls to 1%, and over the same period people in work on low and middle incomes are paid an income-based payment (the worker burden-relief payment). The government calls this two-year arrangement a bridge to the full introduction in fiscal 2029. The payment has conditions on earned income, on total income, and on the tax and social insurance burden minus public pension income. Under the bill, the payment amounts and the amounts that set the limits in the conditions are to be set by Cabinet order."
 summary:
-  ja: "政府が2026年10月9日に国会に提出した法律案の内容です（2026年11月3日時点で衆議院で審議中）。2027年4月から2029年3月まで、いま8%の軽減税率がかかっている飲食料品の消費税を1%に下げます。同じ期間、就業者負担軽減支援金を先に始めて、所得に応じて支給します（2029年度からの形と違い、配偶者の所得の条件はなく、子どもの上乗せは16歳未満が対象）。支給額は、各年度の支給の総額が、その年度の1%分の飲食料品の消費税の税収（見込み）を超えないことを考慮して決めることになっています（2029年4月に支給される2029年度からの形への移行分は除く）。その年の1月1日に日本に住所がない人には支給されません（国籍による条件は書かれていません）。「年収の壁」に直面する人などへの上乗せ（就業促進特例加算）も、この期間から支給します（大綱8〜9ページ）。支給額は、法律案では後で政令で決めることになっていて、まだ決まっていません。"
-  en: "This is the content of a bill the government submitted to the Diet on 9 October 2026 (still being debated in the House of Representatives on 3 November 2026). From April 2027 to March 2029, consumption tax on food and drink that is now taxed at the reduced 8% rate falls to 1%. Over the same period the worker burden-relief payment starts early, paid according to income (unlike the form from fiscal 2029, there is no test of the spouse's income, and the extra for children covers children under 16). The amounts are to be set taking into account that each year's total payments should not exceed that year's expected revenue from the remaining 1% consumption tax on food (not counting the April 2029 advance of the fiscal 2029 form). People with no address in Japan on 1 January of the year are not paid (no nationality condition is written). The top-up for people facing an income wall and others (就業促進特例加算) is also paid in this period (outline, pages 8–9). Under the bill, the payment amounts will be set later by Cabinet order; they haven't been decided."
+  ja: "2026年10月9日に閣議決定され、同じ日に国会に提出された法律案の内容です。2027年4月から2029年3月まで、いま8%の軽減税率がかかっている飲食料品の消費税を1%に下げます。同じ期間、就業者負担軽減支援金を所得に応じて支給します（2029年度からの形と違い、配偶者の所得の条件はなく、子どもの上乗せは16歳未満が対象）。政府は大綱（2026年9月15日閣議決定）で、この2年間の仕組みを、2029年度の本格導入までの「つなぎ」としています。法律案では、2027年度分と2028年度分の支給額は、その年度の支給の総額が、その年度に飲食料品にかかる1%（地方消費税を含む）の消費税の収入見込額を超えないようにすることを考慮して定めることになっています（2029年度からの形に円滑に移るために2029年4月に支払う2028年度分の上乗せは、この総額に含みません）。その年度が始まる年の1月1日に日本国内に住所がない人には支給されません。大綱では、「年収の壁」に直面する人と、同じくらいの社会保険料を負担している人への上乗せ（就業促進特例加算）を、「年収の壁」が解消するまでの時限的な措置としています（大綱9ページ）。2027・28年度の支援金については、この上乗せを社会保険料控除額により適用するとしています（大綱8ページ）。支給額と、支給の条件となる金額は、法律案では政令で定めることになっています。"
+  en: "This is the content of a bill that the Cabinet approved on 9 October 2026 and that was submitted to the Diet the same day. From April 2027 to March 2029, consumption tax on food and drink that is now taxed at the reduced 8% rate falls to 1%. Over the same period the worker burden-relief payment is paid according to income (unlike the form from fiscal 2029, there is no test of the spouse's income, and the extra for children covers children under 16). In its outline approved by the Cabinet on 15 September 2026, the government calls this two-year arrangement a bridge to the full introduction in fiscal 2029. Under the bill, the payment amounts for fiscal 2027 and fiscal 2028 are to be set taking into account that each year's total payments should not exceed that year's expected revenue from the 1% consumption tax on food, local consumption tax included (this total leaves out the extra fiscal 2028 amount paid in April 2029 to move smoothly to the form used from fiscal 2029). People with no address in Japan on 1 January of the year in which the fiscal year starts are not paid. The outline describes a top-up for people facing an income wall and people with a similar social insurance burden (就業促進特例加算) as a time-limited measure until the income wall is removed (outline, page 9). For fiscal 2027–28 payments, it says this top-up is applied using the social insurance deduction amount (outline, page 8). Under the bill, the payment amounts and the amounts used in the conditions are to be set by Cabinet order."
 start_year: 2027
 status: unresolved
 
@@ -35,6 +35,163 @@ source:
     url: https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20260805/01_siryou1.pdf
     file: sources/gov/20260805_01_siryou1.pdf
     published: 2026-08-05
+
+  bill_outline:
+    title: 租税及び社会保険料による負担の軽減のための飲食料品に係る消費税率の臨時的な引下げ及び就業者負担軽減支援金の支給に関する法律案要綱
+    url: https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou2.pdf
+    file: sources/gov/20261009_siryou2.pdf
+    published: 2026-10-09
+  council_index:
+    title: 社会保障国民会議｜内閣官房 (index page; section 関連法令)
+    url: https://www.cas.go.jp/jp/seisaku/kokuminkaigi/
+    file: sources/gov/kokuminkaigi_index.html
+    published: undated page (downloaded 2026-10-29)
+
+# Each sentence of short/summary and the exact words in the plan's own documents that back it
+# (tests/test_plan_quotes.py). Several entries may back one claim.
+quotes:
+  # short
+  - claim: &s1 {ja: "2027年4月から2029年3月まで、いま8%の軽減税率がかかる飲食料品の消費税を1%に下げ、同じ期間に、中低所得の働く人へ所得に応じた支援金（就業者負担軽減支援金）を支給する。", en: "From April 2027 to March 2029, consumption tax on food and drink now taxed at the reduced 8% rate falls to 1%, and over the same period people in work on low and middle incomes are paid an income-based payment (the worker burden-relief payment)."}
+    text: "令和９年４月１日から令和 11 年３月31 日までの間、 飲食料品に係る消費税率を0.78％（地方消費税と合わせて１％）とする"
+    source: bill_summary
+    page: 1
+  - claim: *s1
+    text: "飲食料品 （軽減税率の適用対象となっている飲食料品をいう。"
+    source: bill_outline
+    page: 1
+  - claim: *s1
+    text: "軽減税率8パーセント"
+    source: nta6303
+    page: 1
+  - claim: *s1
+    text: "中低所得の就業者の可処分所得の増大"
+    source: bill_outline
+    page: 1
+  - claim: *s1
+    text: "個々の就業者の所得の額等に応じた就業者負担軽減支援金を支給する"
+    source: bill_outline
+    page: 1
+  - claim: *s1
+    text: "支援金制度は、令和９年４月から導入する。"
+    source: outline
+    page: 13
+  - claim: {ja: "政府はこの2年間の仕組みを、2029年度の本格導入までの「つなぎ」としている。", en: "The government calls this two-year arrangement a bridge to the full introduction in fiscal 2029."}
+    text: "令和11 年度の本格導入までの「つなぎ」として、まずは、来年４月から、２年間に限った飲食料品に係る消費税率の臨時的な引下げと飲食料品に係る消費税１％相当分の範囲で実施する支援金制度を組み合わせて行い"
+    source: outline
+    page: 1
+  - claim: &s3 {ja: "支給には、勤労所得、合計所得、税・社会保険料の負担額から公的年金等の収入額を引いた額についての条件がある。支給額と、条件の線引きとなる金額は、法律案では政令で定めることになっている。", en: "The payment has conditions on earned income, on total income, and on the tax and social insurance burden minus public pension income. Under the bill, the payment amounts and the amounts that set the limits in the conditions are to be set by Cabinet order."}
+    text: "①勤労所得※1 の額が政令で定める額超  ②合計所得金額が政令で定める額以下"
+    source: bill_summary
+    page: 1
+  - claim: *s3
+    text: "③税・社会保険料負担額から公的年金等収入額を控除した額が政令で定める額超"
+    source: bill_summary
+    page: 1
+  - claim: *s3
+    text: "④配偶者の合計所得金額が政令で定める額以下（令和9･10 年度の支給を除く）"
+    source: bill_summary
+    page: 1
+  - claim: *s3
+    text: "前年所得額や 19 歳未満の居住扶養親族数（令和 9･10 年度は 16 歳未満の扶養親族数） ※2 に応じて政令で定める額とする。"
+    source: bill_summary
+    page: 1
+  # summary
+  - claim: {ja: "2026年10月9日に閣議決定され、同じ日に国会に提出された法律案の内容です。", en: "This is the content of a bill that the Cabinet approved on 9 October 2026 and that was submitted to the Diet the same day."}
+    text: "「租税及び社会保険料による負担の軽減のための飲食料品に係る消費税率の臨時的な引下げ及び就業者負担軽減支援金の支給に関する法律案」が令和８年10月９日に閣議決定され、同日に第222回国会に提出されました。"
+    source: council_index
+    page: 1
+  - claim: &m2 {ja: "2027年4月から2029年3月まで、いま8%の軽減税率がかかっている飲食料品の消費税を1%に下げます。", en: "From April 2027 to March 2029, consumption tax on food and drink that is now taxed at the reduced 8% rate falls to 1%."}
+    text: "令和９年４月１日から令和 11 年３月31 日までの間、 飲食料品に係る消費税率を0.78％（地方消費税と合わせて１％）とする"
+    source: bill_summary
+    page: 1
+  - claim: *m2
+    text: "飲食料品 （軽減税率の適用対象となっている飲食料品をいう。"
+    source: bill_outline
+    page: 1
+  - claim: *m2
+    text: "軽減税率8パーセント"
+    source: nta6303
+    page: 1
+  - claim: &m3 {ja: "同じ期間、就業者負担軽減支援金を所得に応じて支給します（2029年度からの形と違い、配偶者の所得の条件はなく、子どもの上乗せは16歳未満が対象）。", en: "Over the same period the worker burden-relief payment is paid according to income (unlike the form from fiscal 2029, there is no test of the spouse's income, and the extra for children covers children under 16)."}
+    text: "支援金制度は、令和９年４月から導入する。"
+    source: outline
+    page: 13
+  - claim: *m3
+    text: "前年所得額や 19 歳未満の居住扶養親族数（令和 9･10 年度は 16 歳未満の扶養親族数） ※2 に応じて政令で定める額とする。"
+    source: bill_summary
+    page: 1
+  - claim: *m3
+    text: "※2 こども加算関係。"
+    source: bill_summary
+    page: 1
+  - claim: *m3
+    text: "④配偶者の合計所得金額が政令で定める額以下（令和9･10 年度の支給を除く）"
+    source: bill_summary
+    page: 1
+  - claim: &m4 {ja: "政府は大綱（2026年9月15日閣議決定）で、この2年間の仕組みを、2029年度の本格導入までの「つなぎ」としています。", en: "In its outline approved by the Cabinet on 15 September 2026, the government calls this two-year arrangement a bridge to the full introduction in fiscal 2029."}
+    text: "令和11 年度の本格導入までの「つなぎ」として、まずは、来年４月から、２年間に限った飲食料品に係る消費税率の臨時的な引下げと飲食料品に係る消費税１％相当分の範囲で実施する支援金制度を組み合わせて行い"
+    source: outline
+    page: 1
+  - claim: *m4
+    text: "令和８年 9 月 15 日 閣議決 定"
+    source: outline
+    page: 1
+  - claim: &m5 {ja: "法律案では、2027年度分と2028年度分の支給額は、その年度の支給の総額が、その年度に飲食料品にかかる1%（地方消費税を含む）の消費税の収入見込額を超えないようにすることを考慮して定めることになっています（2029年度からの形に円滑に移るために2029年4月に支払う2028年度分の上乗せは、この総額に含みません）。", en: "Under the bill, the payment amounts for fiscal 2027 and fiscal 2028 are to be set taking into account that each year's total payments should not exceed that year's expected revenue from the 1% consumption tax on food, local consumption tax included (this total leaves out the extra fiscal 2028 amount paid in April 2029 to move smoothly to the form used from fiscal 2029)."}
+    text: "令和九年度分の就業者負担軽減支援金の総額が同年度において飲食料品に係る消費税の税率を２（１）の税率とすることによる当該飲食料品に係る消費税の収入見込額（当該消費税に係る 地方消費税の収入見込額を含む。"
+    source: bill_outline
+    page: 3
+  - claim: *m5
+    text: "令和十年度分の就業者負担軽減支援金の総額 （この（ロ）により加算する額の総額を除く。）が同年度において飲食料品に係る消費税の税率を２（１）の税率とすることによる当該飲食料品に係る消費税の収入見込額を超えないようにすることを考慮して"
+    source: bill_outline
+    page: 3
+  - claim: *m5
+    text: "２（１）の消費税の税率の引下げの終了に際して令和十一年度以降の各年度分の就業者負担軽減支援金の支給に円滑に移行するため"
+    source: bill_outline
+    page: 3
+  - claim: *m5
+    text: "令和十一年四月に（２） ハ （ロ）の加算する額を、それぞれ支払う。"
+    source: bill_outline
+    page: 4
+  - claim: *m5
+    text: "（地方消費税と合わせて１％）"
+    source: bill_summary
+    page: 1
+  - claim: &m6 {ja: "その年度が始まる年の1月1日に日本国内に住所がない人には支給されません。", en: "People with no address in Japan on 1 January of the year in which the fiscal year starts are not paid."}
+    text: "当該年度の初日の属する年の一月一日（以下「基準日」という。 ）"
+    source: bill_outline
+    page: 2
+  - claim: *m6
+    text: "就業者負担軽減支援金は、イの者が基準日現在において日本国内に住所を有しないときは、支給しない。"
+    source: bill_outline
+    page: 3
+  - claim: &m7 {ja: "大綱では、「年収の壁」に直面する人と、同じくらいの社会保険料を負担している人への上乗せ（就業促進特例加算）を、「年収の壁」が解消するまでの時限的な措置としています（大綱9ページ）。", en: "The outline describes a top-up for people facing an income wall and people with a similar social insurance burden (就業促進特例加算) as a time-limited measure until the income wall is removed (outline, page 9)."}
+    text: "いわゆる「年収の壁」（※１）に直面する者及び同程度の社会保険料負担のある者に対しては、第四「検討等」の四 6 の取組により「年収の壁」が解消するまでの時限的な措置として"
+    source: outline
+    page: 9
+  - claim: *m7
+    text: "就業を特に促進するための加算 （以下 「就業促進特例加算」 という。 ） を支給する。"
+    source: outline
+    page: 9
+  - claim: &m8 {ja: "2027・28年度の支援金については、この上乗せを社会保険料控除額により適用するとしています（大綱8ページ）。", en: "For fiscal 2027–28 payments, it says this top-up is applied using the social insurance deduction amount (outline, page 8)."}
+    text: "令和９年度及び令和 10 年度の支援金については"
+    source: outline
+    page: 8
+  - claim: *m8
+    text: "③純負担基準額及び就業促進特例加算 （下記 2（1）③）について、社会保険料控除額により適用する。"
+    source: outline
+    page: 8
+  - claim: &m9 {ja: "支給額と、支給の条件となる金額は、法律案では政令で定めることになっています。", en: "Under the bill, the payment amounts and the amounts used in the conditions are to be set by Cabinet order."}
+    text: "①勤労所得※1 の額が政令で定める額超  ②合計所得金額が政令で定める額以下"
+    source: bill_summary
+    page: 1
+  - claim: *m9
+    text: "③税・社会保険料負担額から公的年金等収入額を控除した額が政令で定める額超"
+    source: bill_summary
+    page: 1
+  - claim: *m9
+    text: "前年所得額や 19 歳未満の居住扶養親族数（令和 9･10 年度は 16 歳未満の扶養親族数） ※2 に応じて政令で定める額とする。"
+    source: bill_summary
+    page: 1
 
 parameters:
   consumption_tax_cut:
