@@ -1,1 +1,24 @@
 # Parameters no rule test pins, each with the reason: "parameters/…yaml: path.to.value": reason
+
+# not read by the engine (tests/test_parameters_used.py NOT_READ gives the same reasons)
+"parameters/baseline_2026/resident_tax.yaml: basic_deduction.amount": "not read: the taper's first band holds the same 430,000, and that band is what the engine reads"
+"parameters/baseline_2026/social_insurance.yaml: part_time_coverage.employer_size_min": "not read: household files state this test as yes/no (employer_51_plus)"
+"parameters/baseline_2026/social_insurance.yaml: part_time_coverage.hours_min": "not read: household files state this test as yes/no (hours_20_plus)"
+"parameters/baseline_2026/social_insurance.yaml: nhi_shinjuku_fy2026.preschool_flat_reduction": "not read: not modelled, because no household has a preschool child in National Health Insurance"
+
+# read, but cannot change any result
+"parameters/baseline_2026/social_insurance.yaml: student_deferral.working_student_deduction": "the engine takes it off only when total income is at most 890,000 (the working-student limit), and income after it is then always far below the 1,280,000 deferral limit, so it can never decide the test"
+"parameters/designs/daiwa.yaml: parameters.income_tax_basic_deduction": "the plan sets it to 0; the check moves it to 1 yen, and the credit (1,780,000 − 740,000 − this) × 5% rounds back to the same 52,000, which test_daiwa_credit_formula pins"
+
+# plans not calculated yet (outputs/household_comparison.json gives them status incomplete)
+"parameters/designs/food_tax_cut.yaml: parameters.consumption_tax_cut.national_rate_on_food": "plan not calculated yet: no food spending for the example households (Q8) and no payment amounts (Q9)"
+"parameters/designs/food_tax_cut.yaml: parameters.bridge_payment.child_age_limit": "plan not calculated yet: the payment amounts are to be set by Cabinet order (Q9)"
+"parameters/designs/food_tax_cut.yaml: parameters.bridge_payment.rounding": "plan not calculated yet: the payment amounts are to be set by Cabinet order (Q9)"
+"parameters/designs/food_tax_cut.yaml: parameters.bridge_payment.first_year": "plan not calculated yet: the payment amounts are to be set by Cabinet order (Q9)"
+"parameters/designs/food_tax_cut.yaml: assumptions.price_pass_through": "plan not calculated yet: no food spending for the example households (Q8)"
+"parameters/designs/government_final.yaml: parameters.child_age_limit": "plan not calculated yet: the payment amounts are to be set by Cabinet order (Q9)"
+"parameters/designs/government_final.yaml: parameters.payments_per_year": "plan not calculated yet: the payment amounts are to be set by Cabinet order (Q9)"
+"parameters/designs/rengo.yaml: parameters.work_support_benefit.credit_share_of_contributions": "plan not calculated yet: Rengo gives no amounts for its consumption-tax refund (Q3)"
+"parameters/designs/rengo.yaml: parameters.work_support_benefit.salary_lower_bound": "plan not calculated yet: Rengo gives no amounts for its consumption-tax refund (Q3)"
+"parameters/designs/rengo.yaml: parameters.work_support_benefit.phase_out_start_salary": "plan not calculated yet: Rengo gives no amounts for its consumption-tax refund (Q3)"
+"parameters/designs/rengo.yaml: parameters.work_support_benefit.phase_out_end_salary": "plan not calculated yet: Rengo gives no amounts for its consumption-tax refund (Q3)"
