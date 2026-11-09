@@ -1,0 +1,48 @@
+name: checks
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "17 18 * * 0"     # weekly full build, Monday 03:17 JST
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: python -m venv .venv && .venv/bin/pip install -r requirements.txt
+      - run: make test
+      - name: committed outputs are what the code produces
+        run: make outputs && git diff --exit-code -- outputs report press
+      - name: changed published numbers have a record
+        if: github.event_name == 'push'
+        run: .venv/bin/python scripts/check_changes_logged.py ${{ github.event.before }}
+      - name: changed published numbers have a record
+        if: github.event_name == 'pull_request'
+        run: .venv/bin/python scripts/check_changes_logged.py origin/${{ github.base_ref }}
+
+  full:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: python -m venv .venv && .venv/bin/pip install -r requirements.txt
+      - name: clean build from the publishers' documents (also runs the quote checks)
+        run: make all && git diff --exit-code -- outputs report press
+      - name: every parameter is pinned by a test
+        run: make pinned

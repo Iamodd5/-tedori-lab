@@ -2,7 +2,7 @@
 
 ## 1. Hand calculations
 
-Each household's 2026 disposable income was worked out by hand, step by step, from the rule files (`tests/hand_calcs/H1.md` … `H8.md`). `tests/test_baseline.py` checks the engine against them with a 1,000-yen tolerance.
+Each household's 2026 disposable income was worked out by hand, step by step, from the rule files (`tests/hand_calcs/H1.md` … `H8.md`). `tests/test_baseline.py` checks that the engine matches them exactly, to the yen.
 
 | Household | Hand calculation (yen) | Engine (yen) | Gap |
 |---|---|---|---|
@@ -239,3 +239,18 @@ New tests, each after its hand calculation: `test_first_adjustment_needs_a_depen
 Also fixed, in text only: the plan descriptions now quote the bill's review clauses with their conditions (第36条第4項・第5項) and its financing rules (第21条, 第39条), describe the top-up's target as the outline does (pages 9–10: joining company insurance or moving into National Health Insurance and National Pension), and use the same rule for every plan in the one-line summaries; the report, press summary and All households page say which way the known calibration gaps push the national totals; the press charts carry the plan's full name and a line on what they leave out; the 65+ care-premium note names the national fiscal-2026 rule (介護保険法施行令附則24条・25条); and `make fetch-sources` now stops at a failed download instead of failing later at the fingerprint check.
 
 **Pages that publishers replace.** The build downloads 25 pages that can't be stored in git (sources/EXTERNAL.tsv). Publishers replace some of them each year, which would make a fresh build fail its fingerprint check. Copies saved at the Internet Archive are now listed next to the publisher's address; `scripts/fetch_sources.py` uses the copy only when the publisher's file no longer matches, and stops with a message if neither does (`tests/test_fetch_sources.py`).
+
+## 15. Checks added
+
+These checks were added before any of the fixes they lead to, so each fix below them can be traced to the check that found it.
+
+| Check | What it catches |
+|---|---|
+| `tests/test_number_provenance.py` | a number in public text (site pages, report, press summary, these documents, household and plan files) that is not in outputs/ or parameters/ and is not listed with its source in `tests/number_sources.yaml` |
+| `tests/test_languages_match.py` | a number carried by the Japanese version of a text but not the English one, or the other way round |
+| `tests/test_calculator_grid.py`, `site/grid.js` | a calculator that shows the nearer grid point for an amount between two points, when a wall can lie between them |
+| `tests/test_plan_quotes.py` | a sentence describing a plan that no exact quote from the plan's own document backs |
+| `make pinned` (`scripts/check_parameters_pinned.py`) | a parameter whose value can change without any rule test failing (exceptions listed with their reason in `tests/unpinned_ok.yaml`) |
+| `scripts/check_changes_logged.py` | a change to outputs/, report/ or press/ with no record of why in this file or `docs/CORRECTIONS.yaml` |
+
+`test_household_matches_hand_calculation` in `tests/test_baseline.py` now requires each household to match its hand calculation to the yen. It used to allow a tolerance wide enough for a small change to a deduction to pass unnoticed. All eight households already matched exactly (section 1), so no number changed.

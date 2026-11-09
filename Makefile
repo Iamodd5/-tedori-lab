@@ -27,4 +27,8 @@ outputs:
 	PYTHONPATH=. $(PY) scripts/build_press.py
 	PYTHONPATH=. $(PY) scripts/crosscheck_openfisca.py
 
-.PHONY: all fetch-sources check-sources text tables test outputs
+# Every parameter is pinned by a rule test (a few minutes; changes parameter files while it runs).
+pinned:
+	$(PY) scripts/check_parameters_pinned.py
+
+.PHONY: all fetch-sources check-sources text tables test outputs pinned

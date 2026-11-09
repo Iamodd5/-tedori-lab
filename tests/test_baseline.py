@@ -57,13 +57,13 @@ def test_child_allowance():
     assert b.child_allowance([17, 12, 1]) == 12 * (10_000 + 10_000 + 30_000)
 
 
-# --- Households H1-H8 against documented hand calculations (Milestone 2 acceptance: within 1,000 yen)
+# --- Households H1-H8 against documented hand calculations: exact to the yen
 EXPECTED = yaml.safe_load((HAND / "expected.yaml").read_text())
 
 
 @pytest.mark.parametrize("hid", sorted(EXPECTED))
 def test_household_matches_hand_calculation(hid):
-    assert abs(h.compute(h.load(hid))["disposable"] - EXPECTED[hid]) <= 1000
+    assert h.compute(h.load(hid))["disposable"] == EXPECTED[hid]
 
 
 # --- Shinjuku reduction test counts the householder even when not in NHI (sources/shinjuku/hoken01_002030.html:
