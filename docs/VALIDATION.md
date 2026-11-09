@@ -279,3 +279,7 @@ Two figures needed more than a source:
 The provenance check itself was corrected: it read written numbers without their sign but compared them with signed values in outputs/, so a figure written as −16,100 was reported as untraced although outputs/ holds −16100. It now compares sizes, as it already did for amounts in 万, 億 and trillions.
 
 Every direction word in the Checks page's comparison with official figures (household count below, income tax and resident tax lower, too many earners on ¥1m–3m, too few on ¥10m or more, too few people aged 65+) matches the sign worked out from `outputs/population.json`, in both languages; `test_checks_page_directions_match_the_signs` in `tests/test_validation_doc.py` keeps it so.
+
+### Fix 3: Japanese and English carry the same numbers
+
+`tests/test_languages_match.py` found two household notes where the languages differed. H1: the English said "paid less" where the Japanese gives the amount (月給8.8万円未満); it now says "paid less than ¥88,000 a month", and so do the same sentence on the Home page and in the all-household assumptions. H2: the Japanese wrote the salary as 219万6,000円, which reads as two numbers; it now writes 2,196,000円, as the English does. Text only; no number changed.
