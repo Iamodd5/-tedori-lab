@@ -206,6 +206,20 @@ def results(designs):
         "food8_monthly": {"survey_2024_oct_nov": round(chk["food8_monthly_all_households_2024_oct_nov"]),
                           "kakei_2025_full_year": round(chk["food8_monthly_all_households_2025_full_year"])},
     }
+    if "daiwa" in designs:
+        # rough upper guide (docs/VALIDATION.md §10): each wage earner's part of the Daiwa result scaled by
+        # (official full-year + part-year count) / model count for their NTA pay band; everyone else unscaled
+        factor = {}
+        for e, lo, top in zip(earners, [0] + NTA_BANDS, NTA_BANDS + [None]):
+            factor[(lo, top)] = (e["official"] + e["official_part_year"]) / e["model"] if e["model"] else 1
+        def scale(salary):
+            return next((f for (lo, top), f in factor.items() if salary > lo * 1_000_000 and (top is None or salary <= top * 1_000_000)), 1)
+        net = 0
+        for x in rows:
+            salary = {m["id"]: m.get("salary", 0) for m in x["household"]["members"]}
+            for mid, part in r.daiwa_members(x["household"]).items():
+                net += (part["income_tax"] + part["resident_tax"] - part["credit"]) * x["weight"] * scale(salary[mid])
+        out["calibration"]["daiwa_net_scaled_to_official_earners"] = round(net)
     out["households_csv_rows"] = [{"id": x["household"]["id"], "group": x["cell"]["group"], "band": x["cell"]["band"],
                                    "variant": x["variant"], "weight": round(x["weight"], 2),
                                    "annual_income": x["cell"]["annual_income"], "baseline_disposable": x["base"]["disposable"],

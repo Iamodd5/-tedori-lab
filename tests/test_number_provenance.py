@@ -49,7 +49,8 @@ def _known():
                     pass
     for p in list(ROOT.glob("parameters/**/*.yaml")) + list(ROOT.glob("households/*.yaml")) + list(ROOT.glob("population/*.yaml")):
         _numbers(yaml.safe_load(p.read_text(encoding="utf-8")), vals)
-    ints = {round(v) for v in vals if abs(v - round(v)) < 1e-9}
+    # the pattern below reads digits without their sign (text writes −16,100 with a minus sign), so compare sizes
+    ints = {round(abs(v)) for v in vals if abs(v - round(v)) < 1e-9}
     scaled = {u: set() for u in set(UNIT.values())}
     for v in map(abs, vals):
         for d in (0, 1, 2):

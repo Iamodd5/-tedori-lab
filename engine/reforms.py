@@ -74,12 +74,13 @@ def daiwa_credit(employment_income_minimum=None):
     return round((target - employment_income_minimum - p["income_tax_basic_deduction"]["value"]) * lowest_rate)
 
 
-def _daiwa(hh):
+def daiwa_members(hh):
+    """Each member's part of the Daiwa result: income-tax change, resident-tax change and cash refund."""
     p = design("daiwa")["parameters"]
     base = h.compute(hh)
     ref = h.compute(hh, basic_deduction_it=lambda ti: p["income_tax_basic_deduction"]["value"],
                     it_credit=daiwa_credit())
-    refund = 0
+    out = {}
     for mid, o in ref["members"].items():
         m = next(x for x in hh["members"] if x["id"] == mid)
         # child levy and employment insurance not named by Daiwa (Q18). Household NHI is billed to the head
@@ -90,11 +91,17 @@ def _daiwa(hh):
             labour_si = o["health"] + o["pension"] + o["nhi"] + o["ltc_65"]
         else:
             labour_si = o["national_pension"] + o["nhi"] + o["ltc_65"]  # 65+ care premium: 介護（第1号）, daiwa.yaml
-        refund += min(o["unused_credit"], labour_si)
-    tax = lambda res, k: sum(o[k] for o in res["members"].values())
-    return {"income_tax": tax(ref, "income_tax") - tax(base, "income_tax"),
-            "resident_tax": tax(ref, "resident_tax") - tax(base, "resident_tax"),
-            "social_insurance": 0, "credit": refund, "consumption_tax": 0}
+        b = base["members"][mid]
+        out[mid] = {"income_tax": o["income_tax"] - b["income_tax"], "resident_tax": o["resident_tax"] - b["resident_tax"],
+                    "credit": min(o["unused_credit"], labour_si)}
+    return out
+
+
+def _daiwa(hh):
+    parts = daiwa_members(hh).values()
+    total = lambda k: sum(x[k] for x in parts)
+    return {"income_tax": total("income_tax"), "resident_tax": total("resident_tax"),
+            "social_insurance": 0, "credit": total("credit"), "consumption_tax": 0}
 
 
 def run(name, hh):
