@@ -136,7 +136,7 @@ def test_22_reduction_line_per_extra_earner():
 
 
 def test_23_reduction_test_takes_150000_off_65_plus_pension():
-    assert b.nhi_household([{"age": 65, "total_income": 580_001, "pension_income": 580_001, "has_earnings": False}]) == 49_406
+    assert b.nhi_household([{"age": 65, "total_income": 580_001, "pension_income": 580_001, "has_earnings": True}]) == 49_406
 
 
 def test_24_65_plus_care_premium_from_65():
@@ -156,9 +156,10 @@ def test_26_single_parent_allowance_for_children_to_18():
 
 
 def test_27_limit_for_a_dependant_aged_70_plus():
-    assert b.child_rearing_allowance(2_560_000, 1, 0, 0, elderly=1) == 0
-    assert b.child_rearing_allowance(2_550_000, 1, 0, 0, elderly=1) == 139_200
+    # the child is a supported child: ordinary = 1 (engine/household.py counts each child)
+    assert b.child_rearing_allowance(2_940_000, 1, 1, 0, elderly=1) == 0
+    assert b.child_rearing_allowance(2_930_000, 1, 1, 0, elderly=1) == 139_200
 
 
 def test_28_further_child_rate():
-    assert b.child_rearing_allowance(1_690_000, 2, 0, 0) == 346_920
+    assert b.child_rearing_allowance(2_450_000, 2, 2, 0) == 346_920

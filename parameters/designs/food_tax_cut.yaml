@@ -1,9 +1,9 @@
 # Two-year bridge package (つなぎ), FY2027–FY2028.
 # Chosen by the project owner: the food consumption tax cut and the
 # bridge-period 就業者負担軽減支援金 are one package; results show them as separate components.
-name_ja: 飲食料品消費税率の臨時的な引下げ＋就業者負担軽減支援金（つなぎ、令和9・10年度）
-name_en: Temporary food consumption tax cut + bridge worker burden-relief payment (FY2027–FY2028)
-label: {ja: 政府案（2027〜28年度のつなぎ：食料品の消費税1%＋給付）, en: "Government plan (FY2027–28 bridge: 1% tax on food + payment)"}
+name_ja: 飲食料品消費税率の臨時的な引下げ＋就業者負担軽減支援金（令和9・10年度）
+name_en: Temporary food consumption tax cut + worker burden-relief payment (FY2027–FY2028)
+label: {ja: 政府案（2027〜28年度：食料品の消費税1%＋給付）, en: "Government plan (FY2027–28: 1% tax on food + payment)"}
 # What the plan does, in one line and in one paragraph, for the website (from the sources above)
 short:
   ja: "2027年4月から2029年3月まで、いま8%の軽減税率がかかる飲食料品の消費税を1%に下げ、同じ期間に、中低所得の働く人へ所得に応じた支援金（就業者負担軽減支援金）を支給する。政府はこの2年間の仕組みを、2029年度の本格導入までの「つなぎ」としている。支給には、勤労所得、合計所得、税・社会保険料の負担額から公的年金等の収入額を引いた額についての条件がある。支給額と、条件の線引きとなる金額は、法律案では政令で定めることになっている。"

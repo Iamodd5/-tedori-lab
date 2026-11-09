@@ -67,8 +67,8 @@ basic deduction and insurance, so their difference is the personal deduction alo
     so the 50% cut. Base 102,000. Medical 47,600 × 2 × 50% + 102,000 × 7.51% = 47,600 + 7,660.2; support
     17,600 + 102,000 × 2.8% = 17,600 + 2,856; child levy 1,873 + 102,000 × 0.27% = 1,873 + 275.4.
     Total 77,864.6 → **77,864**.
-23. **150,000 off a 65+ pensioner's income in the reduction test**: one member aged 65, pension income 580,001, not
-    an earner. Test income 580,001 − 150,000 = 430,001 > 430,000, so not the 70% cut; ≤ 430,000 + 310,000, so the
+23. **150,000 off a 65+ pensioner's income in the reduction test**: one member aged 65, pension income 580,001 (pension
+    received 1,680,001, over the 1,250,000 line of case 21, so an earner; with one member the line has no extra earner). Test income 580,001 − 150,000 = 430,001 > 430,000, so not the 70% cut; ≤ 430,000 + 310,000, so the
     50% cut. Base 150,001. Medical 23,800 + 11,265.0751; support 8,800 + 4,200.028; child levy 936.5 + 405.0027.
     Total 49,406.6058 → **49,406**.
 24. **65+ long-term-care premium from 65**: a person aged 65 pays the same premium as one aged 66 with the same
@@ -79,10 +79,11 @@ basic deduction and insurance, so their difference is the personal deduction alo
 25. **Child allowance to 18**: one child aged 18 → 10,000 × 12 = **120,000**; aged 19 → **0**.
 26. **Single-parent allowance for children to 18**: a single parent with one child aged 19 gets **0**; with the child
     aged 18, more than 0.
-27. **Limit +480,000 for a dependant aged 70+**: one child, one elderly dependant: stop limit 2,080,000 + 480,000 =
-    2,560,000, so income 2,560,000 gets **0**. Income 2,550,000: full limit 690,000 + 480,000 = 1,170,000;
-    withheld (2,550,000 − 1,170,000) × 0.0264029 = 36,436.0 → 36,440 + 10 = 36,450; 48,050 − 36,450 = 11,600 a month,
-    **139,200** a year.
-28. **Further-child rate 0.0040719**: two children, income 1,690,000 (1,000,000 above the full limit): first child
+27. **Limit +480,000 for a dependant aged 70+**: one child (a supported child, +380,000 to each limit) and one
+    elderly dependant: stop limit 2,080,000 + 380,000 + 480,000 = 2,940,000, so income 2,940,000 gets **0**. Income
+    2,930,000: full limit 690,000 + 380,000 + 480,000 = 1,550,000; withheld (2,930,000 − 1,550,000) × 0.0264029 =
+    36,436.0 → 36,440 + 10 = 36,450; 48,050 − 36,450 = 11,600 a month, **139,200** a year.
+28. **Further-child rate 0.0040719**: two children (supported children, +380,000 each), so the full limit is
+    690,000 + 760,000 = 1,450,000 and the stop limit 2,840,000. Income 2,450,000 (1,000,000 above the full limit): first child
     withheld 26,402.9 → 26,400 + 10 = 26,410; further child 4,071.9 → 4,070 + 10 = 4,080;
     (48,050 − 26,410) + (11,350 − 4,080) = 28,910 a month, **346,920** a year.

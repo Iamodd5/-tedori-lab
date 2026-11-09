@@ -63,3 +63,4 @@
 - {file: parameters/designs/rengo.yaml, number: "3,300", source: "連合 sources/rengo/kokuminkaigi_20260519_siryou3.pdf p.2 図2 worked example (income tax)"}
 - {file: parameters/designs/rengo.yaml, number: "148,700", source: "152,000 − 3,300 from 連合 sources/rengo/kokuminkaigi_20260519_siryou3.pdf p.2 図2"}
 - {file: docs/VALIDATION.md, number: "2,196,000", source: "H2's salary where the student deferral ends; see the households/H2.yaml entry above; pinned by tests/test_listed_numbers.py"}
+- {file: docs/VALIDATION.md, number: "49,406", source: "tests/hand_calcs/parameter_edges.md case 23; pinned by tests/test_parameter_edges.py test_23"}
