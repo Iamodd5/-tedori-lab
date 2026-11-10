@@ -14,8 +14,8 @@ UA = "Mozilla/5.0"
 
 def download(url):
     # curl, as the build used before: it trusts the system's certificates; Python's own store lacks the root that
-    # Adachi ward's site uses.
-    r = subprocess.run(["curl", "-sSfL", "--max-time", "120", "-A", UA, url], capture_output=True)
+    # Adachi ward's site uses. --compressed: the Internet Archive sends some copies (the Scrapbox note) gzip-compressed.
+    r = subprocess.run(["curl", "-sSfL", "--compressed", "--max-time", "120", "-A", UA, url], capture_output=True)
     if r.returncode:
         raise OSError(r.stderr.decode(errors="replace").strip() or f"curl exit code {r.returncode}")
     return r.stdout
