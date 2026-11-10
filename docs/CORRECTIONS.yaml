@@ -6,9 +6,10 @@
 # A number with `check` is recomputed from those two commits by tests/test_corrections.py.
 - date: 2026-11-06
   previous: 263b817
+  published: 350ffc5
   what:
-    ja: 3つのルールを直しました。所得金額調整控除（給与850万円超）は、所得が62万円以下の23歳未満の扶養親族がいる場合だけにしました。合計所得2,500万円を超える人には住民税の調整控除をなくしました。大和総研案で現金を払う上限に、働く65歳以上の人の介護保険料を数えるようにしました。全世帯の試算の数字が少し変わりました。「検証」ページの2つの説明も直しました。
-    en: Corrected three rules. The income adjustment deduction for salaries over ¥8.5m now needs a dependant under 23 with income of ¥620,000 or less; there is no resident-tax adjustment credit above total income of ¥25m; and under the Daiwa plan, the 65+ care premium of people who work counts toward the cash limit. The all-household numbers moved a little. Two statements on the Checks page were also corrected.
+    ja: 3つのルールを直しました。所得金額調整控除（給与850万円超）は、所得が62万円以下の23歳未満の扶養親族がいる場合だけにしました。合計所得2,500万円を超える人には住民税の調整控除をなくしました。大和総研案で現金を払う上限に、働く65歳以上の人の介護保険料を数えるようにしました。全世帯の試算の数字が変わりました（下の一覧）。「検証」ページの2つの説明も直しました。
+    en: Corrected three rules. The income adjustment deduction for salaries over ¥8.5m now needs a dependant under 23 with income of ¥620,000 or less; there is no resident-tax adjustment credit above total income of ¥25m; and under the Daiwa plan, the 65+ care premium of people who work counts toward the cash limit. The all-household numbers changed (listed below). Two statements on the Checks page were also corrected.
   why:
     ja: 措置法41条の3の11第1項は扶養親族（所得62万円以下）を条件としています。地方税法314条の6と37条は、調整控除を合計所得2,500万円以下の人に限っています。大和総研の資料（4ページ図表3の注1）は、事業や給与の収入がある人の介護保険料（第1号）を数えるとしています。「検証」ページは、調査の税額の推計に2024年の定額減税が入っているかを「確認していない」とし、入っていれば差は小さくなると書いていましたが、統計局の推計方法は定額減税を差し引いていて、ふつうの年と比べた差は大きくなります。また、年収900万〜1,000万円の人の配偶者控除の見直しで住民税が下がるとしていましたが、配偶者の所得が62万円以下なら上がります。
     en: 措置法41条の3の11第1項 requires a 扶養親族 (income of ¥620,000 or less). 地方税法314条の6 and 37条 limit the adjustment credit to total income of ¥25m or less. Daiwa's note (page 4, 図表3 注1) counts the category-1 long-term care premium of people with business or employment income. The Checks page said it was unconfirmed whether the survey's tax estimate includes the 2024 flat tax cut and that if it did the gap would be smaller; the Statistics Bureau's method takes the cut off, so against a normal year the gap is larger. It also said the spouse-deduction change for earners on ¥9m–10m lowered resident tax; it raises it when the spouse's income is ¥620,000 or less.
@@ -16,9 +17,31 @@
     - label: {ja: （近似）全世帯・大和総研案：年収の最も高いグループの手取りの平均の変化（円／年）, en: "(Approximation) All households, Daiwa Institute plan: average change in take-home pay, highest income group (yen a year)"}
       before: -101548
       after: -101574
+      check: {population: daiwa, decile: 10}
     - label: {ja: （近似）全世帯・大和総研案：年収の低い方から2番目のグループの手取りの平均の変化（円／年）, en: "(Approximation) All households, Daiwa Institute plan: average change in take-home pay, 2nd income group from the bottom (yen a year)"}
       before: 6740
       after: 6882
+      check: {population: daiwa, decile: 2}
+    - label: {ja: （近似）全世帯・大和総研案：年収の低い方から3番目のグループの手取りの平均の変化（円／年）, en: "(Approximation) All households, Daiwa Institute plan: average change in take-home pay, 3rd income group from the bottom (yen a year)"}
+      before: 6290
+      after: 6605
+      check: {population: daiwa, decile: 3}
+    - label: {ja: （近似）全世帯・大和総研案：年収の低い方から4番目のグループの手取りの平均の変化（円／年）, en: "(Approximation) All households, Daiwa Institute plan: average change in take-home pay, 4th income group from the bottom (yen a year)"}
+      before: 3679
+      after: 4305
+      check: {population: daiwa, decile: 4}
+    - label: {ja: （近似）全世帯・大和総研案：年収の低い方から5番目のグループの手取りの平均の変化（円／年）, en: "(Approximation) All households, Daiwa Institute plan: average change in take-home pay, 5th income group from the bottom (yen a year)"}
+      before: -5959
+      after: -4947
+      check: {population: daiwa, decile: 5}
+    - label: {ja: （近似）全世帯・大和総研案：年収の低い方から6番目のグループの手取りの平均の変化（円／年）, en: "(Approximation) All households, Daiwa Institute plan: average change in take-home pay, 6th income group from the bottom (yen a year)"}
+      before: -7708
+      after: -7363
+      check: {population: daiwa, decile: 6}
+    - label: {ja: （近似）全世帯・大和総研案：年収の低い方から7番目のグループの手取りの平均の変化（円／年）, en: "(Approximation) All households, Daiwa Institute plan: average change in take-home pay, 7th income group from the bottom (yen a year)"}
+      before: -29884
+      after: -28991
+      check: {population: daiwa, decile: 7}
     - label: {ja: 「検証」ページ：所得税の合計と調査の推計の差（%）, en: "Checks page: gap between modelled income tax and the survey's estimate (%)"}
       before: -21.6
       after: -21.5

@@ -112,14 +112,14 @@ function drawOwn() {
    ja ? `働く人は学生でなく、週${own.hours_min}時間以上・従業員${own.employer_min}人以上の会社で働いているものとしています（「配偶者はパート」の配偶者は、年収${yen(own.spouse_part)}円で週${own.hours_min}時間未満）。`
       : `Whoever works is a non-student on ${own.hours_min}+ hours a week at a company with at least ${own.employer_min} employees (in "the spouse works part-time", the spouse earns ¥${yen(own.spouse_part)} a year on under ${own.hours_min} hours).`,
    ja ? `子どもは${own.child_age}歳としています。` : `Children are aged ${own.child_age}.`,
-   ja ? `給与が月${yen(own.employee_line / 12)}円（年${yen(own.employee_line)}円）に届かないと会社の保険に入らず、国民健康保険と国民年金保険料を払います（夫婦で、働いていない配偶者の国民年金保険料も）。このため、この線の前後で手取りが大きく変わります。`
-      : `Below ¥${yen(own.employee_line / 12)} a month (¥${yen(own.employee_line)} a year) the earner is not in company insurance and pays National Health Insurance and National Pension (in a couple, also the National Pension of a spouse who doesn't work). So take-home pay jumps at this line.`,
+   ja ? `給与が月${yen(own.employee_line / 12)}円（年${yen(own.employee_line)}円）に届かないと会社の保険に入らず、国民健康保険と国民年金保険料を払います（夫婦で、会社の保険に入っていない配偶者の国民年金保険料も）。このため、この線の前後で手取りが大きく変わります。`
+      : `Below ¥${yen(own.employee_line / 12)} a month (¥${yen(own.employee_line)} a year) the earner is not in company insurance and pays National Health Insurance and National Pension (in a couple, also the National Pension of a spouse who isn't in company insurance). So take-home pay jumps at this line.`,
    ja ? `40〜64歳は${own.ages[1]}歳として計算しています。60〜64歳の人は国民年金保険料を払わないため、給与が少ないとき（上の線より下）は、実際の手取りはここより多くなります。`
       : `Ages 40 to 64 are worked out at ${own.ages[1]}. People aged 60 to 64 don't pay National Pension, so at low salaries (below the line above) their real take-home pay is higher than shown.`,
    ja ? "収入が少ないときに申請できる国民年金保険料の免除は、申請しないものとしています。" : "Nobody applies for the National Pension exemption available on low incomes.",
    ja ? "（近似）ひとり親は母親で、養育費は受け取っていないものとし、児童扶養手当はその年の所得で判定しています（実際は前の年の所得で決まります）。" : "(Approximation) A single parent is the mother and gets no child support; the single-parent allowance is judged on the same year's income (in fact, the previous year's).",
-   ja ? `ほかの${Object.keys(walls.labels).length - own.designs.length}つの案は、まだ計算できないため出していません（理由はページの下にあります）。`
-      : `The other ${Object.keys(walls.labels).length - own.designs.length} plans can't be calculated yet, so they aren't shown (reasons further down).`,
+   ja ? `ほかの${Object.keys(walls.summaries).length - own.designs.length}つの案は、まだ計算できないため出していません（理由はページの下にあります）。`
+      : `The other ${Object.keys(walls.summaries).length - own.designs.length} plans can't be calculated yet, so they aren't shown (reasons further down).`,
    ja ? "ほかの前提と近似は、ページの下の「すべての世帯に共通する前提と近似」にあります。" : "Other assumptions are under \"Assumptions behind every household\" at the bottom of the page."].forEach(x => li(notes, x));
   const couple = shape.startsWith("couple");
   get("own-salary-label").textContent = ja ? (couple ? "主に稼ぐ人の給与（税引き前、年）：" : "給与（税引き前、年）：") : (couple ? "Main earner's salary (before tax, per year): " : "Salary (before tax, per year): ");

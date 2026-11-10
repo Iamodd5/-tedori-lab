@@ -64,3 +64,6 @@
 - {file: parameters/designs/rengo.yaml, number: "148,700", source: "152,000 − 3,300 from 連合 sources/rengo/kokuminkaigi_20260519_siryou3.pdf p.2 図2"}
 - {file: docs/VALIDATION.md, number: "2,196,000", source: "H2's salary where the student deferral ends; see the households/H2.yaml entry above; pinned by tests/test_listed_numbers.py"}
 - {file: docs/VALIDATION.md, number: "49,406", source: "tests/hand_calcs/parameter_edges.md case 23; pinned by tests/test_parameter_edges.py test_23"}
+- {file: docs/VALIDATION.md, number: "30,000", source: "2024 flat tax cut, income tax per person: 国税庁「定額減税と確定申告」 https://www.nta.go.jp/users/gensen/teigakugenzei/kakutei.htm (所得税 本人分 3万円)"}
+- {file: docs/VALIDATION.md, number: "10,000", source: "2024 flat tax cut, resident tax per person: 国税庁「定額減税と確定申告」 https://www.nta.go.jp/users/gensen/teigakugenzei/kakutei.htm (個人住民税 本人分 1万円)"}
+- {file: OPEN_QUESTIONS.md, number: "185,000", source: "all-household model: weighted households whose higher earner has total income above 9m up to 10m and whose partner has total income of 1,330,000 or less (185,168); pinned by tests/test_listed_numbers.py"}

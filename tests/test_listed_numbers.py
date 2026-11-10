@@ -38,3 +38,15 @@ def test_calibration_figures_in_the_text():
     survey = sum((c["earners"] or 0) * c["households"] for c in p.cells())
     assert f"earners per household × households: {million(survey)})" in DOC
     assert f"gives a net of about {CAL['daiwa_net_scaled_to_official_earners'] / 1e12:.1f} trillion" in DOC
+
+
+def test_q37_households_in_the_9m_to_10m_spouse_band():
+    # OPEN_QUESTIONS Q37: higher earner's total income above 9m up to 10m, partner's total income at most 1,330,000
+    n = 0
+    for x in p.build():
+        out = h.compute(x["household"])["members"]
+        partners = sorted((out[m["id"]]["total_income"] for m in x["household"]["members"] if m["role"] in ("head", "spouse")), reverse=True)
+        if len(partners) == 2 and 9_000_000 < partners[0] <= 10_000_000 and partners[1] <= 1_330_000:
+            n += x["weight"]
+    assert round(n, -3) == 185_000
+    assert "about 185,000 all-household households (by weight)" in (ROOT / "OPEN_QUESTIONS.md").read_text(encoding="utf-8")
