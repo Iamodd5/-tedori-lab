@@ -1,6 +1,7 @@
 # Source files NOT stored in git because the publisher does not allow redistribution (checked 2026-11-01).
-# `make fetch-sources` downloads them from the publisher, or from the Internet Archive copy if the publisher's file has
-# changed; `make check-sources` verifies them against SHA256SUMS.
+# `make fetch-sources` downloads them from the publisher, or, where a copy is listed, from the Internet Archive copy if the
+# publisher's file has changed; `make check-sources` verifies them against SHA256SUMS (the three 協会けんぽ HTML pages
+# are in SHA256SUMS.volatile, unchecked).
 # path under sources/	URL	Internet Archive copy
 daiwa/daiwa_20251010.pdf	https://www.dir.co.jp/report/research/law-research/tax/20251010_025349.pdf	https://web.archive.org/web/20261109235307id_/https://www.dir.co.jp/report/research/law-research/tax/20251010_025349.pdf
 shinjuku/000434385.pdf	https://www.city.shinjuku.lg.jp/content/000434385.pdf	https://web.archive.org/web/20261109235500id_/https://www.city.shinjuku.lg.jp/content/000434385.pdf

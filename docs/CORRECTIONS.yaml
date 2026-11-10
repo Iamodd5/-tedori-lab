@@ -5,7 +5,16 @@
 # one (left out until it is pushed). Either version can be rebuilt with `git checkout <commit> && make all`.
 # A number with `check` is recomputed from those two commits by tests/test_corrections.py.
 - date: 2026-11-10
+  previous: e4c3957
+  what:
+    ja: 「計算方法」「検証」「出典とコード」のページで、発行元がページを差し替えたときはインターネットアーカイブの写しを使う、としていたのを、写しがあるのはダウンロードする25ページのうち11ページだけで、ほかのページが差し替えられると作り直しが止まる（協会けんぽの3つのページは指紋で確認せずにそのまま使う）と直しました。「出典とコード」のページで、すべての資料を指紋で確かめられる、としていたところにも、協会けんぽの3つのページを除くと書き足し、古くなった「69ファイル」を消しました。
+    en: The How it works, Checks and Sources and code pages said that when a publisher replaces a page, the build uses the copy saved at the Internet Archive. Only 11 of the 25 downloaded pages have such a copy; if another is replaced, the build stops (three 協会けんぽ pages are used as downloaded, without a fingerprint check). Where the Sources and code page said every source can be checked by its fingerprint, it now gives those three pages as the exception, and the out-of-date "69 files" is removed.
+  why:
+    ja: インターネットアーカイブに写しを保存できたのは11ページだけでした。新宿区・大田区・中央区・足立区のサイトの11ページは、写しを保存することも開くこともできませんでした。協会けんぽの3つのページは、ページに埋め込まれた符号のためにダウンロードのたびにファイルが変わるので、指紋では確かめられません。69は、資料が増える前の数でした。
+    en: Copies could be saved at the Internet Archive for only 11 pages; for 11 pages of the Shinjuku, Ota, Chuo and Adachi city websites no copy could be saved or opened. The three 協会けんぽ pages differ on every download because of a code embedded in the page, so no fingerprint can check them. 69 was the count before more sources were added.
+- date: 2026-11-10
   previous: 23f681c
+  published: 9a3c27c
   what:
     ja: 「案の比較」の「自分の世帯の形で見る」で、まだ計算できない案の数を、「2026年の制度」まで数えて4つとしていたのを3つに直しました。同じところの、会社の保険に入らない人の説明で、国民年金保険料を払う配偶者を「働いていない配偶者」に限っていたのを、会社の保険に入っていない配偶者全体に直しました。大和総研案で国の収入が増える額は、「示した額」ではなく「この試算の額」より大きい可能性が高い、と直しました。「検証」ページの、働く人の分け方を一つ変えたときの国の収入の動きを「約0.16兆円」から「約0.15兆円」に戻しました。
     en: On Compare, "Try your own household's shape" counted "2026 rules" among the plans not shown, so it said 4 instead of 3. The note on earners outside company insurance said only a spouse who doesn't work also pays National Pension; any spouse not in company insurance does. The Daiwa plan's net gain to the government is more likely above this estimate's own figure, not above the rounded figure shown. On the Checks page, the move in the net gain from one change in how earners are split is back to "about 0.15 trillion".

@@ -1,7 +1,7 @@
 # Sources index
 
 Most files were downloaded on **2026-10-29** with `curl`; files added later have their download date in the table or in the parameter file that cites them. Paths are relative to `sources/`.
-Every file's SHA-256 fingerprint is in `sources/SHA256SUMS`. Check all of them with `cd sources && shasum -a 256 -c SHA256SUMS` (every line should end in `OK`).
+Every file's SHA-256 fingerprint is in `sources/SHA256SUMS`, except three 協会けんぽ pages whose file differs on every download because of a code embedded in the page (their fingerprints are in `sources/SHA256SUMS.volatile` and are not checked). Check all of them with `cd sources && shasum -a 256 -c SHA256SUMS` (every line should end in `OK`).
 Plain-text copies of every PDF are in `sources/text/` (regenerate with `.venv/bin/python -I scripts/pdf_to_text.py sources`).
 
 **Which files are in the public repository (checked 2026-11-01).** Documents from national ministries and agencies (内閣官房, こども家庭庁, 厚生労働省, 国税庁, 総務省, 統計局/e-Stat) are published under the 公共データ利用規約（第1.0版）/ 政府標準利用規約（第2.0版）, which allow redistribution with credit; 出典 is each file's publisher and URL below. 日本年金機構 pages are 転載フリー. Code for Japan's Scrapbox page is CC BY 4.0. **Not stored in git**, because their publishers do not allow redistribution or we found no terms that allow it: 大和総研 (Daiwa), 連合 (Rengo, two files), 新宿区 (Shinjuku City), other city and ward pages (大田区, 中央区, 足立区) and 協会けんぽ files. `make fetch-sources` downloads them from the publisher (list: `EXTERNAL.tsv`), and `make check-sources` checks their fingerprints; the three 協会けんぽ HTML pages change byte-for-byte on every download, so their original fingerprints are kept, unchecked, in `SHA256SUMS.volatile`.
@@ -160,11 +160,11 @@ The tables were chosen by the project owner on 2026-11-01 (options in `docs/M7_D
 | social/nenkin_tanjikan.html | 日本年金機構 短時間労働者の適用拡大 | 2026-10-01 | https://www.nenkin.go.jp/service/kounen/tekiyo/jigyosho/tanjikan.html | part-time coverage rules |
 | social/kyoukaikenpo_hifuyosha_r8.html | 協会けんぽ 令和8年度被扶養者資格の再確認 | 2026 | https://www.kyoukaikenpo.or.jp/about/business/dependent_status/001/index.html | dependant income limits |
 
-Fingerprints for every file are in `sources/SHA256SUMS` (69 files).
+Fingerprints are in `sources/SHA256SUMS`, except for the three 協会けんぽ pages, whose fingerprints are in `sources/SHA256SUMS.volatile`.
 
 ## 12. Added later: laws, cabinet orders and local guides
 
-Laws and cabinet orders (not copyrighted, 著作権法13条) and national documents are stored in git; city, ward and 協会けんぽ pages are fetched by `make` (EXTERNAL.tsv). Where a publisher replaces a page, `make` uses the copy saved at the Internet Archive (the third column of EXTERNAL.tsv), checked against the same fingerprint. Eleven pages of the Shinjuku, Ota, Chuo and Adachi city websites have no such copy: no copy could be saved or opened at the Internet Archive. If one of these is replaced, `make` stops with a message naming the page; the new page is then checked against the figures cited from it and its fingerprint updated.
+Laws and cabinet orders (not copyrighted, 著作権法13条) and national documents are stored in git; city, ward and 協会けんぽ pages are fetched by `make` (EXTERNAL.tsv). Where a publisher replaces a page and EXTERNAL.tsv lists a copy saved at the Internet Archive (its third column; 11 of the 25 pages), `make` uses that copy, checked against the same fingerprint. Eleven pages of the Shinjuku, Ota, Chuo and Adachi city websites have no copy: in November 2026 no copy could be saved or opened at the Internet Archive. If one of them is replaced, `make` stops with a message naming the page; the new page then has to be compared by hand with the figures cited from it, and its fingerprint updated. The three 協会けんぽ pages have no copy either; they are used as downloaded, without a fingerprint check.
 
 | File | Title | Published | URL | Used for |
 |---|---|---|---|---|

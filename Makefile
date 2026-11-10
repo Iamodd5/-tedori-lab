@@ -4,7 +4,8 @@ PY = .venv/bin/python
 all: fetch-sources check-sources text tables test outputs
 
 # Documents whose publishers do not allow redistribution are not committed; download them (sources/EXTERNAL.tsv).
-# The publisher's file is tried first, then the Internet Archive copy if the publisher's no longer matches SHA256SUMS.
+# The publisher's file is tried first, then the Internet Archive copy, where one is listed, if the publisher's no longer
+# matches SHA256SUMS; with neither, the build stops naming the page.
 fetch-sources:
 	$(PY) -I scripts/fetch_sources.py
 

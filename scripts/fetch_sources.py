@@ -2,7 +2,8 @@
 
 EXTERNAL.tsv: path under sources/ <TAB> publisher URL [<TAB> Internet Archive copy]. A file already present is left
 alone (`make check-sources` checks it). The publisher's file is tried first; if it can't be downloaded or no longer
-matches its fingerprint (publishers replace pages when their year rolls over), the archived copy is used instead."""
+matches its fingerprint (publishers replace pages when their year rolls over), the archived copy is used instead, where
+one is listed; with none that matches, the build stops naming the page."""
 import hashlib
 import pathlib
 import subprocess

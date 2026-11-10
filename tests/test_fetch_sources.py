@@ -43,3 +43,14 @@ def test_build_stops_when_no_copy_matches(tmp_path):
     with pytest.raises(SystemExit):
         fs.fetch(tmp_path)
     assert not (tmp_path / "sources" / "ward" / "page.html").exists()
+
+
+def test_page_without_an_archive_copy_stops_the_build_naming_it(tmp_path):
+    # Some city pages could not be saved at the Internet Archive, so their row has no third column.
+    setup(tmp_path, b"next year's page", b"unused")
+    tsv = tmp_path / "sources" / "EXTERNAL.tsv"
+    tsv.write_text(f"ward/page.html\t{(tmp_path / 'pub.html').as_uri()}\n")
+    with pytest.raises(SystemExit) as stop:
+        fs.fetch(tmp_path)
+    assert "ward/page.html" in str(stop.value.code) and "different from the saved fingerprint" in str(stop.value.code)
+    assert not (tmp_path / "sources" / "ward" / "page.html").exists()

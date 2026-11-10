@@ -22,8 +22,8 @@
 <p lang="en">Needs Python 3.11 and Node.js.</p>
 <pre><code>uv venv --python 3.11 .venv && VIRTUAL_ENV=.venv uv pip install -r requirements.txt
 make all</code></pre>
-<p lang="ja">使った資料はすべて <code>sources/</code> に保存し、指紋（SHA-256）で改変がないことを確かめられます。</p>
-<p lang="en">Every source document is saved in <code>sources/</code> with a SHA-256 fingerprint so anyone can check it has not changed.</p></details>
+<p lang="ja">使った資料は、作り直すと <code>sources/</code> にそろい、指紋（SHA-256）で改変がないことを確かめられます（ダウンロードのたびにファイルが変わる協会けんぽの3つのページを除きます）。</p>
+<p lang="en">After the build, every source document is in <code>sources/</code> with a SHA-256 fingerprint, so anyone can check it has not changed (except three 協会けんぽ pages whose file differs on every download).</p></details>
 <details><summary><span lang="ja">すべての資料の一覧（英語・専門的な内容）</span><span lang="en">Full list of every source (for specialists)</span></summary>
 <div class="md" id="doc"></div></details>
 <script>

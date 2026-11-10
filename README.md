@@ -19,7 +19,7 @@ uv venv --python 3.11 .venv && VIRTUAL_ENV=.venv uv pip install -r requirements.
 make all
 ```
 
-`make all` downloads any source document that is not stored in this repository (listed in `sources/EXTERNAL.tsv`), checks every source file against `sources/SHA256SUMS`, runs the tests and rebuilds `outputs/`.
+`make all` downloads any source document that is not stored in this repository (listed in `sources/EXTERNAL.tsv`), checks every source file against its fingerprint in `sources/SHA256SUMS` (except three 協会けんぽ pages whose file differs on every download; see `sources/SHA256SUMS.volatile`), runs the tests and rebuilds `outputs/`.
 
 ## License
 
