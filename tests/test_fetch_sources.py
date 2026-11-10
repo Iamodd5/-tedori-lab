@@ -46,7 +46,7 @@ def test_build_stops_when_no_copy_matches(tmp_path):
 
 
 def test_page_without_an_archive_copy_stops_the_build_naming_it(tmp_path):
-    # Some city pages could not be saved at the Internet Archive, so their row has no third column.
+    # Some pages have no Internet Archive copy listed, so their row has no third column.
     setup(tmp_path, b"next year's page", b"unused")
     tsv = tmp_path / "sources" / "EXTERNAL.tsv"
     tsv.write_text(f"ward/page.html\t{(tmp_path / 'pub.html').as_uri()}\n")

@@ -1,4 +1,4 @@
-# make all = fetch sources not kept in git, check every source, rebuild derived files, run tests, rebuild outputs/.
+# make all = fetch sources not kept in git, check every source listed in SHA256SUMS, rebuild derived files, run tests, rebuild outputs/.
 PY = .venv/bin/python
 
 all: fetch-sources check-sources text tables test outputs
