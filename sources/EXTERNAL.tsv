@@ -1,4 +1,5 @@
-# Source files NOT stored in git because the publisher does not allow redistribution (checked 2026-11-01).
+# Source files NOT stored in git: the publisher does not allow redistribution, we found no terms that allow it, or
+# (Code for Japan's Scrapbox note) it is a third-party page. See SOURCES.md.
 # `make fetch-sources` downloads them from the publisher, or, where a copy is listed, from the Internet Archive copy if the
 # publisher's file has changed; `make check-sources` verifies them against SHA256SUMS (the three 協会けんぽ HTML pages
 # are in SHA256SUMS.volatile, unchecked).
