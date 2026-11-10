@@ -164,7 +164,7 @@ Fingerprints for every file are in `sources/SHA256SUMS` (69 files).
 
 ## 12. Added later: laws, cabinet orders and local guides
 
-Laws and cabinet orders (not copyrighted, 著作権法13条) and national documents are stored in git; city, ward and 協会けんぽ pages are fetched by `make` (EXTERNAL.tsv). Where a publisher replaces a page, `make` uses the copy saved at the Internet Archive (the third column of EXTERNAL.tsv), checked against the same fingerprint.
+Laws and cabinet orders (not copyrighted, 著作権法13条) and national documents are stored in git; city, ward and 協会けんぽ pages are fetched by `make` (EXTERNAL.tsv). Where a publisher replaces a page, `make` uses the copy saved at the Internet Archive (the third column of EXTERNAL.tsv), checked against the same fingerprint. Eleven pages of the Shinjuku, Ota, Chuo and Adachi city websites have no such copy: no copy could be saved or opened at the Internet Archive. If one of these is replaced, `make` stops with a message naming the page; the new page is then checked against the figures cited from it and its fingerprint updated.
 
 | File | Title | Published | URL | Used for |
 |---|---|---|---|---|
