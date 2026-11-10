@@ -50,3 +50,17 @@ def test_q37_households_in_the_9m_to_10m_spouse_band():
             n += x["weight"]
     assert round(n, -3) == 185_000
     assert "about 185,000 all-household households (by weight)" in (ROOT / "OPEN_QUESTIONS.md").read_text(encoding="utf-8")
+
+
+def test_net_moved_by_about_015_trillion_between_published_builds():
+    # docs/VALIDATION.md §10: the earner-split change, published builds 8efa8b5 (before) and 263b817 (after);
+    # the two deductions added between them move the net by less than 0.01 trillion
+    import subprocess
+    import pytest
+    cost = []
+    for commit in ("8efa8b5", "263b817"):
+        r = subprocess.run(["git", "show", f"{commit}:outputs/population.json"], cwd=ROOT, capture_output=True, text=True)
+        if r.returncode:
+            pytest.skip(f"git history not available for {commit}")
+        cost.append(json.loads(r.stdout)["designs"]["daiwa"]["cost_yen"])
+    assert f"the net by about {abs(cost[1] - cost[0]) / 1e12:.2f} trillion" in DOC

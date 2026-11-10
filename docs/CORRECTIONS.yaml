@@ -7,24 +7,27 @@
 - date: 2026-11-10
   previous: 23f681c
   what:
-    ja: 「案の比較」の「自分の世帯の形で見る」で、まだ計算できない案の数を、「2026年の制度」まで数えて4つとしていたのを3つに直しました。同じところの、会社の保険に入らない人の説明で、国民年金保険料を払う配偶者を「働いていない配偶者」に限っていたのを、会社の保険に入っていない配偶者全体に直しました。大和総研案で国の収入が増える額は、「示した額」ではなく「この試算の額」より大きい可能性が高い、と直しました。
-    en: On Compare, "Try your own household's shape" counted "2026 rules" among the plans not shown, so it said 4 instead of 3. The note on earners outside company insurance said only a spouse who doesn't work also pays National Pension; any spouse not in company insurance does. The Daiwa plan's net gain to the government is more likely above this estimate's own figure, not above the rounded figure shown.
+    ja: 「案の比較」の「自分の世帯の形で見る」で、まだ計算できない案の数を、「2026年の制度」まで数えて4つとしていたのを3つに直しました。同じところの、会社の保険に入らない人の説明で、国民年金保険料を払う配偶者を「働いていない配偶者」に限っていたのを、会社の保険に入っていない配偶者全体に直しました。大和総研案で国の収入が増える額は、「示した額」ではなく「この試算の額」より大きい可能性が高い、と直しました。「検証」ページの、働く人の分け方を一つ変えたときの国の収入の動きを「約0.16兆円」から「約0.15兆円」に戻しました。
+    en: On Compare, "Try your own household's shape" counted "2026 rules" among the plans not shown, so it said 4 instead of 3. The note on earners outside company insurance said only a spouse who doesn't work also pays National Pension; any spouse not in company insurance does. The Daiwa plan's net gain to the government is more likely above this estimate's own figure, not above the rounded figure shown. On the Checks page, the move in the net gain from one change in how earners are split is back to "about 0.15 trillion".
   why:
-    ja: 表示しない案の数え方が、案ではない「2026年の制度」を含んでいたためです。パートで働く配偶者も、会社の保険に入っていなければ国民年金保険料を払います。調整の方向の議論が示すのは、試算の額（1.07兆円）より大きい可能性で、四捨五入した1.1兆円より大きいことではありません。
-    en: The count included "2026 rules", which is not a plan. A spouse who works part-time also pays National Pension when not in company insurance. The calibration argument supports "above the modelled 1.07 trillion", not "above the rounded 1.1".
+    ja: 表示しない案の数え方が、案ではない「2026年の制度」を含んでいたためです。パートで働く配偶者も、会社の保険に入っていなければ国民年金保険料を払います。調整の方向の議論が示すのは、試算の額（1.07兆円）より大きい可能性で、四捨五入した1.1兆円より大きいことではありません。変更の前後の公開された2つの版では、国の収入の差し引きは0.936兆円と1.088兆円で、差は0.152兆円です（この2つの版の間には2つの控除の追加もありますが、その影響は0.01兆円未満です）。0.16は、2つの数字を0.01兆円単位に丸めてから引いた差で、そのうち0.93は残っていない版の数字でした。
+    en: The count included "2026 rules", which is not a plan. A spouse who works part-time also pays National Pension when not in company insurance. The calibration argument supports "above the modelled 1.07 trillion", not "above the rounded 1.1". The two published builds before and after the earner-split change give a net gain of 0.936 and 1.088 trillion, 0.152 apart (two deductions were also added between those builds; they moved the net by less than 0.01 trillion). 0.16 came from rounding two figures to 0.01 before subtracting them, one of which (0.93) is from a build that was not kept.
   numbers:
     - label: {ja: 「案の比較」：自分の世帯の形で出していない案の数, en: "Compare: number of plans not shown for your own household's shape"}
       before: 4
       after: 3
+    - label: {ja: 「検証」ページ：働く人の分け方を一つ変えたときの、国の収入の差し引きの動き（兆円）, en: "Checks page: move in the net gain from one change in how earners are split (trillion yen)"}
+      before: 0.16
+      after: 0.15
 - date: 2026-11-09
   previous: 350ffc5
   published: b27603c
   what:
-    ja: 4つの案の説明を、それぞれの案の資料の言葉どおりに書き直しました（言い過ぎや言い足りない文を直し、資料で裏付けられない文を削りました）。「検証」ページの、働く人の分け方を一つ変えたときの国の収入の動きを「約0.15兆円」から「約0.16兆円」に直しました。「案の比較」の計算機は、1万円きざみの間の金額では、近い方ではなく両側の点を示すようにしました。
-    en: Rewrote the four plans' descriptions in the words of each plan's own documents (sentences that said more or less than the documents were corrected, and sentences no document backs were removed). On the Checks page, the move in the net gain from one change in how earners are split is now "about 0.16 trillion", not "about 0.15". The Compare calculators show both ¥10,000 points for an amount between them, not the nearer one.
+    ja: 4つの案の説明を、それぞれの案の資料の言葉どおりに書き直しました（言い過ぎや言い足りない文を直し、資料で裏付けられない文を削りました）。「検証」ページの、働く人の分け方を一つ変えたときの国の収入の動きを「約0.15兆円」から「約0.16兆円」に直しました（2026-11-10に0.15に戻しました）。
+    en: Rewrote the four plans' descriptions in the words of each plan's own documents (sentences that said more or less than the documents were corrected, and sentences no document backs were removed). On the Checks page, the move in the net gain from one change in how earners are split is now "about 0.16 trillion", not "about 0.15" (put back to 0.15 on 2026-11-10).
   why:
-    ja: 説明の一部が、資料の対象より広い・狭い、または資料にない内容を含んでいたためです。0.16は、その計算のもとの2つの数字（0.93と1.09兆円）の差です。近い方の点は、壁の反対側にあることがあるためです。
-    en: Some descriptions covered a wider or narrower group than the documents, or said things the documents don't. 0.16 is the difference between the two figures it comes from (0.93 and 1.09 trillion). The nearer point can be on the other side of a wall.
+    ja: 説明の一部が、資料の対象より広い・狭い、または資料にない内容を含んでいたためです。0.16は、その計算のもとの2つの数字（0.93と1.09兆円）の差です。
+    en: Some descriptions covered a wider or narrower group than the documents, or said things the documents don't. 0.16 is the difference between the two figures it comes from (0.93 and 1.09 trillion).
   numbers:
     - label: {ja: 「検証」ページ：働く人の分け方を一つ変えたときの、国の収入の差し引きの動き（兆円）, en: "Checks page: move in the net gain from one change in how earners are split (trillion yen)"}
       before: 0.15
@@ -33,8 +36,8 @@
   previous: 263b817
   published: 350ffc5
   what:
-    ja: 3つのルールを直しました。所得金額調整控除（給与850万円超）は、所得が62万円以下の23歳未満の扶養親族がいる場合だけにしました。合計所得2,500万円を超える人には住民税の調整控除をなくしました。大和総研案で現金を払う上限に、働く65歳以上の人の介護保険料を数えるようにしました。全世帯の試算の数字が変わりました。グループごとの手取りの平均の変化は下の一覧のとおりで、手取りが増える世帯と変わらない世帯の割合も変わりました（レポートの範囲は12〜21%が13〜21%に、79〜86%が79〜85%に）。「検証」ページの2つの説明も直しました。
-    en: Corrected three rules. The income adjustment deduction for salaries over ¥8.5m now needs a dependant under 23 with income of ¥620,000 or less; there is no resident-tax adjustment credit above total income of ¥25m; and under the Daiwa plan, the 65+ care premium of people who work counts toward the cash limit. The all-household numbers changed. The average change for each income group is listed below, and the shares of households better off and unchanged moved too (in the report, 12–21% became 13–21% and 79–86% became 79–85%). Two statements on the Checks page were also corrected.
+    ja: 3つのルールを直しました。所得金額調整控除（給与850万円超）は、所得が62万円以下の23歳未満の扶養親族がいる場合だけにしました。合計所得2,500万円を超える人には住民税の調整控除をなくしました。大和総研案で現金を払う上限に、働く65歳以上の人の介護保険料を数えるようにしました。全世帯の試算の数字が変わりました。平均が変わったグループごとの手取りの平均の変化は下の一覧のとおりで、手取りが増える世帯と変わらない世帯の割合も変わりました（レポートの範囲は12〜21%が13〜21%に、79〜86%が79〜85%に）。「検証」ページの2つの説明も直しました。
+    en: Corrected three rules. The income adjustment deduction for salaries over ¥8.5m now needs a dependant under 23 with income of ¥620,000 or less; there is no resident-tax adjustment credit above total income of ¥25m; and under the Daiwa plan, the 65+ care premium of people who work counts toward the cash limit. The all-household numbers changed. The average change for each group whose average changed is listed below, and the shares of households better off and unchanged moved too (in the report, 12–21% became 13–21% and 79–86% became 79–85%). Two statements on the Checks page were also corrected.
   why:
     ja: 措置法41条の3の11第1項は扶養親族（所得62万円以下）を条件としています。地方税法314条の6と37条は、調整控除を合計所得2,500万円以下の人に限っています。大和総研の資料（4ページ図表3の注1）は、事業や給与の収入がある人の介護保険料（第1号）を数えるとしています。「検証」ページは、調査の税額の推計に2024年の定額減税が入っているかを「確認していない」とし、入っていれば差は小さくなると書いていましたが、統計局の推計方法は定額減税を差し引いていて、ふつうの年と比べた差は大きくなります。また、年収900万〜1,000万円の人の配偶者控除の見直しで住民税が下がるとしていましたが、配偶者の所得が62万円以下なら上がります。
     en: 措置法41条の3の11第1項 requires a 扶養親族 (income of ¥620,000 or less). 地方税法314条の6 and 37条 limit the adjustment credit to total income of ¥25m or less. Daiwa's note (page 4, 図表3 注1) counts the category-1 long-term care premium of people with business or employment income. The Checks page said it was unconfirmed whether the survey's tax estimate includes the 2024 flat tax cut and that if it did the gap would be smaller; the Statistics Bureau's method takes the cut off, so against a normal year the gap is larger. It also said the spouse-deduction change for earners on ¥9m–10m lowered resident tax; it raises it when the spouse's income is ¥620,000 or less.
