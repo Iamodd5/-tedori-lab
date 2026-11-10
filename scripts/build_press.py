@@ -49,7 +49,7 @@ def frame(title, subtitle, body, notes=()):
 def wall_chart(wm, f):
     """Figure 1: H4's take-home pay as the spouse's pay rises, 2026 rules and the calculated plan."""
     h4 = wm["households"]["H4"]["designs"]
-    series = [(h4["baseline"], INK, "2026年の制度"), (h4["daiwa"], DAIWA, f["daiwa_label"])]
+    series = [(h4["baseline"], INK, "2026年の制度"), (h4["daiwa"], DAIWA, "（近似）" + f["daiwa_label"])]
     x0, x1, top = 0, 3_000_000, 3_000_000
     pts = {k: [(x, d) for x, d, *_ in s if x <= top] for k, (s, _, _) in enumerate(series)}
     ys = [d for p in pts.values() for _, d in p]
@@ -106,7 +106,7 @@ def charts(f):
     groups = [(f"グループ{x['decile']}", round(x["mean_change"])) for x in pop["by_decile"]]
     return {
         "fig1_wall_h4.svg": wall_chart(wm, f),
-        "fig2_households.svg": bar_chart(f"{f['daiwa_label']}：例の世帯の手取りの変化",
+        "fig2_households.svg": bar_chart(f"（近似）{f['daiwa_label']}：例の世帯の手取りの変化",
                                          "2026年の制度と比べた変化（円／年）", households, [ADAPTED, APPROX]),
         "fig3_groups.svg": bar_chart(f"（近似）{f['daiwa_label']}：全世帯の手取りの変化",
                                      "年収の低い順に同じ数ずつ10のグループに分けた、1世帯あたりの平均の変化（円／年）。グループ1が最も年収が低い", groups,

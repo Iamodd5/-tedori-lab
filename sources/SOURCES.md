@@ -201,3 +201,4 @@ Laws and cabinet orders (not copyrighted, 著作権法13条) and national docume
 | tax/chuo_r9_juminzei_kaisei.html | 中央区 令和9年度から適用される個人住民税の主な改正 | 2026-09-01 | https://www.city.chuo.lg.jp/a0009/kurashi/zeikin/juuminzei/r9kaisei.html | 令和9年度 limits (not in git) |
 | tax/adachi_r9_juminzei_kaisei.html | 足立区 令和9年度から適用される主な税制改正等 | 2026-11-02 | https://www.city.adachi.tokyo.jp/ze/2027zeisei.html | 令和9年度 changes (not in git) |
 
+| tax/nta_teigakugenzei_kakutei.html | 国税庁 定額減税と確定申告 (downloaded 2026-11-10) | – | https://www.nta.go.jp/users/gensen/teigakugenzei/kakutei.htm | 2024 flat tax cut amounts (docs/VALIDATION.md §10) |

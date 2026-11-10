@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="470" viewBox="0 0 720 470" font-family="Hiragino Sans, 'Hiragino Kaku Gothic ProN', 'BIZ UDPGothic', 'Noto Sans JP', 'Yu Gothic', sans-serif">
 <rect width="720" height="470" fill="#fff"/>
 <rect width="720" height="4" fill="#16243A"/>
-<text x="24.0" y="38.0" font-size="17" fill="#16243A" text-anchor="start" font-weight="bold">大和総研案（2026年の税制に合わせて計算）：例の世帯の手取りの変化</text>
+<text x="24.0" y="38.0" font-size="17" fill="#16243A" text-anchor="start" font-weight="bold">（近似）大和総研案（2026年の税制に合わせて計算）：例の世帯の手取りの変化</text>
 <text x="24.0" y="60.0" font-size="12" fill="#4E5B70" text-anchor="start" font-weight="normal">2026年の制度と比べた変化（円／年）</text>
 <line x1="250.0" x2="250.0" y1="84" y2="378" stroke="#E4E8EE"/><text x="250.0" y="394.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">−25万</text>
 <line x1="307.1" x2="307.1" y1="84" y2="378" stroke="#E4E8EE"/><text x="307.1" y="394.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">−20万</text>
