@@ -7,11 +7,11 @@
 - date: 2026-11-10
   previous: e4c3957
   what:
-    ja: 「計算方法」「検証」「出典とコード」のページで、発行元がページを差し替えたときはインターネットアーカイブの写しを使う、としていたのを、写しがあるのはダウンロードする25ページのうち11ページだけで、ほかのページが差し替えられると作り直しが止まる（協会けんぽの3つのページは指紋で確認せずにそのまま使う）と直しました。「出典とコード」のページで、すべての資料を指紋で確かめられる、としていたところにも、協会けんぽの3つのページを除くと書き足し、古くなった「69ファイル」を消しました。
-    en: The How it works, Checks and Sources and code pages said that when a publisher replaces a page, the build uses the copy saved at the Internet Archive. Only 11 of the 25 downloaded pages have such a copy; if another is replaced, the build stops (three 協会けんぽ pages are used as downloaded, without a fingerprint check). Where the Sources and code page said every source can be checked by its fingerprint, it now gives those three pages as the exception, and the out-of-date "69 files" is removed.
+    ja: 「計算方法」「検証」「出典とコード」のページで、発行元がページを差し替えたときはインターネットアーカイブの写しを使う、としていたのを、写しがあるのはダウンロードする25ページのうち11ページだけで、ほかのページが差し替えられると作り直しが止まる（協会けんぽのウェブページ3つは指紋で確認せずにそのまま使う）と直しました。「出典とコード」のページで、すべての資料を sources/ に保存し指紋で確かめられる、としていたところを、作り直すと sources/ にそろい、協会けんぽのウェブページ3つを除いて指紋で確かめられる、と直し、古くなった「69ファイル」を消しました。
+    en: The How it works, Checks and Sources and code pages said that when a publisher replaces a page, the build uses the copy saved at the Internet Archive. Only 11 of the 25 downloaded pages have such a copy; if another is replaced, the build stops (three 協会けんぽ web pages are used as downloaded, without a fingerprint check). Where the Sources and code page said every source document is saved in sources/ and can be checked by its fingerprint, it now says the documents are there after the build and gives those three pages as the exception, and the out-of-date "69 files" is removed.
   why:
-    ja: インターネットアーカイブに写しを保存できたのは11ページだけでした。新宿区・大田区・中央区・足立区のサイトの11ページは、写しを保存することも開くこともできませんでした。協会けんぽの3つのページは、ページに埋め込まれた符号のためにダウンロードのたびにファイルが変わるので、指紋では確かめられません。69は、資料が増える前の数でした。
-    en: Copies could be saved at the Internet Archive for only 11 pages; for 11 pages of the Shinjuku, Ota, Chuo and Adachi city websites no copy could be saved or opened. The three 協会けんぽ pages differ on every download because of a code embedded in the page, so no fingerprint can check them. 69 was the count before more sources were added.
+    ja: インターネットアーカイブの写しを確かめて一覧に加えられたのは11ページだけです。新宿区・大田区・中央区・足立区のサイトの11ページは、保存した指紋と一致する写しを、まだダウンロードできていません。協会けんぽのウェブページ3つは、ページに埋め込まれた符号のためにダウンロードのたびにファイルが変わるので、指紋では確かめられません。69は、資料が増える前の数でした。
+    en: Only 11 pages have an Internet Archive copy that has been checked and listed; for 11 pages of the Shinjuku, Ota, Chuo and Adachi city websites, no copy matching the saved fingerprint has been downloaded so far. The three 協会けんぽ web pages differ on every download because of a code embedded in the page, so no fingerprint can check them. 69 was the count before more sources were added.
 - date: 2026-11-10
   previous: 23f681c
   published: 9a3c27c
