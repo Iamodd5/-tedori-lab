@@ -110,11 +110,12 @@ function lead() {
 
 function plans() {
   const box = document.getElementById("plans"), nd = walls.not_drawn || {};
+  const open = [...box.children].map(d => d.open);  // plans the reader opened stay open when the language changes
   box.innerHTML = "";
-  for (const d of Object.keys(walls.summaries)) {
+  for (const [i, d] of Object.keys(walls.summaries).entries()) {
     const det = document.createElement("details"), sum = document.createElement("summary"), b = document.createElement("strong");
     const tag = document.createElement("span"), p = document.createElement("p");
-    det.className = "plan";
+    det.className = "plan"; det.open = !!open[i];
     b.textContent = t(walls.labels[d]);
     tag.className = nd[d] ? "tag no" : "tag";
     tag.textContent = nd[d] ? (lang === "ja" ? "まだ計算できない" : "cannot be calculated yet") : (lang === "ja" ? "計算済み" : "calculated");

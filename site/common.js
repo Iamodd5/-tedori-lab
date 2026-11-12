@@ -77,6 +77,10 @@ function applyLang() {
   document.querySelectorAll("header nav a").forEach((a, i) => a.textContent = t(PAGES[i][1]));
   document.querySelectorAll("footer nav a").forEach((a, i) => a.textContent = t(ABOUT[i][1]));
   document.querySelectorAll(".scroll").forEach(b => b.setAttribute("aria-label", scrollLabel()));
+  // the tab title in the page's language: "案の比較｜手取りラボ" / "Compare plans | Tedori Lab" (pages not in the menus keep their own)
+  const here = location.pathname.split("/").pop() || "index.html", p = [...PAGES, ...ABOUT].find(x => x[0] === here);
+  const site = lang === "ja" ? "手取りラボ" : "Tedori Lab";
+  document.title = here === "index.html" ? site : p ? `${t(p[1])}${lang === "ja" ? "｜" : " | "}${site}` : document.title;
 }
 
 // onLangChange: pages with charts or generated text redraw themselves
@@ -120,7 +124,11 @@ function setupPage(onLangChange = () => {}) {
   header.querySelector("#lang-toggle").onclick = () => {
     lang = lang === "ja" ? "en" : "ja";
     try { localStorage.setItem("tedori-lang", lang); } catch (e) { /* not saved; fine */ }
-    applyLang(); onLangChange();
+    // keep the reader's place: the first heading, chart or table still in view stays where it is on screen
+    const A = () => [...document.querySelectorAll("main :is(h1, h2, h3, summary, canvas, table)")], top0 = Math.max(0, header.getBoundingClientRect().bottom);
+    const i = A().findIndex(e => e.getBoundingClientRect().bottom > top0), y0 = i >= 0 ? A()[i].getBoundingClientRect().top : 0;
+    applyLang();
+    Promise.resolve(onLangChange()).then(() => requestAnimationFrame(() => { const e = A()[i]; if (e) scrollBy(0, e.getBoundingClientRect().top - y0); }));
   };
   applyLang();
 }

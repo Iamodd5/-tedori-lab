@@ -96,7 +96,8 @@ function findings(d, labels) {
 
 function draw() {
   const sel = document.getElementById("design"), d = pop.designs[sel.value];
-  [...sel.options].forEach(o => o.textContent = t(pop.designs[o.value].label));
+  // the same words as the tag on Home's list of plans
+  [...sel.options].forEach(o => o.textContent = t(pop.designs[o.value].label) + (pop.designs[o.value].status !== "complete" ? (lang === "ja" ? "（まだ計算できない）" : " (cannot be calculated yet)") : ""));
   const st = document.getElementById("status"), res = document.getElementById("results");
   document.getElementById("summary").textContent = t(d.summary);
   charts.forEach(c => c.destroy()); charts = [];

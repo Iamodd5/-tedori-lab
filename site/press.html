@@ -30,14 +30,18 @@ const FIGS = [["fig1_wall_h4.svg", { ja: "図1　配偶者の給与が増える�
               ["fig3_groups.svg", { ja: "図3　（近似）大和総研案（2026年の税制に合わせて計算）での日本の全世帯の手取りの変化", en: "Figure 3: (Approximation) change in take-home pay across all households in Japan under the Daiwa Institute plan (adjusted to 2026 tax rules)" },
                { ja: "横向きの棒グラフです。大和総研案での手取りの平均の変化を、収入のグループごとに示しています。金額は、「全世帯で見ると」のページの表にあります。", en: "Horizontal bar chart of the average change in take-home pay under the Daiwa Institute plan, one bar for each income group. The amounts are in the table on the All households page." }]];
 function draw() {
-  renderDoc(el, { ja: url, en: url }); el.lang = "ja";  // the summary is in Japanese on both language versions
+  const done = renderDoc(el, { ja: url, en: url }); el.lang = "ja";  // the summary is in Japanese on both language versions
   const box = document.getElementById("figs"); box.replaceChildren();
   for (const [file, cap, alt] of FIGS) {
     const fig = document.createElement("figure"), img = document.createElement("img"), c = document.createElement("figcaption"), a = document.createElement("a");
     img.src = `../outputs/press/${file}`; img.alt = t(alt); img.width = 720; img.height = 470;
     a.href = img.src; a.download = file; a.textContent = lang === "ja" ? "この図をダウンロード（SVG形式の画像）" : "Download this chart (SVG image)";
-    c.append(t(cap), "　", a); fig.append(img, c); box.append(fig);
+    // each link names its figure ("図1" / "figure 1", taken from the caption), so a list of links tells them apart
+    a.setAttribute("aria-label", lang === "ja" ? `${t(cap).split("　")[0]}をダウンロード（SVG形式の画像）` : `Download ${t(cap).split(":")[0].toLowerCase()} (SVG image)`);
+    const full = document.createElement("a"); full.href = img.src; full.append(img);  // the image opens full size
+    c.append(t(cap), "　", a); fig.append(full, c); box.append(fig);
   }
+  return done;
 }
 setupPage(draw);
 draw();
