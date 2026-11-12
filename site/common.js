@@ -50,9 +50,13 @@ const li = (ul, text) => { const x = document.createElement("li"); x.textContent
 const rowHead = (tr, text) => { const th = document.createElement("th"); th.scope = "row"; th.textContent = text; tr.append(th); };
 // a table that scrolls sideways: reachable by keyboard, named, and marked "overflows" (shows a cue) when it is wider than the page
 const scrollLabel = () => lang === "ja" ? "表（横に動かせます）" : "Table (scrolls sideways)";
-const scrollWatch = new ResizeObserver(es => es.forEach(e => { const b = e.target.closest(".scroll"); b.classList.toggle("overflows", b.scrollWidth > b.clientWidth + 8); }));  // a bracket sticking out a few pixels is not a hidden column
+const scrollWatch = new ResizeObserver(es => es.forEach(e => {
+  const b = e.target.closest(".scroll"), over = b.scrollWidth > b.clientWidth + 8;  // a bracket sticking out a few pixels is not a hidden column
+  b.classList.toggle("overflows", over);
+  if (over) { b.tabIndex = 0; b.setAttribute("role", "region"); b.setAttribute("aria-label", scrollLabel()); }
+  else { b.removeAttribute("tabindex"); b.removeAttribute("role"); b.removeAttribute("aria-label"); }
+}));
 function watchScroll(b) {
-  b.tabIndex = 0; b.setAttribute("role", "region"); b.setAttribute("aria-label", scrollLabel());
   scrollWatch.observe(b); if (b.firstElementChild) scrollWatch.observe(b.firstElementChild);
 }
 
@@ -76,7 +80,7 @@ function applyLang() {
   document.querySelector("footer nav")?.setAttribute("aria-label", lang === "ja" ? "このサイトについて" : "About this site");
   document.querySelectorAll("header nav a").forEach((a, i) => a.textContent = t(PAGES[i][1]));
   document.querySelectorAll("footer nav a").forEach((a, i) => a.textContent = t(ABOUT[i][1]));
-  document.querySelectorAll(".scroll").forEach(b => b.setAttribute("aria-label", scrollLabel()));
+  document.querySelectorAll(".scroll[role]").forEach(b => b.setAttribute("aria-label", scrollLabel()));
   // the tab title in the page's language: "案の比較｜手取りラボ" / "Compare plans | Tedori Lab" (pages not in the menus keep their own)
   const here = location.pathname.split("/").pop() || "index.html", p = [...PAGES, ...ABOUT].find(x => x[0] === here);
   const site = lang === "ja" ? "手取りラボ" : "Tedori Lab";

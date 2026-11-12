@@ -35,9 +35,9 @@ function draw() {
   for (const [file, cap, alt] of FIGS) {
     const fig = document.createElement("figure"), img = document.createElement("img"), c = document.createElement("figcaption"), a = document.createElement("a");
     img.src = `../outputs/press/${file}`; img.alt = t(alt); img.width = 720; img.height = 470;
-    a.href = img.src; a.download = file; a.textContent = lang === "ja" ? "この図をダウンロード（SVG形式の画像）" : "Download this chart (SVG image)";
+    a.href = img.src; a.download = file;
     // each link names its figure ("図1" / "figure 1", taken from the caption), so a list of links tells them apart
-    a.setAttribute("aria-label", lang === "ja" ? `${t(cap).split("　")[0]}をダウンロード（SVG形式の画像）` : `Download ${t(cap).split(":")[0].toLowerCase()} (SVG image)`);
+    a.textContent = lang === "ja" ? `${t(cap).split("　")[0]}をダウンロード（SVG形式の画像）` : `Download ${t(cap).split(":")[0].toLowerCase()} (SVG image)`;
     const full = document.createElement("a"); full.href = img.src; full.append(img);  // the image opens full size
     c.append(t(cap), "　", a); fig.append(full, c); box.append(fig);
   }
