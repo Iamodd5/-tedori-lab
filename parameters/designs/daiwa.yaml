@@ -7,11 +7,11 @@ name_en: Social-insurance-refundable tax credit (Daiwa Institute of Research pro
 label: {ja: 大和総研案（2026年の税制に合わせて計算）, en: "Daiwa Institute plan (adjusted to 2026 tax rules)"}
 # What the plan does, in one line and in one paragraph, for the website (from the sources above)
 short:
-  ja: "所得税の基礎控除をなくし、代わりに定額の税額控除を設ける。控除が所得税より大きい分は、働いて払った社会保険料の額まで現金で支給する。"
-  en: "Replaces the income tax basic deduction with a fixed tax credit. Any part of the credit bigger than your income tax is paid in cash, up to the social insurance you paid on your work."
+  ja: "すべての納税者について、所得税の基礎控除（税金を計算する前に所得から差し引く額）をなくします。代わりに、所得税から直接差し引く一定の額（税額控除）を設けます。税額控除が所得税より大きい人には、差額を現金で払います。払う額は、働いて得た所得にかかる社会保険料の額までです。"
+  en: "For every taxpayer, this plan removes the income tax basic deduction (an amount taken off income before tax is worked out). In its place it gives a fixed tax credit, an amount taken straight off income tax. If the credit is bigger than your income tax, the difference is paid to you in cash. You can get up to the amount of social insurance you paid on income from work."
 summary:
-  ja: "民間の研究所である大和総研が2025年10月に出した「社会保険料還付付き税額控除」の案です。すべての納税者について、所得税の基礎控除をなくし、代わりに一定額の税額控除（所得税から直接差し引く額）を設けます。控除が所得税より大きい人には、残りを現金で払いますが、働いて得た所得（給与や事業の所得など）にかかる社会保険料の額までです。国民健康保険料、国民年金保険料、65歳以上の人の介護保険料、後期高齢者医療制度の保険料は、給与や事業の所得など働いて得た所得がある人についてだけ、この上限に数えます。主に年金や資産からの所得、資産の取り崩しで暮らす人は、働いて得た所得にかかる社会保険料がないため、現金を受け取れません。住民税は変えません。大和総研のレポートは、所得税がかかり始める年収（178万円か203万円か）、基礎控除をすべて税額控除にするか58万円を超える特例の上乗せ分だけにするか、現金での支給があるかないかを組み合わせた8通りを試算しています。このサイトは、レポートの要約が取り上げた「基礎控除をすべてなくす、178万円、現金の支給あり」の案を計算しています。"
-  en: "A proposal published in October 2025 by the Daiwa Institute of Research, a private research institute: a \"tax credit with a social-insurance refund\". For every taxpayer, it removes the income tax basic deduction and gives a fixed tax credit instead (an amount subtracted straight from income tax). If the credit is bigger than your income tax, the rest is paid to you in cash, but only up to what you paid in social insurance on income from work (such as wages or business income). National Health Insurance, National Pension, the long-term care premium of people aged 65 or over, and late-stage elderly medical care premiums count toward this cap only for people with income from work, such as wages or business income. People who live mainly on a pension, income from assets, or by drawing down their assets have no social insurance on income from work, so they get no cash. Resident tax doesn't change. Daiwa's report works out eight versions, combining: the income where income tax starts (¥1.78m or ¥2.03m), turning the whole basic deduction into a credit or only the special top-up above ¥580,000, and with or without the cash payment. This site calculates the version in the report's summary: the whole basic deduction removed, ¥1.78m, with the cash payment."
+  ja: "民間の研究所である大和総研が2025年10月に出した「社会保険料還付付き税額控除」の案です。すべての納税者について、所得税の基礎控除（税金を計算する前に所得から差し引く額）をなくします。代わりに、所得税から直接差し引く一定の額（税額控除）を設けます。税額控除が所得税より大きい人には、差額を現金で払います。払う額は、働いて得た所得（給与や事業の所得など）にかかる社会保険料の額までです。一部の保険料は、給与や事業の所得など、働いて得た所得がある人についてだけ、この上限に数えます。国民健康保険料、国民年金保険料、65歳以上の人の介護保険料、後期高齢者医療制度の保険料です。主に年金や資産からの所得、資産の取り崩しで暮らす人は、働いて得た所得にかかる社会保険料がないため、現金を受け取れません。住民税は変えません。大和総研のレポートは、条件を変えた8通りを試算しています。変えている条件は、所得税がかかり始める年収（178万円か203万円か）、基礎控除を税額控除に変える範囲、現金での支給があるかないかです。基礎控除を税額控除に変える範囲は、基礎控除のすべてか、58万円を超える特例の上乗せ分だけかのどちらかです。このサイトは、レポートの要約が取り上げた「基礎控除をすべてなくす、178万円、現金の支給あり」の案を計算しています。"
+  en: "This is a proposal for a \"tax credit with a social-insurance refund\", published in October 2025 by the Daiwa Institute of Research, a private research institute. For every taxpayer, it removes the income tax basic deduction (an amount taken off income before tax is worked out). In its place it gives a fixed tax credit, an amount taken straight off income tax. If the credit is bigger than your income tax, the difference is paid to you in cash. You can get up to the amount of social insurance you paid on income from work (such as wages or business income). Some premiums count toward this cap only for people with income from work, such as wages or business income. They are National Health Insurance, National Pension, the long-term care premium of people aged 65 or over, and late-stage elderly medical care premiums. People who live mainly on a pension, income from assets, or by drawing down their assets have no social insurance on income from work, so they get no cash. Resident tax doesn't change. Daiwa's report works out eight versions by changing the conditions. The conditions are the income where income tax starts (¥1.78m or ¥2.03m), how much of the basic deduction becomes a credit, and whether there is a cash payment. Either the whole basic deduction becomes a credit, or only the special top-up above ¥580,000. This site calculates the version in the report's summary: the whole basic deduction removed, ¥1.78m, with the cash payment."
 start_year: null  # the report gives no start date; modelled on the 2026 baseline
 status: resolved
 
@@ -24,55 +24,55 @@ source:
 
 # Each sentence of `short` and `summary` with the words in the report that back it (tests/test_plan_quotes.py)
 quotes:
-  - claim: {ja: "所得税の基礎控除をなくし、代わりに定額の税額控除を設ける。", en: "Replaces the income tax basic deduction with a fixed tax credit."}
+  - claim: {ja: "すべての納税者について、所得税の基礎控除（税金を計算する前に所得から差し引く額）をなくします。代わりに、所得税から直接差し引く一定の額（税額控除）を設けます。", en: "For every taxpayer, this plan removes the income tax basic deduction (an amount taken off income before tax is worked out). In its place it gives a fixed tax credit, an amount taken straight off income tax."}
     text: "所得税の基礎控除を廃止し5.65 万円の「社会保険料還付付き税額控除」を新設した場合"
     source: daiwa
     page: 1
-  - claim: {ja: "所得税の基礎控除をなくし、代わりに定額の税額控除を設ける。", en: "Replaces the income tax basic deduction with a fixed tax credit."}
+  - claim: {ja: "すべての納税者について、所得税の基礎控除（税金を計算する前に所得から差し引く額）をなくします。代わりに、所得税から直接差し引く一定の額（税額控除）を設けます。", en: "For every taxpayer, this plan removes the income tax basic deduction (an amount taken off income before tax is worked out). In its place it gives a fixed tax credit, an amount taken straight off income tax."}
     text: "全ての納税者に対して、所得税につき一定額の税額控除を付与する"
     source: daiwa
     page: 4
-  - claim: {ja: "控除が所得税より大きい分は、働いて払った社会保険料の額まで現金で支給する。", en: "Any part of the credit bigger than your income tax is paid in cash, up to the social insurance you paid on your work."}
+  - claim: {ja: "税額控除が所得税より大きい人には、差額を現金で払います。払う額は、働いて得た所得にかかる社会保険料の額までです。", en: "If the credit is bigger than your income tax, the difference is paid to you in cash. You can get up to the amount of social insurance you paid on income from work."}
     text: "税額控除額が所得税額を上回る者は、差額につき 労働所得に係る社会保険料の範囲で"
     source: daiwa
     page: 1
-  - claim: {ja: "控除が所得税より大きい分は、働いて払った社会保険料の額まで現金で支給する。", en: "Any part of the credit bigger than your income tax is paid in cash, up to the social insurance you paid on your work."}
+  - claim: {ja: "税額控除が所得税より大きい人には、差額を現金で払います。払う額は、働いて得た所得にかかる社会保険料の額までです。", en: "If the credit is bigger than your income tax, the difference is paid to you in cash. You can get up to the amount of social insurance you paid on income from work."}
     text: "納税者が支払った社会保険料に相当する金額の範囲内で一般会計予算から現金給付する仕組み"
     source: daiwa
     page: 4
-  - claim: {ja: "民間の研究所である大和総研が2025年10月に出した「社会保険料還付付き税額控除」の案です。", en: 'A proposal published in October 2025 by the Daiwa Institute of Research, a private research institute: a "tax credit with a social-insurance refund".'}
+  - claim: {ja: "民間の研究所である大和総研が2025年10月に出した「社会保険料還付付き税額控除」の案です。", en: 'This is a proposal for a "tax credit with a social-insurance refund", published in October 2025 by the Daiwa Institute of Research, a private research institute.'}
     text: "株式会社大和総研"
     source: daiwa
     page: 1
-  - claim: {ja: "民間の研究所である大和総研が2025年10月に出した「社会保険料還付付き税額控除」の案です。", en: 'A proposal published in October 2025 by the Daiwa Institute of Research, a private research institute: a "tax credit with a social-insurance refund".'}
+  - claim: {ja: "民間の研究所である大和総研が2025年10月に出した「社会保険料還付付き税額控除」の案です。", en: 'This is a proposal for a "tax credit with a social-insurance refund", published in October 2025 by the Daiwa Institute of Research, a private research institute.'}
     text: "2025 年 10 月 10 日"
     source: daiwa
     page: 1
-  - claim: {ja: "民間の研究所である大和総研が2025年10月に出した「社会保険料還付付き税額控除」の案です。", en: 'A proposal published in October 2025 by the Daiwa Institute of Research, a private research institute: a "tax credit with a social-insurance refund".'}
+  - claim: {ja: "民間の研究所である大和総研が2025年10月に出した「社会保険料還付付き税額控除」の案です。", en: 'This is a proposal for a "tax credit with a social-insurance refund", published in October 2025 by the Daiwa Institute of Research, a private research institute.'}
     text: "「社会保険料還付付き税額控除」の提案"
     source: daiwa
     page: 1
-  - claim: {ja: "すべての納税者について、所得税の基礎控除をなくし、代わりに一定額の税額控除（所得税から直接差し引く額）を設けます。", en: "For every taxpayer, it removes the income tax basic deduction and gives a fixed tax credit instead (an amount subtracted straight from income tax)."}
+  - claim: {ja: "すべての納税者について、所得税の基礎控除（税金を計算する前に所得から差し引く額）をなくします。代わりに、所得税から直接差し引く一定の額（税額控除）を設けます。", en: "For every taxpayer, it removes the income tax basic deduction (an amount taken off income before tax is worked out). In its place it gives a fixed tax credit, an amount taken straight off income tax."}
     text: "全ての納税者に対して、所得税につき一定額の税額控除を付与する"
     source: daiwa
     page: 4
-  - claim: {ja: "すべての納税者について、所得税の基礎控除をなくし、代わりに一定額の税額控除（所得税から直接差し引く額）を設けます。", en: "For every taxpayer, it removes the income tax basic deduction and gives a fixed tax credit instead (an amount subtracted straight from income tax)."}
+  - claim: {ja: "すべての納税者について、所得税の基礎控除（税金を計算する前に所得から差し引く額）をなくします。代わりに、所得税から直接差し引く一定の額（税額控除）を設けます。", en: "For every taxpayer, it removes the income tax basic deduction (an amount taken off income before tax is worked out). In its place it gives a fixed tax credit, an amount taken straight off income tax."}
     text: "基礎控除全額を税額控除化する案（基礎控除を廃止し課税最低限まで不足する分を税額控除とする案）"
     source: daiwa
     page: 6
-  - claim: {ja: "控除が所得税より大きい人には、残りを現金で払いますが、働いて得た所得（給与や事業の所得など）にかかる社会保険料の額までです。", en: "If the credit is bigger than your income tax, the rest is paid to you in cash, but only up to what you paid in social insurance on income from work (such as wages or business income)."}
+  - claim: {ja: "税額控除が所得税より大きい人には、差額を現金で払います。払う額は、働いて得た所得（給与や事業の所得など）にかかる社会保険料の額までです。", en: "If the credit is bigger than your income tax, the difference is paid to you in cash. You can get up to the amount of social insurance you paid on income from work (such as wages or business income)."}
     text: "税額控除額が所得税額を上回る者は、差額につき 労働所得に係る社会保険料の範囲で"
     source: daiwa
     page: 1
-  - claim: {ja: "控除が所得税より大きい人には、残りを現金で払いますが、働いて得た所得（給与や事業の所得など）にかかる社会保険料の額までです。", en: "If the credit is bigger than your income tax, the rest is paid to you in cash, but only up to what you paid in social insurance on income from work (such as wages or business income)."}
+  - claim: {ja: "税額控除が所得税より大きい人には、差額を現金で払います。払う額は、働いて得た所得（給与や事業の所得など）にかかる社会保険料の額までです。", en: "If the credit is bigger than your income tax, the difference is paid to you in cash. You can get up to the amount of social insurance you paid on income from work (such as wages or business income)."}
     text: "納税者が支払った社会保険料に相当する金額の範囲内で一般会計予算から現金給付する仕組み"
     source: daiwa
     page: 4
-  - claim: {ja: "控除が所得税より大きい人には、残りを現金で払いますが、働いて得た所得（給与や事業の所得など）にかかる社会保険料の額までです。", en: "If the credit is bigger than your income tax, the rest is paid to you in cash, but only up to what you paid in social insurance on income from work (such as wages or business income)."}
+  - claim: {ja: "税額控除が所得税より大きい人には、差額を現金で払います。払う額は、働いて得た所得（給与や事業の所得など）にかかる社会保険料の額までです。", en: "If the credit is bigger than your income tax, the difference is paid to you in cash. You can get up to the amount of social insurance you paid on income from work (such as wages or business income)."}
     text: "事業所得や給与所得など労働に係る所得"
     source: daiwa
     page: 4
-  - claim: {ja: "国民健康保険料、国民年金保険料、65歳以上の人の介護保険料、後期高齢者医療制度の保険料は、給与や事業の所得など働いて得た所得がある人についてだけ、この上限に数えます。", en: "National Health Insurance, National Pension, the long-term care premium of people aged 65 or over, and late-stage elderly medical care premiums count toward this cap only for people with income from work, such as wages or business income."}
+  - claim: {ja: "一部の保険料は、給与や事業の所得など、働いて得た所得がある人についてだけ、この上限に数えます。国民健康保険料、国民年金保険料、65歳以上の人の介護保険料、後期高齢者医療制度の保険料です。", en: "Some premiums count toward this cap only for people with income from work, such as wages or business income. They are National Health Insurance, National Pension, the long-term care premium of people aged 65 or over, and late-stage elderly medical care premiums."}
     text: "国民健康保険、国民年金、介護保険（第1 号被保険者） 、後期高齢者医療制度の保険料については、事業所得や給与所得など労働に係る所得がある者のみを対象とする。"
     source: daiwa
     page: 4
@@ -84,15 +84,15 @@ quotes:
     text: "住民税については特に制度変更を行わない。"
     source: daiwa
     page: 5
-  - claim: {ja: "大和総研のレポートは、所得税がかかり始める年収（178万円か203万円か）、基礎控除をすべて税額控除にするか58万円を超える特例の上乗せ分だけにするか、現金での支給があるかないかを組み合わせた8通りを試算しています。", en: "Daiwa's report works out eight versions, combining: the income where income tax starts (¥1.78m or ¥2.03m), turning the whole basic deduction into a credit or only the special top-up above ¥580,000, and with or without the cash payment."}
+  - claim: {ja: "大和総研のレポートは、条件を変えた8通りを試算しています。変えている条件は、所得税がかかり始める年収（178万円か203万円か）、基礎控除を税額控除に変える範囲、現金での支給があるかないかです。基礎控除を税額控除に変える範囲は、基礎控除のすべてか、58万円を超える特例の上乗せ分だけかのどちらかです。", en: "Daiwa's report works out eight versions by changing the conditions. The conditions are the income where income tax starts (¥1.78m or ¥2.03m), how much of the basic deduction becomes a credit, and whether there is a cash payment. Either the whole basic deduction becomes a credit, or only the special top-up above ¥580,000."}
     text: "所得税の課税最低限、基礎控除の税額控除化、社会保険料の還付に相当する給付の有無それぞれにつき 2 ケースずつ、計 8 ケースにつき財政および家計への影響の試算を行った。"
     source: daiwa
     page: 5
-  - claim: {ja: "大和総研のレポートは、所得税がかかり始める年収（178万円か203万円か）、基礎控除をすべて税額控除にするか58万円を超える特例の上乗せ分だけにするか、現金での支給があるかないかを組み合わせた8通りを試算しています。", en: "Daiwa's report works out eight versions, combining: the income where income tax starts (¥1.78m or ¥2.03m), turning the whole basic deduction into a credit or only the special top-up above ¥580,000, and with or without the cash payment."}
+  - claim: {ja: "大和総研のレポートは、条件を変えた8通りを試算しています。変えている条件は、所得税がかかり始める年収（178万円か203万円か）、基礎控除を税額控除に変える範囲、現金での支給があるかないかです。基礎控除を税額控除に変える範囲は、基礎控除のすべてか、58万円を超える特例の上乗せ分だけかのどちらかです。", en: "Daiwa's report works out eight versions by changing the conditions. The conditions are the income where income tax starts (¥1.78m or ¥2.03m), how much of the basic deduction becomes a credit, and whether there is a cash payment. Either the whole basic deduction becomes a credit, or only the special top-up above ¥580,000."}
     text: "178万円 or 203万円"
     source: daiwa
     page: 5
-  - claim: {ja: "大和総研のレポートは、所得税がかかり始める年収（178万円か203万円か）、基礎控除をすべて税額控除にするか58万円を超える特例の上乗せ分だけにするか、現金での支給があるかないかを組み合わせた8通りを試算しています。", en: "Daiwa's report works out eight versions, combining: the income where income tax starts (¥1.78m or ¥2.03m), turning the whole basic deduction into a credit or only the special top-up above ¥580,000, and with or without the cash payment."}
+  - claim: {ja: "大和総研のレポートは、条件を変えた8通りを試算しています。変えている条件は、所得税がかかり始める年収（178万円か203万円か）、基礎控除を税額控除に変える範囲、現金での支給があるかないかです。基礎控除を税額控除に変える範囲は、基礎控除のすべてか、58万円を超える特例の上乗せ分だけかのどちらかです。", en: "Daiwa's report works out eight versions by changing the conditions. The conditions are the income where income tax starts (¥1.78m or ¥2.03m), how much of the basic deduction becomes a credit, and whether there is a cash payment. Either the whole basic deduction becomes a credit, or only the special top-up above ¥580,000."}
     text: "特例上乗せ分(58万円超過分)のみを税額控除化 or 全額を税額控除化"
     source: daiwa
     page: 5
@@ -174,16 +174,16 @@ approximations:
     ja: 所得税には2.1%の復興特別所得税が上乗せされます。大和総研は、税額控除をこの上乗せの前と後のどちらで差し引くかを示していません。ここでは、今ある他の税額控除と同じく、先に税額控除を差し引いてから2.1%を上乗せしています。
     en: Income tax has a 2.1% reconstruction surtax added on top. Daiwa doesn't say whether the credit is subtracted before or after that surtax. We subtract the credit first and then add the 2.1%, which is how existing tax credits work.
   - question: Q18
-    ja: 税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。
-    en: "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    ja: 税額控除が所得税より大きいときに現金で払う額には、上限があります。上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。65歳以上の働く人は、介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。
+    en: "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work. If you are in company insurance, that means employee health insurance (including long-term care) and employee pension. Otherwise it means National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
   - question: Q26
     ja: 夫婦で収入の多い方が配偶者の国民年金保険料を払って所得から差し引く場合も、現金で払う額の上限には、配偶者本人の保険料として数えています。大和総研はこの場合を示していません。
     en: When the higher earner in a couple pays the spouse's National Pension premiums and deducts them, they still count toward the spouse's own cash cap. Daiwa doesn't cover this case.
 
 # Shown wherever a Daiwa number appears (OPEN_QUESTIONS Q19).
 site_note:
-  ja: "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。2026年の制度では、なくなる基礎控除が大きく、税額控除は小さくなるため、どちらも手取りが大和総研の数字より少なく出る方向に働きます。"
-  en: "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger and the credit is smaller, and both push take-home pay below Daiwa's figures."
+  ja: "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。これらの違いから、ここでの結果は大和総研が公表した数字とは異なります。2026年の税制では、大和総研がもとにした税制に比べて、なくなる基礎控除が大きく、税額控除は小さくなります。どちらも、手取りが大和総研の数字より少なく出る方向に働きます。"
+  en: "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. Because of these differences, the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger, and the credit is smaller, than under the rules Daiwa used. Both push take-home pay below Daiwa's figures."
 
 notes: >
   The report was written against 2025 tax rules (threshold 1.6m in 2025). Applying it to the 2026 baseline

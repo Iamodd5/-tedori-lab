@@ -32,11 +32,11 @@
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    },
    {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません",
     "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
@@ -84,7 +84,7 @@
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    }
   ],
@@ -133,8 +133,8 @@
    },
    {
     "question": "Q18",
-    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    "ja": "税額控除が所得税より大きいときに現金で払う額には、上限があります。上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。65歳以上の働く人は、介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work. If you are in company insurance, that means employee health insurance (including long-term care) and employee pension. Otherwise it means National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
    },
    {
     "question": "Q26",
@@ -143,8 +143,8 @@
    }
   ],
   "site_note": {
-   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。2026年の制度では、なくなる基礎控除が大きく、税額控除は小さくなるため、どちらも手取りが大和総研の数字より少なく出る方向に働きます。",
-   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger and the credit is smaller, and both push take-home pay below Daiwa's figures."
+   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。これらの違いから、ここでの結果は大和総研が公表した数字とは異なります。2026年の税制では、大和総研がもとにした税制に比べて、なくなる基礎控除が大きく、税額控除は小さくなります。どちらも、手取りが大和総研の数字より少なく出る方向に働きます。",
+   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. Because of these differences, the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger, and the credit is smaller, than under the rules Daiwa used. Both push take-home pay below Daiwa's figures."
   }
  },
  {
@@ -172,11 +172,11 @@
   ],
   "blocked_by": [
    {
-    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません。連合の構想には、考え方だけが書かれています",
     "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
    },
    {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません",
     "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
@@ -224,11 +224,11 @@
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    },
    {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません",
     "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
@@ -276,7 +276,7 @@
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    }
   ],
@@ -325,8 +325,8 @@
    },
    {
     "question": "Q18",
-    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    "ja": "税額控除が所得税より大きいときに現金で払う額には、上限があります。上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。65歳以上の働く人は、介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work. If you are in company insurance, that means employee health insurance (including long-term care) and employee pension. Otherwise it means National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
    },
    {
     "question": "Q26",
@@ -335,8 +335,8 @@
    }
   ],
   "site_note": {
-   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。2026年の制度では、なくなる基礎控除が大きく、税額控除は小さくなるため、どちらも手取りが大和総研の数字より少なく出る方向に働きます。",
-   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger and the credit is smaller, and both push take-home pay below Daiwa's figures."
+   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。これらの違いから、ここでの結果は大和総研が公表した数字とは異なります。2026年の税制では、大和総研がもとにした税制に比べて、なくなる基礎控除が大きく、税額控除は小さくなります。どちらも、手取りが大和総研の数字より少なく出る方向に働きます。",
+   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. Because of these differences, the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger, and the credit is smaller, than under the rules Daiwa used. Both push take-home pay below Daiwa's figures."
   }
  },
  {
@@ -364,11 +364,11 @@
   ],
   "blocked_by": [
    {
-    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません。連合の構想には、考え方だけが書かれています",
     "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
    },
    {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません",
     "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
@@ -416,11 +416,11 @@
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    },
    {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません",
     "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
@@ -468,7 +468,7 @@
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    }
   ],
@@ -517,8 +517,8 @@
    },
    {
     "question": "Q18",
-    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    "ja": "税額控除が所得税より大きいときに現金で払う額には、上限があります。上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。65歳以上の働く人は、介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work. If you are in company insurance, that means employee health insurance (including long-term care) and employee pension. Otherwise it means National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
    },
    {
     "question": "Q26",
@@ -527,8 +527,8 @@
    }
   ],
   "site_note": {
-   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。2026年の制度では、なくなる基礎控除が大きく、税額控除は小さくなるため、どちらも手取りが大和総研の数字より少なく出る方向に働きます。",
-   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger and the credit is smaller, and both push take-home pay below Daiwa's figures."
+   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。これらの違いから、ここでの結果は大和総研が公表した数字とは異なります。2026年の税制では、大和総研がもとにした税制に比べて、なくなる基礎控除が大きく、税額控除は小さくなります。どちらも、手取りが大和総研の数字より少なく出る方向に働きます。",
+   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. Because of these differences, the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger, and the credit is smaller, than under the rules Daiwa used. Both push take-home pay below Daiwa's figures."
   }
  },
  {
@@ -556,11 +556,11 @@
   ],
   "blocked_by": [
    {
-    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません。連合の構想には、考え方だけが書かれています",
     "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
    },
    {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません",
     "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
@@ -608,11 +608,11 @@
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    },
    {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません",
     "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
@@ -660,7 +660,7 @@
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    }
   ],
@@ -709,8 +709,8 @@
    },
    {
     "question": "Q18",
-    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    "ja": "税額控除が所得税より大きいときに現金で払う額には、上限があります。上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。65歳以上の働く人は、介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work. If you are in company insurance, that means employee health insurance (including long-term care) and employee pension. Otherwise it means National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
    },
    {
     "question": "Q26",
@@ -719,8 +719,8 @@
    }
   ],
   "site_note": {
-   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。2026年の制度では、なくなる基礎控除が大きく、税額控除は小さくなるため、どちらも手取りが大和総研の数字より少なく出る方向に働きます。",
-   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger and the credit is smaller, and both push take-home pay below Daiwa's figures."
+   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。これらの違いから、ここでの結果は大和総研が公表した数字とは異なります。2026年の税制では、大和総研がもとにした税制に比べて、なくなる基礎控除が大きく、税額控除は小さくなります。どちらも、手取りが大和総研の数字より少なく出る方向に働きます。",
+   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. Because of these differences, the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger, and the credit is smaller, than under the rules Daiwa used. Both push take-home pay below Daiwa's figures."
   }
  },
  {
@@ -748,11 +748,11 @@
   ],
   "blocked_by": [
    {
-    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません。連合の構想には、考え方だけが書かれています",
     "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
    },
    {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません",
     "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
@@ -800,11 +800,11 @@
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    },
    {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません",
     "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
@@ -852,7 +852,7 @@
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    }
   ],
@@ -901,8 +901,8 @@
    },
    {
     "question": "Q18",
-    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    "ja": "税額控除が所得税より大きいときに現金で払う額には、上限があります。上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。65歳以上の働く人は、介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work. If you are in company insurance, that means employee health insurance (including long-term care) and employee pension. Otherwise it means National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
    },
    {
     "question": "Q26",
@@ -911,8 +911,8 @@
    }
   ],
   "site_note": {
-   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。2026年の制度では、なくなる基礎控除が大きく、税額控除は小さくなるため、どちらも手取りが大和総研の数字より少なく出る方向に働きます。",
-   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger and the credit is smaller, and both push take-home pay below Daiwa's figures."
+   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。これらの違いから、ここでの結果は大和総研が公表した数字とは異なります。2026年の税制では、大和総研がもとにした税制に比べて、なくなる基礎控除が大きく、税額控除は小さくなります。どちらも、手取りが大和総研の数字より少なく出る方向に働きます。",
+   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. Because of these differences, the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger, and the credit is smaller, than under the rules Daiwa used. Both push take-home pay below Daiwa's figures."
   }
  },
  {
@@ -940,11 +940,11 @@
   ],
   "blocked_by": [
    {
-    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません。連合の構想には、考え方だけが書かれています",
     "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
    },
    {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません",
     "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
@@ -992,11 +992,11 @@
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    },
    {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません",
     "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
@@ -1044,7 +1044,7 @@
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    }
   ],
@@ -1093,8 +1093,8 @@
    },
    {
     "question": "Q18",
-    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    "ja": "税額控除が所得税より大きいときに現金で払う額には、上限があります。上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。65歳以上の働く人は、介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work. If you are in company insurance, that means employee health insurance (including long-term care) and employee pension. Otherwise it means National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
    },
    {
     "question": "Q26",
@@ -1103,8 +1103,8 @@
    }
   ],
   "site_note": {
-   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。2026年の制度では、なくなる基礎控除が大きく、税額控除は小さくなるため、どちらも手取りが大和総研の数字より少なく出る方向に働きます。",
-   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger and the credit is smaller, and both push take-home pay below Daiwa's figures."
+   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。これらの違いから、ここでの結果は大和総研が公表した数字とは異なります。2026年の税制では、大和総研がもとにした税制に比べて、なくなる基礎控除が大きく、税額控除は小さくなります。どちらも、手取りが大和総研の数字より少なく出る方向に働きます。",
+   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. Because of these differences, the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger, and the credit is smaller, than under the rules Daiwa used. Both push take-home pay below Daiwa's figures."
   }
  },
  {
@@ -1132,11 +1132,11 @@
   ],
   "blocked_by": [
    {
-    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません。連合の構想には、考え方だけが書かれています",
     "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
    },
    {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません",
     "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
@@ -1184,11 +1184,11 @@
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    },
    {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません",
     "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
@@ -1236,7 +1236,7 @@
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    }
   ],
@@ -1285,8 +1285,8 @@
    },
    {
     "question": "Q18",
-    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    "ja": "税額控除が所得税より大きいときに現金で払う額には、上限があります。上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。65歳以上の働く人は、介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work. If you are in company insurance, that means employee health insurance (including long-term care) and employee pension. Otherwise it means National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
    },
    {
     "question": "Q26",
@@ -1295,8 +1295,8 @@
    }
   ],
   "site_note": {
-   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。2026年の制度では、なくなる基礎控除が大きく、税額控除は小さくなるため、どちらも手取りが大和総研の数字より少なく出る方向に働きます。",
-   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger and the credit is smaller, and both push take-home pay below Daiwa's figures."
+   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。これらの違いから、ここでの結果は大和総研が公表した数字とは異なります。2026年の税制では、大和総研がもとにした税制に比べて、なくなる基礎控除が大きく、税額控除は小さくなります。どちらも、手取りが大和総研の数字より少なく出る方向に働きます。",
+   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. Because of these differences, the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger, and the credit is smaller, than under the rules Daiwa used. Both push take-home pay below Daiwa's figures."
   }
  },
  {
@@ -1324,11 +1324,11 @@
   ],
   "blocked_by": [
    {
-    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません。連合の構想には、考え方だけが書かれています",
     "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
    },
    {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません",
     "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
@@ -1376,11 +1376,11 @@
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    },
    {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません",
     "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],
@@ -1428,7 +1428,7 @@
   ],
   "blocked_by": [
    {
-    "ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）",
+    "ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています",
     "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"
    }
   ],
@@ -1477,8 +1477,8 @@
    },
    {
     "question": "Q18",
-    "ja": "税額控除が所得税より大きいときに現金で払う額の上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金で、65歳以上の働く人は介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
-    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work: employee health insurance (including long-term care) and employee pension if you are in company insurance; otherwise National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
+    "ja": "税額控除が所得税より大きいときに現金で払う額には、上限があります。上限に数える保険料は、会社の保険に入っている人は健康保険（介護保険を含む）と厚生年金、そうでない働く人は国民健康保険と国民年金です。65歳以上の働く人は、介護保険料も数えます。大和総研は子ども・子育て支援金と雇用保険料を含めるかどうかを示していないため、ここでは含めていません。国民健康保険料は世帯主がまとめて払うものとしているため、世帯主が働いている場合に、世帯主の上限にだけ数えています。",
+    "en": "When the credit is bigger than your income tax, the cash paid out is capped at the social insurance you paid on your work. If you are in company insurance, that means employee health insurance (including long-term care) and employee pension. Otherwise it means National Health Insurance and National Pension. For people aged 65 or over who work, the long-term care premium counts too. Daiwa doesn't say whether the child and childcare support levy and employment insurance also count, so we leave them out. National Health Insurance is paid by the head of the household, so it counts only toward the head's cap, and only if the head works."
    },
    {
     "question": "Q26",
@@ -1487,8 +1487,8 @@
    }
   ],
   "site_note": {
-   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。なお2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。このため、ここでの結果は大和総研が公表した数字とは異なります。2026年の制度では、なくなる基礎控除が大きく、税額控除は小さくなるため、どちらも手取りが大和総研の数字より少なく出る方向に働きます。",
-   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. So the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger and the credit is smaller, and both push take-home pay below Daiwa's figures."
+   "ja": "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を5.65万円としました。同じ計算式を2026年の税制に当てはめると、税額控除は5.2万円になります。2026年の税制では、この案がなくても、給与で働く人はすでに年収178万円まで所得税がかかりません。これらの違いから、ここでの結果は大和総研が公表した数字とは異なります。2026年の税制では、大和総研がもとにした税制に比べて、なくなる基礎控除が大きく、税額控除は小さくなります。どちらも、手取りが大和総研の数字より少なく出る方向に働きます。",
+   "en": "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can already earn ¥1.78m a year before paying income tax, even without this plan. Because of these differences, the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger, and the credit is smaller, than under the rules Daiwa used. Both push take-home pay below Daiwa's figures."
   }
  },
  {
@@ -1516,11 +1516,11 @@
   ],
   "blocked_by": [
    {
-    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）",
+    "ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません。連合の構想には、考え方だけが書かれています",
     "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"
    },
    {
-    "ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません",
+    "ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません",
     "en": "we don't yet have food spending figures for the example households H1–H8"
    }
   ],

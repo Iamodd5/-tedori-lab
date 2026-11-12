@@ -10,11 +10,11 @@ name_en: Worker burden-relief payment (full system, FY2029 onward)
 label: {ja: 政府案（2029年度から）, en: "Government plan (from FY2029)"}
 # What the plan does, in one line and in one paragraph, for the website (from the sources above)
 short:
-  ja: "2029年度からの形の支給（政府は「本格導入」としている）。所得が中くらい以下の働く人に、前の年の所得と、扶養している19歳未満の親族の数に応じた額を、年度ごとに支給する。勤労所得、合計所得、払っている税金と社会保険料から受け取る公的年金を引いた額、配偶者の所得に条件がある。法律案では、金額と条件の線引きは後で政令で決める。"
-  en: "From fiscal 2029, the form of the payment the government calls its full introduction: paid each fiscal year to people in work on low or middle incomes, based on the previous year's income and the number of dependent relatives under 19. There are conditions on earned income, total income, the tax and social insurance you pay minus any public pension you receive, and your spouse's income. Under the bill, the amounts and limits will be set later by Cabinet order."
+  ja: "所得が中くらい以下の働く人に、就業者負担軽減支援金を年度ごとに支給します。これは2029年度からの形で、政府は「本格導入」としています。額は、前の年の所得と、扶養している19歳未満の親族の数に応じて決まります。支援金の対象になるのは、働いて得た所得が一定額を超え、すべての所得を合わせた額が一定額以下の人です。払っている税金と社会保険料の合計から、受け取っている公的年金などを引いた額が、一定額を超えることも条件です。配偶者がいる人は、配偶者のすべての所得を合わせた額が一定額以下であることも条件です。支給額と、条件の線引きとなる金額は、法律案では、後で政令（内閣が定める命令）で決めることになっています。"
+  en: "People in work on low and middle incomes get the worker burden-relief payment each fiscal year. This is its form from fiscal 2029, which the government calls the full introduction. The amount is based on the previous year's income and the number of dependent relatives under 19. To get the payment, earned income must be above a set level and total income at or below a set level. The tax and social insurance you pay, minus any public pension you receive, must also be above a set level. If you have a spouse, the spouse's total income must be at or below a set level. Under the bill, the payment amounts and the levels used in the conditions will be set later by Cabinet order."
 summary:
-  ja: "2026年10月9日に閣議決定され、同じ日に国会に提出された法律案の内容です。就業者負担軽減支援金は2027年4月に始まり、2029年度からこの形になります（政府はこれを「本格導入」としています）。前の年の所得をもとに、年度ごとに支給します。2029年度分は、この形の額の半年分を基本とした額です。これとは別に2029年4月に、2028年度の支給の対象だった人へ、この形の額の半年分を基本とした額が先に支給されます（法律案では2028年度分への上乗せ）。支給額の形は2026年9月15日の大綱によるもので、勤労所得が一定額を超えると支給が始まり、勤労所得が低いうちは定額、そこから勤労所得が増えるにつれて一定の割合で増えたあと定額になり、合計所得が一定額を超えると一定の割合で減っていきます。扶養している19歳未満の親族（日本に住む人）がいる人には、その人数に応じた定額の上乗せ（こども加算）があります。対象になるのは、勤労所得が一定額を超え、合計所得が一定額以下で、払っている税金と社会保険料（受け取る公的年金を差し引いた額）が一定額を超える人です。その年度が始まる年の1月1日に配偶者がいる人は、配偶者の前の年の合計所得が一定額を超えると対象になりません。事業所得と、仕事による雑所得（業務に係る雑所得）も、合わせて一定額を超えるときは、勤労所得に加えます。その年度が始まる年の1月1日に日本国内に住所がない人には支給されません。勤労所得が一定額を超えない人は対象外です。政府は、働いていない高齢者も「対象外となる方」に挙げています（2026年7月30日の総理会見のポイント）。法律案は、所得の低い働く人や、病気などで働くことが難しい人のうち、この支援金の対象にならない人への必要な措置のあり方を検討して2028年度中に結論を出し、必要があると認めるときは2029年度以降に措置を講ずること、働いていない高齢者などがこの支援金と今の社会保障制度の両方から取り残されないよう、必要な措置のあり方を検討して、次の年金の財政検証が作られる年の翌年までに結論を出すことを定めています（第36条第4項・第5項）。いわゆる「年収の壁」に直面する人と、同じ程度の社会保険料を負担する人には、大綱が「「年収の壁」が解消するまでの時限的な措置」とする上乗せ（就業促進特例加算）もあります。大綱は「年収の壁」を、会社の保険に入ること、または国民健康保険・国民年金に入ることで保険料の負担が増えることとし、上乗せの対象を、勤労所得がパートが会社の保険に入る線（大綱の換算で年収106万円）から、壁で減った手取りが元に戻る水準までで、会社の保険に入ると生じる保険料に当たる額を払った人としています。大綱の例では、扶養されている配偶者（国民年金の第3号被保険者）が年収130万円になり国民年金の第1号被保険者になった場合、税と社会保険料を引いた手取りが元に戻るのは年収約160万円程度です（大綱9〜10ページ）。大綱は、上乗せの額を、「年収の壁」に直面する人に手厚く支給することと、それ以外の人への支給を含めた全体のバランスなどを考えて決めるとしています。費用は国が3分の2以上を負担し、国の分の財源は、赤字国債（特例公債）に頼らず歳出・歳入全般の見直しで確保するとしています（第21条第1項、第39条第1項）。法律案では、金額や条件の線引きは後で政令で決めることになっています。"
-  en: "This is the content of a bill that the Cabinet approved on 9 October 2026 and that was submitted to the Diet the same day. The worker burden-relief payment starts in April 2027 and takes this form from fiscal 2029 (the government calls it the full introduction). It is paid each fiscal year, based on the previous year's income. The fiscal 2029 payment is an amount based on half of this form's amount. Separately, in April 2029, people eligible for the fiscal 2028 payment are paid in advance an amount based on half of this form's amount (in the bill, an addition to the fiscal 2028 payment). The shape of the payment comes from the Cabinet outline of 15 September 2026: payment starts once earned income passes a minimum; it is a flat amount while earned income is low, grows at a fixed rate as earned income grows, then stays flat, and shrinks at a fixed rate once total income passes a set level. People who support relatives under 19 living in Japan get a fixed extra amount (こども加算) that depends on how many there are. To qualify, earned income must be above a set level, total income at or below a set level, and the tax and social insurance you pay, minus any public pension you receive, above a set level. A person who has a spouse on 1 January of the year in which the fiscal year starts does not qualify if the spouse's total income in the previous year is above a set level. Business income and miscellaneous income from work (業務に係る雑所得) are also added to earned income when together they are above a set amount. People with no address in Japan on 1 January of the year in which the fiscal year starts are not paid. People whose earned income is not above a set minimum are not covered. The government also lists older people who don't work among the people not covered (points from the Prime Minister's press conference of 30 July 2026). The bill says the government will consider what measures are needed for low earners, and people who find it hard to work because of illness or other reasons, who are left out of this payment, reach a conclusion during fiscal 2028 and, if it finds it necessary, take measures from fiscal 2029; and that it will consider what measures are needed so that older people who don't work and others are not left out of both this payment and the existing social security system, and reach a conclusion by the year after the next public pension review (財政検証) is produced (article 36, paragraphs 4 and 5). People facing an income wall (年収の壁), and people with a similar insurance burden, also get a top-up (就業促進特例加算) that the outline calls temporary until the walls are removed. The outline defines the wall as the extra premiums of joining company insurance or of moving into National Health Insurance and National Pension, and covers people whose earned income is between the line where part-timers join company insurance (¥1.06m of pay a year in the outline's conversion) and the level where the take-home pay lost at the wall is regained, and who paid premiums equal to those of company insurance. In the outline's example, a dependent spouse (a category 3 member of National Pension) who reaches ¥1.3m a year and becomes a category 1 member of National Pension regains take-home pay, after tax and social insurance, at about ¥1.6m a year (outline, pages 9–10). The outline says the top-up's amount will be set considering the overall balance between generous payments to people facing the wall and payments to everyone else, among other things. The national government pays at least two-thirds of the cost, and its share is to be financed without deficit-covering bonds, by reviewing spending and revenue as a whole (article 21, paragraph 1, and article 39, paragraph 1). Under the bill, the amounts and the limits in the conditions will be set later by Cabinet order."
+  ja: "2026年10月9日に閣議決定され、同じ日に国会に提出された法律案の内容です。就業者負担軽減支援金は2027年4月に始まり、2029年度から、ここで説明する形になります。政府はこれを「本格導入」としています。支援金は、前の年の所得をもとに、年度ごとに支給します。対象になるのは、勤労所得（働いて得た所得）が一定額を超える人です。そのうえで、合計所得（すべての所得を合わせた額）が一定額以下であることが条件です。払っている税金と社会保険料の合計から、受け取っている公的年金などを引いた額が、一定額を超えることも条件です。その年度が始まる年の1月1日に配偶者がいる人は、配偶者の前の年の合計所得が一定額を超えると対象になりません。事業所得と、仕事による雑所得（業務に係る雑所得）も、合わせて一定額を超えるときは、勤労所得に加えます。その年度が始まる年の1月1日に日本国内に住所がない人には支給されません。勤労所得が一定額を超えない人は対象外です。政府は、働いていない高齢者も「対象外となる方」に挙げています（2026年7月30日の総理会見のポイント）。法律案は、政府が検討することも定めています。一つは、所得の低い働く人や、病気などで働くことが難しい人のうち、この支援金の対象にならない人への必要な措置のあり方です。2028年度中に結論を出し、必要があると認めるときは、2029年度以降に措置をとると定めています（第36条第4項）。もう一つは、働いていない高齢者などが、この支援金と今の社会保障制度の両方から取り残されないようにするために必要な措置のあり方です。こちらは、次の年金の財政検証が作られる年の翌年までに結論を出すと定めています（同じ条の第5項）。支給額の形は、政府が2026年9月15日に閣議決定した大綱（制度のあらましを定めた文書）によります。支援金は、勤労所得が一定額を超えると支給が始まります。勤労所得が低いうちは定額で、そこから勤労所得が増えるにつれて一定の割合で増え、そのあと定額になります。合計所得が一定額を超えると、一定の割合で減っていきます。日本に住む19歳未満の親族を扶養している人には、その人数に応じた定額の上乗せ（こども加算）があります。いわゆる「年収の壁」に直面する人と、同じ程度の社会保険料を負担する人には、上乗せ（就業促進特例加算）もあります。大綱はこの上乗せを、「年収の壁」が解消するまでの時限的な措置としています。大綱は「年収の壁」を、会社の保険に入ること、または国民健康保険と国民年金に入ることで、保険料の負担が増えることとしています。上乗せの対象になるのは、勤労所得が次の範囲にあり、会社の保険に入ると生じる保険料に当たる額を払った人です。範囲は、パートで働く人が会社の保険に入る線（大綱の換算で年収106万円）から、壁で減った手取りが元に戻る水準までです。大綱は、扶養されている配偶者（国民年金の第3号被保険者）が年収130万円になり、国民年金の第1号被保険者になる場合を例に挙げています。この例で、税と社会保険料を引いた手取りが元に戻るのは、年収約160万円です（大綱9〜10ページ）。大綱は、上乗せの額を、「年収の壁」に直面する人に手厚く支給することと、それ以外の人への支給を含めた全体のバランスなどを考えて決めるとしています。なお、2029年度分は、この形で計算した額の半年分を基本とした額です。これとは別に、2029年4月に、2028年度の支給の対象だった人へ、この形で計算した額の半年分を基本とした額を先に支給します。法律案では、これを2028年度分への上乗せとしています。法律案では、費用の3分の2以上を国が負担します（第21条第1項）。国の分の財源は、赤字国債（特例公債）に頼らず、歳出と歳入全般の見直しで確保するとしています（第39条第1項）。支給額と、条件の線引きとなる金額は、法律案では、後で政令（内閣が定める命令）で決めることになっています。"
+  en: "This is the content of a bill that the Cabinet approved on 9 October 2026 and that was submitted to the Diet the same day. The worker burden-relief payment starts in April 2027 and takes the form described here from fiscal 2029. The government calls this the full introduction. It is paid each fiscal year, based on the previous year's income. To qualify, earned income must be above a set level. Total income must also be at or below a set level. The tax and social insurance you pay, minus any public pension you receive, must be above a set level as well. A person who has a spouse on 1 January of the year in which the fiscal year starts does not qualify if the spouse's total income in the previous year is above a set level. Business income and miscellaneous income from work (業務に係る雑所得) are also added to earned income when together they are above a set amount. People with no address in Japan on 1 January of the year in which the fiscal year starts are not paid. People whose earned income is not above a set minimum are not covered. The government also lists older people who don't work among the people not covered (points from the Prime Minister's press conference of 30 July 2026). The bill also names two questions for the government to consider. The first is what measures are needed for low earners, and people who find it hard to work because of illness or other reasons, who are left out of this payment. The government is to reach a conclusion during fiscal 2028 and, if it finds it necessary, take measures from fiscal 2029 (article 36, paragraph 4). The second is what measures are needed so that older people who don't work, and others, are not left out of both this payment and the existing social security system. Here the government is to reach a conclusion by the year after the next public pension review (財政検証) is produced (paragraph 5 of the same article). The shape of the payment comes from the outline that the Cabinet approved on 15 September 2026. Payment starts once earned income passes a minimum. It is a flat amount while earned income is low, grows at a fixed rate as earned income grows, and then stays flat. Once total income passes a set level, it shrinks at a fixed rate. People who support relatives under 19 living in Japan get a fixed extra amount (こども加算) that depends on how many there are. People facing an income wall (年収の壁), and people with a similar social insurance burden, also get a top-up (就業促進特例加算). The outline describes this top-up as a time-limited measure until the income wall is removed. The outline defines the wall as the extra premiums that come with joining company insurance, or with moving into National Health Insurance and National Pension. The top-up covers people whose earned income is in the following range and who paid premiums equal to those of company insurance. The range runs from the line where part-timers join company insurance (¥1.06m of pay a year in the outline's conversion) to the level where the take-home pay lost at the wall is regained. The outline gives the example of a dependent spouse (a category 3 member of National Pension) who reaches ¥1.3m a year and becomes a category 1 member of National Pension. In that example, take-home pay after tax and social insurance is regained at about ¥1.6m a year (outline, pages 9–10). The outline says the top-up's amount will be set considering the overall balance between generous payments to people facing the wall and payments to everyone else, among other things. The fiscal 2029 payment is an amount based on half of the amount worked out in this form. Separately, in April 2029, people eligible for the fiscal 2028 payment are paid in advance an amount based on half of the amount worked out in this form. In the bill, this is an addition to the fiscal 2028 payment. Under the bill, the national government pays at least two-thirds of the cost (article 21, paragraph 1). Its share is to be financed without deficit-covering bonds, by reviewing spending and revenue as a whole (article 39, paragraph 1). Under the bill, the payment amounts and the levels used in the conditions will be set later by Cabinet order."
 start_year: 2029  # 令和11年度 (fiscal year from April 2029); payment is based on the previous year's income
 status: unresolved
 
@@ -59,7 +59,7 @@ source:
 # (tests/test_plan_quotes.py). Several entries may back one claim.
 quotes:
   # short
-  - claim: &s1 {ja: "2029年度からの形の支給（政府は「本格導入」としている）。所得が中くらい以下の働く人に、前の年の所得と、扶養している19歳未満の親族の数に応じた額を、年度ごとに支給する。", en: "From fiscal 2029, the form of the payment the government calls its full introduction: paid each fiscal year to people in work on low or middle incomes, based on the previous year's income and the number of dependent relatives under 19."}
+  - claim: &s1 {ja: "所得が中くらい以下の働く人に、就業者負担軽減支援金を年度ごとに支給します。これは2029年度からの形で、政府は「本格導入」としています。額は、前の年の所得と、扶養している19歳未満の親族の数に応じて決まります。", en: "People in work on low and middle incomes get the worker burden-relief payment each fiscal year. This is its form from fiscal 2029, which the government calls the full introduction. The amount is based on the previous year's income and the number of dependent relatives under 19."}
     text: "令和11 年度の本格導入までの「つなぎ」として"
     source: outline
     page: 1
@@ -75,19 +75,19 @@ quotes:
     text: "19 歳未満の居住者である扶養親族（以下「扶養児童」 という。 ）"
     source: outline
     page: 7
-  - claim: &s2 {ja: "勤労所得、合計所得、払っている税金と社会保険料から受け取る公的年金を引いた額、配偶者の所得に条件がある。", en: "There are conditions on earned income, total income, the tax and social insurance you pay minus any public pension you receive, and your spouse's income."}
+  - claim: &s2a {ja: "支援金の対象になるのは、働いて得た所得が一定額を超え、すべての所得を合わせた額が一定額以下の人です。", en: "To get the payment, earned income must be above a set level and total income at or below a set level."}
     text: "①勤労所得※1 の額が政令で定める額超  ②合計所得金額が政令で定める額以下"
     source: bill_summary
     page: 1
-  - claim: *s2
+  - claim: &s2b {ja: "払っている税金と社会保険料の合計から、受け取っている公的年金などを引いた額が、一定額を超えることも条件です。", en: "The tax and social insurance you pay, minus any public pension you receive, must also be above a set level."}
     text: "③税・社会保険料負担額から公的年金等収入額を控除した額が政令で定める額超"
     source: bill_summary
     page: 1
-  - claim: *s2
+  - claim: &s2c {ja: "配偶者がいる人は、配偶者のすべての所得を合わせた額が一定額以下であることも条件です。", en: "If you have a spouse, the spouse's total income must be at or below a set level."}
     text: "④配偶者の合計所得金額が政令で定める額以下"
     source: bill_summary
     page: 1
-  - claim: &s3 {ja: "法律案では、金額と条件の線引きは後で政令で決める。", en: "Under the bill, the amounts and limits will be set later by Cabinet order."}
+  - claim: &s3 {ja: "支給額と、条件の線引きとなる金額は、法律案では、後で政令（内閣が定める命令）で決めることになっています。", en: "Under the bill, the payment amounts and the levels used in the conditions will be set later by Cabinet order."}
     text: "前年所得額や 19 歳未満の居住扶養親族数（令和 9･10 年度は 16 歳未満の扶養親族数） ※2 に応じて政令で定める額とする。"
     source: bill_summary
     page: 1
@@ -108,7 +108,7 @@ quotes:
     text: "「租税及び社会保険料による負担の軽減のための飲食料品に係る消費税率の臨時的な引下げ及び就業者負担軽減支援金の支給に関する法律案」が令和８年10月９日に閣議決定され、同日に第222回国会に提出されました。"
     source: council_index
     page: 1
-  - claim: &m2 {ja: "就業者負担軽減支援金は2027年4月に始まり、2029年度からこの形になります（政府はこれを「本格導入」としています）。", en: "The worker burden-relief payment starts in April 2027 and takes this form from fiscal 2029 (the government calls it the full introduction)."}
+  - claim: &m2 {ja: "就業者負担軽減支援金は2027年4月に始まり、2029年度から、ここで説明する形になります。政府はこれを「本格導入」としています。", en: "The worker burden-relief payment starts in April 2027 and takes the form described here from fiscal 2029. The government calls this the full introduction."}
     text: "支援金制度は、令和９年４月から導入する。"
     source: outline
     page: 13
@@ -116,67 +116,15 @@ quotes:
     text: "令和11 年度の本格導入までの「つなぎ」として"
     source: outline
     page: 1
-  - claim: {ja: "前の年の所得をもとに、年度ごとに支給します。", en: "It is paid each fiscal year, based on the previous year's income."}
+  - claim: {ja: "支援金は、前の年の所得をもとに、年度ごとに支給します。", en: "It is paid each fiscal year, based on the previous year's income."}
     text: "支援金は、年度を単位として支給する。支援金の額は、純負担率の国際比較及び就業の促進等の効果を考慮して、前年の所得の額並びに扶養児童の有無及び数に応じて定める。"
     source: outline
     page: 8
-  - claim: &m4 {ja: "2029年度分は、この形の額の半年分を基本とした額です。", en: "The fiscal 2029 payment is an amount based on half of this form's amount."}
-    text: "その後、令和 11 年度の受給資格者に対して当該支援額の半年分相当額を基本とした額を支給する。"
-    source: outline
-    page: 10
-  - claim: *m4
-    text: "（ハ）令和十一年度分の就業者負担軽減支援金の額 ２（１）の消費税の税率の引下げの終了に際して 令和十一年度以降の各年度分の就業者負担軽減支援金の支給に円滑に移行するため、イを適用した場合における令和十一年度分の就業者負担軽減支援金の額の二分の一に相当する額を基本として"
-    source: bill_outline
-    page: 3
-  - claim: &m5 {ja: "これとは別に2029年4月に、2028年度の支給の対象だった人へ、この形の額の半年分を基本とした額が先に支給されます（法律案では2028年度分への上乗せ）。", en: "Separately, in April 2029, people eligible for the fiscal 2028 payment are paid in advance an amount based on half of this form's amount (in the bill, an addition to the fiscal 2028 payment)."}
-    text: "令和 11 年４月に、年度替わりの地方自治体の事務負担を十分考慮しつつ、令和 10 年度受給資格者に対して令和 11 年度以降の制度による支援額の半年分相当額を基本とした額を先行して支給する。"
-    source: outline
-    page: 10
-  - claim: *m5
-    text: "政令で定める額に、２（１）の消費税の税率の引下げの終了に際して令和十一年度以降の各年度分の就業者負担軽減支援金の支給に円滑に移行するため、イを適用した場合における令和十一年度分の就業者負担軽減支援金の額の二分の一に相当する額を基本として政令で定める額を加算した額"
-    source: bill_outline
-    page: 3
-  - claim: *m5
-    text: "令和十一年四月に（２） ハ （ロ）の加算する額を、それぞれ支払う。"
-    source: bill_outline
-    page: 4
-  - claim: &m6 {ja: "支給額の形は2026年9月15日の大綱によるもので、勤労所得が一定額を超えると支給が始まり、勤労所得が低いうちは定額、そこから勤労所得が増えるにつれて一定の割合で増えたあと定額になり、合計所得が一定額を超えると一定の割合で減っていきます。", en: "The shape of the payment comes from the Cabinet outline of 15 September 2026: payment starts once earned income passes a minimum; it is a flat amount while earned income is low, grows at a fixed rate as earned income grows, then stays flat, and shrinks at a fixed rate once total income passes a set level."}
-    text: "令和８年 9 月 15 日 閣議決 定"
-    source: outline
-    page: 1
-  - claim: *m6
-    text: "①勤労所得※1 の額が政令で定める額超"
-    source: bill_summary
-    page: 1
-  - claim: *m6
-    text: "勤労所得が、 個人住民税所得割が課税される水準（※）を踏まえて定める額（以下「逓増開始額」という。 ）"
-    source: outline
-    page: 8
-  - claim: *m6
-    text: "定額（以下「定額支援額」という。 ）とする。"
-    source: outline
-    page: 9
-  - claim: *m6
-    text: "勤労所得が逓増開始額を超え、一定の水準（以下「逓増終了額」 という。）に達するまでの者に対しては支援額を一定の割合で逓増させ、その後は定額（以下「支援基本額」という。 ）とする。"
-    source: outline
-    page: 9
-  - claim: *m6
-    text: "合計所得金額が公平性の観点から定める額（以下「逓減開始額」という。 ）を超える者に対しては、上記①から④までにかかわらず、支援基本額（扶養児童を有する場合はこども加算との合計額）から 合計所得金額に応じて一定の割合（以下 「逓減率」 という。 ） で逓減した額"
-    source: outline
-    page: 10
-  - claim: &m7 {ja: "扶養している19歳未満の親族（日本に住む人）がいる人には、その人数に応じた定額の上乗せ（こども加算）があります。", en: "People who support relatives under 19 living in Japan get a fixed extra amount (こども加算) that depends on how many there are."}
-    text: "19 歳未満の居住者である扶養親族（以下「扶養児童」 という。 ）"
-    source: outline
-    page: 7
-  - claim: *m7
-    text: "扶養児童がある場合には、上記①から③までによる支援額に加え、扶養児童の有無及び数に応じた定額のこども加算を支給する。"
-    source: outline
-    page: 10
-  - claim: &m8 {ja: "対象になるのは、勤労所得が一定額を超え、合計所得が一定額以下で、払っている税金と社会保険料（受け取る公的年金を差し引いた額）が一定額を超える人です。", en: "To qualify, earned income must be above a set level, total income at or below a set level, and the tax and social insurance you pay, minus any public pension you receive, above a set level."}
+  - claim: &m8a {ja: "対象になるのは、勤労所得（働いて得た所得）が一定額を超える人です。そのうえで、合計所得（すべての所得を合わせた額）が一定額以下であることが条件です。", en: "To qualify, earned income must be above a set level. Total income must also be at or below a set level."}
     text: "①勤労所得※1 の額が政令で定める額超  ②合計所得金額が政令で定める額以下"
     source: bill_summary
     page: 1
-  - claim: *m8
+  - claim: &m8b {ja: "払っている税金と社会保険料の合計から、受け取っている公的年金などを引いた額が、一定額を超えることも条件です。", en: "The tax and social insurance you pay, minus any public pension you receive, must be above a set level as well."}
     text: "③税・社会保険料負担額から公的年金等収入額を控除した額が政令で定める額超"
     source: bill_summary
     page: 1
@@ -204,19 +152,51 @@ quotes:
     text: "（対象外となる方） – 勤労意欲のある低所得の方：給付の対象外で支援が必要な方を丁寧に把握した上で、既存の社会保障制度での対応も含め、必要な対応の在り方を検討し、可能なものについては令和11年度からに合わせて実施できるよう、本格導入までに結論を得る – 就労しておられない高齢者の方"
     source: pm_points
     page: 3
-  - claim: &m13 {ja: "法律案は、所得の低い働く人や、病気などで働くことが難しい人のうち、この支援金の対象にならない人への必要な措置のあり方を検討して2028年度中に結論を出し、必要があると認めるときは2029年度以降に措置を講ずること、働いていない高齢者などがこの支援金と今の社会保障制度の両方から取り残されないよう、必要な措置のあり方を検討して、次の年金の財政検証が作られる年の翌年までに結論を出すことを定めています（第36条第4項・第5項）。", en: "The bill says the government will consider what measures are needed for low earners, and people who find it hard to work because of illness or other reasons, who are left out of this payment, reach a conclusion during fiscal 2028 and, if it finds it necessary, take measures from fiscal 2029; and that it will consider what measures are needed so that older people who don't work and others are not left out of both this payment and the existing social security system, and reach a conclusion by the year after the next public pension review (財政検証) is produced (article 36, paragraphs 4 and 5)."}
+  - claim: &m13a {ja: "法律案は、政府が検討することも定めています。一つは、所得の低い働く人や、病気などで働くことが難しい人のうち、この支援金の対象にならない人への必要な措置のあり方です。2028年度中に結論を出し、必要があると認めるときは、2029年度以降に措置をとると定めています（第36条第4項）。", en: "The bill also names two questions for the government to consider. The first is what measures are needed for low earners, and people who find it hard to work because of illness or other reasons, who are left out of this payment. The government is to reach a conclusion during fiscal 2028 and, if it finds it necessary, take measures from fiscal 2029 (article 36, paragraph 4)."}
     text: "政府は、低所得の就業者及び疾病等により就業が困難である者のうち 就業者負担軽減支援金に係る制度の対象とならないものに対する必要な措置の在り方について、生活困窮者の自立支援に関する制度等の既存の社会保障制度との関係を整理しつつ、給付並びに相談支援及び就業支援を一体的に実施することを含め、その実施に要する財源の確保と併せて検討を行い、令和十年度中に結論を得て、必要があると認めるときは、令和十一年度以降所要の措置を講ずるものとする。"
     source: bill_outline
     page: 6
-  - claim: *m13
+  - claim: *m13a
     text: "（第三十六条第四項関係）"
     source: bill_outline
     page: 6
-  - claim: *m13
+  - claim: &m13b {ja: "もう一つは、働いていない高齢者などが、この支援金と今の社会保障制度の両方から取り残されないようにするために必要な措置のあり方です。こちらは、次の年金の財政検証が作られる年の翌年までに結論を出すと定めています（同じ条の第5項）。", en: "The second is what measures are needed so that older people who don't work, and others, are not left out of both this payment and the existing social security system. Here the government is to reach a conclusion by the year after the next public pension review (財政検証) is produced (paragraph 5 of the same article)."}
     text: "政府は、就業していない高齢者等が就業者負担軽減支援金に係る制度及び既存の社会保障制度の双方から取り残されることのないよう、年金制度及び生活保護制度その他の既存の社会保障制度との関係を整理しつつ、必要な措置の在り方について検討を行い、次期財政検証が作成される年の翌年までに結論を得るものとする。 （第三十六条第五項関係）"
     source: bill_outline
     page: 6
-  - claim: &m14 {ja: "いわゆる「年収の壁」に直面する人と、同じ程度の社会保険料を負担する人には、大綱が「「年収の壁」が解消するまでの時限的な措置」とする上乗せ（就業促進特例加算）もあります。", en: "People facing an income wall (年収の壁), and people with a similar insurance burden, also get a top-up (就業促進特例加算) that the outline calls temporary until the walls are removed."}
+  - claim: &m6a {ja: "支給額の形は、政府が2026年9月15日に閣議決定した大綱（制度のあらましを定めた文書）によります。", en: "The shape of the payment comes from the outline that the Cabinet approved on 15 September 2026."}
+    text: "令和８年 9 月 15 日 閣議決 定"
+    source: outline
+    page: 1
+  - claim: &m6b {ja: "支援金は、勤労所得が一定額を超えると支給が始まります。勤労所得が低いうちは定額で、そこから勤労所得が増えるにつれて一定の割合で増え、そのあと定額になります。合計所得が一定額を超えると、一定の割合で減っていきます。", en: "Payment starts once earned income passes a minimum. It is a flat amount while earned income is low, grows at a fixed rate as earned income grows, and then stays flat. Once total income passes a set level, it shrinks at a fixed rate."}
+    text: "①勤労所得※1 の額が政令で定める額超"
+    source: bill_summary
+    page: 1
+  - claim: *m6b
+    text: "勤労所得が、 個人住民税所得割が課税される水準（※）を踏まえて定める額（以下「逓増開始額」という。 ）"
+    source: outline
+    page: 8
+  - claim: *m6b
+    text: "定額（以下「定額支援額」という。 ）とする。"
+    source: outline
+    page: 9
+  - claim: *m6b
+    text: "勤労所得が逓増開始額を超え、一定の水準（以下「逓増終了額」 という。）に達するまでの者に対しては支援額を一定の割合で逓増させ、その後は定額（以下「支援基本額」という。 ）とする。"
+    source: outline
+    page: 9
+  - claim: *m6b
+    text: "合計所得金額が公平性の観点から定める額（以下「逓減開始額」という。 ）を超える者に対しては、上記①から④までにかかわらず、支援基本額（扶養児童を有する場合はこども加算との合計額）から 合計所得金額に応じて一定の割合（以下 「逓減率」 という。 ） で逓減した額"
+    source: outline
+    page: 10
+  - claim: &m7 {ja: "日本に住む19歳未満の親族を扶養している人には、その人数に応じた定額の上乗せ（こども加算）があります。", en: "People who support relatives under 19 living in Japan get a fixed extra amount (こども加算) that depends on how many there are."}
+    text: "19 歳未満の居住者である扶養親族（以下「扶養児童」 という。 ）"
+    source: outline
+    page: 7
+  - claim: *m7
+    text: "扶養児童がある場合には、上記①から③までによる支援額に加え、扶養児童の有無及び数に応じた定額のこども加算を支給する。"
+    source: outline
+    page: 10
+  - claim: &m14 {ja: "いわゆる「年収の壁」に直面する人と、同じ程度の社会保険料を負担する人には、上乗せ（就業促進特例加算）もあります。大綱はこの上乗せを、「年収の壁」が解消するまでの時限的な措置としています。", en: "People facing an income wall (年収の壁), and people with a similar social insurance burden, also get a top-up (就業促進特例加算). The outline describes this top-up as a time-limited measure until the income wall is removed."}
     text: "いわゆる「年収の壁」（※１）に直面する者及び同程度の社会保険料負担のある者に対しては、第四「検討等」の四 6 の取組により「年収の壁」が解消するまでの時限的な措置として"
     source: outline
     page: 9
@@ -224,19 +204,19 @@ quotes:
     text: "就業を特に促進するための加算 （以下 「就業促進特例加算」 という。 ） を支給する。"
     source: outline
     page: 9
-  - claim: &m15 {ja: "大綱は「年収の壁」を、会社の保険に入ること、または国民健康保険・国民年金に入ることで保険料の負担が増えることとし、上乗せの対象を、勤労所得がパートが会社の保険に入る線（大綱の換算で年収106万円）から、壁で減った手取りが元に戻る水準までで、会社の保険に入ると生じる保険料に当たる額を払った人としています。", en: "The outline defines the wall as the extra premiums of joining company insurance or of moving into National Health Insurance and National Pension, and covers people whose earned income is between the line where part-timers join company insurance (¥1.06m of pay a year in the outline's conversion) and the level where the take-home pay lost at the wall is regained, and who paid premiums equal to those of company insurance."}
+  - claim: &m15a {ja: "大綱は「年収の壁」を、会社の保険に入ること、または国民健康保険と国民年金に入ることで、保険料の負担が増えることとしています。", en: "The outline defines the wall as the extra premiums that come with joining company insurance, or with moving into National Health Insurance and National Pension."}
     text: "（※１）被用者保険が適用されること又は国民健康保険の被保険者・国民年金第１号被保険者となることによって生じる社会保険料負担の増加をいう。"
     source: outline
     page: 9
-  - claim: *m15
+  - claim: &m15b {ja: "上乗せの対象になるのは、勤労所得が次の範囲にあり、会社の保険に入ると生じる保険料に当たる額を払った人です。範囲は、パートで働く人が会社の保険に入る線（大綱の換算で年収106万円）から、壁で減った手取りが元に戻る水準までです。", en: "The top-up covers people whose earned income is in the following range and who paid premiums equal to those of company insurance. The range runs from the line where part-timers join company insurance (¥1.06m of pay a year in the outline's conversion) to the level where the take-home pay lost at the wall is regained."}
     text: "就業促進特例加算は、勤労所得が被用者保険の短時間労働者の適用ライン（※２）から「年収の壁」による可処分所得の減少が回復する水準までであって、被用者保険の適用に伴い生じる社会保険料相当額を支払った者を対象とする。"
     source: outline
     page: 9
-  - claim: *m15
+  - claim: *m15b
     text: "険の短時間労働者の適用労働時間（週 20 時間）を乗じて、年間の収入（所得）に換算すると、給与収入 106 万円"
     source: outline
     page: 10
-  - claim: {ja: "大綱の例では、扶養されている配偶者（国民年金の第3号被保険者）が年収130万円になり国民年金の第1号被保険者になった場合、税と社会保険料を引いた手取りが元に戻るのは年収約160万円程度です（大綱9〜10ページ）。", en: "In the outline's example, a dependent spouse (a category 3 member of National Pension) who reaches ¥1.3m a year and becomes a category 1 member of National Pension regains take-home pay, after tax and social insurance, at about ¥1.6m a year (outline, pages 9–10)."}
+  - claim: {ja: "大綱は、扶養されている配偶者（国民年金の第3号被保険者）が年収130万円になり、国民年金の第1号被保険者になる場合を例に挙げています。この例で、税と社会保険料を引いた手取りが元に戻るのは、年収約160万円です（大綱9〜10ページ）。", en: "The outline gives the example of a dependent spouse (a category 3 member of National Pension) who reaches ¥1.3m a year and becomes a category 1 member of National Pension. In that example, take-home pay after tax and social insurance is regained at about ¥1.6m a year (outline, pages 9–10)."}
     text: "国民年金第３号被保険者が年収 130 万円になり、国民年金第 1 号被保険者になった場合、税・社会保険料負担を差し引いた手取りが回復する水準は年収約 160 万円程度。"
     source: outline
     page: 10
@@ -244,15 +224,35 @@ quotes:
     text: "就業促進特例加算の額は、「年収の壁」に直面する方に手厚い給付を行うこととそれ以外の方に対する給付を含めた総合的なバランス等を勘案して定める。"
     source: outline
     page: 9
-  - claim: &m18 {ja: "費用は国が3分の2以上を負担し、国の分の財源は、赤字国債（特例公債）に頼らず歳出・歳入全般の見直しで確保するとしています（第21条第1項、第39条第1項）。", en: "The national government pays at least two-thirds of the cost, and its share is to be financed without deficit-covering bonds, by reviewing spending and revenue as a whole (article 21, paragraph 1, and article 39, paragraph 1)."}
+  - claim: &m4 {ja: "なお、2029年度分は、この形で計算した額の半年分を基本とした額です。", en: "The fiscal 2029 payment is an amount based on half of the amount worked out in this form."}
+    text: "その後、令和 11 年度の受給資格者に対して当該支援額の半年分相当額を基本とした額を支給する。"
+    source: outline
+    page: 10
+  - claim: *m4
+    text: "（ハ）令和十一年度分の就業者負担軽減支援金の額 ２（１）の消費税の税率の引下げの終了に際して 令和十一年度以降の各年度分の就業者負担軽減支援金の支給に円滑に移行するため、イを適用した場合における令和十一年度分の就業者負担軽減支援金の額の二分の一に相当する額を基本として"
+    source: bill_outline
+    page: 3
+  - claim: &m5 {ja: "これとは別に、2029年4月に、2028年度の支給の対象だった人へ、この形で計算した額の半年分を基本とした額を先に支給します。法律案では、これを2028年度分への上乗せとしています。", en: "Separately, in April 2029, people eligible for the fiscal 2028 payment are paid in advance an amount based on half of the amount worked out in this form. In the bill, this is an addition to the fiscal 2028 payment."}
+    text: "令和 11 年４月に、年度替わりの地方自治体の事務負担を十分考慮しつつ、令和 10 年度受給資格者に対して令和 11 年度以降の制度による支援額の半年分相当額を基本とした額を先行して支給する。"
+    source: outline
+    page: 10
+  - claim: *m5
+    text: "政令で定める額に、２（１）の消費税の税率の引下げの終了に際して令和十一年度以降の各年度分の就業者負担軽減支援金の支給に円滑に移行するため、イを適用した場合における令和十一年度分の就業者負担軽減支援金の額の二分の一に相当する額を基本として政令で定める額を加算した額"
+    source: bill_outline
+    page: 3
+  - claim: *m5
+    text: "令和十一年四月に（２） ハ （ロ）の加算する額を、それぞれ支払う。"
+    source: bill_outline
+    page: 4
+  - claim: &m18a {ja: "法律案では、費用の3分の2以上を国が負担します（第21条第1項）。", en: "Under the bill, the national government pays at least two-thirds of the cost (article 21, paragraph 1)."}
     text: "国がその三分の二以上で政令で定める割合を、 都道府県及び市町村 （特別区を含む。５（２）を除き、以下同じ。 ）がその余の割合の二分の一をそれぞれ負担する。 （第二十一条第一項関係）"
     source: bill_outline
     page: 5
-  - claim: *m18
+  - claim: &m18b {ja: "国の分の財源は、赤字国債（特例公債）に頼らず、歳出と歳入全般の見直しで確保するとしています（第39条第1項）。", en: "Its share is to be financed without deficit-covering bonds, by reviewing spending and revenue as a whole (article 39, paragraph 1)."}
     text: "政府は、３（７）イにより国が負担する費用の財源については、特例公債に頼ることなく、補助金等及び租税特別措置の適正化その他の歳出及び歳入全般の見直しにより確保するものとする。 （第三十九条第一項関係）"
     source: bill_outline
     page: 7
-  - claim: &m19 {ja: "法律案では、金額や条件の線引きは後で政令で決めることになっています。", en: "Under the bill, the amounts and the limits in the conditions will be set later by Cabinet order."}
+  - claim: &m19 {ja: "支給額と、条件の線引きとなる金額は、法律案では、後で政令（内閣が定める命令）で決めることになっています。", en: "Under the bill, the payment amounts and the levels used in the conditions will be set later by Cabinet order."}
     text: "前年所得額や 19 歳未満の居住扶養親族数（令和 9･10 年度は 16 歳未満の扶養親族数） ※2 に応じて政令で定める額とする。"
     source: bill_summary
     page: 1

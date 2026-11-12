@@ -15,8 +15,8 @@ DAIWA, LOSS, GAIN = "#B87A00", "#B3261E", "#0B6E4F"  # the site's colours: plan 
 FONT = "Hiragino Sans, 'Hiragino Kaku Gothic ProN', 'BIZ UDPGothic', 'Noto Sans JP', 'Yu Gothic', sans-serif"
 W, H = 720, 470
 SOURCE = "出典：手取りラボ（2026年11月版）https://iamodd5.github.io/-tedori-lab/site/"
-APPROX = "（近似）計算に含まれる近似は、サイトの「レポート」の「近似の一覧」にあります"
-ADAPTED = "大和総研の算式を2026年の制度に当てはめた計算で、大和総研自身の試算とは異なります。"
+APPROX = "（近似）計算を単純にした点は、サイトの「レポート」の「近似の一覧」にあります"
+ADAPTED = "大和総研の計算式を2026年の制度に当てはめた計算で、大和総研自身の試算とは異なります。"
 
 
 def man(v):
@@ -59,7 +59,7 @@ def wall_chart(wm, f):
     sy = lambda y: B - (y - yt[0]) / (yt[-1] - yt[0]) * (B - T)
     body = [f'<line x1="{L}" x2="{R}" y1="{sy(v):.1f}" y2="{sy(v):.1f}" stroke="{GRID}"/>' + text(L - 8, sy(v) + 4, man(v), 11, anchor="end") for v in yt]
     body += [text(sx(v), B + 18, man(v), 11, anchor="middle") for v in range(x0, x1 + 1, 500_000)]
-    body.append(text((L + R) / 2, B + 38, "配偶者の給与（年、税引き前）", 11, anchor="middle"))
+    body.append(text((L + R) / 2, B + 38, "配偶者の給与（年額、税引き前、円）", 11, anchor="middle"))
     body.append(f'<line x1="{L}" x2="{R}" y1="{B}" y2="{B}" stroke="{RULE}"/>')
     for k, (_, colour, _) in enumerate(series):
         path = " ".join(f"{sx(x):.1f},{sy(d):.1f}" for x, d in pts[k])
@@ -71,8 +71,8 @@ def wall_chart(wm, f):
     y_at = next(d for x, d in pts[0] if x == at)
     body.append(f'<polygon points="{sx(at) - 5:.1f},{sy(y_at) + 6:.1f} {sx(at) + 5:.1f},{sy(y_at) + 6:.1f} {sx(at):.1f},{sy(y_at) + 14:.1f}" fill="{LOSS}"/>')
     body.append(text(sx(at) + 10, sy(y_at) + 28, f"{f['lead_from']}円→{f['lead_at']}円で年{f['lead_drop']}円減る", 12, LOSS, weight="bold"))
-    return frame("例の世帯H4：配偶者の給与と世帯の手取り",
-                 f"東京都新宿区、会社員の夫または妻の給与が年{f['h4_earner']}円、子どもなし。手取り（年）。{f['grid_step']}きざみで計算", body,
+    return frame("配偶者の給与が増えると、世帯の手取りはどう変わるか（モデル世帯H4）",
+                 f"東京都新宿区、会社員の夫または妻の給与が年{f['h4_earner']}円、子どもなし。縦軸は手取り（年額、円）。{f['grid_step']}きざみで計算", body,
                  ["配偶者は週20時間未満の勤務で、勤め先の健康保険には入っていません。ほかの案は、まだ計算できないため描いていません。", APPROX])
 
 
@@ -106,11 +106,11 @@ def charts(f):
     groups = [(f"グループ{x['decile']}", round(x["mean_change"])) for x in pop["by_decile"]]
     return {
         "fig1_wall_h4.svg": wall_chart(wm, f),
-        "fig2_households.svg": bar_chart(f"（近似）{f['daiwa_label']}：例の世帯の手取りの変化",
-                                         "2026年の制度と比べた変化（円／年）", households, [ADAPTED, APPROX]),
-        "fig3_groups.svg": bar_chart(f"（近似）{f['daiwa_label']}：全世帯の手取りの変化",
-                                     "年収の低い順に同じ数ずつ10のグループに分けた、1世帯あたりの平均の変化（円／年）。グループ1が最も年収が低い", groups,
-                                     [ADAPTED, "グループの平均です。どのグループにも、手取りが変わらない世帯や、平均と逆に動く世帯があります。",
+        "fig2_households.svg": bar_chart(f"（近似）{f['daiwa_label']}でのモデル世帯の手取りの変化",
+                                         "2026年の制度と比べた手取りの変化（年額、円）。どの世帯も東京都新宿区に住んでいるものとしています", households, [ADAPTED, APPROX]),
+        "fig3_groups.svg": bar_chart(f"（近似）{f['daiwa_label']}での日本の全世帯の手取りの変化",
+                                     "年収の低い順に同じ数ずつ10のグループに分けた、1世帯あたりの平均の変化（年額、円）。グループ1が最も年収が低い", groups,
+                                     [ADAPTED, "どの案も入れる前の制度と比べた平均です。どのグループにも、変わらない世帯や、平均と逆に動く世帯があります。",
                                       "（近似）2024年の国の調査の平均に合わせた架空の世帯による大まかな試算。働き方は変わらないものとしています"]),
     }
 

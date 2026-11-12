@@ -51,20 +51,20 @@ groups:
 assumptions:
   one_household_per_cell:
     approximation: true
-    ja: 調査は世帯一つひとつのデータではなく、「世帯の種類 × 年収50万円刻み」ごとの平均だけを公表しています。そこで、それぞれの組み合わせについて、その平均に合わせた架空の世帯を1〜6通り（平均約4通り、全部で約1,200世帯）作っています。同じ組み合わせの中での世帯ごとの違いは反映されません。
-    en: The survey doesn't publish data on individual households, only averages for each type of household in each ¥500,000 income range. So for each type-and-income group we make up one to six households (about four on average, about 1,200 in all) that match the group's averages. Differences between households in the same group are lost.
+    ja: 調査が公表しているのは、世帯一つひとつのデータではなく、世帯の種類と年収（50万円刻み）の組み合わせごとの平均だけです。そこで、それぞれの組み合わせについて、その平均に合わせた架空の世帯を1〜6通り（平均約4通り、全部で約1,200世帯）作っています。同じ組み合わせの中での世帯ごとの違いは反映されません。
+    en: The survey doesn't publish data on individual households, only averages for each type of household in each ¥500,000 income range. So for each combination of type and income we make up one to six households (about four on average, about 1,200 in all) that match its averages. Differences between households in the same combination are lost.
   income_split:
     approximation: true
     ja: それぞれの組み合わせを「年金で暮らす世帯」と「働いて暮らす世帯」に分けています。たとえば、その組み合わせの収入の6割が年金なら、6割の世帯を「年金で暮らす世帯」とします。年金をもらいながら働く世帯（働く高齢者など）は表れません。
-    en: Each group is split into households living on pensions and households living on work, in the same ratio as pensions to total income in that group. For example, if 60% of the group's income is pensions, 60% of its households are treated as living on pensions. Households with both a pension and a wage, such as older people who still work, don't appear.
+    en: Each combination is split into households living on pensions and households living on work, in the same ratio as pensions to total income in that combination. For example, if 60% of its income is pensions, 60% of its households are treated as living on pensions. Households with both a pension and a wage, such as older people who still work, don't appear.
   spouse_earnings:
     approximation: true
-    ja: 調査の「働いている人の数」から、働いて暮らす世帯の世帯主の分を引き、残りを、働いて暮らす世帯の配偶者と、ほかの大人の家族に同じ割合で割り振っています。たとえば、その割合が半分なら、働いて暮らす世帯の半分で配偶者が働き、残りの半分では働いていないものとします（年金で暮らす世帯の配偶者は働いていないものとします）。働いている人の収入は、調査の平均が変わらないように決めています。
+    ja: 調査の「働いている人の数」から、働いて暮らす世帯の世帯主の分を引き、残りを、働いて暮らす世帯の配偶者と、ほかの大人の家族に同じ割合で割り振っています。たとえば、その割合が半分なら、働いて暮らす世帯の半分で配偶者が働き、残りの半分では働いていないものとします。年金で暮らす世帯の配偶者は、働いていないものとします。働いている人の収入は、調査の平均が変わらないように決めています。
     en: The survey gives the number of people working in each household. After the heads of households living on work, the rest are spread evenly over the spouses in those households and over other adults. For example, if the share is one half, the spouse works in half of the households living on work and doesn't in the other half (spouses in households living on pensions don't work). Earnings of those who work are set so that the survey's averages stay the same.
   older_age:
     value: 70
     approximation: true
-    ja: 年金で暮らす人は全員70歳として計算しています（75歳以上の人が入る後期高齢者医療制度は入っていません）。
+    ja: 年金で暮らす人は全員70歳として計算しています。75歳以上の人が入る後期高齢者医療制度は、計算に入れていません。
     en: Everyone living on a pension is treated as age 70. The separate health insurance system that people aged 75 and over join (後期高齢者医療制度) is not included.
   child_age:
     value: 10
@@ -78,19 +78,19 @@ assumptions:
     en: Children aged 18 and over are treated as age 22. Those who work share the survey's "other family members' earnings" equally.
   work:
     approximation: true
-    ja: 給料をもらう人は全員、週20時間以上・従業員51人以上の会社で働く学生でない人としています。そのため、月8.8万円以上稼ぐ人は1年を通して会社の健康保険と厚生年金に入り、それより少ない人は入りません（月8.8万円の条件は2026年10月1日になくなりましたが、10月からも、週20時間以上でこれより少ない給料は最低賃金の減額特例を受けている人だけで、この人たちは申し出ないかぎり入りません）。雇用保険料は、給料をもらう人全員が払います。
+    ja: 給与で働く人は全員、週20時間以上、従業員51人以上の会社で働く、学生でない人としています。そのため、月8.8万円以上稼ぐ人は1年を通して会社の健康保険と厚生年金に入り、それより少ない人は入りません。月8.8万円の条件は2026年10月1日になくなりました。ただし10月からも、週20時間以上働いて給与がこれより少ないのは、最低賃金の減額特例を受けている人だけで、この人たちは申し出ないかぎり入りません。雇用保険料は、給与で働く人全員が払います。
     en: Everyone with a wage is treated as a non-student working 20+ hours a week at a company with more than 50 employees. So people earning ¥88,000 a month or more are in the company's health insurance and pension all year, and people earning less are not. (The ¥88,000 condition ended on 1 October 2026, but from October the only people on 20+ hours paid less than ¥88,000 a month are workers with a minimum-wage exception, who join only if they ask.) Everyone with a wage pays employment insurance.
   income_sources:
     approximation: true
-    ja: 計算に入れている収入は、給料・事業の収入・年金だけです。家賃収入、利子・配当、仕送りなどは入っていません。事業の収入は経費を引いた後の額として扱っています。
+    ja: 計算に入れている収入は、給与、事業の収入、年金だけです。家賃収入、利子・配当、仕送りなどは入っていません。事業の収入は経費を引いた後の額として扱っています。
     en: Only wages, business income and pensions are counted. Rent, interest, dividends and money from family are left out. Business income is treated as profit after costs.
   food_spending:
     approximation: true
-    ja: 食料品の支出は、同じ種類（一人暮らし／二人以上）で同じ年収の世帯の平均（2024年10〜11月の調査）を使っています。季節による違いは調整していません。
+    ja: 食料品の支出は、同じ種類（一人暮らしか、二人以上か）で同じ年収の世帯の平均（2024年10〜11月の調査）を使っています。季節による違いは調整していません。
     en: Food spending is the average for households of the same kind (one person, or two or more people) with the same income, from a survey taken in October–November 2024. It isn't adjusted for the time of year.
   elderly_dependants:  # OPEN_QUESTIONS Q32
     approximation: true
-    ja: 世帯主や配偶者以外の70歳以上の家族は、全員、世帯主か配偶者の親や祖父母で一緒に住んでいるものとして、税の扶養控除を計算しています（この場合の控除は、ほかの70歳以上の家族より大きくなります）。兄弟姉妹など、親や祖父母でない家族も同じ扱いです。年金で暮らす世帯では、世帯主と同じ70歳の家族も親として扱っています。
+    ja: 世帯主や配偶者以外の70歳以上の家族は、全員、世帯主か配偶者の親や祖父母で一緒に住んでいるものとして、税の扶養控除を計算しています。この場合の控除は、ほかの70歳以上の家族の場合より大きくなります。兄弟姉妹など、親や祖父母でない家族も同じ扱いです。年金で暮らす世帯では、世帯主と同じ70歳の家族も親として扱っています。
     en: Every family member aged 70 or over other than the head and spouse is treated as a parent or grandparent of the head or spouse living with them, for the tax deduction for dependants (this deduction is larger than for other relatives aged 70 or over). Relatives who aren't parents or grandparents, such as brothers and sisters, are treated the same way. In households living on pensions, family members of the same age as the head (70) are also treated as parents.
   survey_year:
     approximation: true

@@ -15,9 +15,9 @@ from engine import household as h
 D = pathlib.Path(__file__).resolve().parents[1] / "parameters" / "designs"
 COMPONENTS = ("income_tax", "resident_tax", "social_insurance", "credit", "consumption_tax")
 # Why a design cannot be calculated yet, by open question, so different reasons are never shown as one
-BLOCKERS = {"Q9": {"ja": "支給額や収入の線引きは、まだ示されていません（法律案では、後で政令で決めることになっています）", "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"},
-            "Q3": {"ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません（連合の構想には、考え方だけが書かれています）", "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"},
-            "Q8": {"ja": "例の世帯H1〜H8の食料品の支出額をまだ用意できていません", "en": "we don't yet have food spending figures for the example households H1–H8"}}
+BLOCKERS = {"Q9": {"ja": "支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています", "en": "the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order)"},
+            "Q3": {"ja": "消費税還付制度の支給額や収入の線引きは、まだ示されていません。連合の構想には、考え方だけが書かれています", "en": "the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach)"},
+            "Q8": {"ja": "モデル世帯H1〜H8の食料品の支出額を、まだ用意できていません", "en": "we don't yet have food spending figures for the example households H1–H8"}}
 
 
 @functools.cache

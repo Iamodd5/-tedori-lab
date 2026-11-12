@@ -21,7 +21,7 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
   status: unresolved
   question: Q8
 assumptions:
-  - {ja: "二人とも正社員で、協会けんぽ（東京）の健康保険に入っています。", en: "Both work full time and are in the Japan Health Insurance Association plan (Tokyo)."}
+  - {ja: "二人とも正社員で、全国健康保険協会（協会けんぽ）の東京支部の健康保険に入っています。", en: "Both work full time and are in the Japan Health Insurance Association plan (Tokyo)."}
   - {ja: "（近似）給与は毎月同じ額で、ボーナスはないものとしています。", en: "(Approximation) Pay is the same every month, with no bonus."}
-  - {ja: "グラフで動かすのは世帯主の給与で、配偶者の給与は3,000,000円のままです。", en: "The charts move the head's salary; the spouse's salary stays at ¥3,000,000."}
+  - {ja: "グラフや入力欄で変えるのは世帯主の給与で、配偶者の給与は3,000,000円のままです。", en: "The charts and the income box change the head's salary; the spouse's salary stays at ¥3,000,000."}
   - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # project owner's choice

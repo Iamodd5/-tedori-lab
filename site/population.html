@@ -10,50 +10,59 @@
 <script src="walls.js"></script>
 </head>
 <body>
-<h1><span lang="ja">日本の全世帯で見ると、どう変わる？（概算）</span><span lang="en">What would each plan mean for every household in Japan? (estimate)</span></h1>
-<p class="warn"><strong><span lang="ja">このページの数字はすべて大まかな試算です。</span><span lang="en">Every number on this page is a rough estimate.</span></strong>
-<span lang="ja">世帯一つひとつのデータはないため、2024年の国の調査（全国家計構造調査）の平均に合わせた架空の世帯を作り、2026年の制度で税金や保険料を計算しています。「2026年の制度」とは、2026年に実際に適用されている税金・社会保険の仕組みのことで、どの案もまだ入っていない状態です。置いた仮定はページの下にまとめています。</span>
-<span lang="en">We don't have data on each household, so we make up households that match the averages in a 2024 government survey (the National Survey of Family Income, Consumption and Wealth) and work out their taxes and insurance under 2026 rules. "2026 rules" means the tax and social insurance rules actually in force in 2026, before any of these plans. The assumptions we had to make are listed at the bottom of the page.</span></p>
+<h1><span lang="ja">日本の全世帯で見ると、どう変わる？（大まかな試算）</span><span lang="en">What would each plan mean for every household in Japan? (rough estimate)</span></h1>
+<p><span lang="ja">下のメニューで案を選ぶと、その案で日本の全世帯の手取りがどう変わるかを、収入グループごとに示します。国の収入や負担がどう変わるかも示します。「手取り」とは、税金と保険料を引き、児童手当と児童扶養手当を足した、手元に残るお金のことです。</span>
+<span lang="en">Choose a plan from the menu below to see how it would change take-home pay for every household in Japan, by income group. The page also shows what the plan would mean for government finances. Take-home pay is what is left after tax and insurance, plus child allowance and the single-parent allowance.</span></p>
+<p><span lang="ja">収入グループは、すべての世帯を年収の低い順に並べ、同じ数ずつ10に分けたものです。グループ1が最も年収が低く、グループ10が最も高い世帯で、どのグループにも約535万世帯が入ります。</span>
+<span lang="en">To make the income groups, we line up every household from lowest to highest yearly income and cut the line into ten groups of the same size. Group 1 has the lowest incomes and group 10 the highest; each group has about 5.35 million households.</span></p>
 
 <label><span lang="ja">案を選ぶ：</span><span lang="en">Choose a plan: </span><select id="design"></select></label>
-<p id="summary"></p>
+<details><summary><span lang="ja">この案の内容</span><span lang="en">What this plan does</span></summary><p id="summary"></p></details>
 <div id="status" role="status"></div>
 
 <div id="results">
 <div class="summary"><ul id="findings"></ul></div>
+<p class="warn"><strong><span lang="ja">このページの数字はすべて大まかな試算です。</span><span lang="en">Every number on this page is a rough estimate.</span></strong>
+<span lang="ja">世帯一つひとつのデータはありません。そこで、2024年の国の調査（全国家計構造調査）の平均に合わせた架空の世帯を作り、2026年の制度で税金や保険料を計算しています。「2026年の制度」とは、2026年に実際に適用されている税金・社会保険の仕組みのことで、どの案もまだ入っていない状態です。試算の前提はページの下にまとめています。</span>
+<span lang="en">There is no data on each household. So we make up households that match the averages in a 2024 government survey (the National Survey of Family Income, Consumption and Wealth) and work out their taxes and insurance under 2026 rules. "2026 rules" means the tax and social insurance rules actually in force in 2026, before any of these plans. The assumptions we had to make are listed at the bottom of the page.</span></p>
+
 <h2><span lang="ja">収入グループごとの手取りの変化（1世帯あたり平均、円／年）</span><span lang="en">How take-home pay changes for each income group (average per household, yen per year)</span></h2>
-<p class="note"><span lang="ja">すべての世帯を年収の低い順に並べ、同じ数ずつ10のグループに分けています。グループ1が最も年収が低く、グループ10が最も高い世帯で、どのグループにも約535万世帯が入ります。2026年の制度と比べた変化です。グラフの下の数字はグループの番号で、各グループの平均年収は下の表にあります。</span>
-<span lang="en">We line up every household from lowest to highest yearly income and cut the line into ten groups of the same size. Group 1 has the lowest incomes and group 10 the highest; each group has about 5.35 million households. Changes are compared with 2026 rules. The numbers under the charts are the group numbers; each group's average yearly income is in the table below.</span></p>
+<p class="note"><span lang="ja">2026年の制度と比べた変化です。グラフの下の数字はグループの番号で、各グループの平均年収は下の表にあります。</span>
+<span lang="en">Changes are compared with 2026 rules. The numbers under the charts are the group numbers; each group's average yearly income is in the table below.</span></p>
 <div class="chart"><canvas id="mean" role="img"></canvas></div>
 
-<h2><span lang="ja">手取りが増える世帯・減る世帯の割合</span><span lang="en">How many households are better or worse off</span></h2>
+<h2><span lang="ja">手取りが増える世帯・変わらない世帯・減る世帯の割合</span><span lang="en">Share of households better off, unchanged and worse off</span></h2>
+<p class="note"><span lang="ja">棒は下から順に、手取りが増える世帯、変わらない世帯、減る世帯の割合です。</span><span lang="en">Each bar shows, from the bottom up, the share of households better off, unchanged and worse off.</span></p>
 <div class="chart"><canvas id="share" role="img"></canvas></div>
 
 <details><summary><span lang="ja">数字の表を見る</span><span lang="en">See the numbers as a table</span></summary>
 <div class="scroll"><table id="tbl"><thead><tr>
   <th><span lang="ja">収入グループ</span><span lang="en">Income group</span></th>
   <th><span lang="ja">平均年収（円）</span><span lang="en">Average yearly income (yen)</span></th>
-  <th><span lang="ja">手取りの変化（平均、円）</span><span lang="en">Average change in take-home (yen)</span></th>
-  <th><span lang="ja">増える</span><span lang="en">Better off</span></th>
-  <th><span lang="ja">減る</span><span lang="en">Worse off</span></th>
-  <th><span lang="ja">変わらない</span><span lang="en">No change</span></th>
+  <th><span lang="ja">手取りの変化（平均、円／年）</span><span lang="en">Average change in take-home pay (yen per year)</span></th>
+  <th><span lang="ja">手取りが増える世帯の割合</span><span lang="en">Share better off</span></th>
+  <th><span lang="ja">減る世帯の割合</span><span lang="en">Share worse off</span></th>
+  <th><span lang="ja">変わらない世帯の割合</span><span lang="en">Share with no change</span></th>
 </tr></thead><tbody></tbody></table></div></details>
+<p class="note"><span lang="ja">（注）この試算には、公式の統計と合わない点があります。たとえば、年収100万〜300万円で働く人が公式の数より多すぎ、年収1,000万円以上の人は少なすぎます。そのため、低い収入のグループで現金を受け取る額や、高い収入のグループで増える税は、実際とずれている可能性があります。</span>
+<span lang="en">These estimates do not match official figures at every point. For example, the estimate has too many people earning ¥1m–3m and too few earning ¥10m or more, so the cash paid to low-income groups and the extra tax from high-income groups may be off.</span></p>
 
-<h2><span lang="ja">（近似）国のお金への影響（1年あたり）</span><span lang="en">(Approximation) What it means for government finances (per year)</span></h2>
+<h2><span lang="ja">（近似）国の財政への影響（1年あたり）</span><span lang="en">(Approximation) What it means for government finances (per year)</span></h2>
 <div class="scroll"><table id="cost"><thead><tr>
-  <th></th>
+  <th><span lang="ja">項目</span><span lang="en">Item</span></th>
   <th><span lang="ja">このサイトの試算</span><span lang="en">This site's estimate</span></th>
   <th><span lang="ja">案を出した側の試算</span><span lang="en">The plan authors' own estimate</span></th>
 </tr></thead><tbody></tbody></table></div>
-<p class="note"><span lang="ja">（近似）働き方は変わらないとした試算です（働く時間、給与、保険の入り方を、だれも変えないとしています）。大まかな試算なので、0.1兆円単位で示しています。架空の世帯の作り方の仮定を一つ変えただけで、国全体の金額が0.1兆円以上変わったこともあります。また、公式の統計と比べると、この試算は年収100万〜300万円の人が多すぎ、1,000万円以上の人が少なすぎます。どちらも現金で払う額を多めに、増える所得税を少なめに見せる方向に働くため、大和総研案で差し引き増える国の収入は、この試算の額より大きい可能性が高いと考えられます（「検証」ページ）。</span><span lang="en">(Approximation) This assumes nobody changes their hours, pay or insurance status. It is a rough estimate, so it is shown to the nearest ¥0.1 trillion. Changing a single assumption in how the made-up households are built has moved the national totals by more than ¥0.1 trillion. Also, compared with official figures this estimate has too many people earning ¥1m–3m and too few earning ¥10m or more. Both make the cash paid out look larger and the extra income tax smaller, so the Daiwa plan's net gain to the government is more likely above this estimate's figure than below (see the Checks page).</span></p>
+<p class="note"><span lang="ja">（近似）働き方は変わらないものとした試算です。働く時間、給与、保険の入り方を、誰も変えないものとしています。大まかな試算なので、0.1兆円単位で示しています。架空の世帯の作り方の前提を一つ変えただけで、国全体の金額が0.1兆円以上変わった例もあります。</span><span lang="en">(Approximation) This assumes nobody changes their hours, pay or insurance status. It is a rough estimate, so it is shown to the nearest ¥0.1 trillion. Changing a single assumption in how the made-up households are built has moved the national totals by more than ¥0.1 trillion.</span></p>
+<p class="note"><span lang="ja">年収100万〜300万円の人が多すぎ、1,000万円以上の人が少なすぎるという公式の統計との差は、国全体の金額にも表れます。どちらも、現金で払う額を多めに、増える所得税を少なめに見せる方向に働きます。そのため、大和総研案で差し引き増える国の収入は、この試算の額より大きい可能性が高いと考えられます。くわしい比較は<a href="validation.html">「検証」ページ</a>にあります。</span><span lang="en">The same gaps with official figures (too many people earning ¥1m–3m, too few earning ¥10m or more) also show in the national totals. Both make the cash paid out look larger and the extra income tax smaller, so the Daiwa plan's net gain to the government is more likely above this estimate's figure than below. The <a href="validation.html">Checks page</a> has the full comparison.</span></p>
 <p class="note" id="costnote"></p>
 <details><summary><span lang="ja">（近似）この案の計算の前提</span><span lang="en">(Approximation) What we assumed for this plan</span></summary><div id="notes"></div></details>
 </div>
 
-<details><summary><span lang="ja">（近似）このページで置いた仮定</span><span lang="en">(Approximation) What we assumed on this page</span></summary>
+<details><summary><span lang="ja">（近似）このページの試算の前提</span><span lang="en">(Approximation) What we assumed on this page</span></summary>
 <ul class="small" id="approx"></ul></details>
-<p class="note"><span lang="ja">ほかのページの例の世帯は、グループの平均ではありません。同じグループでも、働く人の数や税率によって変化の額は大きく違います。この試算が公式の数字（世帯数、働く人の数、調査から推計した税額など）とどのくらい合っているかは、<a href="validation.html">「検証」ページ</a>で確かめられます。たとえば、年収100万〜300万円で働く人が公式の数より多すぎ、年収1,000万円以上の人は少なすぎます。そのため、低い収入のグループで現金を受け取る額や、高い収入のグループで増える税は、実際とずれている可能性があります。</span>
-<span lang="en">The example households on other pages are not group averages: within one group, the change can differ a lot with the number of earners and the tax rate. To see how close these estimates come to official figures (number of households, number of workers, tax estimated from the survey and more), see the <a href="validation.html">Checks page</a>. For example, the estimate has too many people earning ¥1m–3m and too few earning ¥10m or more, so the cash paid to low-income groups and the extra tax from high-income groups may be off.</span></p>
+<p class="note"><span lang="ja">ほかのページのモデル世帯（計算のために例として作った世帯）は、グループの平均ではありません。同じグループでも、働く人の数や税率によって変化の額は大きく違います。モデル世帯ごとの変化は、<a href="compare.html">「案の比較」ページ</a>で見られます。この試算が公式の数字（世帯数、働く人の数、調査から推計した税額など）とどのくらい合っているかは、<a href="validation.html">「検証」ページ</a>で確かめられます。</span>
+<span lang="en">The example households on other pages are not group averages: within one group, the change can differ a lot with the number of earners and the tax rate. The <a href="compare.html">Compare plans page</a> shows the change for each example household. To see how close these estimates come to official figures (number of households, number of workers, tax estimated from the survey and more), see the <a href="validation.html">Checks page</a>.</span></p>
 
 <script>
 const C = { gain: "#009E73", lose: "#D55E00", same: "#5F6368", mean: "#0072B2" };
@@ -73,14 +82,14 @@ function findings(d, labels) {
   const span = (xs, k) => { const v = xs.map(x => Math.round(x[k] * 100)); const a = Math.min(...v), b = Math.max(...v); return a === b ? `${a}%` : `${a}〜${b}%`.replace("〜", lang === "ja" ? "〜" : "–"); };
   const pct0 = s => Math.round(s * 100), lose = up.filter(x => pct0(x.losers_share) > 0);
   if (up.length) li(ul, lang === "ja"
-    ? `グループ${range(up)}では、手取りが平均で増えます（増える額が最も大きいグループ${most(up).decile}で年${yen(most(up).mean_change)}円）。ただし、これらのグループでも手取りが増えるのは各グループの${span(up, "winners_share")}の世帯で、${span(up, "unchanged_share")}の世帯は変わりません。${lose.map(x => `グループ${x.decile}では${pct0(x.losers_share)}%の世帯で手取りが減ります。`).join("")}`
-    : `In group${up.length > 1 ? "s" : ""} ${range(up)}, take-home pay goes up on average (by the most in group ${most(up).decile}: ¥${yen(most(up).mean_change)} a year). But within these groups, take-home goes up for ${span(up, "winners_share")} of households, and ${span(up, "unchanged_share")} see no change.${lose.map(x => ` In group ${x.decile}, ${pct0(x.losers_share)}% of households are worse off.`).join("")}`);
+    ? `グループ${range(up)}では、手取りが平均で増えます。増える額が最も大きいのはグループ${most(up).decile}で、平均で年${yen(most(up).mean_change)}円です。ただし、これらのグループでも手取りが増えるのは各グループの${span(up, "winners_share")}の世帯で、${span(up, "unchanged_share")}の世帯は変わりません。${lose.map(x => `グループ${x.decile}では${pct0(x.losers_share)}%の世帯で手取りが減ります。`).join("")}`
+    : `In group${up.length > 1 ? "s" : ""} ${range(up)}, take-home pay goes up on average, by the most in group ${most(up).decile} (an average of ¥${yen(most(up).mean_change)} a year). But within these groups, take-home goes up for ${span(up, "winners_share")} of households, and ${span(up, "unchanged_share")} see no change.${lose.map(x => ` In group ${x.decile}, ${pct0(x.losers_share)}% of households are worse off.`).join("")}`);
   if (down.length) li(ul, lang === "ja"
-    ? `グループ${range(down)}では、手取りが平均で減ります（減る額が最も大きいグループ${most(down).decile}で年${yen(-most(down).mean_change)}円）。`
-    : `In group${down.length > 1 ? "s" : ""} ${range(down)}, take-home pay goes down on average (by the most in group ${most(down).decile}: ¥${yen(-most(down).mean_change)} a year).`);
+    ? `グループ${range(down)}では、手取りが平均で減ります。減る額が最も大きいのはグループ${most(down).decile}で、平均で年${yen(-most(down).mean_change)}円です。`
+    : `In group${down.length > 1 ? "s" : ""} ${range(down)}, take-home pay goes down on average, by the most in group ${most(down).decile} (an average of ¥${yen(-most(down).mean_change)} a year).`);
   const net = d.cost_yen;
   li(ul, lang === "ja"
-    ? (net < 0 ? `国全体では、差し引きで国の収入が年${tn(-net)}増えます。` : `国全体では、差し引きで国の負担が年${tn(net)}増えます。`)
+    ? (net < 0 ? `国全体では、世帯に現金で払う額を差し引いたうえで、国の収入が年${tn(-net)}増えます。` : `国全体では、差し引きで国の負担が年${tn(net)}増えます。`)
     : (net < 0 ? `Overall, the government takes in ${tn(-net)} more a year, after paying out any cash.` : `Overall, it costs the government ${tn(net)} a year.`));
   li(ul, lang === "ja" ? "（近似）どれも大まかな試算です。" : "(Approximation) All of these are rough estimates.");
 }
@@ -93,7 +102,7 @@ function draw() {
   charts.forEach(c => c.destroy()); charts = [];
   if (d.status !== "complete") {
     st.className = "info";
-    st.textContent = (lang === "ja" ? "まだ計算できません：" : "Can't calculate yet: ") + joinT(d.blocked_by);
+    st.textContent = (lang === "ja" ? "まだ計算できません：" : "Cannot be calculated yet: ") + joinT(d.blocked_by);
     res.hidden = true;
     return;
   }
@@ -114,12 +123,12 @@ function draw() {
   // white borders keep the stacked parts apart where their colours are close in lightness
   const part = (k, name, col) => ({ label: t(name), backgroundColor: col, borderColor: "#fff", borderWidth: 1.5, data: d.by_decile.map(x => x[k] * 100) });
   charts.push(new Chart(document.getElementById("share"), { type: "bar",
-    data: { labels, datasets: [part("winners_share", { ja: "増える", en: "Better off" }, C.gain),
+    data: { labels, datasets: [part("winners_share", { ja: "手取りが増える", en: "Better off" }, C.gain),
                                part("unchanged_share", { ja: "変わらない", en: "No change" }, C.same),
-                               part("losers_share", { ja: "減る", en: "Worse off" }, C.lose)] },
+                               part("losers_share", { ja: "手取りが減る", en: "Worse off" }, C.lose)] },
     options: { animation: false, maintainAspectRatio: false,
-      plugins: { tooltip: { callbacks: { label: c => `${c.dataset.label}: ${c.raw.toFixed(1)}%` } } },
-      scales: { x: { ...xAxis, stacked: true }, y: { stacked: true, max: 100, title: { display: true, text: "%" } } } } }));
+      plugins: { tooltip: { callbacks: { label: c => `${c.dataset.label}${lang === "ja" ? "：" : ": "}${c.raw.toFixed(1)}%` } } },
+      scales: { x: { ...xAxis, stacked: true }, y: { stacked: true, max: 100, title: { display: true, text: lang === "ja" ? "世帯の割合（%）" : "Share of households (%)" } } } } }));
 
   const tb = document.querySelector("#tbl tbody"); tb.innerHTML = "";
   d.by_decile.forEach((x, i) => {
@@ -136,10 +145,10 @@ function draw() {
   const net = d.cost_yen;
   row({ ja: "差し引き", en: "Net effect" }, net == null ? "—" : net < 0 ? (lang === "ja" ? `国の収入が${tn(-net)}増える` : `government takes in ${tn(-net)} more`)
       : (lang === "ja" ? `国の負担が${tn(net)}増える` : `costs the government ${tn(net)}`),
-      pub ? (lang === "ja" ? "ほぼゼロ（財政中立）" : "about zero (fiscally neutral)") : "—");
+      pub ? (lang === "ja" ? "ほぼゼロ（増える所得税と現金で払う額がつり合う「財政中立」）" : "about zero (fiscally neutral: the extra income tax and the cash paid out balance)") : "—");
   document.getElementById("costnote").textContent = sel.value === "daiwa"
-    ? (lang === "ja" ? "大和総研の試算は、2025年の制度と税額控除5.65万円をもとにしています（大和総研「働く低所得者の負担を軽減する『社会保険料還付付き税額控除』の提案」2025年10月10日、1・7ページ）。このサイトは2026年の制度と5.2万円で計算しているので、二つは単純には比べられません。差の主な理由：2026年の制度では、この案でなくなる所得税の基礎控除が大きく（所得489万円以下で104万円。2025年の制度では68万〜95万円）、なくなると所得税がより多く増えます。また、税額控除も5.65万円から5.2万円に下がります。大和総研は市町村の課税の統計を、このサイトは家計の調査の平均を使っている点も違います。"
-                     : "Daiwa's estimate uses 2025 rules and a ¥56,500 credit (Daiwa Institute of Research, proposal of 10 October 2025, pages 1 and 7). This site uses 2026 rules and ¥52,000, so the two can't be compared directly. The main reasons for the gap: under 2026 rules the income tax basic deduction that the plan removes is larger (¥1.04m at incomes up to ¥4.89m, against ¥680,000–950,000 under 2025 rules), so removing it raises more tax; and the credit falls from ¥56,500 to ¥52,000. Daiwa also used municipal tax statistics, while this site uses averages from a household survey.")
+    ? (lang === "ja" ? "大和総研の試算は、2025年の制度と税額控除5.65万円をもとにしています。このサイトは2026年の制度と5.2万円で計算しているので、二つは単純には比べられません。差の主な理由は二つあります。一つは、この案でなくなる所得税の基礎控除（所得税を計算するときに、所得から差し引ける額）の大きさです。2026年の制度では所得489万円以下で104万円あり、2025年の制度の68万〜95万円より大きいため、なくなると所得税がより多く増えます。もう一つは、税額控除が5.65万円から5.2万円に下がることです。このほか、大和総研は市町村の課税の統計を、このサイトは家計の調査の平均を使っている点も違います。（出典）大和総研「働く低所得者の負担を軽減する『社会保険料還付付き税額控除』の提案」2025年10月10日、1・7ページ。"
+                     : "Daiwa's estimate uses 2025 rules and a ¥56,500 credit. This site uses 2026 rules and ¥52,000, so the two cannot be compared directly. There are two main reasons for the gap. First, the income tax basic deduction that the plan removes (an amount taken off income before income tax is worked out) is larger under 2026 rules: ¥1.04m at incomes up to ¥4.89m, against ¥680,000–950,000 under 2025 rules. Removing it therefore raises more tax. Second, the credit falls from ¥56,500 to ¥52,000. Daiwa also used municipal tax statistics, while this site uses averages from a household survey. Source: Daiwa Institute of Research, proposal of 10 October 2025, pages 1 and 7.")
     : "";
   const nd = document.getElementById("notes"); nd.innerHTML = "";
   const note = text => { const p = document.createElement("p"); p.className = "warn"; p.textContent = text; nd.append(p); };

@@ -113,7 +113,7 @@ part_time_coverage:  # 短時間労働者: employer 51+ staff (until Sep 2027), 
     approximation: true
     explanation: "From October, people paid under 88,000 a month on 20+ hours are taken not to ask to join company insurance (the legal default)."
     site:
-      ja: （近似）2026年10月からは、週20時間以上働いて月給が8.8万円未満の人は、最低賃金の減額特例を受けている人だけです（どの地域の最低賃金でも、週20時間なら月8.8万円を超えるため）。この人たちは、自分で申し出ないかぎり会社の保険に入りません。申し出はしないものとして計算しています。
+      ja: （近似）2026年10月からは、週20時間以上働いて月給が8.8万円未満の人は、最低賃金の減額特例を受けている人だけです。どの地域の最低賃金でも、週20時間なら月8.8万円を超えるためです。この人たちは、自分で申し出ないかぎり会社の保険に入りません。計算では、申し出はしないものとしています。
       en: (Approximation) From October 2026, the only people working 20+ hours a week for under ¥88,000 a month are workers with a minimum-wage exception (at every regional minimum wage, 20 hours a week pays more than ¥88,000 a month). They join company insurance only if they ask; we assume they don't.
   students_excluded: {value: true, cite: {source: coverage, page: 1}}
   employment_insurance:  # 雇用保険: 20+ hours a week, expected 31+ days, not a daytime student; no pay or employer-size condition
@@ -132,7 +132,7 @@ student_deferral:  # 学生納付特例 (国民年金法90条の3): only while t
   note: "Income = 総所得金額 less the social-insurance deduction (6条の12第2項第1号) and, for a working student, 270,000. Hand calculation: tests/hand_calcs/H2.md"
   approximation: true
   site:
-    ja: （近似）学生の国民年金保険料の納付猶予（学生納付特例）は、その年の所得で判定しています（実際は前の年の所得）。
+    ja: （近似）学生の国民年金保険料の納付猶予（学生納付特例）は、その年の所得で判定しています。実際は、前の年の所得で判定します。
     en: (Approximation) Whether a student may put off National Pension payments (the student deferral) is judged on the same year's income (in fact, the previous year's).
 national_pension_ages:  # 第1号被保険者: 「二十歳以上六十歳未満」 (Q30 answered 2026-11-03)
   from: {value: 20, cite: {source: kokumin_law, page: 1, section: "国民年金法7条1項1号"}}
@@ -160,7 +160,7 @@ nhi_shinjuku_fy2026:
 notes:
   approximation: true
   site:
-    ja: （近似）健康保険・介護保険の保険料率は2026年3月分から、雇用保険料率は4月から変わり、子ども・子育て支援金は4月分から新しく始まります（厚生年金の保険料率18.3%は変わりません）。計算では、2026年の12か月すべてに新しい率と支援金を使っています。国民年金は2026年度の月額を全月に使っています。国民健康保険は2026年度の新宿区の料率を使っています（2026年の収入に本来かかる2027年度の料率はまだ公表されていません）。給与は毎月同じ額で、ボーナスはないものとしています。
+    ja: （近似）2026年は、健康保険と介護保険の保険料率が3月分から、雇用保険料率が4月から変わります。子ども・子育て支援金は4月分から新しく始まります。厚生年金の保険料率18.3%は変わりません。計算では、2026年の12か月すべてに新しい率と支援金を使っています。国民年金は2026年度の月額を全月に使っています。国民健康保険は2026年度の新宿区の料率を使っています。2026年の収入に本来かかる2027年度の料率は、まだ公表されていません。給与は毎月同じ額で、ボーナスはないものとしています。
     en: (Approximation) Health and long-term care insurance rates change from March 2026 and employment insurance from April; the child and childcare support levy is new from April (the employee pension rate, 18.3%, does not change). We use the new rates and the levy for all 12 months of 2026. National Pension uses the fiscal 2026 monthly amount for every month. National Health Insurance uses Shinjuku's fiscal 2026 rates, because the fiscal 2027 rates (which would apply to 2026 income) aren't published yet. Pay is the same every month, with no bonus.
   explanation: >
     Health and LTC rates start March 2026 (協会けんぽ table: 令和8年3月分～), the child-support levy is new from April 2026

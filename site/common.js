@@ -10,7 +10,7 @@ const PAGES = [
 const ABOUT = [
   ["methods.html", { ja: "計算方法", en: "How it works" }],
   ["validation.html", { ja: "検証", en: "Checks" }],
-  ["sources.html", { ja: "出典とコード", en: "Sources & code" }],
+  ["sources.html", { ja: "出典とコード", en: "Sources and code" }],
   ["press.html", { ja: "報道関係の方へ", en: "For the press" }],
 ];
 // Japanese unless the visitor chose English, or (first visit) their browser isn't set to Japanese
@@ -30,7 +30,7 @@ function whoMoves(h) {
 }
 function incomeAxis(h) {
   const w = whoMoves(h).replace(/^the /, "");
-  return lang === "ja" ? `${w}（税引き前、円）` : `${w[0].toUpperCase() + w.slice(1)} before tax (yen)`;
+  return lang === "ja" ? `${w}（税引き前の年額、円）` : `${w[0].toUpperCase() + w.slice(1)} before tax (yen per year)`;
 }
 // "世帯主（45歳）：給与5,000,000円 ／ 子ども（10歳）"
 function describeIncomes(incomes) {

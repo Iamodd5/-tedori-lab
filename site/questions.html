@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>未解決の点 / Open questions — Tedori Lab</title>
+<title>未解決の点と解決済みの点 / Open and answered questions — Tedori Lab</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
 <script src="common.js"></script>
@@ -13,8 +13,19 @@
 </style>
 </head>
 <body>
-<h1><span lang="ja">未解決の点</span><span lang="en">Open questions</span></h1>
-<p><span lang="ja">資料で確かめきれていない点、計算に入れていないもの、決め方を選んだ点の一覧です（英語）。それぞれ、何に影響するか、どの資料を見たか、いまの扱いを書いています。</span><span lang="en">Points not yet confirmed in the sources, things left out of the calculation, and choices made in how to model something. Each row says what it affects, which sources were checked, and how it is handled now.</span></p>
+<h1><span lang="ja">未解決の点と解決済みの点</span><span lang="en">Open and answered questions</span></h1>
+<p><span lang="ja">このサイトの計算について、資料で確かめきれていない点、計算に入れていないもの、いくつかの扱い方から一つを選んだ点をまとめた一覧です。解決済みの点も、どう解決したかとあわせて残してあります。一覧は英語です。</span><span lang="en">This list holds questions about the site's calculations: points not yet confirmed in the sources, things left out of the calculation, and choices between ways of treating something. Answered questions stay in the list, with how they were answered.</span></p>
+<div class="summary"><ul>
+  <li><span lang="ja"><strong>まだ計算できない案に関わる点：</strong>政府の案と連合案がまだ計算できない理由は、次の点にあります。</span><span lang="en"><strong>Questions that hold back a plan:</strong> the government's plans and Rengo's plan cannot be calculated yet for these reasons.</span>
+    <ul>
+      <li><span lang="ja"><a href="#q9">政府の支援金</a>：支給額や収入の線引きは、まだ示されていません。法律案では、後で政令（内閣が定める命令）で決めることになっています。</span><span lang="en"><a href="#q9">The government payment</a>: the payment amounts and income limits have not been set out yet. Under the bill, they will be set later by Cabinet order.</span></li>
+      <li><span lang="ja"><a href="#q3">連合案の消費税還付制度</a>：支給額や収入の線引きは、まだ示されていません。連合の構想には、考え方だけが書かれています。</span><span lang="en"><a href="#q3">Rengo's consumption tax refund</a>: its payment amounts and income limits have not been set out yet. Rengo's plan gives only the approach.</span></li>
+      <li><span lang="ja"><a href="#q8">食料品の支出額</a>：モデル世帯（計算のために例として作った世帯）の食料品の支出額を、まだ用意できていません。</span><span lang="en"><a href="#q8">Food spending</a>: the site does not yet have food spending figures for the example households.</span></li>
+    </ul></li>
+  <li><span lang="ja"><strong>公表している数字との関係：</strong>これらの点のために計算を単純化したところや、まだ計算できないところは、その数字が出るページに示しています。示し方は、<a href="methods.html">「計算方法」</a>のページで説明しています。</span><span lang="en"><strong>Effect on published numbers:</strong> where one of these questions led to a simplification, or stops a number from being calculated, the page that shows the number says so. The labels are explained on the <a href="methods.html">How it works</a> page.</span></li>
+  <li><span lang="ja"><strong>ほかのページの番号から来た方へ：</strong>ほかのページにある、Qで始まるかっこ付きの番号は、この一覧の行の番号です。番号を押すと、その行に移動します。番号は、行の左端にあります。</span><span lang="en"><strong>If you followed a number from another page:</strong> a number in brackets starting with Q on other pages is the number of a row in this list, and following it brings you to that row. The number is in the first column.</span></li>
+  <li><span lang="ja"><strong>一覧の読み方：</strong>列は左から、ID（番号）、Question（問い）、Why it matters（なぜ大事か）、Source checked（確認した資料）、Status（いまの扱い）です。Status の最初の語は、open が未解決、answered が解決済み、answered in part が一部解決、decided が扱いを決めた、rule found が根拠となる決まりを確認した、という意味です。</span><span lang="en"><strong>How to read the list:</strong> each row gives the question, why it matters, which sources were checked and how it is handled now. The status begins with open, answered, answered in part, decided, or rule found (the rule has been located in the law).</span></li>
+</ul></div>
 <div class="md" id="doc"></div>
 <script>
 // the list is OPEN_QUESTIONS.md; each row gets an id (q13 for Q13) so question links on other pages open at that row

@@ -15,7 +15,7 @@ spending:  # food and other taxable consumption, from the Family Income and Expe
   status: unresolved
   question: Q8
 assumptions:
-  - {ja: "親は母親としています（父親の場合と違うのは、住民税の「調整控除」の計算に使う額が4万円変わることだけです）。", en: "The parent is a mother. (Compared with a father, the only difference is a ¥40,000 change in one amount used to work out a resident tax deduction.)"}
-  - {ja: "ひとり親向けの児童扶養手当を受け取っています（所得に応じて減り、所得が一定額を超えるとなくなります）。養育費は受け取っていないものとしています。", en: "Receives the single-parent allowance (児童扶養手当), which falls as income rises and stops above a set income. We assume no child support payments are received."}  # OPEN_QUESTIONS Q17
+  - {ja: "親は母親としています。父親の場合と違うのは、住民税の「調整控除」という控除の計算に使う額が、4万円変わることだけです。", en: "The parent is taken to be the mother. For a father, the only difference would be a ¥40,000 change in one amount used to work out a resident tax deduction."}
+  - {ja: "ひとり親向けの児童扶養手当を受け取っています。この手当は所得に応じて減り、所得が一定額を超えるとなくなります。養育費は受け取っていないものとしています。", en: "Receives the single-parent allowance (児童扶養手当), which falls as income rises and stops above a set income. We assume no child support payments are received."}  # OPEN_QUESTIONS Q17
   - {ja: "（近似）給与は毎月同じ額で、ボーナスはないものとしています。", en: "(Approximation) Pay is the same every month, with no bonus."}
   - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # project owner's choice
