@@ -139,11 +139,19 @@ table { border-collapse: collapse; width: 100%; font-size: 14px; border-top: 1.5
 th { font-size: 12.5px; font-weight: 700; color: var(--ink-2); text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--ink); vertical-align: bottom; }
 td { padding: 7px 10px; border-bottom: 1px solid var(--rule-2); text-align: right; vertical-align: top; }
 tr:last-child td { border-bottom: 0; }
+tbody th { font-size: 14px; font-weight: 400; color: var(--ink); text-align: left; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--rule-2); vertical-align: top; }
+tbody tr:last-child th { border-bottom: 0; }
 th:first-child, td:first-child { text-align: left; padding-left: 0; }
 th:last-child, td:last-child { padding-right: 0; }
 td.reason { text-align: left; color: var(--ink-2); }
 .scroll { overflow-x: auto; margin: 12px 0 14px; }
-.scroll :is(th, td:first-child) { white-space: nowrap; }  /* on a phone the table scrolls sideways instead */
+.scroll :is(tbody th, td:first-child) { white-space: nowrap; }  /* row labels stay on one line; on a phone the table scrolls sideways instead */
+#cost :is(th, td) { white-space: normal; }  /* the finance table's long labels wrap, so it fits a phone */
+#cost tbody th { min-width: 7em; }
+.scroll thead th { overflow-wrap: anywhere; }  /* a long column head wraps inside its column instead of sticking out */
+html[data-lang="ja"] .scroll.overflows::before { content: "表は横に動かせます。"; }
+html[data-lang="en"] .scroll.overflows::before { content: "This table scrolls sideways."; }
+.scroll.overflows::before { display: block; position: sticky; left: 0; font-size: 13.5px; color: var(--ink-2); }
 .md table { margin: 12px 0 18px; }
 
 /* charts */
@@ -190,7 +198,6 @@ td.reason { text-align: left; color: var(--ink-2); }
 
 /* documents rendered from Markdown */
 .md { max-width: 46em; }
-.md table { display: block; overflow-x: auto; }
 .md td, .md th { text-align: left; }
 .md code { font-size: .85em; background: var(--wash); padding: 1px 4px; border-radius: var(--r); }
 .md, .md code { overflow-wrap: anywhere; }

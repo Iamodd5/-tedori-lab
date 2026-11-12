@@ -254,8 +254,8 @@ function wallCharts(ids) {
     const body = tb.createTBody();
     for (let x = Math.ceil(min / WALL.step) * WALL.step; x <= max; x += WALL.step) {
       const r = body.insertRow(), base = rows[0].get(x);
-      r.insertCell().textContent = yen(x);
-      rows.forEach((m, i) => { const v = m.get(x); r.insertCell().textContent = !i ? yen(v) : ja ? `${yen(v)}（${v >= base ? "+" : ""}${yen(v - base)}）` : `${yen(v)} (${v >= base ? "+" : ""}${yen(v - base)})`; });
+      rowHead(r, yen(x));
+      rows.forEach((m, i) => { const v = m.get(x); const d = `${v > base ? "+" : v < base ? "−" : "±"}${yen(Math.abs(v - base))}`; r.insertCell().textContent = !i ? yen(v) : ja ? `${yen(v)}（${d}）` : `${yen(v)} (${d})`; });
     }
   }
   const incomeHead = o => lang === "ja" ? `${o.who}（円）` : `${o.who[0].toUpperCase() + o.who.slice(1)} (yen)`;

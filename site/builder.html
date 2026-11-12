@@ -45,12 +45,12 @@
 <p class="small"><span lang="ja">もらえる額は一人ずつ計算します。稼ぎ（給与と事業の収入）がある人は、稼ぎに「増え方」の割合を掛けた額を、「1人あたりの最大額」まで受け取ります。夫婦のうち稼ぎの多い方は、18歳以下の子ども1人ごとの上乗せも受け取ります。年収（稼ぎと年金の合計、税引き前）が「減り始める年収」を超えると、超えた分に「減り方」の割合を掛けた額だけ減り、0より下にはなりません。もらえる額は、2026年の制度での手取りにそのまま上乗せします。もらえる額に税金はかからず、ほかの税や保険料、給付は変わらないものとします。</span>
 <span lang="en">The credit is worked out for each person. Anyone with earnings (wages or business income) gets their earnings times the "how fast it grows" percentage, up to "most one person can get". In a couple, the partner who earns more also gets the extra per child aged 18 or under. Once a person's yearly income (earnings plus pensions, before tax) passes "starts shrinking above", the credit falls by the "how fast it shrinks" percentage of the amount above it, but not below zero. The credit is added straight onto take-home pay under 2026 rules. It is not taxed, and no other tax, insurance or benefit changes.</span></p></details>
 
-<h2><span lang="ja">日本の全世帯で見ると（大まかな試算）</span><span lang="en">For every household in Japan (rough estimate)</span></h2>
+<h2 id="tbl-head"><span lang="ja">日本の全世帯で見ると（大まかな試算）</span><span lang="en">For every household in Japan (rough estimate)</span></h2>
 <p class="lead" id="cost"></p>
 <p class="note"><span lang="ja">（近似）この部分は、「全世帯で見ると」のページと同じ架空の世帯（2024年の国の調査の平均に合わせたもの）で計算した大まかな試算です。すべての世帯を年収の低い順に並べ、同じ数ずつ10のグループに分けています。</span><span lang="en">(Approximation) These are rough estimates, worked out with the same made-up households as the All households page (matched to the averages in a 2024 government survey). Every household is lined up from lowest to highest yearly income and cut into ten equal groups.</span></p>
 <div class="chart"><canvas id="dec" role="img"></canvas></div>
 <details><summary><span lang="ja">数字の表を見る</span><span lang="en">See the numbers as a table</span></summary>
-<div class="scroll"><table id="tbl"><thead><tr>
+<div class="scroll"><table id="tbl" aria-labelledby="tbl-head"><thead><tr>
   <th><span lang="ja">収入グループ</span><span lang="en">Income group</span></th>
   <th><span lang="ja">平均年収（円）</span><span lang="en">Average yearly income (yen)</span></th>
   <th><span lang="ja">もらえる額の1世帯あたり平均（円／年）</span><span lang="en">Average received per household (yen per year)</span></th>
@@ -81,7 +81,7 @@
 <p class="note"><span lang="ja">この図は、収入10万円ごとの変化を示しています。途中に壁があっても、その10万円のうち、壁で減る額が残りの部分で増える額より小さいと、線は0円より下に出ません。壁の幅が狭いときや、減る額が小さいときです。こうした壁は、上の図の▼と、上の壁の一覧で確かめてください。収入0円からの変化は、グラフにも一覧にも入れていません。フルタイムで働いて給与が0円という場合は、実際にはないためです。</span><span lang="en">This chart shows the change over each ¥100,000. If a wall takes away less than the rest of that ¥100,000 adds (because the wall is narrow or the drop is small), the line stays above ¥0. Check the ▼ marks on the chart above and the list of walls. The step up from an income of ¥0 is left out of the chart and the list (a full-time employee paid nothing doesn't happen in real life).</span></p>
 <div class="chart"><canvas id="emr" role="img"></canvas></div>
 </div>
-<details><summary><span lang="ja">数字の表を見る（表示中の範囲、10万円ごと）</span><span lang="en">See the numbers as a table (the range shown, every ¥100,000)</span></summary><div class="scroll"><table id="walltable"></table></div></details>
+<details><summary id="walltable-head"><span lang="ja">数字の表を見る（表示中の範囲、10万円ごと）</span><span lang="en">See the numbers as a table (the range shown, every ¥100,000)</span></summary><div class="scroll"><table id="walltable" aria-labelledby="walltable-head"></table></div></details>
 
 <details><summary><span lang="ja">（近似）このページの計算で単純化している点</span><span lang="en">(Approximation) Simplifications behind the numbers on this page</span></summary><ul class="small" id="approx"></ul></details>
 
@@ -153,7 +153,8 @@ function update(newHousehold) {
   const tb = document.querySelector("#tbl tbody"); tb.innerHTML = "";
   r.mean.forEach((m, k) => {
     const tr = tb.insertRow();
-    [(lang === "ja" ? "グループ" : "Group ") + (k + 1), yen(pop.deciles[k].annual_income_mean), yen(m), (r.share[k] * 100).toFixed(1) + "%"].forEach(v => tr.insertCell().textContent = v);
+    rowHead(tr, (lang === "ja" ? "グループ" : "Group ") + (k + 1));
+    [yen(pop.deciles[k].annual_income_mean), yen(m), (r.share[k] * 100).toFixed(1) + "%"].forEach(v => tr.insertCell().textContent = v);
   });
 
   // the example household

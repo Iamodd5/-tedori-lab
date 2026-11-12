@@ -30,13 +30,13 @@
 </div>
 <div id="sitenotes"></div>
 
-<h2><span lang="ja">手取りの変化の内訳（この世帯の今の収入のとき）</span><span lang="en">Where the change comes from (at this household's income now)</span></h2>
+<h2 id="cmp-head"><span lang="ja">手取りの変化の内訳（この世帯の今の収入のとき）</span><span lang="en">Where the change comes from (at this household's income now)</span></h2>
 <p class="note"><span lang="ja">このグラフと表は、選んだモデル世帯の今の収入での内訳です。上の入力欄に金額を入れても変わりません。右向きの棒は、手取りを増やす分です（受け取るお金や、減る税金）。左向きの棒は、手取りを減らす分です（増える税金や保険料）。</span><span lang="en">The chart and table show the example household you chose, at its income now. They do not change when you type an amount in the box. Bars to the right add to take-home pay (cash received, or less tax); bars to the left take away from it (more tax or insurance).</span></p>
 <p class="info" id="nochange" hidden></p>
 <div class="chart" style="height:220px"><canvas id="bar" role="img"></canvas></div>
 <p class="note"><span lang="ja">表の金額はすべて年額で、単位は円です。税金と保険料の列は、払う額の増減を示します（+は多く払う、−は少なく払う）。</span>
 <span lang="en">All amounts in the table are in yen a year. The tax and insurance columns show how much more or less is paid (+ means paying more, − paying less).</span></p>
-<div class="scroll"><table id="cmp"><thead><tr>
+<div class="scroll"><table id="cmp" aria-labelledby="cmp-head"><thead><tr>
   <th><span lang="ja">案</span><span lang="en">Plan</span></th>
   <th><span lang="ja">手取りの変化</span><span lang="en">Change in take-home pay</span></th>
   <th><span lang="ja">受け取るお金</span><span lang="en">Cash received</span></th>
@@ -202,7 +202,7 @@ function draw(newHousehold) {
   const tb = document.querySelector("#cmp tbody"); tb.innerHTML = "";
   for (const r of done) {
     const c = r.components, tr = tb.insertRow();
-    tr.insertCell().textContent = approx(r) + shortName(t(r.label));
+    rowHead(tr, approx(r) + shortName(t(r.label)));
     [r.disposable_change, c.credit, c.income_tax, c.resident_tax, c.social_insurance, c.consumption_tax].forEach(v => tr.insertCell().textContent = signed(v));
   }
   const bl = document.getElementById("blocked"); bl.innerHTML = "";

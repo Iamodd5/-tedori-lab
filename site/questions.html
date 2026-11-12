@@ -8,7 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
 <script src="common.js"></script>
 <style>
-  .md tr:target td { background: var(--wash); }
+  .md tr.target td { background: var(--wash); }
   .md td:first-child { font-weight: 700; white-space: nowrap; }
 </style>
 </head>
@@ -31,9 +31,9 @@
 // the list is OPEN_QUESTIONS.md; each row gets an id (q13 for Q13) so question links on other pages open at that row
 const el = document.getElementById("doc");
 const draw = () => renderDoc(el, "../OPEN_QUESTIONS.md").then(() => {
-  el.querySelectorAll("tr").forEach(tr => { const m = tr.cells[0]?.textContent.trim().match(/^Q(\d+)$/); if (m) tr.id = "q" + m[1]; });
+  el.querySelectorAll("tr").forEach(tr => { const m = tr.cells[0]?.textContent.trim().match(/^Q(\d+)$/); if (m) { tr.id = "q" + m[1]; tr.cells[0].textContent = tr.cells[0].textContent.trim(); } });  // the number links to its own row elsewhere, not here
   const row = location.hash && document.getElementById(location.hash.slice(1));
-  if (row) row.scrollIntoView();
+  if (row) { row.classList.add("target"); row.scrollIntoView({ block: "center" }); }  // :target misses rows given their id after load
 });
 setupPage(draw);
 draw();

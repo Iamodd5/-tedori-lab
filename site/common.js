@@ -46,6 +46,15 @@ function describeIncomes(incomes) {
 // a plan label without its bracketed qualifier, keeping a leading (Approximation) tag
 const shortName = s => s.replace(/^(（近似）|\(Approximation\) )?(.*?)\s*[（(].*$/, "$1$2");
 const li = (ul, text) => { const x = document.createElement("li"); x.textContent = text; ul.append(x); };
+// a table row's first cell, as the header of that row (screen readers repeat it in each cell)
+const rowHead = (tr, text) => { const th = document.createElement("th"); th.scope = "row"; th.textContent = text; tr.append(th); };
+// a table that scrolls sideways: reachable by keyboard, named, and marked "overflows" (shows a cue) when it is wider than the page
+const scrollLabel = () => lang === "ja" ? "表（横に動かせます）" : "Table (scrolls sideways)";
+const scrollWatch = new ResizeObserver(es => es.forEach(e => { const b = e.target.closest(".scroll"); b.classList.toggle("overflows", b.scrollWidth > b.clientWidth + 8); }));  // a bracket sticking out a few pixels is not a hidden column
+function watchScroll(b) {
+  b.tabIndex = 0; b.setAttribute("role", "region"); b.setAttribute("aria-label", scrollLabel());
+  scrollWatch.observe(b); if (b.firstElementChild) scrollWatch.observe(b.firstElementChild);
+}
 
 // The household chosen on another page (?hh=H3, or the last one chosen) stays chosen, if it is one of `ids`.
 function keptHousehold(ids, fallback) {
@@ -67,6 +76,7 @@ function applyLang() {
   document.querySelector("footer nav")?.setAttribute("aria-label", lang === "ja" ? "このサイトについて" : "About this site");
   document.querySelectorAll("header nav a").forEach((a, i) => a.textContent = t(PAGES[i][1]));
   document.querySelectorAll("footer nav a").forEach((a, i) => a.textContent = t(ABOUT[i][1]));
+  document.querySelectorAll(".scroll").forEach(b => b.setAttribute("aria-label", scrollLabel()));
 }
 
 // onLangChange: pages with charts or generated text redraw themselves
@@ -91,6 +101,7 @@ function setupPage(onLangChange = () => {}) {
     <span lang="en">Tedori (手取り) means take-home pay. All numbers are estimates. They assume people don't change how much they work when the rules change. This site doesn't support any plan, party or politician.</span>`;
   links(footer.querySelector("nav"), ABOUT);
   document.body.append(footer);
+  document.querySelectorAll(".scroll").forEach(watchScroll);
   if (window.Chart) {  // charts use the page's font and colours
     const d = Chart.defaults, ink = "#16243A";
     d.font.family = getComputedStyle(document.body).fontFamily;
@@ -122,6 +133,7 @@ function renderDoc(el, urls) {
   el.lang = typeof urls === "string" ? "en" : lang;
   return fetch(url, { cache: "no-cache" }).then(r => r.text()).then(md => {
     el.innerHTML = marked.parse(md.replace(/\bQ(\d{1,2})\b(?![^\[]*\])/g, "[Q$1](questions.html#q$1)"));
+    el.querySelectorAll("table").forEach(t => { const w = document.createElement("div"); w.className = "scroll"; t.replaceWith(w); w.append(t); watchScroll(w); });
     const ownH1 = document.querySelectorAll("h1").length > el.querySelectorAll("h1").length;  // the report page has none
     if (ownH1) [...el.querySelectorAll("h1, h2, h3, h4, h5")].forEach(h => {
       const n = document.createElement("h" + (+h.tagName[1] + 1)); n.innerHTML = h.innerHTML; h.replaceWith(n);
