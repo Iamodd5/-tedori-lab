@@ -157,6 +157,7 @@ function wallCharts(ids) {
   function setView(min, max, keepSpan) {
     let span = Math.min(MAX, Math.max(MIN_SPAN, max - min));
     if (keepSpan) span = view ? view.max - view.min : span;
+    else if (max - min < span) min = (min + max - span) / 2;  // widened to the minimum: keep the same middle
     min = Math.max(0, Math.min(MAX - span, min));
     view = { min: Math.round(min / SNAP) * SNAP, max: Math.round((min + span) / SNAP) * SNAP };
     if (!frame) frame = requestAnimationFrame(() => { frame = 0; render(); });
