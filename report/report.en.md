@@ -5,8 +5,8 @@
 Tedori Lab works out how {n_plans} plans to change tax and benefits would alter households' take-home pay, using the same households, data and method for each. Take-home pay means what is left after tax and insurance premiums, plus child allowance and the single-parent allowance. The calculations cover example households and every household in Japan. Only the {done_labels} can be calculated so far.
 
 - **Under today's rules (the 2026 rules), a household takes home ¥{lead_drop} less a year when a part-time spouse earns ¥{lead_at} a year instead of ¥{lead_from}.** This is before any of the plans. The spouse works under {hours_min} hours a week and is not in their employer's health insurance. A point like this, where earning more leaves a household with less, is called an income wall (年収の壁). The figures are for example household H4: a couple with no children in Shinjuku, Tokyo, in which the other partner is an employee on ¥{h4_earner} a year.
-- (Approximation) Under the Daiwa Institute plan, {hh_up} of the {n_households} example households take home more, {hh_down} take home less and {hh_same} see no change. The largest gain is for {hh_best} ({hh_best_change} yen a year) and the largest loss is for {hh_worst} ({hh_worst_change} yen a year).
-- (Approximation) Under the Daiwa Institute plan, the government takes in about ¥{net} trillion more a year across the country, in a rough estimate that assumes nobody changes how they work. Income tax rises by about ¥{it_up} trillion a year, and the government pays out about ¥{cash} trillion in cash: the part of the tax credit (an amount taken straight off income tax) that is bigger than the income tax owed. The section on every household in Japan explains how this differs from Daiwa's own estimate.
+- (Approximation) Under the {daiwa_label}, {hh_up} of the {n_households} example households take home more, {hh_down} take home less and {hh_same} see no change. The largest gain is for {hh_best} ({hh_best_change} yen a year) and the largest loss is for {hh_worst} ({hh_worst_change} yen a year).
+- (Approximation) Under the {daiwa_label}, the government takes in about ¥{net} trillion more a year across the country, in a rough estimate that assumes nobody changes how they work. Income tax rises by about ¥{it_up} trillion a year, and the government pays out about ¥{cash} trillion in cash: the part of the tax credit (an amount taken straight off income tax) that is bigger than the income tax owed. Daiwa's own estimate comes to about zero overall. The section on every household in Japan explains the difference.
 
 ## How to read the numbers
 
@@ -24,13 +24,13 @@ One form these plans take is a 'refundable tax credit' (給付付き税額控除
 
 {plan_list}
 
-The {n_blocked} plans other than the Daiwa Institute plan cannot be calculated yet, for these reasons:
+The other {n_blocked} plans cannot be calculated yet, for these reasons:
 
 {blocked_list}
 
 ## The income wall for a part-time spouse
 
-The household in the first main point hits this wall because the spouse stops being a dependant. A dependant here is someone covered by an employee partner's health insurance and pension without paying premiums of their own. Once that ends, National Pension (¥{lead_np} a year) and National Health Insurance (¥{lead_nhi} a year) premiums must be paid. Taxes fall by ¥{lead_tax_cut} in all. Take-home pay gets back to where it was when the spouse earns ¥{lead_back}. Pay is worked out in {grid_step} steps.
+The household in the first main point hits this wall because the spouse stops being a dependant. A dependant here is someone covered as a dependant by an employee partner's health insurance, who also pays no National Pension premiums of their own. Once that ends, National Pension (¥{lead_np} a year) and National Health Insurance (¥{lead_nhi} a year) premiums must be paid. Taxes fall by ¥{lead_tax_cut} in all. Take-home pay gets back to where it was when the spouse earns ¥{lead_back}. Pay is worked out in {grid_step} steps.
 
 (Approximation) Under the {daiwa_label}, the one plan that can be calculated now, take-home pay at the same point falls by ¥{lead_daiwa_drop} a year (¥{lead_drop} under 2026 rules). It gets back to the same level at ¥{lead_daiwa_back}, again worked out in {grid_step} steps.
 
@@ -63,8 +63,8 @@ In the table, + means take-home pay goes up and − means it goes down.
 
 We worked out the change in take-home pay under the {daiwa_label} for every household in Japan, by income group. The groups are ten equal-sized sets of households, lined up from lowest to highest yearly income. (Approximation) All of the following are rough estimates.
 
-- (Approximation) In groups {up_groups}, take-home pay goes up on average. The biggest average change is in group {up_top_group}, at ¥{up_top} a year per household. But within these groups, take-home pay goes up for {up_win}% of households, and {up_same}% see no change.{up_lose}
-- (Approximation) In groups {down_groups}, take-home pay goes down on average. The biggest average change is in group {down_top_group}, at ¥{down_top} a year per household. But within these groups, take-home pay goes down for {down_lose_range}% of households and up for {down_win_range}%, and {down_same_range}% see no change.
+- (Approximation) In groups {up_groups}, take-home pay goes up on average. The biggest average gain is in group {up_top_group}, at ¥{up_top} a year per household. But within these groups, take-home pay goes up for {up_win}% of households, and {up_same}% see no change.{up_lose}
+- (Approximation) In groups {down_groups}, take-home pay goes down on average. The biggest average fall is in group {down_top_group}, at ¥{down_top} a year per household. But within these groups, take-home pay goes down for {down_lose_range}% of households and up for {down_win_range}%, and {down_same_range}% see no change.
 
 The national total is in the main points. Daiwa's own estimate is about ¥{pub_it} trillion more income tax and about ¥{pub_cash} trillion paid in cash, which comes to about zero overall. This is called fiscally neutral. The two estimates cannot be compared directly, because Daiwa used 2025 tax rules and a ¥{credit_2025} credit, and this site uses 2026 rules and ¥{credit_2026}.
 

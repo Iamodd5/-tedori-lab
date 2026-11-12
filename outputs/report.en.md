@@ -5,8 +5,8 @@
 Tedori Lab works out how 4 plans to change tax and benefits would alter households' take-home pay, using the same households, data and method for each. Take-home pay means what is left after tax and insurance premiums, plus child allowance and the single-parent allowance. The calculations cover example households and every household in Japan. Only the Daiwa Institute plan (adjusted to 2026 tax rules) can be calculated so far.
 
 - **Under today's rules (the 2026 rules), a household takes home ¥258,226 less a year when a part-time spouse earns ¥1,300,000 a year instead of ¥1,290,000.** This is before any of the plans. The spouse works under 20 hours a week and is not in their employer's health insurance. A point like this, where earning more leaves a household with less, is called an income wall (年収の壁). The figures are for example household H4: a couple with no children in Shinjuku, Tokyo, in which the other partner is an employee on ¥5,000,000 a year.
-- (Approximation) Under the Daiwa Institute plan, 2 of the 8 example households take home more, 4 take home less and 2 see no change. The largest gain is for H1 (+35,700 yen a year) and the largest loss is for H8 (−157,300 yen a year).
-- (Approximation) Under the Daiwa Institute plan, the government takes in about ¥1.1 trillion more a year across the country, in a rough estimate that assumes nobody changes how they work. Income tax rises by about ¥1.5 trillion a year, and the government pays out about ¥0.4 trillion in cash: the part of the tax credit (an amount taken straight off income tax) that is bigger than the income tax owed. The section on every household in Japan explains how this differs from Daiwa's own estimate.
+- (Approximation) Under the Daiwa Institute plan (adjusted to 2026 tax rules), 2 of the 8 example households take home more, 4 take home less and 2 see no change. The largest gain is for H1 (+35,700 yen a year) and the largest loss is for H8 (−157,300 yen a year).
+- (Approximation) Under the Daiwa Institute plan (adjusted to 2026 tax rules), the government takes in about ¥1.1 trillion more a year across the country, in a rough estimate that assumes nobody changes how they work. Income tax rises by about ¥1.5 trillion a year, and the government pays out about ¥0.4 trillion in cash: the part of the tax credit (an amount taken straight off income tax) that is bigger than the income tax owed. Daiwa's own estimate comes to about zero overall. The section on every household in Japan explains the difference.
 
 ## How to read the numbers
 
@@ -27,15 +27,15 @@ One form these plans take is a 'refundable tax credit' (給付付き税額控除
 - **Daiwa Institute plan (adjusted to 2026 tax rules)**: For every taxpayer, this plan removes the income tax basic deduction (an amount taken off income before tax is worked out). In its place it gives a fixed tax credit, an amount taken straight off income tax. If the credit is bigger than your income tax, the difference is paid to you in cash. You can get up to the amount of social insurance you paid on income from work.
 - **Rengo (trade union confederation) plan**: Under one scheme, low-income employees have half of the social and employment insurance they pay taken off their income tax. Any part that can't be taken off is refunded. Under the other, people get a fixed refund for the consumption tax on minimum basic spending such as food, drink and utilities. It goes mainly to people with incomes too low to pay income tax. Rengo says it would abolish the reduced consumption tax rate when this refund starts. Rengo's documents don't give the amounts for the second scheme, so this site can't calculate the plan yet.
 
-The 3 plans other than the Daiwa Institute plan cannot be calculated yet, for these reasons:
+The other 3 plans cannot be calculated yet, for these reasons:
 
 - Government plan (FY2027–28: 1% tax on food + payment): the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order); we don't yet have food spending figures for the example households H1–H8.
 - Government plan (from FY2029): the payment amounts and income limits haven't been set out yet (under the bill, they will be set later by Cabinet order).
-- Rengo (trade union confederation) plan: the payment amounts and income limits for the consumption tax refund haven't been set out yet (Rengo's plan gives only the approach); we don't yet have food spending figures for the example households H1–H8.
+- Rengo (trade union confederation) plan: the payment amounts and income limits for the consumption tax refund haven't been set out yet; we don't yet have food spending figures for the example households H1–H8.
 
 ## The income wall for a part-time spouse
 
-The household in the first main point hits this wall because the spouse stops being a dependant. A dependant here is someone covered by an employee partner's health insurance and pension without paying premiums of their own. Once that ends, National Pension (¥215,040 a year) and National Health Insurance (¥101,786 a year) premiums must be paid. Taxes fall by ¥48,600 in all. Take-home pay gets back to where it was when the spouse earns ¥1,640,000. Pay is worked out in ¥10,000 steps.
+The household in the first main point hits this wall because the spouse stops being a dependant. A dependant here is someone covered as a dependant by an employee partner's health insurance, who also pays no National Pension premiums of their own. Once that ends, National Pension (¥215,040 a year) and National Health Insurance (¥101,786 a year) premiums must be paid. Taxes fall by ¥48,600 in all. Take-home pay gets back to where it was when the spouse earns ¥1,640,000. Pay is worked out in ¥10,000 steps.
 
 (Approximation) Under the Daiwa Institute plan (adjusted to 2026 tax rules), the one plan that can be calculated now, take-home pay at the same point falls by ¥217,926 a year (¥258,226 under 2026 rules). It gets back to the same level at ¥1,600,000, again worked out in ¥10,000 steps.
 
@@ -75,8 +75,8 @@ Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that 
 
 We worked out the change in take-home pay under the Daiwa Institute plan (adjusted to 2026 tax rules) for every household in Japan, by income group. The groups are ten equal-sized sets of households, lined up from lowest to highest yearly income. (Approximation) All of the following are rough estimates.
 
-- (Approximation) In groups 1–4, take-home pay goes up on average. The biggest average change is in group 1, at ¥9,257 a year per household. But within these groups, take-home pay goes up for 13–21% of households, and 79–85% see no change. In group 4, 7% of households are worse off.
-- (Approximation) In groups 5–10, take-home pay goes down on average. The biggest average change is in group 10, at ¥101,574 a year per household. But within these groups, take-home pay goes down for 46–98% of households and up for 2–25%, and 1–39% see no change.
+- (Approximation) In groups 1–4, take-home pay goes up on average. The biggest average gain is in group 1, at ¥9,257 a year per household. But within these groups, take-home pay goes up for 13–21% of households, and 79–85% see no change. In group 4, 7% of households are worse off.
+- (Approximation) In groups 5–10, take-home pay goes down on average. The biggest average fall is in group 10, at ¥101,574 a year per household. But within these groups, take-home pay goes down for 46–98% of households and up for 2–25%, and 1–39% see no change.
 
 The national total is in the main points. Daiwa's own estimate is about ¥0.7 trillion more income tax and about ¥0.7 trillion paid in cash, which comes to about zero overall. This is called fiscally neutral. The two estimates cannot be compared directly, because Daiwa used 2025 tax rules and a ¥56,500 credit, and this site uses 2026 rules and ¥52,000.
 

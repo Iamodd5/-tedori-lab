@@ -15,7 +15,7 @@ These notes give each rule behind the summary above in detail. Numbers like (Q9)
 ### Income tax (令和8年分)
 - Salary income is salary minus the employment-income deduction. In 2026 that deduction is at least ¥740,000, so below ¥2,191,000 salary income is salary − ¥740,000 (NTA, 令和8年分 年末調整のしかた).
 - Basic deduction: ¥1,040,000 at total income up to ¥4.89m, ¥670,000 up to ¥6.55m, ¥620,000 up to ¥23.5m.
-- Then the spouse deductions, dependant deductions (¥380,000 at 16+, ¥630,000 at 19–22, ¥480,000 at 70+, or ¥580,000 for a parent or grandparent aged 70+ living with the taxpayer), the special deduction for relatives aged 19–22, the single-parent and working-student deductions, and social insurance.
+- Then the spouse deductions, dependant deductions (¥380,000 at 16+, ¥630,000 at 19–22, ¥480,000 at 70+, or ¥580,000 for a parent or grandparent aged 70+ living with the taxpayer), the special deduction for relatives aged 19–22 whose income is above the dependant-deduction limit, the single-parent and working-student deductions, and social insurance.
 - Income adjustment deduction (所得金額調整控除): for people with salary over ¥8.5m and a dependant under 23, and for people with both salary income and pension income (up to ¥100,000 of each, minus ¥100,000). It comes off salary income (NTA Tax Answer No.1411).
 - The 2.1% reconstruction surtax is added and the total rounded down to ¥100.
 
