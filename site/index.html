@@ -102,7 +102,7 @@ function lead() {
     : `The spouse's income goes up by ¥${yen(w.at - w.from)}, but the household's take-home pay falls by ¥${yen(w.drop)} a year. ${wallReason(cause)} Take-home pay is back where it was once the spouse earns ¥${yen(w.back)} (calculated in ¥10,000 steps).`;
   document.getElementById("leadgloss").textContent = ja
     ? "※ここでの扶養とは、会社員の夫または妻の健康保険と年金に入り、自分の保険料がかからないことです。"
-    : "A dependant here is someone covered by an employee partner's health insurance and pension who pays no premiums of their own.";
+    : "A dependant here is someone covered by the health insurance and pension of a partner who is a company employee, and who pays no premiums of their own.";
   document.getElementById("leadnote").textContent = ja
     ? "（近似）夫婦では、収入の多い方が配偶者の国民年金保険料も払い、税の計算で自分の所得から差し引くものとしています。法律上は、どちらが差し引いてもかまいません。文の頭にある「近似」の印は、計算を単純にした点を示します。その一覧は、ページの下にあります。"
     : "(Approximation) In a couple, we assume the partner with the higher income pays the spouse's National Pension premiums and deducts them from their own income for tax (by law either partner may). A line that begins with this label marks a point where the calculation is simplified. All of them are listed at the foot of the page.";

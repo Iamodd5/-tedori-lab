@@ -1,4 +1,4 @@
-# Fingerprints of the copies downloaded 2026-10-29. These 協会けんぽ pages embed a per-request anti-bot script token,
+# Checksums of the copies downloaded 2026-10-29. These 協会けんぽ pages embed a per-request anti-bot script token,
 # so a fresh download never matches byte-for-byte; the visible content was compared by hand on 2026-11-01 and is the same.
 # Not checked by `make check-sources`.
 94b6d365881986f3d8246a8cd807c9f10290180750212c755e3950130a49161a  social/kyoukaikenpo_hifuyosha_r8.html

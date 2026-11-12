@@ -1,4 +1,4 @@
-"""scripts/fetch_sources.py: the publisher's file is used when it still matches its fingerprint; otherwise the archived copy;
+"""scripts/fetch_sources.py: the publisher's file is used when it still matches its checksum; otherwise the archived copy;
 otherwise the build stops. Uses file:// URLs, so no network."""
 import hashlib
 
@@ -30,7 +30,7 @@ def test_archive_copy_used_when_the_publisher_changed_the_page(tmp_path):
     assert (tmp_path / "sources" / "ward" / "page.html").read_bytes() == good
 
 
-def test_page_without_a_fingerprint_is_taken_from_the_publisher(tmp_path):
+def test_page_without_a_checksum_is_taken_from_the_publisher(tmp_path):
     # Pages that embed a per-request token are not in SHA256SUMS (see SHA256SUMS.volatile).
     setup(tmp_path, b"page with this request's token", b"archived copy")
     (tmp_path / "sources" / "SHA256SUMS").write_text("")
@@ -52,5 +52,5 @@ def test_page_without_an_archive_copy_stops_the_build_naming_it(tmp_path):
     tsv.write_text(f"ward/page.html\t{(tmp_path / 'pub.html').as_uri()}\n")
     with pytest.raises(SystemExit) as stop:
         fs.fetch(tmp_path)
-    assert "ward/page.html" in str(stop.value.code) and "different from the saved fingerprint" in str(stop.value.code)
+    assert "ward/page.html" in str(stop.value.code) and "different from the saved checksum" in str(stop.value.code)
     assert not (tmp_path / "sources" / "ward" / "page.html").exists()

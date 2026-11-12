@@ -2,7 +2,7 @@
 
 EXTERNAL.tsv: path under sources/ <TAB> publisher URL [<TAB> Internet Archive copy]. A file already present is left
 alone (`make check-sources` checks it). The publisher's file is tried first; if it can't be downloaded or no longer
-matches its fingerprint (publishers replace pages when their year rolls over), the archived copy is used instead, where
+matches its checksum (publishers replace pages when their year rolls over), the archived copy is used instead, where
 one is listed; with none that matches, the build stops naming the page."""
 import hashlib
 import pathlib
@@ -39,13 +39,13 @@ def fetch(root):
             except Exception as e:  # unreachable or refused: try the next copy
                 tried.append(f"{url}: {e}")
                 continue
-            # No fingerprint: the page embeds a per-request token (SHA256SUMS.volatile), so the publisher's file is used.
+            # No checksum: the page embeds a per-request token (SHA256SUMS.volatile), so the publisher's file is used.
             if path not in sums or hashlib.sha256(body).hexdigest() == sums[path]:
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(body)
                 print(f"downloaded {path}" + ("" if url == urls[0] else " (Internet Archive copy; the publisher's file has changed)"))
                 break
-            tried.append(f"{url}: different from the saved fingerprint")
+            tried.append(f"{url}: different from the saved checksum")
         else:
             sys.exit(f"could not get {path}:\n  " + "\n  ".join(tried))
 
