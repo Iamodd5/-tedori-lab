@@ -35,12 +35,13 @@ const axisMoney = x => lang === "ja" ? `${(x / 1e4).toLocaleString("ja-JP")}万`
 
 // Two linked wall charts with zoom. ids: { panel, disp, rate, ranges, nav }.
 // Zoom: drag across a chart (mouse), pinch with two fingers (touch), drag or resize the frame in the overview strip,
-// arrow keys and +/− on the frame, or the range buttons. Double-click a chart to go back to the starting view.
+// arrow keys and +/− on the frame, or the range buttons. The reset button or a double-click on a chart goes back to the starting view.
 // Both charts always show the same incomes, and the vertical axis fits what is shown.
 function wallCharts(ids) {
   const MAX = 1e7, MIN_SPAN = 200000, SNAP = 10000;
   let view = null, home = null, last = null, frame = 0;
   const panel = document.getElementById(ids.panel);
+  panel.setAttribute("role", "group");  // so its aria-label is used
   const make = (id, yTicks, pointLegend) => new Chart(document.getElementById(id), { type: "line", data: { datasets: [] },
     options: { animation: false, maintainAspectRatio: false, parsing: false,
       interaction: { mode: "nearest", axis: "x", intersect: false },
@@ -62,25 +63,31 @@ function wallCharts(ids) {
   const zoomOut = document.createElement("button"), zoomIn = document.createElement("button");
   zoomOut.type = zoomIn.type = "button";
   zoomOut.onclick = () => zoom(2); zoomIn.onclick = () => zoom(.5);
-  bar.append(zoomOut, zoomIn);
+  const pair = document.createElement("span"); pair.className = "zoom"; pair.append(zoomOut, zoomIn); bar.append(pair);  // − and ＋ never wrap apart
+  const reset = document.createElement("button"); reset.type = "button"; reset.className = "reset";
+  reset.onclick = () => setView(home.min, home.max); bar.append(reset);
   const big = document.createElement("button"); big.type = "button"; big.className = "btn enlarge";
   big.onclick = () => toggleBig(); bar.parentElement.append(big);
-  function toggleBig(force) {
+  // fromHistory: closed by the browser's Back button, which has already left the full-screen history entry
+  function toggleBig(force, fromHistory) {
     panel.classList.toggle("big", force);
     const on = panel.classList.contains("big");
     document.body.style.overflow = on ? "hidden" : "";
-    if (on) { panel.setAttribute("role", "dialog"); panel.setAttribute("aria-modal", "true"); } else { panel.removeAttribute("role"); panel.removeAttribute("aria-modal"); }
+    if (on) { panel.setAttribute("role", "dialog"); panel.setAttribute("aria-modal", "true"); } else { panel.setAttribute("role", "group"); panel.removeAttribute("aria-modal"); }
+    // full screen gets its own history entry, so the phone's Back button closes it instead of leaving the page
+    if (on && !history.state?.big) history.pushState({ big: true }, "");
+    else if (!on && !fromHistory && history.state?.big) history.back();
     for (let n = panel; n !== document.body; n = n.parentElement)  // everything outside the panel is inert while it fills the screen
       for (const sib of n.parentElement.children) if (sib !== n) sib.inert = on;
-    big.setAttribute("aria-expanded", on);
     label(); requestAnimationFrame(() => { disp.resize(); rate.resize(); nav.resize(); placeFrame(); });
     big.focus();
   }
   addEventListener("keydown", e => { if (e.key === "Escape" && panel.classList.contains("big")) toggleBig(false); });
+  addEventListener("popstate", () => { if (panel.classList.contains("big")) toggleBig(false, true); });
 
   // overview strip: the whole 0–10m line with a frame for what is shown
   const navBox = document.getElementById(ids.nav);
-  navBox.innerHTML = `<canvas></canvas><div class="nav-window" tabindex="0" role="group"><span class="grip l"></span><span class="grip r"></span></div>`;
+  navBox.innerHTML = `<canvas></canvas><div class="nav-window" tabindex="0" role="slider" aria-orientation="horizontal"><span class="grip l"></span><span class="grip r"></span></div>`;
   const nav = new Chart(navBox.querySelector("canvas"), { type: "line", data: { datasets: [] },
     options: { animation: false, maintainAspectRatio: false, parsing: false, events: [], onResize: () => requestAnimationFrame(placeFrame),
       plugins: { legend: { display: false }, tooltip: { enabled: false } }, layout: { padding: { left: 8, right: 8 } },
@@ -99,6 +106,7 @@ function wallCharts(ids) {
     if (part === "jump") { const span = view.max - view.min; setView(v0 - span / 2, v0 + span / 2, true); }
     const start = { v0, min: view.min, max: view.max };
     navBox.setPointerCapture(e.pointerId);
+    win.focus({ preventScroll: true });  // the arrow keys then work on the frame
     const move = ev => {
       const d = navValue(ev.clientX) - start.v0;
       if (part === "l") setView(Math.min(start.min + d, start.max - MIN_SPAN), start.max);
@@ -169,6 +177,9 @@ function wallCharts(ids) {
       b.setAttribute("aria-pressed", !!view && view.min === 0 && view.max === +b.dataset.r);
     });
     if (view) viewing.textContent = lang === "ja" ? `表示中：${axisMoney(view.min)}〜${axisMoney(view.max)}円` : `Showing ${axisMoney(view.min)}–${axisMoney(view.max).slice(1)}`;
+    if (view) { win.setAttribute("aria-valuemin", 0); win.setAttribute("aria-valuemax", MAX); win.setAttribute("aria-valuenow", (view.min + view.max) / 2); win.setAttribute("aria-valuetext", viewing.textContent); }
+    reset.textContent = lang === "ja" ? "最初の表示に戻す" : "Back to the starting view";
+    reset.setAttribute("aria-disabled", !!view && !!home && view.min === home.min && view.max === home.max);  // not `disabled`: that would drop keyboard focus
     big.textContent = panel.classList.contains("big") ? (lang === "ja" ? "閉じる" : "Close") : (lang === "ja" ? "全画面で見る" : "Full screen");
     panel.setAttribute("aria-label", lang === "ja" ? "年収の壁のグラフ" : "Income wall charts");
     zoomOut.textContent = lang === "ja" ? "− 縮小" : "− Zoom out";
@@ -204,7 +215,7 @@ function wallCharts(ids) {
     const here = o.series[0].points.find(p => p[0] >= o.ref);
     if (here && o.ref >= min && o.ref <= max) disp.data.datasets.push({ label: lang === "ja" ? "この世帯の今の収入" : "This household now", showLine: false,
       pointRadius: 6, pointStyle: "circle", borderColor: "#16243A", backgroundColor: "#fff", borderWidth: 2, data: [{ x: o.ref, y: here[1] }] });
-    disp.options.plugins.tooltip = { callbacks: {
+    disp.options.plugins.tooltip = { filter: c => c.datasetIndex < o.series.length, callbacks: {  // the ▼ and ○ marks have no take-home of their own
       title: c => !c.length ? "" : (lang === "ja" ? `${o.who} ${yen(c[0].raw.x)}円` : `${o.who[0].toUpperCase() + o.who.slice(1)}: ¥${yen(c[0].raw.x)}`),
       label: c => lang === "ja" ? `${shortName(c.dataset.label)}：${yen(c.raw.y)}円` : `${shortName(c.dataset.label)}: ¥${yen(c.raw.y)}`,
       afterLabel: c => c.datasetIndex > 0 && c.datasetIndex < o.series.length

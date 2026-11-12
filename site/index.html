@@ -60,7 +60,7 @@
 <ul class="small hint">
 <li><span lang="ja">拡大するには、「+ 拡大」を押すか、グラフの上をドラッグします。スマートフォンでは、2本の指で広げても拡大できます。</span><span lang="en">To zoom in, press '+ Zoom in' or drag across a chart. On a phone you can also spread two fingers.</span></li>
 <li><span lang="ja">見る範囲を動かすには、上の帯の枠を動かします。キーボードでは、枠を選んでから左右の矢印キーを押します。</span><span lang="en">To look at other incomes, move the frame in the strip above. On a keyboard, select the frame and press the left and right arrow keys.</span></li>
-<li><span lang="ja">広い範囲に戻すには、金額の書いてあるボタンを押します。グラフをダブルクリックすると、最初の表示に戻ります。</span><span lang="en">To go back to a wide range, press one of the buttons above with an amount on it. Double-click a chart to return to the starting view.</span></li>
+<li><span lang="ja">広い範囲に戻すには、金額の書いてあるボタンを押します。最初の表示に戻るには、「最初の表示に戻す」を押すか、グラフをダブルクリックします。</span><span lang="en">To go back to a wide range, press one of the buttons above with an amount on it. To return to the starting view, press 'Back to the starting view' or double-click a chart.</span></li>
 </ul>
 <h3><span lang="ja">収入ごとの世帯の手取り（年額、単位：円）</span><span lang="en">Take-home pay at each income (yen per year)</span></h3>
 <p class="note"><span lang="ja">線に触れると、その収入での手取りと、2026年の制度との差が出ます。○は、この世帯の今の収入です。</span><span lang="en">Hover over or tap a line to see the take-home pay at that income and the difference from 2026 rules. The circle marks this household's income now.</span></p>
@@ -157,8 +157,9 @@ function draw(newHousehold) {
   const nd = Object.keys(walls.not_drawn || {}).map(d => t(walls.labels[d]));
   document.getElementById("notdrawn").textContent = nd.length
     ? (lang === "ja" ? `グラフにない案（まだ計算できないため）：${nd.join("、")}` : `Not in the charts (cannot be calculated yet): ${nd.join("; ")}`) : "";
+  const narrow = matchMedia("(max-width: 360px)").matches;  // the full plan names push the legend off a 320px screen
   wc.draw({ axis: incomeAxis(h), who: whoMoves(h), ref: h.reference_income, marks,
-    series: Object.entries(h.designs).map(([d, pts]) => ({ label: (d === "baseline" ? "" : ja ? "（近似）" : "(Approximation) ") + t(walls.labels[d]), color: COLORS[d], points: pts })) }, newHousehold);
+    series: Object.entries(h.designs).map(([d, pts]) => ({ label: (d === "baseline" ? "" : ja ? "（近似）" : "(Approximation) ") + (narrow ? shortName(t(walls.labels[d])) : t(walls.labels[d])), color: COLORS[d], points: pts })) }, newHousehold);
   lead();
 }
 

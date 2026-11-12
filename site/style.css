@@ -107,6 +107,7 @@ input:is([type="number"], [type="text"]):hover { border-color: var(--ink-2); }
 .hero .slip-foot { border-top: 1px solid var(--rule); padding: 12px 18px 14px; font-size: 14.5px; }
 .hero .slip-foot p { margin: 0; }
 @media (max-width: 480px) { .slip > div, .hero .slip-head, .hero .slip-foot { padding-left: 14px; padding-right: 14px; } .slip dd { font-size: 21px; } .slip .loss dd { font-size: 30px; } }
+@media (max-width: 360px) { .slip > div { grid-template-columns: 1fr; } }  /* at 320px the English label and the large amount do not fit side by side */
 
 /* ruled list of things to do */
 .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; margin: 20px 0; max-width: 42em; border-bottom: 1px solid var(--rule); }
@@ -153,13 +154,17 @@ td.reason { text-align: left; color: var(--ink-2); }
 .panel-bar .enlarge { margin-left: auto; }
 /* range buttons: one joined control */
 .ranges { display: flex; flex-wrap: wrap; align-items: center; gap: 0; font-size: 13px; color: var(--ink-2); }
-.ranges > span:first-child { margin-right: 10px; }
+.ranges > span[lang] { margin-right: 10px; }
 .ranges button { font: inherit; font-size: 13px; padding: 4px 12px; border: 1px solid var(--edge); margin-left: -1px; color: var(--ink); background: var(--sheet);
                  border-radius: 0; cursor: pointer; }
-.ranges button:first-of-type, .viewing + button { border-radius: var(--r) 0 0 var(--r); }
+.ranges button:first-of-type { border-radius: var(--r) 0 0 var(--r); }
+.ranges .zoom { display: inline-flex; flex-wrap: nowrap; }
 .ranges button:last-of-type, .ranges button:has(+ .viewing) { border-radius: 0 var(--r) var(--r) 0; }
 .ranges .viewing { margin: 0 12px 0 14px; }
-.viewing + button, .viewing + button + button { min-width: 30px; }  /* − and ＋ */
+.ranges .zoom button { min-width: 30px; }  /* − and ＋ */
+.ranges .reset { margin-left: 8px; border-radius: var(--r); }
+.ranges button[aria-disabled="true"] { color: var(--ink-2); background: var(--sheet); cursor: default; }
+@media (pointer: coarse) { .ranges button { min-height: 44px; } }
 .ranges button:hover { background: var(--wash); }
 .ranges button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; position: relative; }
 .viewing { font-size: 13px; color: var(--ink-2); }
@@ -168,7 +173,7 @@ td.reason { text-align: left; color: var(--ink-2); }
 .nav-window:active { cursor: grabbing; }
 .nav-window .grip { position: absolute; top: 20%; height: 60%; width: 8px; background: var(--sheet); border: 1.5px solid var(--ai); border-radius: var(--r); cursor: ew-resize; }
 .nav-window .grip.l { left: -5px; } .nav-window .grip.r { right: -5px; }
-@media (pointer: coarse) { .nav-window .grip { width: 24px; top: 0; height: 100%; min-height: 24px; } .nav-window .grip.l { left: -13px; } .nav-window .grip.r { right: -13px; } }
+@media (pointer: coarse) { .nav-window .grip { width: 24px; top: 0; height: 100%; min-height: 24px; } .nav-window .grip.l { left: -24px; } .nav-window .grip.r { right: -24px; } }
 .zoom-sel { position: absolute; display: none; background: rgba(31, 86, 160, .10); border-left: 1px solid var(--ai); border-right: 1px solid var(--ai); pointer-events: none; }
 .hint { margin: 2px 0 0; }
 .chart-panel.big { position: fixed; inset: 0; z-index: 100; margin: 0; border: 0; overflow: auto; padding: 0 24px 16px; }
@@ -178,7 +183,7 @@ td.reason { text-align: left; color: var(--ink-2); }
 .chart-panel.big h3 { margin: 10px 0 0; font-size: 15px; }
 @media (max-width: 600px) {
   .chart { height: 300px; } .chart-panel.big { padding: 0 12px 12px; }
-  .ranges > span:first-child { display: none; }  /* the buttons say what they do */
+  .ranges > span[lang] { display: none; }  /* the buttons say what they do */
   .ranges button { padding: 4px 9px; }
   .ranges .viewing { margin-left: 0; }
 }
