@@ -76,7 +76,7 @@ function setupPage(onLangChange = () => {}) {
   const main = document.createElement("main"); main.id = "main"; main.tabIndex = -1;
   main.append(...document.body.childNodes); document.body.append(main);
   const header = document.createElement("header");
-  header.innerHTML = `<a class="brand" href="index.html">手取りラボ<small lang="en">Tedori Lab</small></a><nav></nav>
+  header.innerHTML = `<a class="brand" href="index.html" lang="ja">手取りラボ<small lang="en">Tedori Lab</small></a><nav></nav>
     <button id="lang-toggle" type="button"></button>`;
   const links = (nav, pages) => pages.forEach(([href]) => {
     const a = document.createElement("a"); a.href = href;

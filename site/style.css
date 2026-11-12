@@ -2,7 +2,7 @@
    labels left, money right in even digits, no tinted boxes. Indigo-black ink for text, 藍 blue for what you can click
    or have chosen; 朱 red = a wall or a loss, green = a gain. Colour carries meaning only. */
 :root {
-  --ink: #16243A; --ink-2: #4E5B70; --paper: #F6F7F9; --sheet: #FFFFFF; --wash: #ECEFF3; --rule: #D3DAE3; --rule-2: #E4E8EE;
+  --ink: #16243A; --ink-2: #4E5B70; --paper: #F6F7F9; --sheet: #FFFFFF; --wash: #ECEFF3; --rule: #D3DAE3; --rule-2: #E4E8EE; --edge: #7C899C;
   --band: #16243A; --ai: #1F56A0; --shu: #B3261E; --gain: #0B6E4F; --caution: #8A6A14; --r: 2px;
   --font: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", "BIZ UDPゴシック", "Noto Sans JP", "Yu Gothic UI", system-ui, sans-serif;
   /* running text in 明朝, as in a printed white paper; installed fonts only (no download, no third-party request) */
@@ -27,6 +27,7 @@ a { color: var(--ai); text-decoration-thickness: 1px; text-underline-offset: 3px
 a:hover { text-decoration-thickness: 2px; }
 strong { font-weight: 700; }
 :is(a, button, summary, select, input, [tabindex]):focus-visible { outline: 2px solid var(--ai); outline-offset: 2px; border-radius: var(--r); }
+main[tabindex]:focus-visible { outline: none; }  /* the skip link lands here; no frame round the whole page */
 @media (max-width: 600px) { body { padding: 0 16px 48px; } }
 
 /* header: brand, the five main pages, language */
@@ -45,7 +46,7 @@ header .brand:focus-visible { outline-offset: -2px; }
 header nav a[href]:focus-visible { outline-offset: -2px; }  /* the nav clips anything outside it; [href] outranks the :is() rule above */
 header button, .btn { font: inherit; font-size: 13px; letter-spacing: .04em; padding: 4px 12px; border: 1px solid var(--rule); background: var(--sheet);
                       color: var(--ink); border-radius: var(--r); cursor: pointer; transition: border-color .15s; }
-header button { background: transparent; color: #fff; border-color: #55657D; }
+header button { background: transparent; color: #fff; border-color: #8794AA; }
 header button:hover { border-color: #fff; }
 .btn:hover { border-color: var(--ink); }
 @media (min-width: 760px) { header { position: sticky; top: 0; z-index: 50; } html { scroll-padding-top: 80px; } }
@@ -53,6 +54,12 @@ header button:hover { border-color: #fff; }
   header { grid-template-columns: 1fr auto; }
   header nav { grid-column: 1 / -1; grid-row: 2; gap: 0 18px; flex-wrap: wrap; overflow: visible; }  /* all five links show on a phone */
   header nav a { padding: 6px 0 7px; }
+  /* the brand row scrolls away; the page links stay pinned, with the language button beside them */
+  header { position: sticky; top: -63px; z-index: 50; }  /* -63px: the brand row's height */
+  header .brand { grid-column: 1 / -1; }
+  header nav { padding-right: 6em; }  /* room for the language button at the end of the links */
+  #lang-toggle { grid-row: 2; grid-column: 2; align-self: end; justify-self: end; margin-bottom: 7px; z-index: 1; }
+  html { scroll-padding-top: 130px; }  /* the pinned links take up to three rows at 320px */
 }
 
 /* type: a section starts with a full-width ink rule, as in a printed report */
@@ -75,14 +82,14 @@ li::marker { color: var(--ink-2); }
 .info { font-size: 14px; color: var(--ink-2); margin: 8px 0 12px; }
 .warn { font-size: 14px; border: 1px solid var(--caution); color: var(--ink); padding: 10px 14px; margin: 16px 0; max-width: 42em; }
 .warn strong { color: var(--caution); }
-select { font: inherit; font-size: 15px; max-width: 100%; padding: 6px 30px 6px 10px; border: 1px solid var(--rule); border-radius: var(--r); color: var(--ink);
+select { font: inherit; font-size: 16px; max-width: 100%; padding: 6px 30px 6px 10px; border: 1px solid var(--edge); border-radius: var(--r); color: var(--ink);
          background: var(--sheet) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%234E5B70' stroke-width='1.4'/%3E%3C/svg%3E") no-repeat right 10px center;
          appearance: none; cursor: pointer; }
 select:hover { border-color: var(--ink-2); }
 label > select { margin-left: 6px; }
-input[type="number"] { font: inherit; font-size: 15px; width: 11em; padding: 6px 10px; border: 1px solid var(--rule); border-radius: var(--r);
+input:is([type="number"], [type="text"]) { font: inherit; font-size: 16px; min-height: 44px; width: 11em; padding: 6px 10px; border: 1px solid var(--edge); border-radius: var(--r);
                        color: var(--ink); background: var(--sheet); font-variant-numeric: tabular-nums; }
-input[type="number"]:hover { border-color: var(--ink-2); }
+input:is([type="number"], [type="text"]):hover { border-color: var(--ink-2); }
 .myincome { max-width: 42em; margin: 8px 0 16px; padding: 12px 0 4px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
 .myincome label { display: block; font-size: 14px; margin-bottom: 6px; }
 .myincome ul { margin: 10px 0 0; padding-left: 1.2rem; }
@@ -147,7 +154,7 @@ td.reason { text-align: left; color: var(--ink-2); }
 /* range buttons: one joined control */
 .ranges { display: flex; flex-wrap: wrap; align-items: center; gap: 0; font-size: 13px; color: var(--ink-2); }
 .ranges > span:first-child { margin-right: 10px; }
-.ranges button { font: inherit; font-size: 13px; padding: 4px 12px; border: 1px solid var(--rule); margin-left: -1px; color: var(--ink); background: var(--sheet);
+.ranges button { font: inherit; font-size: 13px; padding: 4px 12px; border: 1px solid var(--edge); margin-left: -1px; color: var(--ink); background: var(--sheet);
                  border-radius: 0; cursor: pointer; }
 .ranges button:first-of-type, .viewing + button { border-radius: var(--r) 0 0 var(--r); }
 .ranges button:last-of-type, .ranges button:has(+ .viewing) { border-radius: 0 var(--r) var(--r) 0; }
@@ -187,8 +194,8 @@ pre { overflow-x: auto; background: var(--wash); padding: 12px; font-size: 13px;
 
 /* footer: the about pages and the neutrality note */
 footer { margin-top: 72px; border-top: 1px solid var(--ink); padding-top: 18px; font-size: 12.5px; line-height: 1.8; color: var(--ink-2); }
-footer nav { display: flex; flex-wrap: wrap; gap: 6px 24px; margin-bottom: 12px; font-size: 13.5px; }
-footer nav a { color: var(--ink); text-decoration: none; }
+footer nav { display: flex; flex-wrap: wrap; gap: 0 24px; margin-bottom: 12px; font-size: 13.5px; }
+footer nav a { color: var(--ink); text-decoration: none; padding: 10px 0; }
 footer nav a:hover { text-decoration: underline; }
 footer nav a[aria-current="page"] { font-weight: 700; }
 input[type="range"] { accent-color: var(--ai); }
