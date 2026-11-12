@@ -25,7 +25,7 @@
 <p class="note" id="atincome"></p>
 <div class="myincome">
 <label for="myincome" id="myincome-label"></label>
-<input type="text" id="myincome" inputmode="numeric" autocomplete="off"> <span lang="ja">円</span><span lang="en">yen</span>
+<input type="text" id="myincome" inputmode="numeric" autocomplete="off" aria-describedby="myresult"> <span lang="ja">円</span><span lang="en">yen</span>
 <ul id="myresult" aria-live="polite"></ul>
 </div>
 <div id="sitenotes"></div>
@@ -55,7 +55,7 @@
 <label><span lang="ja">世帯の形：</span><span lang="en">Household: </span><select id="own-shape"></select></label>
 <label><span lang="ja">年齢：</span><span lang="en">Age: </span><select id="own-age"></select></label>
 <label><span lang="ja">子どもの人数：</span><span lang="en">Children: </span><select id="own-kids"></select></label>
-<label><span id="own-salary-label"></span><input type="text" id="own-salary" inputmode="numeric" autocomplete="off" value="3000000"> <span lang="ja">円</span><span lang="en">yen</span></label>
+<label for="own-salary" id="own-salary-label"></label><input type="text" id="own-salary" inputmode="numeric" autocomplete="off" value="3000000" aria-describedby="own-result"> <span lang="ja">円</span><span lang="en">yen</span>
 <ul id="own-result" aria-live="polite"></ul>
 <ul class="small" id="own-notes"></ul>
 </div>
@@ -78,6 +78,7 @@ const OWN = { single: { ja: "一人で暮らす", en: "Living alone" }, couple: 
 // (site/grid.js); a wall, or a jump up, between them is pointed out.
 function gridLines(ul, box, step, who, household, value, plans) {
   const ja = lang === "ja", top = 10_000_000;
+  box.setAttribute("aria-invalid", String(readYen(box.value) !== null && !gridPoints(box.value, step, top)));
   if (readYen(box.value) === null) return;
   const p = gridPoints(box.value, step, top);
   if (!p) return li(ul, ja ? "金額を数字で入れてください（例：1300000 または 130万）。" : "Enter an amount in figures (for example 1300000).");
@@ -151,7 +152,6 @@ function draw(newHousehold) {
   const done = mine.filter(r => r.status === "complete"), base = mine[0].baseline_disposable;
 
   const ja = lang === "ja", bp = mine[0].baseline_parts;
-  try { localStorage.setItem("tedori-hh", sel.value); } catch (e) { /* not kept; fine */ }
   const res = document.getElementById("result"); res.innerHTML = "";
   li(res, ja ? `2026年の制度での手取り：年${yen(base)}円` : `Take-home pay under 2026 rules: ¥${yen(base)} a year`);
   const rearing = bp.child_rearing_allowance ? (ja ? `と児童扶養手当${yen(bp.child_rearing_allowance)}円` : ` and the single-parent allowance of ¥${yen(bp.child_rearing_allowance)}`) : "";
@@ -229,7 +229,7 @@ Promise.all(["household_comparison", "wall_map", "own_household"].map(f => loadJ
   const sel = document.getElementById("hh");
   [...new Set(rows.map(r => r.household))].forEach(id => sel.add(new Option(id, id)));
   sel.value = keptHousehold(rows.map(r => r.household), sel.value);
-  sel.onchange = () => draw(true); draw(true);
+  sel.onchange = () => { try { localStorage.setItem("tedori-hh", sel.value); } catch (e) { /* not kept */ } draw(true); }; draw(true);
   document.getElementById("myincome").oninput = () => atIncome(walls.households[sel.value]);
 });
 </script>
