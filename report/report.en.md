@@ -77,7 +77,7 @@ The national total is in the main points. Daiwa's own estimate is about ¥{pub_i
   - Total income tax is {gap_income_tax}% lower and total resident tax {gap_resident_tax}% lower than the tax that survey itself estimates from reported incomes. This is not a comparison with tax actually collected.
   - Income tax is lower because of recent tax cuts (a larger basic deduction), too few high earners in the estimate and taxing households' average incomes, among other things. We have not measured each of these separately.
   - The survey's tax estimate is after the one-off 2024 flat tax cut, so against a normal year the shortfall would be larger (see the Checks page).
-- Compared with official counts, the estimate has too many low-paid workers and too few high earners. Both gaps make the cash paid out look larger and the extra income tax smaller, so the net gain to the government is more likely above this estimate's figure than below.
+- Compared with official counts, the estimate has too many low-paid workers and too few high earners. The first makes the cash paid out look larger and the second makes the extra income tax look smaller, so the net gain to the government is more likely above this estimate's figure than below.
 - Changing how the made-up households are built can move the national totals a lot, especially the cash paid out.
 - The plans that cannot be calculated yet will be calculated once the amounts they need are decided and published. The reasons for each are listed under the plans above.
 

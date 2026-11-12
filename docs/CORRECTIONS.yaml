@@ -4,6 +4,14 @@
 # previous: the last published commit with the old version. published: the first published commit with the new
 # one (left out until it is pushed). Either version can be rebuilt with `git checkout <commit> && make all`.
 # A number with `check` is recomputed from those two commits by tests/test_corrections.py.
+- date: 2026-11-12
+  previous: 7cffbe4
+  what:
+    ja: 「全世帯で見ると」「検証」「レポート」と報道向けの概要で、公式の統計との差が「どちらも（どれも）」現金で払う額を多めに、増える所得税を少なめに見せる、としていたのを、年収100万〜300万円の人が多すぎることは現金で払う額を多めに、年収1,000万円以上の人（「検証」ページでは65歳以上の人も）が少なすぎることは増える所得税を少なめに見せる、と差ごとに分けました。「ホーム」と「自分で案を作る」で、収入が10万円増えたときの手取りの増え方を「10万円より少しだけ増えます」としていたのを、「10万円に少し届きません」に直しました。
+    en: "On All households, Checks, the report and the press summary, the gaps with official statistics were said to \"both\" (or \"all\") make the cash paid out look larger and the extra income tax smaller. Each gap now has its own effect: too many people earning ¥1m–3m makes the cash look larger, and too few earning ¥10m or more (and, on the Checks page, too few aged 65 or over) makes the extra tax look smaller. On Home and Build your own, the Japanese note on a ¥100,000 rise said take-home pay rises \"a little more than\" ¥100,000 when it rises a little less; it now says a little less, as the English did."
+  why:
+    ja: 「検証」の英語の資料（10節）は、差ごとに一方の額だけに働くとしており、要約がそれより広く言っていました。日本語の注は、意味とは逆に読める書き方でした。
+    en: The full Checks document (section 10) gives each gap one effect; the summaries said more than that. The Japanese note could be read as the opposite of what it meant.
 - date: 2026-11-10
   previous: e4c3957
   what:
