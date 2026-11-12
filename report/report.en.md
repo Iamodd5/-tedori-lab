@@ -71,7 +71,7 @@ The national total is in the main points. Daiwa's own estimate is about ¥{pub_i
 ## Assumptions and limits
 
 - We assume nobody changes how much they work. Some people would change their hours when the rules change; that is not included.
-- The example households live in Shinjuku, Tokyo. Outside Shinjuku, the parts of National Health Insurance and resident tax that each municipality sets are different. Outside Tokyo, so is the health insurance rate for employees (協会けんぽ), which is set by prefecture.
+- The example households live in Shinjuku, Tokyo. Outside Shinjuku, the National Health Insurance and long-term care premiums and the parts of resident tax that each municipality sets are different. Outside Tokyo, so is the health insurance rate for employees in the Japan Health Insurance Association (協会けんぽ), which sets it by prefecture.
 - The all-household numbers are rough estimates from made-up households matched to the averages in a 2024 government survey. They differ from official figures in these ways:
   - The household count is {gap_households}% lower than the official figure.
   - Total income tax is {gap_income_tax}% lower and total resident tax {gap_resident_tax}% lower than the tax that survey itself estimates from reported incomes. This is not a comparison with tax actually collected.

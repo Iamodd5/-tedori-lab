@@ -113,8 +113,8 @@ part_time_coverage:  # 短時間労働者: employer 51+ staff (until Sep 2027), 
     approximation: true
     explanation: "From October, people paid under 88,000 a month on 20+ hours are taken not to ask to join company insurance (the legal default)."
     site:
-      ja: （近似）2026年10月からは、週20時間以上働いて月給が8.8万円未満の人は、最低賃金の減額特例を受けている人だけです。どの地域の最低賃金でも、週20時間なら月8.8万円を超えるためです。この人たちは、自分で申し出ないかぎり会社の保険に入りません。計算では、申し出はしないものとしています。
-      en: (Approximation) From October 2026, the only people working 20+ hours a week for under ¥88,000 a month are workers with a minimum-wage exception (at every regional minimum wage, 20 hours a week pays more than ¥88,000 a month). They join company insurance only if they ask; we assume they don't.
+      ja: （近似）2026年10月からは、週20時間以上働いて月給が8.8万円未満の人は、最低賃金の減額特例（特例として、最低賃金を下回る賃金が認められること）を受けている人だけです。どの地域の最低賃金でも、週20時間なら月8.8万円を超えるためです。この人たちは、自分で申し出ないかぎり会社の保険に入りません。計算では、申し出はしないものとしています。
+      en: (Approximation) From October 2026, the only people working 20+ hours a week for under ¥88,000 a month are workers with a minimum-wage exception, who may be paid under the minimum wage (at every regional minimum wage, 20 hours a week pays more than ¥88,000 a month). They join company insurance only if they ask; we assume they don't.
   students_excluded: {value: true, cite: {source: coverage, page: 1}}
   employment_insurance:  # 雇用保険: 20+ hours a week, expected 31+ days, not a daytime student; no pay or employer-size condition
     note: "Charged to every wage earner on 20+ hours who is not a student, in or out of company insurance (OPEN_QUESTIONS Q24, answered 2026-11-03)"

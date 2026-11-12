@@ -5,7 +5,7 @@ These notes give each rule behind the summary above in detail. Numbers like (Q9)
 ## Starting points
 
 - **Year.** Income earned in calendar 2026. Income tax uses the 令和8年分 rules; resident tax is the 令和9年度 tax that falls on 2026 income.
-- **Place.** Shinjuku ward, Tokyo. Employees' health insurance uses the Tokyo rates of the Japan Health Insurance Association (協会けんぽ); National Health Insurance and resident tax use Shinjuku's rules. Outside Shinjuku, National Health Insurance and the parts of resident tax set by each municipality differ. Outside Tokyo, so does the health insurance rate for employees, which the association sets by prefecture.
+- **Place.** Shinjuku ward, Tokyo. Employees' health insurance uses the Tokyo rates of the Japan Health Insurance Association (協会けんぽ); National Health Insurance and resident tax use Shinjuku's rules. Outside Shinjuku, the National Health Insurance and long-term care premiums and the parts of resident tax that each municipality sets differ. Outside Tokyo, so does the health insurance rate for employees, which the association sets by prefecture.
 - **Households.** Eight example households (H1–H8), the same for every plan. Their incomes and families are shown on the Compare page.
 - **Take-home pay** = salary, business and pension income + child allowance + single-parent allowance − income tax − resident tax − social insurance (including the long-term care premium for people aged 65 or over).
 - **People don't change how they work** when the rules change (a static estimate).
@@ -22,7 +22,7 @@ These notes give each rule behind the summary above in detail. Numbers like (Q9)
 ### Resident tax (令和9年度)
 - Deduction amounts and income limits come from the 地方税法 as amended by 令和8年法律第2号: basic deduction ¥430,000; income limit for a spouse or dependant ¥620,000; a dependant aged 70+ ¥380,000 (¥450,000 for a parent or grandparent living with the taxpayer).
 - Ward tax (6%) and Tokyo tax (4%) are worked out separately and each rounded down to ¥100 (地方税法20条の4の2第3項). The adjustment credit (調整控除, which offsets the gap between income-tax and resident-tax deductions) is also taken off each separately.
-- The flat per-person part is ¥5,000 (ward ¥3,000, Tokyo ¥1,000, forest environment tax ¥1,000). A single person with income up to ¥450,000, among others, pays no resident tax; a single parent pays none up to income ¥1,350,000.
+- The flat per-person part is ¥3,000 for the ward and ¥1,000 for Tokyo. With the national forest environment tax of ¥1,000, collected at the same time, it comes to ¥5,000. A single person with income up to ¥450,000, among others, pays no resident tax; a single parent pays none up to income ¥1,350,000.
 
 ### Company insurance (health, pension, employment insurance, child and childcare support levy)
 - Premiums come from the Japan Health Insurance Association's Tokyo premium table for fiscal 2026. They are set by pay band (標準報酬月額), so they step up when pay crosses into the next band.
@@ -30,7 +30,7 @@ These notes give each rule behind the summary above in detail. Numbers like (Q9)
 - Non-students working 20+ hours a week pay employment insurance whether or not they are in company health insurance and pension (雇用保険法6条 has no pay condition).
 
 ### National Health Insurance and National Pension
-- National Health Insurance (NHI) premiums follow Shinjuku's fiscal 2026 method, and the head of the household pays them for the whole household. Low-income households get 70%, 50% or 20% off. An "earner" (給与所得者等) in that test is someone with salary over ¥550,000, or, without salary income, a public pension over ¥600,000 (¥1,250,000 at 65+) (国民健康保険法施行令29条の7第6項第1号, 附則5条).
+- National Health Insurance (NHI) premiums follow Shinjuku's fiscal 2026 method, and the head of the household pays them for the whole household. Low-income households get 70%, 50% or 20% off the flat per-person part of the premium (均等割). An "earner" (給与所得者等) in that test is someone with salary over ¥550,000, or, without salary income, a public pension over ¥600,000 (¥1,250,000 at 65+) (国民健康保険法施行令29条の7第6項第1号, 附則5条).
 - National Pension is ¥17,920 a month. A spouse who is a dependant of an employee doesn't pay it.
 - The student deferral (学生納付特例, which lets a student pay later) applies only while the student's own income, after social insurance, is at most ¥1,280,000 (国民年金法施行令6条の9). (Approximation) It is judged on the same year's income (in law, the previous year's).
 - People on low incomes can apply to be let off National Pension, but that lowers their future pension, so we assume nobody applies (Q20).
@@ -40,7 +40,7 @@ These notes give each rule behind the summary above in detail. Numbers like (Q9)
 - (Approximation) The band uses the same year's income and resident-tax status (in law, the previous year's).
 
 ### Benefits
-- Child allowance: ¥10,000 a month per child aged 18 or under (¥15,000 under 3, ¥30,000 from the third child), with no income limit.
+- Child allowance: ¥10,000 a month per child up to the first 31 March after turning 18 (¥15,000 under 3, ¥30,000 from the third child), with no income limit.
 - Single-parent allowance (児童扶養手当):
   - It goes to a single parent with a child up to the first 31 March after the child turns 18 (or under 20 with a disability).
   - It is ¥48,050 a month for the first child and ¥11,350 for each further child (from April 2026).
