@@ -18,7 +18,7 @@ Tedori Lab works out how {n_plans} plans to change tax and benefits would alter 
 
 ## The {n_plans} plans compared
 
-The government, a trade union federation and a private research institute have put forward plans that change how working people's tax, social insurance and benefits work. Each plan states its own aims, such as easing the burden on people on low or middle incomes. Under the one plan that can be calculated now, take-home pay goes up for some households and down for others.
+The government, a trade union confederation and a private research institute have put forward plans that change how working people's tax, social insurance and benefits work. Each plan states its own aims, such as easing the burden on people on low or middle incomes. Under the one plan that can be calculated now, take-home pay goes up for some households and down for others.
 
 One form these plans take is a 'refundable tax credit' (給付付き税額控除): it cuts your income tax, and if the cut is bigger than the tax you owe, you get the rest in cash. In the government's plan, municipalities pay cash according to income, and the government calls it a "first step" towards a full refundable tax credit. The plans are:
 

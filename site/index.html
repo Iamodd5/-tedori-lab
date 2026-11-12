@@ -119,7 +119,7 @@ function plans() {
     b.textContent = t(walls.labels[d]);
     tag.className = nd[d] ? "tag no" : "tag";
     tag.textContent = nd[d] ? (lang === "ja" ? "まだ計算できない" : "cannot be calculated yet") : (lang === "ja" ? "計算済み" : "calculated");
-    sum.append(b, tag, document.createElement("br"), t(walls.shorts[d]));
+    sum.append(b, " ", tag, document.createElement("br"), t(walls.shorts[d]));
     p.textContent = t(walls.summaries[d]) + (nd[d] ? (lang === "ja" ? " 計算できない理由は次のとおりです。" : " It cannot be calculated yet because ") + joinT(nd[d]) : "");
     det.append(sum, p); box.append(det);
   }
