@@ -144,7 +144,7 @@ function setupPage(onLangChange = () => {}) {
     ev.forEach(k => addEventListener(k, stop, { once: true, passive: true }));
     const hold = () => { const e = A()[i]; if (e && !moved) scrollBy(0, e.getBoundingClientRect().top - y0); };
     applyLang();
-    Promise.resolve(onLangChange()).then(() => requestAnimationFrame(() => {
+    Promise.resolve(onLangChange()).catch(() => {}).then(() => requestAnimationFrame(() => {  // a failed redraw still ends the hold
       hold(); setTimeout(hold, 150);
       setTimeout(() => { hold(); root.style.overflowAnchor = ""; ev.forEach(k => removeEventListener(k, stop)); }, 450);
     }));
