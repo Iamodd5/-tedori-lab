@@ -75,6 +75,21 @@ def test_checks_page_directions_match_the_signs():
     assert cal["households"]["model"] < cal["households"]["official_kiso_2025"] and "household count is below the official one" in page and "世帯数は公式より少なめ" in page
     assert cal["income_tax"]["model_baseline_2026"] < cal["income_tax"]["survey_estimate_2024"] and "Total income tax is lower" in page and "推計した税額より低め" in page
     assert cal["resident_tax"]["model_baseline_2026"] < cal["resident_tax"]["survey_estimate_2024"] and "resident tax lower than" in page
-    assert sum(b["model"] for b in mid) > sum(map(official, mid)) and "far more than the official" in page and "公式の約より多すぎ" in page
+    assert sum(b["model"] for b in mid) > sum(map(official, mid)) and "far more than the official" in page and "公式の約を大きく上回" in page
     assert sum(b["model"] for b in top) < sum(map(official, top)) and "too few people earning ¥10m or more" in page and "1,000万円以上の人は少なすぎ" in page
     assert cal["people_65_plus"]["model"] < cal["people_65_plus"]["survey"] and "too few people aged 65 or over" in page and "65歳以上の人は少なめ" in page
+
+
+def test_likely_bigger_net_gain_rests_on_both_gap_signs():
+    # rule 13: "the net gain is likely bigger" (report, press, All households, Checks) follows only while both gaps hold:
+    # too many earners at ¥1m–3m (more cash paid out) and too few at ¥10m+ (less extra income tax)
+    cal = json.loads((ROOT / "outputs" / "population.json").read_text())["calibration"]
+    band = {b["band"]: b for b in cal["wage_earners"]}
+    official = lambda b: b["official"] + b["official_part_year"]
+    mid = [band["200万円以下"], band["300万円以下"]]
+    top = [b for k, b in band.items() if k in ("1,500万円以下", "2,000万円以下", "2,500万円以下", "2,500万円超")]
+    assert sum(b["model"] for b in mid) > sum(map(official, mid))
+    assert sum(b["model"] for b in top) < sum(map(official, top))
+    for f, words in (("report/report.ja.md", "大きい可能性が高い"), ("report/report.en.md", "more likely"), ("press/summary.ja.md", "大きい可能性が高い"),
+                     ("site/population.html", "大きい可能性が高い"), ("site/validation.html", "大きい可能性が高い")):
+        assert words in (ROOT / f).read_text(encoding="utf-8"), f"{f}: the sentence this test backs has changed; check it again"

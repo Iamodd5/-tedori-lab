@@ -16,6 +16,11 @@ source:
     url: https://www.nenkin.go.jp/service/kokunen/hokenryo/hokenryo.html
     file: sources/social/nenkin_kokumin_hokenryo.html
     published: 2026 (page as downloaded 2026-10-29)
+  student_qa:
+    title: 適用拡大Q&A（厚生労働省 社会保険適用拡大特設サイト）Q3「学生ではないこと」の「学生」とは？
+    url: https://www.mhlw.go.jp/tekiyoukakudai/qa/
+    file: sources/social/mhlw_tekiyoukakudai_qa.html
+    published: 2026 (page as downloaded; see sources/SOURCES.md)
   coverage:
     title: 社会保険加入の要件（厚生労働省 社会保険適用拡大特設サイト）
     url: https://www.mhlw.go.jp/tekiyoukakudai/jugyouin/taisho/
@@ -115,7 +120,7 @@ part_time_coverage:  # 短時間労働者: employer 51+ staff (until Sep 2027), 
     site:
       ja: （近似）2026年10月からは、週20時間以上働いて月給が8.8万円未満の人は、最低賃金の減額特例（特例として、最低賃金を下回る賃金が認められること）を受けている人だけです。どの地域の最低賃金でも、週20時間なら月8.8万円を超えるためです。この人たちは、自分で申し出ないかぎり会社の保険に入りません。計算では、申し出はしないものとしています。
       en: (Approximation) From October 2026, the only people working 20+ hours a week for under ¥88,000 a month are workers with a minimum-wage exception, who may be paid under the minimum wage (at every regional minimum wage, 20 hours a week pays more than ¥88,000 a month). They join company insurance only if they ask; we assume they don't.
-  students_excluded: {value: true, cite: {source: coverage, page: 1}}
+  students_excluded: {value: true, cite: {source: coverage, page: 1}, who: {ja: "学生（高校生、大学生、短大生、専門学校生など。夜間や通信制の学生、休学中の人などを除く）", en: "students (at high school, university, junior college, vocational school and similar; not evening or correspondence students, students on leave and some others)", cite: {source: student_qa, page: 1}}}
   employment_insurance:  # 雇用保険: 20+ hours a week, expected 31+ days, not a daytime student; no pay or employer-size condition
     note: "Charged to every wage earner on 20+ hours who is not a student, in or out of company insurance (OPEN_QUESTIONS Q24, answered 2026-11-03)"
     cite: {source: koyo_law, page: 1, section: "雇用保険法6条1号・2号・4号"}

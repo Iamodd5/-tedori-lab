@@ -263,7 +263,7 @@ function wallCharts(ids) {
 }
 
 // Why take-home falls at one wall, from outputs/wall_map.json wall_causes (2026 rules only):
-// "扶養から外れて、国民年金（年215,040円）と国民健康保険（年101,786円）の保険料がかかるためです。税は合わせて年48,600円減ります。"
+// "健康保険と年金の扶養から外れて、国民年金保険料（年215,040円）と国民健康保険料（年101,786円）がかかるためです。所得税と住民税は合わせて年48,600円減ります。"
 function wallReason(c) {
   const ja = lang === "ja", m = v => ja ? `年${yen(v)}円` : `¥${yen(v)} a year`;
   const NAMES = { employee_insurance: { ja: "会社の健康保険・厚生年金などの保険料", en: "company health insurance and pension premiums" },
@@ -281,7 +281,10 @@ function wallReason(c) {
              : `income passes the limit for the single-parent allowance (児童扶養手当), so it stops (${m(-ch.child_rearing_allowance)})`;
   } else if (before !== after && after === "nhi") {
     const paid = ["national_pension", "nhi"].filter(k => ch[k] > 0).map(k => ja ? `${t(NAMES[k])}（${m(ch[k])}）` : `${t(NAMES[k])} (${m(ch[k])})`);
-    why = ja ? `${before === "dependant" ? "扶養から外れて、" : ""}${paid.join("と")}がかかるため` : `${before === "dependant" ? "dependant status ends, so " : ""}${paid.join(" and ")} must be paid`;
+    // a spouse also leaves pension category 3 (National Pension starts); a student leaves only the parents' health insurance
+    const out = before !== "dependant" ? "" : ch.national_pension > 0 ? (ja ? "健康保険と年金の扶養から外れて、" : "dependant status in health insurance and pension ends, so ")
+      : (ja ? "健康保険の扶養から外れて、" : "dependant status in health insurance ends, so ");
+    why = ja ? `${out}${paid.join("と")}がかかるため` : `${out}${paid.join(" and ")} must be paid`;
   } else if (before !== after && after === "employee") {
     why = ja ? `会社の健康保険・厚生年金に入り、保険料（${m(ch.employee_insurance)}）がかかるため` : `company health insurance and pension start, with premiums of ${m(ch.employee_insurance)}`;
   } else {
@@ -304,8 +307,8 @@ function wallReason(c) {
     why = ja ? parts.join("、") + "ため" : parts.length > 1 ? parts.slice(0, -1).join(", ") + " and " + parts.at(-1) : parts[0];
   }
   const taxCut = -Math.min(0, ch.income_tax) - Math.min(0, ch.resident_tax);
-  return ja ? `${why}です。` + (taxCut >= 1000 ? `税は合わせて${m(taxCut)}減ります。` : "")
-            : `This is because ${why}.` + (taxCut >= 1000 ? ` Taxes fall by ${m(taxCut)} in all.` : "");
+  return ja ? `${why}です。` + (taxCut >= 1000 ? `所得税と住民税は合わせて${m(taxCut)}減ります。` : "")
+            : `This is because ${why}.` + (taxCut >= 1000 ? ` Income tax and resident tax fall by ${m(taxCut)} in all.` : "");
 }
 
 // Plain-words list of the biggest walls for one series (at most `top`), into a <ul>; the rest are counted.

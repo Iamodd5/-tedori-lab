@@ -74,3 +74,16 @@ def test_every_quote_is_in_its_source(path):
             assert norm(q["claim"][lang]) in norm(text), f"{path.name}: claim not in short/summary.{lang}: {q['claim'][lang]}"
         assert norm(q["text"]) in norm(page_text(d, q["source"], q["page"])), \
             f"{path.name}: quote not found on {q['source']} p.{q['page']}: {q['text']}"
+
+
+def test_first_step_sentence_on_home_and_report_is_the_plans_own_claim():
+    # rule 14: wherever Home or the report says the government calls its plan a "first step", it says it in the words of
+    # a quote-backed claim in government_final.yaml, and nowhere else
+    d = yaml.safe_load((ROOT / "parameters" / "designs" / "government_final.yaml").read_text(encoding="utf-8"))
+    for lang, key, files in (("ja", "第一歩", ["site/index.html", "report/report.ja.md"]), ("en", "first step", ["site/index.html", "report/report.en.md"])):
+        claims = [norm(q["claim"][lang]) for q in d["quotes"] if key in q["claim"][lang]]
+        assert claims, f"no {lang} claim mentions {key}"
+        for f in files:
+            plain = norm(re.sub(r"<[^>]+>", " ", (ROOT / f).read_text(encoding="utf-8")).replace("&quot;", '"'))
+            in_claims = sum(plain.count(c) for c in set(claims))
+            assert in_claims >= 1 and plain.count(norm(key)) == in_claims, f"{f}: '{key}' appears outside the plan's claim"

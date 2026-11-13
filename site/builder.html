@@ -144,8 +144,8 @@ function update(newHousehold) {
   // all households
   const r = populationResults(builder, p);
   document.getElementById("cost").textContent = lang === "ja"
-    ? `（近似）いまのスライドバーの値では、国が払う額の合計は年${(r.cost / 1e12).toFixed(1)}兆円です。もらえる世帯の割合は、年収の最も低いグループ1で${(r.share[0] * 100).toFixed(0)}%、最も高いグループ10で${(r.share[9] * 100).toFixed(0)}%です。`
-    : `(Approximation) With the sliders as they are now, the government pays out ¥${(r.cost / 1e12).toFixed(1)} trillion a year in total. In the lowest income group (group 1), ${(r.share[0] * 100).toFixed(0)}% of households get something; in the highest (group 10), ${(r.share[9] * 100).toFixed(0)}%.`;
+    ? `（近似）いまのスライドバーの値では、国が払う額の合計は年${(r.cost / 1e12).toFixed(1)}兆円です。もらえる世帯の割合は、年収の最も低いグループ1で${(r.share[0] * 100).toFixed(0)}%、最も高いグループ10で${(r.share[9] * 100).toFixed(0)}%です。もらえるかどうかは一人ずつ決まり、世帯のだれか一人でももらえれば「もらえる世帯」に数えます。稼ぎ（給与と事業の収入）がない人はもらえません。`
+    : `(Approximation) With the sliders as they are now, the government pays out ¥${(r.cost / 1e12).toFixed(1)} trillion a year in total. In the lowest income group (group 1), ${(r.share[0] * 100).toFixed(0)}% of households get something; in the highest (group 10), ${(r.share[9] * 100).toFixed(0)}%. Whether someone receives it is decided person by person, and a household counts as receiving if anyone in it does. People with no earnings (wages or business income) get nothing.`;
   const labels = r.mean.map((_, k) => String(k + 1));  // two-line labels did not fit on phones; the table has the averages
   dec.data = { labels, datasets: [{ label: lang === "ja" ? "もらえる額の1世帯あたり平均（円／年）" : "Average received per household (yen per year)", backgroundColor: C.mine, data: r.mean.map(Math.round) }] };
   dec.options.scales.x.title.text = lang === "ja" ? "収入グループ（1が最も低い。平均年収は下の表）" : "Income group (1 = lowest; average incomes in the table below)";

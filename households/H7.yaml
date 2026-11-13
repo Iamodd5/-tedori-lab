@@ -15,3 +15,4 @@ assumptions:
   - {ja: "新宿区の国民健康保険と国民年金に入っています。", en: "Is in Shinjuku's National Health Insurance and pays into the National Pension."}
   - {ja: "事業の収入は、売上から経費を引いた後の額（事業所得）です。青色申告特別控除は使っていないものとしています。", en: "Business income here is after expenses (business income for tax). The blue-return special deduction is not used."}
   - {ja: "東京都新宿区に住んでいるものとしています。", en: "Lives in Shinjuku, Tokyo."}  # project owner's choice
+  - {ja: "この例は35歳です。40歳から64歳の人は、国民健康保険料に介護分（新宿区では、1人17,800円と、所得から43万円を引いた額の2.43%。上限17万円）が加わります。", en: "This example is aged 35. From age 40 to 64, National Health Insurance adds a long-term care part (in Shinjuku, ¥17,800 per person plus 2.43% of income above ¥430,000, up to ¥170,000)."}  # social_insurance.yaml nhi.ltc_40_64 and nhi.base_deduction

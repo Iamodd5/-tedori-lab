@@ -47,6 +47,7 @@ Not yet downloaded (available on the index page if needed later): agendas/materi
 | gov/20261009_siryou2.pdf | 法律案 要綱 | 2026-10-09 | https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou2.pdf | 8 | downloaded |
 | gov/20261009_siryou3.pdf | 法律案・理由 | 2026-10-09 | https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou3.pdf | 83 | downloaded |
 | gov/20261009_siryou4.pdf | 新旧対照表 | 2026-10-09 | https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou4.pdf | 37 | downloaded |
+| gov/shugiin_keika_222_1.html | 衆議院 議案審議経過情報（閣法 第222回国会 1）: the House passed the bill on 2026-11-06 (令和8年11月6日 可決). The page changes as the bill moves on; not redistributed (sources/EXTERNAL.tsv, SHA256SUMS.volatile) | downloaded 2026-11-13 | https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/keika/1DE342E.htm | – | downloaded |
 
 Party proposals: **not collected yet**. Choosing which party documents to include touches political wording, so it is a decision for the project owner (OPEN_QUESTIONS Q12).
 

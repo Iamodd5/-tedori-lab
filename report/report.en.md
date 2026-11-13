@@ -30,16 +30,16 @@ The other {n_blocked} plans cannot be calculated yet, for these reasons:
 
 ## The income wall for a part-time spouse
 
-The household in the first main point hits this wall because the spouse stops being a dependant. A dependant here is someone covered as a dependant by an employee partner's health insurance, who also pays no National Pension premiums of their own. Once that ends, National Pension (¥{lead_np} a year) and National Health Insurance (¥{lead_nhi} a year) premiums must be paid. Taxes fall by ¥{lead_tax_cut} in all. Take-home pay gets back to where it was when the spouse earns ¥{lead_back}. Pay is worked out in {grid_step} steps.
+The household in the first main point hits this wall because the spouse stops being a dependant. A dependant here is someone covered as a dependant by an employee partner's health insurance, who also pays no National Pension premiums of their own. Once that ends, National Pension (¥{lead_np} a year) and National Health Insurance (¥{lead_nhi} a year) premiums must be paid. Income tax and resident tax fall by ¥{lead_tax_cut} in all. Take-home pay gets back to where it was when the spouse earns ¥{lead_back}. Pay is worked out in {grid_step} steps.
 
 (Approximation) Under the {daiwa_label}, the one plan that can be calculated now, take-home pay at the same point falls by ¥{lead_daiwa_drop} a year (¥{lead_drop} under 2026 rules). It gets back to the same level at ¥{lead_daiwa_back}, again worked out in {grid_step} steps.
 
-The government plans' effect on this household cannot be calculated, for these reasons:
+Rengo's plan cannot be calculated for this household yet either (the reasons are under 'The {n_plans} plans compared'). The government plans' effect on this household cannot be calculated, for these reasons:
 
 - In the government's plans, people facing an income wall (年収の壁), and people with a similar social insurance burden, get a top-up (就業促進特例加算). The government's outline, the document that sets out the framework of the scheme, calls it a temporary measure until the income walls are removed.
 - The outline defines the wall to include the extra premiums of moving into National Health Insurance and National Pension, not only joining company insurance. It also gives an example of a spouse leaving dependant status, as H4's spouse does.
 - On the top-up's amount, the outline says it will be set considering the overall balance, among other things (「総合的なバランス等を勘案して定める」).
-- From fiscal {full_year}, married people whose spouse's income is above a set level do not qualify for the payment. Under the bill, that level is an amount set by Cabinet order. The government's basic policy calls this a limited exception for people with a high-income spouse.
+- From fiscal {full_year}, married people whose spouse's income is above a set level do not qualify for the payment. Under the bill, that level will be set later by Cabinet order. The government's basic policy calls this a limited exception for people with a high-income spouse.
 
 These further points apply to this calculation:
 

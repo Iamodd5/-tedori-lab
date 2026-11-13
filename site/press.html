@@ -15,7 +15,7 @@
 </head>
 <body>
 <h1><span lang="ja">報道関係の方へ</span><span lang="en">For the press</span></h1>
-<p><span lang="ja">1ページの概要と3つの図を、このページからダウンロードできます。どれも、サイトと同じ計算結果から自動で作っているため、数字はサイトと一致します。出典を「手取りラボ」と書けば、自由に使えます。</span><span lang="en">You can download a one-page summary and three charts from this page, in Japanese only. They are generated automatically from the same calculation results as the site, so every number matches the site. You are free to use them if you credit Tedori Lab.</span></p>
+<p><span lang="ja">1ページの概要と3つの図を、このページからダウンロードできます。どれも、サイトと同じ計算結果から自動で作っているため、数字はサイトと一致します。概要と図は、このサイトのコードや文書と同じく、GNU Affero General Public License v3.0（<a href="../LICENSE">LICENSE</a>）のもとで公開しています。使うときは、出典を「手取りラボ」と書いてください。</span><span lang="en">You can download a one-page summary and three charts from this page, in Japanese only. They are generated automatically from the same calculation results as the site, so every number matches the site. Like the site's code and documents, they are published under the GNU Affero General Public License v3.0 (<a href="../LICENSE">LICENSE</a>). When you use them, credit Tedori Lab (手取りラボ).</span></p>
 <p class="note"><a href="../outputs/press/summary.ja.md" download><span lang="ja">概要をダウンロード（Markdown形式の文章ファイル）</span><span lang="en">Download the summary (Markdown text file)</span></a></p>
 <div class="md" id="doc"></div>
 <h2><span lang="ja">図</span><span lang="en">Charts</span></h2>
@@ -23,7 +23,7 @@
 <script>
 // the summary and charts are generated from outputs/ by scripts/build_press.py (Milestone 11)
 const url = "../outputs/press/summary.ja.md", el = document.getElementById("doc");
-const FIGS = [["fig1_wall_h4.svg", { ja: "図1　配偶者の給与が増えると、世帯の手取りはどう変わるか（モデル世帯H4）", en: "Figure 1: how the household's take-home pay changes as the spouse's pay rises (example household H4)" },
+const FIGS = [["fig1_wall_h4.svg", { ja: "図1　配偶者の給与が増えると、世帯の手取りはどう変わるか（モデル世帯H4、いまの制度と大和総研案（近似））", en: "Figure 1: how the household's take-home pay changes as the spouse's pay rises (example household H4, today's rules and the Daiwa Institute plan (Approximation))" },
                { ja: "折れ線グラフです。横軸は配偶者の給与、縦軸は世帯の手取りです。いまの制度の線と大和総研案の線は、どちらも右上がりで、途中に手取りが大きく下がるところがあります。", en: "Line chart. Across: the spouse's pay. Up: the household's take-home pay. The line for today's rules and the line for the Daiwa Institute plan both rise to the right, with a point where take-home pay drops sharply." }],
               ["fig2_households.svg", { ja: "図2　（近似）大和総研案（2026年の税制に合わせて計算）でのモデル世帯の手取りの変化", en: "Figure 2: (Approximation) change in take-home pay for the example households under the Daiwa Institute plan (adjusted to 2026 tax rules)" },
                { ja: "横向きの棒グラフです。大和総研案での手取りの変化を、モデル世帯ごとに示しています。世帯ごとの金額は、レポートの表にあります。", en: "Horizontal bar chart of the change in take-home pay under the Daiwa Institute plan, one bar for each example household. The amounts are in the table in the report." }],
