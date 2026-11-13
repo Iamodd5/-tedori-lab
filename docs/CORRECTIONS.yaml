@@ -7,11 +7,11 @@
 - date: 2026-11-13
   previous: 356595e
   what:
-    ja: 「仕組み」で、単純にした点の一覧を「その数字が出るページ」に載せているとしていたのを、すべてを「レポート」の「近似の一覧」にまとめている、に直しました。報道向けページで、概要と図は出典を書けば「自由に使えます」としていたのを、サイトのコードや文書と同じGNU Affero General Public License v3.0のもとで公開している、に直しました。
-    en: "How it works said every page where an approximate number appears lists the simplifications; it now says the Report lists every simplification under 'All approximations'. The press page said the summary and charts were free to use with credit; it now says they are published under the GNU Affero General Public License v3.0, like the site's code and documents."
+    ja: 「ホーム」とレポートで、政府が「第一歩」としているものを「政府の案」と書いていたのを、「支援金制度」に直しました。「仕組み」で、単純にした点の一覧を「その数字が出るページ」に載せているとしていたのを、すべてを「レポート」の「近似の一覧」にまとめている、に直しました。報道向けページで、概要と図は出典を書けば「自由に使えます」としていたのを、サイトのコードや文書と同じGNU Affero General Public License v3.0のもとで公開している、に直しました。
+    en: "On Home and in the report, what the government calls a \"first step\" was described as \"the government's plan\"; it is the payment scheme. How it works said every page where an approximate number appears lists the simplifications; it now says the Report lists every simplification under 'All approximations'. The press page said the summary and charts were free to use with credit; it now says they are published under the GNU Affero General Public License v3.0, like the site's code and documents."
   why:
-    ja: 一覧は「ホーム」「自分で案を作る」「全世帯で見ると」などにはありますが、報道向けページや「検証」にはありません。すべてをまとめた一覧はレポートにあります。プロジェクトの文書のライセンスはREADMEのとおりAGPLで、出典を書くだけで使えるというのはその条件と合っていませんでした。
-    en: Some pages have the list (Home, Build your own, All households and others), but the press page and Checks do not; the full list is in the Report. The project's documents are under the AGPL, as the README says; "free to use with credit" did not match its terms.
+    ja: 大綱が第一歩と呼んでいるのは支援金制度です。一覧の下に並ぶ2027〜28年度の政府の案には、食料品の消費税の引き下げも含まれます。一覧は「ホーム」「自分で案を作る」「全世帯で見ると」などにはありますが、報道向けページや「検証」にはありません。すべてをまとめた一覧はレポートにあります。プロジェクトの文書のライセンスはREADMEのとおりAGPLで、出典を書くだけで使えるというのはその条件と合っていませんでした。
+    en: The outline calls the payment scheme the first step; the FY2027–28 government plan listed below it also cuts the consumption tax on food. Some pages have the list (Home, Build your own, All households and others), but the press page and Checks do not; the full list is in the Report. The project's documents are under the AGPL, as the README says; "free to use with credit" did not match its terms.
 - date: 2026-11-13
   previous: 9cef91f
   published: 6e1d859

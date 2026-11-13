@@ -34,6 +34,11 @@ def test_h4_wall_reason():
     causes = json.loads((ROOT / "outputs" / "wall_map.json").read_text())["households"]["H4"]["wall_causes"]
     c = next(x for x in causes if x["from"] == 1_290_000)
     assert js("w.wallReason(d)", c, "ja") == "健康保険と年金の扶養から外れて、国民年金保険料（年215,040円）と国民健康保険料（年101,786円）がかかるためです。所得税と住民税は合わせて年48,600円減ります。"
+    # only resident tax falls (H2 at 1.49m): the sentence names resident tax alone
+    c = next(x for x in json.loads((ROOT / "outputs" / "wall_map.json").read_text())["households"]["H2"]["wall_causes"] if x["from"] == 1_490_000)
+    assert c["change"]["income_tax"] == 0 and c["change"]["resident_tax"] < 0
+    assert js("w.wallReason(d)", c, "ja").endswith(f"住民税が年{-c['change']['resident_tax']:,}円減ります。")
+    assert js("w.wallReason(d)", c, "en").endswith(f"Resident tax falls by ¥{-c['change']['resident_tax']:,} a year.")
     # several items: H5 at 2.09m (single-parent resident-tax exemption ends, VALIDATION §6) and a premium step
     c = {"from": 0, "scheme": ["employee", "employee"], "change": {"income_tax": 0, "resident_tax": 31_200, "employee_insurance": 17_088,
          "national_pension": 0, "nhi": 0, "child_allowance": 0}}

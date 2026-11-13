@@ -316,8 +316,11 @@ function wallReason(c) {
     why = ja ? parts.join("、") + "ため" : parts.length > 1 ? parts.slice(0, -1).join(", ") + " and " + parts.at(-1) : parts[0];
   }
   const taxCut = -Math.min(0, ch.income_tax) - Math.min(0, ch.resident_tax);
-  return ja ? `${why}です。` + (taxCut >= 1000 ? `所得税と住民税は合わせて${m(taxCut)}減ります。` : "")
-            : `This is because ${why}.` + (taxCut >= 1000 ? ` Income tax and resident tax fall by ${m(taxCut)} in all.` : "");
+  // name only the taxes that fell
+  const fell = ["income_tax", "resident_tax"].filter(k => ch[k] < 0), both = fell.length === 2;
+  const taxes = !fell.length ? "" : ja ? (both ? "所得税と住民税は合わせて" : `${t(NAMES[fell[0]])}が`) : (both ? "Income tax and resident tax fall by" : `${t(NAMES[fell[0]])[0].toUpperCase() + t(NAMES[fell[0]]).slice(1)} falls by`);
+  return ja ? `${why}です。` + (taxCut >= 1000 ? `${taxes}${m(taxCut)}減ります。` : "")
+            : `This is because ${why}.` + (taxCut >= 1000 ? ` ${taxes} ${m(taxCut)}${both ? " in all" : ""}.` : "");
 }
 
 // Plain-words list of the biggest walls for one series (at most `top`), into a <ul>; the rest are counted.

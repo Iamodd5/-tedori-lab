@@ -56,6 +56,7 @@ def facts():
     cause = next(c for c in wm["households"]["H4"]["wall_causes"] if c["from"] == lead["from"])["change"]
     assert cause["employee_insurance"] == 0 and cause["income_tax"] <= 0 and cause["resident_tax"] <= 0, "rewrite the lead's reason"
     sc = yaml.safe_load((ROOT / "parameters" / "baseline_2026" / "social_insurance.yaml").read_text(encoding="utf-8"))["part_time_coverage"]
+    assert cause["income_tax"] < 0 and cause["resident_tax"] < 0, "the lead names both taxes as falling"
     both.update(lead_np=yen(cause["national_pension"]), lead_nhi=yen(cause["nhi"]), lead_tax_cut=yen(-cause["income_tax"] - cause["resident_tax"]),
                 hours_min=sc["hours_min"]["value"], employer_min=sc["employer_size_min"]["value"])
     f["ja"]["grid_step"], f["en"]["grid_step"] = f"{wm['step'] // 10_000}万円", f"¥{yen(wm['step'])}"
