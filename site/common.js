@@ -50,12 +50,14 @@ const li = (ul, text) => { const x = document.createElement("li"); x.textContent
 const rowHead = (tr, text) => { const th = document.createElement("th"); th.scope = "row"; th.textContent = text; tr.append(th); };
 // a table that scrolls sideways: reachable by keyboard, named, and marked "overflows" (shows a cue) when it is wider than the page
 const scrollLabel = () => lang === "ja" ? "表（横に動かせます）" : "Table (scrolls sideways)";
-const scrollWatch = new ResizeObserver(es => es.forEach(e => {
+// on the next frame: the cue line changes the box's height, and doing that inside the observer makes Safari report a loop
+const scrollWatch = new ResizeObserver(es => requestAnimationFrame(() => es.forEach(e => {
   const b = e.target.closest(".scroll"), over = b.scrollWidth > b.clientWidth + 8;  // a bracket sticking out a few pixels is not a hidden column
+  if (b.classList.contains("overflows") === over) return;
   b.classList.toggle("overflows", over);
   if (over) { b.tabIndex = 0; b.setAttribute("role", "region"); b.setAttribute("aria-label", scrollLabel()); }
   else { b.removeAttribute("tabindex"); b.removeAttribute("role"); b.removeAttribute("aria-label"); }
-}));
+})));
 function watchScroll(b) {
   scrollWatch.observe(b); if (b.firstElementChild) scrollWatch.observe(b.firstElementChild);
 }
