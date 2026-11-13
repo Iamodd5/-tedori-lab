@@ -12,6 +12,7 @@ const ABOUT = [
   ["validation.html", { ja: "検証", en: "Checks" }],
   ["sources.html", { ja: "出典とコード", en: "Sources and code" }],
   ["press.html", { ja: "報道関係の方へ", en: "For the press" }],
+  ["questions.html", { ja: "未解決の点", en: "Open questions" }],
 ];
 // Japanese unless the visitor chose English, or (first visit) their browser isn't set to Japanese
 let lang = /^ja\b/i.test(navigator.language || "ja") ? "ja" : "en";
@@ -130,11 +131,18 @@ function setupPage(onLangChange = () => {}) {
   header.querySelector("#lang-toggle").onclick = () => {
     lang = lang === "ja" ? "en" : "ja";
     try { localStorage.setItem("tedori-lang", lang); } catch (e) { /* not saved; fine */ }
-    // keep the reader's place: the first heading, chart or table still in view stays where it is on screen
-    const A = () => [...document.querySelectorAll("main :is(h1, h2, h3, summary, canvas, table)")], top0 = Math.max(0, header.getBoundingClientRect().bottom);
+    // keep the reader's place: the first heading, paragraph, chart or table still in view stays where it is on screen.
+    // The browser's own scroll anchoring is off meanwhile (it moved the page as well), and the place is set again once
+    // charts and documents have redrawn.
+    const A = () => [...document.querySelectorAll("main :is(h1, h2, h3, p, li, label, summary, canvas, table)")].filter(e => e.offsetParent);
+    const top0 = Math.max(0, header.getBoundingClientRect().bottom);
     const i = A().findIndex(e => e.getBoundingClientRect().bottom > top0), y0 = i >= 0 ? A()[i].getBoundingClientRect().top : 0;
+    const root = document.documentElement; root.style.overflowAnchor = "none";
+    const hold = () => { const e = A()[i]; if (e) scrollBy(0, e.getBoundingClientRect().top - y0); };
     applyLang();
-    Promise.resolve(onLangChange()).then(() => requestAnimationFrame(() => { const e = A()[i]; if (e) scrollBy(0, e.getBoundingClientRect().top - y0); }));
+    Promise.resolve(onLangChange()).then(() => requestAnimationFrame(() => {
+      hold(); setTimeout(hold, 150); setTimeout(() => { hold(); root.style.overflowAnchor = ""; }, 450);
+    }));
   };
   applyLang();
 }

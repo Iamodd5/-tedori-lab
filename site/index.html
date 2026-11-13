@@ -57,19 +57,19 @@
 <div class="chart-panel" id="wallpanel">
 <div class="panel-bar"><div class="ranges" id="ranges"><span lang="ja">表示する範囲：</span><span lang="en">Show:</span></div></div>
 <div class="navigator" id="nav"></div>
-<ul class="small hint">
-<li><span lang="ja">拡大するには、「+ 拡大」を押すか、グラフの上をドラッグします。スマートフォンでは、2本の指で広げても拡大できます。</span><span lang="en">To zoom in, press '+ Zoom in' or drag across a chart. On a phone you can also spread two fingers.</span></li>
-<li><span lang="ja">見る範囲を動かすには、「◀」「▶」を押すか、上の帯の枠を動かします。キーボードでは、枠を選んでから左右の矢印キーを押します。</span><span lang="en">To look at other incomes, press ◀ or ▶, or move the frame in the strip above. On a keyboard, select the frame and press the left and right arrow keys.</span></li>
-<li><span lang="ja">広い範囲に戻すには、金額の書いてあるボタンを押します。最初の表示に戻るには、「最初の表示に戻す」を押すか、グラフをダブルクリックします。</span><span lang="en">To go back to a wide range, press one of the buttons above with an amount on it. To return to the starting view, press 'Back to the starting view' or double-click a chart.</span></li>
-</ul>
 <h3><span lang="ja">収入ごとの世帯の手取り（年額、単位：円）</span><span lang="en">Take-home pay at each income (yen per year)</span></h3>
-<p class="note"><span lang="ja">線に触れると、その収入での手取りと、2026年の制度との差が出ます。○は、この世帯の今の収入です。</span><span lang="en">Hover over or tap a line to see the take-home pay at that income and the difference from 2026 rules. The circle marks this household's income now.</span></p>
 <div class="chart"><canvas id="disp" role="img" aria-describedby="walls"></canvas></div>
+<p class="note"><span lang="ja">線に触れると、その収入での手取りと、2026年の制度との差が出ます。○は、この世帯の今の収入です。</span><span lang="en">Hover over or tap a line to see the take-home pay at that income and the difference from 2026 rules. The circle marks this household's income now.</span></p>
 <h3><span lang="ja">収入が10万円増えたら、手取りはいくら増える？</span><span lang="en">Earn ¥100,000 more: how much more do you take home?</span></h3>
 <p class="note"><span lang="ja">ふつうは、税金や保険料も増えるので、手取りが増える額は10万円に少し届きません。線が点線の0円より下に出るところが「壁」で、多く稼いだのに手取りが減ってしまいます。−20万円より下は▼で示しています。線に触れると金額が出ます。</span>
 <span lang="en">Usually a bit less than ¥100,000, because some goes to tax and insurance. Where the line drops below the dotted ¥0 line is a "wall": you earn more but end up with less. Values below −¥200,000 are marked ▼. Hover over or tap the line to see the amounts.</span></p>
 <p class="note"><span lang="ja">この図は、収入10万円ごとの変化を示しています。途中に壁があっても、その10万円のうち、壁で減る額が残りの部分で増える額より小さいと、線は0円より下に出ません。壁の幅が狭いときや、減る額が小さいときです。こうした壁は、上の図の▼と、上の壁の一覧で確かめてください。収入0円からの変化は、グラフにも一覧にも入れていません。<span class="salary-only">フルタイムで働いて給与が0円という場合は、実際にはないためです。</span></span><span lang="en">This chart shows the change over each ¥100,000. If a wall takes away less than the rest of that ¥100,000 adds (because the wall is narrow or the drop is small), the line stays above ¥0. Check the ▼ marks on the chart above and the list of walls. The step up from an income of ¥0 is left out of the chart and the list<span class="salary-only"> (a full-time employee paid nothing doesn't happen in real life)</span>.</span></p>
 <div class="chart"><canvas id="emr" role="img"></canvas></div>
+<ul class="small hint">
+<li><span lang="ja">拡大するには、「+ 拡大」を押すか、グラフの上をドラッグします。スマートフォンでは、2本の指で広げても拡大できます。</span><span lang="en">To zoom in, press '+ Zoom in' or drag across a chart. On a phone you can also spread two fingers.</span></li>
+<li><span lang="ja">見る範囲を動かすには、「◀」「▶」を押すか、上の帯の枠を動かします。キーボードでは、枠を選んでから左右の矢印キーを押します。</span><span lang="en">To look at other incomes, press ◀ or ▶, or move the frame in the strip above. On a keyboard, select the frame and press the left and right arrow keys.</span></li>
+<li><span lang="ja">広い範囲に戻すには、金額の書いてあるボタンを押します。最初の表示に戻るには、「最初の表示に戻す」を押すか、グラフをダブルクリックします。</span><span lang="en">To go back to a wide range, press one of the buttons above with an amount on it. To return to the starting view, press 'Back to the starting view' or double-click a chart.</span></li>
+</ul>
 </div>
 <details><summary id="walltable-head"><span lang="ja">数字の表を見る（表示中の範囲、10万円ごと）</span><span lang="en">See the numbers as a table (the range shown, every ¥100,000)</span></summary><div class="scroll"><table id="walltable" aria-labelledby="walltable-head"></table></div></details>
 <p class="note" id="notdrawn"></p>
@@ -161,7 +161,7 @@ function draw(newHousehold) {
   const nd = Object.keys(walls.not_drawn || {}).map(d => t(walls.labels[d]));
   document.getElementById("notdrawn").textContent = nd.length
     ? (lang === "ja" ? `グラフにない案（まだ計算できないため）：${nd.join("、")}` : `Not in the charts (cannot be calculated yet): ${nd.join("; ")}`) : "";
-  const narrow = matchMedia("(max-width: 360px)").matches;  // the full plan names push the legend off a 320px screen
+  const narrow = matchMedia("(max-width: 480px)").matches;  // on a phone the full plan names run off the legend
   wc.draw({ axis: incomeAxis(h), who: whoMoves(h), ref: h.reference_income, marks,
     series: Object.entries(h.designs).map(([d, pts]) => ({ label: (d === "baseline" ? "" : ja ? "（近似）" : "(Approximation) ") + (narrow ? shortName(t(walls.labels[d])) : t(walls.labels[d])), color: COLORS[d], points: pts })) }, newHousehold);
   lead();

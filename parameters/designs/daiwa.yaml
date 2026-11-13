@@ -182,8 +182,8 @@ approximations:
 
 # Shown wherever a Daiwa number appears (OPEN_QUESTIONS Q19).
 site_note:
-  ja: "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を56,500円としました。同じ計算式を2026年の税制に当てはめると、税額控除は52,000円になります。2026年の税制では、給与で働く人は年収178万円まで所得税がかかりません。これらの違いから、ここでの結果は大和総研が公表した数字とは異なります。2026年の税制では、大和総研がもとにした税制に比べて、なくなる基礎控除が大きく、税額控除は小さくなります。どちらも、手取りが大和総研の数字より少なく出る方向に働きます。"
-  en: "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can earn up to ¥1.78m a year before paying income tax. Because of these differences, the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger, and the credit is smaller, than under the rules Daiwa used. Both push take-home pay below Daiwa's figures."
+  ja: "大和総研は2025年の税制をもとに、給与で働く人が年収178万円まで所得税を払わずにすむよう、税額控除を56,500円としました。同じ計算式を2026年の税制に当てはめると、税額控除は52,000円になります。2026年の税制では、給与で働く人は年収178万円まで所得税がかかりません。もとにした税制と税額控除の額がこのように違うため、ここでの結果は大和総研が公表した数字とは異なります。2026年の税制では、大和総研がもとにした税制に比べて、なくなる基礎控除が大きく、税額控除は小さくなります。どちらも、手取りが大和総研の数字より少なく出る方向に働きます。"
+  en: "Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that an employee could earn up to ¥1.78m a year before paying income tax. Using the same formula with 2026 tax rules gives a credit of ¥52,000. Under 2026 rules an employee can earn up to ¥1.78m a year before paying income tax. Because the tax rules and the credit differ in these ways, the results here differ from the numbers Daiwa published. Under 2026 rules the basic deduction that is removed is larger, and the credit is smaller, than under the rules Daiwa used. Both push take-home pay below Daiwa's figures."
 
 notes: >
   The report was written against 2025 tax rules (threshold 1.6m in 2025). Applying it to the 2026 baseline

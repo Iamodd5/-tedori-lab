@@ -91,7 +91,7 @@ def facts():
     both.update(hh_best_change=yen(best["disposable_change"]), hh_worst_change=yen(-worst["disposable_change"]))
     for l in LANGS:
         name = "name_ja" if l == "ja" else "name_en"
-        fmt = "{}（{}）" if l == "ja" else "{} ({})"
+        fmt = "{}「{}」" if l == "ja" else "{}, the {}"  # no brackets inside brackets: the names carry their own
         mid = (lambda s: s) if l == "ja" else (lambda s: s[0].lower() + s[1:])  # mid-sentence in English
         f[l]["hh_best"] = fmt.format(best["household"], mid(wm["households"][best["household"]][name]))
         f[l]["hh_worst"] = fmt.format(worst["household"], mid(wm["households"][worst["household"]][name]))
@@ -108,14 +108,14 @@ def facts():
     both.update(up_top_group=top_up["decile"], up_top=yen(top_up["mean_change"]), down_top_group=top_down["decile"],
                 down_top=yen(-top_down["mean_change"]), net=f"{-d['cost_yen'] / 1e12:.1f}",  # rough estimates: 0.1 trillion
                 it_up=f"{d['cost_components_yen']['income_tax'] / 1e12:.1f}", cash=f"{d['cost_components_yen']['credit'] / 1e12:.1f}")
-    pct_range = lambda k, xs: (lambda v: f"{min(v)}" if min(v) == max(v) else f"{min(v)}{{dash}}{max(v)}")([round(x[k] * 100) for x in xs])
+    pct_range = lambda k, xs: (lambda v: f"{min(v)}" if min(v) == max(v) else f"{min(v)}{{dash}}{max(v)}")([f"{x[k] * 100:.1f}" for x in xs])  # one decimal, as All households writes them
     for l in LANGS:
         dash = "〜" if l == "ja" else "–"
         for name, xs in (("up", up), ("down", down)):  # the same three shares for gaining and losing groups
             for k, share in (("win", "winners_share"), ("same", "unchanged_share"), ("lose", "losers_share")):
                 f[l][f"{name}_{k}_range"] = pct_range(share, xs).replace("{dash}", dash)
         f[l]["up_win"], f[l]["up_same"] = f[l]["up_win_range"], f[l]["up_same_range"]
-    lose = [(x["decile"], round(x["losers_share"] * 100)) for x in up if round(x["losers_share"] * 100) > 0]
+    lose = [(x["decile"], f"{x['losers_share'] * 100:.1f}") for x in up if round(x["losers_share"] * 100, 1) > 0]
     f["ja"]["up_lose"] = "".join(f"グループ{g}では{p}%の世帯で手取りが減ります。" for g, p in lose)
     f["en"]["up_lose"] = "".join(f" In group {g}, {p}% of households are worse off." for g, p in lose)
     assert d["cost_yen"] < 0, "the report text says the government takes in more; rewrite it if this changes"

@@ -34,7 +34,7 @@ The household in the first main point hits this wall because the spouse stops be
 
 (Approximation) Under the {daiwa_label}, the one plan that can be calculated now, take-home pay at the same point falls by ¥{lead_daiwa_drop} a year (¥{lead_drop} under 2026 rules). It gets back to the same level at ¥{lead_daiwa_back}, again worked out in {grid_step} steps.
 
-Rengo's plan cannot be calculated for this household yet either (the reasons are under 'The {n_plans} plans compared'). The government plans' effect on this household cannot be calculated, for these reasons:
+Rengo's plan cannot be calculated for this household yet (the reasons are under 'The {n_plans} plans compared'). The government plans' effect on this household cannot be calculated, for these reasons:
 
 - In the government's plans, people facing an income wall (年収の壁), and people with a similar social insurance burden, get a top-up (就業促進特例加算). The government's outline, the document that sets out the framework of the scheme, calls it a temporary measure until the income walls are removed.
 - The outline defines the wall to include the extra premiums of moving into National Health Insurance and National Pension, not only joining company insurance. It also gives an example of a spouse leaving dependant status, as H4's spouse does.

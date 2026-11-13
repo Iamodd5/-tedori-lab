@@ -5,7 +5,16 @@
 # one (left out until it is pushed). Either version can be rebuilt with `git checkout <commit> && make all`.
 # A number with `check` is recomputed from those two commits by tests/test_corrections.py.
 - date: 2026-11-13
+  previous: 5f3c6df
+  what:
+    ja: レポートと報道向けの概要で、モデル世帯H4について「連合案も、この世帯への効果はまだ計算できません」としていたのを、「連合案の、この世帯への効果は、まだ計算できません」に直しました。「案の比較」の「自分の世帯の形で見る」で、一人で暮らす人とひとり親にも配偶者の国民年金保険料の文を出していたのをやめ、「夫婦で、配偶者はパート」で、働く人は全員週20時間以上としながら配偶者は週20時間未満としていた文を、主に稼ぐ人についての文に直しました。
+    en: "In the report and the press summary, household H4 said Rengo's plan \"cannot be calculated for this household yet either\"; it now says it cannot be calculated yet, without \"either\". On Compare, under 'Try a household like yours', the sentence about the spouse's National Pension premiums no longer appears for people living alone or single parents, and for 'A couple, the spouse works part-time' the 20-hour assumption now covers the main earner only, not 'anyone who works'."
+  why:
+    ja: 「も」は、直前の大和総研案も計算できなかったように読めますが、大和総研案は計算できています。配偶者のいない世帯に配偶者の文は当てはまらず、配偶者が週20時間未満であることと「働く人は全員週20時間以上」は両立しません。
+    en: "\"Either\" read as if the Daiwa plan, described just before, could not be calculated either; it can. A household with no spouse has no spouse's premiums, and a spouse working under 20 hours contradicts \"anyone who works\" working 20 hours or more."
+- date: 2026-11-13
   previous: 356595e
+  published: 5f3c6df
   what:
     ja: 「ホーム」とレポートで、政府が「第一歩」としているものを「政府の案」と書いていたのを、「支援金制度」に直しました。「仕組み」で、単純にした点の一覧を「その数字が出るページ」に載せているとしていたのを、すべてを「レポート」の「近似の一覧」にまとめている、に直しました。報道向けページで、概要と図は出典を書けば「自由に使えます」としていたのを、サイトのコードや文書と同じGNU Affero General Public License v3.0のもとで公開している、に直しました。
     en: "On Home and in the report, what the government calls a \"first step\" was described as \"the government's plan\"; it is the payment scheme. How it works said every page where an approximate number appears lists the simplifications; it now says the Report lists every simplification under 'All approximations'. The press page said the summary and charts were free to use with credit; it now says they are published under the GNU Affero General Public License v3.0, like the site's code and documents."

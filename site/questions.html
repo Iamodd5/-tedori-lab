@@ -25,7 +25,7 @@
     </ul></li>
   <li><span lang="ja"><strong>公表している数字との関係：</strong>これらの点のために計算を単純化したところや、まだ計算できないところは、その数字が出るページに示しています。示し方は、<a href="methods.html">「計算方法」</a>のページで説明しています。</span><span lang="en"><strong>Effect on published numbers:</strong> where one of these questions led to a simplification, or stops a number from being calculated, the page that shows the number says so. The labels are explained on the <a href="methods.html">How it works</a> page.</span></li>
   <li><span lang="ja"><strong>ほかのページの番号から来た方へ：</strong>ほかのページにある、Qで始まるかっこ付きの番号は、この一覧の行の番号です。番号を押すと、その行に移動します。番号は、行の左端にあります。</span><span lang="en"><strong>If you followed a number from another page:</strong> a number in brackets starting with Q on other pages is the number of a row in this list, and following it brings you to that row. The number is in the first column.</span></li>
-  <li><span lang="ja"><strong>一覧の読み方：</strong>列は左から、ID（<span data-head="ID">番号</span>）、Question（<span data-head="Question">問い</span>）、Why it matters（<span data-head="Why it matters">なぜ大事か</span>）、Source checked（<span data-head="Source checked">確認した資料</span>）、Status（<span data-head="Status">いまの扱い</span>）です。Status の最初の語は、open が<span data-status="open">未解決</span>、answered が<span data-status="answered">解決済み</span>、answered in part が<span data-status="answered in part">一部解決</span>、decided が<span data-status="decided">扱いを決めた</span>、rule found が<span data-status="rule found">根拠となる決まりを確認</span>した、という意味です。</span><span lang="en"><strong>How to read the list:</strong> each row gives the question, why it matters, which sources were checked and how it is handled now. The status begins with open, answered, answered in part, decided, or rule found (the rule has been located in the law).</span></li>
+  <li><span lang="ja"><strong>一覧の読み方：</strong>列は左から、<span data-head="ID">番号</span>、<span data-head="Question">問い</span>、<span data-head="Why it matters">なぜ大事か</span>、<span data-head="Source checked">確認した資料</span>、<span data-head="Status">いまの扱い</span>です。いまの扱いの最初の語は、<span data-status="open">未解決</span>、<span data-status="answered">解決済み</span>、<span data-status="answered in part">一部解決</span>、<span data-status="decided">扱いを決めた</span>、<span data-status="rule found">根拠となる決まりを確認</span>のどれかです。表の中の文は、英語の原文のままです。</span><span lang="en"><strong>How to read the list:</strong> each row gives the question, why it matters, which sources were checked and how it is handled now. The status begins with open, answered, answered in part, decided, or rule found (the rule has been located in the law).</span></li>
 </ul></div>
 <p id="back" hidden><a href="#" onclick="history.back(); return false"><span lang="ja">← 前のページに戻る</span><span lang="en">← Back to the page you came from</span></a></p>
 <div class="md" id="doc"></div>
@@ -35,7 +35,7 @@ const el = document.getElementById("doc");
 // the Japanese column heads and status words are the ones in the key "一覧の読み方" above, so the two cannot drift apart
 const words = k => Object.fromEntries([...document.querySelectorAll(`[data-${k}]`)].map(s => [s.dataset[k], s.textContent]));
 const HEADS = words("head"), STATUS = words("status");
-if ((document.referrer && new URL(document.referrer).origin === location.origin) || history.length > 1) document.getElementById("back").hidden = false;
+if (document.referrer && new URL(document.referrer).origin === location.origin) document.getElementById("back").hidden = false;
 const draw = () => renderDoc(el, "../OPEN_QUESTIONS.md").then(() => {
   let all = 0, open = 0;
   el.querySelectorAll("tr").forEach(tr => {
@@ -45,6 +45,7 @@ const draw = () => renderDoc(el, "../OPEN_QUESTIONS.md").then(() => {
     all++; if (w === "open") open++;
     if (lang === "ja" && w) { const s = document.createElement("span"); s.lang = "ja"; s.textContent = STATUS[w]; st.prepend(s, document.createElement("br")); }
   });
+  const title = el.querySelector("h2"); if (title && lang === "ja") { title.textContent = "一覧（表の中の文は英語です）"; title.lang = "ja"; }
   if (lang === "ja") el.querySelectorAll("th").forEach(th => { const h = HEADS[th.textContent.trim()]; if (h) { th.textContent = h; th.lang = "ja"; } });
   document.querySelectorAll("[data-count]").forEach(s => s.textContent = s.closest("[lang]").lang === "ja"
     ? `全${all}件のうち、未解決は${open}件です。` : `${open} of the ${all} questions ${open === 1 ? "is" : "are"} still open.`);
