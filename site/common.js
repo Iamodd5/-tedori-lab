@@ -12,7 +12,7 @@ const ABOUT = [
   ["validation.html", { ja: "検証", en: "Checks" }],
   ["sources.html", { ja: "出典とコード", en: "Sources and code" }],
   ["press.html", { ja: "報道関係の方へ", en: "For the press" }],
-  ["questions.html", { ja: "未解決の点", en: "Open questions" }],
+  ["questions.html", { ja: "未解決の点と解決済みの点", en: "Open and answered questions" }],
 ];
 // Japanese unless the visitor chose English, or (first visit) their browser isn't set to Japanese
 let lang = /^ja\b/i.test(navigator.language || "ja") ? "ja" : "en";
@@ -134,14 +134,19 @@ function setupPage(onLangChange = () => {}) {
     // keep the reader's place: the first heading, paragraph, chart or table still in view stays where it is on screen.
     // The browser's own scroll anchoring is off meanwhile (it moved the page as well), and the place is set again once
     // charts and documents have redrawn.
-    const A = () => [...document.querySelectorAll("main :is(h1, h2, h3, p, li, label, summary, canvas, table)")].filter(e => e.offsetParent);
+    // only items both languages have the same number of (documents differ in paragraphs and list items)
+    const A = () => [...document.querySelectorAll("main :is(h1, h2, h3, h4, summary, canvas, table)")].filter(e => e.offsetParent);
     const top0 = Math.max(0, header.getBoundingClientRect().bottom);
     const i = A().findIndex(e => e.getBoundingClientRect().bottom > top0), y0 = i >= 0 ? A()[i].getBoundingClientRect().top : 0;
     const root = document.documentElement; root.style.overflowAnchor = "none";
-    const hold = () => { const e = A()[i]; if (e) scrollBy(0, e.getBoundingClientRect().top - y0); };
+    let moved = false;  // the reader scrolled, touched or pressed a key: their place now, not ours
+    const stop = () => { moved = true; }, ev = ["wheel", "touchstart", "keydown", "pointerdown"];
+    ev.forEach(k => addEventListener(k, stop, { once: true, passive: true }));
+    const hold = () => { const e = A()[i]; if (e && !moved) scrollBy(0, e.getBoundingClientRect().top - y0); };
     applyLang();
     Promise.resolve(onLangChange()).then(() => requestAnimationFrame(() => {
-      hold(); setTimeout(hold, 150); setTimeout(() => { hold(); root.style.overflowAnchor = ""; }, 450);
+      hold(); setTimeout(hold, 150);
+      setTimeout(() => { hold(); root.style.overflowAnchor = ""; ev.forEach(k => removeEventListener(k, stop)); }, 450);
     }));
   };
   applyLang();

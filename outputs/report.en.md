@@ -76,7 +76,7 @@ Daiwa wrote its plan for 2025 tax rules and set the credit at ¥56,500, so that 
 We worked out the change in take-home pay under the Daiwa Institute plan (adjusted to 2026 tax rules) for every household in Japan, by income group. The groups are ten equal-sized sets of households, lined up from lowest to highest yearly income. (Approximation) All of the following are rough estimates.
 
 - (Approximation) In groups 1–4, take-home pay goes up on average. The biggest average gain is in group 1, at ¥9,257 a year per household. But within these groups, take-home pay goes up for 13.1–21.5% of households, and 78.5–85.3% see no change. In group 4, 6.8% of households are worse off.
-- (Approximation) In groups 5–10, take-home pay goes down on average. The biggest average fall is in group 10, at ¥101,574 a year per household. But within these groups, take-home pay goes down for 46.4–97.5% of households and up for 1.9–3.9%, and 0.5–8.3% see no change.
+- (Approximation) In groups 5–10, take-home pay goes down on average. The biggest average fall is in group 10, at ¥101,574 a year per household. But within these groups, take-home pay goes down for 46.4–97.5% of households and up for 1.9–25.0%, and 0.5–39.1% see no change.
 
 The national total is in the main points. Daiwa's own estimate is about ¥0.7 trillion more income tax and about ¥0.7 trillion paid in cash, which comes to about zero overall. This is called fiscally neutral. The two estimates cannot be compared directly, because Daiwa used 2025 tax rules and a ¥56,500 credit, and this site uses 2026 rules and ¥52,000.
 

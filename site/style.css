@@ -221,4 +221,4 @@ input[type="range"] { accent-color: var(--ai); }
 .toc li:last-child { border-bottom: 1px solid var(--rule); }
 .toc a { display: block; padding: 10px 0; }
 /* a document table on a phone scrolls sideways rather than squeezing a column to a character or two */
-.md :is(td, th):not(:first-child) { min-width: 6em; }
+@media (max-width: 759px) { .md :is(td, th):not(:first-child) { min-width: 6em; } }

@@ -108,7 +108,8 @@ def facts():
     both.update(up_top_group=top_up["decile"], up_top=yen(top_up["mean_change"]), down_top_group=top_down["decile"],
                 down_top=yen(-top_down["mean_change"]), net=f"{-d['cost_yen'] / 1e12:.1f}",  # rough estimates: 0.1 trillion
                 it_up=f"{d['cost_components_yen']['income_tax'] / 1e12:.1f}", cash=f"{d['cost_components_yen']['credit'] / 1e12:.1f}")
-    pct_range = lambda k, xs: (lambda v: f"{min(v)}" if min(v) == max(v) else f"{min(v)}{{dash}}{max(v)}")([f"{x[k] * 100:.1f}" for x in xs])  # one decimal, as All households writes them
+    # one decimal, as All households writes them; min and max of the numbers, then formatted
+    pct_range = lambda k, xs: (lambda v: f"{min(v):.1f}" if round(min(v), 1) == round(max(v), 1) else f"{min(v):.1f}{{dash}}{max(v):.1f}")([x[k] * 100 for x in xs])
     for l in LANGS:
         dash = "〜" if l == "ja" else "–"
         for name, xs in (("up", up), ("down", down)):  # the same three shares for gaining and losing groups

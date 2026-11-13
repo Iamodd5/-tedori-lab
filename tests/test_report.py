@@ -28,3 +28,15 @@ def test_report_is_current():
     # after an intended change, run `make outputs` and explain it in the commit message
     for lang, text in br.render().items():
         assert (ROOT / "outputs" / f"report.{lang}.md").read_text(encoding="utf-8") == text, lang
+
+
+def test_report_share_ranges_match_the_groups():
+    # the ranges of shares in the report are the lowest and highest group values, as on All households
+    import json, re
+    pop = json.loads((ROOT / "outputs" / "population.json").read_text())["designs"]["daiwa"]["by_decile"]
+    text = (ROOT / "outputs" / "report.ja.md").read_text(encoding="utf-8")
+    for xs in ([x for x in pop if x["mean_change"] > 0], [x for x in pop if x["mean_change"] < 0]):
+        for k in ("winners_share", "unchanged_share"):
+            v = [x[k] * 100 for x in xs]
+            want = f"{min(v):.1f}" if round(min(v), 1) == round(max(v), 1) else f"{min(v):.1f}〜{max(v):.1f}%"
+            assert want.rstrip("%") in text, f"{k}: {want} not in the report"
