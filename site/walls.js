@@ -311,7 +311,7 @@ function wallReason(c) {
       : starts && k === "ltc_65" ? (ja ? `そのため65歳以上の人の介護保険料の段階が上がり、合わせて${m(ch[k])}${last ? "増える" : "増え"}` : `so the long-term care premiums of people aged 65 or over move to higher bands, up ${m(ch[k])} in all`)
       : k in BENEFITS ? (ja ? `${BENEFITS[k].ja}が${m(fall(k))}${last ? "減る" : "減り"}` : `${BENEFITS[k].en} falls by ${m(fall(k))}`)
       : k === "employee_insurance" && before === "employee" ? (ja ? `会社の保険料が、収入の段階が上がって${m(ch[k])}${last ? "増える" : "増え"}` : `company insurance premiums step up by ${m(ch[k])}`)
-      : (ja ? `${t(NAMES[k])}が${m(ch[k])}${last ? "増える" : "増え"}` : `${t(NAMES[k])} goes up by ${m(ch[k])}`);
+      : (ja ? `${t(NAMES[k])}が${m(ch[k])}${last ? "増える" : "増え"}` : `${t(NAMES[k])} ${/premiums$/.test(NAMES[k].en) ? "go" : "goes"} up by ${m(ch[k])}`);  // "premiums" takes a plural verb
     const parts = up.map((k, i) => say(k, i === up.length - 1));
     why = ja ? parts.join("、") + "ため" : parts.length > 1 ? parts.slice(0, -1).join(", ") + " and " + parts.at(-1) : parts[0];
   }
