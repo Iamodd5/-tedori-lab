@@ -64,6 +64,12 @@ function wallCharts(ids) {
   zoomOut.type = zoomIn.type = "button";
   zoomOut.onclick = () => zoom(2); zoomIn.onclick = () => zoom(.5);
   const pair = document.createElement("span"); pair.className = "zoom"; pair.append(zoomOut, zoomIn); bar.append(pair);  // − and ＋ never wrap apart
+  // ◀ ▶ move the range by half its width: the frame's arrow keys need a keyboard, and phone screen readers cannot drag
+  const left = document.createElement("button"), right = document.createElement("button");
+  left.type = right.type = "button"; left.textContent = "◀"; right.textContent = "▶";
+  const shift = f => { const span = view.max - view.min; setView(view.min + f * span / 2, view.max + f * span / 2, true); };
+  left.onclick = () => shift(-1); right.onclick = () => shift(1);
+  const move = document.createElement("span"); move.className = "zoom"; move.append(left, right); bar.append(move);
   const reset = document.createElement("button"); reset.type = "button"; reset.className = "reset";
   reset.onclick = () => setView(home.min, home.max); bar.append(reset);
   const big = document.createElement("button"); big.type = "button"; big.className = "btn enlarge";
@@ -176,7 +182,7 @@ function wallCharts(ids) {
       b.textContent = lang === "ja" ? `0〜${axisMoney(+b.dataset.r)}円` : `¥0–${axisMoney(+b.dataset.r).slice(1)}`;
       b.setAttribute("aria-pressed", !!view && view.min === 0 && view.max === +b.dataset.r);
     });
-    if (view) viewing.textContent = lang === "ja" ? `表示中：${axisMoney(view.min)}〜${axisMoney(view.max)}円` : `Showing ${axisMoney(view.min)}–${axisMoney(view.max).slice(1)}`;
+    if (view) viewing.textContent = lang === "ja" ? `表示中：${view.min ? axisMoney(view.min) : 0}〜${axisMoney(view.max)}円` : `Showing ${view.min ? axisMoney(view.min) : "¥0"}–${axisMoney(view.max)}`;
     if (view) { win.setAttribute("aria-valuemin", 0); win.setAttribute("aria-valuemax", MAX); win.setAttribute("aria-valuenow", (view.min + view.max) / 2); win.setAttribute("aria-valuetext", viewing.textContent); }
     reset.textContent = lang === "ja" ? "最初の表示に戻す" : "Back to the starting view";
     reset.setAttribute("aria-disabled", !!view && !!home && view.min === home.min && view.max === home.max);  // not `disabled`: that would drop keyboard focus
@@ -186,6 +192,9 @@ function wallCharts(ids) {
     zoomIn.textContent = lang === "ja" ? "+ 拡大" : "+ Zoom in";
     zoomOut.setAttribute("aria-label", lang === "ja" ? "縮小（広い範囲を見る）" : "Zoom out (show a wider range)");
     zoomIn.setAttribute("aria-label", lang === "ja" ? "拡大（狭い範囲を見る）" : "Zoom in (show a narrower range)");
+    left.setAttribute("aria-label", lang === "ja" ? "表示する範囲を左（低い収入）へ動かす" : "Move the range left (lower incomes)");
+    right.setAttribute("aria-label", lang === "ja" ? "表示する範囲を右（高い収入）へ動かす" : "Move the range right (higher incomes)");
+    left.setAttribute("aria-disabled", !!view && view.min <= 0); right.setAttribute("aria-disabled", !!view && view.max >= MAX);
     win.setAttribute("aria-label", lang === "ja" ? "表示する範囲。左右の矢印キーで移動、+と−のキーで拡大・縮小、Homeキーで最初の範囲に戻ります。" : "Range shown. The left and right arrow keys move it, the + and − keys zoom, and Home goes back to the starting range.");
   }
 
@@ -219,7 +228,7 @@ function wallCharts(ids) {
       title: c => !c.length ? "" : (lang === "ja" ? `${o.who} ${yen(c[0].raw.x)}円` : `${o.who[0].toUpperCase() + o.who.slice(1)}: ¥${yen(c[0].raw.x)}`),
       label: c => lang === "ja" ? `${shortName(c.dataset.label)}：${yen(c.raw.y)}円` : `${shortName(c.dataset.label)}: ¥${yen(c.raw.y)}`,
       afterLabel: c => c.datasetIndex > 0 && c.datasetIndex < o.series.length
-        ? (lang === "ja" ? "  2026年の制度との差：" : "  vs 2026 rules: ") + (c.raw.y >= base.get(c.raw.x) ? "+" : "−") + yen(Math.abs(c.raw.y - base.get(c.raw.x))) : "" } };
+        ? (lang === "ja" ? "  2026年の制度との差：" : "  vs 2026 rules: ") + (c.raw.y > base.get(c.raw.x) ? "+" : c.raw.y < base.get(c.raw.x) ? "−" : "±") + (lang === "ja" ? yen(Math.abs(c.raw.y - base.get(c.raw.x))) + "円" : "¥" + yen(Math.abs(c.raw.y - base.get(c.raw.x)))) : "" } };
     rate.data.datasets = o.series.map(s => {
       const data = keepSeries(s.points).filter(([x]) => x >= min - WALL.step && x <= max).map(([x, v]) => ({ x, y: Math.max(KEEP_FLOOR, v), raw: v }));
       return { label: s.label, borderColor: s.color, backgroundColor: s.color, borderWidth: 2.5, stepped: "before", data, pointStyle: "triangle",

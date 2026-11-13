@@ -10,6 +10,7 @@
 </head>
 <body>
 <h1><span lang="ja">検証</span><span lang="en">Checks</span></h1>
+<p class="note"><span lang="ja" data-edition></span><span lang="en" data-edition></span></p>
 <p><span lang="ja">このページでは、サイトの計算をどう確かめたかと、その結果を示します。プログラムの計算は、モデル世帯（計算のために例として作った世帯）の手計算とも、国税庁などの公式の計算例とも一致しています。全世帯の試算には、公式の数字との差があります。差の大きさは、下の「全世帯の試算と公式の数字」に示しています。</span><span lang="en">This page shows how the site's calculations were checked and what the checks found. The program matches hand calculations for the example households and the official worked examples from the National Tax Agency and others. The all-household estimate differs from official figures, and the size of each gap is set out in the point 'All-household estimate and official figures'.</span></p>
 <div class="summary"><ul>
   <li><span lang="ja"><strong>手計算：</strong>8つのモデル世帯すべてで、手取りを手で一歩ずつ計算し、プログラムの結果と一致することを確かめました。手取りとは、税金と保険料を引き、児童手当と児童扶養手当を足した、手元に残るお金のことです。ただし、手計算とプログラムは、同じ作成者が同じルールをもとに作ったものです。そのため、計算や入力の誤りは見つけられますが、法律の読み違いは見つけられません。</span><span lang="en"><strong>By hand:</strong> for all eight example households, take-home pay worked out by hand, step by step, matches the program exactly. Take-home pay here means income after tax and social insurance, plus child allowance and single-parent allowance. The hand calculations and the program were made by the same author from the same rules, so they catch arithmetic and input mistakes but not misreadings of the law.</span></li>
@@ -37,6 +38,11 @@
 <script>
 setupPage();
 renderDoc(document.getElementById("doc"), "../docs/VALIDATION.md");
+// the edition the figures belong to, from the report's title in outputs/ ("2026年11月版" / "November 2026 edition")
+document.querySelectorAll("[data-edition]").forEach(s => fetch(`../outputs/report.${s.lang}.md`, { cache: "no-cache" }).then(r => r.text()).then(md => {
+  const m = md.split("\n")[0].match(/(\d+年\d+月版)|(\w+ \d{4}) edition/);
+  if (m) s.textContent = m[1] ? `${m[1]}の数字です。` : `Figures from the ${m[2]} edition.`;
+}));
 // the numbers in the summary come from outputs/
 loadJSON("../outputs/population.json").then(pop => {
   const c = pop.calibration, gap = (a, b) => (Math.abs(a - b) / b * 100).toFixed(1) + "%";

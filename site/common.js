@@ -152,5 +152,13 @@ function renderDoc(el, urls) {
     if (ownH1) [...el.querySelectorAll("h1, h2, h3, h4, h5")].forEach(h => {
       const n = document.createElement("h" + (+h.tagName[1] + 1)); n.innerHTML = h.innerHTML; h.replaceWith(n);
     });
+    // a long document with its own title (the report) gets a contents list of its sections
+    const secs = [...el.querySelectorAll("h2")], title = el.querySelector("h1");
+    if (title && secs.length >= 3) {
+      const nav = document.createElement("nav"), head = document.createElement("strong"), ol = document.createElement("ol");
+      nav.className = "toc"; nav.setAttribute("aria-label", lang === "ja" ? "目次" : "Contents"); head.textContent = lang === "ja" ? "目次" : "Contents";
+      secs.forEach((h, i) => { h.id = h.id || `s${i + 1}`; const a = document.createElement("a"); a.href = `#${h.id}`; a.textContent = h.textContent; const x = document.createElement("li"); x.append(a); ol.append(x); });
+      nav.append(head, ol); title.after(nav);
+    }
   });
 }

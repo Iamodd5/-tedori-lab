@@ -5,7 +5,7 @@
 Tedori Lab works out how 4 plans to change tax and benefits would alter households' take-home pay, using the same households, data and method for each. Take-home pay means what is left after tax and insurance premiums, plus child allowance and the single-parent allowance. The calculations cover example households and every household in Japan. Only the Daiwa Institute plan (adjusted to 2026 tax rules) can be calculated so far.
 
 - **Under today's rules (the 2026 rules), a household takes home ¥258,226 less a year when a part-time spouse earns ¥1,300,000 a year instead of ¥1,290,000.** This is before any of the plans. The spouse works under 20 hours a week and is not in their employer's health insurance. A point like this, where earning more leaves a household with less, is called an income wall (年収の壁). The figures are for example household H4: a couple with no children in Shinjuku, Tokyo, in which the other partner is an employee on ¥5,000,000 a year.
-- (Approximation) Under the Daiwa Institute plan (adjusted to 2026 tax rules), 2 of the 8 example households take home more, 4 take home less and 2 see no change. The largest gain is for H1 (+35,700 yen a year) and the largest loss is for H8 (−157,300 yen a year).
+- (Approximation) Under the Daiwa Institute plan (adjusted to 2026 tax rules), 2 of the 8 example households take home more, 4 take home less and 2 see no change. The largest gain, ¥35,700 a year, is for H1 (single part-time employee (¥1.25m a year)); the largest loss, ¥157,300 a year, is for H8 (high-income dual-earner couple, one child (5)).
 - (Approximation) Under the Daiwa Institute plan (adjusted to 2026 tax rules), the government takes in about ¥1.1 trillion more a year across the country, in a rough estimate that assumes nobody changes how they work. Income tax rises by about ¥1.5 trillion a year, and the government pays out about ¥0.4 trillion in cash: the part of the tax credit (an amount taken straight off income tax) that is bigger than the income tax owed. Daiwa's own estimate comes to about zero overall. The section on every household in Japan explains the difference.
 
 ## How to read the numbers
@@ -56,16 +56,16 @@ These further points apply to this calculation:
 
 This table shows the change in take-home pay under the Daiwa Institute plan (adjusted to 2026 tax rules) for each example household. The main points give the summary.
 
-| Household | Who they are | Take-home pay under 2026 rules (yen a year) | (Approximation) Change under the plan (yen a year) |
-|---|---|---|---|
-| H1 | Single part-time employee (¥1.25m a year) | 1,061,652 | +35,700 |
-| H2 | University student with a part-time job, parents' dependant | 1,000,000 | ±0 |
-| H3 | Dual-income employee couple, two children (2 and 8) | 6,248,008 | −27,500 |
-| H4 | Single-earner employee, spouse working part-time | 4,961,316 | −23,900 |
-| H5 | Single parent employee, one child (10) | 2,651,836 | +3,700 |
-| H6 | Pensioner couple, both 72 | 2,611,921 | ±0 |
-| H7 | Self-employed (freelancer), single | 2,170,281 | −25,200 |
-| H8 | High-income dual-earner couple, one child (5) | 12,009,068 | −157,300 |
+| Household | Who they are | Income (a year, before tax, yen) | Take-home pay under 2026 rules (yen a year) | (Approximation) Change under the plan (yen a year) |
+|---|---|---|---|---|
+| H1 | Single part-time employee (¥1.25m a year) | 1,250,000 | 1,061,652 | +35,700 |
+| H2 | University student with a part-time job, parents' dependant | 1,000,000 | 1,000,000 | ±0 |
+| H3 | Dual-income employee couple, two children (2 and 8) | 7,500,000 (4,500,000 + 3,000,000) | 6,248,008 | −27,500 |
+| H4 | Single-earner employee, spouse working part-time | 6,000,000 (5,000,000 + 1,000,000) | 4,961,316 | −23,900 |
+| H5 | Single parent employee, one child (10) | 2,500,000 | 2,651,836 | +3,700 |
+| H6 | Pensioner couple, both 72 | 2,800,000 (2,000,000 + 800,000) | 2,611,921 | ±0 |
+| H7 | Self-employed (freelancer), single | 3,000,000 | 2,170,281 | −25,200 |
+| H8 | High-income dual-earner couple, one child (5) | 16,000,000 (9,000,000 + 7,000,000) | 12,009,068 | −157,300 |
 
 In the table, + means take-home pay goes up and − means it goes down.
 

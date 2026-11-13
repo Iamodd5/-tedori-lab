@@ -3,48 +3,49 @@
 <rect width="720" height="4" fill="#16243A"/>
 <text x="24.0" y="38.0" font-size="17" fill="#16243A" text-anchor="start" font-weight="bold">（近似）大和総研案（2026年の税制に合わせて計算）での日本の全世帯の手取りの変化</text>
 <text x="24.0" y="60.0" font-size="12" fill="#4E5B70" text-anchor="start" font-weight="normal">年収の低い順に同じ数ずつ10のグループに分けた、1世帯あたりの平均の変化（年額、円）。グループ1が最も年収が低い</text>
-<line x1="250.0" x2="250.0" y1="84" y2="362" stroke="#E4E8EE"/><text x="250.0" y="378.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">−14万</text>
-<line x1="294.4" x2="294.4" y1="84" y2="362" stroke="#E4E8EE"/><text x="294.4" y="378.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">−12万</text>
-<line x1="338.9" x2="338.9" y1="84" y2="362" stroke="#E4E8EE"/><text x="338.9" y="378.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">−10万</text>
-<line x1="383.3" x2="383.3" y1="84" y2="362" stroke="#E4E8EE"/><text x="383.3" y="378.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">−8万</text>
-<line x1="427.8" x2="427.8" y1="84" y2="362" stroke="#E4E8EE"/><text x="427.8" y="378.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">−6万</text>
-<line x1="472.2" x2="472.2" y1="84" y2="362" stroke="#E4E8EE"/><text x="472.2" y="378.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">−4万</text>
-<line x1="516.7" x2="516.7" y1="84" y2="362" stroke="#E4E8EE"/><text x="516.7" y="378.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">−2万</text>
-<line x1="561.1" x2="561.1" y1="84" y2="362" stroke="#16243A"/><text x="561.1" y="378.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">0</text>
-<line x1="605.6" x2="605.6" y1="84" y2="362" stroke="#E4E8EE"/><text x="605.6" y="378.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">2万</text>
-<line x1="650.0" x2="650.0" y1="84" y2="362" stroke="#E4E8EE"/><text x="650.0" y="378.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">4万</text>
-<rect x="561.1" y="89.3" width="20.6" height="17.2" fill="#0B6E4F"/>
-<text x="240.0" y="101.9" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ1</text>
-<text x="587.7" y="101.9" font-size="11" fill="#16243A" text-anchor="start" font-weight="normal">+9,257</text>
-<rect x="561.1" y="117.1" width="15.3" height="17.2" fill="#0B6E4F"/>
-<text x="240.0" y="129.7" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ2</text>
-<text x="582.4" y="129.7" font-size="11" fill="#16243A" text-anchor="start" font-weight="normal">+6,882</text>
-<rect x="561.1" y="144.9" width="14.7" height="17.2" fill="#0B6E4F"/>
-<text x="240.0" y="157.5" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ3</text>
-<text x="581.8" y="157.5" font-size="11" fill="#16243A" text-anchor="start" font-weight="normal">+6,605</text>
-<rect x="561.1" y="172.7" width="9.6" height="17.2" fill="#0B6E4F"/>
-<text x="240.0" y="185.3" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ4</text>
-<text x="576.7" y="185.3" font-size="11" fill="#16243A" text-anchor="start" font-weight="normal">+4,305</text>
-<rect x="550.1" y="200.5" width="11.0" height="17.2" fill="#B3261E"/>
-<text x="240.0" y="213.1" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ5</text>
-<text x="544.1" y="213.1" font-size="11" fill="#16243A" text-anchor="end" font-weight="normal">−4,947</text>
-<rect x="544.7" y="228.3" width="16.4" height="17.2" fill="#B3261E"/>
-<text x="240.0" y="240.9" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ6</text>
-<text x="538.7" y="240.9" font-size="11" fill="#16243A" text-anchor="end" font-weight="normal">−7,363</text>
-<rect x="496.7" y="256.1" width="64.4" height="17.2" fill="#B3261E"/>
-<text x="240.0" y="268.7" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ7</text>
-<text x="490.7" y="268.7" font-size="11" fill="#16243A" text-anchor="end" font-weight="normal">−28,991</text>
-<rect x="497.2" y="283.9" width="63.9" height="17.2" fill="#B3261E"/>
-<text x="240.0" y="296.5" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ8</text>
-<text x="491.2" y="296.5" font-size="11" fill="#16243A" text-anchor="end" font-weight="normal">−28,771</text>
-<rect x="438.1" y="311.7" width="123.0" height="17.2" fill="#B3261E"/>
-<text x="240.0" y="324.3" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ9</text>
-<text x="432.1" y="324.3" font-size="11" fill="#16243A" text-anchor="end" font-weight="normal">−55,338</text>
-<rect x="335.4" y="339.5" width="225.7" height="17.2" fill="#B3261E"/>
-<text x="240.0" y="352.1" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ10</text>
-<text x="329.4" y="352.1" font-size="11" fill="#16243A" text-anchor="end" font-weight="normal">−101,574</text>
-<text x="24.0" y="404.0" font-size="11" fill="#4E5B70" text-anchor="start" font-weight="normal">大和総研の計算式を2026年の制度に当てはめた計算で、大和総研自身の試算とは異なります。</text>
-<text x="24.0" y="420.0" font-size="11" fill="#4E5B70" text-anchor="start" font-weight="normal">どの案も入れる前の制度と比べた平均です。どのグループにも、変わらない世帯や、平均と逆に動く世帯があります。</text>
-<text x="24.0" y="436.0" font-size="11" fill="#4E5B70" text-anchor="start" font-weight="normal">（近似）2024年の国の調査の平均に合わせた架空の世帯による大まかな試算。働き方は変わらないものとしています</text>
+<line x1="250.0" x2="250.0" y1="84" y2="346" stroke="#E4E8EE"/><text x="250.0" y="362.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">−14万</text>
+<line x1="294.4" x2="294.4" y1="84" y2="346" stroke="#E4E8EE"/><text x="294.4" y="362.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">−12万</text>
+<line x1="338.9" x2="338.9" y1="84" y2="346" stroke="#E4E8EE"/><text x="338.9" y="362.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">−10万</text>
+<line x1="383.3" x2="383.3" y1="84" y2="346" stroke="#E4E8EE"/><text x="383.3" y="362.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">−8万</text>
+<line x1="427.8" x2="427.8" y1="84" y2="346" stroke="#E4E8EE"/><text x="427.8" y="362.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">−6万</text>
+<line x1="472.2" x2="472.2" y1="84" y2="346" stroke="#E4E8EE"/><text x="472.2" y="362.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">−4万</text>
+<line x1="516.7" x2="516.7" y1="84" y2="346" stroke="#E4E8EE"/><text x="516.7" y="362.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">−2万</text>
+<line x1="561.1" x2="561.1" y1="84" y2="346" stroke="#16243A"/><text x="561.1" y="362.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">0</text>
+<line x1="605.6" x2="605.6" y1="84" y2="346" stroke="#E4E8EE"/><text x="605.6" y="362.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">2万</text>
+<line x1="650.0" x2="650.0" y1="84" y2="346" stroke="#E4E8EE"/><text x="650.0" y="362.0" font-size="11" fill="#4E5B70" text-anchor="middle" font-weight="normal">4万</text>
+<rect x="561.1" y="89.0" width="20.6" height="16.2" fill="#0B6E4F"/>
+<text x="240.0" y="101.1" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ1</text>
+<text x="587.7" y="101.1" font-size="11" fill="#16243A" text-anchor="start" font-weight="normal">+9,257</text>
+<rect x="561.1" y="115.2" width="15.3" height="16.2" fill="#0B6E4F"/>
+<text x="240.0" y="127.3" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ2</text>
+<text x="582.4" y="127.3" font-size="11" fill="#16243A" text-anchor="start" font-weight="normal">+6,882</text>
+<rect x="561.1" y="141.4" width="14.7" height="16.2" fill="#0B6E4F"/>
+<text x="240.0" y="153.5" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ3</text>
+<text x="581.8" y="153.5" font-size="11" fill="#16243A" text-anchor="start" font-weight="normal">+6,605</text>
+<rect x="561.1" y="167.6" width="9.6" height="16.2" fill="#0B6E4F"/>
+<text x="240.0" y="179.7" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ4</text>
+<text x="576.7" y="179.7" font-size="11" fill="#16243A" text-anchor="start" font-weight="normal">+4,305</text>
+<rect x="550.1" y="193.8" width="11.0" height="16.2" fill="#B3261E"/>
+<text x="240.0" y="205.9" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ5</text>
+<text x="544.1" y="205.9" font-size="11" fill="#16243A" text-anchor="end" font-weight="normal">−4,947</text>
+<rect x="544.7" y="220.0" width="16.4" height="16.2" fill="#B3261E"/>
+<text x="240.0" y="232.1" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ6</text>
+<text x="538.7" y="232.1" font-size="11" fill="#16243A" text-anchor="end" font-weight="normal">−7,363</text>
+<rect x="496.7" y="246.2" width="64.4" height="16.2" fill="#B3261E"/>
+<text x="240.0" y="258.3" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ7</text>
+<text x="490.7" y="258.3" font-size="11" fill="#16243A" text-anchor="end" font-weight="normal">−28,991</text>
+<rect x="497.2" y="272.4" width="63.9" height="16.2" fill="#B3261E"/>
+<text x="240.0" y="284.5" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ8</text>
+<text x="491.2" y="284.5" font-size="11" fill="#16243A" text-anchor="end" font-weight="normal">−28,771</text>
+<rect x="438.1" y="298.6" width="123.0" height="16.2" fill="#B3261E"/>
+<text x="240.0" y="310.7" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ9</text>
+<text x="432.1" y="310.7" font-size="11" fill="#16243A" text-anchor="end" font-weight="normal">−55,338</text>
+<rect x="335.4" y="324.8" width="225.7" height="16.2" fill="#B3261E"/>
+<text x="240.0" y="336.9" font-size="12" fill="#16243A" text-anchor="end" font-weight="normal">グループ10</text>
+<text x="329.4" y="336.9" font-size="11" fill="#16243A" text-anchor="end" font-weight="normal">−101,574</text>
+<text x="24.0" y="388.0" font-size="11" fill="#4E5B70" text-anchor="start" font-weight="normal">大和総研の計算式を2026年の制度に当てはめた計算で、大和総研自身の試算とは異なります。</text>
+<text x="24.0" y="404.0" font-size="11" fill="#4E5B70" text-anchor="start" font-weight="normal">どの案も入れる前の制度と比べた平均です。どのグループにも、変わらない世帯や、平均と逆に動く世帯があります。</text>
+<text x="24.0" y="420.0" font-size="11" fill="#4E5B70" text-anchor="start" font-weight="normal">（近似）2024年の国の調査の平均に合わせた架空の世帯による大まかな試算。働き方は変わらないものとしています</text>
+<text x="24.0" y="436.0" font-size="11" fill="#4E5B70" text-anchor="start" font-weight="normal">（近似）計算を単純にした点は、サイトの「レポート」の「近似の一覧」にあります</text>
 <text x="24.0" y="456.0" font-size="11" fill="#4E5B70" text-anchor="start" font-weight="normal">出典：手取りラボ（2026年11月版）https://iamodd5.github.io/-tedori-lab/site/</text>
 </svg>

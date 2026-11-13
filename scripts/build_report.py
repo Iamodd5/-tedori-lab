@@ -27,6 +27,17 @@ def yen(n):
     return f"{round(n):,}"
 
 
+INCOME_KEYS = ("salary", "public_pension", "business_income")  # the yearly income fields in households/*.yaml
+
+
+def income(h, lang):
+    """A household's yearly income before tax; with more than one earner, the total and each member's amount."""
+    xs = [m[k] for m in h["incomes"] for k in INCOME_KEYS if k in m]
+    if len(xs) == 1:
+        return yen(xs[0])
+    return f"{yen(sum(xs))}（{'＋'.join(map(yen, xs))}）" if lang == "ja" else f"{yen(sum(xs))} ({' + '.join(map(yen, xs))})"
+
+
 def signed(n):
     return ("+" if n > 0 else "−" if n < 0 else "±") + yen(abs(n))
 
@@ -69,13 +80,20 @@ def facts():
     for l in LANGS:
         name = "name_ja" if l == "ja" else "name_en"
         f[l]["household_rows"] = "\n".join(
-            f"| {hid} | {wm['households'][hid][name]} | {yen(x['baseline_disposable'])} | {signed(x['disposable_change'])} |"
+            f"| {hid} | {wm['households'][hid][name]} | {income(wm['households'][hid], l)} | {yen(x['baseline_disposable'])} | {signed(x['disposable_change'])} |"
             for hid, x in daiwa.items())
     ch = [x["disposable_change"] for x in daiwa.values()]
     both.update(hh_up=sum(c > 0 for c in ch), hh_down=sum(c < 0 for c in ch), hh_same=sum(c == 0 for c in ch))
     best, worst = max(daiwa.values(), key=lambda x: x["disposable_change"]), min(daiwa.values(), key=lambda x: x["disposable_change"])
-    both.update(hh_best=best["household"], hh_best_change=signed(best["disposable_change"]),
-                hh_worst=worst["household"], hh_worst_change=signed(worst["disposable_change"]))
+    # the sentences say 最も増える / gain and 最も減る / loss and print the amounts without a sign (rule 13)
+    assert best["disposable_change"] > 0 > worst["disposable_change"], "rewrite the largest gain / loss sentence"
+    both.update(hh_best_change=yen(best["disposable_change"]), hh_worst_change=yen(-worst["disposable_change"]))
+    for l in LANGS:
+        name = "name_ja" if l == "ja" else "name_en"
+        fmt = "{}（{}）" if l == "ja" else "{} ({})"
+        mid = (lambda s: s) if l == "ja" else (lambda s: s[0].lower() + s[1:])  # mid-sentence in English
+        f[l]["hh_best"] = fmt.format(best["household"], mid(wm["households"][best["household"]][name]))
+        f[l]["hh_worst"] = fmt.format(worst["household"], mid(wm["households"][worst["household"]][name]))
 
     # all households (approximate)
     d = pop["designs"]["daiwa"]

@@ -12,8 +12,8 @@
 </head>
 <body>
 <h1><span lang="ja">案の比較</span><span lang="en">Compare the plans</span></h1>
-<p><span lang="ja">モデル世帯（計算のために例として作った世帯）を選ぶと、案によってその世帯の1年間の手取りがいくら変わるかが分かります。ただし、いま金額を計算できるのは、一部の案だけです。計算できない案とその理由は、ページの下の<a href="#notyet">「まだ計算できない案」</a>にまとめています。</span>
-<span lang="en">Choose an example household to see how much a plan would change its take-home pay for a year. Only some of the plans can be calculated today. The plans that cannot, and the reasons, are listed later on this page under <a href="#notyet">'Plans that cannot be calculated yet'</a>.</span></p>
+<p><span lang="ja">モデル世帯（計算のために例として作った世帯）を選ぶと、案によってその世帯の1年間の手取りがいくら変わるかが分かります。<span id="leadplans-ja">ただし、いま金額を計算できるのは、一部の案だけです。</span>計算できない案とその理由は、ページの下の<a href="#notyet">「まだ計算できない案」</a>にまとめています。</span>
+<span lang="en">Choose an example household to see how much a plan would change its take-home pay for a year. <span id="leadplans-en">Only some of the plans can be calculated today.</span> The plans that cannot, and the reasons, are listed later on this page under <a href="#notyet">'Plans that cannot be calculated yet'</a>.</span></p>
 <p class="note"><span lang="ja">「手取り」とは、税金と保険料を引き、児童手当と児童扶養手当（ひとり親世帯への手当）を足した、手元に残るお金のことです。変化は「2026年の制度」と比べて示します。これは、2026年に実際に使われている、どの案もまだ入っていない制度のことです。</span>
 <span lang="en">Take-home pay is what is left after tax and insurance, plus child allowance and the single-parent allowance (児童扶養手当). Each change is measured against '2026 rules': the rules actually in force in 2026, before any of these plans.</span></p>
 <p class="note"><span lang="ja">モデル世帯にない形の世帯は、ページの下の<a href="#own">「自分の世帯の形で見る」</a>で試せます。ただし、試せるのは給与で暮らす世帯だけです。</span><span lang="en">For a household not among the examples, see <a href="#own">'Try a household like yours'</a> further down. It covers households living on a salary only.</span></p>
@@ -56,6 +56,7 @@
 <label><span lang="ja">年齢：</span><span lang="en">Age: </span><select id="own-age"></select></label>
 <label><span lang="ja">子どもの人数：</span><span lang="en">Children: </span><select id="own-kids"></select></label>
 <label for="own-salary" id="own-salary-label"></label><input type="text" id="own-salary" inputmode="numeric" autocomplete="off" value="3000000" aria-describedby="own-result"> <span lang="ja">円</span><span lang="en">yen</span>
+<p class="small" id="own-spouse"></p>
 <ul id="own-result" aria-live="polite"></ul>
 <ul class="small" id="own-notes"></ul>
 </div>
@@ -118,16 +119,18 @@ function drawOwn() {
   [ja ? `ほかの${Object.keys(walls.summaries).length - own.designs.length}つの案は、まだ計算できないため、ここには出していません。理由は、すぐ下の「まだ計算できない案」にあります。`
       : `The other ${Object.keys(walls.summaries).length - own.designs.length} plans cannot be calculated yet, so they are not shown here. The reasons are in the next section, 'Plans that cannot be calculated yet'.`,
    ja ? "東京都新宿区に住んでいるものとしています。" : "The household is assumed to live in Shinjuku, Tokyo.",
-   ja ? `働く人は学生ではなく、従業員${own.employer_min}人以上の会社で週${own.hours_min}時間以上働いているものとしています。「夫婦で、配偶者はパート」の配偶者は、年収${yen(own.spouse_part)}円で、働くのは週${own.hours_min}時間未満としています。`
-      : `Anyone who works is assumed not to be a student and to work ${own.hours_min}+ hours a week at a company with at least ${own.employer_min} employees. In 'A couple, the spouse works part-time', the spouse earns ¥${yen(own.spouse_part)} a year and works under ${own.hours_min} hours a week.`,
+   ja ? `働く人は学生ではなく、従業員${own.employer_min}人以上の会社で週${own.hours_min}時間以上働いているものとしています。${shape === "couple_part" ? `配偶者は、年収${yen(own.spouse_part)}円で、働くのは週${own.hours_min}時間未満としています。` : ""}`
+      : `Anyone who works is assumed not to be a student and to work ${own.hours_min}+ hours a week at a company with at least ${own.employer_min} employees.${shape === "couple_part" ? ` The spouse earns ¥${yen(own.spouse_part)} a year and works under ${own.hours_min} hours a week.` : ""}`,
    ja ? `子どもは${own.child_age}歳としています。` : `Children are aged ${own.child_age}.`,
    ja ? `給与が月${yen(own.employee_line / 12)}円（年${yen(own.employee_line)}円）に届かないときは、会社の保険に入らず、国民健康保険料と国民年金保険料を自分で払うものとして計算しています。夫婦の場合は、会社の保険に入っていない配偶者の国民年金保険料も払います。このため、この金額の前後で手取りが大きく変わります。月${yen(own.employee_line / 12)}円の条件は2026年10月1日になくなりましたが、10月からも週20時間以上働いてこの額に届かないのは最低賃金の減額特例を受けている人だけで、申し出ないかぎり会社の保険に入らないため、1年を通してこの額で分けています。くわしくは、ページの下の「すべての世帯に共通する前提と近似」にあります。`
       : `On a salary below ¥${yen(own.employee_line / 12)} a month (¥${yen(own.employee_line)} a year), the calculation treats the earner as outside company insurance, paying National Health Insurance and National Pension contributions instead. In a couple, the earner also pays the National Pension contributions of a spouse who is not in company insurance. Take-home pay therefore changes sharply at this amount. The ¥${yen(own.employee_line / 12)} monthly condition ended on 1 October 2026, but from October the only people on 20+ hours a week paid less are workers with a minimum-wage exception, who join only if they ask, so this amount is used for the whole year. More under 'Assumptions behind every household' at the bottom of the page.`,
    ja ? `40〜64歳の人は、${own.ages[1]}歳として計算しています。60〜64歳の人は国民年金保険料を払いません。そのため、給与が少なく、上の金額に届かないときは、実際の手取りはここに出る額より多くなります。`
       : `Ages 40 to 64 are calculated at age ${own.ages[1]}. People aged 60 to 64 do not pay National Pension contributions, so on a low salary (below the monthly amount above) their real take-home pay is higher than shown.`,
    ja ? "収入が少ないときに申請できる国民年金保険料の免除は、申請しないものとしています。" : "We assume nobody applies for the National Pension exemption that is available on a low income.",
-   ja ? "（近似）ひとり親は母親で、養育費は受け取っていないものとしています。児童扶養手当は、その年の所得で判定しています。実際は、前の年の所得で決まります。" : "(Approximation) A single parent is assumed to be the mother and to receive no child support. The single-parent allowance is judged on the same year's income; under the actual rules, the previous year's income decides it.",
-   ja ? "ほかの前提と近似は、ページの下の「すべての世帯に共通する前提と近似」にあります。" : "Other assumptions are under 'Assumptions behind every household' at the bottom of the page."].forEach(x => li(notes, x));
+   shape !== "single_parent" ? "" : ja ? "（近似）ひとり親は母親で、養育費は受け取っていないものとしています。児童扶養手当は、その年の所得で判定しています。実際は、前の年の所得で決まります。" : "(Approximation) A single parent is assumed to be the mother and to receive no child support. The single-parent allowance is judged on the same year's income; under the actual rules, the previous year's income decides it.",
+   ja ? "ほかの前提と近似は、ページの下の「すべての世帯に共通する前提と近似」にあります。" : "Other assumptions are under 'Assumptions behind every household' at the bottom of the page."].filter(Boolean).forEach(x => li(notes, x));
+  // next to the box: the spouse's pay is fixed in this shape
+  get("own-spouse").textContent = shape !== "couple_part" ? "" : ja ? `配偶者の給与は、年${yen(own.spouse_part)}円で計算します。` : `The spouse's pay is fixed at ¥${yen(own.spouse_part)} a year.`;
   const couple = shape.startsWith("couple");
   get("own-salary-label").textContent = ja ? (couple ? "主に稼ぐ人の給与（税引き前、年）：" : "給与（税引き前、年）：") : (couple ? "Main earner's salary (before tax, per year): " : "Salary (before tax, per year): ");
   if (!grid) return;
@@ -154,9 +157,11 @@ function draw(newHousehold) {
   const ja = lang === "ja", bp = mine[0].baseline_parts;
   const res = document.getElementById("result"); res.innerHTML = "";
   li(res, ja ? `2026年の制度での手取り：年${yen(base)}円` : `Take-home pay under 2026 rules: ¥${yen(base)} a year`);
-  const rearing = bp.child_rearing_allowance ? (ja ? `と児童扶養手当${yen(bp.child_rearing_allowance)}円` : ` and the single-parent allowance of ¥${yen(bp.child_rearing_allowance)}`) : "";
-  li(res, ja ? `この手取りは、所得税${yen(bp.income_tax)}円、住民税${yen(bp.resident_tax)}円、社会保険料${yen(bp.social_insurance)}円を払い、児童手当${yen(bp.child_allowance)}円${rearing}を受け取った後の額です。`
-             : `This is after paying income tax of ¥${yen(bp.income_tax)}, resident tax of ¥${yen(bp.resident_tax)} and social insurance of ¥${yen(bp.social_insurance)}, and receiving child allowance of ¥${yen(bp.child_allowance)}${rearing}.`);
+  // only the allowances the household actually gets
+  const got = [bp.child_allowance && (ja ? `児童手当${yen(bp.child_allowance)}円` : `child allowance of ¥${yen(bp.child_allowance)}`),
+               bp.child_rearing_allowance && (ja ? `児童扶養手当${yen(bp.child_rearing_allowance)}円` : `the single-parent allowance of ¥${yen(bp.child_rearing_allowance)}`)].filter(Boolean);
+  li(res, ja ? `この手取りは、所得税${yen(bp.income_tax)}円、住民税${yen(bp.resident_tax)}円、社会保険料${yen(bp.social_insurance)}円を払${got.length ? `い、${got.join("と")}を受け取` : ""}った後の額です。`
+             : `This is after paying income tax of ¥${yen(bp.income_tax)}, resident tax of ¥${yen(bp.resident_tax)} and social insurance of ¥${yen(bp.social_insurance)}${got.length ? `, and receiving ${got.join(" and ")}` : ""}.`);
   const approx = r => r.approximations.length ? (ja ? "（近似）" : "(Approximation) ") : "";
   for (const r of done) li(res, lang === "ja"
     ? `${approx(r)}${t(r.label)}では、手取りの変化は年${signed(r.disposable_change)}円です（もとの手取りの${pctSigned(r.disposable_change / base)}）。`
@@ -179,7 +184,9 @@ function draw(newHousehold) {
   const box = document.getElementById("myincome");
   if (newHousehold || !box.value) box.value = h.reference_income;
   atIncome(h);
-  li(res, lang === "ja" ? `ほかの${mine.length - done.length}つの案は、まだ計算できません。理由は、ページの下の「まだ計算できない案」にあります。` : `The other ${mine.length - done.length} plans cannot be calculated yet. The reasons are listed later on this page, under 'Plans that cannot be calculated yet'.`);
+  // the lead says which plans have figures (the same for every household)
+  document.getElementById("leadplans-ja").textContent = `いま金額が出るのは${done.map(r => t(r.label)).join("、")}だけです。ほかの${mine.length - done.length}つの案は、まだ計算できません。`;
+  document.getElementById("leadplans-en").textContent = `Only the ${done.map(r => t(r.label)).join(" and the ")} has figures today. The other ${mine.length - done.length} plans cannot be calculated yet.`;
 
   if (chart) chart.destroy();
   // nothing to draw when every part is zero: say so instead of an empty chart
@@ -195,7 +202,7 @@ function draw(newHousehold) {
             datasets: Object.keys(PARTS).filter(k => done.some(r => r.components[k])).map(k => ({ label: t(PARTS[k]), backgroundColor: COLORS[k], borderColor: "#fff", borderWidth: 1.5,
               data: done.map(r => sign(k) * r.components[k]) })) },
     options: { animation: false, maintainAspectRatio: false, indexAxis: "y",
-      plugins: { tooltip: { callbacks: { label: c => `${c.dataset.label}${lang === "ja" ? "：" : ": "}${signed(c.raw)}` } } },
+      plugins: { tooltip: { callbacks: { label: c => lang === "ja" ? `${c.dataset.label}：${signed(c.raw)}円` : `${c.dataset.label}: ${signed(c.raw).replace(/^([+−±])/, "$1¥")}` } } },
       scales: { x: { stacked: true, title: { display: true, text: lang === "ja" ? "手取りの変化（年額、単位：円）" : "Change in take-home pay (yen a year)" } },
                 y: { stacked: true, ticks: { callback: (v, i) => approx(done[i]) + shortName(t(done[i].label)) } } } } });
 
@@ -206,7 +213,11 @@ function draw(newHousehold) {
     [r.disposable_change, c.credit, c.income_tax, c.resident_tax, c.social_insurance, c.consumption_tax].forEach(v => tr.insertCell().textContent = signed(v));
   }
   const bl = document.getElementById("blocked"); bl.innerHTML = "";
-  for (const r of mine.filter(r => r.status !== "complete")) li(bl, `${t(r.label)}${lang === "ja" ? "：" : ": "}${joinT(r.blocked_by)}`);
+  const sentences = list => lang === "ja" ? joinT(list) : list.map(x => { const s = t(x); return s[0].toUpperCase() + s.slice(1); }).join(". ") + ".";
+  for (const r of mine.filter(r => r.status !== "complete")) {
+    const x = document.createElement("li"), name = document.createElement("strong");
+    name.textContent = t(r.label); x.append(name, document.createElement("br"), sentences(r.blocked_by)); bl.append(x);
+  }
 
   const sn = document.getElementById("sitenotes"); sn.innerHTML = "";
   for (const r of done.filter(r => r.site_note)) { const p = document.createElement("p"); p.className = "note"; p.textContent = `${t(r.label)}${lang === "ja" ? "：" : ": "}${t(r.site_note)}`; sn.append(p); }

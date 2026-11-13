@@ -68,6 +68,7 @@
 const C = { gain: "#009E73", lose: "#D55E00", same: "#5F6368", mean: "#0072B2" };
 let pop, charts = [];
 const pct = x => (x * 100).toFixed(1) + "%";
+const sgnYen = v => (v > 0 ? "+" : v < 0 ? "−" : "±") + yen(Math.abs(v));  // a change, with a true minus sign
 const tp = v => lang === "ja" ? `約${v}兆円` : `about ¥${v} trillion`;  // the authors' own rounded figure
 // rough estimates: shown to the nearest 0.1 trillion
 const tn = x => x == null ? "—" : (lang === "ja" ? `約${(x / 1e12).toFixed(1)}兆円` : `about ¥${(x / 1e12).toFixed(1)} trillion`);
@@ -81,8 +82,8 @@ function findings(d, labels) {
   const range = xs => xs.length ? `${xs[0].decile}${xs.length > 1 ? (lang === "ja" ? "〜" : "–") + xs.at(-1).decile : ""}` : "";
   const most = xs => xs.reduce((a, b) => Math.abs(b.mean_change) > Math.abs(a.mean_change) ? b : a);
   // shares of households whose take-home goes up / stays the same, as a range across the groups listed
-  const span = (xs, k) => { const v = xs.map(x => Math.round(x[k] * 100)); const a = Math.min(...v), b = Math.max(...v); return a === b ? `${a}%` : `${a}〜${b}%`.replace("〜", lang === "ja" ? "〜" : "–"); };
-  const pct0 = s => Math.round(s * 100), lose = up.filter(x => pct0(x.losers_share) > 0);
+  const span = (xs, k) => { const v = xs.map(x => +(x[k] * 100).toFixed(1)); const a = Math.min(...v), b = Math.max(...v); return a === b ? `${a}%` : `${a}〜${b}%`.replace("〜", lang === "ja" ? "〜" : "–"); };
+  const pct0 = s => +(s * 100).toFixed(1), lose = up.filter(x => pct0(x.losers_share) > 0);
   if (up.length) li(ul, lang === "ja"
     ? `グループ${range(up)}では、手取りが平均で増えます。増える額が最も大きいのはグループ${most(up).decile}で、平均で年${yen(most(up).mean_change)}円です。ただし、これらのグループでも手取りが増えるのは各グループの${span(up, "winners_share")}の世帯で、${span(up, "unchanged_share")}の世帯は変わりません。${lose.map(x => `グループ${x.decile}では${pct0(x.losers_share)}%の世帯で手取りが減ります。`).join("")}`
     : `In group${up.length > 1 ? "s" : ""} ${range(up)}, take-home pay goes up on average, by the most in group ${most(up).decile} (an average of ¥${yen(most(up).mean_change)} a year). But within these groups, take-home goes up for ${span(up, "winners_share")} of households, and ${span(up, "unchanged_share")} see no change.${lose.map(x => ` In group ${x.decile}, ${pct0(x.losers_share)}% of households are worse off.`).join("")}`);
@@ -121,8 +122,8 @@ function draw() {
     data: { labels, datasets: [{ label: lang === "ja" ? "手取りの変化（平均、円／年）" : "Average change (yen per year)",
       backgroundColor: C.mean, data: d.by_decile.map(x => x.mean_change) }] },
     options: { animation: false, maintainAspectRatio: false,
-      plugins: { tooltip: { callbacks: { label: c => yen(c.raw) } } },
-      scales: { x: xAxis, y: { title: { display: true, text: lang === "ja" ? "円／年" : "yen per year" } } } } }));
+      plugins: { tooltip: { callbacks: { label: c => lang === "ja" ? `年${sgnYen(c.raw)}円` : `${sgnYen(c.raw).replace(/^([+−±])/, "$1¥")} a year` } } },
+      scales: { x: xAxis, y: { ticks: { callback: v => (v < 0 ? "−" : "") + yen(Math.abs(v)) }, title: { display: true, text: lang === "ja" ? "円／年" : "yen per year" } } } } }));
   // white borders keep the stacked parts apart where their colours are close in lightness
   const part = (k, name, col) => ({ label: t(name), backgroundColor: col, borderColor: "#fff", borderWidth: 1.5, data: d.by_decile.map(x => x[k] * 100) });
   charts.push(new Chart(document.getElementById("share"), { type: "bar",
@@ -137,7 +138,7 @@ function draw() {
   d.by_decile.forEach((x, i) => {
     const tr = tb.insertRow(), dec = pop.deciles[i];
     rowHead(tr, (lang === "ja" ? "グループ" : "Group ") + x.decile);
-    [yen(dec.annual_income_mean), yen(x.mean_change), pct(x.winners_share), pct(x.losers_share), pct(x.unchanged_share)]
+    [yen(dec.annual_income_mean), sgnYen(x.mean_change), pct(x.winners_share), pct(x.losers_share), pct(x.unchanged_share)]
       .forEach(v => tr.insertCell().textContent = v);
   });
 
@@ -151,7 +152,7 @@ function draw() {
       : (lang === "ja" ? `国の負担が${tn(net)}増える` : `costs the government ${tn(net)}`),
       pub ? (lang === "ja" ? "ほぼゼロ（増える所得税と現金で払う額がつり合う「財政中立」）" : "about zero (fiscally neutral: the extra income tax and the cash paid out balance)") : "—");
   document.getElementById("costnote").textContent = sel.value === "daiwa"
-    ? (lang === "ja" ? "大和総研の試算は、2025年の制度と税額控除5.65万円をもとにしています。このサイトは2026年の制度と5.2万円で計算しているので、二つは単純には比べられません。差の主な理由は二つあります。一つは、この案でなくなる所得税の基礎控除（所得税を計算するときに、所得から差し引ける額）の大きさです。2026年の制度では所得489万円以下で104万円あり、2025年の制度の68万〜95万円より大きいため、なくなると所得税がより多く増えます。もう一つは、税額控除が5.65万円から5.2万円に下がることです。このほか、大和総研は総務省の「市町村税課税状況等の調」（市町村が住民税をどう課税したかの統計）を、このサイトは家計の調査の平均を使っている点も違います。（出典）大和総研「働く低所得者の負担を軽減する『社会保険料還付付き税額控除』の提案」2025年10月10日、1・7ページ。"
+    ? (lang === "ja" ? "大和総研の試算は、2025年の制度と税額控除56,500円をもとにしています。このサイトは2026年の制度と52,000円で計算しているので、二つは単純には比べられません。差の主な理由は二つあります。一つは、この案でなくなる所得税の基礎控除（所得税を計算するときに、所得から差し引ける額）の大きさです。2026年の制度では所得489万円以下で104万円あり、2025年の制度の68万〜95万円より大きいため、なくなると所得税がより多く増えます。もう一つは、税額控除が56,500円から52,000円に下がることです。このほか、大和総研は総務省の「市町村税課税状況等の調」（市町村が住民税をどう課税したかの統計）を、このサイトは家計の調査の平均を使っている点も違います。（出典）大和総研「働く低所得者の負担を軽減する『社会保険料還付付き税額控除』の提案」2025年10月10日、1・7ページ。"
                      : "Daiwa's estimate uses 2025 rules and a ¥56,500 credit. This site uses 2026 rules and ¥52,000, so the two cannot be compared directly. There are two main reasons for the gap. First, the income tax basic deduction that the plan removes (an amount taken off income before income tax is worked out) is larger under 2026 rules: ¥1.04m at incomes up to ¥4.89m, against ¥680,000–950,000 under 2025 rules. Removing it therefore raises more tax. Second, the credit falls from ¥56,500 to ¥52,000. Daiwa also used the internal affairs ministry's statistics on municipal tax assessments (市町村税課税状況等の調), while this site uses averages from a household survey. Source: Daiwa Institute of Research, proposal of 10 October 2025, pages 1 and 7.")
     : "";
   const nd = document.getElementById("notes"); nd.innerHTML = "";

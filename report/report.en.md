@@ -5,7 +5,7 @@
 Tedori Lab works out how {n_plans} plans to change tax and benefits would alter households' take-home pay, using the same households, data and method for each. Take-home pay means what is left after tax and insurance premiums, plus child allowance and the single-parent allowance. The calculations cover example households and every household in Japan. Only the {done_labels} can be calculated so far.
 
 - **Under today's rules (the 2026 rules), a household takes home ¥{lead_drop} less a year when a part-time spouse earns ¥{lead_at} a year instead of ¥{lead_from}.** This is before any of the plans. The spouse works under {hours_min} hours a week and is not in their employer's health insurance. A point like this, where earning more leaves a household with less, is called an income wall (年収の壁). The figures are for example household H4: a couple with no children in Shinjuku, Tokyo, in which the other partner is an employee on ¥{h4_earner} a year.
-- (Approximation) Under the {daiwa_label}, {hh_up} of the {n_households} example households take home more, {hh_down} take home less and {hh_same} see no change. The largest gain is for {hh_best} ({hh_best_change} yen a year) and the largest loss is for {hh_worst} ({hh_worst_change} yen a year).
+- (Approximation) Under the {daiwa_label}, {hh_up} of the {n_households} example households take home more, {hh_down} take home less and {hh_same} see no change. The largest gain, ¥{hh_best_change} a year, is for {hh_best}; the largest loss, ¥{hh_worst_change} a year, is for {hh_worst}.
 - (Approximation) Under the {daiwa_label}, the government takes in about ¥{net} trillion more a year across the country, in a rough estimate that assumes nobody changes how they work. Income tax rises by about ¥{it_up} trillion a year, and the government pays out about ¥{cash} trillion in cash: the part of the tax credit (an amount taken straight off income tax) that is bigger than the income tax owed. Daiwa's own estimate comes to about zero overall. The section on every household in Japan explains the difference.
 
 ## How to read the numbers
@@ -51,8 +51,8 @@ These further points apply to this calculation:
 
 This table shows the change in take-home pay under the {daiwa_label} for each example household. The main points give the summary.
 
-| Household | Who they are | Take-home pay under 2026 rules (yen a year) | (Approximation) Change under the plan (yen a year) |
-|---|---|---|---|
+| Household | Who they are | Income (a year, before tax, yen) | Take-home pay under 2026 rules (yen a year) | (Approximation) Change under the plan (yen a year) |
+|---|---|---|---|---|
 {household_rows}
 
 In the table, + means take-home pay goes up and − means it goes down.

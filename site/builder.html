@@ -17,6 +17,8 @@
   .sliders .value { font-weight: 700; font-size: 17px; color: var(--ai); font-variant-numeric: tabular-nums; }
   .sliders small { grid-column: 1 / -1; color: var(--ink-2); font-size: 13px; }
   .shape { height: 260px; }
+  .quick { font-size: 14px; margin: 0 0 12px; padding: 8px 0; background: var(--paper); border-top: 1px solid var(--rule); }
+  @media (max-width: 759px) { .quick { position: sticky; bottom: 0; z-index: 5; } }  /* on a phone the results are far below the sliders */
   .builder-top h2.flat { font-size: 17px; margin: 12px 0 6px; padding: 0; border: 0; }
   @media (min-width: 760px) { .builder-top { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; } }
 </style>
@@ -33,6 +35,8 @@
 <div class="builder-top">
   <div>
     <div class="sliders" id="sliders"></div>
+    <p class="quick" id="quick"></p>
+    <p class="sr-only" id="said" aria-live="polite"></p>
   </div>
   <div>
     <h2 class="flat"><span lang="ja">あなたの案で、一人がもらえる額</span><span lang="en">What one person gets under your plan</span></h2>
@@ -69,7 +73,7 @@
 <div class="navigator" id="nav"></div>
 <ul class="small hint">
 <li><span lang="ja">拡大するには、「+ 拡大」を押すか、グラフの上をドラッグします。スマートフォンでは、2本の指で広げても拡大できます。</span><span lang="en">To zoom in, press '+ Zoom in' or drag across a chart. On a phone you can also spread two fingers.</span></li>
-<li><span lang="ja">見る範囲を動かすには、上の帯の枠を動かします。キーボードでは、枠を選んでから左右の矢印キーを押します。</span><span lang="en">To look at other incomes, move the frame in the strip above. On a keyboard, select the frame and press the left and right arrow keys.</span></li>
+<li><span lang="ja">見る範囲を動かすには、「◀」「▶」を押すか、上の帯の枠を動かします。キーボードでは、枠を選んでから左右の矢印キーを押します。</span><span lang="en">To look at other incomes, press ◀ or ▶, or move the frame in the strip above. On a keyboard, select the frame and press the left and right arrow keys.</span></li>
 <li><span lang="ja">広い範囲に戻すには、金額の書いてあるボタンを押します。最初の表示に戻るには、「最初の表示に戻す」を押すか、グラフをダブルクリックします。</span><span lang="en">To go back to a wide range, press one of the buttons above with an amount on it. To return to the starting view, press 'Back to the starting view' or double-click a chart.</span></li>
 </ul>
 <h3><span lang="ja">収入ごとの世帯の手取り（年額、単位：円）</span><span lang="en">Take-home pay at each income (yen per year)</span></h3>
@@ -90,11 +94,11 @@
 const SLIDERS = [
   { key: "phase_in_rate", ja: "増え方（稼ぎの何%）", en: "How fast it grows (% of earnings)", min: 0, max: 50, step: 1, value: 10, x: 0.01, fmt: v => v + "%",
     help: { ja: "稼ぎ100万円につき、もらえる額がこの割合だけ増える（10%なら10万円）", en: "For every ¥1m earned, the credit grows by this share (10% = ¥100,000)" } },
-  { key: "maximum", ja: "1人あたりの最大額", en: "Most one person can get", min: 0, max: 500000, step: 10000, value: 100000, x: 1, fmt: v => "¥" + yen(v),
+  { key: "maximum", ja: "1人あたりの最大額", en: "Most one person can get", min: 0, max: 500000, step: 10000, value: 100000, x: 1, fmt: v => lang === "ja" ? yen(v) + "円" : "¥" + yen(v),
     help: { ja: "子どもの上乗せを除く", en: "Not counting the extra for children" } },
-  { key: "child_addition", ja: "子ども1人あたりの上乗せ", en: "Extra per child", min: 0, max: 300000, step: 10000, value: 50000, x: 1, fmt: v => "¥" + yen(v),
+  { key: "child_addition", ja: "子ども1人あたりの上乗せ", en: "Extra per child", min: 0, max: 300000, step: 10000, value: 50000, x: 1, fmt: v => lang === "ja" ? yen(v) + "円" : "¥" + yen(v),
     help: { ja: "18歳以下の子ども1人ごとに、稼ぎの多い親に上乗せ", en: "For each child aged 18 or under, added for the parent who earns more" } },
-  { key: "plateau_end", ja: "減り始める年収", en: "Starts shrinking above", min: 0, max: 10000000, step: 100000, value: 3000000, x: 1, fmt: v => "¥" + yen(v),
+  { key: "plateau_end", ja: "減り始める年収", en: "Starts shrinking above", min: 0, max: 10000000, step: 100000, value: 3000000, x: 1, fmt: v => lang === "ja" ? yen(v) + "円" : "¥" + yen(v),
     help: { ja: "年収（稼ぎと年金の合計、税引き前）がこれを超えると、もらえる額が減り始める", en: "The credit starts to shrink once yearly income (earnings plus pensions, before tax) passes this" } },
   { key: "phase_out_rate", ja: "減り方（超えた分の何%）", en: "How fast it shrinks (% of income above that)", min: 0, max: 50, step: 1, value: 5, x: 0.01, fmt: v => v + "%",
     help: { ja: "超えた分100万円につき、もらえる額がこの割合だけ減る（5%なら5万円）", en: "For every ¥1m above, the credit shrinks by this share (5% = ¥50,000)" } },
@@ -144,8 +148,8 @@ function update(newHousehold) {
   // all households
   const r = populationResults(builder, p);
   document.getElementById("cost").textContent = lang === "ja"
-    ? `（近似）いまのスライドバーの値では、国が払う額の合計は年${(r.cost / 1e12).toFixed(1)}兆円です。もらえる世帯の割合は、年収の最も低いグループ1で${(r.share[0] * 100).toFixed(0)}%、最も高いグループ10で${(r.share[9] * 100).toFixed(0)}%です。もらえるかどうかは一人ずつ決まり、世帯のだれか一人でももらえれば「もらえる世帯」に数えます。稼ぎ（給与と事業の収入）がない人はもらえません。`
-    : `(Approximation) With the sliders as they are now, the government pays out ¥${(r.cost / 1e12).toFixed(1)} trillion a year in total. In the lowest income group (group 1), ${(r.share[0] * 100).toFixed(0)}% of households get something; in the highest (group 10), ${(r.share[9] * 100).toFixed(0)}%. Whether someone receives it is decided person by person, and a household counts as receiving if anyone in it does. People with no earnings (wages or business income) get nothing.`;
+    ? `（近似）いまのスライドバーの値では、国が払う額の合計は年約${(r.cost / 1e12).toFixed(1)}兆円です。もらえる世帯の割合は、年収の最も低いグループ1で${(r.share[0] * 100).toFixed(0)}%、最も高いグループ10で${(r.share[9] * 100).toFixed(0)}%です。もらえるかどうかは一人ずつ決まり、世帯のだれか一人でももらえれば「もらえる世帯」に数えます。稼ぎ（給与と事業の収入）がない人はもらえません。`
+    : `(Approximation) With the sliders as they are now, the government pays out about ¥${(r.cost / 1e12).toFixed(1)} trillion a year in total. In the lowest income group (group 1), ${(r.share[0] * 100).toFixed(0)}% of households get something; in the highest (group 10), ${(r.share[9] * 100).toFixed(0)}%. Whether someone receives it is decided person by person, and a household counts as receiving if anyone in it does. People with no earnings (wages or business income) get nothing.`;
   const labels = r.mean.map((_, k) => String(k + 1));  // two-line labels did not fit on phones; the table has the averages
   dec.data = { labels, datasets: [{ label: lang === "ja" ? "もらえる額の1世帯あたり平均（円／年）" : "Average received per household (yen per year)", backgroundColor: C.mine, data: r.mean.map(Math.round) }] };
   dec.options.scales.x.title.text = lang === "ja" ? "収入グループ（1が最も低い。平均年収は下の表）" : "Income group (1 = lowest; average incomes in the table below)";
@@ -158,11 +162,18 @@ function update(newHousehold) {
   });
 
   // the example household
-  const mine = customWall(builder.households[hid], h.designs.baseline, p);
+  const mine = customWall(builder.households[hid], h.designs.baseline, p), gets = customCredit(builder.households[hid].people, p);
+  // the same two figures as the results below, in one line under the sliders; a screen reader hears it once the slider stops
+  const q = document.getElementById("quick"); q.replaceChildren();
+  const link = (href, text) => { const a = document.createElement("a"); a.href = href; a.textContent = text; return a; };
+  const line = ja ? `（近似）あなたの案：国が払う額 年約${(r.cost / 1e12).toFixed(1)}兆円／${hid}がもらえる額 年${yen(gets)}円`
+                  : `(Approximation) Your plan: the government pays about ¥${(r.cost / 1e12).toFixed(1)} trillion a year / ${hid} gets ¥${yen(gets)} a year`;
+  q.append(line, " ", link("#tbl-head", ja ? "全世帯の結果へ" : "All-household results"), ja ? "・" : " · ", link("#here", ja ? "例の世帯の結果へ" : "Example household"));
+  clearTimeout(update.said); update.said = setTimeout(() => { document.getElementById("said").textContent = line; }, 500);
   document.getElementById("incomes").textContent = (lang === "ja" ? "この世帯の今の収入（税引き前、年）：" : "This household's income now (before tax, per year): ") + describeIncomes(h.incomes);
   document.getElementById("here").textContent = lang === "ja"
-    ? `この世帯が今の収入のままなら、スライドバーで決めたあなたの案でもらえる額は、年${yen(customCredit(builder.households[hid].people, p))}円です。最初の値は、どの案からも取っていない仮の値です。`
-    : `With the incomes it has now, this household would get ¥${yen(customCredit(builder.households[hid].people, p))} a year under the plan you have set with the sliders. The starting values are placeholders and come from no plan.`;
+    ? `この世帯が今の収入のままなら、スライドバーで決めたあなたの案でもらえる額は、年${yen(gets)}円です。最初の値は、どの案からも取っていない仮の値です。`
+    : `With the incomes it has now, this household would get ¥${yen(gets)} a year under the plan you have set with the sliders. The starting values are placeholders and come from no plan.`;
   document.getElementById("wallshead").textContent = lang === "ja" ? `あなたの案での「年収の壁」（${whoMoves(h)}が増えるとき）` : `Walls under your plan (as ${whoMoves(h)} goes up)`;
   const marks = listWalls(document.getElementById("walls"), mine, whoMoves(h));
   wc.draw({ axis: incomeAxis(h), who: whoMoves(h), ref: h.reference_income, marks, marksOn: 1, series: [
